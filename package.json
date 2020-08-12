@@ -1,0 +1,27 @@
+{
+  "name": "dolthub-cypress",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "cy-open": "cypress open",
+    "cy-run": "cypress run",
+    "cy-chrome": "cypress run --browser chrome --headless",
+    "cylo-open-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_BASE_URL=http://localhost:3000 cypress open",
+    "cylo-open-blog": "export CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress open",
+    "cylo-open-docs": "export CYPRESS_LOCAL_DOCS=true && CYPRESS_BASE_URL=http://localhost:8000 cypress open",
+    "cylo-run-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_BASE_URL=http://localhost:3000 cypress run",
+    "cylo-run-blog": "export CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress run",
+    "cylo-run-docs": "export CYPRESS_LOCAL_DOCS=true && CYPRESS_BASE_URL=http://localhost:8000 cypress run"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.10.4",
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
+    "@types/node": "^14.0.27",
+    "cypress": "^4.12.1",
+    "typescript": "^3.9.7"
+  }
+}
