@@ -1,4 +1,4 @@
-import { newExpectation, newShouldArgs } from "../../utils";
+import { newExpectation, newShouldArgs, Tests } from "..";
 
 const exist = newShouldArgs("exist");
 
@@ -15,7 +15,7 @@ const footerTags = [
   "[data-cy=footer-liquidata]",
 ];
 
-export const testFooter = [
+export const testFooter: Tests = [
   newExpectation("should have footer", "[data-cy=site-footer]", exist),
   newExpectation("should have footer links and images", footerTags, exist),
 ];

@@ -1,9 +1,11 @@
 import {
+  ClickFlow,
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-} from "../../utils";
+  Tests,
+} from "..";
 
 const shouldArgs = newShouldArgs("be.visible");
 
@@ -17,7 +19,7 @@ const signedOutNavbarLinks = [
   "[data-cy=navbar-signin]",
 ];
 
-export const pricingModalClickFlow = (initialClickDataCy: string) =>
+export const pricingModalClickFlow = (initialClickDataCy: string): ClickFlow =>
   newClickFlow(
     initialClickDataCy,
     [
@@ -34,7 +36,7 @@ export const pricingModalClickFlow = (initialClickDataCy: string) =>
     "[data-cy=close-modal]",
   );
 
-export const testSignedOutNavbar = [
+export const testSignedOutNavbar: Tests = [
   newExpectation(
     "should have signed out navbar and correct links",
     signedOutNavbarLinks,
@@ -70,7 +72,7 @@ const mobileNavbarClickFlow = newClickFlow(
   "[data-cy=mobile-navbar-close-button]",
 );
 
-export const testMobileNavbar = [
+export const testMobileNavbar: Tests = [
   newExpectationWithClickFlows(
     "should show menu button on mobile",
     "[data-cy=mobile-navbar-menu-button]",

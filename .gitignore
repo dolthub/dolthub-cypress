@@ -1,5 +1,23 @@
 # ignore stored screenshots and videos
-node_modules/
 cypress/screenshots/
 cypress/videos/
 cypress/fixtures/
+
+# compiled output
+dist
+node_modules
+
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.eslintcache
+
+# Local secrets
+*.env
+
+tsconfig.tsbuildinfo

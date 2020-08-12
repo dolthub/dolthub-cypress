@@ -1,4 +1,4 @@
-// in cypress/support/index.d.ts
+// in cypress/support/types.d.ts
 // load type definitions that come with Cypress module
 /// <reference types="cypress" />
 

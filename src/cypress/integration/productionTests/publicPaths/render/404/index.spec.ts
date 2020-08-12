@@ -8,7 +8,7 @@ import { allDevicesForSignedOut } from "../../../../utils/devices";
 const pageName = "General 404 page";
 const currentPage = "/404";
 
-describe(`${pageName} renders expected components on different devices`, function () {
+describe(`${pageName} renders expected components on different devices`, () => {
   const shouldArgs = newShouldArgs("be.visible");
 
   const tests = [

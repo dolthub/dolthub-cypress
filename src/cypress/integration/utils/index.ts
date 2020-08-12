@@ -4,6 +4,7 @@ export const defaultTimeout = 5000;
 
 // TYPES
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ShouldArgs = { chainer: string; value?: any };
 
 type Selector = string | string[];
@@ -32,20 +33,20 @@ type Expectation = {
   description: string;
   selector: Selector;
   shouldArgs: ShouldArgs;
-  clickFlows?: Array<ClickFlow> | undefined;
+  clickFlows?: ClickFlow[] | undefined;
   scrollTo?: ScrollTo;
   skip?: boolean;
 };
 
 type Click = string | string[] | undefined;
 
-type ClickFlow = {
+export type ClickFlow = {
   toClickBefore?: Click;
-  expectations: Array<Expectation>;
+  expectations: Expectation[];
   toClickAfter?: Click;
 };
 
-export type Tests = Array<Expectation>;
+export type Tests = Expectation[];
 
 type Device = {
   device: Cypress.ViewportPreset;
@@ -54,7 +55,7 @@ type Device = {
   tests: Tests;
 };
 
-export type Devices = Array<Device>;
+export type Devices = Device[];
 
 // RUN TESTS
 
@@ -95,6 +96,7 @@ export function runTests({
 
   beforeEach(() => {
     cy.viewport(device);
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(200);
   });
 
@@ -105,9 +107,9 @@ export function runTests({
 
   tests.forEach(t => {
     if (t.skip) {
-      xit(t.description, function () {});
+      xit(t.description, () => {});
     } else {
-      it(t.description, function () {
+      it(t.description, () => {
         testAssertion(t);
 
         if (t.clickFlows) {
@@ -135,7 +137,7 @@ export function runTestsForDevices({
   currentPage,
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
-    describe(d.description, function () {
+    describe(d.description, () => {
       runTests({ ...d, currentPage });
     });
   });
@@ -174,7 +176,7 @@ function getAssertionTest(
 
 type ClickFlowsArgs = {
   description: string;
-  clickFlows: Array<ClickFlow>;
+  clickFlows: ClickFlow[];
 };
 
 // testClickFlows recursively runs clickFlow tests
@@ -246,7 +248,7 @@ export function newExpectationWithClickFlows(
   description: string,
   selector: string,
   shouldArgs: ShouldArgs,
-  clickFlows: Array<ClickFlow>,
+  clickFlows: ClickFlow[],
   skip = false,
 ): Expectation {
   return { description, selector, shouldArgs, clickFlows, skip };
@@ -273,6 +275,7 @@ export function newDevice(
   return { device, description, loggedIn, tests };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function newShouldArgs(chainer: string, value?: any) {
   return { chainer, value };
 }

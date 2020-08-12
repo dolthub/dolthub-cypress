@@ -1,14 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
+    "target": "ES2018",
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "incremental": true,
+    "composite": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["cypress"]
+    "types": ["cypress", "node"]
   },
-  "include": ["./node_modules/cypress", "./cypress/*/*.ts"]
+  "exclude": ["dist"],
+  "include": ["src", "./*.js"]
 }
