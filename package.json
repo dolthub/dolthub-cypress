@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "compile": "tsc -b",
-    "lint": "eslint --cache --ext .ts,.js,.tsx,.jsx .",
+    "lint": "eslint --cache --ext .ts,.js .",
     "cy-open": "cypress open",
     "cy-run": "cypress run",
     "cy-chrome": "cypress run --browser chrome --headless",
@@ -16,8 +16,8 @@
     "cylo-run-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_BASE_URL=http://localhost:3000 cypress run",
     "cylo-run-blog": "export CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress run",
     "cylo-run-docs": "export CYPRESS_LOCAL_DOCS=true && CYPRESS_BASE_URL=http://localhost:8000 cypress run",
-    "prettier": "prettier --check 'src/cypress/**/*.{ts,tsx,jsx,js}'",
-    "prettier:fix": "prettier --write 'src/cypress/**/*.{ts,tsx,jsx,js}'"
+    "prettier": "prettier --check 'cypress/**/*.{ts,js}'",
+    "prettier:fix": "prettier --write 'cypress/**/*.{ts,js}'"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
@@ -32,10 +32,8 @@
     "eslint-config-airbnb-typescript": "^9.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-cypress": "^2.11.1",
-    "typescript": "^3.9.7"
-  },
-  "dependencies": {
     "eslint-plugin-import": "^2.22.0",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
   }
 }
