@@ -10,43 +10,43 @@ dolthub-cypress $ yarn && yarn compile
 
 ## Running the tests
 
-You can either run our Cypress suite against our deployed production (dolthub.com) or against the local webserver (localhost:3000).
+You can either run our Cypress suite against our deployed production (dolthub.com) or against the local webserver (`localhost:3000`).
 
 To run the tests against production, you can simply run these commands:
 
 ```bash
 # runs tests using the full UI in Chrome against prod (recommended)
-dolthub-cypress $ yarn cy-open
+$ yarn cy-open
 
 # runs tests against prod (default browser is Electron)
-dolthub-cypress & yarn cy-run
+$ yarn cy-run
 
 # runs tests headless against prod (using Chrome)
-dolthub-cypress $ yarn cy-chrome
+$ yarn cy-chrome
 ```
 
-To run the tests against the local webserver, make sure you have the server running. (Please note: this option is only currently available for our Liquidata devs. If you want to add a test to our suite, please file an issue or pull request so we can add the appropriate `data-cy` tag.)
+To run the tests against the local webserver, make sure you have the server running. _(Please note: this option is only currently available for our Liquidata devs. If you want to add a test to our suite, please file [an issue](https://github.com/liquidata-inc/dolthub-cypress/issues/new) or [pull request](https://github.com/liquidata-inc/dolthub-cypress/pulls) so we can add the appropriate `data-cy` tag.)_
 
 Then, to run the Cypress tests against the local server:
 
 ```bash
 # runs tests in Chrome against local server
-dolthub-cypress $ yarn cylo-open-dolthub
+$ yarn cylo-open-dolthub
 
 # runs tests against local server
-dolthub-cypress & yarn cylo-run-dolthub
+$ yarn cylo-run-dolthub
 ```
 
 Running tests against our local webserver gets slightly more complicated when testing our [blog](https://www.dolthub.com/blog) or [docs](https://www.dolthub.com/docs), which are separate applications (learn more about our front-end stack and architecture [here](https://www.dolthub.com/blog/2020-03-11-how-we-built-dolthub-stack-and-architecture/)). Cypress can only run against a single host, so running our `blog` tests against our local DoltHub server won't work (`localhost:3000/blog` does not exist, but `dolthub.com/blog` does). You can test our blog or docs against their local webservers by running these commands:
 
 ```bash
-dolthub-cypress $ yarn cylo-open-blog
+# For the blog
+$ yarn cylo-open-blog
+$ yarn cylo-run-blog
 
-dolthub-cypress & yarn cylo-run-blog
-
-dolthub-cypress $ yarn cylo-open-docs
-
-dolthub-cypress & yarn cylo-run-docs
+# For the docs
+$ yarn cylo-open-docs
+$ yarn cylo-run-docs
 ```
 
 All the tests are located in `cypress/integration/`.
@@ -81,9 +81,9 @@ Most type definitions within `cypress/integration/utils/types.ts` have a corresp
 
 We'll go through the concepts the types were derived from:
 
-### Expectation
+### `Expectation`
 
-An **Expectation** consists of a test description, an element to select, and some assertions to make about that element. The current helper function that creates Expectations is: **newExpectation**.
+An **`Expectation`** consists of a test description, an element to select, and some assertions to make about that element. The current helper function that creates `Expectation`s is: **`newExpectation`**.
 
 This is the type definition for an `Expectation`:
 
@@ -131,15 +131,15 @@ describe(`${pageName} should render a Like button`, () => {
 
 Getting back to our variablized parameters above, `selector` is the selector intended to be used with the `cy.get()` method. This method is optimized to traverse the DOM and find the element(s) containing the specified `data-cy` attributes.
 
-#### ShouldArgs
+### `ShouldArgs`
 
-`shouldArgs` is another object intended to be used with Cypress' assertion method [`.should()`](https://docs.cypress.io/api/commands/should.html#Syntax).
+`shouldArgs` is another object intended to be used with Cypress's assertion method [`.should()`](https://docs.cypress.io/api/commands/should.html#Syntax).
 
 ```ts
 type ShouldArgs = { chainer: string; value?: any };
 ```
 
-`chainer` refers to the assertion string `be.visible`. If you're not familiar with assertions, you can learn more [here](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#Assertions). While `be.visible` does not require any values, some chainers like `have.length` require a value of a number. Here are some examples:
+`chainer` refers to the assertion string "be.visible". If you're not familiar with assertions, you can learn more [here](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress.html#Assertions). While "be.visible" does not require any values, some chainers like "have.length" require a value of a number. Here are some examples:
 
 ```ts
 const beVisible = newShouldArgs("be.visible");
@@ -148,9 +148,9 @@ const haveLength = newShouldArgs("have.length", 10);
 const contain = newShouldArgs("contain", ["title1", "title2", "title3"]);
 ```
 
-### Device
+### `Device`
 
-A **Device** contains either a predefined Cypress supported device specified by a certain `string` that maps to the device's name IRL, ie "macbook-13" or "iphone-6", or it's the custom height and width of a device's viewport (our utility functions currently only support the [predefined viewport presets](https://docs.cypress.io/api/commands/viewport.html#Arguments)). The value is passed into `cy.viewport()`. Each Device also comes with a description and a list of tests to run against the provided `viewport`.
+A **`Device`** contains either a predefined Cypress supported device specified by a certain `string` that maps to the device's name IRL, ie "macbook-13" or "iphone-6", or it's the custom height and width of a device's viewport (our utility functions currently only support the [predefined viewport presets](https://docs.cypress.io/api/commands/viewport.html#Arguments)). The value is passed into `cy.viewport()`. Each `Device` also comes with a description and a list of tests to run against the provided `viewport`.
 
 ```ts
 type Device = {
@@ -161,7 +161,7 @@ type Device = {
 };
 ```
 
-Continuing with our example above, lets do two things to define the device we want to run `likeButtonRendersExp` on. First, we will make an array of all our Expectations. These are our tests. Second, we will use `newDevice` to define an iphone6 to test on (we have some pre-baked Device helper functions in `cypress/integration/utils/device.ts`).
+Continuing with our example above, lets do two things to define the device we want to run `likeButtonRendersExp` on. First, we will make an array of all our `Expectation`s. These are our tests. Second, we will use `newDevice` to define an iphone6 to test on (we have some pre-baked `Device` helper functions in `cypress/integration/utils/device.ts`).
 
 ```ts
 const deviceDescription = "iphone6 renders a Like button";
@@ -189,17 +189,15 @@ describe(`${pageName} should render a Like button on all devices`, () => {
 });
 ```
 
-`deviceScreen` is the predefined viewport size defined by Cypress and represented by the `string` `iphone-6`.
+`deviceScreen` is the predefined viewport size defined by Cypress and represented by the string "iphone-6".
 
 `loggedIn` is a boolean representing whether this page requires authentication. Our tests currently only run against our logged out pages. We're working on support for running tests against our private pages.
 
-Finally, `tests` are the collection of `Expectation`s defined that will run against this Device. The next and final step required to run our tests is the
-helper function: `runTestsForDevices`.
+Finally, `tests` are the collection of `Expectation`s defined that will run against this `Device`. The next and final step required to run our tests is the helper function: `runTestsForDevices`.
 
-### runTestsForDevices
+### `runTestsForDevices`
 
-To use this function, it must be called inside a `describe` block, so let's put all our previously defined variables together to run a test on an iphone6, that
-checks if the Like button is rendered.
+To use this function, it must be called inside a `describe` block, so let's put all our previously defined variables together to run a test on an "iphone-6", that checks if the Like button is rendered.
 
 ```ts
 const pageName = "Page";
@@ -229,11 +227,11 @@ describe(`${pageName} should render a Like button on all devices`, () => {
 });
 ```
 
-Notice in the above test, just inside the `describe` block, we've defined the `currentPage` we want to test and we don't need authentication for this page, so `loggedIn` is `false`. We then define our Expecation `likeButtonRendersExp`, and our Device `iphone-6`, and create an array of `Device`s to pass to `runTestsForDevices`.
+Notice in the above test, just inside the `describe` block, we've defined the `currentPage` we want to test and we don't need authentication for this page, so `loggedIn` is `false`. We then define our `Expecation` `likeButtonRendersExp`, and our `Device` "iphone-6", and create an array of `Device`s to pass to `runTestsForDevices`.
 
 First test on first device finished.
 
-### ClickFlow
+### `ClickFlow`
 
 Now when we need to take some actions on a page, click some stuff, then assert some changes, etc. There's an additional helper methods to assist with this.
 
@@ -248,15 +246,15 @@ const [likes, setLikes] = useState(0)
 <div data-cy="like-count">{likes}</div>
 ```
 
-We can setup our test in a similar way to how we did before, only this time, instead of creating an `Expectation`, we want to create an Expectation with `ClickFlow`s.
+We can setup our test in a similar way to how we did before, only this time, instead of creating an `Expectation`, we want to create an `Expectation` with `ClickFlow`s.
 
 A **`ClickFlow`** is conceptually like a story, in that it has a beginning a middle and an end. More specifically, it is a series of optional click actions, followed by a series of `Expectation`s, followed by another series of optional click actions. To simplify, a `ClickFlow` just wants to know what you want to be clicked first, then, what you want tested, then what you want to click on last.
 
 ```ts
 type ClickFlow = {
-  toClickBefore?: Click;
+  toClickBefore?: Selector; // can be a string or array of strings
   expectations: Expectation[];
-  toClickAfter?: Click;
+  toClickAfter?: Selector;
 };
 ```
 
@@ -300,17 +298,15 @@ const likeCountIncreasesExp = newExpectationWithClickFlows(
 
 Again, we've variablized everything above in order to improve the readability a bit. Lets walk through it. `likeButton` and `likeCount` are the selectors we want to work with. They will be passed by way of the helper functions to `cy.get()`.
 
-`containZero` and `containOne` are `ShouldArg`s that will be passed to Cypress' `.should()` method, and that method will then assert for an element contains either a `0` or a `1` respectively.
+`containZero` and `containOne` are `ShouldArg`s that will be passed to Cypress's `.should()` method, and that method will then assert for an element contains either a `0` or a `1` respectively.
 
-Next we make a simple `Expectation` that we want the test runner to run after we click the Like button and provide an empty `string`, as the description (it's not needed this deep).
+Next we make a simple `Expectation` that we want the test runner to run after we click the Like button and provide an empty string, as the description (it's not needed this deep).
 
 Remember we want to make an assertion before we click the Like button, and an assertion after we click the Like button. We want the `Expecation` `singleLikeCountExp` to run after we click the Like button. All it tells the test runner to do is grab the Like count element, and make sure it contains `1`.
 
 We then wrap that `Expectation` in an array, and give it the name `testsBetweenClicks`. It happens to only contain one test, but can contain more.
 
-Now we are at our `ClickFlow` definition `likeCountClickFlow` which is the story we've created to make sure our Like button works correctly.
-The first argument we pass to `newClickFlow` is the string (or array of strings) we want Cypress to click first. And these strings are simply our
-selector strings, so we pass in the `likeButton` selector. This tells Cypress, click these first, evaluating in Cypress talk to `cy.get(selectorString).click()`.
+Now we are at our `ClickFlow` definition `likeCountClickFlow` which is the story we've created to make sure our Like button works correctly. The first argument we pass to `newClickFlow` is the string (or array of strings) we want Cypress to click first. And these strings are simply our selector strings, so we pass in the `likeButton` selector. This tells Cypress, click these first, evaluating in Cypress talk to `cy.get(selectorString).click()`.
 
 When Cypress is finished clicking our initial selectors, our test runner will run the Expectations we've passed to to `newClickFlow` as the second argument.
 Above, this argument is `testsBetweenClicks`. And as the variable name suggestions, after the initial clicks run, our runner will run all tests in `testsBetweenClicks`.
@@ -318,9 +314,10 @@ Above, this argument is `testsBetweenClicks`. And as the variable name suggestio
 Finally, we can also define a selector(s) to be clicked after `testsBetweenClicks` finishes, but in our case, this isn't necessary, so we omit this argument.
 
 That is a `ClickFlow` friends!
+
 We write a simple description, `testDescription`, for our highest layer of tests and we add our `ClickFlows` to an array `clickFlows`.
 
-Now we use our other helper function `newExpectationWithClickFlows` that accepts all the same arguments `newExpectation` takes with an additional argument, an array of `ClickFlow`s. These `ClickFlow`s will then run after the `Expectation` they are coupled to. To clarify, our `Expectation` with ClickFlows above, `likeCountIncreasesExp`, will run the same way a simple `Expectation` will run. `likeCount` will be selected and expected to contain `0`, as the `containZero` argument specifies. After that, all attached `ClickFlow`s will run, meaning the `likeButton` will be clicked, and then the `likeCount` will be selected and expected to contain `1`.
+Now we use our other helper function `newExpectationWithClickFlows` that accepts all the same arguments `newExpectation` takes with an additional argument, an array of `ClickFlow`s. These `ClickFlow`s will then run after the `Expectation` they are coupled to. To clarify, our `Expectation` with `ClickFlow`s above, `likeCountIncreasesExp`, will run the same way a simple `Expectation` will run. `likeCount` will be selected and expected to contain `0`, as the `containZero` argument specifies. After that, all attached `ClickFlow`s will run, meaning the `likeButton` will be clicked, and then the `likeCount` will be selected and expected to contain `1`.
 
 ### Putting it all together
 
