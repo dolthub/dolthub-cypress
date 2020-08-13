@@ -5,8 +5,6 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "compile": "tsc -b",
-    "lint": "eslint --cache --ext .ts,.js .",
     "cy-open": "cypress open",
     "cy-run": "cypress run",
     "cy-chrome": "cypress run --browser chrome --headless",
@@ -16,6 +14,9 @@
     "cylo-run-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_BASE_URL=http://localhost:3000 cypress run",
     "cylo-run-blog": "export CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress run",
     "cylo-run-docs": "export CYPRESS_LOCAL_DOCS=true && CYPRESS_BASE_URL=http://localhost:8000 cypress run",
+    "ci": "npm-run-all prettier compile lint",
+    "compile": "tsc -b",
+    "lint": "eslint --cache --ext .ts,.js .",
     "prettier": "prettier --check 'cypress/**/*.{ts,js}'",
     "prettier:fix": "prettier --write 'cypress/**/*.{ts,js}'"
   },
@@ -33,6 +34,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-import": "^2.22.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.0.5",
     "typescript": "^3.9.7"
   }
