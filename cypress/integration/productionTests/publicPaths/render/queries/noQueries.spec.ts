@@ -2,28 +2,27 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Pull requests page with no pulls";
+const pageName = "Query catalog page with no pulls";
 const currentOwner = "automated_testing";
-const currentRepo = "empty_repo_with_branch";
-const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls`;
+const currentRepo = "wikipedia-ngrams";
+const currentBranch = "master";
+const currentPage = `repositories/${currentOwner}/${currentRepo}/queries/${currentBranch}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
-
   const tests = [
     newExpectation(
-      "should find Pull Requests header",
+      "should find Query Catalog header",
       "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Pull Requests"),
+      newShouldArgs("be.visible.and.contain", "Query Catalog"),
     ),
     newExpectation(
-      "should find empty pull message",
-      "[data-cy=pull-requests-no-pulls]",
-      beVisible,
+      "should find empty queries message with link",
+      "[data-cy=repo-no-queries] > a",
+      newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should not find pulls",
-      "[data-cy=pull-requests-table]",
+      "should not find queries",
+      "[data-cy=query-catalog-table]",
       newShouldArgs("not.be.visible"),
     ),
   ];

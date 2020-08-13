@@ -19,7 +19,7 @@ const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
 const testView = "cases_by_age_range";
-const testQuery = "mortality_rate_by_age_range";
+const testQuery = "mortality_rates";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");

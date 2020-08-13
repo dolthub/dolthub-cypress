@@ -314,6 +314,7 @@ const testQueryClickFlow = (testQuery: string): ClickFlow =>
 
 const emptyQueriesExpectation = [
   newExpectation("", "[data-cy=repo-no-queries]", beVisible),
+  newExpectation("", "[data-cy=repo-query-see-all]", notBeVisible),
 ];
 
 const notEmptyQueriesExpectations = (
@@ -325,6 +326,7 @@ const notEmptyQueriesExpectations = (
     "[data-cy=repo-query-list] > li",
     newShouldArgs("be.visible.and.have.length", queryLen),
   ),
+  newExpectation("", "[data-cy=repo-query-see-all]", beVisible),
   newExpectationWithClickFlows(
     "should successfully execute a view",
     `[data-cy=repo-query-list-query-${testQuery}]`,

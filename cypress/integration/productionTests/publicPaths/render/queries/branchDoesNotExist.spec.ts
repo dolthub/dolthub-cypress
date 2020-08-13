@@ -2,23 +2,29 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Pull requests page with no pulls";
+const pageName = "Query catalog page with no branch";
 const currentOwner = "automated_testing";
-const currentRepo = "empty_repo_with_branch";
-const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls`;
+const currentRepo = "empty_repo";
+const currentBranch = "master";
+const currentPage = `repositories/${currentOwner}/${currentRepo}/queries/${currentBranch}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
     newExpectation(
-      "should find Pull Requests header",
+      "should find Query Catalog header",
       "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Pull Requests"),
+      newShouldArgs("be.visible.and.contain", "Query Catalog"),
     ),
     newExpectation(
-      "should find empty pull message",
-      "[data-cy=pull-requests-no-pulls]",
+      "should find back to repo link",
+      "[data-cy=back-to-repo-link]",
+      newShouldArgs("be.visible.and.contain", `back to ${currentRepo}`),
+    ),
+    newExpectation(
+      "should find page not found message",
+      "[data-cy=404-page]",
       beVisible,
     ),
     newExpectation(
