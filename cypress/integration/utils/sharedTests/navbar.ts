@@ -7,7 +7,7 @@ import {
   Tests,
 } from "..";
 
-const shouldArgs = newShouldArgs("be.visible");
+const beVisible = newShouldArgs("be.visible");
 
 const signedOutNavbarLinks = [
   "[data-cy=navbar-discover]",
@@ -40,18 +40,18 @@ export const testSignedOutNavbar: Tests = [
   newExpectation(
     "should have signed out navbar and correct links",
     signedOutNavbarLinks,
-    shouldArgs,
+    beVisible,
   ),
   newExpectationWithClickFlows(
     "should open pricing modal in navbar",
     "[data-cy=navbar-pricing-button]",
-    shouldArgs,
+    beVisible,
     [pricingModalClickFlow("[data-cy=navbar-pricing-button]")],
   ),
   newExpectation(
     "should have DoltHub logo in navbar",
     "[data-cy=navbar-logo]",
-    shouldArgs,
+    beVisible,
   ),
 ];
 
@@ -76,7 +76,7 @@ export const testMobileNavbar: Tests = [
   newExpectationWithClickFlows(
     "should show menu button on mobile",
     "[data-cy=mobile-navbar-menu-button]",
-    shouldArgs,
+    beVisible,
     [mobileNavbarClickFlow],
   ),
 ];

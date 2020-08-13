@@ -1,4 +1,4 @@
-import { newDevice, Tests } from ".";
+import { Device, Devices, newDevice, Tests } from ".";
 import { testFooter } from "./sharedTests/footer";
 import { testMobileNavbar, testSignedOutNavbar } from "./sharedTests/navbar";
 
@@ -42,9 +42,28 @@ export const iPhoneX = (pageName: string, tests: Tests, loggedIn: boolean) =>
     tests,
   );
 
+// App layout
+export const macbook15ForAppLayout = (pageName: string, tests: Tests): Device =>
+  macbook15(pageName, getAppLayoutTests(tests), false);
+
+export const iPad2ForAppLayout = (pageName: string, tests: Tests): Device =>
+  macbook15(pageName, getAppLayoutTests(tests), false);
+
+export const desktopDevicesForAppLayout = (pageName: string, tests: Tests) => {
+  const t = getAppLayoutTests(tests);
+  return [macbook15(pageName, t, false), macbook11(pageName, t, false)];
+};
+
+function getAppLayoutTests(tests: Tests) {
+  return [...testSignedOutNavbar, ...tests];
+}
+
 // SignedOut layout
 
-export const mobileDevicesForSignedOut = (pageName: string, tests: Tests) => [
+export const mobileDevicesForSignedOut = (
+  pageName: string,
+  tests: Tests,
+): Devices => [
   iPad2(pageName, getSignedOutTests(tests), false),
   iPhoneX(pageName, getSignedOutPhoneTests(tests), false),
 ];

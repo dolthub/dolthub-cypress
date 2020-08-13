@@ -5,9 +5,9 @@ export const defaultTimeout = 5000;
 // TYPES
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ShouldArgs = { chainer: string; value?: any };
+export type ShouldArgs = { chainer: string; value?: any };
 
-type Selector = string | string[];
+export type Selector = string | string[];
 
 type ScrollToPosition = {
   position: Cypress.PositionType;
@@ -29,7 +29,7 @@ type ScrollIntoView = {
 
 type ScrollTo = ScrollToPosition | ScrollToXY | ScrollIntoView;
 
-type Expectation = {
+export type Expectation = {
   description: string;
   selector: Selector;
   shouldArgs: ShouldArgs;
@@ -48,7 +48,7 @@ export type ClickFlow = {
 
 export type Tests = Expectation[];
 
-type Device = {
+export type Device = {
   device: Cypress.ViewportPreset;
   description: string;
   loggedIn: boolean;
@@ -254,6 +254,28 @@ export function newExpectationWithClickFlows(
   return { description, selector, shouldArgs, clickFlows, skip };
 }
 
+export function newExpectationWithScrollTo(
+  description: string,
+  selector: string,
+  shouldArgs: ShouldArgs,
+  scrollTo: ScrollTo,
+  skip = false,
+): Expectation {
+  return { description, selector, shouldArgs, scrollTo, skip };
+}
+
+export function scrollToPosition(
+  selectorStr: string,
+  position: Cypress.PositionType,
+): Expectation {
+  return newExpectationWithScrollTo(
+    `should scroll to ${position} of ${selectorStr}`,
+    selectorStr,
+    newShouldArgs("be.visible"),
+    newScrollToPosition(position, selectorStr),
+  );
+}
+
 export function newClickFlow(
   toClickBefore: Click,
   expectations: Tests,
@@ -278,4 +300,12 @@ export function newDevice(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function newShouldArgs(chainer: string, value?: any) {
   return { chainer, value };
+}
+
+export function newScrollToPosition(
+  position: Cypress.PositionType,
+  selectorStr?: string,
+  options?: Partial<Cypress.ScrollToOptions> | undefined,
+): ScrollToPosition {
+  return { position, selectorStr, options };
 }

@@ -9,7 +9,7 @@ const pageName = "General 404 page";
 const currentPage = "/404";
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const shouldArgs = newShouldArgs("be.visible");
+  const beVisible = newShouldArgs("be.visible");
 
   const tests = [
     newExpectation(
@@ -20,7 +20,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should render 404 code block",
       "[data-cy=code-404-block]",
-      shouldArgs,
+      beVisible,
     ),
     newExpectation(
       "should render links on 404 page",
