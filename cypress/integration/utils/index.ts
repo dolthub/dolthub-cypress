@@ -1,61 +1,15 @@
+import {
+  ClickFlow,
+  Devices,
+  Expectation,
+  ScrollTo,
+  ShouldArgs,
+  Tests,
+} from "./types";
+
 // defaultTimeout is the time in ms cypress will wait attempting
 // to .get() an element before failing
 export const defaultTimeout = 5000;
-
-// TYPES
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ShouldArgs = { chainer: string; value?: any };
-
-export type Selector = string | string[];
-
-type ScrollToPosition = {
-  position: Cypress.PositionType;
-  selectorStr?: string;
-  options?: Partial<Cypress.ScrollToOptions>;
-};
-
-type ScrollToXY = {
-  x: string | number;
-  y: string | number;
-  selectorStr?: string;
-  options?: Partial<Cypress.ScrollToOptions>;
-};
-
-type ScrollIntoView = {
-  selectorStr: string;
-  options?: Partial<Cypress.ScrollIntoViewOptions>;
-};
-
-type ScrollTo = ScrollToPosition | ScrollToXY | ScrollIntoView;
-
-export type Expectation = {
-  description: string;
-  selector: Selector;
-  shouldArgs: ShouldArgs;
-  clickFlows?: ClickFlow[] | undefined;
-  scrollTo?: ScrollTo;
-  skip?: boolean;
-};
-
-type Click = string | string[] | undefined;
-
-export type ClickFlow = {
-  toClickBefore?: Click;
-  expectations: Expectation[];
-  toClickAfter?: Click;
-};
-
-export type Tests = Expectation[];
-
-export type Device = {
-  device: Cypress.ViewportPreset;
-  description: string;
-  loggedIn: boolean;
-  tests: Tests;
-};
-
-export type Devices = Device[];
 
 // RUN TESTS
 
@@ -176,20 +130,21 @@ function getAssertionTest(
 
 type ClickFlowsArgs = {
   description: string;
-  clickFlows: ClickFlow[];
+  clickFlows?: ClickFlow[];
 };
 
 // testClickFlows recursively runs clickFlow tests
 // clicking each toClickBefore first, then making assertions
 // the clicking each toClickAfter
 export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
+  if (!clickFlows) return;
+
   clickFlows.forEach(({ toClickBefore, expectations, toClickAfter }) => {
     if (toClickBefore) runClicks(toClickBefore);
 
     expectations.forEach(t => {
       testAssertion(t);
-      if (!t.clickFlows) return;
-      testClickFlows({ description, clickFlows });
+      testClickFlows({ description, clickFlows: t.clickFlows });
     });
 
     if (toClickAfter) runClicks(toClickAfter);
@@ -231,81 +186,4 @@ function handleScrollTo(scrollTo: ScrollTo) {
     return cy.get(scrollTo.selectorStr).scrollIntoView(scrollTo.options);
   }
   throw new Error(`invalid scrollTo type: ${scrollTo}`);
-}
-
-// CREATES NEW OBJECTS
-
-export function newExpectation(
-  description: string,
-  selector: Selector,
-  shouldArgs: ShouldArgs,
-  skip = false,
-): Expectation {
-  return { description, selector, shouldArgs, skip };
-}
-
-export function newExpectationWithClickFlows(
-  description: string,
-  selector: string,
-  shouldArgs: ShouldArgs,
-  clickFlows: ClickFlow[],
-  skip = false,
-): Expectation {
-  return { description, selector, shouldArgs, clickFlows, skip };
-}
-
-export function newExpectationWithScrollTo(
-  description: string,
-  selector: string,
-  shouldArgs: ShouldArgs,
-  scrollTo: ScrollTo,
-  skip = false,
-): Expectation {
-  return { description, selector, shouldArgs, scrollTo, skip };
-}
-
-export function scrollToPosition(
-  selectorStr: string,
-  position: Cypress.PositionType,
-): Expectation {
-  return newExpectationWithScrollTo(
-    `should scroll to ${position} of ${selectorStr}`,
-    selectorStr,
-    newShouldArgs("be.visible"),
-    newScrollToPosition(position, selectorStr),
-  );
-}
-
-export function newClickFlow(
-  toClickBefore: Click,
-  expectations: Tests,
-  toClickAfter?: Click,
-): ClickFlow {
-  return {
-    toClickBefore,
-    expectations,
-    toClickAfter,
-  };
-}
-
-export function newDevice(
-  device: Cypress.ViewportPreset,
-  description: string,
-  loggedIn: boolean,
-  tests: Tests,
-): Device {
-  return { device, description, loggedIn, tests };
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function newShouldArgs(chainer: string, value?: any) {
-  return { chainer, value };
-}
-
-export function newScrollToPosition(
-  position: Cypress.PositionType,
-  selectorStr?: string,
-  options?: Partial<Cypress.ScrollToOptions> | undefined,
-): ScrollToPosition {
-  return { position, selectorStr, options };
 }

@@ -1,9 +1,6 @@
-import {
-  newExpectation,
-  newShouldArgs,
-  runTestsForDevices,
-} from "../../../../utils";
+import { runTestsForDevices } from "../../../../utils";
 import { allDevicesForSignedOut } from "../../../../utils/devices";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testSidecar } from "../../../../utils/sharedTests/sidecar";
 
 const pageName = "Blog list page";

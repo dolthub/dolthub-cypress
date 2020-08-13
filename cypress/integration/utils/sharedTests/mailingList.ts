@@ -1,4 +1,5 @@
-import { newExpectation, newShouldArgs, Selector, ShouldArgs, Tests } from "..";
+import { newExpectation, newShouldArgs } from "../helpers";
+import { Selector, ShouldArgs, Tests } from "../types";
 
 const exist = newShouldArgs("exist");
 

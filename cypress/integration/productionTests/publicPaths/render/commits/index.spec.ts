@@ -1,9 +1,6 @@
-import {
-  newExpectation,
-  newShouldArgs,
-  runTestsForDevices,
-} from "../../../../utils";
+import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Commit log page";
 const currentOwner = "automated_testing";

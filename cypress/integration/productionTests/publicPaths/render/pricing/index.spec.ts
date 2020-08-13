@@ -1,9 +1,6 @@
-import {
-  newExpectation,
-  newShouldArgs,
-  runTestsForDevices,
-} from "../../../../utils";
+import { runTestsForDevices } from "../../../../utils";
 import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testMailingForm } from "../../../../utils/sharedTests/mailingList";
 
 const pageName = "Pricing page";

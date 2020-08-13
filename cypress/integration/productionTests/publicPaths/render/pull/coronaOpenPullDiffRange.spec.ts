@@ -2,26 +2,27 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Diff page with one selected commit";
+const pageName = "Open pull diff range page";
 const currentOwner = "automated_testing";
-const currentRepo = "wikipedia-ngrams";
-const currentFromCommit = "q2l59dla1vak1fp0gp2me451bq9sli2k";
-const branch = "master";
-const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}`;
+const currentRepo = "corona-virus";
+const currentPullId = "5";
+const currentFromCommit = "m7baiv613lndd6qbi9c99t9e3aq3d2jp";
+const currentToCommit = "0ae58dhtk4rdn56dafngtsgfe490clbs";
+const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare/${currentFromCommit}...${currentToCommit}`;
 
-describe(`${pageName} renders expected component on different devices`, () => {
+describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
     newExpectation(
-      "should show back to repo button",
-      "[data-cy=diffs-back-to-repo-button]",
-      beVisible,
+      "should not find 404 page",
+      "[data-cy=pull-404-page]",
+      newShouldArgs("not.be.visible"),
     ),
     newExpectation(
       "should show diff selector",
       "[data-cy=diff-selector]",
-      beVisible,
+      newShouldArgs("be.visible.and.contain", "Showing changes from 1 commit"),
     ),
     newExpectation(
       "should show diff summary",
@@ -29,14 +30,14 @@ describe(`${pageName} renders expected component on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should show diff table list",
+      "should show table list",
       "[data-cy=diff-table-list]",
       beVisible,
     ),
     newExpectation(
-      "should show diff table list items",
+      "should show table list items",
       "[data-cy=diff-table-list] > li",
-      newShouldArgs("be.visible.and.have.length", 3),
+      newShouldArgs("be.visible.and.have.length", 2),
     ),
   ];
 

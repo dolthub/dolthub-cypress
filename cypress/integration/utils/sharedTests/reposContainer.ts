@@ -1,4 +1,5 @@
-import { newClickFlow, newExpectation, newShouldArgs, Tests } from "..";
+import { newClickFlow, newExpectation, newShouldArgs } from "../helpers";
+import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
 

@@ -1,6 +1,7 @@
-import { Device, Devices, newDevice, Tests } from ".";
+import { newDevice } from "./helpers";
 import { testFooter } from "./sharedTests/footer";
 import { testMobileNavbar, testSignedOutNavbar } from "./sharedTests/navbar";
+import { Device, Devices, Tests } from "./types";
 
 // Creates devices
 

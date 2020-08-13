@@ -19,5 +19,5 @@
     "types": ["cypress", "node"]
   },
   "exclude": ["dist"],
-  "include": ["cypress"]
+  "include": ["cypress", "node_modules/cypress"]
 }

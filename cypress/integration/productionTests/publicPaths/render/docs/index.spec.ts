@@ -1,16 +1,15 @@
-import {
-  Expectation,
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-  runTestsForDevices,
-  ShouldArgs,
-} from "../../../../utils";
+import { runTestsForDevices } from "../../../../utils";
 import {
   desktopDevicesForAppLayout,
   iPad2ForAppLayout,
 } from "../../../../utils/devices";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../../../../utils/helpers";
+import { Expectation, ShouldArgs } from "../../../../utils/types";
 
 const pageName = "Docs page";
 const currentPage = Cypress.env("LOCAL_DOCS")

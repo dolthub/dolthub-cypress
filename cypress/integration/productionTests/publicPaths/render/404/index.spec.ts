@@ -1,9 +1,6 @@
-import {
-  newExpectation,
-  newShouldArgs,
-  runTestsForDevices,
-} from "../../../../utils";
+import { runTestsForDevices } from "../../../../utils";
 import { allDevicesForSignedOut } from "../../../../utils/devices";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "General 404 page";
 const currentPage = "/404";

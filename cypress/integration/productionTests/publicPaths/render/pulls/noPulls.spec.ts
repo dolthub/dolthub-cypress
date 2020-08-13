@@ -2,29 +2,28 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Commit log page for non-existent repo";
+const pageName = "Pull requests page with no pulls";
 const currentOwner = "automated_testing";
-const doesNotExistRepo = "doesnt-exist";
-const currentBranch = "master";
-const currentPage = `repositories/${currentOwner}/${doesNotExistRepo}/commits/${currentBranch}`;
+const doesNotExistRepo = "empty_repo_with_branch";
+const currentPage = `repositories/${currentOwner}/${doesNotExistRepo}/pulls`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
     newExpectation(
-      "should find Commit Log header",
+      "should find Pull Requests header",
       "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Commit Log"),
+      newShouldArgs("be.visible.and.contain", "Pull Requests"),
     ),
     newExpectation(
-      "should find repo does not exist message",
-      "[data-cy=repo-404-inner]",
+      "should find empty pull message",
+      "[data-cy=pull-requests-no-pulls]",
       beVisible,
     ),
     newExpectation(
-      "should not find commit list",
-      "[data-cy=commit-log-commits-list]",
+      "should not find pulls",
+      "[data-cy=pull-requests-table]",
       newShouldArgs("not.be.visible"),
     ),
   ];

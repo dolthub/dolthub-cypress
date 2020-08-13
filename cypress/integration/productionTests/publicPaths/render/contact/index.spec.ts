@@ -1,9 +1,6 @@
-import {
-  newExpectation,
-  newShouldArgs,
-  runTestsForDevices,
-} from "../../../../utils";
+import { runTestsForDevices } from "../../../../utils";
 import { allDevicesForSignedOut } from "../../../../utils/devices";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Contact us page";
 const currentPage = "/contact";

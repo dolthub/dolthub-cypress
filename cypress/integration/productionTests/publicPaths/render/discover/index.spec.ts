@@ -1,12 +1,11 @@
+import { runTestsForDevices } from "../../../../utils";
+import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
-  Expectation,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-  runTestsForDevices,
   scrollToPosition,
-} from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+} from "../../../../utils/helpers";
 import { testMobileMailingList } from "../../../../utils/sharedTests/mailingList";
 import {
   checkRepoListForTab,
@@ -17,6 +16,7 @@ import {
   testBlogArticles,
   testHomepageSidecar,
 } from "../../../../utils/sharedTests/sidecar";
+import { Expectation } from "../../../../utils/types";
 
 const pageName = "Discover page";
 const currentPage = "/discover";
