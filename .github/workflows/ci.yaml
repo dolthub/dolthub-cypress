@@ -1,5 +1,5 @@
 name: Run CI on dolthub-cypress
-on: [push, pull_request]
+on: pull_request
 jobs:
   ci:
     runs-on: ubuntu-latest

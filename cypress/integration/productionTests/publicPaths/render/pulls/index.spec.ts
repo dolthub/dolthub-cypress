@@ -35,7 +35,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should find pull requests table with header",
       "[data-cy=pull-requests-table] > thead > tr > th",
-      newShouldArgs("be.visible.and.have.length", 6),
+      newShouldArgs("be.visible.and.have.length", 5),
     ),
     newExpectation(
       "should find at least 5 pulls",
@@ -43,9 +43,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.length.of.at.least", 5),
     ),
     newExpectation(
-      "should find pull with ID 1 with 6 columns",
+      "should find pull with ID 1 with 5 columns",
       "[data-cy=pull-requests-row-1] > td",
-      newShouldArgs("be.visible.and.have.length", 6),
+      newShouldArgs("be.visible.and.have.length", 5),
     ),
     newExpectation(
       "should find pull with ID 1 with two links",
