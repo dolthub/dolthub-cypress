@@ -79,6 +79,13 @@ export function runTests({
       });
     }
   });
+
+  after(() => {
+    cy.window().then(win => {
+      // eslint-disable-next-line no-param-reassign
+      win.onbeforeunload = null;
+    });
+  });
 }
 
 type TestsForDevicesArgs = {
