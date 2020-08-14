@@ -80,6 +80,8 @@ export function runTests({
     }
   });
 
+  // Prevents Jenkins from hanging mid-tests
+  // See issue: https://github.com/cypress-io/cypress/issues/2482#issuecomment-433418104
   after(() => {
     cy.window().then(win => {
       // eslint-disable-next-line no-param-reassign

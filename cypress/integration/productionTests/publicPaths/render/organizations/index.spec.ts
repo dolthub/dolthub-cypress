@@ -9,7 +9,7 @@ const currentPage = `/organizations/${orgName}`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notBeVisible = newShouldArgs("not.be.visible");
-  const skip = true;
+  const skip = false;
 
   const testProfileCard = [
     newExpectation(

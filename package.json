@@ -7,7 +7,7 @@
   "scripts": {
     "cy-open": "cypress open",
     "cy-run": "cypress run",
-    "cy-chrome": "set DEBUG=cypress:* && cypress run --browser chrome --headless",
+    "cy-chrome": "cypress run --browser chrome --headless",
     "cylo-open-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_BASE_URL=http://localhost:3000 cypress open",
     "cylo-open-blog": "export CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress open",
     "cylo-open-docs": "export CYPRESS_LOCAL_DOCS=true && CYPRESS_BASE_URL=http://localhost:8000 cypress open",
