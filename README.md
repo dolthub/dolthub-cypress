@@ -5,7 +5,7 @@ We are going to use [Cypress.io](https://docs.cypress.io/) to UI test [DoltHub](
 ## Installation
 
 ```bash
-dolthub-cypress $ yarn && yarn compile
+$ yarn && yarn compile
 ```
 
 ## Running the tests

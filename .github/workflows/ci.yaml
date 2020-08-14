@@ -1,0 +1,10 @@
+name: Run CI on dolthub-cypress
+on: [push, pull_request]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install and run CI
+      run: |
+        yarn
+        yarn run ci
