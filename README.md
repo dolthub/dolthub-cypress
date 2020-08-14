@@ -1,6 +1,6 @@
 # dolthub-cypress
 
-We are going to use [Cypress.io](https://docs.cypress.io/) to UI test [DoltHub](https://www.dolthub.com).
+A suite of [Cypress.io](https://docs.cypress.io/) tests written in Typescript to UI test [DoltHub](https://www.dolthub.com).
 
 ## Installation
 
