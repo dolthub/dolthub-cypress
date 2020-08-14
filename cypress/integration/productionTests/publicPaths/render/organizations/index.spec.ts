@@ -16,6 +16,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should show profile card",
       "[data-cy=profile-card]",
       beVisible,
+      skip,
     ),
     newExpectation(
       "should show profile card profile pic",
