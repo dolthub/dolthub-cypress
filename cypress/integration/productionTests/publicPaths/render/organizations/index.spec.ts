@@ -16,7 +16,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should show profile card",
       "[data-cy=profile-card]",
       beVisible,
-      skip,
     ),
     newExpectation(
       "should show profile card profile pic",
@@ -133,7 +132,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [...testProfileCard, ...testTabContainer];
 
-  const devices = desktopDevicesForAppLayout(pageName, tests);
+  const devices = desktopDevicesForAppLayout(pageName, tests, skip);
 
   runTestsForDevices({ currentPage, devices });
 });
