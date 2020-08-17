@@ -1,16 +1,16 @@
-name: Run all Cypress tests
-on: pull_request
-  #schedule:
-    # run every hour every day at minute 30
-    # - cron: '30 * * * *'
-jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Cypress run
-      uses: cypress-io/github-action@v2
-      with:
-        browser: chrome
-        headless: true
+  name: Run all Cypress tests
+  on: pull_request
+    #schedule:
+      # run every hour every day at minute 30
+      # - cron: '30 * * * *'
+  jobs:
+    cypress-run:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
