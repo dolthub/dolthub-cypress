@@ -1,8 +1,14 @@
   name: Run all Cypress tests
-  on: pull_request
-    #schedule:
-      # run every hour every day at minute 30
-      # - cron: '30 * * * *'
+  on: 
+    schedule:
+      # run every hour during business hours
+      - cron: '0 9-18 * * 1-5'
+      # run every 3 hours outside of business hours
+      - cron: '0 0-9/3,18-23/3 * * 1-5'
+      # run every 3 hours on weekends
+      - cron: '0 */3 * * 6,0'
+    branches:
+      - master
   jobs:
     cypress-run:
       runs-on: ubuntu-latest
