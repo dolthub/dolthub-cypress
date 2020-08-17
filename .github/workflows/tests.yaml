@@ -1,0 +1,20 @@
+  name: Run all Cypress tests
+  on: 
+    schedule:
+      # run every hour during business hours
+      - cron: '0 9-17 * * 1-5'
+      # run every 3 hours outside of business hours
+      - cron: '0 0-8/3,18-23/3 * * 1-5'
+      # run every 3 hours on weekends
+      - cron: '0 */3 * * 6,0'
+  jobs:
+    cypress-run:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
