@@ -1,8 +1,8 @@
 name: Run all Cypress tests
-on:
-  schedule:
+on: pull_request
+  #schedule:
     # run every hour every day at minute 30
-    - cron: '30 * * * *'
+    # - cron: '30 * * * *'
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
