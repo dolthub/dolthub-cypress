@@ -13,11 +13,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notBeVisible = newShouldArgs("not.be.visible");
 
   const tests = [
-    newExpectation(
-      "should not find 404 page",
-      "[data-cy=pull-404-page]",
-      notBeVisible,
-    ),
     newExpectation("should show title", "[data-cy=pull-page-title]", beVisible),
     newExpectation(
       "should show description",
@@ -48,6 +43,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should show details section",
       "[data-cy=pull-page-details]",
       beVisible,
+    ),
+    newExpectation(
+      "should not find 404 page",
+      "[data-cy=pull-404-page]",
+      notBeVisible,
     ),
   ];
 
