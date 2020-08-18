@@ -1,5 +1,7 @@
 # dolthub-cypress
 
+![Run all Cypress tests](https://github.com/liquidata-inc/dolthub-cypress/workflows/Run%20all%20Cypress%20tests/badge.svg)
+
 A suite of [Cypress.io](https://docs.cypress.io/) tests written in Typescript to UI test [DoltHub](https://www.dolthub.com).
 
 ## Installation
