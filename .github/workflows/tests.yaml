@@ -2,7 +2,7 @@
   on: 
     schedule:
       # run every hours every day
-      - cron: '30 * * * *'
+      - cron: '40 * * * *'
       # run every hour during business hours
       # - cron: '0 9-17 * * 1-5'
       # run every 3 hours outside of business hours
