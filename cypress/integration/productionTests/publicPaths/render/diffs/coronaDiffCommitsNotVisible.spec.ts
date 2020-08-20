@@ -2,16 +2,16 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Diff page with changes";
+const pageName = "Diff page with commits not visible in selectors";
 const currentOwner = "automated_testing";
-const currentRepo = "wikipedia-ngrams";
-const currentFromCommit = "jbkpie6f9bujj2l9if3panmmhunu8cgp";
-const currentToCommit = "q2l59dla1vak1fp0gp2me451bq9sli2k";
+const currentRepo = "corona-virus";
+const currentFromCommit = "ipqhluv35od2ld6t00k88mgd22mtsnmh";
 const branch = "master";
-const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}..${currentToCommit}`;
+const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}`;
 
 describe(`${pageName} renders expected component on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
+  const notBeVisible = newShouldArgs("not.be.visible");
 
   const tests = [
     newExpectation(
@@ -25,14 +25,14 @@ describe(`${pageName} renders expected component on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should show two form selects",
+      "should not show any form selects",
       "[data-cy=form-select]",
-      newShouldArgs("be.visible.and.have.length", 2),
+      notBeVisible,
     ),
     newExpectation(
-      "should not have viewing message",
+      "should have viewing message",
       "[data-cy=viewing-message]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("be.visible.and.contain", currentFromCommit),
     ),
     newExpectation(
       "should show diff summary",

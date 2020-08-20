@@ -11,6 +11,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${current
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notBeVisible = newShouldArgs("not.be.visible");
+  const skipNavbar = true;
 
   const tests = [
     newExpectation("should show title", "[data-cy=pull-page-title]", beVisible),
@@ -51,7 +52,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [macbook15ForAppLayout(pageName, tests, skipNavbar)];
 
   runTestsForDevices({ currentPage, devices });
 });

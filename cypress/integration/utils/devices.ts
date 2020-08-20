@@ -44,8 +44,12 @@ export const iPhoneX = (pageName: string, tests: Tests, loggedIn: boolean) =>
   );
 
 // App layout
-export const macbook15ForAppLayout = (pageName: string, tests: Tests): Device =>
-  macbook15(pageName, getAppLayoutTests(tests), false);
+
+export const macbook15ForAppLayout = (
+  pageName: string,
+  tests: Tests,
+  skipNavbar = false,
+): Device => macbook15(pageName, getAppLayoutTests(tests, skipNavbar), false);
 
 export const iPad2ForAppLayout = (pageName: string, tests: Tests): Device =>
   macbook15(pageName, getAppLayoutTests(tests), false);
@@ -55,12 +59,15 @@ export const desktopDevicesForAppLayout = (
   tests: Tests,
   skipNavbar = false,
 ) => {
-  const t = skipNavbar ? tests : getAppLayoutTests(tests);
+  const t = getAppLayoutTests(tests, skipNavbar);
   return [macbook15(pageName, t, false), macbook11(pageName, t, false)];
 };
 
-function getAppLayoutTests(tests: Tests) {
-  return [...testSignedOutNavbar, ...tests];
+function getAppLayoutTests(tests: Tests, skipNavbar = false) {
+  if (!skipNavbar) {
+    return [...testSignedOutNavbar, ...tests];
+  }
+  return tests;
 }
 
 // SignedOut layout
