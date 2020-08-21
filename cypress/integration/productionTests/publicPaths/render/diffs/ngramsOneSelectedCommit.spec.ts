@@ -24,8 +24,23 @@ describe(`${pageName} renders expected component on different devices`, () => {
       beVisible,
     ),
     newExpectation(
+      "should show two form selects",
+      "[data-cy=form-select]",
+      newShouldArgs("be.visible.and.have.length", 2),
+    ),
+    newExpectation(
+      "should not have viewing message",
+      "[data-cy=viewing-message]",
+      newShouldArgs("not.be.visible"),
+    ),
+    newExpectation(
       "should show diff summary",
       "[data-cy=commit-diff-summary]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show view type selector",
+      "[data-cy=view-type-selector]",
       beVisible,
     ),
     newExpectation(

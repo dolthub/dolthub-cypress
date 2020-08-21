@@ -9,6 +9,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/compare`;
 
 describe(`${pageName} renders expected component on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
+  const notBeVisible = newShouldArgs("not.be.visible");
 
   const tests = [
     newExpectation(
@@ -22,6 +23,21 @@ describe(`${pageName} renders expected component on different devices`, () => {
       beVisible,
     ),
     newExpectation(
+      "should show two form selects",
+      "[data-cy=form-select]",
+      newShouldArgs("be.visible.and.have.length", 2),
+    ),
+    newExpectation(
+      "should not have viewing message",
+      "[data-cy=viewing-message]",
+      notBeVisible,
+    ),
+    newExpectation(
+      "should not show diff summary",
+      "[data-cy=commit-diff-summary]",
+      notBeVisible,
+    ),
+    newExpectation(
       "should show select commits message",
       "[data-cy=diff-layout-no-diff]",
       beVisible,
@@ -29,7 +45,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should not show diff table list",
       "[data-cy=diff-table-list]",
-      newShouldArgs("not.be.visible"),
+      notBeVisible,
     ),
   ];
 
