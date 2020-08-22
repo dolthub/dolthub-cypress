@@ -1,4 +1,4 @@
-const apiVersion = "0.1";
+const apiVersion = "v1alpha1";
 const repoOwner = "automated_testing";
 const repoName = "corona-virus";
 const defaultBranch = "master";
@@ -49,10 +49,10 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
       .its("body.commit_ref")
       .should("equal", `${defaultBranch}`);
     cy.request({ url: earl })
-      .its("body.queryExecutionStatus")
+      .its("body.query_execution_status")
       .should("equal", "Success");
     cy.request({ url: earl })
-      .its("body.queryExecutionMessage")
+      .its("body.query_execution_message")
       .should("equal", "");
   });
   it("contains the correct query result schema in the response body", () => {
@@ -119,10 +119,10 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
       .its("body.commit_ref")
       .should("equal", `${otherBranch}`);
     cy.request({ url: earl })
-      .its("body.queryExecutionStatus")
+      .its("body.query_execution_status")
       .should("equal", "Success");
     cy.request({ url: earl })
-      .its("body.queryExecutionMessage")
+      .its("body.query_execution_message")
       .should("equal", "");
   });
   it("contains the correct query result schema in the response body", () => {
@@ -182,10 +182,10 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
       .its("body.commit_ref")
       .should("equal", `${defaultBranch}`);
     cy.request({ url: earl })
-      .its("body.queryExecutionStatus")
+      .its("body.query_execution_status")
       .should("equal", "Success");
     cy.request({ url: earl })
-      .its("body.queryExecutionMessage")
+      .its("body.query_execution_message")
       .should("equal", "");
   });
   it("contains the correct query result schema in the response body", () => {
@@ -283,10 +283,10 @@ describe(`API returns query error for invalid query '${badQuery}'`, () => {
       .its("body.commit_ref")
       .should("equal", `${defaultBranch}`);
     cy.request({ url: earl })
-      .its("body.queryExecutionStatus")
+      .its("body.query_execution_status")
       .should("equal", "Error");
     cy.request({ url: earl })
-      .its("body.queryExecutionMessage")
+      .its("body.query_execution_message")
       .should(
         "equal",
         `query error: Error parsing SQL: syntax error at position ${
