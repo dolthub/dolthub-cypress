@@ -76,8 +76,8 @@ export const mobileDevicesForSignedOut = (
   pageName: string,
   tests: Tests,
 ): Devices => [
-  iPad2(pageName, getSignedOutTests(tests), false),
-  iPhoneX(pageName, getSignedOutPhoneTests(tests), false),
+  iPad2(pageName, getSignedOutMobileTests(tests), false),
+  iPhoneX(pageName, getSignedOutMobileTests(tests), false),
 ];
 
 export const desktopDevicesForSignedOut = (pageName: string, tests: Tests) => {
@@ -101,12 +101,11 @@ export const allDevicesDiffTestsForSignedOut = (
   iPhoneTests: Tests,
 ) => [
   ...desktopDevicesForSignedOut(pageName, desktopTests),
-  iPad2(pageName, getSignedOutTests(iPadTests), false),
-  iPhoneX(pageName, getSignedOutPhoneTests(iPhoneTests), false),
+  iPad2(pageName, getSignedOutMobileTests(iPadTests), false),
+  iPhoneX(pageName, getSignedOutMobileTests(iPhoneTests), false),
 ];
 
-// only phones use mobile navbar (iPads have normal navbar)
-function getSignedOutPhoneTests(t: Tests): Tests {
+function getSignedOutMobileTests(t: Tests): Tests {
   return [...testMobileNavbar, ...t, ...testFooter];
 }
 
