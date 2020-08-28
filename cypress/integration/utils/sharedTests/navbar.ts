@@ -12,9 +12,10 @@ const signedOutNavbarLinks = [
   "[data-cy=navbar-discover]",
   "[data-cy=navbar-pricing]",
   "[data-cy=navbar-documentation]",
+  "[data-cy=navbar-blog]",
   "[data-cy=navbar-logo]",
   "[data-cy=navbar-about-dolt]",
-  "[data-cy=navbar-blog]",
+  "[data-cy=navbar-discord]",
   "[data-cy=navbar-signin]",
 ];
 
@@ -60,7 +61,7 @@ const mobileNavbarClickFlow = newClickFlow(
     newExpectation(
       "should show DoltHub links",
       "[data-cy=mobile-navbar-links] > li",
-      newShouldArgs("be.visible.and.have.length", 6),
+      newShouldArgs("be.visible.and.have.length", 7),
     ),
     newExpectation(
       "should show social links",
