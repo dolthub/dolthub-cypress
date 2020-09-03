@@ -98,13 +98,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const testSidecars = [
     scrollIntoView("[data-cy=homepage-growth-panel-sm]"),
     testDoltReleaseLink(beVisible),
-    scrollIntoView("[data-cy=home-page-about]"),
     newExpectation(
       "should have an about section",
       "[data-cy=home-page-about] > p",
-      newShouldArgs("be.visible.and.have.length", 3),
+      newShouldArgs("exist.and.have.length", 3),
     ),
-    testBlogArticles(beVisible),
+    testBlogArticles(exist),
   ];
 
   const desktopTests = [

@@ -1,7 +1,6 @@
 import { newExpectation, newShouldArgs } from "../helpers";
 import { Expectation, ShouldArgs, Tests } from "../types";
 
-const beVisible = newShouldArgs("be.visible");
 const exist = newShouldArgs("exist");
 
 export const testDoltReleaseLink = (
@@ -33,8 +32,15 @@ export const testCreateAccountLink = (
     skip,
   );
 
+export const testDiscordCard = newExpectation(
+  "should have Discord card",
+  "[data-cy=join-discord-card]",
+  exist,
+);
+
 export const testHomepageSidecar: Tests = [
-  testBlogArticles(beVisible),
+  testDiscordCard,
+  testBlogArticles(exist),
   testDoltReleaseLink(exist),
 ];
 
