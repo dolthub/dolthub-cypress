@@ -34,7 +34,7 @@ export const testCreateAccountLink = (
   );
 
 export const testHomepageSidecar: Tests = [
-  testBlogArticles(beVisible),
+  testBlogArticles(exist),
   testDoltReleaseLink(exist),
 ];
 
