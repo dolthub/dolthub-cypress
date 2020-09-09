@@ -231,6 +231,29 @@ export const testCommitSection = (commitLen: number): Expectation =>
     [commitLogClickFlow(commitLen)],
   );
 
+// TAG LIST
+
+const tagListClickFlow = (tagLen: number): ClickFlow =>
+    newClickFlow(
+        "[data-cy=repo-tags]",
+        [
+          newExpectation(
+              "",
+              "[data-cy=repo-tag-list-tags] > li",
+              newShouldArgs("be.visible.and.have.length", tagLen),
+          ),
+        ],
+        "[data-cy=repo-tags]",
+    );
+
+export const testTagSection = (tagLen: number): Expectation =>
+    newExpectationWithClickFlows(
+        "should have repo Tag List section",
+        "[data-cy=repo-tags]",
+        beVisible,
+        [tagListClickFlow(tagLen)],
+    );
+
 // VIEWS
 
 const testViewClickFlow = (testView: string): ClickFlow =>
@@ -426,5 +449,10 @@ export const testSectionsNotVisible: Tests = [
     "should not have repo Query Catalog section for repo with no tables",
     "[data-cy=repo-query-catalog]",
     notBeVisible,
+  ),
+  newExpectation(
+      "should not have repo Tag List section for repo with no data",
+      "[data-cy=repo-tags]",
+      notBeVisible,
   ),
 ];

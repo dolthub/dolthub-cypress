@@ -37,6 +37,9 @@ $ yarn cylo-open-dolthub
 
 # runs tests against local server
 $ yarn cylo-run-dolthub
+
+# runs specific tests against local server
+$ yarn cylo-run-dolthub --spec 'cypress/integration/productionTests/publicPaths/render/repository/*'
 ```
 
 Running tests against our local webserver gets slightly more complicated when testing our [blog](https://www.dolthub.com/blog) or [docs](https://www.dolthub.com/docs), which are separate applications (learn more about our front-end stack and architecture [here](https://www.dolthub.com/blog/2020-03-11-how-we-built-dolthub-stack-and-architecture/)). Cypress can only run against a single host, so running our `blog` tests against our local DoltHub server won't work (`localhost:3000/blog` does not exist, but `dolthub.com/blog` does). You can test our blog or docs against their local webservers by running these commands:

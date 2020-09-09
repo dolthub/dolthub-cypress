@@ -8,14 +8,14 @@ import {
   testPullRequestsSection,
   testQueryCatalogSection,
   testRepoHeaderWithBranch,
-  testTablesSection,
+  testTablesSection, testTagSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Repository page with docs and no tables";
 const currentOwner = "automated_testing";
-const currentRepo = "repo_docs_no_tables";
+const currentRepo = "repo_with_tags_and_branches";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -51,6 +51,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(0),
     testQueryCatalogSection(0),
     testCommitSection(3),
+    testTagSection(0),
     testPullRequestsSection(0),
   ];
 
