@@ -4,11 +4,11 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   testAboutSection,
   testCommitSection,
-  testIndexesSection,
   testPullRequestsSection,
   testQueryCatalogSection,
   testRepoHeaderWithBranch,
-  testTablesSection, testTagSection,
+  testTablesSection,
+  testTagSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -104,16 +104,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
 describe(`All refs for repo_with_tags_and_branches are usable`, () => {
   const tests = (i: number) => {
-    const num = (i + 2 < 5) ? i + 2 : 5;
+    const num = i + 2 < 5 ? i + 2 : 5;
     return [
-    newExpectation(
+      newExpectation(
         "should not find empty repo",
         "[data-cy=repo-data-table-empty]",
         notBeVisible,
-    ),
-    testCommitSection(num),
-    testTagSection(5),
-  ]};
+      ),
+      testCommitSection(num),
+      testTagSection(5),
+    ];
+  };
 
   for (let i = 1; i <= 20; i++) {
     const tag = `v${i}`;
@@ -121,5 +122,4 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
     const devices = [macbook15ForAppLayout(pageName, tests(i))];
     runTestsForDevices({ currentPage, devices });
   }
-
 });

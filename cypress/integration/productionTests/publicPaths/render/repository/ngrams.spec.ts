@@ -7,13 +7,14 @@ import {
   newShouldArgs,
 } from "../../../../utils/helpers";
 import {
-    testAboutSection,
-    testCommitSection,
-    testIndexesSection,
-    testPullRequestsSection,
-    testQueryCatalogSection,
-    testRepoHeaderWithBranch, testTagSection,
-    testViewsSection,
+  testAboutSection,
+  testCommitSection,
+  testIndexesSection,
+  testPullRequestsSection,
+  testQueryCatalogSection,
+  testRepoHeaderWithBranch,
+  testTagSection,
+  testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 

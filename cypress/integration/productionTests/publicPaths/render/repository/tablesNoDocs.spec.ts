@@ -8,7 +8,8 @@ import {
   testPullRequestsSection,
   testQueryCatalogSection,
   testRepoHeaderWithBranch,
-  testTablesSection, testTagSection,
+  testTablesSection,
+  testTagSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
