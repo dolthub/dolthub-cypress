@@ -23,6 +23,12 @@ const cloneClickFlow = newClickFlow(
   ".popup-overlay",
 );
 
+const forkButtonClickFlow = newClickFlow(
+  "[data-cy=repo-fork-button]",
+  [newExpectation("", "[data-cy=create-fork-modal]", beVisible)],
+  "[data-cy=close-modal]",
+);
+
 export const testRepoHeaderForAll = (
   repoName: string,
   ownerName: string,
@@ -47,6 +53,11 @@ export const testRepoHeaderForAll = (
     "[data-cy=repo-star]",
     beVisible,
   ),
+  newExpectation(
+    "should have repo fork button",
+    "[data-cy=repo-fork-button]",
+    beVisible,
+  ),
   newExpectationWithClickFlows(
     "should have repo clone button",
     "[data-cy=repo-clone-button]",
@@ -60,6 +71,12 @@ export const testRepoHeaderWithBranch = (
   ownerName: string,
 ): Tests => [
   ...testRepoHeaderForAll(repoName, ownerName),
+  newExpectationWithClickFlows(
+    "should open create fork modal on fork button click",
+    "[data-cy=repo-fork-button]",
+    beVisible,
+    [forkButtonClickFlow],
+  ),
   newExpectation(
     "should have repo branch selector",
     "[data-cy=branch-selector]",
