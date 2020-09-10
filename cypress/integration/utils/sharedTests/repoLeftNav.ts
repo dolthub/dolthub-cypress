@@ -453,6 +453,6 @@ export const testSectionsNotVisible: Tests = [
   newExpectation(
     "should not have repo Tag List section for repo with no data",
     "[data-cy=repo-tags]",
-    notBeVisible,
+    beVisible,
   ),
 ];

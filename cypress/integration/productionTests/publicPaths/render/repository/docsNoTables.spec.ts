@@ -16,7 +16,7 @@ import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Repository page with docs and no tables";
 const currentOwner = "automated_testing";
-const currentRepo = "repo_with_tags_and_branches";
+const currentRepo = "repo_docs_no_tables";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
