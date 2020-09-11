@@ -248,27 +248,33 @@ export const testCommitSection = (commitLen: number): Expectation =>
     [commitLogClickFlow(commitLen)],
   );
 
-// TAG LIST
+// RELEASES LIST
 
-const tagListClickFlow = (tagLen: number): ClickFlow =>
-  newClickFlow(
-    "[data-cy=repo-tags]",
-    [
-      newExpectation(
-        "",
-        "[data-cy=repo-tag-list-tags] > li",
-        newShouldArgs("be.visible.and.have.length", tagLen),
-      ),
-    ],
-    "[data-cy=repo-tags]",
+const releasesListClickFlow = (tagLen: number): ClickFlow => {
+  const expectations =
+    tagLen === 0
+      ? []
+      : [
+          newExpectation(
+            "",
+            "[data-cy=repo-releases-list] > li",
+            newShouldArgs("be.visible.and.have.length", tagLen),
+          ),
+        ];
+
+  return newClickFlow(
+    "[data-cy=repo-releases]",
+    expectations,
+    "[data-cy=repo-releases]",
   );
+};
 
-export const testTagSection = (tagLen: number): Expectation =>
+export const testReleasesSection = (tagLen: number): Expectation =>
   newExpectationWithClickFlows(
     "should have repo Tag List section",
-    "[data-cy=repo-tags]",
+    "[data-cy=repo-releases]",
     beVisible,
-    [tagListClickFlow(tagLen)],
+    [releasesListClickFlow(tagLen)],
   );
 
 // VIEWS
@@ -469,7 +475,7 @@ export const testSectionsNotVisible: Tests = [
   ),
   newExpectation(
     "should not have repo Tag List section for repo with no data",
-    "[data-cy=repo-tags]",
+    "[data-cy=repo-releases]",
     beVisible,
   ),
 ];

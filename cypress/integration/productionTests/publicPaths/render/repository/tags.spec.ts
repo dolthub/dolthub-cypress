@@ -8,7 +8,7 @@ import {
   testQueryCatalogSection,
   testRepoHeaderWithBranch,
   testTablesSection,
-  testTagSection,
+  testReleasesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -35,7 +35,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(0),
     testQueryCatalogSection(0),
     testCommitSection(5),
-    testTagSection(5),
+    testReleasesSection(5),
     testPullRequestsSection(0),
   ];
 
@@ -60,6 +60,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
 //   five
 // * master
 //   ten
+//
+// It has 21 tags:
+//
+//	v20
+// 	v19
+//  ...
+// 	v1
+// 	start
 //
 // It has 23 commits:
 //
@@ -112,7 +120,7 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
         notBeVisible,
       ),
       testCommitSection(num),
-      testTagSection(5),
+      testReleasesSection(5),
     ];
   };
 

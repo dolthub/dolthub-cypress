@@ -54,7 +54,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(15, testView),
     testQueryCatalogSection(10, testQuery),
     testCommitSection(5),
-    testTablesSection(0),
     testPullRequestsSection(5),
   ];
 
