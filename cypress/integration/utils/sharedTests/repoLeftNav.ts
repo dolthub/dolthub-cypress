@@ -5,6 +5,7 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { ClickFlow, Expectation, Tests } from "../types";
+import exp = require("constants");
 
 const beVisible = newShouldArgs("be.visible");
 const notBeVisible = newShouldArgs("not.be.visible");
@@ -250,25 +251,31 @@ export const testCommitSection = (commitLen: number): Expectation =>
 
 // RELEASES LIST
 
-const tagListClickFlow = (tagLen: number): ClickFlow =>
-  newClickFlow(
+const releasesListClickFlow = (tagLen: number): ClickFlow => {
+  const expectations =
+    tagLen === 0
+      ? []
+      : [
+          newExpectation(
+            "",
+            "[data-cy=repo-releases-list] > li",
+            newShouldArgs("be.visible.and.have.length", tagLen),
+          ),
+        ];
+
+  return newClickFlow(
     "[data-cy=repo-releases]",
-    [
-      newExpectation(
-        "",
-        "[data-cy=repo-releases-list] > li",
-        newShouldArgs("be.visible.and.have.length", tagLen),
-      ),
-    ],
+    expectations,
     "[data-cy=repo-releases]",
   );
+};
 
-export const testTagSection = (tagLen: number): Expectation =>
+export const testReleasesSection = (tagLen: number): Expectation =>
   newExpectationWithClickFlows(
     "should have repo Tag List section",
     "[data-cy=repo-releases]",
     beVisible,
-    [tagListClickFlow(tagLen)],
+    [releasesListClickFlow(tagLen)],
   );
 
 // VIEWS

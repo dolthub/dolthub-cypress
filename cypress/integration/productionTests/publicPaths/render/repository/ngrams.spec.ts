@@ -13,7 +13,7 @@ import {
   testPullRequestsSection,
   testQueryCatalogSection,
   testRepoHeaderWithBranch,
-  testTagSection,
+  testReleasesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -71,7 +71,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(0),
     testQueryCatalogSection(0),
     testCommitSection(5),
-    testTagSection(0),
+    testReleasesSection(0),
     testPullRequestsSection(0),
     newExpectation(
       "should find repo data",
