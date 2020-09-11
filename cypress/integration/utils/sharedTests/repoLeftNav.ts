@@ -5,7 +5,6 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { ClickFlow, Expectation, Tests } from "../types";
-import exp = require("constants");
 
 const beVisible = newShouldArgs("be.visible");
 const notBeVisible = newShouldArgs("not.be.visible");
