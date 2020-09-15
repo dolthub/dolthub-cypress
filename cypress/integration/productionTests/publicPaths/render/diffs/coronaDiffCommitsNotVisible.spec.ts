@@ -15,8 +15,8 @@ describe(`${pageName} renders expected component on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should show back to repo button",
-      "[data-cy=diffs-back-to-repo-button]",
+      "should show back to repo link",
+      "[data-cy=back-to-repo-link]",
       beVisible,
     ),
     newExpectation(

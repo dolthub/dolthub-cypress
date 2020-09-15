@@ -31,8 +31,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should show back to repo button",
-      "[data-cy=diffs-back-to-repo-button]",
+      "should show back to repo link",
+      "[data-cy=back-to-repo-link]",
       beVisible,
     ),
     newExpectation(
