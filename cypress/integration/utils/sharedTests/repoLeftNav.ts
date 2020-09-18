@@ -436,7 +436,7 @@ const pullRequestsClickFlow = (pullLen: number): ClickFlow => {
     "[data-cy=repo-pull-requests]",
     [
       ...expectations,
-      newExpectation("", "[data-cy=new-pull-button]", notBeVisible),
+      newExpectation("", "[data-cy=new-pull-button]", beVisible),
     ],
     "[data-cy=repo-pull-requests]",
   );
