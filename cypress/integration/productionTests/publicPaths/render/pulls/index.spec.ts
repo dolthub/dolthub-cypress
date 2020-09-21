@@ -23,9 +23,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", `back to ${currentRepo}`),
     ),
     newExpectation(
-      "should not find create pull button for not logged in",
+      "should find create pull button",
       "[data-cy=new-pull-button]",
-      notBeVisible,
+      beVisible,
     ),
     newExpectation(
       "should not find empty pull message",
