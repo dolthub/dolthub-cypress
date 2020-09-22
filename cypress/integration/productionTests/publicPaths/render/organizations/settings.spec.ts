@@ -2,9 +2,9 @@ import { runTestsForDevices } from "../../../../utils";
 import { desktopDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Liquidata org settings page";
-const orgName = "Liquidata";
-const currentPage = `/organizations/${orgName}/settings`;
+const pageName = "DoltHub org settings page";
+const orgName = "DoltHub";
+const currentPage = `/organizations/Liquidata/settings`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
