@@ -20,7 +20,7 @@ import {
 import { Expectation } from "../../../../utils/types";
 
 const pageName = "Discover page with query";
-const searchTerm = "Liquidata";
+const searchTerm = "dolthub";
 const currentPage = `/repositories/${searchTerm}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
