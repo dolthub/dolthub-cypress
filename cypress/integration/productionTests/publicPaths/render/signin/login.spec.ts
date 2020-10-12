@@ -1,23 +1,49 @@
+import { runTestsForDevices } from "../../../../utils";
+import { macbook15 } from "../../../../utils/devices";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newExpectationWithTypeString,
+  newShouldArgs,
+} from "../../../../utils/helpers";
+
 const pageName = "Sign in page with log in";
 const currentPage = "/signin";
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  before(() => {
-    cy.visitPage(currentPage, false);
-  });
+  const beVisible = newShouldArgs("be.visible");
 
-  beforeEach(() => {
-    cy.visitViewport("macbook-15");
-  });
+  const signInModalClickFlow = newClickFlow(
+    "[data-cy=signin-button]",
+    [
+      newExpectation("", "[data-cy=signin-email-form]", beVisible),
+      newExpectationWithTypeString(
+        "",
+        "input[name=username]",
+        beVisible,
+        "invalid^username",
+      ),
+      newExpectationWithTypeString(
+        "",
+        "input[name=password]",
+        beVisible,
+        "password123{enter}",
+      ),
+      newExpectation("", "[data-cy=error-msg]", beVisible),
+    ],
+    "[data-cy=close-modal]",
+  );
 
-  it("displays errors on login", () => {
-    cy.get("[data-cy=signin-button]").click();
-    cy.get("[data-cy=signin-email-form]").should("be.visible");
+  const tests = [
+    newExpectationWithClickFlows(
+      "should click on signin button",
+      "[data-cy=signin-button]",
+      beVisible,
+      [signInModalClickFlow],
+    ),
+  ];
 
-    // incorrect username on purpose
-    cy.get("input[name=username]").type("invalid^username");
-    cy.get("input[name=password]").type("password123").type("{enter}");
-
-    cy.get("[data-cy=error-msg]").should("be.visible");
-  });
+  const devices = [macbook15(pageName, tests, false)];
+  runTestsForDevices({ currentPage, devices });
 });

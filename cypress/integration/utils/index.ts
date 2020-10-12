@@ -86,22 +86,31 @@ export function runTestsForDevices({
 function testAssertion(t: Expectation) {
   if (Array.isArray(t.selector)) {
     return t.selector.forEach(s =>
-      getAssertionTest(t.description, s, t.shouldArgs),
+      getAssertionTest(t.description, s, t.shouldArgs, t.typeString),
     );
   }
-  return getAssertionTest(t.description, t.selector, t.shouldArgs);
+  return getAssertionTest(
+    t.description,
+    t.selector,
+    t.shouldArgs,
+    t.typeString,
+  );
 }
 
 function getAssertionTest(
   description: string,
   selectorStr: string,
   shouldArgs: ShouldArgs,
+  typeString?: string,
 ) {
   const message = `
   Test assertion failed... 
   related test: ${description},
   related selector: ${selectorStr},
 `;
+  if (typeString) {
+    return cy.get(selectorStr, { timeout: defaultTimeout }).type(typeString);
+  }
   if (Array.isArray(shouldArgs.value)) {
     return cy
       .get(selectorStr, { timeout: defaultTimeout })
