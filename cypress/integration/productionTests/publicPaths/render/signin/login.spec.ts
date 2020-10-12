@@ -1,15 +1,13 @@
-import { visitPage, visitViewport } from "../../../../utils";
-
 const pageName = "Sign in page with log in";
 const currentPage = "/signin";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   before(() => {
-    visitPage(currentPage, false);
+    cy.visitPage(currentPage, false);
   });
 
   beforeEach(() => {
-    visitViewport("macbook-15");
+    cy.visitViewport("macbook-15");
   });
 
   it("displays errors on login", () => {
