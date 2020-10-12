@@ -19,5 +19,6 @@ lerna-debug.log*
 
 # Local secrets
 *.env
+*.env.json
 
 tsconfig.tsbuildinfo
