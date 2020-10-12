@@ -13,6 +13,60 @@ export const defaultTimeout = 5000;
 
 // RUN TESTS
 
+const username = Cypress.env("TEST_USERNAME");
+const password = Cypress.env("TEST_PASSWORD");
+
+export function login() {
+  cy.visit("/signin");
+  visitViewport("macbook-15");
+
+  cy.get("[data-cy=signin-button]").click();
+  cy.get("[data-cy=signin-email-form]").should("be.visible");
+
+  if (!password || !username) {
+    throw new Error("Username or password env not set");
+  }
+
+  cy.get("input[name=username]").clear().type(username);
+  cy.get("input[name=password]")
+    .clear()
+    .type(password, { log: false })
+    .type("{enter}");
+
+  cy.wait(200);
+
+  cy.get("[data-cy=navbar-menu-avatar]").should("be.visible");
+}
+
+export function visitPage(currentPage: string, loggedIn: boolean) {
+  // create the stub here
+  const ga = cy.stub().as("ga");
+
+  // prevent google analytics from loading and replace it with a stub before every
+  // single page load including all new page navigations
+  cy.on("window:before:load", win => {
+    Object.defineProperty(win, "ga", {
+      configurable: false,
+      get: () => ga, // always return the stub
+      set: () => {}, // don't allow actual google analytics to overwrite this property
+    });
+  });
+
+  if (loggedIn) {
+    // TODO: set up login and login here if necessary
+    login();
+  }
+
+  // 404 page should be rendered when page not found
+  cy.visit(currentPage, { failOnStatusCode: false });
+}
+
+export function visitViewport(device: Cypress.ViewportPreset) {
+  cy.viewport(device);
+  // eslint-disable-next-line cypress/no-unnecessary-waiting
+  cy.wait(200);
+}
+
 type TestsArgs = {
   loggedIn?: boolean;
   device: Cypress.ViewportPreset;
@@ -27,31 +81,11 @@ export function runTests({
   loggedIn = false,
 }: TestsArgs) {
   before(() => {
-    // create the stub here
-    const ga = cy.stub().as("ga");
-
-    // prevent google analytics from loading and replace it with a stub before every
-    // single page load including all new page navigations
-    cy.on("window:before:load", win => {
-      Object.defineProperty(win, "ga", {
-        configurable: false,
-        get: () => ga, // always return the stub
-        set: () => {}, // don't allow actual google analytics to overwrite this property
-      });
-    });
-
-    if (loggedIn) {
-      // TODO: set up login and login here if necessary
-    }
-
-    // 404 page should be rendered when page not found
-    cy.visit(currentPage, { failOnStatusCode: false });
+    visitPage(currentPage, loggedIn);
   });
 
   beforeEach(() => {
-    cy.viewport(device);
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(200);
+    visitViewport(device);
   });
 
   // run extras

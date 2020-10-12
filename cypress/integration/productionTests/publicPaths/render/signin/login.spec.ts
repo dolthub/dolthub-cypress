@@ -3,10 +3,6 @@ import { visitPage, visitViewport } from "../../../../utils";
 const pageName = "Sign in page with log in";
 const currentPage = "/signin";
 
-// const username = "cypresstesting";
-// DO NOT COMMIT
-// const password = "ThisIsMyPassword!";
-
 describe(`${pageName} renders expected components on different devices`, () => {
   before(() => {
     visitPage(currentPage, false);
@@ -22,7 +18,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
     // incorrect username on purpose
     cy.get("input[name=username]").type("invalid^username");
-    cy.get("input[name=password]").type("password123{enter}");
+    cy.get("input[name=password]").type("password123").type("{enter}");
 
     cy.get("[data-cy=error-msg]").should("be.visible");
   });
