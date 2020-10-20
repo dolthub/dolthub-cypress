@@ -8,7 +8,7 @@
     "cy-open": "cypress open",
     "cy-run": "cypress run",
     "cy-chrome": "cypress run --browser chrome --headless",
-    "cy-open-dev": "CYPRESS_BASE_URL=http://dolthub.awsdev.ld-corp.com cypress open",
+    "cy-open-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress open",
     "cylo-open-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_BASE_URL=http://localhost:3000 cypress open",
     "cylo-open-blog": "export CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress open",
     "cylo-open-docs": "export CYPRESS_LOCAL_DOCS=true && CYPRESS_BASE_URL=http://localhost:8000 cypress open",
