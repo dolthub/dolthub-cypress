@@ -11,12 +11,10 @@ import {
 // to .get() an element before failing
 export const defaultTimeout = 5000;
 
-// RUN TESTS
+const username = Cypress.env("TEST_USERNAME");
+const password = Cypress.env("TEST_PASSWORD");
 
-export function signout() {
-  cy.get("[data-cy=navbar-menu-avatar]").click();
-  cy.get("[data-cy=sign-out-button]").click();
-}
+// RUN TESTS
 
 type TestsArgs = {
   loggedIn?: boolean;
@@ -40,7 +38,7 @@ export function runTests({
   });
 
   after(() => {
-    if (loggedIn) signout();
+    if (loggedIn) cy.signout();
   });
 
   tests.forEach(t => {
@@ -68,16 +66,27 @@ export function runTests({
 type TestsForDevicesArgs = {
   currentPage: string;
   devices: Devices;
+  skip?: boolean;
 };
 
 export function runTestsForDevices({
   devices,
   currentPage,
+  skip = false,
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
-    describe(d.description, () => {
-      runTests({ ...d, currentPage });
-    });
+    // Skip tests that require login if username and password not found
+    const skipForLogin = d.loggedIn && (!username || !password);
+
+    if (skip || skipForLogin) {
+      describe.skip(d.description, () => {
+        runTests({ ...d, currentPage });
+      });
+    } else {
+      describe(d.description, () => {
+        runTests({ ...d, currentPage });
+      });
+    }
   });
 }
 

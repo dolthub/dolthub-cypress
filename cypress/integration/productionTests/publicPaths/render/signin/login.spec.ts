@@ -28,7 +28,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "",
         "input[name=password]",
         beVisible,
-        "password123{enter}",
+        "password123{enter}", // should also maybe test clicking on button too
       ),
       newExpectation("", "[data-cy=error-msg]", beVisible),
     ],

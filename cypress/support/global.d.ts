@@ -12,6 +12,8 @@ declare namespace Cypress {
 
     loginAsCypressTesting(): void;
 
+    signout(): void;
+
     visitPage(currentPage: string, loggedIn: boolean): void;
 
     visitViewport(device: Cypress.ViewportPreset): void;
