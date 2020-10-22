@@ -18,6 +18,6 @@
         with:
           browser: chrome
           headless: true
-          env: 
-            CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
-            CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
+        env: 
+          CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
+          CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
