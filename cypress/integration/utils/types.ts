@@ -30,6 +30,7 @@ export type Expectation = {
   clickFlows?: ClickFlow[] | undefined;
   scrollTo?: ScrollTo;
   skip?: boolean;
+  typeString?: string;
 };
 
 export type ClickFlow = {

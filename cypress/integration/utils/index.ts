@@ -11,6 +11,9 @@ import {
 // to .get() an element before failing
 export const defaultTimeout = 5000;
 
+const username = Cypress.env("TEST_USERNAME");
+const password = Cypress.env("TEST_PASSWORD");
+
 // RUN TESTS
 
 type TestsArgs = {
@@ -27,37 +30,16 @@ export function runTests({
   loggedIn = false,
 }: TestsArgs) {
   before(() => {
-    // create the stub here
-    const ga = cy.stub().as("ga");
-
-    // prevent google analytics from loading and replace it with a stub before every
-    // single page load including all new page navigations
-    cy.on("window:before:load", win => {
-      Object.defineProperty(win, "ga", {
-        configurable: false,
-        get: () => ga, // always return the stub
-        set: () => {}, // don't allow actual google analytics to overwrite this property
-      });
-    });
-
-    if (loggedIn) {
-      // TODO: set up login and login here if necessary
-    }
-
-    // 404 page should be rendered when page not found
-    cy.visit(currentPage, { failOnStatusCode: false });
+    cy.visitPage(currentPage, loggedIn);
   });
 
   beforeEach(() => {
-    cy.viewport(device);
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(200);
+    cy.visitViewport(device);
   });
 
-  // run extras
-  // extras.forEach(extra => {
-  //   if (extra && typeof extra === "function") extra();
-  // });
+  after(() => {
+    if (loggedIn) cy.signout();
+  });
 
   tests.forEach(t => {
     if (t.skip) {
@@ -84,16 +66,27 @@ export function runTests({
 type TestsForDevicesArgs = {
   currentPage: string;
   devices: Devices;
+  skip?: boolean;
 };
 
 export function runTestsForDevices({
   devices,
   currentPage,
+  skip = false,
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
-    describe(d.description, () => {
-      runTests({ ...d, currentPage });
-    });
+    // Skip tests that require login if username and password not found
+    const skipForLogin = d.loggedIn && (!username || !password);
+
+    if (skip || skipForLogin) {
+      describe.skip(d.description, () => {
+        runTests({ ...d, currentPage });
+      });
+    } else {
+      describe(d.description, () => {
+        runTests({ ...d, currentPage });
+      });
+    }
   });
 }
 
@@ -102,22 +95,31 @@ export function runTestsForDevices({
 function testAssertion(t: Expectation) {
   if (Array.isArray(t.selector)) {
     return t.selector.forEach(s =>
-      getAssertionTest(t.description, s, t.shouldArgs),
+      getAssertionTest(t.description, s, t.shouldArgs, t.typeString),
     );
   }
-  return getAssertionTest(t.description, t.selector, t.shouldArgs);
+  return getAssertionTest(
+    t.description,
+    t.selector,
+    t.shouldArgs,
+    t.typeString,
+  );
 }
 
 function getAssertionTest(
   description: string,
   selectorStr: string,
   shouldArgs: ShouldArgs,
+  typeString?: string,
 ) {
   const message = `
   Test assertion failed... 
   related test: ${description},
   related selector: ${selectorStr},
 `;
+  if (typeString) {
+    return cy.get(selectorStr, { timeout: defaultTimeout }).type(typeString);
+  }
   if (Array.isArray(shouldArgs.value)) {
     return cy
       .get(selectorStr, { timeout: defaultTimeout })

@@ -41,6 +41,16 @@ export function newExpectationWithScrollTo(
   return { description, selector, shouldArgs, scrollTo, skip };
 }
 
+export function newExpectationWithTypeString(
+  description: string,
+  selector: Selector,
+  shouldArgs: ShouldArgs,
+  typeString: string,
+  skip = false,
+): Expectation {
+  return { description, selector, shouldArgs, typeString, skip };
+}
+
 // Click flows
 
 export function newClickFlow(

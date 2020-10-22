@@ -9,5 +9,13 @@ declare namespace Cypress {
      * @example cy.dataCy('greeting')
      */
     dataCy(value: string): Chainable<Element>;
+
+    loginAsCypressTesting(): void;
+
+    signout(): void;
+
+    visitPage(currentPage: string, loggedIn: boolean): void;
+
+    visitViewport(device: Cypress.ViewportPreset): void;
   }
 }
