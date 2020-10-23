@@ -6,14 +6,14 @@ import {
   testCommitSection,
   testPullRequestsSection,
   testQueryCatalogSection,
+  testReleasesSection,
   testRepoHeaderWithBranch,
   testTablesSection,
-  testReleasesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
-const pageName = "Repository page with tables and docs";
+const pageName = "Repository page with tags and branches";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_with_tags_and_branches";
 
