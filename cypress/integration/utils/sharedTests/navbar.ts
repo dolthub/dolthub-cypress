@@ -8,16 +8,22 @@ import { ClickFlow, Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
 
-const signedOutNavbarLinks = [
-  "[data-cy=navbar-discover]",
-  "[data-cy=navbar-pricing]",
+const sharedLinks = [
   "[data-cy=navbar-documentation]",
   "[data-cy=navbar-blog]",
   "[data-cy=navbar-logo]",
-  "[data-cy=navbar-about-dolt]",
   "[data-cy=navbar-discord]",
+  "[data-cy=navbar-about-dolt]",
+];
+
+const signedOutNavbarLinks = [
+  ...sharedLinks,
+  "[data-cy=navbar-discover]",
+  "[data-cy=navbar-pricing]",
   "[data-cy=navbar-signin]",
 ];
+
+const signedInNavbarLinks = [...sharedLinks, "[data-cy=navbar-repositories]"];
 
 export const pricingModalClickFlow = (initialClickDataCy: string): ClickFlow =>
   newClickFlow(
@@ -48,9 +54,17 @@ export const testSignedOutNavbar: Tests = [
     beVisible,
     [pricingModalClickFlow("[data-cy=navbar-pricing-button]")],
   ),
+];
+
+export const testSignedInNavbar: Tests = [
   newExpectation(
-    "should have DoltHub logo in navbar",
-    "[data-cy=navbar-logo]",
+    "should have signed out navbar and correct links",
+    signedInNavbarLinks,
+    beVisible,
+  ),
+  newExpectation(
+    "should have user avatar",
+    "[data-cy=navbar-menu-avatar]",
     beVisible,
   ),
 ];

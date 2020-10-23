@@ -2,8 +2,8 @@ import { runTestsForDevices } from "../../../../utils";
 import { desktopDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Profile my repositories page";
-const currentPage = "/profile";
+const pageName = "Profile starred page";
+const currentPage = "/profile/starred";
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
