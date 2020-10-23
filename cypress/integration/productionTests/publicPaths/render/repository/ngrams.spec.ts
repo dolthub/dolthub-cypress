@@ -6,14 +6,15 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import {
   testAboutSection,
   testCommitSection,
   testIndexesSection,
   testPullRequestsSection,
   testQueryCatalogSection,
-  testRepoHeaderWithBranch,
   testReleasesSection,
+  testRepoHeaderWithBranch,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -88,6 +89,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "3071"),
     ),
+    ...testPaginationForRepoDataTable,
     testSqlConsole,
   ];
 

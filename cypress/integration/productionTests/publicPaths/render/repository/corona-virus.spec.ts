@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import {
   testAboutSection,
   testCommitSection,
@@ -50,6 +51,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),
     testAboutSection,
     testTablesSection(11, "case_details"),
+    ...testPaginationForRepoDataTable,
     testIndexesSection(11, "case_details"),
     testViewsSection(15, testView),
     testQueryCatalogSection(10, testQuery),
