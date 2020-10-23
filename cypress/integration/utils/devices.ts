@@ -1,6 +1,10 @@
 import { newDevice } from "./helpers";
 import { testFooter } from "./sharedTests/footer";
-import { testMobileNavbar, testSignedOutNavbar } from "./sharedTests/navbar";
+import {
+  testMobileNavbar,
+  testSignedInNavbar,
+  testSignedOutNavbar,
+} from "./sharedTests/navbar";
 import { Device, Devices, Tests } from "./types";
 
 // Creates devices
@@ -58,16 +62,18 @@ export const desktopDevicesForAppLayout = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
+  loggedIn = false,
 ) => {
-  const t = getAppLayoutTests(tests, skipNavbar);
-  return [macbook15(pageName, t, false), macbook11(pageName, t, false)];
+  const t = getAppLayoutTests(tests, skipNavbar, loggedIn);
+  return [macbook15(pageName, t, loggedIn), macbook11(pageName, t, loggedIn)];
 };
 
-function getAppLayoutTests(tests: Tests, skipNavbar = false) {
-  if (!skipNavbar) {
-    return [...testSignedOutNavbar, ...tests];
+function getAppLayoutTests(tests: Tests, skipNavbar = false, loggedIn = false) {
+  if (skipNavbar) return tests;
+  if (loggedIn) {
+    return [...testSignedInNavbar, ...tests];
   }
-  return tests;
+  return [...testSignedOutNavbar, ...tests];
 }
 
 // SignedOut layout
