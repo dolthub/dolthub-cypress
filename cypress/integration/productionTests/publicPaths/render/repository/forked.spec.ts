@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import {
   testAboutSection,
   testCommitSection,
@@ -52,6 +53,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     testAboutSection,
     testTablesSection(2, "IPv4ToCountry"),
+    ...testPaginationForRepoDataTable,
     testIndexesSection(2, "IPv4ToCountry"),
     testViewsSection(0),
     testQueryCatalogSection(0),
