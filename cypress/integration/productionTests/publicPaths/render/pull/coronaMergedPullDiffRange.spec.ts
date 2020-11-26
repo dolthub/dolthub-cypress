@@ -13,6 +13,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${current
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const skipped = false;
+  const skipAll = true;
 
   const tests = [
     newExpectation(
@@ -48,5 +49,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
 
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip: skipAll });
 });
