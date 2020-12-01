@@ -442,13 +442,66 @@ const pullRequestsClickFlow = (pullLen: number): ClickFlow => {
   );
 };
 
-export const testPullRequestsSection = (pullLen: number): Expectation =>
-  newExpectationWithClickFlows(
+export const testPullRequestsSection = (pullLen: number): Expectation => {
+  return newExpectationWithClickFlows(
     "should have repo Pull Requests section",
     "[data-cy=repo-pull-requests]",
     beVisible,
     [pullRequestsClickFlow(pullLen)],
   );
+};
+
+// COLLABORATORS
+
+const emptyCollabsExpectation = newExpectation(
+  "",
+  "[data-cy=collab-table-no-collabs]",
+  beVisible,
+);
+
+const collaboratorsClickFlow = (collabsLen: number): ClickFlow => {
+  const notEmptyExpectations = newExpectation(
+    "",
+    "[data-cy=collab-table] tr",
+    newShouldArgs("be.visible.and.have.length", collabsLen),
+  );
+
+  const expectation =
+    collabsLen === 0 ? emptyCollabsExpectation : notEmptyExpectations;
+
+  return newClickFlow(
+    "[data-cy=repo-collaborators]",
+    [expectation, newExpectation("", "[data-cy=new-collab-form]", beVisible)],
+    "[data-cy=repo-collaborators]",
+  );
+};
+
+export const testCollaboratorsSection = (collabsLen: number): Expectation => {
+  return newExpectationWithClickFlows(
+    "should have repo Collaborators section for user with write perms",
+    "[data-cy=repo-collaborators]",
+    beVisible,
+    [collaboratorsClickFlow(collabsLen)],
+  );
+};
+
+// REPO SETTINGS
+
+const settingsClickFlow = newClickFlow(
+  "[data-cy=repo-repo-settings]",
+  [
+    newExpectation("", "[data-cy=repo-settings-webhooks]", beVisible),
+    newExpectation("", "[data-cy=update-repo-form]", beVisible),
+  ],
+  "[data-cy=repo-repo-settings]",
+);
+
+export const testRepoSettings = newExpectationWithClickFlows(
+  "should have Repo Settings section for user with write perms",
+  "[data-cy=repo-repo-settings]",
+  beVisible,
+  [settingsClickFlow],
+);
 
 // SECTIONS NOT VISIBLE FOR EMPTY
 
