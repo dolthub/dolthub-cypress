@@ -37,9 +37,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     "[data-cy=clear-search-button-repos]",
     [
       newExpectation(
-        "should not have search results tab",
+        "should have disabled search results tab",
         "[data-cy=search-results-repos-tab]",
-        newShouldArgs("not.exist"),
+        newShouldArgs("have.class", "react-tabs__tab--disabled"),
       ),
     ],
     "",

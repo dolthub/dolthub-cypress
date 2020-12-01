@@ -42,11 +42,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    newExpectation(
-      "should not find table list",
-      "[data-cy=repo-tables-table-list]",
-      notExist,
-    ),
     testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),
     testAboutSection,

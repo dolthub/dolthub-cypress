@@ -9,6 +9,7 @@ const currentPage = `/organizations/Liquidata`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
+  const disabledTab = newShouldArgs("have.class", "react-tabs__tab--disabled");
   const skip = false;
 
   const testProfileCard = [
@@ -76,27 +77,27 @@ describe(`${pageName} renders expected components on different devices`, () => {
       skip,
     ),
     newExpectation(
-      "should not show People tab",
+      "should have disabled People tab",
       "[data-cy=org-people-tab]",
-      notExist,
+      disabledTab,
       skip,
     ),
     newExpectation(
-      "should not show Settings tab",
+      "should have disabled Settings tab",
       "[data-cy=org-settings-tab]",
-      notExist,
+      disabledTab,
       skip,
     ),
     newExpectation(
-      "should not show Billing tab",
+      "should have disabled Billing tab",
       "[data-cy=org-billing-tab]",
-      notExist,
+      disabledTab,
       skip,
     ),
     newExpectation(
-      "should not show Payment History tab",
+      "should have disabled Payment History tab",
       "[data-cy=org-payment-history-tab]",
-      notExist,
+      disabledTab,
       skip,
     ),
     newExpectation(
