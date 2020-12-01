@@ -9,7 +9,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/compare`;
 
 describe(`${pageName} renders expected component on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
@@ -30,12 +30,12 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should not have viewing message",
       "[data-cy=viewing-message]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not show diff summary",
       "[data-cy=commit-diff-summary]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should show select commits message",
@@ -45,7 +45,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should not show diff table list",
       "[data-cy=diff-table-list]",
-      notBeVisible,
+      notExist,
     ),
   ];
 

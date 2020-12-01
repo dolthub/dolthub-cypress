@@ -16,7 +16,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     ...testRepoHeaderForAll(currentRepo, currentOwner),
@@ -32,7 +32,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not have Push a commit section",
       "[data-cy=repo-empty-push-a-commit]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should have Create new repo section",

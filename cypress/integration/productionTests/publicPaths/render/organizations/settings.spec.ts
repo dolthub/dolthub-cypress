@@ -8,7 +8,7 @@ const currentPage = `/organizations/Liquidata/settings`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const testProfileCard = [
     newExpectation(
@@ -49,7 +49,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not show next steps",
       "[data-cy=profile-card-next-steps]",
-      notBeVisible,
+      notExist,
     ),
   ];
 
@@ -67,32 +67,32 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not show People tab",
       "[data-cy=org-people-tab]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not show Settings tab",
       "[data-cy=org-settings-tab]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not show Billing tab",
       "[data-cy=org-billing-tab]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not show Payment History tab",
       "[data-cy=org-payment-history-tab]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not show list of owner repositories",
       "[data-cy=repository-list-for-owner]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not show org member list",
       "[data-cy=org-member-list]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should show no org settings permissions message",
@@ -102,17 +102,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not show org settings form",
       "[data-cy=org-settings-form]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not show org billing info",
       "[data-cy=billing-info]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not show org payment history",
       "[data-cy=payment-history]",
-      notBeVisible,
+      notExist,
     ),
   ];
 

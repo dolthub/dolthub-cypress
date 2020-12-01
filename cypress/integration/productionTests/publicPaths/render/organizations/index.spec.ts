@@ -8,7 +8,7 @@ const currentPage = `/organizations/Liquidata`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
   const skip = false;
 
   const testProfileCard = [
@@ -57,7 +57,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not show next steps",
       "[data-cy=profile-card-next-steps]",
-      notBeVisible,
+      notExist,
       skip,
     ),
   ];
@@ -78,25 +78,25 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not show People tab",
       "[data-cy=org-people-tab]",
-      notBeVisible,
+      notExist,
       skip,
     ),
     newExpectation(
       "should not show Settings tab",
       "[data-cy=org-settings-tab]",
-      notBeVisible,
+      notExist,
       skip,
     ),
     newExpectation(
       "should not show Billing tab",
       "[data-cy=org-billing-tab]",
-      notBeVisible,
+      notExist,
       skip,
     ),
     newExpectation(
       "should not show Payment History tab",
       "[data-cy=org-payment-history-tab]",
-      notBeVisible,
+      notExist,
       skip,
     ),
     newExpectation(
@@ -108,25 +108,25 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not show org member list",
       "[data-cy=org-member-list]",
-      notBeVisible,
+      notExist,
       skip,
     ),
     newExpectation(
       "should not show org settings",
       "[data-cy=org-settings]",
-      notBeVisible,
+      notExist,
       skip,
     ),
     newExpectation(
       "should not show org billing info",
       "[data-cy=billing-info]",
-      notBeVisible,
+      notExist,
       skip,
     ),
     newExpectation(
       "should not show org payment history",
       "[data-cy=payment-history]",
-      notBeVisible,
+      notExist,
       skip,
     ),
   ];

@@ -13,7 +13,7 @@ const skip = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
   const skipNavbar = true;
 
   const tests = [
@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not show edit description button for logged out user",
       "[data-cy=pull-page-edit-description-button]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should show pull intent",
@@ -51,7 +51,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find 404 page",
       "[data-cy=pull-404-page]",
-      notBeVisible,
+      notExist,
     ),
   ];
 

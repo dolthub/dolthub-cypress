@@ -39,7 +39,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newExpectation(
         "should not have search results tab",
         "[data-cy=search-results-repos-tab]",
-        newShouldArgs("not.be.visible"),
+        newShouldArgs("not.exist"),
       ),
     ],
     "",

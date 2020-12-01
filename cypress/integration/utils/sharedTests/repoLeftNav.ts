@@ -7,7 +7,7 @@ import {
 import { ClickFlow, Expectation, Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
-const notBeVisible = newShouldArgs("not.be.visible");
+const notExist = newShouldArgs("not.exist");
 
 // HEADER
 
@@ -360,7 +360,7 @@ const testQueryClickFlow = (testQuery: string): ClickFlow =>
 
 const emptyQueriesExpectation = [
   newExpectation("", "[data-cy=repo-no-queries]", beVisible),
-  newExpectation("", "[data-cy=repo-query-see-all]", notBeVisible),
+  newExpectation("", "[data-cy=repo-query-see-all]", notExist),
 ];
 
 const notEmptyQueriesExpectations = (
@@ -509,22 +509,22 @@ export const testSectionsNotVisible: Tests = [
   newExpectation(
     "should not have repo Indexes section for repo with no data",
     "[data-cy=repo-indexes]",
-    notBeVisible,
+    notExist,
   ),
   newExpectation(
     "should not have repo Commit Log section for repo with no data",
     "[data-cy=repo-commit-log]",
-    notBeVisible,
+    notExist,
   ),
   newExpectation(
     "should not have repo Views section for repo with no data",
     "[data-cy=repo-views]",
-    notBeVisible,
+    notExist,
   ),
   newExpectation(
     "should not have repo Query Catalog section for repo with no tables",
     "[data-cy=repo-query-catalog]",
-    notBeVisible,
+    notExist,
   ),
   newExpectation(
     "should not have repo Tag List section for repo with no data",

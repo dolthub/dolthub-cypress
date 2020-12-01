@@ -17,7 +17,7 @@ const pageName = "Repository page with tags and branches";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_with_tags_and_branches";
 
-const notBeVisible = newShouldArgs("not.be.visible");
+const notExist = newShouldArgs("not.exist");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const currentPage = `repositories/${currentOwner}/${currentRepo}`;
@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find empty repo",
       "[data-cy=repo-data-table-empty]",
-      notBeVisible,
+      notExist,
     ),
     testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),
@@ -117,7 +117,7 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
       newExpectation(
         "should not find empty repo",
         "[data-cy=repo-data-table-empty]",
-        notBeVisible,
+        notExist,
       ),
       testCommitSection(num),
       testReleasesSection(5),

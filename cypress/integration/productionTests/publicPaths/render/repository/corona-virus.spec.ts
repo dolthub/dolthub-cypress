@@ -24,18 +24,18 @@ const testQuery = "mortality_rates";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
       "should not find empty repo",
       "[data-cy=repo-data-table-empty]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not find repo table data",
       "[data-cy=repo-data-table]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should find doc markdown",
@@ -45,7 +45,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find table list",
       "[data-cy=repo-tables-table-list]",
-      notBeVisible,
+      notExist,
     ),
     testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),

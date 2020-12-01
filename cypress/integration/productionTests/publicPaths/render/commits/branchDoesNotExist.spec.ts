@@ -30,7 +30,7 @@ describe(`${pageName} with no branch renders expected components on different de
     newExpectation(
       "should not find commit list",
       "[data-cy=commit-log-commits-list]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
   ];
 

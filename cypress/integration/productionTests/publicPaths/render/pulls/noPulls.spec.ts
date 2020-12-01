@@ -24,7 +24,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find pulls",
       "[data-cy=pull-requests-table]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
   ];
 

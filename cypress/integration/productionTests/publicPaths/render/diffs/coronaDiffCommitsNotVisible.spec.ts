@@ -11,7 +11,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branc
 
 describe(`${pageName} renders expected component on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
@@ -27,7 +27,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should not show any form selects",
       "[data-cy=form-select]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should have viewing message",
