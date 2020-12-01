@@ -25,7 +25,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not have branch selector",
       "[data-cy=upload-choose-branch]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
     newExpectation(
       "should have no branches message",
