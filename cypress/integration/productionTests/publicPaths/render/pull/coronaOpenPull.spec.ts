@@ -10,13 +10,13 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${current
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
       "should not find 404 page",
       "[data-cy=pull-404-page]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation("should show title", "[data-cy=pull-page-title]", beVisible),
     newExpectation(
@@ -27,7 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not show edit description button for logged out user",
       "[data-cy=pull-page-edit-description-button]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should show pull intent",

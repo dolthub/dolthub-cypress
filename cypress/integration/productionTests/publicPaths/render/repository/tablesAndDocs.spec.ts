@@ -7,9 +7,9 @@ import {
   testIndexesSection,
   testPullRequestsSection,
   testQueryCatalogSection,
+  testReleasesSection,
   testRepoHeaderWithBranch,
   testTablesSection,
-  testReleasesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -21,28 +21,23 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
       "should not find empty repo",
       "[data-cy=repo-data-table-empty]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not find repo table data",
       "[data-cy=repo-data-table]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should find doc markdown",
       "[data-cy=repo-doc-markdown]",
       beVisible,
-    ),
-    newExpectation(
-      "should not find table list",
-      "[data-cy=repo-tables-table-list]",
-      notBeVisible,
     ),
     testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),

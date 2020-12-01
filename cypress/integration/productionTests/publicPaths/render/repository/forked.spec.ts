@@ -21,13 +21,13 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
       "should not find empty repo",
       "[data-cy=repo-data-table-empty]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should find repo table data",
@@ -37,7 +37,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find doc markdown",
       "[data-cy=repo-doc-markdown]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should display repo data columns",

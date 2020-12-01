@@ -30,7 +30,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not have no branches message",
       "[data-cy=upload-no-branches]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
   ];
 

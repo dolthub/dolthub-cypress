@@ -25,7 +25,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find commit list",
       "[data-cy=commit-log-commits-list]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
   ];
 

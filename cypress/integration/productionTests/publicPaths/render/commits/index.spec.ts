@@ -10,7 +10,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/commits/${curre
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
@@ -26,12 +26,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find create pull button",
       "[data-cy=new-pull-button]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not find empty commits message",
       "[data-cy=commit-log-no-commits]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should find commits list with at least 20 commits",
