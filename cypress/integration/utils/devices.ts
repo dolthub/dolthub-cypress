@@ -53,10 +53,15 @@ export const macbook15ForAppLayout = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
-): Device => macbook15(pageName, getAppLayoutTests(tests, skipNavbar), false);
+  loggedIn = false,
+): Device => {
+  const t = getAppLayoutTests(tests, skipNavbar, loggedIn);
+  return macbook15(pageName, t, loggedIn);
+};
 
-export const iPad2ForAppLayout = (pageName: string, tests: Tests): Device =>
-  macbook15(pageName, getAppLayoutTests(tests), false);
+export const iPad2ForAppLayout = (pageName: string, tests: Tests): Device => {
+  return iPad2(pageName, getAppLayoutTests(tests), false);
+};
 
 export const desktopDevicesForAppLayout = (
   pageName: string,
