@@ -23,7 +23,7 @@ describe(`${pageName} expected components on different devices`, () => {
     newExpectation(
       "should not find queries",
       "[data-cy=query-catalog-table]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
   ];
 

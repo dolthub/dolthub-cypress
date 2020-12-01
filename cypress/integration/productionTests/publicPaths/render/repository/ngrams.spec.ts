@@ -77,7 +77,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should find repo data",
       "[data-cy=repo-data-table-empty]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
     newExpectation(
       "should display repo data columns",

@@ -9,7 +9,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
@@ -30,7 +30,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find empty pull message",
       "[data-cy=pull-requests-no-pulls]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should find pull requests table with header",

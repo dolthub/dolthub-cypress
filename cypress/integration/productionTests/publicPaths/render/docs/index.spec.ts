@@ -19,7 +19,7 @@ const skip = !!Cypress.env("LOCAL_BLOG") || !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const exist = newShouldArgs("exist");
 
   const newExpectationWithSkip = (
     desc: string,
@@ -51,14 +51,19 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectationWithSkip(
+      "should have visible subsection list",
+      "[data-cy=sub-section-list-tutorials]",
+      beVisible,
+    ),
+    newExpectationWithSkip(
       "should have inactive guides section without expanded list",
-      "[data-cy=section-header-guides] > ol",
-      notBeVisible,
+      "[data-cy=sub-section-list-guides-inactive]",
+      exist,
     ),
     newExpectationWithSkip(
       "should have inactive reference section without expanded list",
-      "[data-cy=section-header-reference] > ol",
-      notBeVisible,
+      "[data-cy=sub-section-list-reference-inactive]",
+      exist,
     ),
   ];
 
@@ -83,8 +88,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ),
       newExpectationWithSkip(
         "should have inactive tutorials section without expanded list",
-        "[data-cy=section-header-tutorials] > ol",
-        notBeVisible,
+        "[data-cy=sub-section-list-tutorials-inactive]",
+        exist,
       ),
     ],
     "[data-cy=section-header-guides-active] > ol > li:first",
@@ -105,8 +110,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ),
       newExpectationWithSkip(
         "should have inactive guides section without expanded list",
-        "[data-cy=section-header-guides] > ol",
-        notBeVisible,
+        "[data-cy=sub-section-list-guides-inactive]",
+        exist,
       ),
     ],
     "[data-cy=section-header-reference-active] > ol > li:first",

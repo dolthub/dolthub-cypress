@@ -19,7 +19,7 @@ const lastQuery = "mortality_rate_by_age_range_and_sex";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notBeVisible = newShouldArgs("not.be.visible");
+  const notExist = newShouldArgs("not.exist");
 
   const queryClickFlow = (forFirst: boolean): ClickFlow =>
     newClickFlow(
@@ -28,12 +28,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
         newExpectation(
           "",
           `[data-cy=query-catalog-table-row-expanded-${firstQuery}]`,
-          forFirst ? beVisible : notBeVisible,
+          forFirst ? beVisible : notExist,
         ),
         newExpectation(
           "",
           `[data-cy=query-catalog-table-row-expanded-${lastQuery}]`,
-          forFirst ? notBeVisible : beVisible,
+          forFirst ? notExist : beVisible,
         ),
         newExpectation(
           "should have expanded first query with play button",
@@ -59,12 +59,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find create pull button",
       "[data-cy=new-pull-button]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should not find empty queries message",
       "[data-cy=repo-no-queries]",
-      notBeVisible,
+      notExist,
     ),
     newExpectation(
       "should find queries table with header",

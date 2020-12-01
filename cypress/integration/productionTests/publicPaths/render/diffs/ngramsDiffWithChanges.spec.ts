@@ -32,7 +32,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should not have viewing message",
       "[data-cy=viewing-message]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
     newExpectation(
       "should show diff summary",

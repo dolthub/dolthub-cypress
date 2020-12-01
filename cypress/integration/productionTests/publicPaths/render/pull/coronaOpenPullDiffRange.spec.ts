@@ -17,7 +17,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not find 404 page",
       "[data-cy=pull-404-page]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
     newExpectation(
       "should show diff selector",
