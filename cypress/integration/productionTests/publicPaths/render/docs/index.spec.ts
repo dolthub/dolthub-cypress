@@ -20,7 +20,6 @@ const skip = !!Cypress.env("LOCAL_BLOG") || !!Cypress.env("LOCAL_DOLTHUB");
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const exist = newShouldArgs("exist");
-  const notExist = newShouldArgs("not.exist");
 
   const newExpectationWithSkip = (
     desc: string,
