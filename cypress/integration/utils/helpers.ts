@@ -21,6 +21,16 @@ export function newExpectation(
   return { description, selector, shouldArgs, skip };
 }
 
+export function newExpectationWithRedirect(
+  description: string,
+  selector: Selector,
+  shouldArgs: ShouldArgs,
+  skip = false,
+  redirect = "",
+): Expectation {
+  return { description, selector, shouldArgs, skip, redirect };
+}
+
 export function newExpectationWithClickFlows(
   description: string,
   selector: string,
