@@ -31,6 +31,7 @@ export type Expectation = {
   scrollTo?: ScrollTo;
   skip?: boolean;
   typeString?: string;
+  redirect?: string;
 };
 
 export type ClickFlow = {
