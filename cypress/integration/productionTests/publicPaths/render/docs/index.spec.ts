@@ -1,8 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import {
-  desktopDevicesForAppLayout,
-  iPad2ForAppLayout,
-} from "../../../../utils/devices";
+import { desktopDevicesForAppLayout } from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -153,10 +150,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = [
-    ...desktopDevicesForAppLayout(pageName, tests),
-    iPad2ForAppLayout(pageName, tests),
-  ];
+  const devices = desktopDevicesForAppLayout(pageName, tests);
 
   runTestsForDevices({ currentPage, devices });
 });
