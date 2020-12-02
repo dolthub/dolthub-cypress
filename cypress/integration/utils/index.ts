@@ -49,7 +49,7 @@ export function runTests({
         testAssertion(t);
 
         if (t.redirect) {
-          testSignInRedirect(t.redirect)
+          testSignInRedirect(t.redirect);
         }
 
         if (t.clickFlows) {
@@ -68,7 +68,7 @@ export function runTests({
 }
 
 function testSignInRedirect(redirectValue: string) {
-  return cy.redirectToSignIn(redirectValue)
+  return cy.redirectToSignIn(redirectValue);
 }
 
 type TestsForDevicesArgs = {
