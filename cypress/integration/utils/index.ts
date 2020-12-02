@@ -48,6 +48,10 @@ export function runTests({
       it(t.description, () => {
         testAssertion(t);
 
+        if (t.redirect) {
+          testSignInRedirect(t.redirect)
+        }
+
         if (t.clickFlows) {
           testClickFlows({
             clickFlows: t.clickFlows,
@@ -61,6 +65,10 @@ export function runTests({
       });
     }
   });
+}
+
+function testSignInRedirect(redirectValue: string) {
+  return cy.redirectToSignIn(redirectValue)
 }
 
 type TestsForDevicesArgs = {
