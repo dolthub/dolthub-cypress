@@ -66,6 +66,17 @@ Cypress.Commands.add("loginAsCypressTesting", () => {
   );
 });
 
+Cypress.Commands.add("redirectToSignIn", (redirectValue: string)=>{
+  cy.location("pathname", { timeout: defaultTimeout }).should(
+    "eq",
+    `/signin`,
+  )
+  cy.location("search", { timeout: defaultTimeout }).should(
+    "eq",
+    `?redirect=%2F${redirectValue}`,
+  )
+})
+
 Cypress.Commands.add("signout", () => {
   cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).click();
   cy.get("[data-cy=sign-out-button]", { timeout: defaultTimeout }).click();
@@ -97,3 +108,4 @@ Cypress.Commands.add("visitViewport", (device: Cypress.ViewportPreset) => {
   // eslint-disable-next-line cypress/no-unnecessary-waiting
   cy.wait(200);
 });
+
