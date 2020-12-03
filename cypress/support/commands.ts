@@ -33,16 +33,35 @@ Cypress.Commands.add("dataCy", (value: string) => {
   return cy.get(`[data-cy=${value}]`);
 });
 
-Cypress.Commands.add("loginAsCypressTesting", (redirectValue?: string) => {
-  if (!password || !username) {
-    throw new Error("Username or password env not set");
-  }
+Cypress.Commands.add(
+  "loginAsCypressTestingAfterNavigateToSignin",
+  (redirectValue?: string) => {
+    if (!password || !username) {
+      throw new Error("Username or password env not set");
+    }
 
-  cy.visit("/signin");
-  cy.visitViewport("macbook-15");
-  completeLoginForCypressTesting();
-  ensureSuccessfulLogin(redirectValue);
-});
+    cy.visit("/signin");
+    cy.visitViewport("macbook-15");
+    completeLoginForCypressTesting();
+    ensureSuccessfulLogin(redirectValue);
+  },
+);
+
+Cypress.Commands.add(
+  "loginAsCypressTestingFromSigninPage",
+  (redirectValue: string) => {
+    cy.location("pathname", { timeout: defaultTimeout }).should(
+      "eq",
+      `/signin`,
+    );
+    cy.location("search", { timeout: defaultTimeout })
+      .should("eq", `?redirect=%2F${redirectValue}`)
+      .then(() => {
+        completeLoginForCypressTesting();
+        ensureSuccessfulLogin(redirectValue);
+      });
+  },
+);
 
 function ensureSuccessfulLogin(redirectValue?: string) {
   if (redirectValue) {
@@ -77,23 +96,6 @@ function completeLoginForCypressTesting() {
     .type("{enter}");
 }
 
-// Assumes /signin page and viewport is already loaded
-Cypress.Commands.add(
-  "completeSignInFromSignInPage",
-  (redirectValue: string) => {
-    cy.location("pathname", { timeout: defaultTimeout }).should(
-      "eq",
-      `/signin`,
-    );
-    cy.location("search", { timeout: defaultTimeout }).should(
-      "eq",
-      `?redirect=%2F${redirectValue}`,
-    );
-    completeLoginForCypressTesting();
-    ensureSuccessfulLogin(redirectValue);
-  },
-);
-
 Cypress.Commands.add("signout", () => {
   cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).click();
   cy.get("[data-cy=sign-out-button]", { timeout: defaultTimeout }).click();
@@ -115,7 +117,7 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
 
   if (loggedIn)
     // If page tests require a user to be logged in, go to signin page and log in test user
-    cy.loginAsCypressTesting();
+    cy.loginAsCypressTestingAfterNavigateToSignin();
 
   // 404 page should be rendered when page not found
   cy.visit(currentPage, { failOnStatusCode: false });

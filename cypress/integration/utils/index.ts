@@ -48,8 +48,9 @@ export function runTests({
       it(t.description, () => {
         if (t.redirect) {
           // Sign in and continue to redirect value before starting test assertions
-          testSignInWithRedirect(t.redirect);
+          testLoginAndRedirectBehavior(t.redirect);
         }
+
         testAssertion(t);
 
         if (t.clickFlows) {
@@ -67,8 +68,8 @@ export function runTests({
   });
 }
 
-function testSignInWithRedirect(redirectValue: string) {
-  return cy.completeSignInFromSignInPage(redirectValue);
+function testLoginAndRedirectBehavior(redirectValue: string) {
+  return cy.loginAsCypressTestingFromSigninPageWithRedirect(redirectValue);
 }
 
 type TestsForDevicesArgs = {
@@ -103,7 +104,7 @@ export function runTestsForDevices({
 function testAssertion(t: Expectation) {
   if (Array.isArray(t.selector)) {
     return t.selector.forEach(s =>
-      getAssertionTest(t.description, s, t.shouldArgs, t.typeString),
+      getAssertionTest(t.description, s, t.shouldArgs, t.typeString, t.url),
     );
   }
   return getAssertionTest(
@@ -111,6 +112,7 @@ function testAssertion(t: Expectation) {
     t.selector,
     t.shouldArgs,
     t.typeString,
+    t.url,
   );
 }
 
@@ -119,6 +121,7 @@ function getAssertionTest(
   selectorStr: string,
   shouldArgs: ShouldArgs,
   typeString?: string,
+  url?: string,
 ) {
   const message = `
   Test assertion failed... 
@@ -127,6 +130,11 @@ function getAssertionTest(
 `;
   if (typeString) {
     return cy.get(selectorStr, { timeout: defaultTimeout }).type(typeString);
+  }
+  if (url) {
+    cy.location().then(loc => {
+      return expect(loc.href).to.include(url);
+    });
   }
   if (Array.isArray(shouldArgs.value)) {
     return cy

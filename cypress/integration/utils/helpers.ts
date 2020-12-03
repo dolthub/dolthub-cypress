@@ -21,6 +21,16 @@ export function newExpectation(
   return { description, selector, shouldArgs, skip };
 }
 
+export function newExpectationWithURL(
+  description: string,
+  selector: Selector,
+  shouldArgs: ShouldArgs,
+  skip = false,
+  url = "",
+): Expectation {
+  return { description, selector, shouldArgs, skip, url };
+}
+
 export function newExpectationWithRedirect(
   description: string,
   selector: Selector,

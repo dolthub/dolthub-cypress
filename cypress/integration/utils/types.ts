@@ -32,6 +32,7 @@ export type Expectation = {
   skip?: boolean;
   typeString?: string;
   redirect?: string;
+  url?: string;
 };
 
 export type ClickFlow = {
