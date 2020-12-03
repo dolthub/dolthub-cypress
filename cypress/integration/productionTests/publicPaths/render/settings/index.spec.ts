@@ -6,6 +6,7 @@ const pageName = "Settings page for logged out user";
 const currentPage = "/settings";
 
 describe(`${pageName} redirects to the /signin page for logged out users on different devices`, () => {
+  // TODO: Check that location search terms = "settings"
   const tests = [
     newExpectation(
       "should be redirected to signin page",
