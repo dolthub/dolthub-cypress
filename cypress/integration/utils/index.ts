@@ -46,11 +46,11 @@ export function runTests({
       xit(t.description, () => {});
     } else {
       it(t.description, () => {
-        testAssertion(t);
-
         if (t.redirect) {
-          testSignInRedirect(t.redirect);
+          // Sign in and continue to redirect value before starting test assertions
+          testSignInWithRedirect(t.redirect);
         }
+        testAssertion(t);
 
         if (t.clickFlows) {
           testClickFlows({
@@ -67,8 +67,8 @@ export function runTests({
   });
 }
 
-function testSignInRedirect(redirectValue: string) {
-  return cy.redirectToSignIn(redirectValue);
+function testSignInWithRedirect(redirectValue: string) {
+  return cy.completeSignInFromSignInPage(redirectValue);
 }
 
 type TestsForDevicesArgs = {

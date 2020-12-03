@@ -33,15 +33,35 @@ Cypress.Commands.add("dataCy", (value: string) => {
   return cy.get(`[data-cy=${value}]`);
 });
 
-Cypress.Commands.add("loginAsCypressTesting", () => {
+Cypress.Commands.add("loginAsCypressTesting", (redirectValue?: string) => {
   if (!password || !username) {
     throw new Error("Username or password env not set");
   }
 
-  // Visit sign in page
   cy.visit("/signin");
   cy.visitViewport("macbook-15");
+  completeLoginForCypressTesting();
+  ensureSuccessfulLogin(redirectValue);
+});
 
+function ensureSuccessfulLogin(redirectValue?: string) {
+  if (redirectValue) {
+    cy.location("pathname", { timeout: defaultTimeout }).should(
+      "include",
+      `/${redirectValue}`,
+    );
+  } else {
+    cy.location("pathname", { timeout: defaultTimeout }).should(
+      "include",
+      "/profile",
+    );
+  }
+  cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).should(
+    "be.visible",
+  );
+}
+
+function completeLoginForCypressTesting() {
   // Open sign in modal and show sign in form
   cy.get("[data-cy=signin-button]", { timeout: defaultTimeout }).click();
   cy.get("[data-cy=signin-email-form]", { timeout: defaultTimeout }).should(
@@ -55,24 +75,24 @@ Cypress.Commands.add("loginAsCypressTesting", () => {
   cy.get("input[name=password]", { timeout: defaultTimeout })
     .type(password, { log: false })
     .type("{enter}");
+}
 
-  // Ensure login is successful
-  cy.location("pathname", { timeout: defaultTimeout }).should(
-    "include",
-    "/profile",
-  );
-  cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).should(
-    "be.visible",
-  );
-});
-
-Cypress.Commands.add("redirectToSignIn", (redirectValue: string) => {
-  cy.location("pathname", { timeout: defaultTimeout }).should("eq", `/signin`);
-  cy.location("search", { timeout: defaultTimeout }).should(
-    "eq",
-    `?redirect=%2F${redirectValue}`,
-  );
-});
+// Assumes /signin page and viewport is already loaded
+Cypress.Commands.add(
+  "completeSignInFromSignInPage",
+  (redirectValue: string) => {
+    cy.location("pathname", { timeout: defaultTimeout }).should(
+      "eq",
+      `/signin`,
+    );
+    cy.location("search", { timeout: defaultTimeout }).should(
+      "eq",
+      `?redirect=%2F${redirectValue}`,
+    );
+    completeLoginForCypressTesting();
+    ensureSuccessfulLogin(redirectValue);
+  },
+);
 
 Cypress.Commands.add("signout", () => {
   cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).click();
@@ -93,8 +113,9 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
     });
   });
 
-  // If page tests require a user to be logged in, go to signin page and log in test user
-  if (loggedIn) cy.loginAsCypressTesting();
+  if (loggedIn)
+    // If page tests require a user to be logged in, go to signin page and log in test user
+    cy.loginAsCypressTesting();
 
   // 404 page should be rendered when page not found
   cy.visit(currentPage, { failOnStatusCode: false });
