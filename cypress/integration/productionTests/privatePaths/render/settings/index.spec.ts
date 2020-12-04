@@ -41,6 +41,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
+      "should render Settings Security link for user who signed up with username/email (cypresstesting)",
+      "[data-cy=settings-security-section-link]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
       "should render Settings Billing link",
       "[data-cy=settings-billing-section-link]",
       newShouldArgs("be.visible"),
