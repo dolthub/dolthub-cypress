@@ -4,10 +4,12 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Settings";
 const currentPage = "/settings";
+const isLocalDoltHub = !!Cypress.env("LOCAL_DOLTHUB");
+
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const tests = [
+  const navLinkTests = [
     newExpectation(
       "should render Settings header",
       "[data-cy=settings-header]",
@@ -49,16 +51,19 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("not.exist"),
       false,
     ),
-    // The Development tab is expected to render ONLY in a local environment.
-    // Because this test (and all on this page) require a signin, this test fails on localhost before it even reaches the assertion.
     newExpectation(
       "should not render Development link in dev or prod",
       "[data-cy=settings-development-section-link]",
-      newShouldArgs("not.exist"),
+      isLocalDoltHub ? newShouldArgs("be.visible") : newShouldArgs("not.exist"),
       false,
     ),
   ];
 
-  const devices = desktopDevicesForAppLayout(pageName, tests, true, loggedIn);
+  const devices = desktopDevicesForAppLayout(
+    pageName,
+    navLinkTests,
+    true,
+    loggedIn,
+  );
   runTestsForDevices({ currentPage, devices });
 });
