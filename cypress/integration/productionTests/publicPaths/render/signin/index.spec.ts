@@ -1,13 +1,9 @@
 import { runTestsForDevices } from "../../../../utils";
-import {
-  allDevicesDiffTestsForSignedOut,
-  macbook15,
-} from "../../../../utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newExpectationWithRedirect,
   newShouldArgs,
   scrollToPosition,
 } from "../../../../utils/helpers";
@@ -15,7 +11,6 @@ import { ClickFlow } from "../../../../utils/types";
 
 const pageName = "Sign in page";
 const currentPage = "/signin";
-const currentPageWithRedirect = "/signin?redirect=%2Fsettings";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -163,21 +158,4 @@ describe(`${pageName} renders expected components on different devices`, () => {
     mobileTests,
   );
   runTestsForDevices({ currentPage, devices });
-
-  // Test that a signin URL with search params redirects to the expected page after signin.
-  const redirectTests = [
-    newExpectationWithRedirect(
-      "should redirect to /settings page after sign in",
-      "[data-cy=settings-header]",
-      beVisible,
-      false,
-      "settings",
-    ),
-  ];
-
-  const devicesForRedirectLink = [macbook15(pageName, redirectTests, false)];
-  runTestsForDevices({
-    currentPage: currentPageWithRedirect,
-    devices: devicesForRedirectLink,
-  });
 });

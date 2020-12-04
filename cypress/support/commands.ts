@@ -48,7 +48,7 @@ Cypress.Commands.add(
 );
 
 Cypress.Commands.add(
-  "loginAsCypressTestingFromSigninPage",
+  "loginAsCypressTestingFromSigninPageWithRedirect",
   (redirectValue: string) => {
     cy.location("pathname", { timeout: defaultTimeout }).should(
       "eq",
@@ -115,9 +115,10 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
     });
   });
 
-  if (loggedIn)
+  if (loggedIn) {
     // If page tests require a user to be logged in, go to signin page and log in test user
     cy.loginAsCypressTestingAfterNavigateToSignin();
+  }
 
   // 404 page should be rendered when page not found
   cy.visit(currentPage, { failOnStatusCode: false });
