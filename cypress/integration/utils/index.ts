@@ -132,7 +132,7 @@ function getAssertionTest(
     return cy.get(selectorStr, { timeout: defaultTimeout }).type(typeString);
   }
   if (url) {
-    cy.location().then(loc => {
+    return cy.location().then(loc => {
       return expect(loc.href).to.include(url);
     });
   }
