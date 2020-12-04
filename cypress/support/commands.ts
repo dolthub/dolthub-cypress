@@ -78,6 +78,14 @@ function ensureSuccessfulLogin(redirectValue?: string) {
   cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).should(
     "be.visible",
   );
+
+  // Due to restrictions on our GraphQL config, cookies are not set in local development.
+  // Set cookie manually on localhost.
+  cy.location().then(loc => {
+    if (loc.hostname === "localhost") {
+      cy.setCookie("dolthubToken", "anything");
+    }
+  });
 }
 
 function completeLoginForCypressTesting() {
@@ -99,6 +107,7 @@ function completeLoginForCypressTesting() {
 Cypress.Commands.add("signout", () => {
   cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).click();
   cy.get("[data-cy=sign-out-button]", { timeout: defaultTimeout }).click();
+  cy.clearCookie("dolthubToken");
 });
 
 Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
