@@ -58,7 +58,7 @@ export const testSignedOutNavbar: Tests = [
 
 export const testSignedInNavbar: Tests = [
   newExpectation(
-    "should have signed out navbar and correct links",
+    "should have signed in navbar and correct links",
     signedInNavbarLinks,
     beVisible,
   ),
