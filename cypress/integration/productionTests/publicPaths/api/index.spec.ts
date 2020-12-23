@@ -194,7 +194,7 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
       .should("deep.equal", [
         {
           columnName: "place_id",
-          columnType: "Int",
+          columnType: "BigInt",
           isPrimaryKey: false,
         },
         {
@@ -209,12 +209,12 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
         },
         {
           columnName: "latitude",
-          columnType: "Float",
+          columnType: "Double",
           isPrimaryKey: false,
         },
         {
           columnName: "longitude",
-          columnType: "Float",
+          columnType: "Double",
           isPrimaryKey: false,
         },
       ]);
