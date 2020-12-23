@@ -4,7 +4,6 @@ import {
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-  scrollToPosition,
 } from "../../../../utils/helpers";
 import { testMobileMailingList } from "../../../../utils/sharedTests/mailingList";
 import {
@@ -16,7 +15,6 @@ import {
   testBlogArticles,
   testHomepageSidecar,
 } from "../../../../utils/sharedTests/sidecar";
-import { Expectation } from "../../../../utils/types";
 
 const pageName = "Discover page";
 const currentPage = "/discover";
@@ -24,12 +22,6 @@ const currentPage = "/discover";
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const exist = newShouldArgs("exist");
-
-  const scrollToPositionInContainer = (
-    position: Cypress.PositionType,
-  ): Expectation => {
-    return scrollToPosition("#main-content", position);
-  };
 
   const testReposContainer = [
     newExpectation(
@@ -58,14 +50,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const desktopTests = [...testReposContainer, ...testHomepageSidecar];
 
-  const iPadTests = [
-    ...testReposContainer,
-    scrollToPositionInContainer("center"),
-    ...testHomepageSidecar,
-  ];
+  const iPadTests = [...testReposContainer, ...testHomepageSidecar];
 
   const iPhoneTests = [
-    scrollToPositionInContainer("top"),
     testBlogArticles(exist),
     ...testMobileRepoList("[data-cy=discover-repo-lists]"),
     ...testMobileMailingList("[data-cy=discover-mobile-mailing-list]"),

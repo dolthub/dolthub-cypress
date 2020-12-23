@@ -5,7 +5,6 @@ import {
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-  scrollToPosition,
 } from "../../../../utils/helpers";
 import { ClickFlow } from "../../../../utils/types";
 
@@ -126,7 +125,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [signinClickFlow("[data-cy=close-modal]")],
     ),
-    scrollToPosition("#main-content", "top"),
     newExpectationWithClickFlows(
       "should have Sign up for DoltHub modal",
       "[data-cy=signup-for-dolthub]",
