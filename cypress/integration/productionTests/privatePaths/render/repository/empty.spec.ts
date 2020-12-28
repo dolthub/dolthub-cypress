@@ -69,6 +69,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-empty-dolt-source]",
       beVisible,
     ),
+    newExpectation(
+      "should have disabled Fork button",
+      "[data-cy=repo-fork-button]",
+      newShouldArgs("be.disabled"),
+    ),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

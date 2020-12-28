@@ -47,6 +47,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=upload-file-button]",
       beVisible,
     ),
+    newExpectation(
+      "should not have Fork button disabled",
+      "[data-cy=repo-fork-button]",
+      newShouldArgs("not.be.disabled"),
+    ),
     testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),
     testAboutSection,

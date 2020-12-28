@@ -1,7 +1,12 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../../../../utils/helpers";
+import {
+  newForkButtonClickFlow,
   testAboutSection,
   testCollaboratorsSection,
   testPullRequestsSection,
@@ -67,6 +72,20 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have link to Dolt source",
       "[data-cy=repo-empty-dolt-source]",
       beVisible,
+    ),
+    newExpectationWithClickFlows(
+      "should not have Fork button disabled",
+      "[data-cy=repo-fork-button]",
+      newShouldArgs("not.be.disabled"),
+      [
+        newForkButtonClickFlow(
+          newExpectation(
+            "",
+            "[data-cy=fork-confirm-button]",
+            newShouldArgs("not.be.disabled"),
+          ),
+        ),
+      ],
     ),
   ];
 
