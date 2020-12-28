@@ -1,7 +1,12 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../../../../utils/helpers";
+import {
+  newForkButtonClickFlow,
   testAboutSection,
   testCollaboratorsSection,
   testCommitSection,
@@ -25,6 +30,13 @@ const loggedIn = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
+  const forkButtonClickFlow = newForkButtonClickFlow(
+    newExpectation(
+      "",
+      "[data-cy=fork-confirm-button]",
+      newShouldArgs("not.be.disabled"),
+    ),
+  );
 
   const tests = [
     newExpectation(
@@ -47,10 +59,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=upload-file-button]",
       beVisible,
     ),
-    newExpectation(
+    newExpectationWithClickFlows(
       "should not have Fork button disabled",
       "[data-cy=repo-fork-button]",
       newShouldArgs("not.be.disabled"),
+      [forkButtonClickFlow],
     ),
     testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),

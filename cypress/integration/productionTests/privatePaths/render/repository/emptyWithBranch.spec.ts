@@ -24,6 +24,13 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
+  const forkButtonClickFlow = newForkButtonClickFlow(
+    newExpectation(
+      "",
+      "[data-cy=fork-confirm-button]",
+      newShouldArgs("not.be.disabled"),
+    ),
+  );
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),
@@ -77,15 +84,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should not have Fork button disabled",
       "[data-cy=repo-fork-button]",
       newShouldArgs("not.be.disabled"),
-      [
-        newForkButtonClickFlow(
-          newExpectation(
-            "",
-            "[data-cy=fork-confirm-button]",
-            newShouldArgs("not.be.disabled"),
-          ),
-        ),
-      ],
+      [forkButtonClickFlow],
     ),
   ];
 
