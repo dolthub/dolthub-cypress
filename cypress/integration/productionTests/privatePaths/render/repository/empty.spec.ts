@@ -70,7 +70,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should have Fork button disabled",
+      "should have disabled Fork button",
       "[data-cy=repo-fork-button]",
       newShouldArgs("be.disabled"),
     ),

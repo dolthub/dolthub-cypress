@@ -60,37 +60,40 @@ export const testRepoHeaderForAll = (
   ),
 ];
 
-export const newForkButtonClickFlow = (e: Expectation | Expectation[]) => {
-  return newClickFlow(
-    "[data-cy=repo-fork-button]",
-    Array.isArray(e) ? e : [e],
-    "[data-cy=close-modal]",
-  );
-};
-
-const sharedForkExpectation = newExpectation(
-  "",
-  "[data-cy=create-fork-modal]",
-  beVisible,
-);
+const forkButtonClickFlowExpectations = [
+  newExpectation("", "[data-cy=create-fork-modal]", beVisible),
+  newExpectation(
+    "Confirm button should not be disabled on initial open",
+    "[data-cy=fork-confirm-button]",
+    newShouldArgs("not.be.disabled"),
+  ),
+];
 
 export const testRepoHeaderWithBranch = (
   repoName: string,
   ownerName: string,
-): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName),
-  newExpectationWithClickFlows(
-    "should open create fork modal on fork button click",
-    "[data-cy=repo-fork-button]",
-    beVisible,
-    [newForkButtonClickFlow(sharedForkExpectation)],
-  ),
-  newExpectation(
-    "should have repo branch selector",
-    "[data-cy=branch-selector]",
-    beVisible,
-  ),
-];
+): Tests => {
+  return [
+    ...testRepoHeaderForAll(repoName, ownerName),
+    newExpectationWithClickFlows(
+      "should open create fork modal on fork button click",
+      "[data-cy=repo-fork-button]",
+      beVisible,
+      [
+        newClickFlow(
+          "[data-cy=repo-fork-button]",
+          forkButtonClickFlowExpectations,
+          "[data-cy=close-modal]",
+        ),
+      ],
+    ),
+    newExpectation(
+      "should have repo branch selector",
+      "[data-cy=branch-selector]",
+      beVisible,
+    ),
+  ];
+};
 
 // ABOUT
 
