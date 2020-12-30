@@ -6,7 +6,9 @@ const pageName = "Profile discover page";
 const currentPage = "/profile/discover";
 const loggedIn = true;
 
-describe(`${pageName} renders expected components on different devices`, () => {
+const baseUrl = Cypress.env("BASE_URL");
+
+describe(`${pageName} renders expected components on different devices for base url ${baseUrl}`, () => {
   const tests = [
     newExpectation(
       "should render repository list",
