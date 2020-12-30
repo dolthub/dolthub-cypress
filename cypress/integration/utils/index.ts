@@ -74,9 +74,6 @@ export function runTestsForDevices({
   currentPage,
   skip = false,
 }: TestsForDevicesArgs) {
-  // Log base url in tests
-  cy.log(`Base url: ${Cypress.env("BASE_URL")}`);
-
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
     const skipForLogin = d.loggedIn && (!username || !password);
