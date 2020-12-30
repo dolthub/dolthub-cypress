@@ -21,7 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testAboutSection,
     testTablesSection(0),
     testPullRequestsSection(0),
