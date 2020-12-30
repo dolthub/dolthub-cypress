@@ -48,7 +48,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testAboutSection,
     testTablesSection(1, "test_table"),
     testIndexesSection(1, "test_table"),
