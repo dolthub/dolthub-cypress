@@ -10,3 +10,12 @@ jobs:
       run: |
         yarn
         yarn run ci
+    - name: Run Cypress tests against dolthub dev
+      uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
+        headless: true
+      env: 
+        CYPRESS_BASE_URL: https://dolthub.awsdev.ld-corp.com
+        CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
+        CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
