@@ -4,11 +4,9 @@ import { Tests } from "../types";
 const exist = newShouldArgs("exist");
 
 const footerTags = [
-  "[data-cy=footer-about-dolthub]",
   "[data-cy=footer-contact]",
   "[data-cy=footer-blog]",
   "[data-cy=footer-documentation]",
-  "[data-cy=footer-about-dolthub]",
   "[data-cy=footer-team]",
   "[data-cy=footer-terms-of-service]",
   "[data-cy=footer-privacy-policy]",
