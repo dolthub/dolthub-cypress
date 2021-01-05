@@ -49,7 +49,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should find pull with ID 1 with two links",
-      "[data-cy=pull-requests-row-1] > td > a",
+      "[data-cy=pull-requests-row-1] > td a",
       newShouldArgs("be.visible.and.have.length", 2),
     ),
     newExpectation(
