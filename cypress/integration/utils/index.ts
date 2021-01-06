@@ -48,7 +48,7 @@ export function runTests({
       it(t.description, () => {
         if (t.redirect) {
           // Sign in and continue to redirect value before starting test assertions
-          testLoginAndRedirectBehavior(t.redirect);
+          cy.loginAsCypressTestingFromSigninPageWithRedirect(t.redirect);
         }
 
         testAssertion(t);
@@ -66,10 +66,6 @@ export function runTests({
       });
     }
   });
-}
-
-function testLoginAndRedirectBehavior(redirectValue: string) {
-  return cy.loginAsCypressTestingFromSigninPageWithRedirect(redirectValue);
 }
 
 type TestsForDevicesArgs = {
