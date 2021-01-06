@@ -14,7 +14,6 @@ describe(`${pageName} redirects to the /signin page for logged out users on diff
       "should be redirected to signin page and preserve redirect info",
       "[data-cy=signup-why-join]",
       newShouldArgs("be.visible.and.contain", "Why join DoltHub?"),
-      false,
       "/signin?redirect=%2Fsettings",
     ),
   ];

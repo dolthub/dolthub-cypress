@@ -17,7 +17,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should redirect to /settings page after sign in",
       "[data-cy=settings-header]",
       beVisible,
-      false,
       "settings",
     ),
   ];
