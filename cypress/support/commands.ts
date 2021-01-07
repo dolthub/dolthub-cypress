@@ -78,14 +78,6 @@ function ensureSuccessfulLogin(redirectValue?: string) {
   cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).should(
     "be.visible",
   );
-
-  // Due to restrictions on our GraphQL config, cookies are not set in local development.
-  // Set cookie manually on localhost.
-  cy.location().then(loc => {
-    if (loc.hostname === "localhost") {
-      cy.setCookie("dolthubToken", "anything");
-    }
-  });
 }
 
 function completeLoginForCypressTesting() {
