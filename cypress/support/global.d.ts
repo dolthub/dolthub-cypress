@@ -10,9 +10,13 @@ declare namespace Cypress {
      */
     dataCy(value: string): Chainable<Element>;
 
-    loginAsCypressTesting(): void;
+    loginAsCypressTestingAfterNavigateToSignin(redirectValue?: string): void;
 
     signout(): void;
+
+    loginAsCypressTestingFromSigninPageWithRedirect(
+      redirectValue: string,
+    ): void;
 
     visitPage(currentPage: string, loggedIn: boolean): void;
 

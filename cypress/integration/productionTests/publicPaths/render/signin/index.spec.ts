@@ -155,6 +155,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
     tests,
     mobileTests,
   );
-
   runTestsForDevices({ currentPage, devices });
 });
