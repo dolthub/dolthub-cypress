@@ -33,7 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const mobileTests = [
     newExpectation(
-      "should render image in each section for Desktop",
+      "should not render image in each section for mobile",
       [
         "[data-cy=bounties-intro-section] img",
         "[data-cy=bounties-pay-section] img",
