@@ -10,7 +10,7 @@ jobs:
       run: |
         yarn
         yarn run ci
-    - name: Run Cypress tests against dolthub dev
+    - name: Run Cypress tests against dolthub prod
       uses: cypress-io/github-action@v2
       with:
         browser: chrome
