@@ -76,7 +76,7 @@ const mobileNavbarClickFlow = newClickFlow(
     newExpectation(
       "should show DoltHub links",
       "[data-cy=mobile-navbar-links] > li",
-      newShouldArgs("be.visible.and.have.length", 8),
+      newShouldArgs("be.visible.and.have.length", 7),
     ),
     newExpectation(
       "should show social links",
