@@ -5,6 +5,7 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
   scrollIntoView,
+  scrollToPosition,
 } from "../../../../utils/helpers";
 import { testMobileMailingList } from "../../../../utils/sharedTests/mailingList";
 import { pricingModalClickFlow } from "../../../../utils/sharedTests/navbar";
@@ -17,6 +18,7 @@ import {
   testBlogArticles,
   testDoltReleaseLink,
 } from "../../../../utils/sharedTests/sidecar";
+import { Expectation } from "../../../../utils/types";
 
 const pageName = "Homepage";
 const currentPage = "/";
@@ -24,6 +26,12 @@ const currentPage = "/";
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const exist = newShouldArgs("exist");
+
+  const scrollToPositionInContainer = (
+    position: Cypress.PositionType,
+  ): Expectation => {
+    return scrollToPosition("#scroll-container", position);
+  };
 
   const testHero = [
     newExpectation(
@@ -113,13 +121,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testMobileHero,
     testSearchInput,
+    scrollToPositionInContainer("center"),
     ...testReposContainer,
     ...testSidecars,
   ];
 
   const iPhoneTests = [
+    scrollToPositionInContainer("top"),
     ...testMobileHero,
     testBlogArticles(exist),
+    scrollToPositionInContainer("center"),
     ...testMobileRepoList("[data-cy=homepage-repo-lists]"),
     ...testMobileMailingList("[data-cy=homepage-mobile-mailing-list]"),
   ];
