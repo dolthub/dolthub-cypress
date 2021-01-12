@@ -5,6 +5,7 @@ import {
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
+  scrollToPosition,
 } from "../../../../utils/helpers";
 import { testMobileMailingList } from "../../../../utils/sharedTests/mailingList";
 import {
@@ -51,6 +52,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [mostRecentReposClickFlow],
     ),
     ...checkRepoListForTab("most-starred", 20),
+    scrollToPosition("#main-content", "top"),
     newExpectation(
       "should have repository search bar",
       "[data-cy=search-input-signed-out]",

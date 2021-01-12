@@ -11,9 +11,9 @@ const currentPage = `repositories/${currentOwner}/${doesNotExistRepo}/queries/${
 describe(`${pageName} expected components on different devices`, () => {
   const tests = [
     newExpectation(
-      "should find Query Catalog header",
-      "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Query Catalog"),
+      "should find 404 page",
+      "[data-cy=404-page]",
+      newShouldArgs("be.visible.and.contain", "Repo not found"),
     ),
     newExpectation(
       "should find repo does not exist message",
