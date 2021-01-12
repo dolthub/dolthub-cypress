@@ -94,16 +94,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const desktopAndTablet = [...desktopTests];
-  const mobile = [...mobileTests];
-
   runTestsForDevices({
     currentPage,
     devices: allDevicesDiffTestsForSignedOut(
       pageName,
-      desktopAndTablet,
-      desktopAndTablet,
-      mobile,
+      desktopTests,
+      desktopTests,
+      mobileTests,
     ),
   });
 });

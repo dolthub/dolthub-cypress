@@ -17,7 +17,6 @@ import {
   testBlogArticles,
   testHomepageSidecar,
 } from "../../../../utils/sharedTests/sidecar";
-import { Expectation } from "../../../../utils/types";
 
 const pageName = "Discover page with query";
 const searchTerm = "dolthub";
@@ -26,12 +25,6 @@ const currentPage = `/repositories/${searchTerm}`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const exist = newShouldArgs("exist");
-
-  const scrollToPositionInContainer = (
-    position: Cypress.PositionType,
-  ): Expectation => {
-    return scrollToPosition("#main-content", position);
-  };
 
   const clearSearchClickFlow = newClickFlow(
     "[data-cy=clear-search-button-repos]",
@@ -59,7 +52,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [mostRecentReposClickFlow],
     ),
     ...checkRepoListForTab("most-starred", 20),
-    scrollToPositionInContainer("top"),
+    scrollToPosition("#main-content", "top"),
     newExpectation(
       "should have repository search bar",
       "[data-cy=search-input-signed-out]",
