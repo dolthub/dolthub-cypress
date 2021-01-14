@@ -489,16 +489,16 @@ const collaboratorsClickFlow = (collabsLen: number): ClickFlow => {
     collabsLen === 0 ? emptyCollabsExpectation : notEmptyExpectations;
 
   return newClickFlow(
-    "[data-cy=repo-collaborators]",
-    [expectation, newExpectation("", "[data-cy=new-collab-form]", beVisible)],
-    "[data-cy=repo-collaborators]",
+    "[data-cy=repo-manage-access]",
+    [expectation, newExpectation("", "[data-cy=add-collab-button]", beVisible)],
+    "[data-cy=repo-manage-access]",
   );
 };
 
 export const testCollaboratorsSection = (collabsLen: number): Expectation => {
   return newExpectationWithClickFlows(
     "should have repo Collaborators section for user with write perms",
-    "[data-cy=repo-collaborators]",
+    "[data-cy=repo-manage-access]",
     beVisible,
     [collaboratorsClickFlow(collabsLen)],
   );
