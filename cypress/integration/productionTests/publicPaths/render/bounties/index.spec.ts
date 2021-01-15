@@ -53,7 +53,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should render RepoListItem in Get Started section",
       "[data-cy=repo-list-item]",
-      newShouldArgs("have.length", 1),
+      newShouldArgs("have.length.of.at.least", 1),
     ),
     scrollToPositionInContainer("bottom"),
     newExpectation(
