@@ -1,6 +1,3 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   testAboutSection,
   testCollaboratorsSection,
@@ -9,7 +6,14 @@ import {
   testRepoSettings,
   testSectionsNotVisible,
   testTablesSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
+} from "cypress/integration/utils/sharedTests/repoLeftNav";
+import { runTestsForDevices } from "../../../../utils";
+import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  newExpectation,
+  newShouldArgs,
+  scrollToPosition,
+} from "../../../../utils/helpers";
 
 const pageName = "Logged in repo page with no branch and no data";
 const currentOwner = "automated_testing";
@@ -55,6 +59,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
+      "should have disabled Fork button",
+      "[data-cy=repo-fork-button]",
+      newShouldArgs("be.disabled"),
+    ),
+    scrollToPosition("#main-content", "bottom"),
+    newExpectation(
       "should have link to copy Dolt install script",
       "[data-cy=repo-empty-copy-dolt-release]",
       beVisible,
@@ -68,11 +78,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have link to Dolt source",
       "[data-cy=repo-empty-dolt-source]",
       beVisible,
-    ),
-    newExpectation(
-      "should have disabled Fork button",
-      "[data-cy=repo-fork-button]",
-      newShouldArgs("be.disabled"),
     ),
   ];
 
