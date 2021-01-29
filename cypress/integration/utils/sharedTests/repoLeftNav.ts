@@ -76,7 +76,7 @@ const forkButtonClickFlow = (loggedIn: boolean) =>
           newExpectation(
             "",
             "[data-cy=create-fork-modal] a",
-            newShouldArgs("be.visible.and.contain", "log in"),
+            newShouldArgs("be.visible.and.contain", "sign in"),
           ),
         ],
     "[data-cy=close-modal]",
