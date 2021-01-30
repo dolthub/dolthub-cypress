@@ -3,8 +3,8 @@ import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
-  scrollIntoView,
   scrollToPosition,
 } from "../../../../utils/helpers";
 import { testMobileMailingList } from "../../../../utils/sharedTests/mailingList";
@@ -69,8 +69,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const testReposContainer = [
-    scrollIntoView("[data-cy=repos-container-with-tabs]"),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
       newShouldArgs("be.visible.and.contain", [
@@ -78,6 +77,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "Most recent",
         "Most starred",
       ]),
+      true,
     ),
     ...checkRepoListForTab("featured", 5),
     newExpectationWithClickFlows(
@@ -96,7 +96,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   );
 
   const testSidecars = [
-    scrollIntoView("[data-cy=homepage-growth-panel-sm]"),
     testDoltReleaseLink(beVisible),
     newExpectation(
       "should have an about section",
