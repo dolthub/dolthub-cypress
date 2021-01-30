@@ -95,8 +95,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
     beVisible,
   );
 
-  const testSidecars = [
+  const testSidecarsInView = [
     testDoltReleaseLink(beVisible),
+    newExpectation(
+      "should have an about section",
+      "[data-cy=home-page-about] > p",
+      newShouldArgs("exist.and.have.length", 3),
+    ),
+    testBlogArticles(exist),
+  ];
+
+  const testSidecarsOutOfView = [
+    testDoltReleaseLink(exist),
     newExpectation(
       "should have an about section",
       "[data-cy=home-page-about] > p",
@@ -108,7 +118,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const desktopTests = [
     ...testHero,
     testSearchInput,
-    ...testSidecars,
+    ...testSidecarsInView,
     ...testReposContainer,
   ];
 
@@ -122,7 +132,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSearchInput,
     scrollToPositionInContainer("center"),
     ...testReposContainer,
-    ...testSidecars,
+    ...testSidecarsOutOfView,
   ];
 
   const iPhoneTests = [
