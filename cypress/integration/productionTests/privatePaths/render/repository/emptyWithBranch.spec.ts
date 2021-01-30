@@ -2,8 +2,8 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
   newExpectation,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
-  scrollToPosition,
 } from "../../../../utils/helpers";
 import {
   testAboutSection,
@@ -57,11 +57,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
     ),
-    scrollToPosition("#main-content", "bottom"),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have link to copy Dolt install script",
       "[data-cy=repo-empty-copy-dolt-release]",
       beVisible,
+      true,
     ),
     newExpectation(
       "should have link to latest Dolt releases",

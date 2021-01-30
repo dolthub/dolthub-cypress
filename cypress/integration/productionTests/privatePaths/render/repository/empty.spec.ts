@@ -11,8 +11,8 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
   newExpectation,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
-  scrollToPosition,
 } from "../../../../utils/helpers";
 
 const pageName = "Logged in repo page with no branch and no data";
@@ -63,11 +63,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-fork-button]",
       newShouldArgs("be.disabled"),
     ),
-    scrollToPosition("#main-content", "bottom"),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have link to copy Dolt install script",
       "[data-cy=repo-empty-copy-dolt-release]",
       beVisible,
+      true,
     ),
     newExpectation(
       "should have link to latest Dolt releases",

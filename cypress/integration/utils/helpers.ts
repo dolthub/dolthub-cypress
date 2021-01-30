@@ -51,6 +51,16 @@ export function newExpectationWithClickFlows(
   return { description, selector, shouldArgs, clickFlows, skip };
 }
 
+export function newExpectationWithScrollIntoView(
+  description: string,
+  selector: string,
+  shouldArgs: ShouldArgs,
+  scrollIntoView: boolean,
+  skip = false,
+): Expectation {
+  return { description, selector, scrollIntoView, shouldArgs, skip };
+}
+
 export function newExpectationWithScrollTo(
   description: string,
   selector: string,

@@ -100,7 +100,14 @@ export function runTestsForDevices({
 function testAssertion(t: Expectation) {
   if (Array.isArray(t.selector)) {
     return t.selector.forEach(s =>
-      getAssertionTest(t.description, s, t.shouldArgs, t.typeString, t.url),
+      getAssertionTest(
+        t.description,
+        s,
+        t.shouldArgs,
+        t.typeString,
+        t.url,
+        t.scrollIntoView,
+      ),
     );
   }
   return getAssertionTest(
@@ -109,6 +116,7 @@ function testAssertion(t: Expectation) {
     t.shouldArgs,
     t.typeString,
     t.url,
+    t.scrollIntoView,
   );
 }
 
@@ -118,6 +126,7 @@ function getAssertionTest(
   shouldArgs: ShouldArgs,
   typeString?: string,
   url?: string,
+  scrollIntoView?: boolean,
 ) {
   const message = `
   Test assertion failed... 
@@ -131,6 +140,9 @@ function getAssertionTest(
     return cy.location().then(loc => {
       return expect(loc.href).to.include(url);
     });
+  }
+  if (scrollIntoView) {
+    scrollSelectorIntoView(selectorStr);
   }
   if (Array.isArray(shouldArgs.value)) {
     return cy
@@ -173,6 +185,17 @@ function runClicks(clickStrOrArr: string | string[]) {
     });
   } else {
     cy.get(clickStrOrArr, { timeout: defaultTimeout }).click();
+  }
+}
+
+// scrollSelectorIntoView scrolls the selector into view
+function scrollSelectorIntoView(clickStrOrArr: string | string[]) {
+  if (Array.isArray(clickStrOrArr)) {
+    clickStrOrArr.forEach(clickStr => {
+      cy.get(clickStr, { timeout: defaultTimeout }).scrollIntoView();
+    });
+  } else {
+    cy.get(clickStrOrArr, { timeout: defaultTimeout }).scrollIntoView();
   }
 }
 
