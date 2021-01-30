@@ -3,8 +3,8 @@ import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
-  scrollIntoView,
   scrollToPosition,
 } from "../../../../utils/helpers";
 import { testMobileMailingList } from "../../../../utils/sharedTests/mailingList";
@@ -69,8 +69,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const testReposContainer = [
-    scrollIntoView("[data-cy=repos-container-with-tabs]"),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
       newShouldArgs("be.visible.and.contain", [
@@ -78,6 +77,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "Most recent",
         "Most starred",
       ]),
+      true,
     ),
     ...checkRepoListForTab("featured", 5),
     newExpectationWithClickFlows(
@@ -95,9 +95,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
     beVisible,
   );
 
-  const testSidecars = [
-    scrollIntoView("[data-cy=homepage-growth-panel-sm]"),
+  const testSidecarsInView = [
     testDoltReleaseLink(beVisible),
+    newExpectation(
+      "should have an about section",
+      "[data-cy=home-page-about] > p",
+      newShouldArgs("exist.and.have.length", 3),
+    ),
+    testBlogArticles(exist),
+  ];
+
+  const testSidecarsOutOfView = [
+    testDoltReleaseLink(exist),
     newExpectation(
       "should have an about section",
       "[data-cy=home-page-about] > p",
@@ -109,7 +118,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const desktopTests = [
     ...testHero,
     testSearchInput,
-    ...testSidecars,
+    ...testSidecarsInView,
     ...testReposContainer,
   ];
 
@@ -123,7 +132,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSearchInput,
     scrollToPositionInContainer("center"),
     ...testReposContainer,
-    ...testSidecars,
+    ...testSidecarsOutOfView,
   ];
 
   const iPhoneTests = [

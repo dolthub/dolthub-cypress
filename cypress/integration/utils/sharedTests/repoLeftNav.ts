@@ -2,6 +2,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../helpers";
 import { ClickFlow, Expectation, Tests } from "../types";
@@ -76,7 +77,7 @@ const forkButtonClickFlow = (loggedIn: boolean) =>
           newExpectation(
             "",
             "[data-cy=create-fork-modal] a",
-            newShouldArgs("be.visible.and.contain", "log in"),
+            newShouldArgs("be.visible.and.contain", "sign in"),
           ),
         ],
     "[data-cy=close-modal]",
@@ -386,12 +387,17 @@ const notEmptyQueriesExpectations = (
   queryLen: number,
   testQuery: string,
 ): Tests => [
+  newExpectationWithScrollIntoView(
+    "should render link to see more queries",
+    "[data-cy=repo-query-see-all]",
+    beVisible,
+    true,
+  ),
   newExpectation(
     "",
     "[data-cy=repo-query-list] > li",
     newShouldArgs("be.visible.and.have.length", queryLen),
   ),
-  newExpectation("", "[data-cy=repo-query-see-all]", beVisible),
   newExpectationWithClickFlows(
     "should successfully execute a view",
     `[data-cy=repo-query-list-query-${testQuery}]`,
@@ -445,6 +451,12 @@ const pullRequestsClickFlow = (pullLen: number): ClickFlow => {
       "",
       "[data-cy=repo-pull-requests-list] > li",
       newShouldArgs("be.visible.and.have.length", pullLen),
+    ),
+    newExpectationWithScrollIntoView(
+      "should render link to see more queries",
+      "[data-cy=repo-pull-requests-see-all]",
+      beVisible,
+      true,
     ),
     newExpectation("", "[data-cy=repo-pull-requests-see-all]", beVisible),
   ];

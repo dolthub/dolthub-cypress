@@ -2,7 +2,6 @@ import {
   ClickFlow,
   Device,
   Expectation,
-  ScrollIntoView,
   ScrollTo,
   ScrollToPosition,
   Selector,
@@ -49,6 +48,16 @@ export function newExpectationWithClickFlows(
   skip = false,
 ): Expectation {
   return { description, selector, shouldArgs, clickFlows, skip };
+}
+
+export function newExpectationWithScrollIntoView(
+  description: string,
+  selector: string,
+  shouldArgs: ShouldArgs,
+  scrollIntoView: boolean,
+  skip = false,
+): Expectation {
+  return { description, selector, scrollIntoView, shouldArgs, skip };
 }
 
 export function newExpectationWithScrollTo(
@@ -105,22 +114,6 @@ export function newScrollToPosition(
   options?: Partial<Cypress.ScrollToOptions> | undefined,
 ): ScrollToPosition {
   return { position, selectorStr, options };
-}
-
-export function scrollIntoView(selectorStr: string): Expectation {
-  return newExpectationWithScrollTo(
-    `should scroll to top of ${selectorStr}`,
-    selectorStr,
-    newShouldArgs("be.visible"),
-    newScrollIntoView(selectorStr),
-  );
-}
-
-export function newScrollIntoView(
-  selectorStr: string,
-  options?: Partial<Cypress.ScrollIntoViewOptions> | undefined,
-): ScrollIntoView {
-  return { selectorStr, options };
 }
 
 // Devices

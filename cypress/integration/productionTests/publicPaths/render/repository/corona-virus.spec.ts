@@ -1,7 +1,8 @@
+import { testPaginationForRepoDataTable } from "cypress/integration/utils/sharedTests/pagination";
+import { testSqlConsole } from "cypress/integration/utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import {
   testAboutSection,
   testCommitSection,
@@ -12,7 +13,6 @@ import {
   testTablesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Repository page (corona-virus) with tables and docs";
 const currentOwner = "automated_testing";
