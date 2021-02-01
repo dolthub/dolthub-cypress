@@ -1,5 +1,5 @@
 import { testIssuePageForAll } from "cypress/integration/utils/sharedTests/issuePage";
-import { testLoggedOutSignInTo } from "cypress/integration/utils/sharedTests/signInTo";
+import { testLoggedInSignInTo } from "cypress/integration/utils/sharedTests/signInTo";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -42,7 +42,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     ...testIssuePageForAll(currentOwner, currentRepo, currentIssueId, "Closed"),
-    ...testLoggedOutSignInTo,
+    ...testLoggedInSignInTo,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
