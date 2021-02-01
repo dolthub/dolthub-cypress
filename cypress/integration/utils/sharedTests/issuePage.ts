@@ -1,5 +1,11 @@
-import { newExpectation, newShouldArgs } from "../helpers";
-import { Tests } from "../types";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../helpers";
+import { ClickFlow, Tests } from "../types";
+import { testLoggedInSignInTo, testLoggedOutSignInTo } from "./signInTo";
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -43,7 +49,7 @@ const testIssueHeader = (
   ),
 ];
 
-const testIssuePage = (): Tests => [
+const testIssuePage = [
   newExpectation(
     "should show details section",
     "[data-cy=issue-page-details]",
@@ -64,5 +70,61 @@ export const testIssuePageForAll = (
   issueState: string,
 ) => [
   ...testIssueHeader(ownerName, repoName, issueId, issueState),
-  ...testIssuePage(),
+  ...testIssuePage,
+];
+
+const testNewIssueForm = [
+  newExpectation(
+    "should render new issue form",
+    "[data-cy=new-issue-form]",
+    beVisible,
+  ),
+  newExpectation(
+    "should render new issue form",
+    "[data-cy=new-issue-form]",
+    newShouldArgs("be.visible.and.contain", "Title"),
+  ),
+  newExpectation(
+    "should render new issue form",
+    "[data-cy=new-issue-form] input",
+    beVisible,
+  ),
+  newExpectation(
+    "should render new issue form",
+    "[data-cy=new-issue-form]",
+    newShouldArgs("be.visible.and.contain", "Description"),
+  ),
+  newExpectation(
+    "should render new issue form",
+    "[data-cy=new-issue-form] textarea",
+    beVisible,
+  ),
+  newExpectation(
+    "should render new issue form",
+    "[data-cy=new-issue-form] textarea",
+    beVisible,
+  ),
+  newExpectation(
+    "should render issue form button group",
+    "[data-cy=new-issue-form-button-group]",
+    newShouldArgs("be.visible.and.contain", ["Create issue", "Cancel"]),
+  ),
+];
+
+const newIssueButtonClickFlow = (loggedIn: boolean): ClickFlow =>
+  newClickFlow(
+    "[data-cy=new-issue-button]",
+    loggedIn
+      ? [...testLoggedInSignInTo, ...testNewIssueForm]
+      : [...testLoggedOutSignInTo("create an issue")],
+    "[data-cy=close-modal]",
+  );
+
+export const testNewIssueButton = (loggedIn: boolean): Tests => [
+  newExpectationWithClickFlows(
+    "should find New Issue Button",
+    "[data-cy=new-issue-button]",
+    beVisible,
+    [newIssueButtonClickFlow(loggedIn)],
+  ),
 ];
