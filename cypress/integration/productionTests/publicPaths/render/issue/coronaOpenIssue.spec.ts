@@ -24,6 +24,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-page-edit-description-button]",
       notExist,
     ),
+    newExpectation(
+      "should not show issue comment form for logged out user",
+      "[data-cy=issue-comment-form]",
+      notExist,
+    ),
     ...testIssuePageForAll(currentOwner, currentRepo, currentIssueId, "Open"),
     ...testSignInTo("comment on issues"),
   ];
