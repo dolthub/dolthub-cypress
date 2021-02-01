@@ -137,9 +137,7 @@ function getAssertionTest(
     return cy.get(selectorStr, { timeout: defaultTimeout }).type(typeString);
   }
   if (url) {
-    return cy.location().then(loc => {
-      return expect(loc.href).to.include(url);
-    });
+    return cy.location().then(loc => expect(loc.href).to.include(url));
   }
   if (scrollIntoView) {
     scrollSelectorIntoView(selectorStr);

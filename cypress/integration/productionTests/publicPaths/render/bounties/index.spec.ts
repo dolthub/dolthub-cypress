@@ -15,9 +15,7 @@ const shouldBeVisible = newShouldArgs("be.visible");
 describe(`${pageName} renders expected components on different devices`, () => {
   const scrollToPositionInContainer = (
     position: Cypress.PositionType,
-  ): Expectation => {
-    return scrollToPosition("#main-content", position);
-  };
+  ): Expectation => scrollToPosition("#main-content", position);
 
   // Tests go from top -> bottom
   const desktopTests = [

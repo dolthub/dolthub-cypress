@@ -87,22 +87,20 @@ export const testRepoHeaderWithBranch = (
   repoName: string,
   ownerName: string,
   loggedIn = false,
-): Tests => {
-  return [
-    ...testRepoHeaderForAll(repoName, ownerName),
-    newExpectationWithClickFlows(
-      "should open create fork modal on fork button click",
-      "[data-cy=repo-fork-button]",
-      beVisible,
-      [forkButtonClickFlow(loggedIn)],
-    ),
-    newExpectation(
-      "should have repo branch selector",
-      "[data-cy=branch-selector]",
-      beVisible,
-    ),
-  ];
-};
+): Tests => [
+  ...testRepoHeaderForAll(repoName, ownerName),
+  newExpectationWithClickFlows(
+    "should open create fork modal on fork button click",
+    "[data-cy=repo-fork-button]",
+    beVisible,
+    [forkButtonClickFlow(loggedIn)],
+  ),
+  newExpectation(
+    "should have repo branch selector",
+    "[data-cy=branch-selector]",
+    beVisible,
+  ),
+];
 
 // ABOUT
 
@@ -473,14 +471,13 @@ const pullRequestsClickFlow = (pullLen: number): ClickFlow => {
   );
 };
 
-export const testPullRequestsSection = (pullLen: number): Expectation => {
-  return newExpectationWithClickFlows(
+export const testPullRequestsSection = (pullLen: number): Expectation =>
+  newExpectationWithClickFlows(
     "should have repo Pull Requests section",
     "[data-cy=repo-pull-requests]",
     beVisible,
     [pullRequestsClickFlow(pullLen)],
   );
-};
 
 // COLLABORATORS
 
@@ -507,14 +504,13 @@ const collaboratorsClickFlow = (collabsLen: number): ClickFlow => {
   );
 };
 
-export const testCollaboratorsSection = (collabsLen: number): Expectation => {
-  return newExpectationWithClickFlows(
+export const testCollaboratorsSection = (collabsLen: number): Expectation =>
+  newExpectationWithClickFlows(
     "should have repo Collaborators section for user with write perms",
     "[data-cy=repo-manage-access]",
     beVisible,
     [collaboratorsClickFlow(collabsLen)],
   );
-};
 
 // REPO SETTINGS
 
