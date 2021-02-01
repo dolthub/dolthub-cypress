@@ -1,13 +1,14 @@
 import { testIssuePageForAll } from "cypress/integration/utils/sharedTests/issuePage";
-import { testSignInTo } from "cypress/integration/utils/sharedTests/signInTo";
+import { testLoggedInSignInTo } from "cypress/integration/utils/sharedTests/signInTo";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
+const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Closed issue page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentIssueId = "8";
+const currentIssueId = isProd ? "9" : "8";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues/${currentIssueId}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -30,7 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     ...testIssuePageForAll(currentOwner, currentRepo, currentIssueId, "Closed"),
-    ...testSignInTo("comment on issues"),
+    ...testLoggedInSignInTo("comment on issues"),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

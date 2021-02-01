@@ -1,6 +1,6 @@
 import { newExpectation, newShouldArgs } from "../helpers";
 
-export const testSignInTo = (msg: string) => [
+export const testLoggedInSignInTo = (msg: string) => [
   newExpectation(
     "should show suggest sign in for a logged out user",
     "[data-cy=sign-in-to-do-something-prompt]",
@@ -10,5 +10,18 @@ export const testSignInTo = (msg: string) => [
     "should show sign in link component for logged out user",
     "[data-cy=sign-in-with-redirect-link]",
     newShouldArgs("be.visible.and.contain", "sign in"),
+  ),
+];
+
+export const testLoggedOutSignInTo = [
+  newExpectation(
+    "should not suggest sign in for a logged in user",
+    "[data-cy=sign-in-to-do-something-prompt]",
+    newShouldArgs("not.be.visible"),
+  ),
+  newExpectation(
+    "should not show sign in link component for logged in user",
+    "[data-cy=sign-in-with-redirect-link]",
+    newShouldArgs("not.be.visible"),
   ),
 ];
