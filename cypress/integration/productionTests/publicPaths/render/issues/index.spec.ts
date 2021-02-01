@@ -1,11 +1,13 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testNewIssueButton } from "../../../../utils/sharedTests/issuePage";
 
 const pageName = "Issue page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues`;
+const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -57,9 +59,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-row-8] [data-cy=issue-state-label]",
       beVisible,
     ),
+    ...testNewIssueButton(loggedIn),
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
 
   runTestsForDevices({ currentPage, devices });
 });
