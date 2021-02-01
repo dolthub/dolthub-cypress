@@ -29,9 +29,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const scrollToPositionInContainer = (
     position: Cypress.PositionType,
-  ): Expectation => {
-    return scrollToPosition("#scroll-container", position);
-  };
+  ): Expectation => scrollToPosition("#scroll-container", position);
 
   const testHero = [
     newExpectation(

@@ -22,9 +22,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     desc: string,
     tag: string,
     args: ShouldArgs,
-  ): Expectation => {
-    return newExpectation(desc, tag, args, skip);
-  };
+  ): Expectation => newExpectation(desc, tag, args, skip);
 
   const testTableOfContents = [
     newExpectationWithSkip(

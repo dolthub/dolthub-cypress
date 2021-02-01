@@ -29,9 +29,7 @@ export const defaultTimeout = 5000;
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
 
-Cypress.Commands.add("dataCy", (value: string) => {
-  return cy.get(`[data-cy=${value}]`);
-});
+Cypress.Commands.add("dataCy", (value: string) => cy.get(`[data-cy=${value}]`));
 
 Cypress.Commands.add(
   "loginAsCypressTestingAfterNavigateToSignin",
