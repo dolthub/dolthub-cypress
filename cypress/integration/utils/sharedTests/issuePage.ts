@@ -2,7 +2,6 @@ import { newExpectation, newShouldArgs } from "../helpers";
 import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
-const notExist = newShouldArgs("not.exist");
 
 // ISSUE HEADER
 
