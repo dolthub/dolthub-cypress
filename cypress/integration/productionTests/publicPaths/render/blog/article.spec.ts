@@ -8,7 +8,7 @@ const currentBlog = "2020-03-06-so-you-want-git-for-data";
 const currentPage = Cypress.env("LOCAL_BLOG")
   ? `/${currentBlog}`
   : `/blog/${currentBlog}`;
-const skip = !!Cypress.env("LOCAL_DOCS") || !!Cypress.env("LOCAL_DOLTHUB");
+const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
