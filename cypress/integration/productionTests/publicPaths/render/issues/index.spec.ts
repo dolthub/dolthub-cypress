@@ -3,31 +3,27 @@ import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testNewIssueButton } from "../../../../utils/sharedTests/issuePage";
 
-const pageName = "Issue page";
+const pageName = "Issues page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues`;
 const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
+  const beVisibleAndContain = (value: string) =>
+    newShouldArgs("be.visible.and.contain", value);
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
     newExpectation(
       "should find Issues header",
       "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Issues"),
+      beVisibleAndContain("Issues"),
     ),
     newExpectation(
       "should find back to repo link",
       "[data-cy=back-to-repo-link]",
-      newShouldArgs("be.visible.and.contain", `back to ${currentRepo}`),
-    ),
-    newExpectation(
-      "should find create issue button",
-      "[data-cy=new-issue-button]",
-      beVisible,
+      beVisibleAndContain(`back to ${currentRepo}`),
     ),
     newExpectation(
       "should not find empty issue message",
@@ -57,7 +53,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should find issue with ID 8 with issue state label",
       "[data-cy=issue-row-8] [data-cy=issue-state-label]",
-      beVisible,
+      beVisibleAndContain("Closed"),
     ),
     ...testNewIssueButton(loggedIn),
   ];
