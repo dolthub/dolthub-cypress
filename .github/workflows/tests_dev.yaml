@@ -1,0 +1,17 @@
+  name: Run Cypress tests against DoltHub dev
+  on: workflow_dispatch
+  jobs:
+    cypress-run:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+        env:
+          CYPRESS_BASE_URL: https://dolthub.awsdev.ld-corp.com
+          CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
+          CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
