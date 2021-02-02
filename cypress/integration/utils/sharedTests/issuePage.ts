@@ -49,6 +49,8 @@ const testIssueHeader = (
   ),
 ];
 
+// ISSUE PAGE
+
 const testIssuePage = [
   newExpectation(
     "should show details section",
@@ -72,6 +74,8 @@ export const testIssuePageForAll = (
   ...testIssueHeader(ownerName, repoName, issueId, issueState),
   ...testIssuePage,
 ];
+
+// NEW ISSUE BUTTON / FORM
 
 const testNewIssueForm = [
   newExpectation(
