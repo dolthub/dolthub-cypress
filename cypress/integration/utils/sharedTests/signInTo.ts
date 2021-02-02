@@ -18,11 +18,11 @@ export const testLoggedInSignInTo = [
   newExpectation(
     "should not suggest sign in for a logged in user",
     "[data-cy=sign-in-to-do-something-prompt]",
-    newShouldArgs("not.be.visible"),
+    newShouldArgs("not.exist"),
   ),
   newExpectation(
     "should not show sign in link component for logged in user",
     "[data-cy=sign-in-with-redirect-link]",
-    newShouldArgs("not.be.visible"),
+    newShouldArgs("not.exist"),
   ),
 ] as Tests;
