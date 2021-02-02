@@ -8,7 +8,7 @@ const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Closed issue page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentIssueId = isProd ? "6" : "8";
+const currentIssueId = isProd ? "6" : "7";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues/${currentIssueId}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -22,9 +22,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     newExpectation(
-      "should not show edit description button for logged in user who is not author or admin",
+      "should show edit description button for logged in user who is admin",
       "[data-cy=issue-page-edit-description-button]",
-      notExist,
+      beVisible,
     ),
     newExpectation(
       "should show issue comment form for logged in user",
@@ -37,9 +37,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should not show issue Re-open/Close button for logged in user who is not author or admin",
+      "should show issue Close button for logged in user who is admin",
       "[data-cy=issue-state-change-button]",
-      notExist,
+      newShouldArgs("be.visible.and.contain", "Close"),
     ),
     ...testIssuePageForAll(currentOwner, currentRepo, currentIssueId, "Open"),
     ...testLoggedInSignInTo,

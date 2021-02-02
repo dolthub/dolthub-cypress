@@ -22,7 +22,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     newExpectation(
-      "should not show edit description button for logged in user who is not author or admin",
+      "should not show edit description button for logged in user who is admin for closed issue",
       "[data-cy=issue-page-edit-description-button]",
       notExist,
     ),
@@ -37,9 +37,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should not show issue Re-open/Close button for logged in user who is not author or admin",
+      "should show issue Re-open button for logged in user who is admin",
       "[data-cy=issue-state-change-button]",
-      notExist,
+      newShouldArgs("be.visible.and.contain", "Re-open"),
     ),
     ...testIssuePageForAll(currentOwner, currentRepo, currentIssueId, "Closed"),
     ...testLoggedInSignInTo,
