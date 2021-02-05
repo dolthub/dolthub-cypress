@@ -5,7 +5,7 @@ import { testSidecar } from "../../../../utils/sharedTests/sidecar";
 
 const pageName = "Blog list page";
 const currentPage = Cypress.env("LOCAL_BLOG") ? "/" : "/blog/";
-const skip = !!Cypress.env("LOCAL_DOCS") || !!Cypress.env("LOCAL_DOLTHUB");
+const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
