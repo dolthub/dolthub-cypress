@@ -126,7 +126,7 @@ const newIssueButtonClickFlow = (loggedIn: boolean): ClickFlow =>
 
 export const testNewIssueButton = (loggedIn: boolean): Tests => [
   newExpectationWithClickFlows(
-    "should find New Issue Button",
+    "should find Create Issue Button",
     "[data-cy=new-issue-button]",
     beVisible,
     [newIssueButtonClickFlow(loggedIn)],
