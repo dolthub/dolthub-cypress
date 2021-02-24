@@ -1,17 +1,41 @@
   name: Run Cypress tests against DoltHub dev
   on: workflow_dispatch
   jobs:
+    service-name:
+    name: Set Service Name
+    runs-on: ubuntu-18.04
+    outputs:
+      service: ${{ steps.set_service_name.outputs.service }}
+    steps:
+    - uses: actions/checkout@v2
+    - id: set_service_name
+      working-directory: ./.github/scripts
+      run: |
+        ./set-service-name.sh "$SERVICE"
+      env:
+        SERVICE: ${{ github.event.inputs.service }}
+
     cypress-run:
       runs-on: ubuntu-latest
       steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Set Cypress Base URL
+        id: set_cypress_base_url
+        run: |
+          cypress_base_url="https://dolthub.awsdev.ld-corp.com"
+          if [ "$SERVICE" == "dolthub-v3" ]; then
+            cypress_base_url="https://dolthub-v3.awsdev.ld-corp.com"
+          fi
+          echo "::set-output name=cypress_base_url::$cypress_base_url"
+        env:
+          SERVICE: ${{ needs.service-name.outputs.service }}
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
           headless: true
         env:
-          CYPRESS_BASE_URL: https://dolthub.awsdev.ld-corp.com
+          CYPRESS_BASE_URL: ${{ steps.set_cypress_base_url.outputs.service }}
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
