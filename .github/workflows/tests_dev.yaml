@@ -28,6 +28,7 @@
       - name: Set Cypress Base URL
         id: set_cypress_base_url
         run: |
+          service="$SERVICE"
           cypress_base_url="https://dolthub.awsdev.ld-corp.com"
           if [ "$SERVICE" == "dolthub-v3" ]; then
             cypress_base_url="https://dolthub-v3.awsdev.ld-corp.com"
