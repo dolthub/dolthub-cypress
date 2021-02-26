@@ -2,18 +2,18 @@
   on: workflow_dispatch
   jobs:
     service-name:
-    name: Set Service Name
-    runs-on: ubuntu-18.04
-    outputs:
-      service: ${{ steps.set_service_name.outputs.service }}
-    steps:
-    - uses: actions/checkout@v2
-    - id: set_service_name
-      working-directory: ./.github/scripts
-      run: |
-        ./set-service-name.sh "$SERVICE"
-      env:
-        SERVICE: ${{ github.event.inputs.service }}
+      name: Set Service Name
+      runs-on: ubuntu-18.04
+      outputs:
+        service: ${{ steps.set_service_name.outputs.service }}
+      steps:
+      - uses: actions/checkout@v2
+      - id: set_service_name
+        working-directory: ./.github/scripts
+        run: |
+          ./set-service-name.sh "$SERVICE"
+        env:
+          SERVICE: ${{ github.event.inputs.service }}
 
     cypress-run:
       runs-on: ubuntu-latest
