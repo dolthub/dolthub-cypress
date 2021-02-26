@@ -41,6 +41,6 @@
           browser: chrome
           headless: true
         env:
-          CYPRESS_BASE_URL: ${{ steps.set_cypress_base_url.outputs.service }}
+          CYPRESS_BASE_URL: ${{ steps.set_cypress_base_url.outputs.cypress_base_url }}
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
