@@ -25,10 +25,12 @@
       needs: service-name
       runs-on: ubuntu-18.04
       outputs:
-        service: ${{ steps.set-cypress-base-url.outputs.cypress_base_url }}
+        cypress_base_url: ${{ steps.set-cypress-base-url.outputs.cypress_base_url }}
       steps:
-      - uses: actions/checkout@v2
-      - id: set-cypress-base-url
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set cypress base url
+        id: set-cypress-base-url
         working-directory: ./.github/scripts
         run: |
           ./set-cypress-base-url.sh "$SERVICE"
