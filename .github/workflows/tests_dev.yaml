@@ -7,12 +7,12 @@
           required: true
   jobs:
     service-name:
-      uses: actions/checkout@v2
       name: Set Service Name
       runs-on: ubuntu-18.04
       outputs:
         service: ${{ steps.service-name.outputs.service }}
       steps:
+      - uses: actions/checkout@v2
       - id: set-service-name
         working-directory: ./.github/scripts
         run: |
