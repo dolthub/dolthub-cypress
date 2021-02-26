@@ -43,6 +43,11 @@
       steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Cypress base url
+        run: |
+          echo ${{ needs.cypress-base-url.outputs.cypress_base_url }}
+        env:
+          CYPRESS_BASE_URL: ${{ needs.cypress-base-url.outputs.cypress_base_url }}
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
