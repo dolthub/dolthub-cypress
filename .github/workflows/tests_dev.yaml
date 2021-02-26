@@ -7,10 +7,11 @@
           required: true
   jobs:
     service-name:
+      uses: actions/checkout@v2
       name: Set Service Name
       runs-on: ubuntu-18.04
       outputs:
-        service: ${{ steps.set-service-name.outputs.service }}
+        service: ${{ steps.service-name.outputs.service }}
       steps:
       - id: set-service-name
         working-directory: ./.github/scripts
@@ -18,6 +19,7 @@
           ./set-service-name.sh "$SERVICE"
         env:
           SERVICE: ${{ github.event.inputs.service }}
+
     cypress-base-url-name:
       name: Set Cypress Base URL
       needs: service-name
