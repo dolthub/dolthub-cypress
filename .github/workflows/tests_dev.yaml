@@ -38,7 +38,7 @@
 
     cypress-run:
       runs-on: ubuntu-latest
-      needs: set-cypress-base-url
+      needs: cypress-base-url-name
       steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -48,6 +48,6 @@
           browser: chrome
           headless: true
         env:
-          CYPRESS_BASE_URL: ${{ steps.set-cypress-base-url.outputs.cypress_base_url }}
+          CYPRESS_BASE_URL: ${{ needs.cypress-base-url-name.outputs.cypress_base_url }}
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
