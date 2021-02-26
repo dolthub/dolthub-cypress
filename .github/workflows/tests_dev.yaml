@@ -10,7 +10,7 @@
       name: Set Service Name
       runs-on: ubuntu-18.04
       outputs:
-        service: ${{ steps.service-name.outputs.service }}
+        service: ${{ steps.set-service-name.outputs.service }}
       steps:
       - uses: actions/checkout@v2
       - id: set-service-name
@@ -22,6 +22,7 @@
 
     cypress-base-url:
       name: Set Cypress Base URL
+      needs: service-name
       runs-on: ubuntu-18.04
       outputs:
         cypress_base_url: ${{ steps.set-cypress-base-url.outputs.cypress_base_url }}
@@ -34,7 +35,7 @@
         run: |
           ./set-cypress-base-url.sh "$SERVICE"
         env:
-          SERVICE: ${{ github.event.inputs.service }}
+          SERVICE: ${{ needs.service-name.outputs.service }}
 
     cypress-run:
       runs-on: ubuntu-latest
