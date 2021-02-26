@@ -22,6 +22,7 @@
 
     cypress-run:
       runs-on: ubuntu-latest
+      needs: service-name
       steps:
       - name: Checkout code
         uses: actions/checkout@v2
