@@ -1,5 +1,10 @@
   name: Run Cypress tests against DoltHub dev
-  on: workflow_dispatch
+  on: 
+    workflow_dispatch:
+      inputs:
+      service:
+        description: 'name of service to deploy'
+      required: true
   jobs:
     service-name:
       name: Set Service Name
