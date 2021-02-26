@@ -2,9 +2,9 @@
   on: 
     workflow_dispatch:
       inputs:
-      service:
-        description: 'name of service to deploy'
-      required: true
+        service:
+          description: 'name of service to deploy'
+          required: true
   jobs:
     service-name:
       name: Set Service Name
