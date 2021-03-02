@@ -1,10 +1,6 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newShouldArgs,
-} from "../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -21,14 +17,6 @@ const loggedIn = false;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
-
-  const noButtonClickFlow = newClickFlow("[data-cy=no-button]", [
-    newExpectation(
-      "should remove run message",
-      "[data-cy=workspaces-run-msg]",
-      notExist,
-    ),
-  ]);
 
   const tests = [
     newExpectation(
