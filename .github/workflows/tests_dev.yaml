@@ -1,0 +1,59 @@
+  name: Run Cypress tests against DoltHub dev
+  on: 
+    workflow_dispatch:
+      inputs:
+        service:
+          description: 'name of service to test against'
+          required: true
+  jobs:
+    service-name:
+      name: Set Service Name
+      runs-on: ubuntu-18.04
+      outputs:
+        service: ${{ steps.set-service-name.outputs.service }}
+      steps:
+      - uses: actions/checkout@v2
+      - id: set-service-name
+        working-directory: ./.github/scripts
+        run: |
+          ./set-service-name.sh "$SERVICE"
+        env:
+          SERVICE: ${{ github.event.inputs.service }}
+
+    cypress-base-url:
+      name: Set Cypress Base URL
+      needs: service-name
+      runs-on: ubuntu-18.04
+      outputs:
+        cypress_base_url: ${{ steps.set-cypress-base-url.outputs.cypress_base_url }}
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set cypress base url
+        id: set-cypress-base-url
+        working-directory: ./.github/scripts
+        run: |
+          ./set-cypress-base-url.sh "$SERVICE"
+        env:
+          SERVICE: ${{ needs.service-name.outputs.service }}
+
+    cypress-run:
+      runs-on: ubuntu-latest
+      needs: cypress-base-url
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Cypress base url
+        run: |
+          echo ${{ needs.cypress-base-url.outputs.cypress_base_url }}
+        env:
+          CYPRESS_BASE_URL: ${{ needs.cypress-base-url.outputs.cypress_base_url }}
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+        env:
+          CYPRESS_BASE_URL: ${{ needs.cypress-base-url.outputs.cypress_base_url }}
+          CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
+          CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}

@@ -35,8 +35,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should show back to repo link",
-      "[data-cy=back-to-repo-link]",
+      "should show repo pull breadcrumb links",
+      "[data-cy=repo-pull-breadcrumbs]",
       beVisible,
     ),
     newExpectation(

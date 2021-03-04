@@ -20,6 +20,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
   // Tests go from top -> bottom
   const desktopTests = [
     newExpectation(
+      "should render bounties page Get Started section",
+      "[data-cy=bounties-get-started-section]",
+      newShouldArgs("be.visible.and.contain", "Get Started"),
+    ),
+    newExpectation(
+      "should render RepoListItem in Get Started section",
+      "[data-cy=repo-list-item]",
+      newShouldArgs("have.length.of.at.least", 1),
+    ),
+    newExpectation(
+      "should render a RepoListItem with a bounty",
+      "[data-cy=repo-list-item] [data-cy=bounty-award-link]",
+      shouldBeVisible,
+    ),
+    scrollToPositionInContainer("center"),
+    newExpectation(
       "should render image in Intro section",
       "[data-cy=bounties-intro-section] img[src='/images/bounties-scoreboard.png']",
       shouldBeVisible,
@@ -32,7 +48,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "Get Paid to Source Data",
       ]),
     ),
-    scrollToPositionInContainer("center"),
     newExpectation(
       "should render bounties page Pay section",
       "[data-cy=bounties-pay-section]",
@@ -43,25 +58,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=bounties-pay-section] img[src='/images/bounties-pay-for-what-you-want.png']",
       shouldBeVisible,
     ),
+  ];
+
+  const mobileTests = [
     newExpectation(
       "should render bounties page Get Started section",
       "[data-cy=bounties-get-started-section]",
       newShouldArgs("be.visible.and.contain", "Get Started"),
     ),
-    newExpectation(
-      "should render RepoListItem in Get Started section",
-      "[data-cy=repo-list-item]",
-      newShouldArgs("have.length.of.at.least", 1),
-    ),
-    scrollToPositionInContainer("bottom"),
-    newExpectation(
-      "should render a RepoListItem with a bounty",
-      "[data-cy=repo-list-item] [data-cy=bounty-award-link]",
-      shouldBeVisible,
-    ),
-  ];
-
-  const mobileTests = [
     newExpectation(
       "should render bounties page Intro section",
       "[data-cy=bounties-intro-section]",
@@ -79,16 +83,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ],
       newShouldArgs("not.be.visible"),
     ),
+    scrollToPositionInContainer("center"),
     newExpectation(
       "should render bounties page Pay section",
       "[data-cy=bounties-pay-section]",
       newShouldArgs("be.visible.and.contain", "Pay for Data You Want"),
-    ),
-    scrollToPositionInContainer("bottom"),
-    newExpectation(
-      "should render bounties page Get Started section",
-      "[data-cy=bounties-get-started-section]",
-      newShouldArgs("be.visible.and.contain", "Get Started"),
     ),
   ];
 
