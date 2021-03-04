@@ -4,7 +4,6 @@
     "airbnb-typescript/base",
     "plugin:@typescript-eslint/recommended",
     "prettier",
-    "prettier/@typescript-eslint",
     "plugin:cypress/recommended"
   ],
   "parser": "@typescript-eslint/parser",
