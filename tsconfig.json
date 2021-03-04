@@ -16,7 +16,7 @@
     "composite": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node"],
   },
   "exclude": ["dist"],
   "include": ["cypress"]
