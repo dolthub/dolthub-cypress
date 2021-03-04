@@ -23,6 +23,13 @@ export type ScrollIntoView = {
 
 export type ScrollTo = ScrollToPosition | ScrollToXY | ScrollIntoView;
 
+export type ClickFlow = {
+  toClickBefore?: Selector;
+  // eslint-disable-next-line no-use-before-define
+  expectations: Expectation[];
+  toClickAfter?: Selector;
+};
+
 export type Expectation = {
   description: string;
   selector: Selector;
@@ -34,12 +41,6 @@ export type Expectation = {
   typeString?: string;
   redirect?: string;
   url?: string;
-};
-
-export type ClickFlow = {
-  toClickBefore?: Selector;
-  expectations: Expectation[];
-  toClickAfter?: Selector;
 };
 
 export type Tests = Expectation[];
