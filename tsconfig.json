@@ -6,6 +6,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "target": "ES2018",
     "sourceMap": true,
     "outDir": "dist",
@@ -16,7 +18,7 @@
     "composite": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["cypress", "node"]
+    "types": ["cypress", "node"],
   },
   "exclude": ["dist"],
   "include": ["cypress"]
