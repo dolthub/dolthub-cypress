@@ -38,6 +38,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
+      "should have upload file link",
+      "[data-cy=repo-empty-upload-file]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have sql console link",
+      "[data-cy=repo-empty-sql-console]",
+      beVisible,
+    ),
+    newExpectation(
       "should have Create new repo section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
@@ -61,6 +71,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should have link to Dolt source",
       "[data-cy=repo-empty-dolt-source]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have table footer",
+      "[data-cy=table-footer]",
       beVisible,
     ),
   ];
