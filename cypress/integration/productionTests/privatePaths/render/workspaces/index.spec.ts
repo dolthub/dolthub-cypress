@@ -9,7 +9,7 @@ import {
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
-const pageName = "Workspaces page logged out";
+const pageName = "Workspaces page logged in";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const workspace = isProd
