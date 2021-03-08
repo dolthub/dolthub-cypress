@@ -45,7 +45,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testLoggedInSignInTo,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [macbook15ForAppLayout(pageName, tests, false, true)];
 
   runTestsForDevices({ currentPage, devices });
 });
