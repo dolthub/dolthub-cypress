@@ -120,7 +120,7 @@ const newIssueButtonClickFlow = (loggedIn: boolean): ClickFlow =>
     "[data-cy=new-issue-button]",
     loggedIn
       ? [...testLoggedInSignInTo, ...testNewIssueForm]
-      : [...testLoggedOutSignInTo("create an issue")],
+      : testLoggedOutSignInTo("create an issue"),
     "[data-cy=close-modal]",
   );
 

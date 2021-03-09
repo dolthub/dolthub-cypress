@@ -14,7 +14,7 @@ export const testLoggedOutSignInTo = (msg: string): Tests => [
   ),
 ];
 
-export const testLoggedInSignInTo = [
+export const testLoggedInSignInTo: Tests = [
   newExpectation(
     "should not suggest sign in for a logged in user",
     "[data-cy=sign-in-to-do-something-prompt]",
@@ -25,4 +25,4 @@ export const testLoggedInSignInTo = [
     "[data-cy=sign-in-with-redirect-link]",
     newShouldArgs("not.exist"),
   ),
-] as Tests;
+];
