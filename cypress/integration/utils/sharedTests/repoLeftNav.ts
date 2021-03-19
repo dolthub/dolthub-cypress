@@ -125,7 +125,7 @@ export const testAboutSection = newExpectationWithClickFlows(
 // TABLES
 
 const testTableClickFlow = (testTable: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-tables-table-${testTable}]`, [
+  newClickFlow(`[data-cy=repo-tables-table-${testTable}-play]`, [
     newExpectation(
       "",
       `[data-cy=repo-tables-table-${testTable}-column-list]`,
