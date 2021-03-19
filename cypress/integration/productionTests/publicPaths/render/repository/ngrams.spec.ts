@@ -191,7 +191,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   ]);
 
   const unigramClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-unigram_counts]",
+    "[data-cy=repo-tables-table-unigram_counts-play]",
     [
       newExpectation(
         "",
@@ -207,7 +207,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   );
 
   const tablesCloseClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-trigram_counts]",
+    "[data-cy=repo-tables-table-trigram_counts-play]",
     [
       newExpectation(
         "",
