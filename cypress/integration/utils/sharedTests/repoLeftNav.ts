@@ -124,14 +124,17 @@ export const testAboutSection = newExpectationWithClickFlows(
 
 // TABLES
 
-const testTableClickFlow = (testTable: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-tables-table-${testTable}]`, [
-    newExpectation(
-      "",
-      `[data-cy=repo-tables-table-${testTable}-column-list]`,
-      beVisible,
-    ),
-  ]);
+const testTableClickFlow = (tableLen: number, testTable: string): ClickFlow =>
+  newClickFlow(
+    `[data-cy=repo-tables-table-${testTable}${tableLen === 1 ? "" : "-play"}]`,
+    [
+      newExpectation(
+        "",
+        `[data-cy=repo-tables-table-${testTable}-column-list]`,
+        beVisible,
+      ),
+    ],
+  );
 
 const emptyTablesExpectation = [
   newExpectation("", "[data-cy=repo-tables-empty]", beVisible),
@@ -150,7 +153,7 @@ const notEmptyTableExpectations = (
     "",
     `[data-cy=repo-tables-table-${testTable}]`,
     beVisible,
-    [testTableClickFlow(testTable)],
+    [testTableClickFlow(tableLen, testTable)],
   ),
 ];
 

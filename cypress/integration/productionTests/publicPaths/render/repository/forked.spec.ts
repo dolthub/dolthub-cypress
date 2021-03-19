@@ -52,7 +52,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     testAboutSection,
-    testTablesSection(2, "IPv4ToCountry"),
+    testTablesSection(2, "IPv6ToCountry"),
     ...testPaginationForRepoDataTable,
     testIndexesSection(2, "IPv4ToCountry"),
     testViewsSection(0),

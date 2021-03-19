@@ -100,7 +100,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
 describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on different devices", () => {
   const bigramsToTotalsClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-total_counts]",
+    "[data-cy=repo-tables-table-total_counts-play]",
     [
       newExpectation(
         "",
@@ -116,7 +116,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   );
 
   const totalsToTrigramsClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-trigram_counts]",
+    "[data-cy=repo-tables-table-trigram_counts-play]",
     [
       newExpectation(
         "",
@@ -132,7 +132,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   );
 
   const trigramsToUnigramsClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-unigram_counts]",
+    "[data-cy=repo-tables-table-unigram_counts-play]",
     [
       newExpectation(
         "",
@@ -148,7 +148,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   );
 
   const unigramsToBigramsClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-bigram_counts]",
+    "[data-cy=repo-tables-table-bigram_counts-play]",
     [
       newExpectation(
         "",
@@ -191,7 +191,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   ]);
 
   const unigramClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-unigram_counts]",
+    "[data-cy=repo-tables-table-unigram_counts-play]",
     [
       newExpectation(
         "",
@@ -207,7 +207,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   );
 
   const tablesCloseClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-trigram_counts]",
+    "[data-cy=repo-tables-table-trigram_counts-play]",
     [
       newExpectation(
         "",
