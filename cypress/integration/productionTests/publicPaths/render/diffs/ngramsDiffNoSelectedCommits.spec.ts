@@ -13,8 +13,8 @@ describe(`${pageName} renders expected component on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should show back to repo link",
-      "[data-cy=back-to-repo-link]",
+      "should show commit breadcrumbs",
+      "[data-cy=repo-commit-breadcrumbs]",
       beVisible,
     ),
     newExpectation(
