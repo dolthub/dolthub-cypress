@@ -1,18 +1,23 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { desktopDevicesForSignedOut } from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
+  scrollToPosition,
 } from "../../../../utils/helpers";
-import { ClickFlow } from "../../../../utils/types";
+import { ClickFlow, Expectation } from "../../../../utils/types";
 
 const pageName = "Sign in page";
 const currentPage = "/signin";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
+
+  const scrollToPositionInContainer = (
+    position: Cypress.PositionType,
+  ): Expectation => scrollToPosition("#main-content", position);
 
   const signupFormClickFlow = newClickFlow(
     "[data-cy=signin-create-account-email]",
@@ -35,6 +40,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newClickFlow(
       "[data-cy=signup-for-dolthub]",
       [
+        scrollToPositionInContainer("top"),
         newExpectation("", "[data-cy=signin-create-account-google]", beVisible),
         newExpectation("", "[data-cy=signin-create-account-github]", beVisible),
         newExpectationWithClickFlows(
@@ -69,6 +75,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newClickFlow(
       "[data-cy=signin-button]",
       [
+        scrollToPositionInContainer("top"),
         newExpectation("", "[data-cy=signin-signin-google]", beVisible),
         newExpectation("", "[data-cy=signin-signin-github]", beVisible),
         newExpectation(
@@ -120,40 +127,42 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...testSections,
     newExpectationWithClickFlows(
-      "should have Sign in modal",
-      "[data-cy=signin-button]",
-      beVisible,
-      [signinClickFlow("[data-cy=close-modal]")],
-    ),
-    newExpectationWithClickFlows(
-      "should have Sign up for DoltHub modal",
-      "[data-cy=signup-for-dolthub]",
-      beVisible,
-      [signupClickFlow("[data-cy=close-modal]")],
-    ),
-  ];
-
-  const mobileTests = [
-    ...testSections,
-    newExpectationWithClickFlows(
-      "should have Sign up for DoltHub modal",
-      "[data-cy=signup-for-dolthub]",
-      beVisible,
-      [signupClickFlow("[data-cy=create-account-cancel]")],
-    ),
-    newExpectationWithClickFlows(
-      "should have Sign in modal",
+      "should have Sign in form",
       "[data-cy=signin-button]",
       beVisible,
       [signinClickFlow("[data-cy=recover-cancel]")],
     ),
+    newExpectationWithClickFlows(
+      "should have Sign up for DoltHub form",
+      "[data-cy=signup-for-dolthub]",
+      beVisible,
+      [signupClickFlow("[data-cy=create-account-cancel]")],
+    ),
   ];
 
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    tests,
-    tests,
-    mobileTests,
-  );
+  // const mobileTests = [
+  //   ...testSections,
+  //   newExpectationWithClickFlows(
+  //     "should have Sign up for DoltHub form",
+  //     "[data-cy=signup-for-dolthub]",
+  //     beVisible,
+  //     [signupClickFlow("[data-cy=create-account-cancel]")],
+  //   ),
+  //   newExpectationWithClickFlows(
+  //     "should have Sign in form",
+  //     "[data-cy=signin-button]",
+  //     beVisible,
+  //     [signinClickFlow("[data-cy=recover-cancel]")],
+  //   ),
+  // ];
+
+  // TODO: Fix scroll containers for mobile tests
+  // const devices = allDevicesDiffTestsForSignedOut(
+  //   pageName,
+  //   tests,
+  //   tests,
+  //   mobileTests,
+  // );
+  const devices = desktopDevicesForSignedOut(pageName, tests);
   runTestsForDevices({ currentPage, devices });
 });
