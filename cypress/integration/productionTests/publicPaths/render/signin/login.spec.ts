@@ -32,7 +32,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ),
       newExpectation("", "[data-cy=error-msg]", beVisible),
     ],
-    "[data-cy=close-modal]",
+    "[data-cy=signin-cancel]",
   );
 
   const tests = [
