@@ -105,7 +105,7 @@ export const testRepoHeaderWithBranch = (
 // ABOUT
 
 const aboutClickFlow = newClickFlow(
-  "[data-cy=repo-about]",
+  "",
   [
     newExpectation("", "[data-cy=repo-about-details]", beVisible),
     newExpectation("", "[data-cy=repo-description]", beVisible),
