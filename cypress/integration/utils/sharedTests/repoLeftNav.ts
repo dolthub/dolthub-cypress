@@ -104,23 +104,25 @@ export const testRepoHeaderWithBranch = (
 
 // ABOUT
 
-const aboutClickFlow = newClickFlow(
-  "",
-  [
-    newExpectation("", "[data-cy=repo-about-details]", beVisible),
-    newExpectation("", "[data-cy=repo-description]", beVisible),
-    newExpectation("", "[data-cy=repo-visibility]", beVisible),
-    newExpectation("", "[data-cy=repo-permission]", beVisible),
-  ],
-  "[data-cy=repo-about]",
-);
+const aboutClickFlow = (initiallyOpen: boolean): ClickFlow =>
+  newClickFlow(
+    initiallyOpen ? "" : "[data-cy=repo-about]",
+    [
+      newExpectation("", "[data-cy=repo-about-details]", beVisible),
+      newExpectation("", "[data-cy=repo-description]", beVisible),
+      newExpectation("", "[data-cy=repo-visibility]", beVisible),
+      newExpectation("", "[data-cy=repo-permission]", beVisible),
+    ],
+    "[data-cy=repo-about]",
+  );
 
-export const testAboutSection = newExpectationWithClickFlows(
-  "should have repo About section",
-  "[data-cy=repo-about]",
-  beVisible,
-  [aboutClickFlow],
-);
+export const testAboutSection = (initiallyOpen: boolean): Expectation =>
+  newExpectationWithClickFlows(
+    "should have repo About section",
+    "[data-cy=repo-about]",
+    beVisible,
+    [aboutClickFlow(initiallyOpen)],
+  );
 
 // TABLES
 

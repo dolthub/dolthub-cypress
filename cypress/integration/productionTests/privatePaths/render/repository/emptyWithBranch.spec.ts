@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    testAboutSection,
+    testAboutSection(true),
     testTablesSection(0),
     testPullRequestsSection(0),
     testCollaboratorsSection(0),
