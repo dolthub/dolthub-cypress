@@ -27,7 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderForAll(currentRepo, currentOwner),
-    testAboutSection,
+    testAboutSection(true),
     testTablesSection(0),
     testPullRequestsSection(0),
     testCollaboratorsSection(0),

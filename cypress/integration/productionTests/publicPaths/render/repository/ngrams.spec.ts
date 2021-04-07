@@ -61,7 +61,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),
-    testAboutSection,
+    testAboutSection(false),
     newExpectationWithClickFlows(
       "should have repo Tables section",
       "[data-cy=repo-tables]",

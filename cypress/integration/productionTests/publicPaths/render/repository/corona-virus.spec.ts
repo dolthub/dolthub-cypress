@@ -44,7 +44,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner),
-    testAboutSection,
+    testAboutSection(true),
     testTablesSection(11, "case_details"),
     ...testPaginationForRepoDataTable,
     testIndexesSection(11, "case_details"),

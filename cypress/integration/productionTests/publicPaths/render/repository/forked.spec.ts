@@ -51,7 +51,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=forked-parent-repo-detail]",
       beVisible,
     ),
-    testAboutSection,
+    testAboutSection(false),
     testTablesSection(2, "IPv6ToCountry"),
     ...testPaginationForRepoDataTable,
     testIndexesSection(2, "IPv4ToCountry"),
