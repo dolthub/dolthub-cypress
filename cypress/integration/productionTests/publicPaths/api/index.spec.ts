@@ -61,7 +61,7 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
       .should("deep.equal", [
         {
           columnName: "Table",
-          columnType: "String",
+          columnType: "LongText",
           isPrimaryKey: false,
         },
       ]);
@@ -131,7 +131,7 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
       .should("deep.equal", [
         {
           columnName: "Table",
-          columnType: "String",
+          columnType: "LongText",
           isPrimaryKey: false,
         },
       ]);
@@ -199,12 +199,12 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
         },
         {
           columnName: "province_state",
-          columnType: "String",
+          columnType: "LongText",
           isPrimaryKey: false,
         },
         {
           columnName: "country_region",
-          columnType: "String",
+          columnType: "LongText",
           isPrimaryKey: false,
         },
         {
