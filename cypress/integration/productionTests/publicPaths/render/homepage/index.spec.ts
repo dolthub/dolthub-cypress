@@ -149,5 +149,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPhoneTests,
   );
 
-  runTestsForDevices({ currentPage, devices });
+  const skip = true;
+  runTestsForDevices({ currentPage, devices, skip });
 });
