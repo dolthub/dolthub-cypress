@@ -8,7 +8,6 @@ import {
   scrollToPosition,
 } from "../../../../utils/helpers";
 import { testMobileMailingList } from "../../../../utils/sharedTests/mailingList";
-import { pricingModalClickFlow } from "../../../../utils/sharedTests/navbar";
 import {
   checkRepoListForTab,
   mostRecentReposClickFlow,
@@ -40,12 +39,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "Version Controlled Database",
         "Collaboration Platform",
       ]),
-    ),
-    newExpectationWithClickFlows(
-      "should open pricing modal on see pricing click",
-      "[data-cy=see-pricing-button-desktop]",
-      beVisible,
-      [pricingModalClickFlow("[data-cy=see-pricing-button-desktop]")],
     ),
   ];
 
@@ -149,6 +142,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPhoneTests,
   );
 
+  // TODO: unskip for new homepage
   const skip = true;
   runTestsForDevices({ currentPage, devices, skip });
 });
