@@ -2,7 +2,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newShouldArgs
+  newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
 
