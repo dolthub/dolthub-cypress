@@ -4,7 +4,7 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../helpers";
-import { ClickFlow, Tests } from "../types";
+import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -15,45 +15,22 @@ const sharedLinks = [
   "[data-cy=navbar-discord]",
   "[data-cy=navbar-about-dolt]",
   "[data-cy=navbar-bounties]",
+  "[data-cy=navbar-pricing]",
 ];
 
 const signedOutNavbarLinks = [
   ...sharedLinks,
   "[data-cy=navbar-discover]",
-  "[data-cy=navbar-pricing]",
   "[data-cy=navbar-signin]",
 ];
 
 const signedInNavbarLinks = [...sharedLinks, "[data-cy=navbar-repositories]"];
-
-export const pricingModalClickFlow = (initialClickDataCy: string): ClickFlow =>
-  newClickFlow(
-    initialClickDataCy,
-    [
-      newExpectation(
-        "",
-        "[data-cy=pricing-info]",
-        newShouldArgs("be.visible.and.contain", [
-          "Pricing",
-          "DoltHub Basic",
-          "DoltHub Pro",
-        ]),
-      ),
-    ],
-    "[data-cy=close-modal]",
-  );
 
 export const testSignedOutNavbar: Tests = [
   newExpectation(
     "should have signed out navbar and correct links",
     signedOutNavbarLinks,
     beVisible,
-  ),
-  newExpectationWithClickFlows(
-    "should open pricing modal in navbar",
-    "[data-cy=navbar-pricing-button]",
-    beVisible,
-    [pricingModalClickFlow("[data-cy=navbar-pricing-button]")],
   ),
 ];
 
