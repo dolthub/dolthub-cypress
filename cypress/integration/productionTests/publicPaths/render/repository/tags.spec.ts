@@ -40,8 +40,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-
-  runTestsForDevices({ currentPage, devices });
+  const skip = true;
+  runTestsForDevices({ currentPage, devices, skip });
 });
 
 // `repo_with_tags_and_branches` was made for testing
@@ -128,6 +128,7 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
     const tag = `v${i}`;
     const currentPage = `repositories/${currentOwner}/${currentRepo}/data/${tag}`;
     const devices = [macbook15ForAppLayout(pageName, tests(i))];
-    runTestsForDevices({ currentPage, devices });
+    const skip = true;
+    runTestsForDevices({ currentPage, devices, skip });
   }
 });
