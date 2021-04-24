@@ -35,6 +35,6 @@ describe(`${pageName} with no branch renders expected components on different de
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-
-  runTestsForDevices({ currentPage, devices });
+  const skip = true;
+  runTestsForDevices({ currentPage, devices, skip });
 });
