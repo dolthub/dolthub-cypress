@@ -30,28 +30,18 @@ export const testRepoHeaderForAll = (
 ): Tests => [
   newExpectation(
     "should have repo header",
-    "[data-cy=repository-page-header]",
+    "[data-cy=repo-left-header]",
     beVisible,
   ),
   newExpectation(
     "should have owner's name",
-    "[data-cy=repo-breadcrumbs]",
+    "[data-cy=left-owner-name]",
     newShouldArgs("be.visible.and.contain", ownerName),
   ),
   newExpectation(
     "should have repo's name",
-    "[data-cy=repo-breadcrumbs]",
+    "[data-cy=left-repo-name]",
     newShouldArgs("be.visible.and.contain", repoName),
-  ),
-  newExpectation(
-    "should have repo last updated",
-    "[data-cy=updated-at]",
-    newShouldArgs("be.visible.and.contain", /updated/),
-  ),
-  newExpectation(
-    "should have repo's size",
-    "[data-cy=repo-size]",
-    newShouldArgs("be.visible"),
   ),
   newExpectation(
     "should have repo star button",
@@ -112,33 +102,27 @@ export const testRepoHeaderWithBranch = (
   ),
 ];
 
-// DATABASE
-
-export const testDatabaseTab: Expectation = newExpectation(
-  "should have repo Database tab",
-  "[data-cy=repo-about-tab]",
-  newShouldArgs("be.visible"),
-);
-
 // ABOUT
 
-// const aboutClickFlow = (initiallyOpen: boolean): ClickFlow =>
-//   newClickFlow(
-//     initiallyOpen ? "" : "[data-cy=repo-about]",
-//     [
-//       newExpectation("", "[data-cy=repo-about-details]", beVisible),
-//       newExpectation("", "[data-cy=repo-description]", beVisible),
-//       newExpectation("", "[data-cy=repo-visibility]", beVisible),
-//       newExpectation("", "[data-cy=repo-permission]", beVisible),
-//     ],
-//     "[data-cy=repo-about]",
-//   );
+const aboutClickFlow = (initiallyOpen: boolean): ClickFlow =>
+  newClickFlow(
+    initiallyOpen ? "" : "[data-cy=repo-about]",
+    [
+      newExpectation("", "[data-cy=repo-about-details]", beVisible),
+      newExpectation("", "[data-cy=repo-description]", beVisible),
+      newExpectation("", "[data-cy=repo-visibility]", beVisible),
+      newExpectation("", "[data-cy=repo-permission]", beVisible),
+    ],
+    "[data-cy=repo-about]",
+  );
 
-export const testAboutTab: Expectation = newExpectation(
-  "should have repo About tab",
-  "[data-cy=repo-about-tab]",
-  newShouldArgs("be.visible"),
-);
+export const testAboutSection = (initiallyOpen: boolean): Expectation =>
+  newExpectationWithClickFlows(
+    "should have repo About section",
+    "[data-cy=repo-about]",
+    beVisible,
+    [aboutClickFlow(initiallyOpen)],
+  );
 
 // TABLES
 
@@ -265,52 +249,56 @@ export const testIndexesSection = (
 
 // COMMIT LOG
 
-// const commitLogClickFlow = (commitLen: number): ClickFlow =>
-//   newClickFlow(
-//     "[data-cy=repo-commit-log]",
-//     [
-//       newExpectation(
-//         "",
-//         "[data-cy=repo-commit-log-history-commits] > li",
-//         newShouldArgs("be.visible.and.have.length", commitLen),
-//       ),
-//       newExpectation("", "[data-cy=repo-commits-see-all-button]", beVisible),
-//     ],
-//     "[data-cy=repo-commit-log]",
-//   );
+const commitLogClickFlow = (commitLen: number): ClickFlow =>
+  newClickFlow(
+    "[data-cy=repo-commit-log]",
+    [
+      newExpectation(
+        "",
+        "[data-cy=repo-commit-log-history-commits] > li",
+        newShouldArgs("be.visible.and.have.length", commitLen),
+      ),
+      newExpectation("", "[data-cy=repo-commits-see-all-button]", beVisible),
+    ],
+    "[data-cy=repo-commit-log]",
+  );
 
-export const testCommitLogTab: Expectation = newExpectation(
-  "should have repo Commit Log tab",
-  "[data-cy=repo-commit-log-tab]",
-  beVisible,
-);
+export const testCommitSection = (commitLen: number): Expectation =>
+  newExpectationWithClickFlows(
+    "should have repo Commit Log section",
+    "[data-cy=repo-commit-log]",
+    beVisible,
+    [commitLogClickFlow(commitLen)],
+  );
 
 // RELEASES LIST
 
-// const releasesListClickFlow = (tagLen: number): ClickFlow => {
-//   const expectations =
-//     tagLen === 0
-//       ? []
-//       : [
-//           newExpectation(
-//             "",
-//             "[data-cy=repo-releases-list] > li",
-//             newShouldArgs("be.visible.and.have.length", tagLen),
-//           ),
-//         ];
+const releasesListClickFlow = (tagLen: number): ClickFlow => {
+  const expectations =
+    tagLen === 0
+      ? []
+      : [
+          newExpectation(
+            "",
+            "[data-cy=repo-releases-list] > li",
+            newShouldArgs("be.visible.and.have.length", tagLen),
+          ),
+        ];
 
-//   return newClickFlow(
-//     "[data-cy=repo-releases]",
-//     expectations,
-//     "[data-cy=repo-releases]",
-//   );
-// };
+  return newClickFlow(
+    "[data-cy=repo-releases]",
+    expectations,
+    "[data-cy=repo-releases]",
+  );
+};
 
-export const testReleasesTab: Expectation = newExpectation(
-  "should have repo Tag List tab",
-  "[data-cy=repo-releases-tab]",
-  beVisible,
-);
+export const testReleasesSection = (tagLen: number): Expectation =>
+  newExpectationWithClickFlows(
+    "should have repo Tag List section",
+    "[data-cy=repo-releases]",
+    beVisible,
+    [releasesListClickFlow(tagLen)],
+  );
 
 // VIEWS
 
@@ -454,53 +442,47 @@ export const testQueryCatalogSection = (
 
 // PULL REQUESTS
 
-// const emptyPullsExpectation = newExpectation(
-//   "",
-//   "[data-cy=repo-pull-requests-empty]",
-//   beVisible,
-// );
-
-// const pullRequestsClickFlow = (pullLen: number): ClickFlow => {
-//   const notEmptyExpectations = [
-//     newExpectation(
-//       "",
-//       "[data-cy=repo-pull-requests-list] > li",
-//       newShouldArgs("be.visible.and.have.length", pullLen),
-//     ),
-//     newExpectationWithScrollIntoView(
-//       "should render link to see more queries",
-//       "[data-cy=repo-pull-requests-see-all]",
-//       beVisible,
-//       true,
-//     ),
-//     newExpectation("", "[data-cy=repo-pull-requests-see-all]", beVisible),
-//   ];
-//   const expectations =
-//     pullLen === 0 ? [emptyPullsExpectation] : notEmptyExpectations;
-
-//   return newClickFlow(
-//     "[data-cy=repo-pull-requests]",
-//     [
-//       ...expectations,
-//       newExpectation("", "[data-cy=new-pull-button]", beVisible),
-//     ],
-//     "[data-cy=repo-pull-requests]",
-//   );
-// };
-
-export const testPullRequestsTab: Expectation = newExpectation(
-  "should have repo Pull Requests tab",
-  "[data-cy=repo-pull-requests]",
+const emptyPullsExpectation = newExpectation(
+  "",
+  "[data-cy=repo-pull-requests-empty]",
   beVisible,
 );
 
-// ISSUES
+const pullRequestsClickFlow = (pullLen: number): ClickFlow => {
+  const notEmptyExpectations = [
+    newExpectation(
+      "",
+      "[data-cy=repo-pull-requests-list] > li",
+      newShouldArgs("be.visible.and.have.length", pullLen),
+    ),
+    newExpectationWithScrollIntoView(
+      "should render link to see more queries",
+      "[data-cy=repo-pull-requests-see-all]",
+      beVisible,
+      true,
+    ),
+    newExpectation("", "[data-cy=repo-pull-requests-see-all]", beVisible),
+  ];
+  const expectations =
+    pullLen === 0 ? [emptyPullsExpectation] : notEmptyExpectations;
 
-export const testIssuesTab: Expectation = newExpectation(
-  "should have repo Issues tab",
-  "[data-cy=repo-issue-requests]",
-  beVisible,
-);
+  return newClickFlow(
+    "[data-cy=repo-pull-requests]",
+    [
+      ...expectations,
+      newExpectation("", "[data-cy=new-pull-button]", beVisible),
+    ],
+    "[data-cy=repo-pull-requests]",
+  );
+};
+
+export const testPullRequestsSection = (pullLen: number): Expectation =>
+  newExpectationWithClickFlows(
+    "should have repo Pull Requests section",
+    "[data-cy=repo-pull-requests]",
+    beVisible,
+    [pullRequestsClickFlow(pullLen)],
+  );
 
 // COLLABORATORS
 
@@ -537,19 +519,20 @@ export const testCollaboratorsSection = (collabsLen: number): Expectation =>
 
 // REPO SETTINGS
 
-// const settingsClickFlow = newClickFlow(
-//   "[data-cy=repo-repo-settings]",
-//   [
-//     newExpectation("", "[data-cy=repo-settings-webhooks]", beVisible),
-//     newExpectation("", "[data-cy=update-repo-form]", beVisible),
-//   ],
-//   "[data-cy=repo-repo-settings]",
-// );
+const settingsClickFlow = newClickFlow(
+  "[data-cy=repo-repo-settings]",
+  [
+    newExpectation("", "[data-cy=repo-settings-webhooks]", beVisible),
+    newExpectation("", "[data-cy=update-repo-form]", beVisible),
+  ],
+  "[data-cy=repo-repo-settings]",
+);
 
-export const testRepoSettingsTab = newExpectation(
+export const testRepoSettings = newExpectationWithClickFlows(
   "should have Repo Settings section for user with write perms",
-  "[data-cy=repo-repo-settings-tab]",
+  "[data-cy=repo-repo-settings]",
   beVisible,
+  [settingsClickFlow],
 );
 
 // SECTIONS NOT VISIBLE FOR EMPTY

@@ -6,7 +6,7 @@ import {
   testReleasesTab,
   testRepoHeaderForAll,
   testRepoSettingsTab,
-} from "cypress/integration/utils/sharedTests/repoLeftNav";
+} from "cypress/integration/utils/sharedTests/repoHeaderNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 
