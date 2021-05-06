@@ -30,18 +30,28 @@ export const testRepoHeaderForAll = (
 ): Tests => [
   newExpectation(
     "should have repo header",
-    "[data-cy=repo-left-header]",
+    "[data-cy=repository-page-header]",
     beVisible,
   ),
   newExpectation(
     "should have owner's name",
-    "[data-cy=left-owner-name]",
+    "[data-cy=repo-breadcrumbs]",
     newShouldArgs("be.visible.and.contain", ownerName),
   ),
   newExpectation(
     "should have repo's name",
-    "[data-cy=left-repo-name]",
+    "[data-cy=repo-breadcrumbs]",
     newShouldArgs("be.visible.and.contain", repoName),
+  ),
+  newExpectation(
+    "should have repo last updated",
+    "[data-cy=updated-at]",
+    newShouldArgs("be.visible.and.contain", /updated/),
+  ),
+  newExpectation(
+    "should have repo's size",
+    "[data-cy=repo-size]",
+    newShouldArgs("be.visible"),
   ),
   newExpectation(
     "should have repo star button",
