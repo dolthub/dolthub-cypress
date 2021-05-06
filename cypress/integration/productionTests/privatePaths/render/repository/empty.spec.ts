@@ -1,4 +1,12 @@
-import { testRepoHeaderForAll } from "cypress/integration/utils/sharedTests/repoLeftNav";
+import {
+  testAboutTab,
+  testCommitLogTab,
+  testDatabaseTab,
+  testPullRequestsTab,
+  testReleasesTab,
+  testRepoHeaderForAll,
+  testRepoSettingsTab,
+} from "cypress/integration/utils/sharedTests/repoLeftNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 
@@ -14,11 +22,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderForAll(currentRepo, currentOwner),
-    // testAboutSection(true),
+    testDatabaseTab,
+    testAboutTab,
+    testCommitLogTab,
+    testReleasesTab,
+    testPullRequestsTab,
+    testRepoSettingsTab,
     // testTablesSection(0),
-    // testPullRequestsSection(0),
     // testCollaboratorsSection(0),
-    // testRepoSettings,
     // ...testSectionsNotVisible,
     // newExpectation(
     //   "should have Get Started section",
