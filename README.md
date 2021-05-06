@@ -52,6 +52,18 @@ $ yarn cylo-run-blog
 
 All the tests are located in `cypress/integration/`.
 
+### Private paths
+
+To run the tests in the `privatePaths` folder you need to put the test username and password in a Cypress env file. Only DoltHub devs have access to this information and can run these tests locally. This file should not be checked in. The file should look like this:
+
+```json
+// cypress.env.json
+{
+  "TEST_USERNAME": "xxx",
+  "TEST_PASSWORD": "xxx"
+}
+```
+
 ## Writing tests
 
 To write tests, first, ensure that the element you want to test
