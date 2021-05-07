@@ -9,7 +9,6 @@ import {
   testAboutSection,
   testPullRequestsSection,
   testRepoHeaderWithBranch,
-  testSectionsNotVisible,
   testTablesSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 
@@ -26,7 +25,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testAboutSection(true),
     testTablesSection(0),
     testPullRequestsSection(0),
-    ...testSectionsNotVisible,
     newExpectation(
       "should have repo Get Started section",
       "[data-cy=repo-empty-get-started]",

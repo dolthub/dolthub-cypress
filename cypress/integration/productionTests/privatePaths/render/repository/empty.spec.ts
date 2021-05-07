@@ -5,10 +5,7 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "cypress/integration/utils/helpers";
-import {
-  testRepoHeaderForAll,
-  testRepoSettingsTab,
-} from "cypress/integration/utils/sharedTests/repoHeaderNav";
+import { testRepoHeaderForAll } from "cypress/integration/utils/sharedTests/repoHeaderNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 
@@ -47,22 +44,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     "[data-cy=toggle-installation-steps]",
   );
 
+  // TODO: Add tests for left side database navigation
   const tests = [
-    ...testRepoHeaderForAll(currentRepo, currentOwner),
-    testRepoSettingsTab,
-    // testTablesSection(0),
-    // testCollaboratorsSection(0),
-    // ...testSectionsNotVisible,
+    ...testRepoHeaderForAll(currentRepo, currentOwner, loggedIn),
     newExpectation(
       "should have Get Started section",
       "[data-cy=repo-empty-get-started]",
       beVisible,
     ),
-    // newExpectation(
-    //   "should have upload file link",
-    //   "[data-cy=repo-empty-upload-file]",
-    //   beVisible,
-    // ),
     newExpectation(
       "should have sql console link",
       "[data-cy=repo-empty-sql-console]",
