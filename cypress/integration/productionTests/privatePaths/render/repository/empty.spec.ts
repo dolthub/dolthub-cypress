@@ -78,12 +78,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-fork-button]",
       newShouldArgs("be.disabled"),
     ),
-    newExpectationWithScrollIntoView(
-      "should show option to toggle Dolt installation steps",
-      "[data-cy=toggle-installation-steps]",
-      beVisible,
-      true,
-    ),
     newExpectationWithClickFlows(
       "should show Dolt installation steps",
       "[data-cy=toggle-installation-steps]",
