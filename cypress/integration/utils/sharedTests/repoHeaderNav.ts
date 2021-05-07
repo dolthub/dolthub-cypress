@@ -22,6 +22,84 @@ const cloneClickFlow = newClickFlow(
   ".popup-overlay",
 );
 
+const forkButtonClickFlow = (loggedIn: boolean) =>
+  newClickFlow(
+    "[data-cy=repo-fork-button]",
+    loggedIn
+      ? [
+          newExpectation("", "[data-cy=create-fork-modal]", beVisible),
+          newExpectation(
+            "Confirm button should not be disabled on initial open",
+            "[data-cy=fork-confirm-button]",
+            beVisible,
+          ),
+        ]
+      : [
+          newExpectation(
+            "",
+            "[data-cy=create-fork-modal] a",
+            newShouldArgs("be.visible.and.contain", "sign in"),
+          ),
+        ],
+    "[data-cy=close-modal]",
+  );
+
+// DATABASE TAB
+
+export const testDatabaseTab: Expectation = newExpectation(
+  "should have repo Database tab",
+  "[data-cy=repo-about-tab]",
+  newShouldArgs("be.visible"),
+);
+
+// ABOUT TAB
+
+export const testAboutTab: Expectation = newExpectation(
+  "should have repo About tab",
+  "[data-cy=repo-about-tab]",
+  newShouldArgs("be.visible"),
+);
+
+// COMMIT LOG TAB
+
+export const testCommitLogTab: Expectation = newExpectation(
+  "should have repo Commit Log tab",
+  "[data-cy=repo-commit-log-tab]",
+  beVisible,
+);
+
+// RELEASES TAB
+
+export const testReleasesTab: Expectation = newExpectation(
+  "should have repo Tag List tab",
+  "[data-cy=repo-releases-tab]",
+  beVisible,
+);
+
+// PULL REQUESTS TAB
+
+export const testPullRequestsTab: Expectation = newExpectation(
+  "should have repo Pull Requests tab",
+  "[data-cy=repo-pull-requests-tab]",
+  beVisible,
+);
+
+// ISSUES TAB
+
+export const testIssuesTab: Expectation = newExpectation(
+  "should have repo Issues tab",
+  "[data-cy=repo-issues-tab]",
+  beVisible,
+);
+
+// SETTINGS TAB
+
+export const testRepoSettingsTab = newExpectation(
+  "should have Repo Settings section for user with write perms",
+  "[data-cy=repo-settings-tab]",
+  beVisible,
+);
+
 export const testRepoHeaderForAll = (
   repoName: string,
   ownerName: string,
@@ -87,34 +165,12 @@ export const testRepoHeaderForAll = (
     : loggedOutRepoHeaderTests;
 };
 
-const forkButtonClickFlow = (loggedIn: boolean) =>
-  newClickFlow(
-    "[data-cy=repo-fork-button]",
-    loggedIn
-      ? [
-          newExpectation("", "[data-cy=create-fork-modal]", beVisible),
-          newExpectation(
-            "Confirm button should not be disabled on initial open",
-            "[data-cy=fork-confirm-button]",
-            beVisible,
-          ),
-        ]
-      : [
-          newExpectation(
-            "",
-            "[data-cy=create-fork-modal] a",
-            newShouldArgs("be.visible.and.contain", "sign in"),
-          ),
-        ],
-    "[data-cy=close-modal]",
-  );
-
 export const testRepoHeaderWithBranch = (
   repoName: string,
   ownerName: string,
   loggedIn = false,
 ): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName),
+  ...testRepoHeaderForAll(repoName, ownerName, loggedIn),
   newExpectationWithClickFlows(
     "should open create fork modal on fork button click",
     "[data-cy=repo-fork-button]",
@@ -122,59 +178,3 @@ export const testRepoHeaderWithBranch = (
     [forkButtonClickFlow(loggedIn)],
   ),
 ];
-
-// DATABASE TAB
-
-export const testDatabaseTab: Expectation = newExpectation(
-  "should have repo Database tab",
-  "[data-cy=repo-about-tab]",
-  newShouldArgs("be.visible"),
-);
-
-// ABOUT TAB
-
-export const testAboutTab: Expectation = newExpectation(
-  "should have repo About tab",
-  "[data-cy=repo-about-tab]",
-  newShouldArgs("be.visible"),
-);
-
-// COMMIT LOG TAB
-
-export const testCommitLogTab: Expectation = newExpectation(
-  "should have repo Commit Log tab",
-  "[data-cy=repo-commit-log-tab]",
-  beVisible,
-);
-
-// RELEASES TAB
-
-export const testReleasesTab: Expectation = newExpectation(
-  "should have repo Tag List tab",
-  "[data-cy=repo-releases-tab]",
-  beVisible,
-);
-
-// PULL REQUESTS TAB
-
-export const testPullRequestsTab: Expectation = newExpectation(
-  "should have repo Pull Requests tab",
-  "[data-cy=repo-pull-requests-tab]",
-  beVisible,
-);
-
-// ISSUES TAB
-
-export const testIssuesTab: Expectation = newExpectation(
-  "should have repo Issues tab",
-  "[data-cy=repo-issues-tab]",
-  beVisible,
-);
-
-// SETTINGS TAB
-
-export const testRepoSettingsTab = newExpectation(
-  "should have Repo Settings section for user with write perms",
-  "[data-cy=repo-settings-tab]",
-  beVisible,
-);
