@@ -67,6 +67,12 @@ export const testRepoHeaderForAll = (
     beVisible,
     [cloneClickFlow],
   ),
+  testDatabaseTab,
+  testAboutTab,
+  testCommitLogTab,
+  testReleasesTab,
+  testPullRequestsTab,
+  testIssuesTab,
 ];
 
 const forkButtonClickFlow = (loggedIn: boolean) =>
@@ -149,7 +155,7 @@ export const testPullRequestsTab: Expectation = newExpectation(
 
 export const testIssuesTab: Expectation = newExpectation(
   "should have repo Issues tab",
-  "[data-cy=repo-issue-requests]",
+  "[data-cy=repo-issues-tab]",
   beVisible,
 );
 
