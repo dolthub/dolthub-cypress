@@ -48,6 +48,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...testRepoHeaderForAll(currentRepo, currentOwner, loggedIn),
     newExpectation(
+      "should have disabled Fork button",
+      "[data-cy=repo-fork-button]",
+      newShouldArgs("be.disabled"),
+    ),
+    newExpectation(
       "should have Get Started section",
       "[data-cy=repo-empty-get-started]",
       beVisible,
@@ -72,11 +77,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
       true,
-    ),
-    newExpectation(
-      "should have disabled Fork button",
-      "[data-cy=repo-fork-button]",
-      newShouldArgs("be.disabled"),
     ),
     newExpectationWithClickFlows(
       "should show Dolt installation steps",
