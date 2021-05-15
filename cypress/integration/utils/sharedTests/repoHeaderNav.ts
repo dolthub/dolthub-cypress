@@ -22,53 +22,6 @@ const cloneClickFlow = newClickFlow(
   ".popup-overlay",
 );
 
-export const testRepoHeaderForAll = (
-  repoName: string,
-  ownerName: string,
-): Tests => [
-  newExpectation(
-    "should have repo header",
-    "[data-cy=repository-page-header]",
-    beVisible,
-  ),
-  newExpectation(
-    "should have owner's name",
-    "[data-cy=repo-breadcrumbs]",
-    newShouldArgs("be.visible.and.contain", ownerName),
-  ),
-  newExpectation(
-    "should have repo's name",
-    "[data-cy=repo-breadcrumbs]",
-    newShouldArgs("be.visible.and.contain", repoName),
-  ),
-  newExpectation(
-    "should have repo last updated",
-    "[data-cy=updated-at]",
-    newShouldArgs("be.visible"),
-  ),
-  newExpectation(
-    "should have repo's size",
-    "[data-cy=repo-size]",
-    newShouldArgs("be.visible"),
-  ),
-  newExpectation(
-    "should have repo star button",
-    "[data-cy=repo-star]",
-    beVisible,
-  ),
-  newExpectation(
-    "should have repo fork button",
-    "[data-cy=repo-fork-button]",
-    beVisible,
-  ),
-  newExpectationWithClickFlows(
-    "should have repo clone button",
-    "[data-cy=repo-clone-button]",
-    beVisible,
-    [cloneClickFlow],
-  ),
-];
-
 const forkButtonClickFlow = (loggedIn: boolean) =>
   newClickFlow(
     "[data-cy=repo-fork-button]",
@@ -90,20 +43,6 @@ const forkButtonClickFlow = (loggedIn: boolean) =>
         ],
     "[data-cy=close-modal]",
   );
-
-export const testRepoHeaderWithBranch = (
-  repoName: string,
-  ownerName: string,
-  loggedIn = false,
-): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName),
-  newExpectationWithClickFlows(
-    "should open create fork modal on fork button click",
-    "[data-cy=repo-fork-button]",
-    beVisible,
-    [forkButtonClickFlow(loggedIn)],
-  ),
-];
 
 // DATABASE TAB
 
@@ -149,7 +88,7 @@ export const testPullRequestsTab: Expectation = newExpectation(
 
 export const testIssuesTab: Expectation = newExpectation(
   "should have repo Issues tab",
-  "[data-cy=repo-issue-requests]",
+  "[data-cy=repo-issues-tab]",
   beVisible,
 );
 
@@ -160,3 +99,82 @@ export const testRepoSettingsTab = newExpectation(
   "[data-cy=repo-settings-tab]",
   beVisible,
 );
+
+export const testRepoHeaderForAll = (
+  repoName: string,
+  ownerName: string,
+  loggedIn?: boolean,
+): Tests => {
+  // TODO: Add oustanding header tests:
+  // `+` button logged out dropdown (New issue, New pull request)
+  // `+` button logged in dropdown (logged out tests plus File Upload, Add README.md/LICENSE.md)
+  const loggedOutRepoHeaderTests = [
+    newExpectation(
+      "should have repo header",
+      "[data-cy=repository-page-header]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have owner's name",
+      "[data-cy=repo-breadcrumbs]",
+      newShouldArgs("be.visible.and.contain", ownerName),
+    ),
+    newExpectation(
+      "should have repo's name",
+      "[data-cy=repo-breadcrumbs]",
+      newShouldArgs("be.visible.and.contain", repoName),
+    ),
+    newExpectation(
+      "should have repo last updated",
+      "[data-cy=updated-at]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should have repo's size",
+      "[data-cy=repo-size]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should have repo star button",
+      "[data-cy=repo-star]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have repo fork button",
+      "[data-cy=repo-fork-button]",
+      beVisible,
+    ),
+    newExpectationWithClickFlows(
+      "should have repo clone button",
+      "[data-cy=repo-clone-button]",
+      beVisible,
+      [cloneClickFlow],
+    ),
+    testDatabaseTab,
+    testAboutTab,
+    testCommitLogTab,
+    testReleasesTab,
+    testPullRequestsTab,
+    testIssuesTab,
+  ];
+
+  const loggedInRepoHeaderTests = [testRepoSettingsTab];
+
+  return loggedIn
+    ? [...loggedOutRepoHeaderTests, ...loggedInRepoHeaderTests]
+    : loggedOutRepoHeaderTests;
+};
+
+export const testRepoHeaderWithBranch = (
+  repoName: string,
+  ownerName: string,
+  loggedIn = false,
+): Tests => [
+  ...testRepoHeaderForAll(repoName, ownerName, loggedIn),
+  newExpectationWithClickFlows(
+    "should open create fork modal on fork button click",
+    "[data-cy=repo-fork-button]",
+    beVisible,
+    [forkButtonClickFlow(loggedIn)],
+  ),
+];

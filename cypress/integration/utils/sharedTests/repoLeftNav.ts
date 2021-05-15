@@ -534,33 +534,3 @@ export const testRepoSettings = newExpectationWithClickFlows(
   beVisible,
   [settingsClickFlow],
 );
-
-// SECTIONS NOT VISIBLE FOR EMPTY
-
-export const testSectionsNotVisible: Tests = [
-  newExpectation(
-    "should not have repo Indexes section for repo with no data",
-    "[data-cy=repo-indexes]",
-    notExist,
-  ),
-  newExpectation(
-    "should not have repo Commit Log section for repo with no data",
-    "[data-cy=repo-commit-log]",
-    notExist,
-  ),
-  newExpectation(
-    "should not have repo Views section for repo with no data",
-    "[data-cy=repo-views]",
-    notExist,
-  ),
-  newExpectation(
-    "should not have repo Query Catalog section for repo with no tables",
-    "[data-cy=repo-query-catalog]",
-    notExist,
-  ),
-  newExpectation(
-    "should not have repo Tag List section for repo with no data",
-    "[data-cy=repo-releases]",
-    beVisible,
-  ),
-];
