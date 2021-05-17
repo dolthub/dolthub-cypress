@@ -7,6 +7,7 @@ import {
   newShouldArgs,
 } from "../../../../utils/helpers";
 import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   testAboutSection,
   testCommitSection,
@@ -14,7 +15,6 @@ import {
   testPullRequestsSection,
   testQueryCatalogSection,
   testReleasesSection,
-  testRepoHeaderWithBranch,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -23,6 +23,7 @@ const pageName = "Repository page (wikipedia-ngrams) with tables";
 const currentOwner = "automated_testing";
 const currentRepo = "wikipedia-ngrams";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
+const loggedIn = false;
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -60,7 +61,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   );
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testAboutSection(false),
     newExpectationWithClickFlows(
       "should have repo Tables section",

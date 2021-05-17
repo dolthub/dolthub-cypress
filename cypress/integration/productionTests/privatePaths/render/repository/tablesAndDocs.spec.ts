@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   testAboutSection,
   testCollaboratorsSection,
@@ -9,7 +10,6 @@ import {
   testPullRequestsSection,
   testQueryCatalogSection,
   testReleasesSection,
-  testRepoHeaderWithBranch,
   testRepoSettings,
   testTablesSection,
   testViewsSection,

@@ -5,10 +5,10 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   testAboutSection,
   testPullRequestsSection,
-  testRepoHeaderWithBranch,
   testTablesSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 
@@ -16,12 +16,13 @@ const pageName = "Repository page with branch and no data";
 const currentOwner = "automated_testing";
 const currentRepo = "empty_repo_with_branch";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
+const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testAboutSection(true),
     testTablesSection(0),
     testPullRequestsSection(0),

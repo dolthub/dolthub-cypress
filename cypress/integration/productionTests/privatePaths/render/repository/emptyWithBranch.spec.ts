@@ -5,11 +5,11 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   testAboutSection,
   testCollaboratorsSection,
   testPullRequestsSection,
-  testRepoHeaderWithBranch,
   testRepoSettings,
   testTablesSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
