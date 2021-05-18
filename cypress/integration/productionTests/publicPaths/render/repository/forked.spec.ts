@@ -2,13 +2,13 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   testAboutSection,
   testCommitSection,
   testIndexesSection,
   testPullRequestsSection,
   testQueryCatalogSection,
-  testRepoHeaderWithBranch,
   testTablesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
@@ -18,6 +18,7 @@ const pageName = "Forked repository page";
 const currentOwner = "automated_testing";
 const currentRepo = "ip-to-country";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
+const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -45,7 +46,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.length", 7),
     ),
     testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     newExpectation(
       "should find forked repo parent detail",
       "[data-cy=forked-parent-repo-detail]",

@@ -1,13 +1,13 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   testAboutSection,
   testCommitSection,
   testPullRequestsSection,
   testQueryCatalogSection,
   testReleasesSection,
-  testRepoHeaderWithBranch,
   testTablesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
@@ -18,6 +18,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "repo_with_tags_and_branches";
 
 const notExist = newShouldArgs("not.exist");
+const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const currentPage = `repositories/${currentOwner}/${currentRepo}`;
@@ -29,7 +30,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testAboutSection(true),
     testTablesSection(1, "test"),
     testViewsSection(0),

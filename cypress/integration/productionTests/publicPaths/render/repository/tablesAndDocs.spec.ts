@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   testAboutSection,
   testCommitSection,
@@ -8,7 +9,6 @@ import {
   testPullRequestsSection,
   testQueryCatalogSection,
   testReleasesSection,
-  testRepoHeaderWithBranch,
   testTablesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
@@ -18,6 +18,7 @@ const pageName = "Repository page with tables and docs";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
+const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -40,7 +41,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testAboutSection(true),
     testTablesSection(1, "test_table"),
     testIndexesSection(1, "test_table"),

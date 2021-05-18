@@ -1,29 +1,23 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import {
-  testAboutSection,
-  testCommitSection,
-  testIndexesSection,
-  testPullRequestsSection,
-  testQueryCatalogSection,
-  testReleasesSection,
-  testRepoHeaderWithBranch,
-  testTablesSection,
-  testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Repository page with tables and no docs";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_no_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
+const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
+  // TODO: Add tests for left side database navigation
   const tests = [
+    testSqlConsole,
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     newExpectation(
       "should not find empty repo",
       "[data-cy=repo-data-table-empty]",
@@ -49,19 +43,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "b"),
     ),
-    testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
-    testAboutSection(false),
-    testTablesSection(1, "test_table"),
-    testIndexesSection(1, "test_table"),
-    testViewsSection(0),
-    testQueryCatalogSection(0),
-    testCommitSection(2),
-    testReleasesSection(0),
-    testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices });
 });

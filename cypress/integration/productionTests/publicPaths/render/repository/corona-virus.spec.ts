@@ -3,13 +3,13 @@ import { testSqlConsole } from "cypress/integration/utils/sharedTests/sqlEditor"
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   testAboutSection,
   testCommitSection,
   testIndexesSection,
   testPullRequestsSection,
   testQueryCatalogSection,
-  testRepoHeaderWithBranch,
   testTablesSection,
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
@@ -18,6 +18,7 @@ const pageName = "Repository page (corona-virus) with tables and docs";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
+const loggedIn = false;
 
 const testView = "cases_by_age_range";
 const testQuery = "mortality_rates";
@@ -43,7 +44,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testAboutSection(true),
     testTablesSection(11, "case_details"),
     ...testPaginationForRepoDataTable,

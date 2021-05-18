@@ -22,7 +22,7 @@ const cloneClickFlow = newClickFlow(
   ".popup-overlay",
 );
 
-const forkButtonClickFlow = (loggedIn: boolean) =>
+export const forkButtonClickFlow = (loggedIn: boolean) =>
   newClickFlow(
     "[data-cy=repo-fork-button]",
     loggedIn
@@ -103,7 +103,7 @@ export const testRepoSettingsTab = newExpectation(
 export const testRepoHeaderForAll = (
   repoName: string,
   ownerName: string,
-  loggedIn?: boolean,
+  loggedIn: boolean,
 ): Tests => {
   // TODO: Add oustanding header tests:
   // `+` button logged out dropdown (New issue, New pull request)
@@ -168,7 +168,7 @@ export const testRepoHeaderForAll = (
 export const testRepoHeaderWithBranch = (
   repoName: string,
   ownerName: string,
-  loggedIn = false,
+  loggedIn: boolean,
 ): Tests => [
   ...testRepoHeaderForAll(repoName, ownerName, loggedIn),
   newExpectationWithClickFlows(
@@ -176,5 +176,10 @@ export const testRepoHeaderWithBranch = (
     "[data-cy=repo-fork-button]",
     beVisible,
     [forkButtonClickFlow(loggedIn)],
+  ),
+  newExpectation(
+    "should have repo branch selector",
+    "[data-cy=branch-selector]",
+    beVisible,
   ),
 ];

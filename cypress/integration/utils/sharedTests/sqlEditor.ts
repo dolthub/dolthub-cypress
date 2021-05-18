@@ -8,20 +8,20 @@ import {
 const shouldArgs = newShouldArgs("be.visible");
 
 const sqlEditorClickFlow = newClickFlow(
-  "[data-cy=launch-sql-editor-button]",
+  "[data-cy=sql-editor-collapsed]",
   [
     newExpectation(
       "table footer should be expanded after click",
-      "[data-cy=table-footer-expanded]",
+      "[data-cy=sql-editor-expanded]",
       shouldArgs,
     ),
   ],
-  "[data-cy=launch-sql-editor-button]",
+  "[data-cy=sql-editor-expanded]",
 );
 
 export const testSqlConsole = newExpectationWithClickFlows(
   "should find table footer initially closed, and then open on click",
-  "[data-cy=table-footer]",
+  "[data-cy=sql-editor-collapsed",
   shouldArgs,
   [sqlEditorClickFlow],
 );
