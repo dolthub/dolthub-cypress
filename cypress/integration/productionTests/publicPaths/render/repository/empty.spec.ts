@@ -20,7 +20,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const toggleInstallationStepsFlow = newClickFlow(
-    "[data-cy=toggle-installation-steps]",
+    "[data-cy=show-installation-steps]",
     [
       newExpectationWithScrollIntoView(
         "should have link to copy Dolt install script",
@@ -41,7 +41,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         true,
       ),
     ],
-    "[data-cy=toggle-installation-steps]",
+    "[data-cy=show-installation-steps]",
   );
 
   // TODO: Add tests for left side database navigation
@@ -85,7 +85,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectationWithClickFlows(
       "should show Dolt installation steps",
-      "[data-cy=toggle-installation-steps]",
+      "[data-cy=show-installation-steps]",
       beVisible,
       [toggleInstallationStepsFlow],
     ),
