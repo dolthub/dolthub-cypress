@@ -2,15 +2,12 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
   newExpectation,
+  newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  testAboutSection,
-  testPullRequestsSection,
-  testTablesSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
 
 const pageName = "Repository page with branch and no data";
 const currentOwner = "automated_testing";
@@ -23,9 +20,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    testAboutSection(true),
-    testTablesSection(0),
-    testPullRequestsSection(0),
+    ...testTablesSection(0),
+
     newExpectation(
       "should have repo Get Started section",
       "[data-cy=repo-empty-get-started]",
@@ -46,10 +42,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-empty-sql-console]",
       beVisible,
     ),
-    newExpectation(
+    newExpectationWithClickFlows(
       "should have Create new repo section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
+      [toggleInstallationStepsFlow]
     ),
     newExpectation(
       "should have Push existing repo section",
@@ -80,6 +77,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
-  runTestsForDevices({ currentPage, devices, skip });
+
+  runTestsForDevices({ currentPage, devices });
 });

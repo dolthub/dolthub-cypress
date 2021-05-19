@@ -177,9 +177,4 @@ export const testRepoHeaderWithBranch = (
     beVisible,
     [forkButtonClickFlow(loggedIn)],
   ),
-  newExpectation(
-    "should have repo branch selector",
-    "[data-cy=branch-selector]",
-    beVisible,
-  ),
 ];

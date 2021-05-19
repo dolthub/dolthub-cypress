@@ -1,3 +1,4 @@
+import { testTablesSection } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -6,13 +7,6 @@ import {
   newShouldArgs,
 } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  testAboutSection,
-  testCollaboratorsSection,
-  testPullRequestsSection,
-  testRepoSettings,
-  testTablesSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
 
 const pageName = "Logged in repo page with branch and no data";
 const currentOwner = "automated_testing";
@@ -25,12 +19,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    testAboutSection(true),
     testTablesSection(0),
-    testPullRequestsSection(0),
-    testCollaboratorsSection(0),
-    testRepoSettings,
-
     newExpectation(
       "should have repo Get Started section",
       "[data-cy=repo-empty-get-started]",
@@ -85,6 +74,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices });
 });
