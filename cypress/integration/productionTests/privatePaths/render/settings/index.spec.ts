@@ -56,12 +56,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("not.exist"),
       false,
     ),
-    newExpectation(
-      "should not render Development link in dev or prod",
-      "[data-cy=settings-development-section-link]",
-      isLocalDoltHub ? newShouldArgs("be.visible") : newShouldArgs("not.exist"),
-      false,
-    ),
   ];
 
   const devices = desktopDevicesForAppLayout(
