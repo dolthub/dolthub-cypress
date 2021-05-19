@@ -56,6 +56,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("not.exist"),
       false,
     ),
+
+    // TODO: Delete test
     newExpectation(
       "should not render Development link in dev or prod",
       "[data-cy=settings-development-section-link]",

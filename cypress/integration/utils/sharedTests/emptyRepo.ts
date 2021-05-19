@@ -32,9 +32,17 @@ export const toggleInstallationStepsFlow = newClickFlow(
   "[data-cy=show-installation-steps]",
 );
 
-export const testDoltInstallationSteps: Expectation = newExpectationWithClickFlows(
-  "should show Dolt installation steps",
-  "[data-cy=show-installation-steps]",
-  beVisible,
-  [toggleInstallationStepsFlow],
-);
+export const testDoltInstallationSteps: Expectation[] = [
+  newExpectationWithScrollIntoView(
+    "should scroll down to Dolt installation steps",
+    "[data-cy=show-installation-steps]",
+    newShouldArgs("exist"),
+    true,
+  ),
+  newExpectationWithClickFlows(
+    "should show Dolt installation steps",
+    "[data-cy=show-installation-steps]",
+    beVisible,
+    [toggleInstallationStepsFlow],
+  ),
+];

@@ -7,6 +7,7 @@ const currentPage = "/settings/development";
 const isLocalDoltHub = !!Cypress.env("LOCAL_DOLTHUB");
 const loggedIn = true;
 
+// TODO: Delete test file
 describe(`${pageName} renders expected components on different devices`, () => {
   const testsForLocalDoltHub = [
     newExpectation(

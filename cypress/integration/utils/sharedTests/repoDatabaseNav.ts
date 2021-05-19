@@ -72,17 +72,17 @@ export const testTablesSection = (
   }
   return [
     newExpectationWithClickFlows(
-      "should have repo Tables section",
+      "should open left database navigation",
       "[data-cy=left-nav-toggle-icon]",
       beVisible,
       [clickToOpenNavClickFlow],
     ),
-    ...tableExpectations(tableLen, testTable),
     newExpectation(
       "should have repo branch selector",
       "[data-cy=branch-selector]",
       beVisible,
     ),
+    ...tableExpectations(tableLen, testTable),
   ];
 };
 

@@ -1,11 +1,9 @@
+import { testDoltInstallationSteps } from "cypress/integration/utils/sharedTests/emptyRepo";
 import { testTablesSection } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
+import { Expectation } from "cypress/integration/utils/types";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import {
-  newExpectation,
-  newExpectationWithScrollIntoView,
-  newShouldArgs,
-} from "../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Logged in repo page with branch and no data";
@@ -17,7 +15,7 @@ const loggedIn = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const tests = [
+  const tests: Expectation[] = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testTablesSection(0),
     newExpectation(
@@ -50,22 +48,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
     ),
-    newExpectationWithScrollIntoView(
-      "should have link to copy Dolt install script",
-      "[data-cy=repo-empty-copy-dolt-release]",
-      beVisible,
-      true,
-    ),
-    newExpectation(
-      "should have link to latest Dolt releases",
-      "[data-cy=repo-empty-dolt-release-latest]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have link to Dolt source",
-      "[data-cy=repo-empty-dolt-source]",
-      beVisible,
-    ),
+    ...testDoltInstallationSteps,
     newExpectation(
       "should have table footer",
       "[data-cy=table-footer]",

@@ -57,7 +57,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       true,
     ),
-    testDoltInstallationSteps,
+    ...testDoltInstallationSteps,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
