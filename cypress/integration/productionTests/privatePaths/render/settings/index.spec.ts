@@ -4,7 +4,6 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Settings";
 const currentPage = "/settings";
-const isLocalDoltHub = !!Cypress.env("LOCAL_DOLTHUB");
 
 const loggedIn = true;
 
