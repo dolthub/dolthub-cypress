@@ -1,20 +1,31 @@
-import { newExpectation, newShouldArgs } from "../helpers";
+import {
+  newExpectation,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "../helpers";
 import { Tests } from "../types";
 
 const exist = newShouldArgs("exist");
 
 const footerTags = [
-  "[data-cy=footer-contact]",
-  "[data-cy=footer-blog]",
+  "[data-cy=footer-about-dolt]",
+  "[data-cy=footer-solutions]",
+  "[data-cy=footer-pricing]",
   "[data-cy=footer-documentation]",
+  "[data-cy=footer-blog]",
   "[data-cy=footer-team]",
-  "[data-cy=footer-terms-of-service]",
   "[data-cy=footer-privacy-policy]",
+  "[data-cy=footer-terms-of-service]",
   "[data-cy=footer-social-links]",
   "[data-cy=footer-dolthub-logo]",
 ];
 
 export const testFooter: Tests = [
-  newExpectation("should have footer", "[data-cy=site-footer]", exist),
+  newExpectationWithScrollIntoView(
+    "should have footer",
+    "[data-cy=site-footer]",
+    exist,
+    true,
+  ),
   newExpectation("should have footer links and images", footerTags, exist),
 ];
