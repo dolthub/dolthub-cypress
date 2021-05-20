@@ -4,7 +4,6 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Settings";
 const currentPage = "/settings";
-const isLocalDoltHub = !!Cypress.env("LOCAL_DOLTHUB");
 
 const loggedIn = true;
 
@@ -54,12 +53,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should not render Payment History link for standard Cypress Testing account with no payment plan/history",
       "[data-cy=settings-payment-history-section-link]",
       newShouldArgs("not.exist"),
-      false,
-    ),
-    newExpectation(
-      "should not render Development link in dev or prod",
-      "[data-cy=settings-development-section-link]",
-      isLocalDoltHub ? newShouldArgs("be.visible") : newShouldArgs("not.exist"),
       false,
     ),
   ];
