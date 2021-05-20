@@ -42,18 +42,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
     ),
-    ...testDoltInstallationSteps,
     newExpectation(
       "should have Push existing repo section",
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
     ),
-
-    newExpectation(
-      "should have table footer",
-      "[data-cy=table-footer]",
-      beVisible,
-    ),
+    ...testDoltInstallationSteps,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

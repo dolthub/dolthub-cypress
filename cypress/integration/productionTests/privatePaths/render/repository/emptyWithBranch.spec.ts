@@ -1,10 +1,9 @@
 import { testDoltInstallationSteps } from "cypress/integration/utils/sharedTests/emptyRepo";
-import { testTablesSection } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
-import { Expectation } from "cypress/integration/utils/types";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testTablesSection } from "../../../../utils/sharedTests/repoLeftNav";
 
 const pageName = "Logged in repo page with branch and no data";
 const currentOwner = "automated_testing";
@@ -15,7 +14,7 @@ const loggedIn = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const tests: Expectation[] = [
+  const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     testTablesSection(0),
     newExpectation(
@@ -49,11 +48,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...testDoltInstallationSteps,
-    newExpectation(
-      "should have table footer",
-      "[data-cy=table-footer]",
-      beVisible,
-    ),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

@@ -57,11 +57,10 @@ const notEmptyTableExpectations = (
 const tableExpectations = (
   tableLen: number,
   testTable?: string,
-): Expectation[] => {
-  return tableLen === 0 || !testTable
+): Expectation[] =>
+  tableLen === 0 || !testTable
     ? emptyTablesExpectation
     : notEmptyTableExpectations(tableLen, testTable);
-};
 
 export const testTablesSection = (
   tableLen: number,

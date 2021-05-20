@@ -5,6 +5,7 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { Expectation } from "../types";
+
 const beVisible = newShouldArgs("be.visible");
 
 export const toggleInstallationStepsFlow = newClickFlow(
