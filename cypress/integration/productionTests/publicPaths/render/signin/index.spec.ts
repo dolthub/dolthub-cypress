@@ -4,6 +4,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
   scrollToPosition,
 } from "../../../../utils/helpers";
@@ -17,7 +18,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const scrollToPositionInContainer = (
     position: Cypress.PositionType,
-  ): Expectation => scrollToPosition("#main-content", position);
+  ): Expectation => scrollToPosition("#scroll-container", position);
 
   const signupFormClickFlow = newClickFlow(
     "[data-cy=signin-create-account-email]",
@@ -36,46 +37,37 @@ describe(`${pageName} renders expected components on different devices`, () => {
     "[data-cy=signup-go-back]",
   );
 
-  const signupClickFlow = (closeDataCy: string): ClickFlow =>
-    newClickFlow(
-      "[data-cy=signup-for-dolthub]",
-      [
-        scrollToPositionInContainer("top"),
-        newExpectation("", "[data-cy=signin-create-account-google]", beVisible),
-        newExpectation("", "[data-cy=signin-create-account-github]", beVisible),
-        newExpectationWithClickFlows(
-          "",
-          "[data-cy=signin-create-account-email]",
-          beVisible,
-          [signupFormClickFlow],
-        ),
-        newExpectation("", "[data-cy=signin-have-account]", beVisible),
-      ],
-      closeDataCy,
-    );
+  const signupClickFlow: Expectation[] = [
+    newExpectation(
+      "should have Google button to create account",
+      "[data-cy=signin-create-account-google]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have Github button to create account",
+      "[data-cy=signin-create-account-github]",
+      beVisible,
+    ),
+    newExpectationWithClickFlows(
+      "should have form to create account with email and password",
+      "[data-cy=signin-create-account-email]",
+      beVisible,
+      [signupFormClickFlow],
+    ),
+    newExpectationWithScrollIntoView(
+      "should scroll back up to form",
+      "[data-cy=signin-have-account]",
+      newShouldArgs("exist"),
+      true,
+    ),
+  ];
 
-  const recoverPasswordClickFlow = newClickFlow(
-    "[data-cy=signin-forgot-password]",
-    [
-      newExpectation(
-        "",
-        "[data-cy=recover-password-form] input",
-        newShouldArgs("be.visible.and.have.length", 1),
-      ),
-      newExpectation(
-        "",
-        "[data-cy=recover-password-submit-button]",
-        newShouldArgs("be.disabled"),
-      ),
-    ],
-    "",
-  );
+  const clickSignUpButton = newClickFlow("[data-cy=signup-for-dolthub]", []);
 
   const signinClickFlow = (closeDataCy: string): ClickFlow =>
     newClickFlow(
       "[data-cy=signin-button]",
       [
-        scrollToPositionInContainer("top"),
         newExpectation("", "[data-cy=signin-signin-google]", beVisible),
         newExpectation("", "[data-cy=signin-signin-github]", beVisible),
         newExpectation(
@@ -92,7 +84,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
           "",
           "[data-cy=signin-forgot-password]",
           beVisible,
-          [recoverPasswordClickFlow],
+          [newClickFlow("[data-cy=signin-forgot-password]", [])],
+        ),
+        newExpectationWithScrollIntoView(
+          "",
+          "[data-cy=recover-password-form] input",
+          newShouldArgs("be.visible.and.have.length", 1),
+          true,
+        ),
+        newExpectation(
+          "",
+          "[data-cy=recover-password-submit-button]",
+          newShouldArgs("be.disabled"),
         ),
       ],
       closeDataCy,
@@ -132,12 +135,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [signinClickFlow("[data-cy=recover-cancel]")],
     ),
+    scrollToPositionInContainer("top"),
     newExpectationWithClickFlows(
       "should have Sign up for DoltHub form",
       "[data-cy=signup-for-dolthub]",
       beVisible,
-      [signupClickFlow("[data-cy=create-account-cancel]")],
+      [clickSignUpButton],
     ),
+    scrollToPositionInContainer("top"),
+    ...signupClickFlow,
   ];
 
   // const mobileTests = [
