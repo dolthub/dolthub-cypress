@@ -18,7 +18,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const scrollToPositionInContainer = (
     position: Cypress.PositionType,
-  ): Expectation => scrollToPosition("#scroll-container", position);
+  ): Expectation => scrollToPosition("#main-content", position);
 
   const signupFormClickFlow = newClickFlow(
     "[data-cy=signin-create-account-email]",
