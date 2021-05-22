@@ -45,6 +45,6 @@ export const testHomepageSidecar: Tests = [
 ];
 
 export const testSidecar = (args: ShouldArgs, skip = false): Tests => [
-  testDoltReleaseLink(args, skip),
+  testDoltReleaseLink(args, true),
   testCreateAccountLink(args, skip),
 ];
