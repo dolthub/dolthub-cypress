@@ -1,4 +1,8 @@
-import { newExpectation, newShouldArgs } from "../helpers";
+import {
+  newExpectation,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "../helpers";
 import { Expectation, ShouldArgs, Tests } from "../types";
 
 const exist = newShouldArgs("exist");
@@ -7,10 +11,11 @@ export const testDoltReleaseLink = (
   args: ShouldArgs,
   skip = false,
 ): Expectation =>
-  newExpectation(
+  newExpectationWithScrollIntoView(
     "should have link for dolt release",
     "[data-cy=copy-dolt-release]",
     args,
+    true,
     skip,
   );
 
@@ -45,6 +50,6 @@ export const testHomepageSidecar: Tests = [
 ];
 
 export const testSidecar = (args: ShouldArgs, skip = false): Tests => [
-  testDoltReleaseLink(args, true),
+  testDoltReleaseLink(args, skip),
   testCreateAccountLink(args, skip),
 ];
