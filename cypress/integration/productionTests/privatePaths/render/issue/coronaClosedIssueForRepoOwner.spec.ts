@@ -1,5 +1,5 @@
-import { testIssuePageForAll } from "cypress/integration/utils/sharedTests/issuePage";
-import { testLoggedInSignInTo } from "cypress/integration/utils/sharedTests/signInTo";
+import { testIssuePageForAll } from "../../../../utils/sharedTests/issuePage";
+import { testLoggedInSignInTo } from "../../../../utils/sharedTests/signInTo";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";

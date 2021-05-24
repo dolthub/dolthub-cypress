@@ -1,5 +1,3 @@
-import { testDoltInstallationSteps } from "cypress/integration/utils/sharedTests/emptyRepo";
-import { testRepoHeaderWithBranch } from "cypress/integration/utils/sharedTests/repoHeaderNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -7,7 +5,9 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
 import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Repository page with branch and no data";
 const currentOwner = "automated_testing";

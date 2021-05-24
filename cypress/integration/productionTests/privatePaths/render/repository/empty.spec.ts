@@ -2,9 +2,9 @@ import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-} from "cypress/integration/utils/helpers";
-import { testDoltInstallationSteps } from "cypress/integration/utils/sharedTests/emptyRepo";
-import { testRepoHeaderForAll } from "cypress/integration/utils/sharedTests/repoHeaderNav";
+} from "../../../../utils/helpers";
+import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
+import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 

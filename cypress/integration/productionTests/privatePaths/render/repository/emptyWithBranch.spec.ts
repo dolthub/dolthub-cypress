@@ -1,4 +1,4 @@
-import { testDoltInstallationSteps } from "cypress/integration/utils/sharedTests/emptyRepo";
+import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {

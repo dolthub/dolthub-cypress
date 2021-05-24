@@ -1,4 +1,3 @@
-import { testDoltInstallationSteps } from "cypress/integration/utils/sharedTests/emptyRepo";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -6,6 +5,7 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
 import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Repository page with no branch and no data";
