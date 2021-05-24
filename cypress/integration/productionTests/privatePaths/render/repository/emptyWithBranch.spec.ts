@@ -45,7 +45,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have Create new repo section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
-      true
+      true,
     ),
     newExpectationWithScrollIntoView(
       "should have Push existing repo section",
