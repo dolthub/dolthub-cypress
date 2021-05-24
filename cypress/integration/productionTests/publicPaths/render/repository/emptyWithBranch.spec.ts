@@ -2,7 +2,11 @@ import { testDoltInstallationSteps } from "cypress/integration/utils/sharedTests
 import { testRepoHeaderWithBranch } from "cypress/integration/utils/sharedTests/repoHeaderNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import {
+  newExpectation,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "../../../../utils/helpers";
 import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
 
 const pageName = "Repository page with branch and no data";
@@ -37,15 +41,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-empty-sql-console]",
       beVisible,
     ),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have Create new repo section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
+      true,
     ),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have Push existing repo section",
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
+      true,
     ),
     ...testDoltInstallationSteps,
   ];

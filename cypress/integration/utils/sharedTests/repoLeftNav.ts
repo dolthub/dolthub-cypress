@@ -87,9 +87,10 @@ export const testTablesSection = (
   if (tableLen > 0 && !testTable) {
     throw new Error("Cannot have tableLen > 0 and no testTable");
   }
+
   return newExpectationWithClickFlows(
     "should have repo Tables section",
-    "[data-cy=repo-tables]",
+    "[data-cy=repo-tables-table-list]",
     beVisible,
     [tablesClickFlow(tableLen, testTable)],
   );
