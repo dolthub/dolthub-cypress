@@ -1,3 +1,4 @@
+import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -5,14 +6,8 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  testAboutSection,
-  testCollaboratorsSection,
-  testPullRequestsSection,
-  testRepoSettings,
-  testTablesSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
 
 const pageName = "Logged in repo page with branch and no data";
 const currentOwner = "automated_testing";
@@ -25,12 +20,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    testAboutSection(true),
-    testTablesSection(0),
-    testPullRequestsSection(0),
-    testCollaboratorsSection(0),
-    testRepoSettings,
-
+    ...testTablesSection(0),
     newExpectation(
       "should have repo Get Started section",
       "[data-cy=repo-empty-get-started]",
@@ -51,40 +41,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-empty-push-a-commit]",
       beVisible,
     ),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have Create new repo section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
+      true,
     ),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have Push existing repo section",
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
-    ),
-    newExpectationWithScrollIntoView(
-      "should have link to copy Dolt install script",
-      "[data-cy=repo-empty-copy-dolt-release]",
-      beVisible,
       true,
     ),
-    newExpectation(
-      "should have link to latest Dolt releases",
-      "[data-cy=repo-empty-dolt-release-latest]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have link to Dolt source",
-      "[data-cy=repo-empty-dolt-source]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have table footer",
-      "[data-cy=table-footer]",
-      beVisible,
-    ),
+    ...testDoltInstallationSteps,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices });
 });

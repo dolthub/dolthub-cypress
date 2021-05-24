@@ -1,5 +1,5 @@
-import { testPaginationForRepoDataTable } from "cypress/integration/utils/sharedTests/pagination";
-import { testSqlConsole } from "cypress/integration/utils/sharedTests/sqlEditor";
+import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";

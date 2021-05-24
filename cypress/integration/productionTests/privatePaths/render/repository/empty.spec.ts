@@ -1,11 +1,10 @@
 import {
-  newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-} from "cypress/integration/utils/helpers";
-import { testRepoHeaderForAll } from "cypress/integration/utils/sharedTests/repoHeaderNav";
+} from "../../../../utils/helpers";
+import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
+import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 
@@ -18,31 +17,6 @@ const loggedIn = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
-
-  const toggleInstallationStepsFlow = newClickFlow(
-    "[data-cy=show-installation-steps]",
-    [
-      newExpectationWithScrollIntoView(
-        "should have link to copy Dolt install script",
-        "[data-cy=repo-empty-copy-dolt-release]",
-        beVisible,
-        true,
-      ),
-      newExpectationWithScrollIntoView(
-        "should have link to latest Dolt releases",
-        "[data-cy=repo-empty-dolt-release-latest]",
-        beVisible,
-        true,
-      ),
-      newExpectationWithScrollIntoView(
-        "should have link to Dolt source",
-        "[data-cy=repo-empty-dolt-source]",
-        beVisible,
-        true,
-      ),
-    ],
-    "[data-cy=show-installation-steps]",
-  );
 
   // TODO: Add tests for left side database navigation
   const tests = [
@@ -78,12 +52,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       true,
     ),
-    newExpectationWithClickFlows(
-      "should show Dolt installation steps",
-      "[data-cy=show-installation-steps]",
-      beVisible,
-      [toggleInstallationStepsFlow],
-    ),
+    ...testDoltInstallationSteps,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
