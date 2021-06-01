@@ -21,7 +21,7 @@
     "prettier:fix": "prettier --write 'cypress/**/*.{ts,js}'"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.16",
+    "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-typescript": "^7.13.0",
