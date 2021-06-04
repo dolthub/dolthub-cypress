@@ -17,10 +17,10 @@
     semver "^6.1.0"
     uuid "^3.3.3"
 
-"@actions/core@1.2.7", "@actions/core@^1.2.6":
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.7.tgz#594f8c45b213f0146e4be7eda8ae5cf4e198e5ab"
-  integrity sha512-kzLFD5BgEvq6ubcxdgPbRKGD2Qrgya/5j+wh4LZzqT915I0V3rED+MvjH6NXghbvk1MXknpNNQ3uKjXSEN00Ig==
+"@actions/core@1.3.0", "@actions/core@^1.2.6":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.3.0.tgz#f5e4b24c889e7f2e58b466cc8c7481292284eba0"
+  integrity sha512-xxtX0Cwdhb8LcgatfJkokqT8KzPvcIbwL9xpLU09nOwBzaStbfm0dNncsP0M4us+EpoPdWy7vbzU5vSOH7K6pg==
 
 "@actions/exec@1.0.4", "@actions/exec@^1.0.1":
   version "1.0.4"
@@ -1102,15 +1102,16 @@
 
 "@cypress/github-action@cypress-io/github-action":
   version "0.0.0-development"
-  uid "1db146275576798796bc39ef83d739924145298a"
-  resolved "https://codeload.github.com/cypress-io/github-action/tar.gz/1db146275576798796bc39ef83d739924145298a"
+  uid "6b3bc3a1c27198cda160cb03307c43bc998aa564"
+  resolved "https://codeload.github.com/cypress-io/github-action/tar.gz/6b3bc3a1c27198cda160cb03307c43bc998aa564"
   dependencies:
     "@actions/cache" "1.0.7"
-    "@actions/core" "1.2.7"
+    "@actions/core" "1.3.0"
     "@actions/exec" "1.0.4"
     "@actions/io" "1.1.0"
     "@octokit/core" "3.4.0"
     argument-vector "1.0.2"
+    debug "4.3.1"
     execa "3.4.0"
     find-yarn-workspace-root "2.0.0"
     got "11.8.2"
@@ -1368,10 +1369,10 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*", "@types/node@^15.0.1":
-  version "15.0.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.0.1.tgz#ef34dea0881028d11398be5bf4e856743e3dc35a"
-  integrity sha512-TMkXt0Ck1y0KKsGr9gJtWGjttxlZnnvDtphxUOSd0bfaR6Q1jle+sPvrzNR1urqYTWMinoKvjKfXUGsumaO1PA==
+"@types/node@*", "@types/node@^15.12.0":
+  version "15.12.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.12.0.tgz#6a459d261450a300e6865faeddb5af01c3389bb3"
+  integrity sha512-+aHJvoCsVhO2ZCuT4o5JtcPrCPyDE3+1nvbDprYes+pPkEsbjH7AGUCNtjMOXS0fqH14t+B7yLzaqSz92FPWyw==
 
 "@types/node@^14.14.31":
   version "14.14.43"
@@ -2289,6 +2290,13 @@ dayjs@^1.10.4:
   version "1.10.4"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.4.tgz#8e544a9b8683f61783f570980a8a80eaf54ab1e2"
   integrity sha512-RI/Hh4kqRc1UKLOAf/T5zdMMX5DQIlDxwUe3wSyMMnEbGunnpENCdbUgM+dW7kXidZqCttBrmw7BhN4TMddkCw==
+
+debug@4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
+  integrity sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
+  dependencies:
+    ms "2.1.2"
 
 debug@4.3.2, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
   version "4.3.2"
