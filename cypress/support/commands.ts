@@ -80,7 +80,6 @@ function ensureSuccessfulLogin(redirectValue?: string) {
 
 function completeLoginForCypressTesting() {
   // Open sign in modal and show sign in form
-  cy.get("[data-cy=signin-button]", { timeout: defaultTimeout }).click();
   cy.get("[data-cy=signin-email-form]", { timeout: defaultTimeout }).should(
     "be.visible",
   );
@@ -88,15 +87,20 @@ function completeLoginForCypressTesting() {
   // Enter username and password in inputs
   cy.get("input[name=username]", { timeout: defaultTimeout }).type(username, {
     log: false,
+    scrollBehavior: false,
   });
   cy.get("input[name=password]", { timeout: defaultTimeout })
-    .type(password, { log: false })
-    .type("{enter}");
+    .type(password, { log: false, scrollBehavior: false })
+    .type("{enter}", { scrollBehavior: false });
 }
 
 Cypress.Commands.add("signout", () => {
-  cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).click();
-  cy.get("[data-cy=sign-out-button]", { timeout: defaultTimeout }).click();
+  cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).click({
+    scrollBehavior: false,
+  });
+  cy.get("[data-cy=sign-out-button]", { timeout: defaultTimeout }).click({
+    scrollBehavior: false,
+  });
   cy.clearCookie("dolthubToken");
 });
 
