@@ -128,18 +128,6 @@ function completeLoginForCypressTesting() {
     .type(username, {
       log: false,
       scrollBehavior: false,
-    })
-    .invoke("val")
-    .then(v => {
-      if (v !== username) {
-        cy.log("Retrying entering username");
-        cy.get("input[name=username]", { timeout: defaultTimeout })
-          .clear({ scrollBehavior: false })
-          .type(username, {
-            log: false,
-            scrollBehavior: false,
-          });
-      }
     });
   cy.get("input[name=username]").should("have.value", username);
   cy.get("input[name=password]", { timeout: defaultTimeout })
