@@ -79,19 +79,22 @@ function ensureSuccessfulLogin(redirectValue?: string) {
 }
 
 function completeLoginForCypressTesting() {
-  // Open sign in modal and show sign in form
+  // Check that email form has rendered
   cy.get("[data-cy=signin-email-form]", { timeout: defaultTimeout }).should(
     "be.visible",
   );
 
   // Enter username and password in inputs
-  cy.get("input[name=username]", { timeout: defaultTimeout }).type(username, {
-    log: false,
-    scrollBehavior: false,
-  });
+  cy.get("input[name=username]", { timeout: defaultTimeout })
+    .should("be.visible")
+    .type(username, {
+      log: false,
+    });
+  cy.get("input[name=username]").should("have.value", username);
   cy.get("input[name=password]", { timeout: defaultTimeout })
-    .type(password, { log: false, scrollBehavior: false })
-    .type("{enter}", { scrollBehavior: false });
+    .should("be.visible")
+    .type(password, { log: false })
+    .type("{enter}");
 }
 
 Cypress.Commands.add("signout", () => {
@@ -130,5 +133,5 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
 Cypress.Commands.add("visitViewport", (device: Cypress.ViewportPreset) => {
   cy.viewport(device);
   // eslint-disable-next-line cypress/no-unnecessary-waiting
-  cy.wait(200);
+  cy.wait(300);
 });
