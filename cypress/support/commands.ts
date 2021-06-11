@@ -32,20 +32,24 @@ const password = Cypress.env("TEST_PASSWORD");
 Cypress.Commands.add("dataCy", (value: string) => cy.get(`[data-cy=${value}]`));
 
 // Ensures page has loaded before running tests
+// Reference: https://www.cypress.io/blog/2018/02/05/when-can-the-test-start/
 Cypress.Commands.add("visitAndWait", (path: string) => {
   let appHasStarted = false;
 
   function spyOnAddEventListener(win: any) {
     // win = window object in our application
     const addListener = win.EventTarget.prototype.addEventListener;
+    // eslint-disable-next-line no-param-reassign
     win.EventTarget.prototype.addEventListener = function (name: string) {
       if (name === "change") {
         // web app added an event listener to the input box -
         // that means the web application has started
         appHasStarted = true;
         // restore the original event listener
+        // eslint-disable-next-line no-param-reassign
         win.EventTarget.prototype.addEventListener = addListener;
       }
+      // eslint-disable-next-line prefer-rest-params
       return addListener.apply(this, arguments);
     };
   }
@@ -53,6 +57,7 @@ Cypress.Commands.add("visitAndWait", (path: string) => {
   function waitForAppStart() {
     // keeps rechecking "appHasStarted" variable
     return new Cypress.Promise((resolve, _) => {
+      // eslint-disable-next-line consistent-return
       const isReady = () => {
         if (appHasStarted) {
           return resolve();
