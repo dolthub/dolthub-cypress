@@ -20,7 +20,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "settings",
     ),
   ];
-  const skip = true;
+
+  const skip = false;
   const devicesForRedirectLink = [macbook15(pageName, redirectTests, false)];
   runTestsForDevices({
     currentPage: currentPageWithRedirect,

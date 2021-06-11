@@ -4,7 +4,6 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Signin page warmup";
 const currentPage = "/signin";
-const loggedIn = false;
 
 // This should be the first test within privatePaths/render
 describe(pageName, () => {
@@ -26,6 +25,6 @@ describe(pageName, () => {
       beVisible,
     ),
   ];
-  const devices = desktopDevicesForSignedOut(pageName, tests, false, loggedIn);
+  const devices = desktopDevicesForSignedOut(pageName, tests);
   runTestsForDevices({ currentPage, devices });
 });
