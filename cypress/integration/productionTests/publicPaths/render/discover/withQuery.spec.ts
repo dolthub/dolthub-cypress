@@ -76,7 +76,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   //   iPadTests,
   //   iPhoneTests,
   // );
+  const skip = true;
   const devices = desktopDevicesForSignedOut(pageName, desktopTests);
 
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });
