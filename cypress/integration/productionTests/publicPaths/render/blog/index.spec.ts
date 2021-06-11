@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
+import { desktopDevicesForSignedOut } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testSidecar } from "../../../../utils/sharedTests/sidecar";
 
@@ -9,7 +9,7 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const exist = newShouldArgs("exist");
+  // const exist = newShouldArgs("exist");
 
   const testBlogExceptDetails = [
     newExpectation(
@@ -39,9 +39,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const tests = [...testBlogExceptDetails, ...testSidecar(beVisible, skip)];
-  const mobileTests = [...testBlogExceptDetails, ...testSidecar(exist, skip)];
+  // const mobileTests = [...testBlogExceptDetails, ...testSidecar(exist, skip)];
 
-  const devices = allDevicesForSignedOut(pageName, tests, mobileTests);
-
+  // const devices = allDevicesForSignedOut(pageName, tests, mobileTests);
+  const devices = desktopDevicesForSignedOut(pageName, tests);
   runTestsForDevices({ currentPage, devices });
 });
