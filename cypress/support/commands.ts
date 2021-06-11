@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-export const defaultTimeout = 5000;
+export const defaultTimeout = 10000;
 
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
