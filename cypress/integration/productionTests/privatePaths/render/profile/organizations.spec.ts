@@ -14,7 +14,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", "Org Memberships"),
     ),
   ];
-
+  const skip = true;
   const devices = desktopDevicesForAppLayout(pageName, tests, false, loggedIn);
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });

@@ -16,7 +16,7 @@ describe(`${pageName} renders expected components on different devices for base 
       newShouldArgs("be.visible"),
     ),
   ];
-
+  const skip = true;
   const devices = desktopDevicesForAppLayout(pageName, tests, false, loggedIn);
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });
