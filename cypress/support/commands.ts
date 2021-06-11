@@ -31,6 +31,44 @@ const password = Cypress.env("TEST_PASSWORD");
 
 Cypress.Commands.add("dataCy", (value: string) => cy.get(`[data-cy=${value}]`));
 
+// Ensures page has loaded before running tests
+Cypress.Commands.add("visitAndWait", (path: string) => {
+  let appHasStarted = false;
+
+  function spyOnAddEventListener(win: any) {
+    // win = window object in our application
+    const addListener = win.EventTarget.prototype.addEventListener;
+    win.EventTarget.prototype.addEventListener = function (name: string) {
+      if (name === "change") {
+        // web app added an event listener to the input box -
+        // that means the web application has started
+        appHasStarted = true;
+        // restore the original event listener
+        win.EventTarget.prototype.addEventListener = addListener;
+      }
+      return addListener.apply(this, arguments);
+    };
+  }
+
+  function waitForAppStart() {
+    // keeps rechecking "appHasStarted" variable
+    return new Cypress.Promise((resolve, _) => {
+      const isReady = () => {
+        if (appHasStarted) {
+          return resolve();
+        }
+        setTimeout(isReady, 0);
+      };
+      isReady();
+    });
+  }
+
+  cy.visit(path, {
+    onBeforeLoad: spyOnAddEventListener,
+    failOnStatusCode: false,
+  }).then(waitForAppStart);
+});
+
 Cypress.Commands.add(
   "loginAsCypressTestingAfterNavigateToSignin",
   (redirectValue?: string) => {
@@ -38,7 +76,7 @@ Cypress.Commands.add(
       throw new Error("Username or password env not set");
     }
 
-    cy.visit("/signin");
+    cy.visitAndWait("/signin");
     cy.visitViewport("macbook-15");
     completeLoginForCypressTesting();
     ensureSuccessfulLogin(redirectValue);
@@ -87,14 +125,20 @@ function completeLoginForCypressTesting() {
   // Enter username and password in inputs
   cy.get("input[name=username]", { timeout: defaultTimeout })
     .should("be.visible")
+    // .wait(0)
+    // .focus()
+    // .clear({
+    //   scrollBehavior: false,
+    // })
     .type(username, {
       log: false,
+      scrollBehavior: false,
     });
   cy.get("input[name=username]").should("have.value", username);
   cy.get("input[name=password]", { timeout: defaultTimeout })
     .should("be.visible")
-    .type(password, { log: false })
-    .type("{enter}");
+    .type(password, { log: false, scrollBehavior: false })
+    .type("{enter}", { scrollBehavior: false });
 }
 
 Cypress.Commands.add("signout", () => {
@@ -127,11 +171,11 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
   }
 
   // 404 page should be rendered when page not found
-  cy.visit(currentPage, { failOnStatusCode: false });
+  cy.visitAndWait(currentPage);
 });
 
 Cypress.Commands.add("visitViewport", (device: Cypress.ViewportPreset) => {
   cy.viewport(device);
   // eslint-disable-next-line cypress/no-unnecessary-waiting
-  cy.wait(300);
+  cy.wait(500);
 });
