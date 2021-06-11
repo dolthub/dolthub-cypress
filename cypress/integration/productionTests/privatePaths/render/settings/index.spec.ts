@@ -56,7 +56,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       false,
     ),
   ];
-  const skip = true;
+  const skip = false;
   const devices = desktopDevicesForAppLayout(
     pageName,
     navLinkTests,

@@ -55,7 +55,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testDoltInstallationSteps,
   ];
-  const skip = true;
+  const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
   runTestsForDevices({ currentPage, devices, skip });
 });
