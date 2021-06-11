@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "cy-open": "cypress open",
-    "cy-run": "cypress run",
+    "cy-run": "cypress run --record",
     "cy-chrome": "cypress run --browser chrome --headless",
     "cy-open-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress open",
     "cy-run-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress run",
