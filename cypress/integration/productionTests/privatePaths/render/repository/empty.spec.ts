@@ -1,3 +1,5 @@
+import { runTestsForDevices } from "../../../../utils";
+import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithScrollIntoView,
@@ -5,8 +7,6 @@ import {
 } from "../../../../utils/helpers";
 import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
 import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
 
 const pageName = "Logged in repo page with no branch and no data";
 const currentOwner = "automated_testing";
@@ -54,7 +54,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testDoltInstallationSteps,
   ];
-
+  const skip = true;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });
