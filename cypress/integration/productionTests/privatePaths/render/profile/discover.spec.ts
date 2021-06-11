@@ -6,9 +6,7 @@ const pageName = "Profile discover page";
 const currentPage = "/profile/discover";
 const loggedIn = true;
 
-const baseUrl = Cypress.env("BASE_URL");
-
-describe(`${pageName} renders expected components on different devices for base url ${baseUrl}`, () => {
+describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     newExpectation(
       "should render repository list",
@@ -16,7 +14,7 @@ describe(`${pageName} renders expected components on different devices for base 
       newShouldArgs("be.visible"),
     ),
   ];
-  const skip = true;
+  const skip = false;
   const devices = desktopDevicesForAppLayout(pageName, tests, false, loggedIn);
   runTestsForDevices({ currentPage, devices, skip });
 });

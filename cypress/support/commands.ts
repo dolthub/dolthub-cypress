@@ -24,12 +24,55 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-export const defaultTimeout = 5000;
+export const defaultTimeout = 10000;
 
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
 
 Cypress.Commands.add("dataCy", (value: string) => cy.get(`[data-cy=${value}]`));
+
+// Ensures page has loaded before running tests
+// Reference: https://www.cypress.io/blog/2018/02/05/when-can-the-test-start/
+Cypress.Commands.add("visitAndWait", (path: string) => {
+  let appHasStarted = false;
+
+  function spyOnAddEventListener(win: any) {
+    // win = window object in our application
+    const addListener = win.EventTarget.prototype.addEventListener;
+    // eslint-disable-next-line no-param-reassign
+    win.EventTarget.prototype.addEventListener = function (name: string) {
+      if (name === "change") {
+        // web app added an event listener to the input box -
+        // that means the web application has started
+        appHasStarted = true;
+        // restore the original event listener
+        // eslint-disable-next-line no-param-reassign
+        win.EventTarget.prototype.addEventListener = addListener;
+      }
+      // eslint-disable-next-line prefer-rest-params
+      return addListener.apply(this, arguments);
+    };
+  }
+
+  function waitForAppStart() {
+    // keeps rechecking "appHasStarted" variable
+    return new Cypress.Promise((resolve, _) => {
+      // eslint-disable-next-line consistent-return
+      const isReady = () => {
+        if (appHasStarted) {
+          return resolve();
+        }
+        setTimeout(isReady, 0);
+      };
+      isReady();
+    });
+  }
+
+  cy.visit(path, {
+    onBeforeLoad: spyOnAddEventListener,
+    failOnStatusCode: false,
+  }).then(waitForAppStart);
+});
 
 Cypress.Commands.add(
   "loginAsCypressTestingAfterNavigateToSignin",
@@ -38,7 +81,7 @@ Cypress.Commands.add(
       throw new Error("Username or password env not set");
     }
 
-    cy.visit("/signin");
+    cy.visitAndWait("/signin");
     cy.visitViewport("macbook-15");
     completeLoginForCypressTesting();
     ensureSuccessfulLogin(redirectValue);
@@ -79,17 +122,21 @@ function ensureSuccessfulLogin(redirectValue?: string) {
 }
 
 function completeLoginForCypressTesting() {
-  // Open sign in modal and show sign in form
+  // Check that email form has rendered
   cy.get("[data-cy=signin-email-form]", { timeout: defaultTimeout }).should(
     "be.visible",
   );
 
   // Enter username and password in inputs
-  cy.get("input[name=username]", { timeout: defaultTimeout }).type(username, {
-    log: false,
-    scrollBehavior: false,
-  });
+  cy.get("input[name=username]", { timeout: defaultTimeout })
+    .should("be.visible")
+    .type(username, {
+      log: false,
+      scrollBehavior: false,
+    });
+  cy.get("input[name=username]").should("have.value", username);
   cy.get("input[name=password]", { timeout: defaultTimeout })
+    .should("be.visible")
     .type(password, { log: false, scrollBehavior: false })
     .type("{enter}", { scrollBehavior: false });
 }
@@ -124,11 +171,11 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
   }
 
   // 404 page should be rendered when page not found
-  cy.visit(currentPage, { failOnStatusCode: false });
+  cy.visitAndWait(currentPage);
 });
 
 Cypress.Commands.add("visitViewport", (device: Cypress.ViewportPreset) => {
   cy.viewport(device);
   // eslint-disable-next-line cypress/no-unnecessary-waiting
-  cy.wait(200);
+  cy.wait(500);
 });
