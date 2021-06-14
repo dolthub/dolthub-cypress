@@ -18,7 +18,6 @@ const currentPage = `/repositories/${searchTerm}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  // const exist = newShouldArgs("exist");
 
   const clearSearchClickFlow = newClickFlow(
     "[data-cy=clear-search-button-repos]",
