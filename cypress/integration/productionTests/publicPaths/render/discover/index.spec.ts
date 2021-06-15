@@ -9,7 +9,6 @@ import {
   checkRepoListForTab,
   mostRecentReposClickFlow,
 } from "../../../../utils/sharedTests/reposContainer";
-import { testHomepageSidecar } from "../../../../utils/sharedTests/sidecar";
 
 const pageName = "Discover page";
 const currentPage = "/discover";
@@ -43,9 +42,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkRepoListForTab("most-starred", 20),
   ];
 
-  const desktopTests = [...testReposContainer, ...testHomepageSidecar];
+  const desktopTests = testReposContainer;
 
-  // const iPadTests = [...testReposContainer, ...testHomepageSidecar];
+  // const iPadTests = testReposContainer;
 
   // const iPhoneTests = [
   //   testBlogArticles(exist),
