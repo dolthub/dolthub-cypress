@@ -53,7 +53,7 @@ export function newExpectationWithClickFlows(
 
 export function newExpectationWithScrollIntoView(
   description: string,
-  selector: string,
+  selector: Selector,
   shouldArgs: ShouldArgs,
   scrollIntoView: boolean,
   skip = false,
