@@ -19,7 +19,7 @@ const sharedLinks = [
   "[data-cy=navbar-pricing]",
 ];
 
-const signedOutNavbarLinks = [
+export const signedOutNavbarLinks = [
   ...sharedLinks,
   "[data-cy=navbar-discover]",
   "[data-cy=navbar-signin]",
@@ -67,13 +67,13 @@ const mobileNavbarClickFlow = newClickFlow(
 
 export const testMobileNavbar: Tests = [
   newExpectationWithScrollIntoView(
-    "should show menu button on mobile",
+    "should scroll to and show menu button on mobile",
     "[data-cy=mobile-navbar-menu-button]",
     beVisible,
     true,
   ),
   newExpectationWithClickFlows(
-    "should show menu button on mobile",
+    "should show menu button and open nav on mobile",
     "[data-cy=mobile-navbar-menu-button]",
     beVisible,
     [mobileNavbarClickFlow],
