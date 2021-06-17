@@ -9,7 +9,7 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const testBlogExcerptDetails = [
+  const tests = [
     newExpectation(
       "should have featured blogs",
       "[data-cy=featured-blogs]",
@@ -34,6 +34,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       skip,
     ),
+  ];
+
+  const desktopTests = [
+    ...tests,
     newExpectation(
       "should have footer of first blog excerpt",
       "[data-cy=blog-list] > li:first [data-cy=blog-metadata]",
@@ -42,10 +46,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = allDevicesForSignedOut(
-    pageName,
-    testBlogExcerptDetails,
-    testBlogExcerptDetails,
-  );
+  const mobileTests = [
+    ...tests,
+    newExpectation(
+      "should have footer of first blog excerpt",
+      "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
+      beVisible,
+      skip,
+    ),
+  ];
+
+  const devices = allDevicesForSignedOut(pageName, desktopTests, mobileTests);
   runTestsForDevices({ currentPage, devices });
 });
