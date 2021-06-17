@@ -34,12 +34,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       skip,
     ),
-    newExpectation(
-      "should have footer of first blog excerpt",
-      "[data-cy=blog-list] > li:first [data-cy=blog-metadata]",
-      beVisible,
-      skip,
-    ),
   ];
 
   const desktopTests = [
