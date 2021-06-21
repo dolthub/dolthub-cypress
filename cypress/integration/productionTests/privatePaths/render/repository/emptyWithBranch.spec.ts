@@ -1,4 +1,3 @@
-import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -6,6 +5,7 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
 import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
@@ -55,7 +55,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testDoltInstallationSteps,
   ];
-
+  const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });

@@ -1,9 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15 } from "../../../../utils/devices";
 import {
-  newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
   newExpectationWithTypeString,
   newShouldArgs,
 } from "../../../../utils/helpers";
@@ -14,33 +12,28 @@ const currentPage = "/signin";
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const signInModalClickFlow = newClickFlow(
-    "[data-cy=navbar-signin-button]",
-    [
-      newExpectation("", "[data-cy=signin-email-form]", beVisible),
-      newExpectationWithTypeString(
-        "",
-        "input[name=username]",
-        beVisible,
-        "invalid^username",
-      ),
-      newExpectationWithTypeString(
-        "",
-        "input[name=password]",
-        beVisible,
-        "password123{enter}", // should also maybe test clicking on button too
-      ),
-      newExpectation("", "[data-cy=error-msg]", beVisible),
-    ],
-    "[data-cy=signin-cancel]",
-  );
-
   const tests = [
-    newExpectationWithClickFlows(
-      "should click on signin button",
-      "[data-cy=navbar-signin-button]",
+    newExpectation(
+      "shoud have signin email form",
+      "[data-cy=signin-email-form]",
       beVisible,
-      [signInModalClickFlow],
+    ),
+    newExpectationWithTypeString(
+      "should input invalid username and get rror",
+      "input[name=username]",
+      beVisible,
+      "invalid^username",
+    ),
+    newExpectationWithTypeString(
+      "should input password and enter",
+      "input[name=password]",
+      beVisible,
+      "password123{enter}", // should also maybe test clicking on button too
+    ),
+    newExpectation(
+      "should have error message",
+      "[data-cy=error-msg]",
+      beVisible,
     ),
   ];
 

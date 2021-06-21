@@ -56,12 +56,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       false,
     ),
   ];
-
+  const skip = false;
   const devices = desktopDevicesForAppLayout(
     pageName,
     navLinkTests,
     true,
     loggedIn,
   );
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });
