@@ -30,8 +30,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render Settings Repositories link",
-      "[data-cy=settings-repositories-section-link]",
+      "should render Settings Databases link",
+      "[data-cy=settings-databases-section-link]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(

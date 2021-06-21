@@ -71,8 +71,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       skip,
     ),
     newExpectation(
-      "should show Repositories tab",
-      "[data-cy=org-repositories-tab]",
+      "should show Databases tab",
+      "[data-cy=org-databases-tab]",
       beVisible,
       skip,
     ),

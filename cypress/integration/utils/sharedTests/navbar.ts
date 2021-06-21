@@ -24,7 +24,7 @@ const signedOutNavbarLinks = [
   "[data-cy=navbar-signin]",
 ];
 
-const signedInNavbarLinks = [...sharedLinks, "[data-cy=navbar-repositories]"];
+const signedInNavbarLinks = [...sharedLinks, "[data-cy=navbar-databases]"];
 
 export const testSignedOutNavbar: Tests = [
   newExpectation(
