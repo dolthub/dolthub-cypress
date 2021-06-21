@@ -9,7 +9,7 @@ const currentPage = `/organizations/Liquidata/billing`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
-  const disabledTab = newShouldArgs("have.class", "react-tabs__tab--disabled");
+  const notBeVisible = newShouldArgs("not.be.visible");
 
   const testProfileCard = [
     newExpectation(
@@ -62,28 +62,28 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should show Databases tab",
-      "[data-cy=org-databases-tab]",
+      "[data-cy=org-profile-databases-tab]",
       beVisible,
     ),
     newExpectation(
       "should have disabled People tab",
-      "[data-cy=org-people-tab]",
-      disabledTab,
+      "[data-cy=org-profile-people-tab]",
+      notBeVisible,
     ),
     newExpectation(
       "should have disabled Settings tab",
-      "[data-cy=org-settings-tab]",
-      disabledTab,
+      "[data-cy=org-profile-settings-tab]",
+      notBeVisible,
     ),
     newExpectation(
       "should have disabled Billing tab",
-      "[data-cy=org-billing-tab]",
-      disabledTab,
+      "[data-cy=org-profile-billing-tab]",
+      notBeVisible,
     ),
     newExpectation(
       "should have disabled Payment History tab",
-      "[data-cy=org-payment-history-tab]",
-      disabledTab,
+      "[data-cy=org-profile-payment-history-tab]",
+      notBeVisible,
     ),
     newExpectation(
       "should not show list of owner repositories",
