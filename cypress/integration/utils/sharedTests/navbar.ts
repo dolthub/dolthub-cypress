@@ -21,7 +21,7 @@ const sharedLinks = [
 const signedOutNavbarLinks = [
   ...sharedLinks,
   "[data-cy=navbar-discover]",
-  "[data-cy=navbar-signin]",
+  "[data-cy=navbar-signin-button]",
 ];
 
 const signedInNavbarLinks = [...sharedLinks, "[data-cy=navbar-databases]"];

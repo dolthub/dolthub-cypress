@@ -66,7 +66,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const signinClickFlow = (closeDataCy: string): ClickFlow =>
     newClickFlow(
-      "[data-cy=signin-button]",
+      "[data-cy=navbar-signin-button]",
       [
         newExpectation("", "[data-cy=signin-signin-google]", beVisible),
         newExpectation("", "[data-cy=signin-signin-github]", beVisible),
@@ -131,7 +131,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testSections,
     newExpectationWithClickFlows(
       "should have Sign in form",
-      "[data-cy=signin-button]",
+      "[data-cy=navbar-signin-button]",
       beVisible,
       [signinClickFlow("[data-cy=recover-cancel]")],
     ),

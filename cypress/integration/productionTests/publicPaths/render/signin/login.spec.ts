@@ -15,7 +15,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const signInModalClickFlow = newClickFlow(
-    "[data-cy=signin-button]",
+    "[data-cy=navbar-signin-button]",
     [
       newExpectation("", "[data-cy=signin-email-form]", beVisible),
       newExpectationWithTypeString(
@@ -38,7 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     newExpectationWithClickFlows(
       "should click on signin button",
-      "[data-cy=signin-button]",
+      "[data-cy=navbar-signin-button]",
       beVisible,
       [signInModalClickFlow],
     ),

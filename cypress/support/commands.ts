@@ -80,7 +80,7 @@ function ensureSuccessfulLogin(redirectValue?: string) {
 
 function completeLoginForCypressTesting() {
   // Open sign in modal and show sign in form
-  cy.get("[data-cy=signin-button]", { timeout: defaultTimeout }).click();
+  cy.get("[data-cy=navbar-signin-button]", { timeout: defaultTimeout }).click();
   cy.get("[data-cy=signin-email-form]", { timeout: defaultTimeout }).should(
     "be.visible",
   );
