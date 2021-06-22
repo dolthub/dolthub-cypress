@@ -82,7 +82,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should have disabled Payment History tab",
-      "[data-cy=org-payment-history-tab]",
+      "[data-cy=org-profile-payment-history-tab]",
       notBeVisible,
     ),
     newExpectation(
