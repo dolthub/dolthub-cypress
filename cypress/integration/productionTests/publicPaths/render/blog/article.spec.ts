@@ -1,19 +1,16 @@
 import { runTestsForDevices } from "../../../../utils";
 import { allDevicesForSignedOut } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testSidecar } from "../../../../utils/sharedTests/sidecar";
 
 const pageName = "Blog article page";
 const currentBlog = "2020-03-06-so-you-want-git-for-data";
 const currentPage = Cypress.env("LOCAL_BLOG")
   ? `/${currentBlog}`
   : `/blog/${currentBlog}`;
-// const skip = !!Cypress.env("LOCAL_DOLTHUB");
-const skip = true;
+const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const exist = newShouldArgs("exist");
 
   const testBlogArticle = [
     newExpectation(
@@ -30,7 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should have header with title",
-      "[data-cy=blog-post] > header > h1",
+      "[data-cy=blog-post] > header h1",
       beVisible,
       skip,
     ),
@@ -54,10 +51,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const tests = [...testBlogArticle, ...testSidecar(beVisible, skip)];
-  const mobileTests = [...testBlogArticle, ...testSidecar(exist, skip)];
-
-  const devices = allDevicesForSignedOut(pageName, tests, mobileTests);
-
+  const devices = allDevicesForSignedOut(
+    pageName,
+    testBlogArticle,
+    testBlogArticle,
+  );
   runTestsForDevices({ currentPage, devices });
 });

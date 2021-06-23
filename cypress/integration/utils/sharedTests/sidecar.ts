@@ -21,17 +21,6 @@ export const testBlogArticles = (args: ShouldArgs): Expectation =>
     args,
   );
 
-export const testCreateAccountLink = (
-  args: ShouldArgs,
-  skip = false,
-): Expectation =>
-  newExpectation(
-    "should have link to Create an account",
-    "[data-cy=growthpanel-create-account]",
-    args,
-    skip,
-  );
-
 export const testDiscordCard = newExpectation(
   "should have Discord card",
   "[data-cy=join-discord-card]",
@@ -42,9 +31,4 @@ export const testHomepageSidecar: Tests = [
   testDiscordCard,
   testBlogArticles(exist),
   testDoltReleaseLink(exist),
-];
-
-export const testSidecar = (args: ShouldArgs, skip = false): Tests => [
-  testDoltReleaseLink(args, skip),
-  testCreateAccountLink(args, skip),
 ];

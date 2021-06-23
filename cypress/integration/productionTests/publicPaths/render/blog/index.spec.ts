@@ -1,7 +1,6 @@
 import { runTestsForDevices } from "../../../../utils";
 import { allDevicesForSignedOut } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testSidecar } from "../../../../utils/sharedTests/sidecar";
 
 const pageName = "Blog list page";
 const currentPage = Cypress.env("LOCAL_BLOG") ? "/" : "/blog/";
@@ -9,9 +8,14 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const exist = newShouldArgs("exist");
 
-  const testBlogExceptDetails = [
+  const tests = [
+    newExpectation(
+      "should have featured blogs",
+      "[data-cy=featured-blogs]",
+      beVisible,
+      skip,
+    ),
     newExpectation(
       "should have list of blog articles",
       "[data-cy=blog-list] > li:first",
@@ -20,28 +24,38 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should have header of first blog excerpt",
-      "[data-cy=blog-list] > li:first > header",
+      "[data-cy=blog-list] > li:first header",
       beVisible,
       skip,
     ),
     newExpectation(
       "should have details of first blog excerpt",
-      "[data-cy=blog-list] > li:first > main",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should have footer of first blog excerpt",
-      "[data-cy=blog-list] > li:first > footer",
+      "[data-cy=blog-list] > li:first [data-cy=blog-excerpt]",
       beVisible,
       skip,
     ),
   ];
 
-  const tests = [...testBlogExceptDetails, ...testSidecar(beVisible, skip)];
-  const mobileTests = [...testBlogExceptDetails, ...testSidecar(exist, skip)];
+  const desktopTests = [
+    ...tests,
+    newExpectation(
+      "should have footer of first blog excerpt",
+      "[data-cy=blog-list] > li:first [data-cy=blog-metadata]",
+      beVisible,
+      skip,
+    ),
+  ];
 
-  const devices = allDevicesForSignedOut(pageName, tests, mobileTests);
+  const mobileTests = [
+    ...tests,
+    newExpectation(
+      "should have footer of first blog excerpt",
+      "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
+      beVisible,
+      skip,
+    ),
+  ];
 
+  const devices = allDevicesForSignedOut(pageName, desktopTests, mobileTests);
   runTestsForDevices({ currentPage, devices });
 });

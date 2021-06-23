@@ -71,11 +71,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should have table layout",
-      "[data-cy=table-layout-container]",
-      beVisible,
-    ),
-    newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",
       notExist,
@@ -91,11 +86,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation("should have info icon", "[data-cy=info-icon]", beVisible),
-    newExpectation(
-      "should have open sql editor",
-      "[data-cy=sql-editor]",
-      beVisible,
-    ),
+    // newExpectation(
+    //   "should have open sql editor",
+    //   "[data-cy=sql-editor]",
+    //   beVisible,
+    // ),
     newExpectationWithClickFlows(
       "should show pull button",
       "[data-cy=create-pull]",
@@ -130,6 +125,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
