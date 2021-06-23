@@ -30,8 +30,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render Settings Repositories link",
-      "[data-cy=settings-repositories-section-link]",
+      "should render Settings Databases link",
+      "[data-cy=settings-databases-section-link]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
@@ -56,12 +56,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       false,
     ),
   ];
-
+  const skip = false;
   const devices = desktopDevicesForAppLayout(
     pageName,
     navLinkTests,
     true,
     loggedIn,
   );
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });
