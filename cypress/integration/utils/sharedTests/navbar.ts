@@ -17,15 +17,15 @@ const sharedLinks = [
   "[data-cy=navbar-about-dolt]",
   "[data-cy=navbar-bounties]",
   "[data-cy=navbar-pricing]",
+  "[data-cy=navbar-databases]",
 ];
 
 export const signedOutNavbarLinks = [
   ...sharedLinks,
-  "[data-cy=navbar-discover]",
   "[data-cy=navbar-signin-button]",
 ];
 
-const signedInNavbarLinks = [...sharedLinks, "[data-cy=navbar-databases]"];
+const signedInNavbarLinks = sharedLinks;
 
 export const testSignedOutNavbar: Tests = [
   newExpectation(
