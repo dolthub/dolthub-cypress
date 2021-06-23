@@ -22,13 +22,13 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
-    "@babel/core": "^7.14.0",
+    "@babel/core": "^7.14.3",
     "@babel/preset-env": "^7.14.4",
     "@babel/preset-typescript": "^7.13.0",
     "@cypress/github-action": "cypress-io/github-action",
     "@types/node": "^15.0.1",
     "@typescript-eslint/eslint-plugin": "^4.26",
-    "@typescript-eslint/parser": "^4.23",
+    "@typescript-eslint/parser": "^4.26",
     "cypress": "7.4",
     "eslint": "^7.25.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
@@ -39,7 +39,7 @@
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.1",
     "typescript": "^4.3.2"
   }
 }
