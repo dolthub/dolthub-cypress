@@ -1,27 +1,21 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { desktopDevicesForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
-import { testMobileMailingList } from "../../../../utils/sharedTests/mailingList";
 import {
   checkRepoListForTab,
   mostRecentReposClickFlow,
-  testMobileRepoList,
 } from "../../../../utils/sharedTests/reposContainer";
-import {
-  testBlogArticles,
-  testHomepageSidecar,
-} from "../../../../utils/sharedTests/sidecar";
 
 const pageName = "Discover page";
 const currentPage = "/discover";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const exist = newShouldArgs("exist");
+  // const exist = newShouldArgs("exist");
 
   const testReposContainer = [
     newExpectation(
@@ -48,22 +42,23 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkRepoListForTab("most-starred", 20),
   ];
 
-  const desktopTests = [...testReposContainer, ...testHomepageSidecar];
+  const desktopTests = testReposContainer;
 
-  const iPadTests = [...testReposContainer, ...testHomepageSidecar];
+  // const iPadTests = testReposContainer;
 
-  const iPhoneTests = [
-    testBlogArticles(exist),
-    ...testMobileRepoList("[data-cy=discover-repo-lists]"),
-    ...testMobileMailingList("[data-cy=discover-mobile-mailing-list]"),
-  ];
+  // const iPhoneTests = [
+  //   testBlogArticles(exist),
+  //   ...testMobileRepoList("[data-cy=discover-repo-lists]"),
+  //   ...testMobileMailingList("[data-cy=discover-mobile-mailing-list]"),
+  // ];
 
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    desktopTests,
-    iPadTests,
-    iPhoneTests,
-  );
+  // const devices = allDevicesDiffTestsForSignedOut(
+  //   pageName,
+  //   desktopTests,
+  //   iPadTests,
+  //   iPhoneTests,
+  // );
+  const devices = desktopDevicesForSignedOut(pageName, desktopTests);
 
   runTestsForDevices({ currentPage, devices });
 });

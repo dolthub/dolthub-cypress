@@ -63,6 +63,11 @@ export function runTests({
         if (t.scrollTo) {
           handleScrollTo(t.scrollTo);
         }
+
+        if (t.redirect) {
+          // Sign out after signing in for redirect and running tests
+          cy.signout();
+        }
       });
     }
   });
@@ -134,7 +139,9 @@ function getAssertionTest(
   related selector: ${selectorStr},
 `;
   if (typeString) {
-    return cy.get(selectorStr, { timeout: defaultTimeout }).type(typeString);
+    return cy
+      .get(selectorStr, { timeout: defaultTimeout })
+      .type(typeString, { scrollBehavior: false });
   }
   if (url) {
     return cy.location().then(loc => expect(loc.href).to.include(url));
@@ -179,10 +186,14 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
 function runClicks(clickStrOrArr: string | string[]) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, { timeout: defaultTimeout }).click();
+      cy.get(clickStr, { timeout: defaultTimeout }).click({
+        scrollBehavior: false,
+      });
     });
   } else {
-    cy.get(clickStrOrArr, { timeout: defaultTimeout }).click();
+    cy.get(clickStrOrArr, { timeout: defaultTimeout }).click({
+      scrollBehavior: false,
+    });
   }
 }
 

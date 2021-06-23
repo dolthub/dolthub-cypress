@@ -4,6 +4,7 @@ import {
   Expectation,
   ScrollTo,
   ScrollToPosition,
+  ScrollToXY,
   Selector,
   ShouldArgs,
   Tests,
@@ -52,7 +53,7 @@ export function newExpectationWithClickFlows(
 
 export function newExpectationWithScrollIntoView(
   description: string,
-  selector: string,
+  selector: Selector,
   shouldArgs: ShouldArgs,
   scrollIntoView: boolean,
   skip = false,
@@ -114,6 +115,28 @@ export function newScrollToPosition(
   options?: Partial<Cypress.ScrollToOptions> | undefined,
 ): ScrollToPosition {
   return { position, selectorStr, options };
+}
+
+export function scrollToXY(
+  selectorStr: string,
+  x: string | number,
+  y: string | number,
+): Expectation {
+  return newExpectationWithScrollTo(
+    `should scroll to x: ${x}, y: ${y} of ${selectorStr}`,
+    selectorStr,
+    newShouldArgs("be.visible"),
+    newScrollToXY(x, y, selectorStr),
+  );
+}
+
+export function newScrollToXY(
+  x: string | number,
+  y: string | number,
+  selectorStr?: string,
+  options?: Partial<Cypress.ScrollToOptions>,
+): ScrollToXY {
+  return { x, y, selectorStr, options };
 }
 
 // Devices

@@ -85,13 +85,18 @@ function getAppLayoutTests(tests: Tests, skipNavbar = false, loggedIn = false) {
 export const mobileDevicesForSignedOut = (
   pageName: string,
   tests: Tests,
+  skipNavbar = false,
 ): Devices => [
-  iPad2(pageName, getSignedOutMobileTests(tests), false),
-  iPhoneX(pageName, getSignedOutMobileTests(tests), false),
+  iPad2(pageName, getSignedOutMobileTests(tests, skipNavbar), false),
+  iPhoneX(pageName, getSignedOutMobileTests(tests, skipNavbar), false),
 ];
 
-export const desktopDevicesForSignedOut = (pageName: string, tests: Tests) => {
-  const t = getSignedOutTests(tests);
+export const desktopDevicesForSignedOut = (
+  pageName: string,
+  tests: Tests,
+  skipNavbar = false,
+) => {
+  const t = getSignedOutTests(tests, skipNavbar);
   return [macbook15(pageName, t, false), macbook11(pageName, t, false)];
 };
 
@@ -99,9 +104,10 @@ export const allDevicesForSignedOut = (
   pageName: string,
   desktopTests: Tests,
   mobileTests: Tests,
+  skipNavbar = false,
 ) => [
-  ...desktopDevicesForSignedOut(pageName, desktopTests),
-  ...mobileDevicesForSignedOut(pageName, mobileTests),
+  ...desktopDevicesForSignedOut(pageName, desktopTests, skipNavbar),
+  ...mobileDevicesForSignedOut(pageName, mobileTests, skipNavbar),
 ];
 
 export const allDevicesDiffTestsForSignedOut = (
@@ -109,16 +115,19 @@ export const allDevicesDiffTestsForSignedOut = (
   desktopTests: Tests,
   iPadTests: Tests,
   iPhoneTests: Tests,
+  skipNavbar = false,
 ) => [
-  ...desktopDevicesForSignedOut(pageName, desktopTests),
-  iPad2(pageName, getSignedOutMobileTests(iPadTests), false),
-  iPhoneX(pageName, getSignedOutMobileTests(iPhoneTests), false),
+  ...desktopDevicesForSignedOut(pageName, desktopTests, skipNavbar),
+  iPad2(pageName, getSignedOutMobileTests(iPadTests, skipNavbar), false),
+  iPhoneX(pageName, getSignedOutMobileTests(iPhoneTests, skipNavbar), false),
 ];
 
-function getSignedOutMobileTests(t: Tests): Tests {
+function getSignedOutMobileTests(t: Tests, skipNavbar = false): Tests {
+  if (skipNavbar) return [...t, ...testFooter];
   return [...testMobileNavbar, ...t, ...testFooter];
 }
 
-function getSignedOutTests(t: Tests): Tests {
+function getSignedOutTests(t: Tests, skipNavbar = false): Tests {
+  if (skipNavbar) return [...t, ...testFooter];
   return [...testSignedOutNavbar, ...t, ...testFooter];
 }

@@ -18,28 +18,28 @@ const testIssueHeader = (
   issueState: string,
 ): Tests => [
   newExpectation(
-    "should have repo header",
-    "[data-cy=repo-issues-nav]",
+    "should have issue breadcrumbs",
+    "[data-cy=repo-issue-breadcrumbs]",
     beVisible,
   ),
   newExpectation(
     "should have owner's name",
-    "[data-cy=repo-issues-nav-owner-name]",
+    "[data-cy=repo-owner-breadcrumb-link]",
     newShouldArgs("be.visible.and.contain", ownerName),
   ),
   newExpectation(
     "should have repo's name",
-    "[data-cy=repo-issues-nav-repo-name]",
+    "[data-cy=repo-name-breadcrumb-link]",
     newShouldArgs("be.visible.and.contain", repoName),
   ),
   newExpectation(
     "should have repo's issues link",
-    "[data-cy=repo-issues-nav-issues-list]",
+    "[data-cy=repo-issues-breadcrumb-link]",
     newShouldArgs("be.visible.and.contain", "issues"),
   ),
   newExpectation(
     "should have repo issue id",
-    "[data-cy=repo-issues-nav-issue-id]",
+    "[data-cy=repo-issue-breadcrumb-text]",
     newShouldArgs("be.visible.and.contain", issueId),
   ),
   newExpectation(
@@ -52,11 +52,6 @@ const testIssueHeader = (
 // ISSUE PAGE
 
 const testIssuePage = [
-  newExpectation(
-    "should show details section",
-    "[data-cy=issue-page-details]",
-    beVisible,
-  ),
   newExpectation("should show title", "[data-cy=issue-page-title]", beVisible),
   newExpectation(
     "should show description",

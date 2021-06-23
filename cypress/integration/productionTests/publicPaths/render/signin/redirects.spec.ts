@@ -21,9 +21,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
+  const skip = false;
   const devicesForRedirectLink = [macbook15(pageName, redirectTests, false)];
   runTestsForDevices({
     currentPage: currentPageWithRedirect,
     devices: devicesForRedirectLink,
+    skip,
   });
 });

@@ -12,11 +12,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const tests = [
     newExpectation(
-      "should have table layout",
-      "[data-cy=table-layout-container]",
-      beVisible,
-    ),
-    newExpectation(
       "should render repo webhooks page",
       "[data-cy=repo-page-for-webhooks]",
       beVisible,
@@ -39,6 +34,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
