@@ -34,8 +34,8 @@ export const testMobileRepoList = (dataCy: string): Tests => [
     "should have repo list with title on mobile",
     dataCy,
     newShouldArgs("be.visible.and.contain", [
-      "Featured datasets",
-      "Explore more public datasets on your desktop",
+      "Featured databases",
+      "Explore more public databases on your desktop",
     ]),
     true,
   ),
