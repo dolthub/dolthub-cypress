@@ -73,11 +73,7 @@ const tablesClickFlow = (tableLen: number, testTable?: string): ClickFlow => {
       ? emptyTablesExpectation
       : notEmptyTableExpectations(tableLen, testTable);
 
-  return newClickFlow(
-    "[data-cy=repo-tables]",
-    expectations,
-    "[data-cy=repo-tables]",
-  );
+  return newClickFlow("[data-cy=repo-tables-table-list]", expectations);
 };
 
 export const testTablesSection = (
