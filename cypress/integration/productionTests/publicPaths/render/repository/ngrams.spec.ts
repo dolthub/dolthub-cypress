@@ -8,15 +8,6 @@ import {
 } from "../../../../utils/helpers";
 import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  testAboutSection,
-  testCommitSection,
-  testIndexesSection,
-  testPullRequestsSection,
-  testQueryCatalogSection,
-  testReleasesSection,
-  testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Repository page (wikipedia-ngrams) with tables";
@@ -29,11 +20,11 @@ const beVisible = newShouldArgs("be.visible");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tablesClickFlow = newClickFlow(
-    "[data-cy=repo-tables]",
+    "[data-cy=active-tab-tables]",
     [
       newExpectation(
         "",
-        "[data-cy=repo-tables-table-list] > li",
+        "[data-cy=repo-tables-table-list] > ol > li",
         newShouldArgs("be.visible.and.have.length", 4),
       ),
       newExpectation(
@@ -57,24 +48,19 @@ describe(`${pageName} renders expected components on different devices`, () => {
         beVisible,
       ),
     ],
-    "[data-cy=repo-tables]",
+    "[data-cy=repo-tables-table-list]",
   );
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    testAboutSection(false),
     newExpectationWithClickFlows(
       "should have repo Tables section",
-      "[data-cy=repo-tables]",
+      "[data-cy=repo-tables-table-list]",
       beVisible,
       [tablesClickFlow],
     ),
-    testIndexesSection(4, "unigram_counts"),
-    testViewsSection(0),
-    testQueryCatalogSection(0),
-    testCommitSection(5),
-    testReleasesSection(0),
-    testPullRequestsSection(0),
+    // testIndexesSection(4, "unigram_counts"),
+    // testViewsSection(0),
     newExpectation(
       "should find repo data",
       "[data-cy=repo-data-table-empty]",
@@ -95,7 +81,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
 
@@ -105,7 +91,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     [
       newExpectation(
         "",
-        "[data-cy=repo-data-table-column-dump_date]",
+        "[data-cy=repo-tables-table-column-dump_date]",
         newShouldArgs("be.visible.and.contain", "dump_date"),
       ),
       newExpectation(
@@ -173,19 +159,19 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     ),
     newExpectationWithClickFlows(
       "",
-      "[data-cy=repo-data-table-column-dump_date]",
+      "[data-cy=repo-tables-table-column-dump_date]",
       beVisible,
       [totalsToTrigramsClickFlow],
     ),
     newExpectationWithClickFlows(
       "",
-      "[data-cy=repo-data-table-column-trigram]",
+      "[data-cy=repo-tables-table-column-trigram]",
       beVisible,
       [trigramsToUnigramsClickFlow],
     ),
     newExpectationWithClickFlows(
       "",
-      "[data-cy=repo-data-table-column-unigram]",
+      "[data-cy=repo-tables-table-column-unigram]",
       beVisible,
       [unigramsToBigramsClickFlow],
     ),
@@ -196,7 +182,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     [
       newExpectation(
         "",
-        "[data-cy=repo-data-table-column-unigram]",
+        "[data-cy=repo-tables-table-column-unigram]",
         newShouldArgs("be.visible.and.contain", "unigram"),
       ),
       newExpectation(
@@ -212,7 +198,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     [
       newExpectation(
         "",
-        "[data-cy=repo-data-table-column-trigram]",
+        "[data-cy=repo-tables-table-column-trigram]",
         newShouldArgs("be.visible.and.contain", "trigram"),
       ),
       newExpectationWithClickFlows(
@@ -227,19 +213,19 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   const tests = [
     newExpectationWithClickFlows(
       "should update data table when table clicked",
-      "[data-cy=repo-data-table-column-bigram]",
+      "[data-cy=repo-tables-table-column-bigram]",
       beVisible,
       [tablesClickFlow],
     ),
     newExpectationWithClickFlows(
-      "should keep Tables section open after new table selected",
-      "[data-cy=repo-tables]",
+      "should stay on Tables tab after a new table is selected",
+      "[data-cy=active-tab-tables]",
       beVisible,
       [tablesCloseClickFlow],
     ),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
