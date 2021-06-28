@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { allDevicesForSignedOut } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Team page";
@@ -24,6 +24,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = allDevicesDiffTestsForSignedOut(pageName, tests, tests, []);
+  const devices = allDevicesForSignedOut(pageName, tests, tests);
   runTestsForDevices({ currentPage, devices });
 });
