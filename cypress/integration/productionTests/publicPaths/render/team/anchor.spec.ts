@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
   newShouldArgs,
@@ -41,10 +41,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const skipNavbar = true;
-  const devices = allDevicesForSignedOut(
+  const devices = allDevicesDiffTestsForSignedOut(
     pageName,
     tests(testSignedOutNavbar),
     tests(testMobileNavbar),
+    // Skip flaky iPhone tests for now
+    [],
     skipNavbar,
   );
   runTestsForDevices({ currentPage, devices });
