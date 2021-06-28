@@ -33,24 +33,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should have table layout",
-      "[data-cy=table-layout-container]",
+      "should have repository layout",
+      "[data-cy=repository-layout-container]",
       beVisible,
     ),
     newExpectation(
-      "should have table header",
-      "[data-cy=data-table-header]",
-      newShouldArgs("be.visible.and.contain", "Last Query"),
-    ),
-    newExpectation(
-      "should have table header query",
-      "[data-cy=repo-table-header-query]",
+      "should have collapsed sql editor",
+      "[data-cy=sql-editor-collapsed]",
       beVisible,
-    ),
-    newExpectation(
-      "should not have results header",
-      "[data-cy=results-header]",
-      notExist,
     ),
     newExpectation(
       "should show run message",
@@ -68,11 +58,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation("should have info icon", "[data-cy=info-icon]", beVisible),
-    newExpectation(
-      "should have open sql editor",
-      "[data-cy=sql-editor]",
-      beVisible,
-    ),
     newExpectation(
       "should not show pull button",
       "[data-cy=create-pull]",
@@ -105,6 +90,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

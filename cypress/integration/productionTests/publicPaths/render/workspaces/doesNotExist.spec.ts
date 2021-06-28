@@ -15,8 +15,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should have table layout",
-      "[data-cy=table-layout-container]",
+      "should have repository layout",
+      "[data-cy=repository-layout-container]",
       beVisible,
     ),
     newExpectation(
@@ -30,8 +30,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     newExpectation(
-      "should have open sql editor",
-      "[data-cy=sql-editor]",
+      "should have collapsed sql editor",
+      "[data-cy=sql-editor-collapsed]",
       beVisible,
     ),
     newExpectation(
@@ -62,6 +62,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

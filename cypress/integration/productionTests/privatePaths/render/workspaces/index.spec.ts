@@ -86,11 +86,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation("should have info icon", "[data-cy=info-icon]", beVisible),
-    // newExpectation(
-    //   "should have open sql editor",
-    //   "[data-cy=sql-editor]",
-    //   beVisible,
-    // ),
+    newExpectation(
+      "should have collapsed sql editor",
+      "[data-cy=sql-editor-collapsed]",
+      beVisible,
+    ),
     newExpectationWithClickFlows(
       "should show pull button",
       "[data-cy=create-pull]",
