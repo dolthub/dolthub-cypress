@@ -27,7 +27,7 @@
     "@babel/preset-typescript": "^7.13.0",
     "@cypress/github-action": "cypress-io/github-action",
     "@types/node": "^15.12.4",
-    "@typescript-eslint/eslint-plugin": "^4.26",
+    "@typescript-eslint/eslint-plugin": "^4.28",
     "@typescript-eslint/parser": "^4.26",
     "cypress": "7.6",
     "eslint": "^7.25.0",
