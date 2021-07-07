@@ -17,15 +17,15 @@
     semver "^6.1.0"
     uuid "^3.3.3"
 
-"@actions/core@1.3.0", "@actions/core@^1.2.6":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.3.0.tgz#f5e4b24c889e7f2e58b466cc8c7481292284eba0"
-  integrity sha512-xxtX0Cwdhb8LcgatfJkokqT8KzPvcIbwL9xpLU09nOwBzaStbfm0dNncsP0M4us+EpoPdWy7vbzU5vSOH7K6pg==
+"@actions/core@1.4.0", "@actions/core@^1.2.6":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.4.0.tgz#cf2e6ee317e314b03886adfeb20e448d50d6e524"
+  integrity sha512-CGx2ilGq5i7zSLgiiGUtBCxhRRxibJYU6Fim0Q1Wg2aQL2LTnF27zbqZOrxfvFQ55eSBW0L8uVStgtKMpa0Qlg==
 
-"@actions/exec@1.0.4", "@actions/exec@^1.0.1":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@actions/exec/-/exec-1.0.4.tgz#99d75310e62e59fc37d2ee6dcff6d4bffadd3a5d"
-  integrity sha512-4DPChWow9yc9W3WqEbUj8Nr86xkpyE29ZzWjXucHItclLbEW6jr80Zx4nqv18QL6KK65+cifiQZXvnqgTV6oHw==
+"@actions/exec@1.1.0", "@actions/exec@^1.0.1":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@actions/exec/-/exec-1.1.0.tgz#53441d968e56d2fec69ad3f15773d4d94e01162c"
+  integrity sha512-LImpN9AY0J1R1mEYJjVJfSZWU4zYOlEcwSTgPve1rFQqK5AwrEs6uWW5Rv70gbDIQIAUwI86z6B+9mPK4w9Sbg==
   dependencies:
     "@actions/io" "^1.0.1"
 
@@ -44,10 +44,10 @@
   dependencies:
     tunnel "0.0.6"
 
-"@actions/io@1.1.0", "@actions/io@^1.0.1":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@actions/io/-/io-1.1.0.tgz#02c98b5ed93c3331981c9a075494066400eadb7a"
-  integrity sha512-PspSX7Z9zh2Fyyuf3F6BsYeXcYHfc/VJ1vwy2vouas95efHVd42M6UfBFRs+jY0uiMDXhAoUtATn9g2r1MaWBQ==
+"@actions/io@1.1.1", "@actions/io@^1.0.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@actions/io/-/io-1.1.1.tgz#4a157406309e212ab27ed3ae30e8c1d641686a66"
+  integrity sha512-Qi4JoKXjmE0O67wAOH6y0n26QXhMKMFo7GD/4IXNVcrtLjUlGjGuVys6pQgwF3ArfGTQu0XpqaNr0YhED2RaRA==
 
 "@azure/abort-controller@^1.0.0":
   version "1.0.4"
@@ -1225,16 +1225,16 @@
 
 "@cypress/github-action@cypress-io/github-action":
   version "0.0.0-development"
-  uid "6b3bc3a1c27198cda160cb03307c43bc998aa564"
-  resolved "https://codeload.github.com/cypress-io/github-action/tar.gz/6b3bc3a1c27198cda160cb03307c43bc998aa564"
+  uid "6122aa43014e18ec9c2d06fc0bdc5b6759064508"
+  resolved "https://codeload.github.com/cypress-io/github-action/tar.gz/6122aa43014e18ec9c2d06fc0bdc5b6759064508"
   dependencies:
     "@actions/cache" "1.0.7"
-    "@actions/core" "1.3.0"
-    "@actions/exec" "1.0.4"
-    "@actions/io" "1.1.0"
-    "@octokit/core" "3.4.0"
+    "@actions/core" "1.4.0"
+    "@actions/exec" "1.1.0"
+    "@actions/io" "1.1.1"
+    "@octokit/core" "3.5.1"
     argument-vector "1.0.2"
-    debug "4.3.1"
+    debug "4.3.2"
     execa "3.4.0"
     find-yarn-workspace-root "2.0.0"
     got "11.8.2"
@@ -1335,14 +1335,14 @@
   dependencies:
     "@octokit/types" "^6.0.3"
 
-"@octokit/core@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@octokit/core/-/core-3.4.0.tgz#b48aa27d755b339fe7550548b340dcc2b513b742"
-  integrity sha512-6/vlKPP8NF17cgYXqucdshWqmMZGXkuvtcrWCgU5NOI0Pl2GjlmZyWgBMrU8zJ3v2MJlM6++CiB45VKYmhiWWg==
+"@octokit/core@3.5.1":
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/@octokit/core/-/core-3.5.1.tgz#8601ceeb1ec0e1b1b8217b960a413ed8e947809b"
+  integrity sha512-omncwpLVxMP+GLpLPgeGJBF6IWJFjXDS5flY5VbppePYX9XehevbDykRH9PdCdvqt9TS5AOTiDide7h0qrkHjw==
   dependencies:
     "@octokit/auth-token" "^2.4.4"
     "@octokit/graphql" "^4.5.8"
-    "@octokit/request" "^5.4.12"
+    "@octokit/request" "^5.6.0"
     "@octokit/request-error" "^2.0.5"
     "@octokit/types" "^6.0.3"
     before-after-hook "^2.2.0"
@@ -1371,6 +1371,11 @@
   resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-6.0.0.tgz#7da8d7d5a72d3282c1a3ff9f951c8133a707480d"
   integrity sha512-CnDdK7ivHkBtJYzWzZm7gEkanA7gKH6a09Eguz7flHw//GacPJLmkHA3f3N++MJmlxD1Fl+mB7B32EEpSCwztQ==
 
+"@octokit/openapi-types@^8.2.1":
+  version "8.2.1"
+  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-8.2.1.tgz#102e752a7378ff8d21057c70fd16f1c83856d8c5"
+  integrity sha512-BJz6kWuL3n+y+qM8Pv+UGbSxH6wxKf/SBs5yzGufMHwDefsa+Iq7ZGy1BINMD2z9SkXlIzk1qiu988rMuGXEMg==
+
 "@octokit/request-error@^2.0.0", "@octokit/request-error@^2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@octokit/request-error/-/request-error-2.0.5.tgz#72cc91edc870281ad583a42619256b380c600143"
@@ -1380,7 +1385,16 @@
     deprecation "^2.0.0"
     once "^1.4.0"
 
-"@octokit/request@^5.3.0", "@octokit/request@^5.4.12":
+"@octokit/request-error@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@octokit/request-error/-/request-error-2.1.0.tgz#9e150357831bfc788d13a4fd4b1913d60c74d677"
+  integrity sha512-1VIvgXxs9WHSjicsRwq8PlR2LR2x6DwsJAaFgzdi0JfJoGSO8mYI/cHJQ+9FbN21aa+DrgNLnwObmyeSC8Rmpg==
+  dependencies:
+    "@octokit/types" "^6.0.3"
+    deprecation "^2.0.0"
+    once "^1.4.0"
+
+"@octokit/request@^5.3.0":
   version "5.4.14"
   resolved "https://registry.yarnpkg.com/@octokit/request/-/request-5.4.14.tgz#ec5f96f78333bb2af390afa5ff66f114b063bc96"
   integrity sha512-VkmtacOIQp9daSnBmDI92xNIeLuSRDOIuplp/CJomkvzt7M18NXgG044Cx/LFKLgjKt9T2tZR6AtJayba9GTSA==
@@ -1394,12 +1408,31 @@
     once "^1.4.0"
     universal-user-agent "^6.0.0"
 
+"@octokit/request@^5.6.0":
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/@octokit/request/-/request-5.6.0.tgz#6084861b6e4fa21dc40c8e2a739ec5eff597e672"
+  integrity sha512-4cPp/N+NqmaGQwbh3vUsYqokQIzt7VjsgTYVXiwpUP2pxd5YiZB2XuTedbb0SPtv9XS7nzAKjAuQxmY8/aZkiA==
+  dependencies:
+    "@octokit/endpoint" "^6.0.1"
+    "@octokit/request-error" "^2.1.0"
+    "@octokit/types" "^6.16.1"
+    is-plain-object "^5.0.0"
+    node-fetch "^2.6.1"
+    universal-user-agent "^6.0.0"
+
 "@octokit/types@^6.0.3", "@octokit/types@^6.7.1":
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.13.0.tgz#779e5b7566c8dde68f2f6273861dd2f0409480d0"
   integrity sha512-W2J9qlVIU11jMwKHUp5/rbVUeErqelCsO5vW5PKNb7wAXQVUz87Rc+imjlEvpvbH8yUb+KHmv8NEjVZdsdpyxA==
   dependencies:
     "@octokit/openapi-types" "^6.0.0"
+
+"@octokit/types@^6.16.1":
+  version "6.18.1"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.18.1.tgz#a6db178536e649fd5d67a7b747754bcc43940be4"
+  integrity sha512-5YsddjO1U+xC8ZYKV8yZYebW55PCc7qiEEeZ+wZRr6qyclynzfyD65KZ5FdtIeP0/cANyFaD7hV69qElf1nMsQ==
+  dependencies:
+    "@octokit/openapi-types" "^8.2.1"
 
 "@opencensus/web-types@0.0.7":
   version "0.0.7"
@@ -2336,10 +2369,10 @@ dayjs@^1.10.4:
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.4.tgz#8e544a9b8683f61783f570980a8a80eaf54ab1e2"
   integrity sha512-RI/Hh4kqRc1UKLOAf/T5zdMMX5DQIlDxwUe3wSyMMnEbGunnpENCdbUgM+dW7kXidZqCttBrmw7BhN4TMddkCw==
 
-debug@4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
-  integrity sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
+debug@4.3.2, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2:
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.2.tgz#f0a49c18ac8779e31d4a0c6029dfb76873c7428b"
+  integrity sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==
   dependencies:
     ms "2.1.2"
 
@@ -2356,13 +2389,6 @@ debug@^3.1.0, debug@^3.2.7:
   integrity sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==
   dependencies:
     ms "^2.1.1"
-
-debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.2.tgz#f0a49c18ac8779e31d4a0c6029dfb76873c7428b"
-  integrity sha512-mOp8wKcvj7XxC78zLgw/ZA+6TSgkoE2C/ienthhRD298T7UNwAg9diBpLRxC0mOezLl4B0xV7M0cCO6P/O0Xhw==
-  dependencies:
-    ms "2.1.2"
 
 decode-uri-component@^0.2.0:
   version "0.2.0"
