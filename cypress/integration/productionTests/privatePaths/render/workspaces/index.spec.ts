@@ -64,7 +64,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const diffClickFlow = newClickFlow("[data-cy=cumulative-diff]", [
     newExpectation(
       "should show cumulative diff",
-      "[data-cy=diff-table-list]",
+      "[data-cy=diff-table-list-summaries]",
       beVisible,
     ),
   ]);
