@@ -12,33 +12,76 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${current
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const skipped = false;
-  const skipAll = true;
+  const skipAll = false;
 
   const tests = [
     newExpectation(
-      "should show diff summary",
-      "[data-cy=commit-diff-summary]",
+      "should show pull diff breadcrumbs",
+      "[data-cy=repo-pull-diff-breadcrumbs]",
       beVisible,
-      skipped,
     ),
     newExpectation(
-      "should show table list",
-      "[data-cy=diff-table-list]",
+      "should show back to pull button",
+      "[data-cy=back-to-pull]",
       beVisible,
-      skipped,
-    ),
-    newExpectation(
-      "should show table list items",
-      "[data-cy=diff-table-list] > li",
-      newShouldArgs("be.visible.and.have.length", 1),
-      skipped,
     ),
     newExpectation(
       "should show diff selector",
       "[data-cy=diff-selector]",
-      newShouldArgs("be.visible.and.contain", "Showing changes from 1 commit"),
-      skipped,
+      newShouldArgs(
+        "be.visible.and.contain",
+        "Added two Chicago cases (8omjtv)",
+      ),
+    ),
+    newExpectation(
+      "should show one form select",
+      "[data-cy=form-select]",
+      newShouldArgs("be.visible.and.have.length", 1),
+    ),
+    newExpectation(
+      "should not have viewing message",
+      "[data-cy=viewing-message]",
+      newShouldArgs("not.exist"),
+    ),
+    newExpectation(
+      "should show diff table name",
+      "[data-cy=diff-table-name]",
+      newShouldArgs("be.visible.and.contain", "case_details"),
+    ),
+    newExpectation(
+      "should show View SQL link",
+      "[data-cy=view-sql-link]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show filter by diff type selector",
+      "[data-cy=filter-by-diff-type]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show commit diff summary",
+      "[data-cy=commit-diff-summary]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show diff table list summaries",
+      "[data-cy=diff-table-list-summaries] > li",
+      newShouldArgs("be.visible.and.have.length", 1),
+    ),
+    newExpectation(
+      "should show table diff summary",
+      "[data-cy=diff-table-stats]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show diff table",
+      "[data-cy=data-diff-case_details]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show diff table rows",
+      "[data-cy=data-diff-case_details] > tbody > tr",
+      newShouldArgs("be.visible.and.have.length", 2),
     ),
     newExpectation(
       "should not find 404 page",

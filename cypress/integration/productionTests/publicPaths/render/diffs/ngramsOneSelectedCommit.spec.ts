@@ -14,8 +14,13 @@ describe(`${pageName} renders expected component on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should show commit breadcrumbs",
-      "[data-cy=repo-commit-breadcrumbs]",
+      "should show commit diff breadcrumbs",
+      "[data-cy=repo-commit-diff-breadcrumbs]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show back to commit log button",
+      "[data-cy=back-to-commits]",
       beVisible,
     ),
     newExpectation(
@@ -34,28 +39,48 @@ describe(`${pageName} renders expected component on different devices`, () => {
       newShouldArgs("not.exist"),
     ),
     newExpectation(
-      "should show diff summary",
+      "should show diff table name",
+      "[data-cy=diff-table-name]",
+      newShouldArgs("be.visible.and.contain", "bigram_counts"),
+    ),
+    newExpectation(
+      "should show View SQL link",
+      "[data-cy=view-sql-link]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show filter by diff type selector",
+      "[data-cy=filter-by-diff-type]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show commit diff summary",
       "[data-cy=commit-diff-summary]",
       beVisible,
     ),
     newExpectation(
-      "should show view type selector",
-      "[data-cy=view-type-selector]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show diff table list",
-      "[data-cy=diff-table-list]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show diff table list items",
-      "[data-cy=diff-table-list] > li",
+      "should show diff table list summaries",
+      "[data-cy=diff-table-list-summaries] > li",
       newShouldArgs("be.visible.and.have.length", 3),
+    ),
+    newExpectation(
+      "should show table diff summary",
+      "[data-cy=diff-table-stats]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show diff table",
+      "[data-cy=data-diff-bigram_counts]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show diff table rows",
+      "[data-cy=data-diff-bigram_counts] > tbody > tr",
+      newShouldArgs("be.visible.and.have.length.of.at.least", 50),
     ),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

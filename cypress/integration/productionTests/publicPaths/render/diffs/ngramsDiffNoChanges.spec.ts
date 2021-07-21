@@ -16,8 +16,13 @@ describe(`${pageName} renders expected component on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should show commit breadcrumbs",
-      "[data-cy=repo-commit-breadcrumbs]",
+      "should show commit diff breadcrumbs",
+      "[data-cy=repo-commit-diff-breadcrumbs]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show back to commit log button",
+      "[data-cy=back-to-commits]",
       beVisible,
     ),
     newExpectation(
@@ -26,38 +31,43 @@ describe(`${pageName} renders expected component on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should show two form selects",
-      "[data-cy=form-select]",
-      newShouldArgs("be.visible.and.have.length", 2),
-    ),
-    newExpectation(
       "should not have viewing message",
       "[data-cy=viewing-message]",
       notExist,
     ),
     newExpectation(
-      "should show diff summary",
+      "should show two form selects",
+      "[data-cy=form-select]",
+      newShouldArgs("be.visible.and.have.length", 2),
+    ),
+    newExpectation(
+      "should show commit diff summary",
       "[data-cy=commit-diff-summary]",
       beVisible,
     ),
     newExpectation(
-      "should show view type selector",
-      "[data-cy=view-type-selector]",
-      beVisible,
+      "should not show diff table list summaries",
+      "[data-cy=diff-table-list-summaries]",
+      notExist,
+    ),
+    newExpectation(
+      "should not show table diff summary",
+      "[data-cy=diff-table-stats]",
+      notExist,
+    ),
+    newExpectation(
+      "should not show diff table name",
+      "[data-cy=diff-table-name]",
+      notExist,
     ),
     newExpectation(
       "should show no tables changed message",
-      "[data-cy=diff-table-list-no-changes]",
+      "[data-cy=diff-table-list-summary-no-changes]",
       beVisible,
-    ),
-    newExpectation(
-      "should not show diff table list",
-      "[data-cy=diff-table-list]",
-      notExist,
     ),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

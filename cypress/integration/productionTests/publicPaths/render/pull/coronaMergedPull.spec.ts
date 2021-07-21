@@ -8,16 +8,21 @@ const currentRepo = "corona-virus";
 const currentPullId = "1";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
 
-// Need to investage why the tests for this page are flaky
-const skip = true;
+// Need to investigate why the tests for this page are flaky
+const skip = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
-  const skipNavbar = true;
+  const skipNavbar = false;
 
   const tests = [
     newExpectation("should show title", "[data-cy=pull-page-title]", beVisible),
+    newExpectation(
+      "should show view diffs button",
+      "[data-cy=view-diffs-button]",
+      beVisible,
+    ),
     newExpectation(
       "should show description",
       "[data-cy=pull-page-description]",
@@ -31,11 +36,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show pull intent",
       "[data-cy=pull-page-intent]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show repo pull breadcrumb links",
-      "[data-cy=repo-pull-breadcrumbs]",
       beVisible,
     ),
     newExpectation(
