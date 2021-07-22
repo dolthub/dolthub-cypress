@@ -7,7 +7,8 @@ const currentOwner = "automated_testing";
 const currentRepo = "wikipedia-ngrams";
 const currentFromCommit = "q2l59dla1vak1fp0gp2me451bq9sli2k";
 const branch = "master";
-const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}`;
+const tableName = "unigram_counts";
+const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}?tableName=${tableName}`;
 
 describe(`${pageName} renders expected component on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -41,7 +42,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",
-      newShouldArgs("be.visible.and.contain", "bigram_counts"),
+      newShouldArgs("be.visible.and.contain", tableName),
     ),
     newExpectation(
       "should show View SQL link",
@@ -70,12 +71,12 @@ describe(`${pageName} renders expected component on different devices`, () => {
     ),
     newExpectation(
       "should show diff table",
-      "[data-cy=data-diff-bigram_counts]",
+      `[data-cy=data-diff-${tableName}]`,
       beVisible,
     ),
     newExpectation(
       "should show diff table rows",
-      "[data-cy=data-diff-bigram_counts] > tbody > tr",
+      `[data-cy=data-diff-${tableName}] > tbody > tr`,
       newShouldArgs("be.visible.and.have.length.of.at.least", 50),
     ),
   ];
