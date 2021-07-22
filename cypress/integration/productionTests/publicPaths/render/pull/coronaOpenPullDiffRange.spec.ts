@@ -15,33 +15,81 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should not find 404 page",
-      "[data-cy=pull-404-page]",
-      newShouldArgs("not.exist"),
+      "should show pull diff breadcrumbs",
+      "[data-cy=repo-pull-diff-breadcrumbs]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show back to pull button",
+      "[data-cy=back-to-pull]",
+      beVisible,
     ),
     newExpectation(
       "should show diff selector",
       "[data-cy=diff-selector]",
-      newShouldArgs("be.visible.and.contain", "Showing changes from 1 commit"),
+      newShouldArgs(
+        "be.visible.and.contain",
+        "Automated import of new data do… (0ae58d)",
+      ),
     ),
     newExpectation(
-      "should show diff summary",
+      "should show one form select",
+      "[data-cy=form-select]",
+      newShouldArgs("be.visible.and.have.length", 1),
+    ),
+    newExpectation(
+      "should not have viewing message",
+      "[data-cy=viewing-message]",
+      newShouldArgs("not.exist"),
+    ),
+    newExpectation(
+      "should show diff table name",
+      "[data-cy=diff-table-name]",
+      newShouldArgs("be.visible.and.contain", "cases"),
+    ),
+    newExpectation(
+      "should show View SQL link",
+      "[data-cy=view-sql-link]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show filter by diff type selector",
+      "[data-cy=filter-by-diff-type]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show commit diff summary",
       "[data-cy=commit-diff-summary]",
       beVisible,
     ),
     newExpectation(
-      "should show table list",
-      "[data-cy=diff-table-list]",
+      "should show diff table list summaries",
+      "[data-cy=diff-table-list-summaries] > li",
+      newShouldArgs("be.visible.and.have.length", 2),
+    ),
+    newExpectation(
+      "should show table diff summary",
+      "[data-cy=diff-table-stats]",
       beVisible,
     ),
     newExpectation(
-      "should show table list items",
-      "[data-cy=diff-table-list] > li",
-      newShouldArgs("be.visible.and.have.length", 2),
+      "should show diff table",
+      "[data-cy=data-diff-cases]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show diff table rows",
+      "[data-cy=data-diff-cases] > tbody > tr",
+      newShouldArgs("be.visible.and.have.length.of.at.least", 50),
+    ),
+    newExpectation(
+      "should not find 404 page",
+      "[data-cy=pull-404-page]",
+      newShouldArgs("not.exist"),
     ),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

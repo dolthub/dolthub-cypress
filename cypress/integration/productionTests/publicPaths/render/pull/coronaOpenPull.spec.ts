@@ -20,6 +20,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation("should show title", "[data-cy=pull-page-title]", beVisible),
     newExpectation(
+      "should show view diffs button",
+      "[data-cy=view-diffs-button]",
+      beVisible,
+    ),
+    newExpectation(
       "should show description",
       "[data-cy=pull-page-description]",
       beVisible,
@@ -35,11 +40,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should show repo pull breadcrumb links",
-      "[data-cy=repo-pull-breadcrumbs]",
-      beVisible,
-    ),
-    newExpectation(
       "should show open label",
       "[data-cy=pull-page-open-label]",
       beVisible,
@@ -52,6 +52,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

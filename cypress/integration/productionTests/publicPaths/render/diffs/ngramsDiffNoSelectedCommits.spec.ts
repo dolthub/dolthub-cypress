@@ -13,8 +13,13 @@ describe(`${pageName} renders expected component on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should show commit breadcrumbs",
-      "[data-cy=repo-commit-breadcrumbs]",
+      "should show repo breadcrumbs",
+      "[data-cy=repo-breadcrumbs]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show back to commit log button",
+      "[data-cy=back-to-commits]",
       beVisible,
     ),
     newExpectation(
@@ -33,8 +38,13 @@ describe(`${pageName} renders expected component on different devices`, () => {
       notExist,
     ),
     newExpectation(
-      "should not show diff summary",
+      "should not show commit diff summary",
       "[data-cy=commit-diff-summary]",
+      notExist,
+    ),
+    newExpectation(
+      "should not show diff table list summaries",
+      "[data-cy=diff-table-list-summaries]",
       notExist,
     ),
     newExpectation(
@@ -42,14 +52,9 @@ describe(`${pageName} renders expected component on different devices`, () => {
       "[data-cy=diff-layout-no-diff]",
       beVisible,
     ),
-    newExpectation(
-      "should not show diff table list",
-      "[data-cy=diff-table-list]",
-      notExist,
-    ),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
