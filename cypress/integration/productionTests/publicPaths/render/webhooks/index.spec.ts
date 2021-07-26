@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Webhooks page logged out";
 const currentOwner = "automated_testing";
@@ -16,6 +17,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should render 404 page",
       "[data-cy=404-page]",

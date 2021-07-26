@@ -2,6 +2,7 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testIssuePageForAll } from "../../../../utils/sharedTests/issuePage";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testLoggedOutSignInTo } from "../../../../utils/sharedTests/signInTo";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
@@ -20,6 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-404-page]",
       notExist,
     ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should not show edit description button for logged out user",
       "[data-cy=issue-page-edit-description-button]",
@@ -35,6 +37,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

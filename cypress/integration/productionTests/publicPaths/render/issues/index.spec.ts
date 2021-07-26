@@ -1,7 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testNewIssueButton } from "../../../../utils/sharedTests/issuePage";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Issues page";
 const currentOwner = "automated_testing";
@@ -16,20 +16,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should find Issues header",
-      "[data-cy=repo-details-header]",
-      beVisibleAndContain("Issues"),
-    ),
-    newExpectation(
-      "should find back to repo link",
-      "[data-cy=back-to-repo-link]",
-      beVisibleAndContain(`back to ${currentRepo}`),
-    ),
-    newExpectation(
       "should not find empty issue message",
       "[data-cy=issue-no-issues]",
       notExist,
     ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should find issue table with header",
       "[data-cy=issue-table] > thead > tr > th",
@@ -55,10 +46,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-row-8] [data-cy=issue-state-label]",
       beVisibleAndContain("Closed"),
     ),
-    ...testNewIssueButton(loggedIn),
+    // ...testNewIssueButton(loggedIn),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

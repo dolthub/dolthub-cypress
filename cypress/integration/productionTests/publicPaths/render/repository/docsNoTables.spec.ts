@@ -1,18 +1,8 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  testAboutSection,
-  testCommitSection,
-  testIndexesSection,
-  testPullRequestsSection,
-  testQueryCatalogSection,
-  testReleasesSection,
-  testTablesSection,
-  testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Repository page with docs and no tables";
 const currentOwner = "automated_testing";
@@ -40,19 +30,19 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    testSqlConsole,
+    // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    testAboutSection(true),
-    testTablesSection(0),
-    testIndexesSection(0),
-    testViewsSection(0),
-    testQueryCatalogSection(0),
-    testCommitSection(3),
-    testReleasesSection(0),
-    testPullRequestsSection(0),
+    // testAboutSection(true),
+    ...testTablesSection(0),
+    // testIndexesSection(0),
+    // testViewsSection(0),
+    // testQueryCatalogSection(0),
+    // testCommitSection(3),
+    // testReleasesSection(0),
+    // testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

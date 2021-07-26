@@ -6,7 +6,9 @@ import {
   newShouldArgs,
 } from "../../../../utils/helpers";
 import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
+import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Repository page with no branch and no data";
 const currentOwner = "automated_testing";
@@ -58,6 +60,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
+    testSqlConsole,
+    ...testTablesSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

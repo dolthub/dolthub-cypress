@@ -17,17 +17,14 @@ export const clickToOpenNavClickFlow: ClickFlow = newClickFlow(
 
 // TABLES
 
-const testTableClickFlow = (tableLen: number, testTable: string): ClickFlow =>
-  newClickFlow(
-    `[data-cy=repo-tables-table-${testTable}${tableLen === 1 ? "" : "-play"}]`,
-    [
-      newExpectation(
-        "",
-        `[data-cy=repo-tables-table-${testTable}-column-list]`,
-        beVisible,
-      ),
-    ],
-  );
+const testTableClickFlow = (testTable: string): ClickFlow =>
+  newClickFlow(`[data-cy=repo-tables-table-${testTable}-play]`, [
+    newExpectation(
+      "",
+      `[data-cy=repo-tables-table-${testTable}-column-list]`,
+      beVisible,
+    ),
+  ]);
 
 const emptyTablesExpectation = [
   newExpectation(
@@ -42,25 +39,36 @@ const notEmptyTableExpectations = (
   testTable: string,
 ): Tests => [
   newExpectation(
-    "",
-    "[data-cy=repo-tables-table-list] > li",
+    `should have table list with ${tableLen} items`,
+    "[data-cy=repo-tables-table-list] > ol > li",
     newShouldArgs("be.visible.and.have.length", tableLen),
   ),
   newExpectationWithClickFlows(
-    "",
+    `should have test table ${testTable}`,
     `[data-cy=repo-tables-table-${testTable}]`,
     beVisible,
-    [testTableClickFlow(tableLen, testTable)],
+    [testTableClickFlow(testTable)],
   ),
 ];
 
-const tableExpectations = (
+export const tableExpectations = (
   tableLen: number,
   testTable?: string,
-): Expectation[] =>
-  tableLen === 0 || !testTable
-    ? emptyTablesExpectation
-    : notEmptyTableExpectations(tableLen, testTable);
+): Expectation[] => {
+  const expectations =
+    tableLen === 0 || !testTable
+      ? emptyTablesExpectation
+      : notEmptyTableExpectations(tableLen, testTable);
+
+  return [
+    newExpectation(
+      "should have repo branch selector",
+      "[data-cy=branch-selector]",
+      beVisible,
+    ),
+    ...expectations,
+  ];
+};
 
 export const testTablesSection = (
   tableLen: number,
@@ -75,11 +83,6 @@ export const testTablesSection = (
       "[data-cy=left-nav-toggle-icon]",
       beVisible,
       [clickToOpenNavClickFlow],
-    ),
-    newExpectation(
-      "should have repo branch selector",
-      "[data-cy=branch-selector]",
-      beVisible,
     ),
     ...tableExpectations(tableLen, testTable),
   ];

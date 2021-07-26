@@ -1,17 +1,15 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
-  testAboutSection,
-  testCommitSection,
-  testPullRequestsSection,
-  testQueryCatalogSection,
-  testReleasesSection,
-  testTablesSection,
-  testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../../../../utils/helpers";
+import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { Expectation } from "../../../../utils/types";
 
 const pageName = "Repository page with tags and branches";
 const currentOwner = "automated_testing";
@@ -29,15 +27,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
-    testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    testAboutSection(true),
-    testTablesSection(1, "test"),
-    testViewsSection(0),
-    testQueryCatalogSection(0),
-    testCommitSection(5),
-    testReleasesSection(5),
-    testPullRequestsSection(0),
+    // testAboutSection(true),
+    ...testTablesSection(1, "test"),
+    testSqlConsole,
+    // testViewsSection(0),
+    // testQueryCatalogSection(0),
+    // testCommitSection(5),
+    // testReleasesSection(5),
+    // testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
@@ -111,9 +109,41 @@ describe(`${pageName} renders expected components on different devices`, () => {
 // 	Initialize data repository
 //
 
+export const testReleasesSection = (tagLen: number): Expectation =>
+  newExpectationWithClickFlows(
+    "should have repo Tag List section",
+    "[data-cy=repo-releases-tab]",
+    newShouldArgs("be.visible"),
+    [
+      newClickFlow("[data-cy=repo-releases-tab]", [
+        newExpectation(
+          "",
+          "[data-cy=release-list-item]",
+          newShouldArgs("be.visible.and.have.length", tagLen),
+        ),
+      ]),
+    ],
+  );
+
+export const testCommitSection = (commitLen: number): Expectation =>
+  newExpectationWithClickFlows(
+    "should have repo Commit Log section",
+    "[data-cy=repo-commit-log-tab]",
+    newShouldArgs("be.visible"),
+    [
+      newClickFlow("[data-cy=repo-commit-log-tab]", [
+        newExpectation(
+          "",
+          "[data-cy=commit-log-item]",
+          newShouldArgs("be.visible.and.have.length", commitLen),
+        ),
+      ]),
+    ],
+  );
+
 describe(`All refs for repo_with_tags_and_branches are usable`, () => {
   const tests = (i: number) => {
-    const num = i + 2 < 5 ? i + 2 : 5;
+    const num = i + 2;
     return [
       newExpectation(
         "should not find empty repo",
@@ -121,15 +151,16 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
         notExist,
       ),
       testCommitSection(num),
-      testReleasesSection(5),
+      testReleasesSection(21),
     ];
   };
 
   for (let i = 1; i <= 20; i++) {
     const tag = `v${i}`;
+    const tagPageName = `${pageName} (tag ${tag})`;
     const currentPage = `repositories/${currentOwner}/${currentRepo}/data/${tag}`;
-    const devices = [macbook15ForAppLayout(pageName, tests(i))];
-    const skip = true;
+    const devices = [macbook15ForAppLayout(tagPageName, tests(i))];
+    const skip = false;
     runTestsForDevices({ currentPage, devices, skip });
   }
 });

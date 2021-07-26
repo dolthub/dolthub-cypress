@@ -1,7 +1,6 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { allDevicesForSignedOut } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testMailingForm } from "../../../../utils/sharedTests/mailingList";
 
 const pageName = "Pricing page";
 const currentPage = "/pricing";
@@ -9,7 +8,7 @@ const currentPage = "/pricing";
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const testPricing = [
+  const tests = [
     newExpectation(
       "should render pricing page with title",
       "[data-cy=pricing-page]",
@@ -26,20 +25,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const tests = [...testPricing, ...testMailingForm(beVisible)];
-  const iPhoneTests = [
-    ...testPricing,
-    ...testMailingForm(newShouldArgs("exist")),
-  ];
-
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    tests,
-    tests,
-    iPhoneTests,
-  );
+  const devices = allDevicesForSignedOut(pageName, tests, tests);
 
   // TODO: unskip for new pricing page
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

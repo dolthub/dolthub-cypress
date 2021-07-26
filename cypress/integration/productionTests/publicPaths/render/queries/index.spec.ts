@@ -5,7 +5,9 @@ import {
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
+  scrollToPosition,
 } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { ClickFlow } from "../../../../utils/types";
 
 const pageName = "Query catalog page with tables and docs";
@@ -46,21 +48,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     );
 
   const tests = [
-    newExpectation(
-      "should find Query Catalog header",
-      "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Query Catalog"),
-    ),
-    newExpectation(
-      "should find back to repo link",
-      "[data-cy=back-to-repo-link]",
-      newShouldArgs("be.visible.and.contain", `back to ${currentRepo}`),
-    ),
-    newExpectation(
-      "should not find create pull button",
-      "[data-cy=new-pull-button]",
-      notExist,
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should not find empty queries message",
       "[data-cy=repo-no-queries]",
@@ -82,6 +70,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [queryClickFlow(true)],
     ),
+    scrollToPosition("#main-content", "bottom"),
     newExpectationWithClickFlows(
       "should expand last query and close first query on click",
       "[data-cy=query-catalog-table-row]:last",
@@ -91,6 +80,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

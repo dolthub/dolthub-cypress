@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Commit log page";
 const currentOwner = "automated_testing";
@@ -13,16 +14,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
-    newExpectation(
-      "should find Commit Log header",
-      "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Commit Log"),
-    ),
-    newExpectation(
-      "should find back to repo link",
-      "[data-cy=back-to-repo-link]",
-      newShouldArgs("be.visible.and.contain", `back to ${currentRepo}`),
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should not find create pull button",
       "[data-cy=new-pull-button]",
@@ -61,6 +53,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

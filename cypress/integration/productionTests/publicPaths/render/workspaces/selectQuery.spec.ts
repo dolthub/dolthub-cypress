@@ -1,6 +1,8 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -24,11 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
-    newExpectation(
-      "should have collapsed sql editor",
-      "[data-cy=sql-editor-collapsed]",
-      beVisible,
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",
@@ -84,6 +82,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=workspace-commit-list]",
       notExist,
     ),
+    testSqlConsole,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

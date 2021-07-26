@@ -8,6 +8,7 @@ import {
 import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
 import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Repository page with branch and no data";
 const currentOwner = "automated_testing";
@@ -20,7 +21,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    ...testTablesSection(0),
     newExpectation(
       "should have repo Get Started section",
       "[data-cy=repo-empty-get-started]",
@@ -54,6 +54,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
+    ...testTablesSection(0),
+    testSqlConsole,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

@@ -6,6 +6,8 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -36,6 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",
@@ -52,11 +55,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation("should have info icon", "[data-cy=info-icon]", beVisible),
-    newExpectation(
-      "should have collapsed sql editor",
-      "[data-cy=sql-editor-collapsed]",
-      beVisible,
-    ),
     newExpectation(
       "should not show pull button",
       "[data-cy=create-pull]",
@@ -86,6 +84,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [diffClickFlow],
     ),
+    testSqlConsole,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

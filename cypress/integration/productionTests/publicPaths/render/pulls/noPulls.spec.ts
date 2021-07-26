@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Pull requests page with no pulls";
 const currentOwner = "automated_testing";
@@ -11,10 +12,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
+    // newExpectation(
+    //   "should find create pull button",
+    //   "[data-cy=new-pull-button]",
+    //   beVisible,
+    // ),
     newExpectation(
-      "should find Pull Requests header",
-      "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Pull Requests"),
+      "should not have pull search input",
+      "[data-cy=pull-search-input]",
+      newShouldArgs("not.exist"),
     ),
     newExpectation(
       "should find empty pull message",
@@ -29,6 +36,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

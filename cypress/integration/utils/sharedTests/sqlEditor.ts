@@ -20,7 +20,7 @@ const sqlEditorClickFlow = newClickFlow(
 );
 
 export const testSqlConsole = newExpectationWithClickFlows(
-  "should find table footer initially closed, and then open on click",
+  "should find sql console initially closed, and then open on click",
   "[data-cy=sql-editor-collapsed",
   shouldArgs,
   [sqlEditorClickFlow],
