@@ -2,19 +2,6 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  testAboutSection,
-  testCollaboratorsSection,
-  testCommitSection,
-  testIndexesSection,
-  testPullRequestsSection,
-  testQueryCatalogSection,
-  testReleasesSection,
-  testRepoSettings,
-  testTablesSection,
-  testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Logged in repo page with tables and docs";
 const currentOwner = "automated_testing";
@@ -42,26 +29,26 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    newExpectation(
-      "should have upload file button",
-      "[data-cy=upload-file-button]",
-      beVisible,
-    ),
-    testSqlConsole,
+    // newExpectation(
+    //   "should have upload file button",
+    //   "[data-cy=upload-file-button]",
+    //   beVisible,
+    // ),
+    // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    testAboutSection(true),
-    testTablesSection(1, "test_table"),
-    testIndexesSection(1, "test_table"),
-    testViewsSection(0),
-    testQueryCatalogSection(0),
-    testCommitSection(4),
-    testReleasesSection(0),
-    testPullRequestsSection(0),
-    testCollaboratorsSection(1),
-    testRepoSettings,
+    // testAboutSection(true),
+    // testTablesSection(1, "test_table"),
+    // testIndexesSection(1, "test_table"),
+    // testViewsSection(0),
+    // testQueryCatalogSection(0),
+    // testCommitSection(4),
+    // testReleasesSection(0),
+    // testPullRequestsSection(0),
+    // testCollaboratorsSection(1),
+    // testRepoSettings,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

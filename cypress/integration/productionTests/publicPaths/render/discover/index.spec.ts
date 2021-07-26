@@ -17,14 +17,7 @@ const currentPage = "/discover";
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const testBlog = newExpectation(
-    "should have featured blogs",
-    "[data-cy=featured-blogs]",
-    beVisible,
-  );
-
   const desktopTests = [
-    testBlog,
     newExpectation(
       "should have repository search input",
       "[data-cy=search-input]",
@@ -44,10 +37,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const iPhoneTests = [
-    testBlog,
-    ...testMobileRepoList("[data-cy=discover-repo-lists]"),
-  ];
+  const iPhoneTests = testMobileRepoList("[data-cy=discover-repo-lists]");
 
   const devices = allDevicesDiffTestsForSignedOut(
     pageName,

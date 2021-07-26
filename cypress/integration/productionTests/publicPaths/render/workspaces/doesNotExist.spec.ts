@@ -1,6 +1,8 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Workspace 404 page logged out";
 const currentOwner = "automated_testing";
@@ -19,6 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",
@@ -28,11 +31,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should not show workspace title",
       "[data-cy=workspace-title]",
       notExist,
-    ),
-    newExpectation(
-      "should have collapsed sql editor",
-      "[data-cy=sql-editor-collapsed]",
-      beVisible,
     ),
     newExpectation(
       "should not show pull button",
@@ -59,6 +57,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=create-workspace-404]",
       beVisible,
     ),
+    testSqlConsole,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

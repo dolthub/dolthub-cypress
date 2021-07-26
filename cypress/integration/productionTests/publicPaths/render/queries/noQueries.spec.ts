@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Query catalog page with no pulls";
 const currentOwner = "automated_testing";
@@ -10,11 +11,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/queries/${curre
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    newExpectation(
-      "should find Query Catalog header",
-      "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Query Catalog"),
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should find empty queries message with link",
       "[data-cy=repo-no-queries] > a",
@@ -28,6 +25,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

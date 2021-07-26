@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Pull requests page with tables and docs";
 const currentOwner = "automated_testing";
@@ -12,25 +13,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
-    newExpectation(
-      "should find Pull Requests header",
-      "[data-cy=repo-details-header]",
-      newShouldArgs("be.visible.and.contain", "Pull Requests"),
-    ),
-    newExpectation(
-      "should find back to repo link",
-      "[data-cy=back-to-repo-link]",
-      newShouldArgs("be.visible.and.contain", `back to ${currentRepo}`),
-    ),
-    newExpectation(
-      "should find create pull button",
-      "[data-cy=new-pull-button]",
-      beVisible,
-    ),
+    // newExpectation(
+    //   "should find create pull button",
+    //   "[data-cy=new-pull-button]",s
+    //   beVisible,
+    // ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
     newExpectation(
       "should not find empty pull message",
       "[data-cy=pull-requests-no-pulls]",
       notExist,
+    ),
+    newExpectation(
+      "should have pull search input",
+      "[data-cy=pull-search-input]",
+      beVisible,
     ),
     newExpectation(
       "should find pull requests table with header",
@@ -60,6 +57,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

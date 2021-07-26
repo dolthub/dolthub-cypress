@@ -1,17 +1,8 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
+import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  testAboutSection,
-  testCommitSection,
-  testIndexesSection,
-  testPullRequestsSection,
-  testQueryCatalogSection,
-  testTablesSection,
-  testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Forked repository page";
@@ -52,17 +43,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=forked-parent-repo-detail]",
       beVisible,
     ),
-    testAboutSection(false),
-    testTablesSection(2, "IPv6ToCountry"),
-    ...testPaginationForRepoDataTable,
-    testIndexesSection(2, "IPv4ToCountry"),
-    testViewsSection(0),
-    testQueryCatalogSection(0),
-    testCommitSection(5),
-    testPullRequestsSection(0),
+    // testAboutSection(false),
+    ...tableExpectations(2, "IPv6ToCountry"),
+    // ...testPaginationForRepoDataTable,
+    // testIndexesSection(2, "IPv4ToCountry"),
+    // testViewsSection(0),
+    // testQueryCatalogSection(0),
+    // testCommitSection(5),
+    // testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

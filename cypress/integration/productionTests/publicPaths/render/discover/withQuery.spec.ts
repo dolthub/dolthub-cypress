@@ -18,12 +18,6 @@ const currentPage = `/repositories/${searchTerm}`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const testBlog = newExpectation(
-    "should have featured blogs",
-    "[data-cy=featured-blogs]",
-    beVisible,
-  );
-
   const clearSearchClickFlow = newClickFlow(
     "[data-cy=clear-search-button]",
     [
@@ -36,7 +30,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     "",
   );
 
-  const testReposContainer = [
+  const desktopTests = [
     newExpectation(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
@@ -57,12 +51,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkRepoListForTab("most-recent", 20),
   ];
 
-  const desktopTests = [testBlog, ...testReposContainer];
-
-  const iPhoneTests = [
-    testBlog,
-    ...testMobileRepoList("[data-cy=discover-repo-lists]"),
-  ];
+  const iPhoneTests = testMobileRepoList("[data-cy=discover-repo-lists]");
 
   const devices = allDevicesDiffTestsForSignedOut(
     pageName,

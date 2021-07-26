@@ -105,7 +105,7 @@ export const testRepoHeaderForAll = (
   ownerName: string,
   loggedIn: boolean,
 ): Tests => {
-  // TODO: Add oustanding header tests:
+  // TODO: Add outstanding header tests:
   // `+` button logged out dropdown (New issue, New pull request)
   // `+` button logged in dropdown (logged out tests plus File Upload, Add README.md/LICENSE.md)
   const loggedOutRepoHeaderTests = [

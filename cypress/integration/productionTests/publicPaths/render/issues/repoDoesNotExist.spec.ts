@@ -22,13 +22,13 @@ describe(`${pageName} expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should not find pulls",
-      "[data-cy=pull-requests-table]",
+      "should not find issues",
+      "[data-cy=issue-table]",
       newShouldArgs("not.exist"),
     ),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
