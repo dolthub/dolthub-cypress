@@ -2,16 +2,16 @@ import { runTestsForDevices } from "../../../../utils";
 import { desktopDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Profile starred page";
-const currentPage = "/profile/starred";
+const pageName = "Profile new repository page";
+const currentPage = "/profile/new-repository";
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const tests = [
     newExpectation(
-      "should render repository list",
-      "[data-cy=repository-list-top-20-starred]",
+      "should render new repository form",
+      "[data-cy=new-repo-form]",
       beVisible,
     ),
     newExpectation(

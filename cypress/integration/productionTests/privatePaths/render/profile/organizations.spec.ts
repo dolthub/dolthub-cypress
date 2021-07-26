@@ -7,11 +7,27 @@ const currentPage = "/profile/organizations";
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
+  const beVisible = newShouldArgs("be.visible");
   const tests = [
     newExpectation(
-      "should render repository list",
-      "[id=main-content]",
-      newShouldArgs("be.visible.and.contain", "Org Memberships"),
+      "should render create organization button",
+      "[data-cy=create-org-button]",
+      beVisible,
+    ),
+    newExpectation(
+      "should render organizations list",
+      "[data-cy=organization-list]",
+      beVisible,
+    ),
+    newExpectation(
+      "should render create database button",
+      "[data-cy=create-database-button]",
+      beVisible,
+    ),
+    newExpectation(
+      "should render search input",
+      "[data-cy=search-input]",
+      beVisible,
     ),
   ];
   const skip = false;

@@ -24,9 +24,8 @@ export const checkRepoListForTab = (
 };
 
 export const mostRecentReposClickFlow = newClickFlow(
-  "[data-cy=most-recent-repos-tab]",
+  "[data-cy=discover-repos-tab]",
   [...checkRepoListForTab("most-recent", 20)],
-  "[data-cy=most-starred-repos-tab]",
 );
 
 export const testMobileRepoList = (dataCy: string): Tests => [

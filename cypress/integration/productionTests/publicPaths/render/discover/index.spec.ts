@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForSignedOut } from "../../../../utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithClickFlows,
@@ -8,6 +8,7 @@ import {
 import {
   checkRepoListForTab,
   mostRecentReposClickFlow,
+  testMobileRepoList,
 } from "../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Discover page";
@@ -15,50 +16,45 @@ const currentPage = "/discover";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  // const exist = newShouldArgs("exist");
 
-  const testReposContainer = [
+  const testBlog = newExpectation(
+    "should have featured blogs",
+    "[data-cy=featured-blogs]",
+    beVisible,
+  );
+
+  const desktopTests = [
+    testBlog,
     newExpectation(
-      "should have repository search bar",
-      "[data-cy=search-input-signed-out]",
+      "should have repository search input",
+      "[data-cy=search-input]",
       beVisible,
     ),
     newExpectation(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
-      newShouldArgs("be.visible.and.contain", [
-        "Featured",
-        "Most recent",
-        "Most starred",
-      ]),
+      newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
     ...checkRepoListForTab("featured", 5),
     newExpectationWithClickFlows(
       "should have list of most-recent repos",
-      "[data-cy=most-recent-repos-tab]",
+      "[data-cy=discover-repos-tab]",
       beVisible,
       [mostRecentReposClickFlow],
     ),
-    ...checkRepoListForTab("most-starred", 20),
   ];
 
-  const desktopTests = testReposContainer;
+  const iPhoneTests = [
+    testBlog,
+    ...testMobileRepoList("[data-cy=discover-repo-lists]"),
+  ];
 
-  // const iPadTests = testReposContainer;
-
-  // const iPhoneTests = [
-  //   testBlogArticles(exist),
-  //   ...testMobileRepoList("[data-cy=discover-repo-lists]"),
-  //   ...testMobileMailingList("[data-cy=discover-mobile-mailing-list]"),
-  // ];
-
-  // const devices = allDevicesDiffTestsForSignedOut(
-  //   pageName,
-  //   desktopTests,
-  //   iPadTests,
-  //   iPhoneTests,
-  // );
-  const devices = desktopDevicesForSignedOut(pageName, desktopTests);
+  const devices = allDevicesDiffTestsForSignedOut(
+    pageName,
+    desktopTests,
+    desktopTests,
+    iPhoneTests,
+  );
 
   runTestsForDevices({ currentPage, devices });
 });

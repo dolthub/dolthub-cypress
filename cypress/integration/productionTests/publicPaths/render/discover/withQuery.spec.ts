@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForSignedOut } from "../../../../utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -8,24 +8,29 @@ import {
 } from "../../../../utils/helpers";
 import {
   checkRepoListForTab,
-  mostRecentReposClickFlow,
+  testMobileRepoList,
 } from "../../../../utils/sharedTests/reposContainer";
-import { testHomepageSidecar } from "../../../../utils/sharedTests/sidecar";
 
 const pageName = "Discover page with query";
-const searchTerm = "dolthub";
+const searchTerm = "ip-to-country";
 const currentPage = `/repositories/${searchTerm}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
+  const testBlog = newExpectation(
+    "should have featured blogs",
+    "[data-cy=featured-blogs]",
+    beVisible,
+  );
+
   const clearSearchClickFlow = newClickFlow(
-    "[data-cy=clear-search-button-repos]",
+    "[data-cy=clear-search-button]",
     [
       newExpectation(
-        "should have disabled search results tab",
-        "[data-cy=search-results-repos-tab]",
-        newShouldArgs("have.class", "react-tabs__tab--disabled"),
+        "should have repository search bar",
+        "[data-cy=search-input]",
+        newShouldArgs("be.visible.and.have.value", ""),
       ),
     ],
     "",
@@ -35,48 +40,37 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
-      newShouldArgs("be.visible.and.contain", "Search results"),
+      newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
-    ...checkRepoListForTab("discover", 20),
-    newExpectationWithClickFlows(
-      "should have list of most-recent repos",
-      "[data-cy=most-recent-repos-tab]",
-      beVisible,
-      [mostRecentReposClickFlow],
-    ),
-    ...checkRepoListForTab("most-starred", 20),
+    ...checkRepoListForTab("most-recent", 2),
     newExpectation(
-      "should have repository search bar",
-      "[data-cy=search-input-signed-out]",
-      beVisible,
+      "should have repository search bar with query",
+      "[data-cy=search-input]",
+      newShouldArgs("be.visible.and.have.value", searchTerm),
     ),
     newExpectationWithClickFlows(
       "should successfully clear search",
-      "[data-cy=clear-search-button-repos]",
+      "[data-cy=clear-search-button]",
       beVisible,
       [clearSearchClickFlow],
     ),
-    ...checkRepoListForTab("featured", 5),
+    ...checkRepoListForTab("most-recent", 20),
   ];
 
-  const desktopTests = [...testReposContainer, ...testHomepageSidecar];
+  const desktopTests = [testBlog, ...testReposContainer];
 
-  // const iPadTests = [...testReposContainer, ...testHomepageSidecar];
+  const iPhoneTests = [
+    testBlog,
+    ...testMobileRepoList("[data-cy=discover-repo-lists]"),
+  ];
 
-  // const iPhoneTests = [
-  //   testBlogArticles(exist),
-  //   ...testMobileRepoList("[data-cy=discover-repo-lists]"),
-  //   ...testMobileMailingList("[data-cy=discover-mobile-mailing-list]"),
-  // ];
+  const devices = allDevicesDiffTestsForSignedOut(
+    pageName,
+    desktopTests,
+    desktopTests,
+    iPhoneTests,
+  );
 
-  // const devices = allDevicesDiffTestsForSignedOut(
-  //   pageName,
-  //   desktopTests,
-  //   iPadTests,
-  //   iPhoneTests,
-  // );
-  const skip = true;
-  const devices = desktopDevicesForSignedOut(pageName, desktopTests);
-
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
