@@ -2,8 +2,8 @@ import { runTestsForDevices } from "../../../../utils";
 import { desktopDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Profile starred page";
-const currentPage = "/profile/starred";
+const pageName = "Profile bounties repositories page";
+const currentPage = "/profile/bounties";
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -11,7 +11,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     newExpectation(
       "should render repository list",
-      "[data-cy=repository-list-top-20-starred]",
+      "[data-cy=repository-list-open-bounties]",
       beVisible,
     ),
     newExpectation(
