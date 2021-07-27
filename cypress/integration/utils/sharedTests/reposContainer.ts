@@ -33,7 +33,7 @@ export const testMobileRepoList = (dataCy: string): Tests => [
     "should have repo list with title on mobile",
     dataCy,
     newShouldArgs("be.visible.and.contain", [
-      "Featured databases",
+      "Discover Databases",
       "Explore more public databases on your desktop",
     ]),
     true,
