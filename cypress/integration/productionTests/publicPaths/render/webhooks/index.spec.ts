@@ -23,7 +23,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=404-page]",
       newShouldArgs(
         "be.visible.and.contain",
-        "Must have repository write perms to manage webhooks",
+        "Must have database write perms to manage webhooks",
       ),
     ),
   ];

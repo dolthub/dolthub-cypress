@@ -2,27 +2,28 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Query catalog page for non-existent repo";
+const pageName = "Issues page for non-existent database";
 const currentOwner = "automated_testing";
 const doesNotExistRepo = "doesnt-exist";
-const currentBranch = "master";
-const currentPage = `repositories/${currentOwner}/${doesNotExistRepo}/queries/${currentBranch}`;
+const currentPage = `repositories/${currentOwner}/${doesNotExistRepo}/issues`;
 
 describe(`${pageName} expected components on different devices`, () => {
+  const beVisible = newShouldArgs("be.visible");
+
   const tests = [
     newExpectation(
       "should find 404 page",
       "[data-cy=404-page]",
-      newShouldArgs("be.visible.and.contain", "Repo not found"),
+      newShouldArgs("be.visible.and.contain", "Database not found"),
     ),
     newExpectation(
       "should find repo does not exist message",
       "[data-cy=repo-404-inner]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
-      "should not find queries",
-      "[data-cy=query-catalog-table]",
+      "should not find issues",
+      "[data-cy=issue-table]",
       newShouldArgs("not.exist"),
     ),
   ];
