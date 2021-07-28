@@ -2,7 +2,7 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Commit log page for non-existent repo";
+const pageName = "Commit log page for non-existent database";
 const currentOwner = "automated_testing";
 const doesNotExistRepo = "doesnt-exist";
 const currentBranch = "master";
@@ -15,7 +15,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should find 404 page",
       "[data-cy=404-page]",
-      newShouldArgs("be.visible.and.contain", "Repo not found"),
+      newShouldArgs("be.visible.and.contain", "Database not found"),
     ),
     newExpectation(
       "should find repo does not exist message",
