@@ -26,7 +26,7 @@
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
     "@cypress/github-action": "cypress-io/github-action",
-    "@types/node": "^16.0.1",
+    "@types/node": "^16.4.10",
     "@typescript-eslint/eslint-plugin": "^4.29",
     "@typescript-eslint/parser": "^4.26",
     "cypress": "7.6",
