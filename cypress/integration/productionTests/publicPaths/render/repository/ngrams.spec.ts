@@ -69,7 +69,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should display repo data columns",
       "[data-cy=repo-data-table-columns] > th",
-      newShouldArgs("be.visible.and.have.length", 3),
+      newShouldArgs("be.visible.and.have.length", 4),
     ),
     newExpectation(
       "should display repo data row column values",
