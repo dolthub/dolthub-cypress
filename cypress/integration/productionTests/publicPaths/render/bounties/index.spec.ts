@@ -79,7 +79,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [
         "[data-cy=bounties-intro-section] img",
         "[data-cy=bounties-pay-section] img",
-        "[data-cy=bounties-get-started-section] img",
+        // "[data-cy=bounties-get-started-section] img",
       ],
       newShouldArgs("not.be.visible"),
     ),
