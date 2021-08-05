@@ -24,16 +24,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=bounties-get-started-section]",
       newShouldArgs("be.visible.and.contain", "Get Started"),
     ),
-    newExpectation(
-      "should render RepoListItem in Get Started section",
-      "[data-cy=repo-list-item]",
-      newShouldArgs("have.length.of.at.least", 1),
-    ),
-    newExpectation(
-      "should render a RepoListItem with a bounty",
-      "[data-cy=repo-list-item] [data-cy=bounty-award-link]",
-      shouldBeVisible,
-    ),
+    // newExpectation(
+    //   "should render RepoListItem in Get Started section",
+    //   "[data-cy=repo-list-item]",
+    //   newShouldArgs("have.length.of.at.least", 1),
+    // ),
+    // newExpectation(
+    //   "should render a RepoListItem with a bounty",
+    //   "[data-cy=repo-list-item] [data-cy=bounty-award-link]",
+    //   shouldBeVisible,
+    // ),
     scrollToPositionInContainer("center"),
     newExpectation(
       "should render image in Intro section",
@@ -79,7 +79,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [
         "[data-cy=bounties-intro-section] img",
         "[data-cy=bounties-pay-section] img",
-        "[data-cy=bounties-get-started-section] img",
+        // "[data-cy=bounties-get-started-section] img",
       ],
       newShouldArgs("not.be.visible"),
     ),
