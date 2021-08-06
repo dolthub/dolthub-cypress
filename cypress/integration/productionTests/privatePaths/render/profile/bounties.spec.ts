@@ -9,11 +9,11 @@ const loggedIn = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const tests = [
-    // newExpectation(
-    //   "should render repository list",
-    //   "[data-cy=repository-list-open-bounties]",
-    //   beVisible,
-    // ),
+    newExpectation(
+      "should render completed bounty databases list",
+      "[data-cy=repository-list-completed-bounties]",
+      beVisible,
+    ),
     newExpectation(
       "should render create database button",
       "[data-cy=create-database-button]",
