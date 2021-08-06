@@ -43,9 +43,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", "cases"),
     ),
     newExpectation(
-      "should show View SQL link",
+      "should not show View SQL link",
       "[data-cy=view-sql-link]",
-      beVisible,
+      newShouldArgs("not.exist"),
     ),
     newExpectation(
       "should show filter by diff type selector",
