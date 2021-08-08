@@ -6,7 +6,7 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
-import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
+import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { Expectation } from "../../../../utils/types";
@@ -29,7 +29,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     // testAboutSection(true),
-    ...testTablesSection(1, "test"),
+    ...tableExpectations(1, "test"),
     testSqlConsole,
     // testViewsSection(0),
     // testQueryCatalogSection(0),
