@@ -1,7 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
+import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Repository page (corona-virus) with tables and docs";
@@ -35,7 +35,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     // testAboutSection(true),
-    ...testTablesSection(11, "case_details"),
+    ...tableExpectations(11, "case_details"),
     // ...testPaginationForRepoDataTable,
     // testIndexesSection(11, "case_details"),
     // testViewsSection(15, testView),

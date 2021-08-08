@@ -1,7 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
+import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
@@ -33,7 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     // testAboutSection(true),
-    ...testTablesSection(1, "test_table"),
+    ...tableExpectations(1, "test_table"),
     testSqlConsole,
     // testIndexesSection(1, "test_table"),
     // testViewsSection(0),
