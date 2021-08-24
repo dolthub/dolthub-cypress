@@ -199,12 +199,12 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
         },
         {
           columnName: "province_state",
-          columnType: "LongText",
+          columnType: "VarChar",
           isPrimaryKey: false,
         },
         {
           columnName: "country_region",
-          columnType: "LongText",
+          columnType: "VarChar",
           isPrimaryKey: false,
         },
         {
