@@ -1,4 +1,4 @@
-name: Run CI on dolthub-cypress
+name: CI
 on: pull_request
 jobs:
   ci:
