@@ -1,4 +1,4 @@
-  name: Run all Cypress tests
+  name: Tests (DoltHub Prod)
   on: 
     schedule:
       # run every hour during business hours (UTC time)

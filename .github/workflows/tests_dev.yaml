@@ -1,4 +1,4 @@
-  name: Run Cypress tests against DoltHub dev
+  name: Tests (DoltHub Dev)
   on: workflow_dispatch
   jobs:
     cypress-run:
