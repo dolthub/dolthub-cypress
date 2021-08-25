@@ -1,12 +1,13 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
-const pageName = "Repository page with tables and no docs";
+const pageName = "Database page with tables and docs";
 const currentOwner = "automated_testing";
-const currentRepo = "repo_tables_no_docs";
+const currentRepo = "repo_tables_and_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 
@@ -14,37 +15,35 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  // TODO: Add tests for left side database navigation
   const tests = [
-    testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     newExpectation(
-      "should not find empty repo",
+      "should not find empty database",
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
     newExpectation(
-      "should find repo table data",
+      "should not find database table data",
       "[data-cy=repo-data-table]",
-      beVisible,
-    ),
-    newExpectation(
-      "should not find doc markdown",
-      "[data-cy=repo-doc-markdown]",
       notExist,
     ),
     newExpectation(
-      "should display repo data columns",
-      "[data-cy=repo-data-table-columns] > th",
-      newShouldArgs("be.visible.and.have.length", 5),
+      "should find doc markdown",
+      "[data-cy=repo-doc-markdown]",
+      beVisible,
     ),
-    newExpectation(
-      "should display repo data row column values",
-      "[data-cy=repo-data-table-row-0-col-1]",
-      newShouldArgs("be.visible.and.contain", "b"),
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    // testAboutSection(true),
+    ...tableExpectations(1, "test_table"),
+    testSqlConsole,
+    // testIndexesSection(1, "test_table"),
+    // testViewsSection(0),
+    // testQueryCatalogSection(0),
+    // testCommitSection(4),
+    // testReleasesSection(0),
+    // testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  runTestsForDevices({ currentPage, devices });
+  const skip = false;
+  runTestsForDevices({ currentPage, devices, skip });
 });

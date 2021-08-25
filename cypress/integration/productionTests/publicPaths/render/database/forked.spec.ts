@@ -1,13 +1,15 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
-const pageName = "Logged in repo page with tables and docs";
+const pageName = "Forked database page";
 const currentOwner = "automated_testing";
-const currentRepo = "repo_tables_and_docs";
+const currentRepo = "ip-to-country";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
-const loggedIn = true;
+const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -15,40 +17,43 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should not find empty repo",
+      "should not find empty database",
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
     newExpectation(
-      "should not find repo table data",
+      "should find database table data",
       "[data-cy=repo-data-table]",
+      beVisible,
+    ),
+    newExpectation(
+      "should not find doc markdown",
+      "[data-cy=repo-doc-markdown]",
       notExist,
     ),
     newExpectation(
-      "should find doc markdown",
-      "[data-cy=repo-doc-markdown]",
+      "should display data columns",
+      "[data-cy=repo-data-table-columns] > th",
+      newShouldArgs("be.visible.and.have.length", 8),
+    ),
+    testSqlConsole,
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    newExpectation(
+      "should find forked repo parent detail",
+      "[data-cy=forked-parent-repo-detail]",
       beVisible,
     ),
-    // newExpectation(
-    //   "should have upload file button",
-    //   "[data-cy=upload-file-button]",
-    //   beVisible,
-    // ),
-    // testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    // testAboutSection(true),
-    // testTablesSection(1, "test_table"),
-    // testIndexesSection(1, "test_table"),
+    // testAboutSection(false),
+    ...tableExpectations(2, "IPv6ToCountry"),
+    // ...testPaginationForRepoDataTable,
+    // testIndexesSection(2, "IPv4ToCountry"),
     // testViewsSection(0),
     // testQueryCatalogSection(0),
-    // testCommitSection(4),
-    // testReleasesSection(0),
+    // testCommitSection(5),
     // testPullRequestsSection(0),
-    // testCollaboratorsSection(1),
-    // testRepoSettings,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
+  const devices = [macbook15ForAppLayout(pageName, tests)];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
