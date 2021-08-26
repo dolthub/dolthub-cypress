@@ -6,29 +6,29 @@ import {
   newShouldArgs,
 } from "../../../../utils/helpers";
 import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
-import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
 
-const pageName = "Logged in repo page with branch and no data";
+const pageName = "Logged in database page with no branch and no data";
 const currentOwner = "automated_testing";
-const currentRepo = "empty_repo_with_branch";
+const currentRepo = "empty_repo";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
+  const notExist = newShouldArgs("not.exist");
 
+  // TODO: Add tests for left side database navigation
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
-    ...testTablesSection(0),
+    ...testRepoHeaderForAll(currentRepo, currentOwner, loggedIn),
     newExpectation(
-      "should have repo Get Started section",
-      "[data-cy=repo-empty-get-started]",
-      beVisible,
+      "should have disabled Fork button",
+      "[data-cy=repo-fork-button]",
+      newShouldArgs("be.disabled"),
     ),
     newExpectation(
-      "should have upload file link",
-      "[data-cy=repo-empty-upload-file]",
+      "should have Get Started section",
+      "[data-cy=repo-empty-get-started]",
       beVisible,
     ),
     newExpectation(
@@ -37,18 +37,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should have repo Push a commit section",
+      "should not have Push a commit section",
       "[data-cy=repo-empty-push-a-commit]",
-      beVisible,
+      notExist,
     ),
-    newExpectationWithScrollIntoView(
-      "should have Create new repo section",
+    newExpectation(
+      "should have Create new database section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
-      true,
     ),
     newExpectationWithScrollIntoView(
-      "should have Push existing repo section",
+      "should have Push existing database section",
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
       true,

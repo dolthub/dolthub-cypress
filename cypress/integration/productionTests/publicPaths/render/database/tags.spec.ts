@@ -11,7 +11,7 @@ import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHead
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { Expectation } from "../../../../utils/types";
 
-const pageName = "Repository page with tags and branches";
+const pageName = "Database page with tags and branches";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_with_tags_and_branches";
 
@@ -23,7 +23,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should not find empty repo",
+      "should not find empty database",
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
@@ -111,7 +111,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
 export const testReleasesSection = (tagLen: number): Expectation =>
   newExpectationWithClickFlows(
-    "should have repo Tag List section",
+    "should have database Tag List section",
     "[data-cy=repo-releases-tab]",
     newShouldArgs("be.visible"),
     [
@@ -127,7 +127,7 @@ export const testReleasesSection = (tagLen: number): Expectation =>
 
 export const testCommitSection = (commitLen: number): Expectation =>
   newExpectationWithClickFlows(
-    "should have repo Commit Log section",
+    "should have database Commit Log section",
     "[data-cy=repo-commit-log-tab]",
     newShouldArgs("be.visible"),
     [
@@ -146,7 +146,7 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
     const num = i + 2;
     return [
       newExpectation(
-        "should not find empty repo",
+        "should not find empty database",
         "[data-cy=repo-data-table-empty]",
         notExist,
       ),

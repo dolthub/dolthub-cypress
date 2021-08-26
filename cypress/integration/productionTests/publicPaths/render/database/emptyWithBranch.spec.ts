@@ -10,7 +10,7 @@ import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
-const pageName = "Repository page with branch and no data";
+const pageName = "Database page with branch and no data";
 const currentOwner = "automated_testing";
 const currentRepo = "empty_repo_with_branch";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
@@ -22,12 +22,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     newExpectation(
-      "should have repo Get Started section",
+      "should have database Get Started section",
       "[data-cy=repo-empty-get-started]",
       beVisible,
     ),
     newExpectation(
-      "should have repo Push a commit section",
+      "should have database Push a commit section",
       "[data-cy=repo-empty-push-a-commit]",
       beVisible,
     ),
@@ -42,13 +42,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectationWithScrollIntoView(
-      "should have Create new repo section",
+      "should have Create new database section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
       true,
     ),
     newExpectationWithScrollIntoView(
-      "should have Push existing repo section",
+      "should have Push existing database section",
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
       true,

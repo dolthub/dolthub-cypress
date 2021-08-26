@@ -1,17 +1,13 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
-const pageName = "Repository page (corona-virus) with tables and docs";
+const pageName = "Logged in database page with tables and docs";
 const currentOwner = "automated_testing";
-const currentRepo = "corona-virus";
+const currentRepo = "repo_tables_and_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
-const loggedIn = false;
-
-// const testView = "cases_by_age_range";
-// const testQuery = "mortality_rates";
+const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -19,12 +15,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "should not find empty repo",
+      "should not find empty database",
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
     newExpectation(
-      "should not find repo table data",
+      "should not find database table data",
       "[data-cy=repo-data-table]",
       notExist,
     ),
@@ -33,18 +29,26 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
+    // newExpectation(
+    //   "should have upload file button",
+    //   "[data-cy=upload-file-button]",
+    //   beVisible,
+    // ),
+    // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     // testAboutSection(true),
-    ...tableExpectations(11, "case_details"),
-    // ...testPaginationForRepoDataTable,
-    // testIndexesSection(11, "case_details"),
-    // testViewsSection(15, testView),
-    // testQueryCatalogSection(10, testQuery),
-    // testCommitSection(5),
-    // testPullRequestsSection(5),
+    // testTablesSection(1, "test_table"),
+    // testIndexesSection(1, "test_table"),
+    // testViewsSection(0),
+    // testQueryCatalogSection(0),
+    // testCommitSection(4),
+    // testReleasesSection(0),
+    // testPullRequestsSection(0),
+    // testCollaboratorsSection(1),
+    // testRepoSettings,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

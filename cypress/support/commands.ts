@@ -25,6 +25,10 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 export const defaultTimeout = 10000;
+const opts: Partial<Cypress.Timeoutable> = {
+  timeout: defaultTimeout,
+};
+const clickOpts: Partial<Cypress.ClickOptions> = { scrollBehavior: false };
 
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
@@ -91,11 +95,8 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   "loginAsCypressTestingFromSigninPageWithRedirect",
   (redirectValue: string) => {
-    cy.location("pathname", { timeout: defaultTimeout }).should(
-      "eq",
-      `/signin`,
-    );
-    cy.location("search", { timeout: defaultTimeout })
+    cy.location("pathname", opts).should("eq", `/signin`);
+    cy.location("search", opts)
       .should("eq", `?redirect=%2F${redirectValue}`)
       .then(() => {
         completeLoginForCypressTesting();
@@ -106,48 +107,31 @@ Cypress.Commands.add(
 
 function ensureSuccessfulLogin(redirectValue?: string) {
   if (redirectValue) {
-    cy.location("pathname", { timeout: defaultTimeout }).should(
-      "include",
-      `/${redirectValue}`,
-    );
+    cy.location("pathname", opts).should("include", `/${redirectValue}`);
   } else {
-    cy.location("pathname", { timeout: defaultTimeout }).should(
-      "include",
-      "/profile",
-    );
+    cy.location("pathname", opts).should("include", "/profile");
   }
-  cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).should(
-    "be.visible",
-  );
+  cy.get("[data-cy=navbar-menu-avatar]", opts).should("be.visible");
 }
 
 function completeLoginForCypressTesting() {
   // Check that email form has rendered
-  cy.get("[data-cy=signin-email-form]", { timeout: defaultTimeout }).should(
-    "be.visible",
-  );
+  cy.get("[data-cy=signin-email-form]", opts).should("be.visible");
 
   // Enter username and password in inputs
-  cy.get("input[name=username]", { timeout: defaultTimeout })
+  cy.get("input[name=username]", opts)
     .should("be.visible")
-    .type(username, {
-      log: false,
-      scrollBehavior: false,
-    });
+    .type(username, { ...clickOpts, log: false });
   cy.get("input[name=username]").should("have.value", username);
-  cy.get("input[name=password]", { timeout: defaultTimeout })
+  cy.get("input[name=password]", opts)
     .should("be.visible")
-    .type(password, { log: false, scrollBehavior: false })
-    .type("{enter}", { scrollBehavior: false });
+    .type(password, { ...clickOpts, log: false })
+    .type("{enter}", clickOpts);
 }
 
 Cypress.Commands.add("signout", () => {
-  cy.get("[data-cy=navbar-menu-avatar]", { timeout: defaultTimeout }).click({
-    scrollBehavior: false,
-  });
-  cy.get("[data-cy=sign-out-button]", { timeout: defaultTimeout }).click({
-    scrollBehavior: false,
-  });
+  cy.get("[data-cy=navbar-menu-avatar]", opts).click(clickOpts);
+  cy.get("[data-cy=sign-out-button]", opts).click(clickOpts);
   cy.clearCookie("dolthubToken");
 });
 
@@ -158,11 +142,13 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
   // prevent google analytics from loading and replace it with a stub before every
   // single page load including all new page navigations
   cy.on("window:before:load", win => {
-    Object.defineProperty(win, "ga", {
-      configurable: false,
-      get: () => ga, // always return the stub
-      set: () => {}, // don't allow actual google analytics to overwrite this property
-    });
+    if (!Object.getOwnPropertyDescriptor(win, "ga")) {
+      Object.defineProperty(win, "ga", {
+        configurable: false,
+        get: () => ga, // always return the stub
+        set: () => {}, // don't allow actual google analytics to overwrite this property
+      });
+    }
   });
 
   if (loggedIn) {

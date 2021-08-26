@@ -14,12 +14,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     newExpectation(
-      "shoud have signin email form",
+      "should have signin email form",
       "[data-cy=signin-email-form]",
       beVisible,
     ),
     newExpectationWithTypeString(
-      "should input invalid username and get rror",
+      "should input invalid username and get error",
       "input[name=username]",
       beVisible,
       "invalid^username",

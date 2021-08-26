@@ -10,6 +10,12 @@ import {
 // defaultTimeout is the time in ms cypress will wait attempting
 // to .get() an element before failing
 export const defaultTimeout = 5000;
+export const opts: Partial<Cypress.Timeoutable> = {
+  timeout: defaultTimeout,
+};
+export const clickOpts: Partial<Cypress.ClickOptions> = {
+  scrollBehavior: false,
+};
 
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
@@ -34,6 +40,9 @@ export function runTests({
   });
 
   beforeEach(() => {
+    // Preserve dolthubToken cookie through all tests for page
+    Cypress.Cookies.preserveOnce("dolthubToken");
+
     cy.visitViewport(device);
   });
 
@@ -139,23 +148,22 @@ function getAssertionTest(
   related selector: ${selectorStr},
 `;
   if (typeString) {
-    return cy
-      .get(selectorStr, { timeout: defaultTimeout })
-      .type(typeString, { scrollBehavior: false });
+    return cy.get(selectorStr, opts).type(typeString, clickOpts);
   }
   if (url) {
-    return cy.location().then(loc => expect(loc.href).to.include(url));
+    const base = Cypress.config().baseUrl;
+    cy.location("href", opts).should("eq", `${base}${url}`);
   }
   if (scrollIntoView) {
     scrollSelectorIntoView(selectorStr);
   }
   if (Array.isArray(shouldArgs.value)) {
     return cy
-      .get(selectorStr, { timeout: defaultTimeout })
+      .get(selectorStr, opts)
       .should(shouldArgs.chainer, ...shouldArgs.value, { message });
   }
   return cy
-    .get(selectorStr, { timeout: defaultTimeout })
+    .get(selectorStr, opts)
     .should(shouldArgs.chainer, shouldArgs.value, { message });
 }
 
@@ -186,14 +194,10 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
 function runClicks(clickStrOrArr: string | string[]) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, { timeout: defaultTimeout }).click({
-        scrollBehavior: false,
-      });
+      cy.get(clickStr, opts).click(clickOpts);
     });
   } else {
-    cy.get(clickStrOrArr, { timeout: defaultTimeout }).click({
-      scrollBehavior: false,
-    });
+    cy.get(clickStrOrArr, opts).click(clickOpts);
   }
 }
 
@@ -201,10 +205,10 @@ function runClicks(clickStrOrArr: string | string[]) {
 function scrollSelectorIntoView(clickStrOrArr: string | string[]) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, { timeout: defaultTimeout }).scrollIntoView();
+      cy.get(clickStr, opts).scrollIntoView();
     });
   } else {
-    cy.get(clickStrOrArr, { timeout: defaultTimeout }).scrollIntoView();
+    cy.get(clickStrOrArr, opts).scrollIntoView();
   }
 }
 

@@ -10,7 +10,7 @@ import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav
 import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
-const pageName = "Repository page with no branch and no data";
+const pageName = "Database page with no branch and no data";
 const currentOwner = "automated_testing";
 const currentRepo = "empty_repo";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
@@ -49,12 +49,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should have Create new repo section",
+      "should have Create new database section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
     ),
     newExpectationWithScrollIntoView(
-      "should have Push existing repo section",
+      "should have Push existing database section",
       "[data-cy=repo-empty-push-local-repo]",
       beVisible,
       true,

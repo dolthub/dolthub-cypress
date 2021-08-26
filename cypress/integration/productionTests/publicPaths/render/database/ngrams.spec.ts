@@ -10,7 +10,7 @@ import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pa
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
-const pageName = "Repository page (wikipedia-ngrams) with tables";
+const pageName = "Database page (wikipedia-ngrams) with tables";
 const currentOwner = "automated_testing";
 const currentRepo = "wikipedia-ngrams";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
