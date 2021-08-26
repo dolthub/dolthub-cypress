@@ -34,7 +34,7 @@ describe(pageName, () => {
           },
         ).then(items => {
           [...items].forEach(i => {
-            deleteDatabase(i.href);
+            deleteDatabase(i.getAttribute("href"));
           });
         });
       }
@@ -52,28 +52,27 @@ describe(pageName, () => {
   });
 });
 
-function deleteDatabase(href: string) {
-  if (href) {
-    cy.visitPage(href, false);
+function deleteDatabase(href: string | null) {
+  if (!href) return;
+  cy.visitPage(href, false);
 
-    cy.get("[data-cy=repo-settings-tab]", {
-      timeout: defaultTimeout,
-    }).click({ scrollBehavior: false });
+  cy.get("[data-cy=repo-settings-tab]", {
+    timeout: defaultTimeout,
+  }).click({ scrollBehavior: false });
 
-    cy.get("[data-cy=delete-database-button]", {
-      timeout: defaultTimeout,
-    })
-      .scrollIntoView()
-      .click();
+  cy.get("[data-cy=delete-database-button]", {
+    timeout: defaultTimeout,
+  })
+    .scrollIntoView()
+    .click();
 
-    cy.get("[data-cy=submit-delete-database]", {
-      timeout: defaultTimeout,
-    }).click();
+  cy.get("[data-cy=submit-delete-database]", {
+    timeout: defaultTimeout,
+  }).click();
 
-    const base = Cypress.config().baseUrl;
-    cy.location("href", { timeout: defaultTimeout }).should(
-      "eq",
-      `${base}/repositories/cypresstesting`,
-    );
-  }
+  const base = Cypress.config().baseUrl;
+  cy.location("href", { timeout: defaultTimeout }).should(
+    "eq",
+    `${base}/repositories/cypresstesting`,
+  );
 }
