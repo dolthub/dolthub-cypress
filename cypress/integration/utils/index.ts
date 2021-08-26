@@ -34,6 +34,9 @@ export function runTests({
   });
 
   beforeEach(() => {
+    // Preserve dolthubToken cookie through all tests for page
+    Cypress.Cookies.preserveOnce("dolthubToken");
+
     cy.visitViewport(device);
   });
 
@@ -144,7 +147,11 @@ function getAssertionTest(
       .type(typeString, { scrollBehavior: false });
   }
   if (url) {
-    return cy.location().then(loc => expect(loc.href).to.include(url));
+    const base = Cypress.config().baseUrl;
+    cy.location("href", { timeout: defaultTimeout }).should(
+      "eq",
+      `${base}${url}`,
+    );
   }
   if (scrollIntoView) {
     scrollSelectorIntoView(selectorStr);

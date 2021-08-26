@@ -158,11 +158,13 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
   // prevent google analytics from loading and replace it with a stub before every
   // single page load including all new page navigations
   cy.on("window:before:load", win => {
-    Object.defineProperty(win, "ga", {
-      configurable: false,
-      get: () => ga, // always return the stub
-      set: () => {}, // don't allow actual google analytics to overwrite this property
-    });
+    if (!Object.getOwnPropertyDescriptor(win, "ga")) {
+      Object.defineProperty(win, "ga", {
+        configurable: false,
+        get: () => ga, // always return the stub
+        set: () => {}, // don't allow actual google analytics to overwrite this property
+      });
+    }
   });
 
   if (loggedIn) {

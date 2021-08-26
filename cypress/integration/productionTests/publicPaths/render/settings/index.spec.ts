@@ -12,8 +12,8 @@ describe(`${pageName} redirects to the /signin page for logged out users on diff
   const tests = [
     newExpectationWithURL(
       "should be redirected to signin page and preserve redirect info",
-      "[data-cy=signup-why-join]",
-      newShouldArgs("be.visible.and.contain", "Why join DoltHub?"),
+      "[data-cy=signin-data-community]",
+      newShouldArgs("be.visible.and.contain", "Be part of our data community"),
       "/signin?redirect=%2Fsettings",
     ),
   ];
