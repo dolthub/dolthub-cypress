@@ -3,6 +3,7 @@ import { clickOpts, opts } from "../../../../utils";
 const pageName = "Delete all remaining cypresstesting temp databases";
 const currentPage = "/repositories/cypresstesting";
 const loggedIn = true;
+const base = Cypress.config().baseUrl;
 
 describe(pageName, () => {
   before(() => {
@@ -49,10 +50,13 @@ describe(pageName, () => {
 });
 
 function deleteDatabase(href: string | null) {
-  if (!href) return;
+  if (!href || !href.includes("temp_db_")) return;
   cy.visitPage(href, false);
+  cy.get("[data-cy=repo-settings-tab]", opts)
+    .should("be.visible")
+    .click(clickOpts);
 
-  cy.get("[data-cy=repo-settings-tab]", opts).click(clickOpts);
+  cy.location("pathname", opts).should("contain", "settings");
 
   cy.get("[data-cy=delete-database-button]", opts)
     .scrollIntoView(clickOpts)
@@ -60,6 +64,5 @@ function deleteDatabase(href: string | null) {
 
   cy.get("[data-cy=submit-delete-database]", opts).click(clickOpts);
 
-  const base = Cypress.config().baseUrl;
   cy.location("href", opts).should("eq", `${base}/repositories/cypresstesting`);
 }
