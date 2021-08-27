@@ -119,7 +119,7 @@ export const testReleasesSection = (tagLen: number): Expectation =>
         newExpectation(
           "",
           "[data-cy=release-list-item]",
-          newShouldArgs("be.visible.and.have.length", tagLen),
+          newShouldArgs("be.visible.and.have.length.of.at.least", tagLen - 1),
         ),
       ]),
     ],
