@@ -148,7 +148,10 @@ function getAssertionTest(
   related selector: ${selectorStr},
 `;
   if (typeString) {
-    return cy.get(selectorStr, opts).clear().type(typeString, clickOpts);
+    return cy
+      .get(selectorStr, opts)
+      .clear(clickOpts)
+      .type(typeString, clickOpts);
   }
   if (url) {
     const base = Cypress.config().baseUrl;
