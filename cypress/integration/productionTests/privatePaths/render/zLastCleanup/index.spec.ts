@@ -51,7 +51,11 @@ describe(pageName, () => {
 
 function deleteDatabase(href: string | null) {
   if (!href || !href.includes("temp_db_")) return;
+
   cy.visitPage(href, false);
+
+  cy.wait(300);
+
   cy.get("[data-cy=repo-settings-tab]", opts)
     .should("be.visible")
     .click(clickOpts);
