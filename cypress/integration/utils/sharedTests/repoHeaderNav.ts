@@ -19,7 +19,7 @@ const cloneClickFlow = newClickFlow(
       newShouldArgs("be.visible.and.have.length", 2),
     ),
   ],
-  ".popup-overlay",
+  "[data-cy=repository-layout-container]",
 );
 
 export const forkButtonClickFlow = (loggedIn: boolean) =>
