@@ -4,7 +4,7 @@ const repoName = "corona-virus";
 const defaultBranch = "master";
 const otherBranch = "add-case-details";
 const defaultQuery = "SHOW TABLES;";
-const selectQuery = "SELECT * FROM `places` LIMIT 5;";
+const selectQuery = "SELECT * FROM `places` ORDER BY place_id ASC LIMIT 5;";
 const badQuery = "heatdome";
 
 describe("API returns 404 for invalid endpoints", () => {
