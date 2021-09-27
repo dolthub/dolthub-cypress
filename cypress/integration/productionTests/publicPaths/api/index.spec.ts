@@ -8,7 +8,7 @@ const selectQuery = "SELECT * FROM `places` ORDER BY place_id ASC LIMIT 5;";
 const badQuery = "heatdome";
 
 describe("API returns 404 for invalid endpoints", () => {
-  it("gets 404 responses from non-existant endpoints", () => {
+  it("gets 404 responses from non-existent endpoints", () => {
     cy.request({
       url: `/api/`,
       failOnStatusCode: false,
