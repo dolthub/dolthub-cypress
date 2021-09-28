@@ -1,5 +1,5 @@
 const pageName = "Blog RSS feed page";
-const currentPage = "/rss.xml";
+const currentPage = "/blog/rss.xml";
 const skip = !!Cypress.env("LOCAL_DOLTHUB") || !!Cypress.env("LOCAL_BLOG");
 
 describe(`${pageName} renders expected components on different devices`, () => {
