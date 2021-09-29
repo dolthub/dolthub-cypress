@@ -39,14 +39,6 @@ describe(pageName, () => {
       }
     });
   });
-
-  it("navigates back to profile", () => {
-    cy.get("[data-cy=navbar-desktop-profile-link]", opts).click();
-    cy.location("href", opts).should(
-      "eq",
-      `${Cypress.config().baseUrl}/profile`,
-    );
-  });
 });
 
 function deleteDatabase(href: string | null) {
@@ -68,5 +60,5 @@ function deleteDatabase(href: string | null) {
 
   cy.get("[data-cy=submit-delete-database]", opts).click(clickOpts);
 
-  cy.location("href", opts).should("eq", `${base}/repositories/cypresstesting`);
+  cy.location("href", opts).should("eq", `${base}/profile`);
 }
