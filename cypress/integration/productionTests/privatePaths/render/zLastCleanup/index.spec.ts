@@ -26,6 +26,11 @@ describe(pageName, () => {
       // Check if cypresstesting databases exist
       if ($body.text().includes(`No search results for "cypresstesting"`)) {
         cy.get("[data-cy=no-repos-msg]").should("be.visible");
+        cy.get("[data-cy=navbar-desktop-profile-link]", opts).click();
+        cy.location("href", opts).should(
+          "eq",
+          `${Cypress.config().baseUrl}/profile`,
+        );
       } else {
         // If they do exist, go through each database and delete
         cy.get(
