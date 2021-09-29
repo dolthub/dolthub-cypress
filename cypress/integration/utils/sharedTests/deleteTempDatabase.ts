@@ -55,24 +55,9 @@ export const deleteTempDatabase = (
     [settingsClickFlow(repoName, ownerName)],
   ),
   newExpectationWithURL(
-    "should navigate to repositories page after deletion",
-    "[data-cy=discover-repo-lists]",
+    "should navigate to profile after deletion",
+    "[data-cy=repository-list-for-user]",
     beVisible,
-    `/repositories/${ownerName}`,
-  ),
-  newExpectationWithClickFlows(
-    "should navigate back to profile page",
-    "[data-cy=navbar-desktop-profile-link]",
-    beVisible,
-    [
-      newClickFlow("[data-cy=navbar-desktop-profile-link]", [
-        newExpectationWithURL(
-          "should navigate to profile page after click",
-          "[data-cy=repository-list-for-user]",
-          beVisible,
-          `/profile`,
-        ),
-      ]),
-    ],
+    `/profile`,
   ),
 ];
