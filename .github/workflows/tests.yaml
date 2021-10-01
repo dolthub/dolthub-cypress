@@ -9,7 +9,7 @@
       - cron: '0 */3 * * 6,0'
     pull_request:
       branches:
-        - master
+        - main
   jobs:
     cypress-run:
       runs-on: ubuntu-latest
