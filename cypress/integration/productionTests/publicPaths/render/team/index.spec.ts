@@ -1,6 +1,10 @@
 import { runTestsForDevices } from "../../../../utils";
 import { allDevicesForSignedOut } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import {
+  newExpectation,
+  newShouldArgs,
+  scrollToPosition,
+} from "../../../../utils/helpers";
 
 const pageName = "Team page";
 const currentPage = "/team";
@@ -17,6 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=team-section]",
       newShouldArgs("be.visible.and.contain", "Meet the Team"),
     ),
+    scrollToPosition("#main-content", "center"),
     newExpectation(
       "should have team list of at least 10",
       "[data-cy=team-section] ul > li",
