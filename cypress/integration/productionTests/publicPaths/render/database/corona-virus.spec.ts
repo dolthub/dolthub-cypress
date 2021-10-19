@@ -13,6 +13,7 @@ const loggedIn = false;
 // const testView = "cases_by_age_range";
 // const testQuery = "mortality_rates";
 
+// TODO: Write tests for commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
@@ -37,11 +38,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // testAboutSection(true),
     ...tableExpectations(11, "case_details"),
     // ...testPaginationForRepoDataTable,
-    // testIndexesSection(11, "case_details"),
+    // testSchemasSection(11, "case_details"),
     // testViewsSection(15, testView),
     // testQueryCatalogSection(10, testQuery),
-    // testCommitSection(5),
-    // testPullRequestsSection(5),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

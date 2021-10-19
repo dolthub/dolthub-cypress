@@ -10,6 +10,7 @@ const currentRepo = "repo_docs_no_tables";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 
+// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
@@ -30,16 +31,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
     // testAboutSection(true),
     ...tableExpectations(0),
-    // testIndexesSection(0),
+    // testSchemasSection(0),
     // testViewsSection(0),
     // testQueryCatalogSection(0),
-    // testCommitSection(3),
-    // testReleasesSection(0),
-    // testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

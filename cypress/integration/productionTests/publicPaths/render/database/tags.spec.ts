@@ -18,6 +18,7 @@ const currentRepo = "repo_with_tags_and_branches";
 const notExist = newShouldArgs("not.exist");
 const loggedIn = false;
 
+// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
@@ -33,9 +34,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
     // testViewsSection(0),
     // testQueryCatalogSection(0),
-    // testCommitSection(5),
-    // testReleasesSection(5),
-    // testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

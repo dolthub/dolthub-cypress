@@ -11,6 +11,7 @@ const currentRepo = "repo_tables_and_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 
+// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
@@ -35,12 +36,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // testAboutSection(true),
     ...tableExpectations(1, "test_table"),
     testSqlConsole,
-    // testIndexesSection(1, "test_table"),
+    // testSchemasSection(1, "test_table"),
     // testViewsSection(0),
     // testQueryCatalogSection(0),
-    // testCommitSection(4),
-    // testReleasesSection(0),
-    // testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

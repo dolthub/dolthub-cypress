@@ -11,6 +11,7 @@ const currentRepo = "ip-to-country";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 
+// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
@@ -46,11 +47,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // testAboutSection(false),
     ...tableExpectations(2, "IPv6ToCountry"),
     // ...testPaginationForRepoDataTable,
-    // testIndexesSection(2, "IPv4ToCountry"),
+    // testSchemasSection(2, "IPv4ToCountry"),
     // testViewsSection(0),
     // testQueryCatalogSection(0),
-    // testCommitSection(5),
-    // testPullRequestsSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
