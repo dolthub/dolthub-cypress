@@ -1,6 +1,6 @@
 # dolthub-cypress
 
-![Run all Cypress tests](https://github.com/liquidata-inc/dolthub-cypress/workflows/Tests%20(DoltHub%20Prod)/badge.svg)
+![Run all Cypress tests](<https://github.com/dolthub/dolthub-cypress/workflows/Tests%20(DoltHub%20Prod)/badge.svg>)
 
 A suite of [Cypress.io](https://docs.cypress.io/) tests written in Typescript to UI test [DoltHub](https://www.dolthub.com).
 
@@ -27,7 +27,7 @@ $ yarn cy-run
 $ yarn cy-chrome
 ```
 
-To run the tests against the local webserver, make sure you have the server running. _(Please note: this option is only currently available for our Liquidata devs. If you want to add a test to our suite, please file [an issue](https://github.com/liquidata-inc/dolthub-cypress/issues/new) or [pull request](https://github.com/liquidata-inc/dolthub-cypress/pulls) so we can add the appropriate `data-cy` tag.)_
+To run the tests against the local webserver, make sure you have the server running. _(Please note: this option is only currently available for our DoltHub devs. If you want to add a test to our suite, please file [an issue](https://github.com/dolthub/dolthub-cypress/issues/new) or [pull request](https://github.com/dolthub/dolthub-cypress/pulls) so we can add the appropriate `data-cy` tag.)_
 
 Then, to run the Cypress tests against the local server:
 
@@ -96,7 +96,7 @@ We'll go through the concepts the types were derived from:
 
 ### `Expectation`
 
-An **`Expectation`** consists of a test description, an element to select, and some assertions to make about that element. The current helper function that creates `Expectation`s is: **`newExpectation`**.
+An **`Expectation`** consists of a test description, an element to select, and some assertions to make about that element. The current helper function that creates `Expectation`s is **`newExpectation`**.
 
 This is the type definition for an `Expectation`:
 
@@ -240,7 +240,7 @@ describe(`${pageName} should render a Like button on all devices`, () => {
 });
 ```
 
-Notice in the above test, just inside the `describe` block, we've defined the `currentPage` we want to test and we don't need authentication for this page, so `loggedIn` is `false`. We then define our `Expecation` `likeButtonRendersExp`, and our `Device` "iphone-6", and create an array of `Device`s to pass to `runTestsForDevices`.
+Notice in the above test, just inside the `describe` block, we've defined the `currentPage` we want to test and we don't need authentication for this page, so `loggedIn` is `false`. We then define our `Expectation` `likeButtonRendersExp`, and our `Device` "iphone-6", and create an array of `Device`s to pass to `runTestsForDevices`.
 
 First test on first device finished.
 
@@ -315,7 +315,7 @@ Again, we've variablized everything above in order to improve the readability a 
 
 Next we make a simple `Expectation` that we want the test runner to run after we click the Like button and provide an empty string, as the description (it's not needed this deep).
 
-Remember we want to make an assertion before we click the Like button, and an assertion after we click the Like button. We want the `Expecation` `singleLikeCountExp` to run after we click the Like button. All it tells the test runner to do is grab the Like count element, and make sure it contains `1`.
+Remember we want to make an assertion before we click the Like button, and an assertion after we click the Like button. We want the `Expectation` `singleLikeCountExp` to run after we click the Like button. All it tells the test runner to do is grab the Like count element, and make sure it contains `1`.
 
 We then wrap that `Expectation` in an array, and give it the name `testsBetweenClicks`. It happens to only contain one test, but can contain more.
 
@@ -384,3 +384,9 @@ describe(`${pageName} should render a Like button on all devices`, () => {
   runTestsForDevices({ currentPage, devices });
 });
 ```
+
+## Relevant Blogs
+
+- https://www.dolthub.com/blog/2020-08-10-testing-dolthub-cypress/
+- https://www.dolthub.com/blog/2020-08-17-cypress-open-source/
+- https://www.dolthub.com/blog/2020-10-23-cypress-login-tests/

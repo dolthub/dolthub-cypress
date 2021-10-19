@@ -18,6 +18,7 @@ const loggedIn = false;
 
 const beVisible = newShouldArgs("be.visible");
 
+// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const tablesClickFlow = newClickFlow(
     "[data-cy=active-tab-tables]",
@@ -59,7 +60,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [tablesClickFlow],
     ),
-    // testIndexesSection(4, "unigram_counts"),
+    // testSchemasSection(4, "unigram_counts"),
     // testViewsSection(0),
     newExpectation(
       "should find repo data",
