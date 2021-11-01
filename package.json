@@ -39,7 +39,7 @@
     "prettier": "^2.4.1"
   },
   "dependencies": {
-    "cypress": "8.5",
+    "cypress": "8.7",
     "typescript": "^4.4.4"
   }
 }
