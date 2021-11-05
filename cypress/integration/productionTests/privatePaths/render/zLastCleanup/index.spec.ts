@@ -5,7 +5,7 @@ const currentPage = "/repositories/cypresstesting";
 const loggedIn = true;
 const base = Cypress.config().baseUrl;
 
-describe(pageName, () => {
+describe.skip(pageName, () => {
   before(() => {
     cy.visitPage(currentPage, loggedIn);
   });
