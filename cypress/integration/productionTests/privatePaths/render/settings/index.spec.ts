@@ -7,11 +7,6 @@ const currentPage = "/settings";
 
 const loggedIn = true;
 
-// const emailClickFlow = newClickFlow("[data-cy=settings-email-section-link]", []);
-// const credentialsClickFlow = newClickFlow("[data-cy=settings-credentials-section-link]", []);
-// const databasesClickFlow = newClickFlow("[data-cy=settings-databases-section-link]", []);
-// const organizationsClickFlow = newClickFlow("[data-cy=settings-organizations-section-link]", []);
-
 describe(`${pageName} renders expected components on different devices`, () => {
   const navLinkTests = [
     newExpectation(
