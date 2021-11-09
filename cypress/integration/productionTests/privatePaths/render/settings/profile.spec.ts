@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForAppLayout } from "../../../../utils/devices";
+import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Profile Settings";
@@ -8,7 +8,7 @@ const currentPage = "/settings/profile";
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const navLinkTests = [
+  const tests = [
     newExpectation(
       "should render Settings header",
       "[data-cy=settings-header]",
@@ -24,16 +24,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=edit-profile-header]",
       newShouldArgs("be.visible"),
     ),
-    //   newExpectation(
-    //     "should render the picture uploading form",
-    //     "[data-cy=picture-upload-form]",
-    //     newShouldArgs("be.visible"),
-    //   ),
-    // MAKE SEPERATE PAGE FOR PICTURE FORM TESTING
+    newExpectation(
+      "should render the picture uploading form",
+      "[data-cy=picture-upload-form]",
+      newShouldArgs("be.visible"),
+    ),
     newExpectation(
       "should have an input for username",
       "[data-cy=name-input]",
-      newShouldArgs("be.visible"),
+      newShouldArgs("be.visible.and.have.value", "cypresstesting"),
     ),
     newExpectation(
       "should have an input for user's biography",
@@ -62,11 +61,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
   const skip = false;
-  const devices = desktopDevicesForAppLayout(
+  const devices = [macbook15ForAppLayout(
     pageName,
-    navLinkTests,
+    tests,
     true,
     loggedIn,
-  );
+  )];
   runTestsForDevices({ currentPage, devices, skip });
 });
