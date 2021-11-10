@@ -1,11 +1,22 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../../../../utils/helpers";
 
 const pageName = "Profile Settings";
 const currentPage = "/settings/profile";
 
 const loggedIn = true;
+
+const modalClickflow = newClickFlow(
+  "[data-cy=edit-user-picture-button]",
+  [],
+  "[data-cy=cancel-button]",
+);
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
@@ -28,6 +39,39 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should render the picture uploading form",
       "[data-cy=picture-upload-form]",
       newShouldArgs("be.visible"),
+    ),
+    newExpectationWithClickFlows(
+      "modal should open on clicking edit",
+      "[data-cy=edit-user-picture-button]",
+      newShouldArgs("be.visible"),
+      [newClickFlow("[data-cy=edit-user-picture-button]", [])],
+    ),
+    // How would I tag the h2 title, or is that even necessary?
+    newExpectation(
+      "should render a button to browse files",
+      "[data-cy=browse-picture-files-button]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should render current avatar",
+      "[data-cy=current-avatar]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should render a disabled save button",
+      "[data-cy=save-new-profile-pic-button]",
+      newShouldArgs("be.disabled"),
+    ),
+    newExpectation(
+      "should render a cancel button",
+      "[data-cy=cancel-button]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectationWithClickFlows(
+      "modal should close on clicking the x",
+      "[data-cy=close-modal]",
+      newShouldArgs("be.visible"),
+      [newClickFlow("[data-cy=close-modal]", [])],
     ),
     newExpectation(
       "should have an input for username",
