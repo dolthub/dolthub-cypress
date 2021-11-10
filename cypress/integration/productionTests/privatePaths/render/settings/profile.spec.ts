@@ -14,8 +14,34 @@ const loggedIn = true;
 
 const modalClickflow = newClickFlow(
   "[data-cy=edit-user-picture-button]",
-  [],
-  "[data-cy=cancel-button]",
+  [
+    newExpectation(
+      "should render a Upload New Picture header",
+      "[data-cy=modal-title]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should render a button to browse files",
+      "[data-cy=browse-picture-files-button]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should render current avatar",
+      "[data-cy=current-avatar]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should render a disabled save button",
+      "[data-cy=save-new-profile-pic-button]",
+      newShouldArgs("be.disabled"),
+    ),
+    newExpectation(
+      "should render a cancel button",
+      "[data-cy=cancel-button]",
+      newShouldArgs("be.visible"),
+    ),
+  ],
+  "[data-cy=close-modal]",
 );
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -44,34 +70,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "modal should open on clicking edit",
       "[data-cy=edit-user-picture-button]",
       newShouldArgs("be.visible"),
-      [newClickFlow("[data-cy=edit-user-picture-button]", [])],
-    ),
-    // How would I tag the h2 title, or is that even necessary?
-    newExpectation(
-      "should render a button to browse files",
-      "[data-cy=browse-picture-files-button]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectation(
-      "should render current avatar",
-      "[data-cy=current-avatar]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectation(
-      "should render a disabled save button",
-      "[data-cy=save-new-profile-pic-button]",
-      newShouldArgs("be.disabled"),
-    ),
-    newExpectation(
-      "should render a cancel button",
-      "[data-cy=cancel-button]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectationWithClickFlows(
-      "modal should close on clicking the x",
-      "[data-cy=close-modal]",
-      newShouldArgs("be.visible"),
-      [newClickFlow("[data-cy=close-modal]", [])],
+      [modalClickflow],
     ),
     newExpectation(
       "should have an input for username",
