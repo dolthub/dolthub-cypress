@@ -1,15 +1,11 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import {
-  newExpectation,
-  newShouldArgs,
-} from "../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Email Settings";
 const currentPage = "/settings/email";
 
 const loggedIn = true;
-
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
@@ -39,9 +35,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-        "should render a disabled add email button",
-        "[data-cy=add-email-settings]",
-        newShouldArgs("be.disabled"),
+      "should render a disabled add email button",
+      "[data-cy=add-email-settings]",
+      newShouldArgs("be.disabled"),
     ),
   ];
   const skip = false;
