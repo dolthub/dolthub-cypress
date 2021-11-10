@@ -12,6 +12,7 @@ const currentPage = "/settings/email";
 
 const loggedIn = true;
 
+
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     newExpectation(
@@ -30,14 +31,19 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render an input fot emai;",
+      "should render a table of user emails;",
+      "[data-cy=email-table]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should render an input for email;",
       "[data-cy=email-input]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render a disabled add email button",
-      "[data-cy=add-email-settings]",
-      newShouldArgs("be.disabled"),
+        "should render a disabled add email button",
+        "[data-cy=add-email-settings]",
+        newShouldArgs("be.disabled"),
     ),
   ];
   const skip = false;
