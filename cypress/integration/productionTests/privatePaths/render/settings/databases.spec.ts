@@ -19,36 +19,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=settings-databases-section-link]",
       newShouldArgs("be.visible"),
     ),
-    // newExpectation(
-    //   "should render a credentials table",
-    //   "[data-cy=credentials-table]",
-    //   newShouldArgs("be.visible"),
-    // ),
-    // newExpectation(
-    //   "should have an Add Credentials header",
-    //   "[data-cy=edit-credentials-header]",
-    //   newShouldArgs("be.visible"),
-    // ),
-    // newExpectation(
-    //   "should have a Description input",
-    //   "[data-cy=description-input]",
-    //   newShouldArgs("be.visible"),
-    // ),
-    // newExpectation(
-    //   "should have a Public Key input",
-    //   "[data-cy=public-key-input]",
-    //   newShouldArgs("be.visible"),
-    // ),
-    // newExpectation(
-    //   "should have a disabled Create button",
-    //   "[data-cy=create-credentials-button]",
-    //   newShouldArgs("be.disabled"),
-    // ),
-    // newExpectation(
-    //   "should have a cancel button",
-    //   "[data-cy=cancel-button]",
-    //   newShouldArgs("be.visible"),
-    // ),
+    newExpectation(
+      "should have a Databases header",
+      "[data-cy=databases-header]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should render an ordered list of all a user's databases",
+      "[data-cy=repository-list-for-user]",
+      newShouldArgs("be.visible"),
+    ),
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
