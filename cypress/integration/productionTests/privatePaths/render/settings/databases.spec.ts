@@ -29,10 +29,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-list-for-user]",
       newShouldArgs("be.visible"),
     ),
-    /*
-    Should there be more tests for databses? I feel like there 
-    should be, but also that maybe it's tested somewhere else
-    */
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
