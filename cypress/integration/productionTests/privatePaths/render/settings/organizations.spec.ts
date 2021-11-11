@@ -2,8 +2,8 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Databases Settings";
-const currentPage = "/settings/repositories";
+const pageName = "Organizations Settings";
+const currentPage = "/settings/organizations";
 
 const loggedIn = true;
 
@@ -15,24 +15,25 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render Settings Databases link",
-      "[data-cy=settings-databases-section-link]",
+      "should render Settings Organizations link",
+      "[data-cy=settings-organizations-section-link]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should have a Databases header",
-      "[data-cy=databases-header]",
+      "should have an Org Memberships header",
+      "[data-cy=org-memberships-header]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render an ordered list of all a user's databases",
-      "[data-cy=repository-list-for-user]",
+      "should render a button to Create Organizations",
+      "[data-cy=create-org-button]",
       newShouldArgs("be.visible"),
     ),
-    /*
-    Should there be more tests for databses? I feel like there 
-    should be, but also that maybe it's tested somewhere else
-    */
+    newExpectation(
+      "should render a table of the user's organizations",
+      "[data-cy=organization-list]",
+      newShouldArgs("be.visible"),
+    ),
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
