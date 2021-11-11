@@ -20,6 +20,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
+      "should render correct copy for a new subscriber",
+      "[data-cy=billing-new-subscriber-section]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should not render copy for a current subscriber",
+      "[data-cy=billing-subscribed-section]",
+      newShouldArgs("not.be.visible"),
+    ),
+    newExpectation(
       "should render an input for address 1",
       "[data-cy=address-1-input]",
       newShouldArgs("be.visible"),
