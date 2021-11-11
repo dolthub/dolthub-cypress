@@ -21,7 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should render a paragraph encouraging the user to have a fallback email",
-      "[data-cy=email-p]",
+      "[data-cy=email-settings-description]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
