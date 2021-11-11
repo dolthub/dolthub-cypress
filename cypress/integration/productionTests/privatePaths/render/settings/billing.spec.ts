@@ -27,7 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should not render copy for a current subscriber",
       "[data-cy=billing-subscribed-section]",
-      newShouldArgs("not.be.visible"),
+      newShouldArgs("not.exist"),
     ),
     newExpectation(
       "should render an input for address 1",
