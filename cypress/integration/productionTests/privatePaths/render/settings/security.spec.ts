@@ -2,8 +2,8 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "Email Settings";
-const currentPage = "/settings/email";
+const pageName = "Security Settings";
+const currentPage = "/settings/security";
 
 const loggedIn = true;
 
@@ -15,29 +15,39 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render Settings Email link",
-      "[data-cy=settings-email-section-link]",
+      "should render Settings Security link",
+      "[data-cy=settings-security-section-link]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render a paragraph encouraging the user to have a fallback email",
-      "[data-cy=email-p]",
+      "should have a Change Password header",
+      "[data-cy=change-password-header]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render a table of user emails",
-      "[data-cy=email-table]",
+      "should render an input for old password",
+      "[data-cy=old-password-input]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render an input for email",
-      "[data-cy=email-input]",
+      "should render an input for new password",
+      "[data-cy=new-password-input]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render a disabled add email button",
-      "[data-cy=add-email-settings]",
+      "should render an input for confirm password",
+      "[data-cy=confirm-password-input]",
+      newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should render a disabled update password button",
+      "[data-cy=update-password-button]",
       newShouldArgs("be.disabled"),
+    ),
+    newExpectation(
+      "should have a cancel button",
+      "[data-cy=cancel-button]",
+      newShouldArgs("be.visible"),
     ),
   ];
   const skip = false;
