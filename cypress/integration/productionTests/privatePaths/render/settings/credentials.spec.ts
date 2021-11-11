@@ -20,9 +20,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render a credentials table",
-      "[data-cy=credentials-table]",
+      "should not render a credentials table if user has no credentials",
+      "[data-cy=no-credentials-msg]",
       newShouldArgs("be.visible"),
+    ),
+    newExpectation(
+      "should not render a credentials table if user has no credentials",
+      "[data-cy=credentials-table]",
+      newShouldArgs("not.be.visible"),
     ),
     newExpectation(
       "should have an Add Credentials header",
