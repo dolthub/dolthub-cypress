@@ -1,3 +1,4 @@
+import exp = require("constants");
 import {
   newClickFlow,
   newExpectation,
@@ -44,11 +45,59 @@ export const forkButtonClickFlow = (loggedIn: boolean) =>
     "[data-cy=close-modal]",
   );
 
+// DATABSE DROPDOWN CLICKFLOW
+
+export const databaseDropdownClickFlow = (loggedIn: boolean) =>
+  newClickFlow(
+    "[data-cy=dropdown-database-nav]",
+    loggedIn
+      ? [
+          newExpectation(
+            "Should have a create new table link",
+            "[data-cy=dropdown-create-new-table-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a upload a file link",
+            "[data-cy=dropdown-upload-a-file-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a create new issue link",
+            "[data-cy=dropdown-new-issue-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a create new pull request link",
+            "[data-cy=dropdown-new-pull-request-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a create new readme link",
+            "[data-cy=dropdown-new-readme-link]",
+            beVisible,
+          ),
+        ]
+      : [
+          newExpectation(
+            "Should have a create new issue link",
+            "[data-cy=dropdown-new-issue-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a create new pull request link",
+            "[data-cy=dropdown-new-pull-request-link]",
+            beVisible,
+          ),
+        ],
+    "[data-cy=dropdown-database-nav]",
+  );
+
 // DATABASE TAB
 
 export const testDatabaseTab: Expectation = newExpectation(
   "should have repo Database tab",
-  "[data-cy=repo-about-tab]",
+  "[data-cy=repo-database-tab]",
   newShouldArgs("be.visible"),
 );
 
@@ -97,6 +146,14 @@ export const testIssuesTab: Expectation = newExpectation(
 export const testRepoSettingsTab = newExpectation(
   "should have Repo Settings section for user with write perms",
   "[data-cy=repo-settings-tab]",
+  beVisible,
+);
+
+// DEPLOY TAB
+
+export const testDeployTab: Expectation = newExpectation(
+  "should have repo Deploy tab",
+  "[data-cy=repo-deploy-tab]",
   beVisible,
 );
 
@@ -156,6 +213,13 @@ export const testRepoHeaderForAll = (
     testReleasesTab,
     testPullRequestsTab,
     testIssuesTab,
+    testDeployTab,
+    newExpectationWithClickFlows(
+      "should have functioning nav dropdown",
+      "[data-cy=dropdown-database-nav]",
+      beVisible,
+      [databaseDropdownClickFlow(loggedIn)]
+    )
   ];
 
   const loggedInRepoHeaderTests = [testRepoSettingsTab];
