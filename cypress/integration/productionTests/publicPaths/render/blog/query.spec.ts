@@ -38,7 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testSearched(
       query,
       "DoltHub is the Figma of Databases",
-      "/2021-11-08-figma-of-databases/",
+      "2021-11-08-figma-of-databases/",
     ),
     newExpectationWithClickFlows(
       "should clear search",

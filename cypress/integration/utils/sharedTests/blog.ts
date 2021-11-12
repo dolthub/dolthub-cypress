@@ -8,6 +8,7 @@ import {
 import { Expectation } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
+const currentPage = Cypress.env("LOCAL_BLOG") ? "/" : "/blog/";
 
 export const testSearched = (
   q: string,
@@ -37,7 +38,7 @@ export const testSearched = (
   newExpectation(
     `should have matching blog url for ${q}`,
     "[data-cy=blog-list] > li:first [data-cy=blog-title]",
-    newShouldArgs("have.attr", ["href", path]),
+    newShouldArgs("have.attr", ["href", `${currentPage}${path}`]),
   ),
   newExpectation(
     "should not have bottom page buttons",

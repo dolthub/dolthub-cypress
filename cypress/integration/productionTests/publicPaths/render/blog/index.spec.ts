@@ -27,7 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ...testSearched(
         query1,
         "DoltHub is the Figma of Databases",
-        "/2021-11-08-figma-of-databases/",
+        "2021-11-08-figma-of-databases/",
       ),
       newExpectationWithTypeString(
         "should change input",
@@ -38,7 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ...testSearched(
         query2,
         "Maintained Wikipedia ngrams dataset in Dolt",
-        "/2019-12-04-maintained-wikipedia-ngrams-dataset/",
+        "2019-12-04-maintained-wikipedia-ngrams-dataset/",
       ),
     ],
     "[data-cy=blog-search-clear]",
