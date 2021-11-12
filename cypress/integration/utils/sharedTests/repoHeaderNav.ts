@@ -162,9 +162,6 @@ export const testRepoHeaderForAll = (
   ownerName: string,
   loggedIn: boolean,
 ): Tests => {
-  // TODO: Add outstanding header tests:
-  // `+` button logged out dropdown (New issue, New pull request)
-  // `+` button logged in dropdown (logged out tests plus File Upload, Add README.md/LICENSE.md)
   const loggedOutRepoHeaderTests = [
     newExpectation(
       "should have repo header",
@@ -218,8 +215,8 @@ export const testRepoHeaderForAll = (
       "should have functioning nav dropdown",
       "[data-cy=dropdown-database-nav]",
       beVisible,
-      [databaseDropdownClickFlow(loggedIn)]
-    )
+      [databaseDropdownClickFlow(loggedIn)],
+    ),
   ];
 
   const loggedInRepoHeaderTests = [testRepoSettingsTab];
