@@ -19,7 +19,7 @@ const createDBClickFlow = (repoName: string, ownerName: string) =>
       beVisible,
       `/repositories/${ownerName}/${repoName}`,
     ),
-    ...testRepoHeaderForAll(repoName, ownerName, true),
+    ...testRepoHeaderForAll(repoName, ownerName, true, false),
     newExpectation(
       "should route to empty database page",
       "[data-cy=repo-empty-get-started]",

@@ -13,6 +13,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "empty_repo";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
+const hasDocs = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -20,7 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   // TODO: Add tests for left side database navigation
   const tests = [
-    ...testRepoHeaderForAll(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderForAll(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should have disabled Fork button",
       "[data-cy=repo-fork-button]",

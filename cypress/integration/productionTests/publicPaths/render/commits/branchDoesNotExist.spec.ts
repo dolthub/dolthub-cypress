@@ -13,7 +13,7 @@ describe(`${pageName} with no branch renders expected components on different de
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...testRepoHeaderForAll(currentRepo, currentOwner, false),
+    ...testRepoHeaderForAll(currentRepo, currentOwner, false, false),
     newExpectation(
       "should find page not found message",
       "[data-cy=404-page]",

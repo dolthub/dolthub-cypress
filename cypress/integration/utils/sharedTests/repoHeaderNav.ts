@@ -47,7 +47,23 @@ export const forkButtonClickFlow = (loggedIn: boolean) =>
 
 // DATABSE DROPDOWN CLICKFLOW
 
-export const databaseDropdownClickFlow = (loggedIn: boolean) =>
+export const conditionalReadMeTest = (hasDocs: boolean) => {
+  const docsExpectation: Expectation = hasDocs
+    ? newExpectation(
+        "Should not have readmeLink",
+        "[data-cy=dropdown-new-readme-link]",
+        newShouldArgs("not.exist"),
+      )
+    : newExpectation(
+        "Should have a create new readme link",
+        "[data-cy=dropdown-new-readme-link]",
+        beVisible,
+      );
+
+  return docsExpectation;
+};
+
+export const databaseDropdownClickFlow = (loggedIn: boolean, hasDocs: boolean) =>
   newClickFlow(
     "[data-cy=dropdown-database-nav]",
     loggedIn
@@ -72,11 +88,7 @@ export const databaseDropdownClickFlow = (loggedIn: boolean) =>
             "[data-cy=dropdown-new-pull-request-link]",
             beVisible,
           ),
-          newExpectation(
-            "Should have a create new readme link",
-            "[data-cy=dropdown-new-readme-link]",
-            beVisible,
-          ),
+          conditionalReadMeTest(hasDocs),
         ]
       : [
           newExpectation(
@@ -161,6 +173,7 @@ export const testRepoHeaderForAll = (
   repoName: string,
   ownerName: string,
   loggedIn: boolean,
+  hasDocs: boolean
 ): Tests => {
   const loggedOutRepoHeaderTests = [
     newExpectation(
@@ -215,7 +228,7 @@ export const testRepoHeaderForAll = (
       "should have functioning nav dropdown",
       "[data-cy=dropdown-database-nav]",
       beVisible,
-      [databaseDropdownClickFlow(loggedIn)],
+      [databaseDropdownClickFlow(loggedIn, hasDocs)],
     ),
   ];
 
