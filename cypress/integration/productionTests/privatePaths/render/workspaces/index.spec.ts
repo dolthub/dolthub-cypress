@@ -26,11 +26,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     "[data-cy=create-pull]",
     [
       newExpectation(
-        "should have form and textarea",
-        "[data-cy=create-commit-form]",
-        newShouldArgs("be.visible.and.contain", "Commit message"),
-      ),
-      newExpectation(
         "should have cancel button",
         "[data-cy=cancel-button]",
         beVisible,
