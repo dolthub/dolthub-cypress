@@ -12,7 +12,9 @@ const notExist = newShouldArgs("not.exist");
 
 export const clickToOpenNavClickFlow: ClickFlow = newClickFlow(
   "[data-cy=left-nav-toggle-icon]",
-  [],
+  [
+    // KATIE THIS IS WHERE YOU WRITE TESTS
+  ],
 );
 
 // TABLES
