@@ -100,12 +100,13 @@ export function newClickFlow(
 export function scrollToPosition(
   selectorStr: string,
   position: Cypress.PositionType,
+  options?: Partial<Cypress.ScrollToOptions> | undefined,
 ): Expectation {
   return newExpectationWithScrollTo(
     `should scroll to ${position} of ${selectorStr}`,
     selectorStr,
     newShouldArgs("be.visible"),
-    newScrollToPosition(position, selectorStr),
+    newScrollToPosition(position, selectorStr, options),
   );
 }
 

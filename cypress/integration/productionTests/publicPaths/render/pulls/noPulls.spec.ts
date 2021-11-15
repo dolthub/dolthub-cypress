@@ -12,7 +12,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, false),
     // newExpectation(
     //   "should find create pull button",
     //   "[data-cy=new-pull-button]",

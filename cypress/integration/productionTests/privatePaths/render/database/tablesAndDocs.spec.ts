@@ -8,6 +8,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
+const hasDocs = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -35,7 +36,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     //   beVisible,
     // ),
     // testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
     // testTablesSection(1, "test_table"),
     // testIndexesSection(1, "test_table"),

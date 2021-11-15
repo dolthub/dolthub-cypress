@@ -19,6 +19,7 @@ const workspace = isProd
   : "348d4226-fa12-4c6f-a624-7a597e1af128";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}`;
 const loggedIn = false;
+const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -38,7 +39,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",

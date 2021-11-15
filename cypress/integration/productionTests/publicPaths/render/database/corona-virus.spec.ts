@@ -9,6 +9,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
+const hasDocs = true;
 
 // const testView = "cases_by_age_range";
 // const testQuery = "mortality_rates";
@@ -34,7 +35,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
     ...tableExpectations(11, "case_details"),
     // ...testPaginationForRepoDataTable,

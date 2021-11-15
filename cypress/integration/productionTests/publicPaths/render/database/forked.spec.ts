@@ -10,6 +10,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "ip-to-country";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
+const hasDocs = false;
 
 // TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -38,7 +39,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.length", 8),
     ),
     testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should find forked repo parent detail",
       "[data-cy=forked-parent-repo-detail]",

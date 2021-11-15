@@ -18,7 +18,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     //   "[data-cy=new-pull-button]",s
     //   beVisible,
     // ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
     newExpectation(
       "should not find empty pull message",
       "[data-cy=pull-requests-no-pulls]",

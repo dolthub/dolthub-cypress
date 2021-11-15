@@ -8,6 +8,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues`;
 const loggedIn = false;
+const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisibleAndContain = (value: string) =>
@@ -20,7 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-no-issues]",
       notExist,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should find issue table with header",
       "[data-cy=issue-table] > thead > tr > th",
