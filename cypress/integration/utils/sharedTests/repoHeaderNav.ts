@@ -1,4 +1,3 @@
-import exp = require("constants");
 import {
   newClickFlow,
   newExpectation,
@@ -243,8 +242,9 @@ export const testRepoHeaderWithBranch = (
   repoName: string,
   ownerName: string,
   loggedIn: boolean,
+  hasDocs: boolean
 ): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName, loggedIn),
+  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs),
   newExpectationWithClickFlows(
     "should open create fork modal on fork button click",
     "[data-cy=repo-fork-button]",

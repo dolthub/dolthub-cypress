@@ -15,12 +15,13 @@ const currentOwner = "automated_testing";
 const currentRepo = "empty_repo_with_branch";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
+const hasDocs = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should have database Get Started section",
       "[data-cy=repo-empty-get-started]",
