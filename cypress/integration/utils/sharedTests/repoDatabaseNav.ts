@@ -45,13 +45,13 @@ export const clickToOpenNavClickFlow: ClickFlow = newClickFlow(
       "Queries should now be inactive",
       `[data-cy=tab-queries]`,
       beVisible,
-      ),
-      newExpectationWithClickFlows(
-        "the Schema tab should be active",
-        `[data-cy=active-tab-schemas]`,
-        beVisible,
-        [newClickFlow(`[data-cy=tab-tables]`, [])],
-      ),
+    ),
+    newExpectationWithClickFlows(
+      "the Schema tab should be active",
+      `[data-cy=active-tab-schemas]`,
+      beVisible,
+      [newClickFlow(`[data-cy=tab-tables]`, [])],
+    ),
   ],
 );
 
