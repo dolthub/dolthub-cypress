@@ -62,7 +62,10 @@ export const conditionalReadMeTest = (hasDocs: boolean) => {
   return docsExpectation;
 };
 
-export const databaseDropdownClickFlow = (loggedIn: boolean, hasDocs: boolean) =>
+export const databaseDropdownClickFlow = (
+  loggedIn: boolean,
+  hasDocs: boolean,
+) =>
   newClickFlow(
     "[data-cy=dropdown-database-nav]",
     loggedIn
@@ -172,7 +175,7 @@ export const testRepoHeaderForAll = (
   repoName: string,
   ownerName: string,
   loggedIn: boolean,
-  hasDocs: boolean
+  hasDocs: boolean,
 ): Tests => {
   const loggedOutRepoHeaderTests = [
     newExpectation(
@@ -242,7 +245,7 @@ export const testRepoHeaderWithBranch = (
   repoName: string,
   ownerName: string,
   loggedIn: boolean,
-  hasDocs: boolean
+  hasDocs: boolean,
 ): Tests => [
   ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs),
   newExpectationWithClickFlows(
