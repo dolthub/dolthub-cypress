@@ -72,7 +72,7 @@ export const checkSchemaClickflow: ClickFlow = newClickFlow(
 
 // TABLES
 
-const testTableClickFlow = (testTable: string): ClickFlow =>
+const testTablePlayClickFlow = (testTable: string): ClickFlow =>
   newClickFlow(`[data-cy=repo-tables-table-${testTable}-play]`, [
     newExpectation(
       "",
@@ -102,9 +102,14 @@ const notEmptyTableExpectations = (
     `should have test table ${testTable}`,
     `[data-cy=repo-tables-table-${testTable}]`,
     beVisible,
-    [testTableClickFlow(testTable)],
+    [testTablePlayClickFlow(testTable)],
   ),
+  // WRITE MORE TABLE TESTS HERE
+  //
 ];
+
+//* Use tableExpectations when table is populated (left nav is initially open)
+//* Use testTablesSection when table is not populated (left nav is initially closed)
 
 export const tableExpectations = (
   tableLen: number,
@@ -149,64 +154,64 @@ export const testTablesSection = (
 };
 
 // INDEXES
+//! No longer on the site
+// const testIndexClickFlow = (testTable: string): ClickFlow =>
+//   newClickFlow(`[data-cy=repo-indexes-table-${testTable}]`, [
+//     newExpectation(
+//       "",
+//       `[data-cy=repo-indexes-table-${testTable}-no-indexes]`,
+//       beVisible,
+//     ),
+//   ]);
 
-const testIndexClickFlow = (testTable: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-indexes-table-${testTable}]`, [
-    newExpectation(
-      "",
-      `[data-cy=repo-indexes-table-${testTable}-no-indexes]`,
-      beVisible,
-    ),
-  ]);
+// const emptyIndexesExpectation = [
+//   newExpectation("", "[data-cy=repo-indexes-empty]", beVisible),
+// ];
 
-const emptyIndexesExpectation = [
-  newExpectation("", "[data-cy=repo-indexes-empty]", beVisible),
-];
+// const notEmptyIndexesExpectations = (
+//   indexLen: number,
+//   testTable: string,
+// ): Tests => [
+//   newExpectation(
+//     "",
+//     "[data-cy=repo-indexes-table-list] > li",
+//     newShouldArgs("be.visible.and.have.length", indexLen),
+//   ),
+//   newExpectationWithClickFlows(
+//     "",
+//     `[data-cy=repo-indexes-table-${testTable}]`,
+//     beVisible,
+//     [testIndexClickFlow(testTable)],
+//   ),
+// ];
 
-const notEmptyIndexesExpectations = (
-  indexLen: number,
-  testTable: string,
-): Tests => [
-  newExpectation(
-    "",
-    "[data-cy=repo-indexes-table-list] > li",
-    newShouldArgs("be.visible.and.have.length", indexLen),
-  ),
-  newExpectationWithClickFlows(
-    "",
-    `[data-cy=repo-indexes-table-${testTable}]`,
-    beVisible,
-    [testIndexClickFlow(testTable)],
-  ),
-];
+// const indexesClickFlow = (indexLen: number, testTable?: string): ClickFlow => {
+//   const expectations =
+//     indexLen === 0 || !testTable
+//       ? emptyIndexesExpectation
+//       : notEmptyIndexesExpectations(indexLen, testTable);
 
-const indexesClickFlow = (indexLen: number, testTable?: string): ClickFlow => {
-  const expectations =
-    indexLen === 0 || !testTable
-      ? emptyIndexesExpectation
-      : notEmptyIndexesExpectations(indexLen, testTable);
+//   return newClickFlow(
+//     "[data-cy=repo-indexes]",
+//     expectations,
+//     "[data-cy=repo-indexes]",
+//   );
+// };
 
-  return newClickFlow(
-    "[data-cy=repo-indexes]",
-    expectations,
-    "[data-cy=repo-indexes]",
-  );
-};
-
-export const testIndexesSection = (
-  indexLen: number,
-  testTable?: string,
-): Expectation => {
-  if (indexLen > 0 && !testTable) {
-    throw new Error("Cannot have indexLen > 0 and no testTable");
-  }
-  return newExpectationWithClickFlows(
-    "should have repo Indexes section",
-    "[data-cy=repo-indexes]",
-    beVisible,
-    [indexesClickFlow(indexLen, testTable)],
-  );
-};
+// export const testIndexesSection = (
+//   indexLen: number,
+//   testTable?: string,
+// ): Expectation => {
+//   if (indexLen > 0 && !testTable) {
+//     throw new Error("Cannot have indexLen > 0 and no testTable");
+//   }
+//   return newExpectationWithClickFlows(
+//     "should have repo Indexes section",
+//     "[data-cy=repo-indexes]",
+//     beVisible,
+//     [indexesClickFlow(indexLen, testTable)],
+//   );
+// };
 
 // VIEWS
 
