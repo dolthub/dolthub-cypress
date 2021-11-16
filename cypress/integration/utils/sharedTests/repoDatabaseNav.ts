@@ -10,6 +10,13 @@ import { ClickFlow, Expectation, Tests } from "../types";
 const beVisible = newShouldArgs("be.visible");
 const notExist = newShouldArgs("not.exist");
 
+// [
+//   expectation for active tables tab,
+//   click flow for views with expectations for active views tab/inactive tables tab,
+//   click flow for queries tab with expectations for active queries tab/inactive views tab,
+//   click flow for schemas tab with expectations for active schemas tab/inactive queries tab
+// ]
+
 export const clickToOpenNavClickFlow: ClickFlow = newClickFlow(
   "[data-cy=left-nav-toggle-icon]",
   [
@@ -17,34 +24,43 @@ export const clickToOpenNavClickFlow: ClickFlow = newClickFlow(
       "the Tables tab should be active",
       `[data-cy=active-tab-tables]`,
       beVisible,
-      [newClickFlow(`[data-cy=tab-views]`, [])],
-    ),
-    newExpectation(
-      "Tables should now be inactive",
-      `[data-cy=tab-tables]`,
-      beVisible,
+      [
+        newClickFlow(`[data-cy=tab-views]`, [
+          newExpectation(
+            "Tables should now be inactive",
+            `[data-cy=tab-tables]`,
+            beVisible,
+          ),
+        ]),
+      ],
     ),
     newExpectationWithClickFlows(
       "the Views tab should be active",
       `[data-cy=active-tab-views]`,
       beVisible,
-      [newClickFlow(`[data-cy=tab-queries]`, [])],
-    ),
-    newExpectation(
-      "Views should now be inactive",
-      `[data-cy=tab-views]`,
-      beVisible,
+      [
+        newClickFlow(`[data-cy=tab-queries]`, [
+          newExpectation(
+            "Views should now be inactive",
+            `[data-cy=tab-views]`,
+            beVisible,
+          ),
+        ]),
+      ],
     ),
     newExpectationWithClickFlows(
       "the Queries tab should be active",
       `[data-cy=active-tab-queries]`,
       beVisible,
-      [newClickFlow(`[data-cy=tab-schemas]`, [])],
-    ),
-    newExpectation(
-      "Queries should now be inactive",
-      `[data-cy=tab-queries]`,
-      beVisible,
+      [
+        newClickFlow(`[data-cy=tab-schemas]`, [
+          newExpectation(
+            "Queries should now be inactive",
+            `[data-cy=tab-queries]`,
+            beVisible,
+          ),
+        ]),
+      ],
     ),
     newExpectationWithClickFlows(
       "the Schema tab should be active",
