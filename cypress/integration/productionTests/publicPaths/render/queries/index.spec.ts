@@ -48,7 +48,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     );
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
     newExpectation(
       "should not find empty queries message",
       "[data-cy=repo-no-queries]",

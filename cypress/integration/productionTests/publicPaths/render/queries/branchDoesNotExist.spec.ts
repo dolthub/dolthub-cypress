@@ -13,7 +13,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...testRepoHeaderForAll(currentRepo, currentOwner, false),
+    ...testRepoHeaderForAll(currentRepo, currentOwner, false, false),
     newExpectation(
       "should find page not found message",
       "[data-cy=404-page]",

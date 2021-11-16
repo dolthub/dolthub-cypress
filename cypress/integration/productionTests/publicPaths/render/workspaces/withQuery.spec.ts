@@ -20,6 +20,7 @@ const workspace = isProd
 const query = "insert into test_table (pk, a, b, c) values (2, 3, 4, 5)";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}?q=${query}`;
 const loggedIn = false;
+const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -39,7 +40,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should show run message",
       "[data-cy=workspaces-run-msg]",

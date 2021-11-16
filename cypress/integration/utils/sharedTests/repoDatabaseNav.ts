@@ -12,7 +12,62 @@ const notExist = newShouldArgs("not.exist");
 
 export const clickToOpenNavClickFlow: ClickFlow = newClickFlow(
   "[data-cy=left-nav-toggle-icon]",
-  [],
+  [
+    newExpectation(
+      "the Tables tab should be active",
+      `[data-cy=active-tab-tables]`,
+      beVisible,
+    ),
+  ],
+);
+
+export const checkViewsClickflow: ClickFlow = newClickFlow(
+  `[data-cy=tab-views]`,
+  [
+    newExpectation(
+      "the Tables tab should be inactive",
+      `[data-cy=tab-tables]`,
+      beVisible,
+    ),
+    newExpectation(
+      "the Views tab should be active",
+      `[data-cy=active-tab-views]`,
+      beVisible,
+    ),
+  ],
+);
+
+export const checkQueriesClickflow: ClickFlow = newClickFlow(
+  `[data-cy=tab-queries]`,
+  [
+    newExpectation(
+      "the Views tab should be inactive",
+      `[data-cy=tab-views]`,
+      beVisible,
+    ),
+    newExpectation(
+      "the Queries tab should be active",
+      `[data-cy=active-tab-queries]`,
+      beVisible,
+    ),
+  ],
+);
+
+export const checkSchemaClickflow: ClickFlow = newClickFlow(
+  `[data-cy=tab-schemas]`,
+  [
+    newExpectation(
+      "the Queries tab should be inactive",
+      `[data-cy=tab-queries]`,
+      beVisible,
+    ),
+    newExpectation(
+      "the Schemas tab should be active",
+      `[data-cy=active-tab-schemas]`,
+      beVisible,
+    ),
+  ],
+  `[data-cy=tab-tables]`,
 );
 
 // TABLES
@@ -82,7 +137,12 @@ export const testTablesSection = (
       "should open left database navigation",
       "[data-cy=left-nav-toggle-icon]",
       beVisible,
-      [clickToOpenNavClickFlow],
+      [
+        clickToOpenNavClickFlow,
+        checkViewsClickflow,
+        checkQueriesClickflow,
+        checkSchemaClickflow,
+      ],
     ),
     ...tableExpectations(tableLen, testTable),
   ];

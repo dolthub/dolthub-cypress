@@ -9,6 +9,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_no_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
+const hasDocs = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -17,7 +18,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   // TODO: Add tests for left side database navigation
   const tests = [
     testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",

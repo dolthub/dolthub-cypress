@@ -28,7 +28,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
     // testAboutSection(true),
     ...tableExpectations(1, "test"),
     testSqlConsole,

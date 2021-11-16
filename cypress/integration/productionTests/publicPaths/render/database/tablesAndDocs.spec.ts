@@ -10,6 +10,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
+const hasDocs = true;
 
 // TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -32,7 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
     ...tableExpectations(1, "test_table"),
     testSqlConsole,

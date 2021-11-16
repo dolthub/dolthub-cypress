@@ -44,11 +44,74 @@ export const forkButtonClickFlow = (loggedIn: boolean) =>
     "[data-cy=close-modal]",
   );
 
+// DATABSE DROPDOWN CLICKFLOW
+
+export const conditionalReadMeTest = (hasDocs: boolean) => {
+  const docsExpectation: Expectation = hasDocs
+    ? newExpectation(
+        "Should not have readmeLink",
+        "[data-cy=dropdown-new-readme-link]",
+        newShouldArgs("not.exist"),
+      )
+    : newExpectation(
+        "Should have a create new readme link",
+        "[data-cy=dropdown-new-readme-link]",
+        beVisible,
+      );
+
+  return docsExpectation;
+};
+
+export const databaseDropdownClickFlow = (
+  loggedIn: boolean,
+  hasDocs: boolean,
+) =>
+  newClickFlow(
+    "[data-cy=dropdown-database-nav]",
+    loggedIn
+      ? [
+          newExpectation(
+            "Should have a create new table link",
+            "[data-cy=dropdown-create-new-table-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a upload a file link",
+            "[data-cy=dropdown-upload-a-file-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a create new issue link",
+            "[data-cy=dropdown-new-issue-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a create new pull request link",
+            "[data-cy=dropdown-new-pull-request-link]",
+            beVisible,
+          ),
+          conditionalReadMeTest(hasDocs),
+        ]
+      : [
+          newExpectation(
+            "Should have a create new issue link",
+            "[data-cy=dropdown-new-issue-link]",
+            beVisible,
+          ),
+          newExpectation(
+            "Should have a create new pull request link",
+            "[data-cy=dropdown-new-pull-request-link]",
+            beVisible,
+          ),
+        ],
+    "[data-cy=dropdown-database-nav]",
+  );
+
 // DATABASE TAB
 
 export const testDatabaseTab: Expectation = newExpectation(
   "should have repo Database tab",
-  "[data-cy=repo-about-tab]",
+  "[data-cy=repo-database-tab]",
   newShouldArgs("be.visible"),
 );
 
@@ -100,14 +163,20 @@ export const testRepoSettingsTab = newExpectation(
   beVisible,
 );
 
+// DEPLOY TAB
+
+export const testDeployTab: Expectation = newExpectation(
+  "should have repo Deploy tab",
+  "[data-cy=repo-deploy-tab]",
+  beVisible,
+);
+
 export const testRepoHeaderForAll = (
   repoName: string,
   ownerName: string,
   loggedIn: boolean,
+  hasDocs: boolean,
 ): Tests => {
-  // TODO: Add outstanding header tests:
-  // `+` button logged out dropdown (New issue, New pull request)
-  // `+` button logged in dropdown (logged out tests plus File Upload, Add README.md/LICENSE.md)
   const loggedOutRepoHeaderTests = [
     newExpectation(
       "should have repo header",
@@ -156,6 +225,13 @@ export const testRepoHeaderForAll = (
     testReleasesTab,
     testPullRequestsTab,
     testIssuesTab,
+    testDeployTab,
+    newExpectationWithClickFlows(
+      "should have functioning nav dropdown",
+      "[data-cy=dropdown-database-nav]",
+      beVisible,
+      [databaseDropdownClickFlow(loggedIn, hasDocs)],
+    ),
   ];
 
   const loggedInRepoHeaderTests = [testRepoSettingsTab];
@@ -169,8 +245,9 @@ export const testRepoHeaderWithBranch = (
   repoName: string,
   ownerName: string,
   loggedIn: boolean,
+  hasDocs: boolean,
 ): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName, loggedIn),
+  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs),
   newExpectationWithClickFlows(
     "should open create fork modal on fork button click",
     "[data-cy=repo-fork-button]",

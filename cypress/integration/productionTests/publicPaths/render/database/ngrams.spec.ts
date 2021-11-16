@@ -15,6 +15,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "wikipedia-ngrams";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
+const hasDocs = false;
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -53,7 +54,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   );
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectationWithClickFlows(
       "should have repo Tables section",
       "[data-cy=repo-tables-table-list]",
