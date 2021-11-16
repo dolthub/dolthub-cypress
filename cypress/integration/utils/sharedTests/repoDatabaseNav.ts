@@ -54,7 +54,7 @@ export const checkQueriesClickflow: ClickFlow = newClickFlow(
 );
 
 export const checkSchemaClickflow: ClickFlow = newClickFlow(
-  `[data-cy=tab-schema]`,
+  `[data-cy=tab-schemas]`,
   [
     newExpectation(
       "the Queries tab should be inactive",
