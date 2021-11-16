@@ -137,7 +137,12 @@ export const testTablesSection = (
       "should open left database navigation",
       "[data-cy=left-nav-toggle-icon]",
       beVisible,
-      [clickToOpenNavClickFlow, checkViewsClickflow, checkQueriesClickflow, checkSchemaClickflow],
+      [
+        clickToOpenNavClickFlow,
+        checkViewsClickflow,
+        checkQueriesClickflow,
+        checkSchemaClickflow,
+      ],
     ),
     ...tableExpectations(tableLen, testTable),
   ];
