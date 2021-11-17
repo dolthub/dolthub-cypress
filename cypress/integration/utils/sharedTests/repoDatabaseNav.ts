@@ -78,7 +78,7 @@ export const conditionalBranchTest = (hasBranch: boolean) => {
         "Should have an Add New Table button",
         "[data-cy=repo-tables-add-table]",
         beVisible,
-        true
+        true,
       )
     : newExpectation(
         "Should not have an Add New Table button",
@@ -119,19 +119,21 @@ export const conditionalEditButtonTest = (
 };
 
 const testTablePlayClickFlow = (testTable: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-tables-table-${testTable}-play]`, [
-    newExpectation(
-      "",
-      `[data-cy=repo-tables-table-${testTable}-column-list]`,
-      beVisible,
-    ),
-    newExpectation(
-      "",
-      `[data-cy=repo-tables-table-viewing]`,
-      newShouldArgs("be.visible.and.contain", "Viewing"),
-    ),   
-  ],
-  `[data-cy=repo-tables-table-${testTable}]`
+  newClickFlow(
+    `[data-cy=repo-tables-table-${testTable}-play]`,
+    [
+      newExpectation(
+        "",
+        `[data-cy=repo-tables-table-${testTable}-column-list]`,
+        beVisible,
+      ),
+      newExpectation(
+        "",
+        `[data-cy=repo-tables-table-viewing]`,
+        newShouldArgs("be.visible.and.contain", "Viewing"),
+      ),
+    ],
+    `[data-cy=repo-tables-table-${testTable}]`,
   );
 
 const emptyTablesExpectation = (hasBranch: boolean): Tests => [
