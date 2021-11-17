@@ -36,7 +36,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
-    ...tableExpectations(hasBranch, 1, "test_table"),
+    ...tableExpectations(hasBranch, loggedIn, 1, "test_table"),
     testSqlConsole,
     // testSchemasSection(1, "test_table"),
     // testViewsSection(0),

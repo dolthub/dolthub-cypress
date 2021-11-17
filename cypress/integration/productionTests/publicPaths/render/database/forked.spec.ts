@@ -47,7 +47,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     // testAboutSection(false),
-    ...tableExpectations(hasBranch, 2, "IPv6ToCountry"),
+    ...tableExpectations(hasBranch, loggedIn, 2, "IPv6ToCountry"),
     // ...testPaginationForRepoDataTable,
     // testSchemasSection(2, "IPv4ToCountry"),
     // testViewsSection(0),

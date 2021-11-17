@@ -40,7 +40,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
-    ...tableExpectations(hasBranch, 1, "test_table"),
+    ...tableExpectations(hasBranch, loggedIn, 1, "test_table"),
     // testIndexesSection(1, "test_table"),
     // testViewsSection(0),
     // testQueryCatalogSection(0),

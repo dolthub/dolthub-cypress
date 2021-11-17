@@ -34,7 +34,10 @@ export const testAboutSection = (initiallyOpen: boolean): Expectation =>
 
 // TABLES
 
-const testTablePlayClickFlow = (tableLen: number, testTable: string): ClickFlow =>
+const testTablePlayClickFlow = (
+  tableLen: number,
+  testTable: string,
+): ClickFlow =>
   newClickFlow(
     `[data-cy=repo-tables-table-${testTable}${tableLen === 1 ? "" : "-play"}]`,
     [

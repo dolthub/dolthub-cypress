@@ -22,7 +22,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
-    ...testTablesSection(hasBranch, 0),
+    ...testTablesSection(hasBranch, loggedIn, 0),
     newExpectation(
       "should have database Get Started section",
       "[data-cy=repo-empty-get-started]",

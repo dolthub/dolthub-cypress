@@ -63,7 +63,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testDoltInstallationSteps,
     testSqlConsole,
-    ...testTablesSection(hasBranch, 0),
+    ...testTablesSection(hasBranch, loggedIn, 0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

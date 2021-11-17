@@ -74,10 +74,11 @@ export const checkSchemaClickflow: ClickFlow = newClickFlow(
 
 export const conditionalBranchTest = (hasBranch: boolean) => {
   const branchExpectation: Expectation = hasBranch
-    ? newExpectation(
+    ? newExpectationWithScrollIntoView(
         "Should have an Add New Table button",
         "[data-cy=repo-tables-add-table]",
-        beVisible
+        beVisible,
+        true
       )
     : newExpectation(
         "Should not have an Add New Table button",
@@ -86,6 +87,35 @@ export const conditionalBranchTest = (hasBranch: boolean) => {
       );
 
   return branchExpectation;
+};
+
+const testTableEditClickFlow = (testTable: string): ClickFlow =>
+  newClickFlow(`[data-cy=repo-tables-table-${testTable}-edit]`, [
+    newExpectation(
+      "",
+      `[data-cy=repo-tables-table-editing]`,
+      newShouldArgs("be.visible.and.contain", "Editing"),
+    ),
+  ]);
+
+export const conditionalEditButtonTest = (
+  loggedIn: boolean,
+  testTable: string,
+) => {
+  const editExpectation: Expectation = loggedIn
+    ? newExpectationWithClickFlows(
+        "Should have an Edit button",
+        `[data-cy=repo-tables-table-${testTable}-edit]`,
+        beVisible,
+        [testTableEditClickFlow(testTable)],
+      )
+    : newExpectation(
+        "Should not have an Edit button",
+        `[data-cy=repo-tables-table-${testTable}-edit]`,
+        newShouldArgs("not.exist"),
+      );
+
+  return editExpectation;
 };
 
 const testTablePlayClickFlow = (testTable: string): ClickFlow =>
@@ -99,34 +129,25 @@ const testTablePlayClickFlow = (testTable: string): ClickFlow =>
       "",
       `[data-cy=repo-tables-table-viewing]`,
       newShouldArgs("be.visible.and.contain", "Viewing"),
-    ),
+    ),   
+  ],
+  `[data-cy=repo-tables-table-${testTable}]`
+  );
 
-  ]);
-
-  // const testTableEditClickFlow = (testTable: string): ClickFlow =>
-  // newClickFlow(`[data-cy=repo-tables-table-${testTable}-edit]`, [
-  //   newExpectation(
-  //     "",
-  //     `[data-cy=repo-tables-table-${testTable}-column-list]`,
-  //     beVisible,
-  //   ),
-  // ]);
-
-const emptyTablesExpectation = (
-  hasBranch: boolean
-): Tests => [
+const emptyTablesExpectation = (hasBranch: boolean): Tests => [
   newExpectation(
     "should show empty tables message",
     "[data-cy=repo-tables-empty]",
     beVisible,
   ),
-  conditionalBranchTest(hasBranch)
+  conditionalBranchTest(hasBranch),
 ];
 
 const notEmptyTableExpectations = (
+  hasBranch: boolean,
+  loggedIn: boolean,
   tableLen: number,
   testTable: string,
-  hasBranch: boolean,
 ): Tests => [
   newExpectation(
     `should have table list with ${tableLen} items`,
@@ -137,9 +158,10 @@ const notEmptyTableExpectations = (
     `should have test table ${testTable}`,
     `[data-cy=repo-tables-table-${testTable}]`,
     beVisible,
-    [testTablePlayClickFlow(testTable), ],
+    [testTablePlayClickFlow(testTable)],
   ),
-  conditionalBranchTest(hasBranch)
+  conditionalEditButtonTest(loggedIn, testTable),
+  conditionalBranchTest(hasBranch),
   // WRITE MORE TABLE TESTS HERE
   //
 ];
@@ -149,13 +171,14 @@ const notEmptyTableExpectations = (
 
 export const tableExpectations = (
   hasBranch: boolean,
+  loggedIn: boolean,
   tableLen: number,
   testTable?: string,
 ): Expectation[] => {
   const expectations =
     tableLen === 0 || !testTable
       ? emptyTablesExpectation(hasBranch)
-      : notEmptyTableExpectations(tableLen, testTable, hasBranch);
+      : notEmptyTableExpectations(hasBranch, loggedIn, tableLen, testTable);
 
   return [
     newExpectation(
@@ -169,6 +192,7 @@ export const tableExpectations = (
 
 export const testTablesSection = (
   hasBranch: boolean,
+  loggedIn: boolean,
   tableLen: number,
   testTable?: string,
 ): Expectation[] => {
@@ -187,7 +211,7 @@ export const testTablesSection = (
         checkSchemaClickflow,
       ],
     ),
-    ...tableExpectations(hasBranch, tableLen, testTable),
+    ...tableExpectations(hasBranch, loggedIn, tableLen, testTable),
   ];
 };
 

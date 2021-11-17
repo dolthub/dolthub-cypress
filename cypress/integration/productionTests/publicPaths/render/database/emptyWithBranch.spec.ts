@@ -56,7 +56,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
-    ...testTablesSection(hasBranch, 0),
+    ...testTablesSection(hasBranch, loggedIn, 0),
     testSqlConsole,
   ];
 
