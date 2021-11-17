@@ -16,6 +16,7 @@ const currentRepo = "empty_repo";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = false;
+const hasBranch = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -62,7 +63,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testDoltInstallationSteps,
     testSqlConsole,
-    ...testTablesSection(0),
+    ...testTablesSection(hasBranch, 0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

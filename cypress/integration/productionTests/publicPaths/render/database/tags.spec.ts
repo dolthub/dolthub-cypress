@@ -17,6 +17,7 @@ const currentRepo = "repo_with_tags_and_branches";
 
 const notExist = newShouldArgs("not.exist");
 const loggedIn = false;
+const hasBranch = true;
 
 // TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -30,7 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
     // testAboutSection(true),
-    ...tableExpectations(1, "test"),
+    ...tableExpectations(hasBranch, 1, "test"),
     testSqlConsole,
     // testViewsSection(0),
     // testQueryCatalogSection(0),

@@ -15,13 +15,14 @@ const currentRepo = "empty_repo_with_branch";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
 const hasDocs = false;
+const hasBranch = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
-    ...testTablesSection(0),
+    ...testTablesSection(hasBranch, 0),
     newExpectation(
       "should have database Get Started section",
       "[data-cy=repo-empty-get-started]",

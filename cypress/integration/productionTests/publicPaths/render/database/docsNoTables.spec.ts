@@ -10,6 +10,7 @@ const currentRepo = "repo_docs_no_tables";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = true;
+const hasBranch = true;
 
 // TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -34,7 +35,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
-    ...tableExpectations(0),
+    ...tableExpectations(hasBranch, 0),
     // testSchemasSection(0),
     // testViewsSection(0),
     // testQueryCatalogSection(0),

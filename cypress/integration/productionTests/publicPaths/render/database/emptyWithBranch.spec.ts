@@ -16,6 +16,7 @@ const currentRepo = "empty_repo_with_branch";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = false;
+const hasBranch = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -55,7 +56,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
-    ...testTablesSection(0),
+    ...testTablesSection(hasBranch, 0),
     testSqlConsole,
   ];
 

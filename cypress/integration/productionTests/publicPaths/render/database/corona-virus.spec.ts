@@ -10,6 +10,7 @@ const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = true;
+const hasBranch = true;
 
 // const testView = "cases_by_age_range";
 // const testQuery = "mortality_rates";
@@ -37,7 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
-    ...tableExpectations(11, "case_details"),
+    ...tableExpectations(hasBranch, 11, "case_details"),
     // ...testPaginationForRepoDataTable,
     // testSchemasSection(11, "case_details"),
     // testViewsSection(15, testView),

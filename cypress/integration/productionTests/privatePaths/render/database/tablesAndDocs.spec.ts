@@ -10,6 +10,7 @@ const currentRepo = "repo_tables_and_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
 const hasDocs = false;
+const hasBranch = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -39,7 +40,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
-    ...tableExpectations(1, "test_table"),
+    ...tableExpectations(hasBranch, 1, "test_table"),
     // testIndexesSection(1, "test_table"),
     // testViewsSection(0),
     // testQueryCatalogSection(0),

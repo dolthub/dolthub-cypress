@@ -72,6 +72,22 @@ export const checkSchemaClickflow: ClickFlow = newClickFlow(
 
 // TABLES
 
+export const conditionalBranchTest = (hasBranch: boolean) => {
+  const branchExpectation: Expectation = hasBranch
+    ? newExpectation(
+        "Should have an Add New Table button",
+        "[data-cy=repo-tables-add-table]",
+        beVisible
+      )
+    : newExpectation(
+        "Should not have an Add New Table button",
+        "[data-cy=repo-tables-add-table]",
+        newShouldArgs("not.exist"),
+      );
+
+  return branchExpectation;
+};
+
 const testTablePlayClickFlow = (testTable: string): ClickFlow =>
   newClickFlow(`[data-cy=repo-tables-table-${testTable}-play]`, [
     newExpectation(
@@ -84,6 +100,7 @@ const testTablePlayClickFlow = (testTable: string): ClickFlow =>
       `[data-cy=repo-tables-table-viewing]`,
       newShouldArgs("be.visible.and.contain", "Viewing"),
     ),
+
   ]);
 
   // const testTableEditClickFlow = (testTable: string): ClickFlow =>
@@ -95,17 +112,21 @@ const testTablePlayClickFlow = (testTable: string): ClickFlow =>
   //   ),
   // ]);
 
-const emptyTablesExpectation = [
+const emptyTablesExpectation = (
+  hasBranch: boolean
+): Tests => [
   newExpectation(
     "should show empty tables message",
     "[data-cy=repo-tables-empty]",
     beVisible,
   ),
+  conditionalBranchTest(hasBranch)
 ];
 
 const notEmptyTableExpectations = (
   tableLen: number,
   testTable: string,
+  hasBranch: boolean,
 ): Tests => [
   newExpectation(
     `should have table list with ${tableLen} items`,
@@ -118,6 +139,7 @@ const notEmptyTableExpectations = (
     beVisible,
     [testTablePlayClickFlow(testTable), ],
   ),
+  conditionalBranchTest(hasBranch)
   // WRITE MORE TABLE TESTS HERE
   //
 ];
@@ -126,13 +148,14 @@ const notEmptyTableExpectations = (
 //* Use testTablesSection when table is not populated (left nav is initially closed)
 
 export const tableExpectations = (
+  hasBranch: boolean,
   tableLen: number,
   testTable?: string,
 ): Expectation[] => {
   const expectations =
     tableLen === 0 || !testTable
-      ? emptyTablesExpectation
-      : notEmptyTableExpectations(tableLen, testTable);
+      ? emptyTablesExpectation(hasBranch)
+      : notEmptyTableExpectations(tableLen, testTable, hasBranch);
 
   return [
     newExpectation(
@@ -145,6 +168,7 @@ export const tableExpectations = (
 };
 
 export const testTablesSection = (
+  hasBranch: boolean,
   tableLen: number,
   testTable?: string,
 ): Expectation[] => {
@@ -163,7 +187,7 @@ export const testTablesSection = (
         checkSchemaClickflow,
       ],
     ),
-    ...tableExpectations(tableLen, testTable),
+    ...tableExpectations(hasBranch, tableLen, testTable),
   ];
 };
 

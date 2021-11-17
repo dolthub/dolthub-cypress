@@ -11,6 +11,7 @@ const currentRepo = "ip-to-country";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = false;
+const hasBranch = true;
 
 // TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -46,7 +47,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     // testAboutSection(false),
-    ...tableExpectations(2, "IPv6ToCountry"),
+    ...tableExpectations(hasBranch, 2, "IPv6ToCountry"),
     // ...testPaginationForRepoDataTable,
     // testSchemasSection(2, "IPv4ToCountry"),
     // testViewsSection(0),
