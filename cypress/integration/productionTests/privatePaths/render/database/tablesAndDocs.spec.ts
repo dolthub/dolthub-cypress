@@ -1,4 +1,4 @@
-import { testTablesSection } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
+import { tableExpectations } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -39,7 +39,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // testAboutSection(true),
-    ...testTablesSection(1, "test_table"),
+    ...tableExpectations(1, "test_table"),
     // testIndexesSection(1, "test_table"),
     // testViewsSection(0),
     // testQueryCatalogSection(0),

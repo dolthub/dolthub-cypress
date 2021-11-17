@@ -79,7 +79,21 @@ const testTablePlayClickFlow = (testTable: string): ClickFlow =>
       `[data-cy=repo-tables-table-${testTable}-column-list]`,
       beVisible,
     ),
+    newExpectation(
+      "",
+      `[data-cy=repo-tables-table-viewing]`,
+      newShouldArgs("be.visible.and.contain", "Viewing"),
+    ),
   ]);
+
+  // const testTableEditClickFlow = (testTable: string): ClickFlow =>
+  // newClickFlow(`[data-cy=repo-tables-table-${testTable}-edit]`, [
+  //   newExpectation(
+  //     "",
+  //     `[data-cy=repo-tables-table-${testTable}-column-list]`,
+  //     beVisible,
+  //   ),
+  // ]);
 
 const emptyTablesExpectation = [
   newExpectation(
@@ -102,7 +116,7 @@ const notEmptyTableExpectations = (
     `should have test table ${testTable}`,
     `[data-cy=repo-tables-table-${testTable}]`,
     beVisible,
-    [testTablePlayClickFlow(testTable)],
+    [testTablePlayClickFlow(testTable), ],
   ),
   // WRITE MORE TABLE TESTS HERE
   //
@@ -352,3 +366,5 @@ export const testQueryCatalogSection = (
     [queryCatalogClickFlow(queryLen, testQuery)],
   );
 };
+
+// KATIE WRITE SCHEMAS TESTS, ALL
