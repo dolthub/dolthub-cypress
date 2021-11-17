@@ -11,9 +11,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should render pricing info",
       "[data-cy=pricing-info]",
       newShouldArgs("be.visible.and.contain", [
-        "Pricing",
-        "For Individuals",
-        "For Enterprise",
+        "Dolt Pricing",
+        "Community",
+        "Business",
+        "Enterprise",
       ]),
     ),
   ];
