@@ -1,8 +1,12 @@
+import {
+  tableExpectations,
+  testViewsSection,
+} from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Database page with tables and no docs";
 const currentOwner = "automated_testing";
@@ -10,6 +14,7 @@ const currentRepo = "repo_tables_no_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = false;
+const hasBranch = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -17,7 +22,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   // TODO: Add tests for left side database navigation
   const tests = [
-    testSqlConsole,
+    // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should not find empty database",
@@ -44,6 +49,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "b"),
     ),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test_table"),
+    testViewsSection(hasBranch, 0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

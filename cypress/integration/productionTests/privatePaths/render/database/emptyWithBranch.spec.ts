@@ -6,7 +6,10 @@ import {
   newShouldArgs,
 } from "../../../../utils/helpers";
 import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
-import { testTablesSection } from "../../../../utils/sharedTests/repoDatabaseNav";
+import {
+  testTablesSection,
+  testViewsSection,
+} from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Logged in database page with branch and no data";
@@ -22,7 +25,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
-    ...testTablesSection(hasBranch, loggedIn, 0),
     newExpectation(
       "should have database Get Started section",
       "[data-cy=repo-empty-get-started]",
@@ -56,6 +58,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
+    ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
+    testViewsSection(hasBranch, 0),
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

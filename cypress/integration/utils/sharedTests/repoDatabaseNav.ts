@@ -120,7 +120,7 @@ export const conditionalEditButtonTest = (
 
 const testTablePlayClickFlow = (testTable: string): ClickFlow =>
   newClickFlow(
-    `[data-cy=repo-tables-table-${testTable}-play]`,
+    `[data-cy=repo-tables-table-${testTable}-play]` ,
     [
       newExpectation(
         "",
@@ -136,6 +136,26 @@ const testTablePlayClickFlow = (testTable: string): ClickFlow =>
     `[data-cy=repo-tables-table-${testTable}]`,
   );
 
+  export const conditionalPlayButtonTest = (
+    hasDocs: boolean,
+    testTable: string,
+  ) => {
+    const playExpectation: Expectation = hasDocs
+      ?   newExpectationWithClickFlows(
+        `should have test table ${testTable}`,
+        `[data-cy=repo-tables-table-${testTable}]`,
+        beVisible,
+        [testTablePlayClickFlow(testTable)],
+      )
+      : newExpectation(
+        "TESTING",
+        `[data-cy=repo-tables-table-viewing]`,
+        newShouldArgs("be.visible.and.contain", "Viewing"),
+      )
+  
+    return playExpectation;
+  };
+
 const emptyTablesExpectation = (hasBranch: boolean): Tests => [
   newExpectation(
     "should show empty tables message",
@@ -146,6 +166,7 @@ const emptyTablesExpectation = (hasBranch: boolean): Tests => [
 ];
 
 const notEmptyTableExpectations = (
+  hasDocs: boolean,
   hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
@@ -156,12 +177,13 @@ const notEmptyTableExpectations = (
     "[data-cy=repo-tables-table-list] > ol > li",
     newShouldArgs("be.visible.and.have.length", tableLen),
   ),
-  newExpectationWithClickFlows(
-    `should have test table ${testTable}`,
-    `[data-cy=repo-tables-table-${testTable}]`,
-    beVisible,
-    [testTablePlayClickFlow(testTable)],
-  ),
+  // newExpectationWithClickFlows(
+  //   `should have test table ${testTable}`,
+  //   `[data-cy=repo-tables-table-${testTable}]`,
+  //   beVisible,
+  //   [testTablePlayClickFlow(testTable)],
+  // ),
+  conditionalPlayButtonTest(hasDocs, testTable),
   conditionalEditButtonTest(loggedIn, testTable),
   conditionalBranchTest(hasBranch),
   // WRITE MORE TABLE TESTS HERE
@@ -172,6 +194,7 @@ const notEmptyTableExpectations = (
 //* Use testTablesSection when table is not populated (left nav is initially closed)
 
 export const tableExpectations = (
+  hasDocs: boolean,
   hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
@@ -180,7 +203,7 @@ export const tableExpectations = (
   const expectations =
     tableLen === 0 || !testTable
       ? emptyTablesExpectation(hasBranch)
-      : notEmptyTableExpectations(hasBranch, loggedIn, tableLen, testTable);
+      : notEmptyTableExpectations(hasDocs, hasBranch, loggedIn, tableLen, testTable);
 
   return [
     newExpectation(
@@ -193,6 +216,7 @@ export const tableExpectations = (
 };
 
 export const testTablesSection = (
+  hasDocs: boolean,
   hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
@@ -213,7 +237,7 @@ export const testTablesSection = (
         checkSchemaClickflow,
       ],
     ),
-    ...tableExpectations(hasBranch, loggedIn, tableLen, testTable),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, tableLen, testTable),
   ];
 };
 
@@ -288,14 +312,22 @@ const testViewClickFlow = (testView: string): ClickFlow =>
     ),
     newExpectation(
       "",
-      "[data-cy=repo-table-header-query]",
+      "[data-cy=sql-editor-collapsed]",
       newShouldArgs("be.visible.and.contain", `SELECT * FROM ${testView}`),
     ),
   ]);
 
-const emptyViewsExpectation = [
-  newExpectation("", "[data-cy=repo-no-views]", beVisible),
-];
+// const emptyViewsExpectation = [
+//   newExpectation("", "[data-cy=repo-no-views]", beVisible),
+// ];
+
+export const emptyViewsExpectation = (hasBranch: boolean) => {
+  const viewsExpectation: Expectation = hasBranch
+    ? newExpectation("", "[data-cy=repo-no-views]", beVisible)
+    : newExpectation("", "[data-cy=repo-views-empty]", beVisible);
+
+  return viewsExpectation;
+};
 
 const notEmptyViewsExpectations = (
   viewsLen: number,
@@ -314,20 +346,21 @@ const notEmptyViewsExpectations = (
   ),
 ];
 
-const viewsClickFlow = (viewsLen: number, testView?: string): ClickFlow => {
+const viewsClickFlow = (
+  hasBranch: boolean,
+  viewsLen: number,
+  testView?: string,
+): ClickFlow => {
   const expectations =
     viewsLen === 0 || !testView
-      ? emptyViewsExpectation
+      ? [emptyViewsExpectation(hasBranch)]
       : notEmptyViewsExpectations(viewsLen, testView);
 
-  return newClickFlow(
-    "[data-cy=repo-views]",
-    expectations,
-    "[data-cy=repo-views]",
-  );
+  return newClickFlow("[data-cy=tab-views]", expectations);
 };
 
 export const testViewsSection = (
+  hasBranch: boolean,
   viewsLen: number,
   testView?: string,
 ): Expectation => {
@@ -336,11 +369,13 @@ export const testViewsSection = (
   }
   return newExpectationWithClickFlows(
     "should have repo Views section",
-    "[data-cy=repo-views]",
+    "[data-cy=tab-views]",
     beVisible,
-    [viewsClickFlow(viewsLen, testView)],
+    [viewsClickFlow(hasBranch, viewsLen, testView)],
   );
 };
+
+// newClickFlow("[data-cy=tab-views]",[])
 
 // QUERY CATALOG
 
@@ -418,3 +453,4 @@ export const testQueryCatalogSection = (
 };
 
 // KATIE WRITE SCHEMAS TESTS, ALL
+

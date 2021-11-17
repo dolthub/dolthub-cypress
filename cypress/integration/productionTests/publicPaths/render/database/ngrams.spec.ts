@@ -1,3 +1,7 @@
+import {
+  tableExpectations,
+  testViewsSection,
+} from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -6,9 +10,9 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
-import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
+// import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Database page (wikipedia-ngrams) with tables";
 const currentOwner = "automated_testing";
@@ -16,6 +20,7 @@ const currentRepo = "wikipedia-ngrams";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = false;
+const hasBranch = true;
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -62,7 +67,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [tablesClickFlow],
     ),
     // testSchemasSection(4, "unigram_counts"),
-    // testViewsSection(0),
+
     newExpectation(
       "should find repo data",
       "[data-cy=repo-data-table-empty]",
@@ -78,8 +83,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "3071"),
     ),
-    ...testPaginationForRepoDataTable,
-    testSqlConsole,
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 4, "bigram_counts"),
+    testViewsSection(hasBranch, 0),
+    // ...testPaginationForRepoDataTable,
+    // testSqlConsole,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

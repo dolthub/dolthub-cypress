@@ -1,7 +1,10 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
+import {
+  tableExpectations,
+  testViewsSection,
+} from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
@@ -46,11 +49,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=forked-parent-repo-detail]",
       beVisible,
     ),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 2, "IPv6ToCountry"),
+    testViewsSection(hasBranch, 0),
     // testAboutSection(false),
-    ...tableExpectations(hasBranch, loggedIn, 2, "IPv6ToCountry"),
     // ...testPaginationForRepoDataTable,
     // testSchemasSection(2, "IPv4ToCountry"),
-    // testViewsSection(0),
     // testQueryCatalogSection(0),
   ];
 

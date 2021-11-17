@@ -1,7 +1,10 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
+import {
+  tableExpectations,
+  testViewsSection,
+} from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Database page with docs and no tables";
@@ -34,10 +37,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 0),
+    testViewsSection(hasBranch, 0),
     // testAboutSection(true),
-    ...tableExpectations(hasBranch, loggedIn, 0),
     // testSchemasSection(0),
-    // testViewsSection(0),
     // testQueryCatalogSection(0),
   ];
 

@@ -1,9 +1,12 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
+import {
+  tableExpectations,
+  testViewsSection,
+} from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Database page with tables and docs";
 const currentOwner = "automated_testing";
@@ -35,11 +38,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...tableExpectations(true, hasBranch, loggedIn, 1, "test_table"),
+    testViewsSection(hasBranch, 0),
     // testAboutSection(true),
-    ...tableExpectations(hasBranch, loggedIn, 1, "test_table"),
-    testSqlConsole,
+    // testSqlConsole,
     // testSchemasSection(1, "test_table"),
-    // testViewsSection(0),
     // testQueryCatalogSection(0),
   ];
 

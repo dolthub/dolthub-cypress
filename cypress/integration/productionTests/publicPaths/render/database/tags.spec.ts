@@ -6,9 +6,12 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
-import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
+import {
+  tableExpectations,
+  testViewsSection,
+} from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { Expectation } from "../../../../utils/types";
 
 const pageName = "Database page with tags and branches";
@@ -18,6 +21,7 @@ const currentRepo = "repo_with_tags_and_branches";
 const notExist = newShouldArgs("not.exist");
 const loggedIn = false;
 const hasBranch = true;
+const hasDocs = true;
 
 // TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -30,10 +34,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test"),
+    testViewsSection(hasBranch, 0),
     // testAboutSection(true),
-    ...tableExpectations(hasBranch, loggedIn, 1, "test"),
-    testSqlConsole,
-    // testViewsSection(0),
+    // testSqlConsole,
     // testQueryCatalogSection(0),
   ];
 

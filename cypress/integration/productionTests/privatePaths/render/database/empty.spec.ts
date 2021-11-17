@@ -1,3 +1,7 @@
+import {
+  testTablesSection,
+  testViewsSection,
+} from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -14,6 +18,7 @@ const currentRepo = "empty_repo";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
 const hasDocs = false;
+const hasBranch = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -54,6 +59,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
+    ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
+    testViewsSection(hasBranch, 0),
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

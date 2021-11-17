@@ -1,4 +1,7 @@
-import { tableExpectations } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
+import {
+  tableExpectations,
+  testViewsSection,
+} from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -9,7 +12,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
-const hasDocs = false;
+const hasDocs = true;
 const hasBranch = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -38,11 +41,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     //   beVisible,
     // ),
     // testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
     // testAboutSection(true),
-    ...tableExpectations(hasBranch, loggedIn, 1, "test_table"),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test_table"),
     // testIndexesSection(1, "test_table"),
-    // testViewsSection(0),
+    testViewsSection(hasBranch, 0),
     // testQueryCatalogSection(0),
     // testCommitSection(4),
     // testReleasesSection(0),
