@@ -27,7 +27,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  // TODO: Add tests for left side database navigation
   const tests = [
     ...testRepoHeaderForAll(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(

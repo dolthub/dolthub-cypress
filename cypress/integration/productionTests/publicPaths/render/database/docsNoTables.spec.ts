@@ -17,7 +17,6 @@ const loggedIn = false;
 const hasDocs = true;
 const hasBranch = true;
 
-// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");

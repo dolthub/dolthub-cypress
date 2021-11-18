@@ -21,7 +21,6 @@ const hasBranch = true;
 const testView = "cases_by_age_range";
 const testQuery = "mortality_rates";
 
-// TODO: Write tests for commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");

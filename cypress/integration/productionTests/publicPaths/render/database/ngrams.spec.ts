@@ -27,7 +27,6 @@ const hasBranch = true;
 
 const beVisible = newShouldArgs("be.visible");
 
-// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const tablesClickFlow = newClickFlow(
     "[data-cy=active-tab-tables]",
