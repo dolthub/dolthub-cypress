@@ -189,11 +189,6 @@ const notEmptyTableExpectations = (
   ...conditionalPlayButtonTest(hasDocs, testTable),
   conditionalEditButtonTest(loggedIn, testTable),
   conditionalBranchTest(hasBranch),
-  newExpectation(
-    "",
-    "[data-cy=sql-editor-collapsed]",
-    newShouldArgs("be.visible.and.contain", `SELECT * FROM ${testTable}`),
-  ),
 ];
 
 //* Use tableExpectations when table is populated (left nav is initially open)
