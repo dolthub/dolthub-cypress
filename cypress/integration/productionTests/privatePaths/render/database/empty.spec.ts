@@ -2,7 +2,7 @@ import {
   testTablesSection,
   testViewsSection,
   testQueryCatalogSection,
-  testSchemaSection
+  testSchemaSection,
 } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";

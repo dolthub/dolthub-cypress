@@ -414,7 +414,10 @@ const testSchemaClickFlow = (testSchema: string): ClickFlow =>
     newExpectation(
       "",
       "[data-cy=sql-editor-collapsed]",
-      newShouldArgs("be.visible.and.contain", `SHOW CREATE TABLE ${testSchema}`),
+      newShouldArgs(
+        "be.visible.and.contain",
+        `SHOW CREATE TABLE ${testSchema}`,
+      ),
     ),
   ]);
 
