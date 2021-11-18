@@ -5,6 +5,7 @@ import {
   tableExpectations,
   testViewsSection,
   testQueryCatalogSection,
+  testSchemaSection,
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -43,7 +44,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-columns] > th",
       newShouldArgs("be.visible.and.have.length", 8),
     ),
-    testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should find forked repo parent detail",
@@ -53,9 +53,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 2, "IPv4ToCountry"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
+    testSchemaSection(hasBranch, 2, "IPv4ToCountry"),
+    testSqlConsole,
     // testAboutSection(false),
     // ...testPaginationForRepoDataTable,
-    // testSchemasSection(2, "IPv4ToCountry"),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

@@ -1,3 +1,4 @@
+import { testSqlConsole } from "cypress/integration/utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -10,6 +11,7 @@ import {
   testTablesSection,
   testViewsSection,
   testQueryCatalogSection,
+  testSchemaSection,
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
 // import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -69,7 +71,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
-    // testSqlConsole,
+    testSchemaSection(hasBranch, 0),
+    testSqlConsole,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

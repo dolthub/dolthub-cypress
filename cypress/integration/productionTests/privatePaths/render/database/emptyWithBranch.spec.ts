@@ -1,3 +1,4 @@
+import { testSqlConsole } from "cypress/integration/utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -64,6 +65,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 0),
+    testSqlConsole,
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

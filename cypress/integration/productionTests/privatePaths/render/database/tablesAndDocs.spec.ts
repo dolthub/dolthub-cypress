@@ -4,6 +4,7 @@ import {
   testQueryCatalogSection,
   testSchemaSection,
 } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
+import { testSqlConsole } from "cypress/integration/utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -42,14 +43,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 1, "test_table"),
-
-    // newExpectation(
-    //   "should have upload file button",
-    //   "[data-cy=upload-file-button]",
-    //   beVisible,
-    // ),
-    // testSqlConsole,
-    // Why can you still add a readme when it already has one? I think this is the only page that does that. Make sure to fix this logic later.
+    newExpectation(
+      "should have upload file button",
+      "[data-cy=upload-file-button]",
+      beVisible,
+    ),
+    testSqlConsole,
     // testAboutSection(true),
     // testIndexesSection(1, "test_table"),
     // testCommitSection(4),
