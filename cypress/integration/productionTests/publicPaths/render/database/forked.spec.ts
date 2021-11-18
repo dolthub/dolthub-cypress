@@ -4,7 +4,7 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   tableExpectations,
   testViewsSection,
-  testQueryCatalogSection
+  testQueryCatalogSection,
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";

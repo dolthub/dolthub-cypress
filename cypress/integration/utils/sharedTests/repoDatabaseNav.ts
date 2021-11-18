@@ -141,23 +141,26 @@ export const conditionalPlayButtonTest = (
   testTable: string,
 ) => {
   const playExpectation: Tests = hasDocs
-    ? [newExpectationWithClickFlows(
-        `should have test table ${testTable}`,
-        `[data-cy=repo-tables-table-${testTable}]`,
-        beVisible,
-        [testTablePlayClickFlow(testTable)],
-      )]
-    : [newExpectation(
-        "Should show a list of columns",
-        `[data-cy=repo-tables-table-${testTable}-column-list]`,
-        beVisible,
-      ),
-      newExpectation(
-        "Should show 'viewing'",
-        `[data-cy=repo-tables-table-viewing]`,
-        newShouldArgs("be.visible.and.contain", "Viewing"),
-      ),
-    ]
+    ? [
+        newExpectationWithClickFlows(
+          `should have test table ${testTable}`,
+          `[data-cy=repo-tables-table-${testTable}]`,
+          beVisible,
+          [testTablePlayClickFlow(testTable)],
+        ),
+      ]
+    : [
+        newExpectation(
+          "Should show a list of columns",
+          `[data-cy=repo-tables-table-${testTable}-column-list]`,
+          beVisible,
+        ),
+        newExpectation(
+          "Should show 'viewing'",
+          `[data-cy=repo-tables-table-viewing]`,
+          newShouldArgs("be.visible.and.contain", "Viewing"),
+        ),
+      ];
 
   return playExpectation;
 };
@@ -440,10 +443,7 @@ const queryCatalogClickFlow = (
       ? [emptyQueriesExpectation(hasBranch)]
       : notEmptyQueriesExpectations(queryLen, testQuery);
 
-  return newClickFlow(
-    "[data-cy=tab-queries]",
-    expectations,
-  );
+  return newClickFlow("[data-cy=tab-queries]", expectations);
 };
 
 export const testQueryCatalogSection = (
@@ -458,7 +458,7 @@ export const testQueryCatalogSection = (
     "should have repo Query Catalog section",
     "[data-cy=tab-queries]",
     beVisible,
-    [queryCatalogClickFlow(hasBranch,queryLen, testQuery)],
+    [queryCatalogClickFlow(hasBranch, queryLen, testQuery)],
   );
 };
 
