@@ -1,6 +1,7 @@
 import {
   tableExpectations,
   testViewsSection,
+  testQueryCatalogSection
 } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
@@ -35,19 +36,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),  
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test_table"),
+    testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0),
+
+
     // newExpectation(
     //   "should have upload file button",
     //   "[data-cy=upload-file-button]",
     //   beVisible,
     // ),
     // testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),  
     // Why can you still add a readme when it already has one? I think this is the only page that does that. Make sure to fix this logic later.
     // testAboutSection(true),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test_table"),
     // testIndexesSection(1, "test_table"),
-    testViewsSection(hasBranch, 0),
-    // testQueryCatalogSection(0),
     // testCommitSection(4),
     // testReleasesSection(0),
     // testPullRequestsSection(0),

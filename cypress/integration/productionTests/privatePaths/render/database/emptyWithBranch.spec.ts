@@ -9,6 +9,7 @@ import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRe
 import {
   testTablesSection,
   testViewsSection,
+  testQueryCatalogSection
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
@@ -60,6 +61,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testDoltInstallationSteps,
     ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
     testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0)
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

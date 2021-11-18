@@ -327,9 +327,9 @@ const queryCatalogClickFlow = (
       : notEmptyQueriesExpectations(queryLen, testQuery);
 
   return newClickFlow(
-    "[data-cy=repo-query-catalog]",
+    "[data-cy=tab-queries]",
     expectations,
-    "[data-cy=repo-query-catalog]",
+    "[data-cy=tab-queries]",
   );
 };
 
@@ -342,7 +342,7 @@ export const testQueryCatalogSection = (
   }
   return newExpectationWithClickFlows(
     "should have repo Query Catalog section",
-    "[data-cy=repo-query-catalog]",
+    "[data-cy=tab-queries]",
     beVisible,
     [queryCatalogClickFlow(queryLen, testQuery)],
   );

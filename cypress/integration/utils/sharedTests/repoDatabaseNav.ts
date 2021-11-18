@@ -83,7 +83,7 @@ export const conditionalBranchTest = (hasBranch: boolean) => {
     : newExpectation(
         "Should not have an Add New Table button",
         "[data-cy=repo-tables-add-table]",
-        newShouldArgs("not.exist"),
+        notExist,
       );
 
   return branchExpectation;
@@ -112,7 +112,7 @@ export const conditionalEditButtonTest = (
     : newExpectation(
         "Should not have an Edit button",
         `[data-cy=repo-tables-table-${testTable}-edit]`,
-        newShouldArgs("not.exist"),
+        notExist,
       );
 
   return editExpectation;
@@ -399,10 +399,18 @@ const testQueryClickFlow = (testQuery: string): ClickFlow =>
     ),
   ]);
 
-const emptyQueriesExpectation = [
-  newExpectation("", "[data-cy=repo-no-queries]", beVisible),
-  newExpectation("", "[data-cy=repo-query-see-all]", notExist),
-];
+// const emptyQueriesExpectation = [
+//   newExpectation("", "[data-cy=repo-no-queries]", beVisible),
+//   newExpectation("", "[data-cy=repo-query-see-all]", notExist),
+// ];
+
+export const emptyQueriesExpectation = (hasBranch: boolean) => {
+  const queriesExpectation: Expectation = hasBranch
+    ? newExpectation("", "[data-cy=repo-no-queries]", beVisible)
+    : newExpectation("", "[data-cy=repo-queries-empty]", beVisible);
+
+  return queriesExpectation;
+};
 
 const notEmptyQueriesExpectations = (
   queryLen: number,
@@ -428,22 +436,23 @@ const notEmptyQueriesExpectations = (
 ];
 
 const queryCatalogClickFlow = (
+  hasBranch: boolean,
   queryLen: number,
   testQuery?: string,
 ): ClickFlow => {
   const expectations =
     queryLen === 0 || !testQuery
-      ? emptyQueriesExpectation
+      ? [emptyQueriesExpectation(hasBranch)]
       : notEmptyQueriesExpectations(queryLen, testQuery);
 
   return newClickFlow(
-    "[data-cy=repo-query-catalog]",
+    "[data-cy=tab-queries]",
     expectations,
-    "[data-cy=repo-query-catalog]",
   );
 };
 
 export const testQueryCatalogSection = (
+  hasBranch: boolean,
   queryLen: number,
   testQuery?: string,
 ): Expectation => {
@@ -452,9 +461,9 @@ export const testQueryCatalogSection = (
   }
   return newExpectationWithClickFlows(
     "should have repo Query Catalog section",
-    "[data-cy=repo-query-catalog]",
+    "[data-cy=tab-queries]",
     beVisible,
-    [queryCatalogClickFlow(queryLen, testQuery)],
+    [queryCatalogClickFlow(hasBranch,queryLen, testQuery)],
   );
 };
 
