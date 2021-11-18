@@ -264,11 +264,10 @@ const testViewClickFlow = (testView: string): ClickFlow =>
     ),
   ]);
 
-export const emptyViewsExpectation = (hasBranch: boolean): Expectation => (
+export const emptyViewsExpectation = (hasBranch: boolean): Expectation =>
   hasBranch
-  ? newExpectation("", "[data-cy=repo-no-views]", beVisible)
-  : newExpectation("", "[data-cy=repo-views-empty]", beVisible)
-)
+    ? newExpectation("", "[data-cy=repo-no-views]", beVisible)
+    : newExpectation("", "[data-cy=repo-views-empty]", beVisible);
 
 const notEmptyViewsExpectations = (
   viewsLen: number,
@@ -332,11 +331,10 @@ const testQueryClickFlow = (testQuery: string): ClickFlow =>
     ),
   ]);
 
-export const emptyQueriesExpectation = (hasBranch: boolean): Expectation => (
+export const emptyQueriesExpectation = (hasBranch: boolean): Expectation =>
   hasBranch
     ? newExpectation("", "[data-cy=repo-no-queries]", beVisible)
-    : newExpectation("", "[data-cy=repo-queries-empty]", beVisible)
-);
+    : newExpectation("", "[data-cy=repo-queries-empty]", beVisible);
 
 const notEmptyQueriesExpectations = (
   queryLen: number,
@@ -409,11 +407,10 @@ const testSchemaClickFlow = (testSchema: string): ClickFlow =>
     ),
   ]);
 
-export const emptySchemaExpectation = (hasBranch: boolean): Expectation => (  
+export const emptySchemaExpectation = (hasBranch: boolean): Expectation =>
   hasBranch
     ? newExpectation("", "[data-cy=repo-tables-empty]", beVisible)
-    : newExpectation("", "[data-cy=repo-schemas-empty]", beVisible))
-
+    : newExpectation("", "[data-cy=repo-schemas-empty]", beVisible);
 
 const notEmptySchemaExpectations = (
   schemaLen: number,
