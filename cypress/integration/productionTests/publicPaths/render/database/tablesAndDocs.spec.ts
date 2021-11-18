@@ -46,7 +46,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 1, "test_table"),
     testSqlConsole,
-    // testAboutSection(true),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

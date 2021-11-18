@@ -9,7 +9,6 @@ import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Database page with tables and no docs";
 const currentOwner = "automated_testing";
@@ -25,7 +24,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   // TODO: Add tests for left side database navigation
   const tests = [
-    // testSqlConsole,
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should not find empty database",

@@ -55,8 +55,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 2, "IPv4ToCountry"),
     testSqlConsole,
-    // testAboutSection(false),
-    // ...testPaginationForRepoDataTable,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

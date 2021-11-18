@@ -44,18 +44,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 1, "test_table"),
     testSqlConsole,
-    // newExpectation(
-    //   "should have upload file button",
-    //   "[data-cy=upload-file-button]",
-    //   beVisible,
-    // ),
-    // testAboutSection(true),
-    // testIndexesSection(1, "test_table"),
-    // testCommitSection(4),
-    // testReleasesSection(0),
-    // testPullRequestsSection(0),
-    // testCollaboratorsSection(1),
-    // testRepoSettings,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

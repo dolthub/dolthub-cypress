@@ -14,7 +14,6 @@ import {
   testSchemaSection,
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
-// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Database page with no branch and no data";
 const currentOwner = "automated_testing";
