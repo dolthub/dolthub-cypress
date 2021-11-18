@@ -13,7 +13,7 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
-// import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
+import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 // import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
@@ -69,7 +69,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [tablesClickFlow],
     ),
-    // testSchemasSection(4, "unigram_counts"),
 
     newExpectation(
       "should find repo data",
@@ -90,7 +89,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 4, "bigram_counts"),
-    // ...testPaginationForRepoDataTable,
+    ...testPaginationForRepoDataTable,
     testSqlConsole,
   ];
 
