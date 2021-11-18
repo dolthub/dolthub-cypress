@@ -123,12 +123,12 @@ const testTablePlayClickFlow = (testTable: string): ClickFlow =>
     `[data-cy=repo-tables-table-${testTable}-play]`,
     [
       newExpectation(
-        "",
+        "Should show a list of columns",
         `[data-cy=repo-tables-table-${testTable}-column-list]`,
         beVisible,
       ),
       newExpectation(
-        "",
+        "Should show 'viewing'",
         `[data-cy=repo-tables-table-viewing]`,
         newShouldArgs("be.visible.and.contain", "Viewing"),
       ),
@@ -140,18 +140,24 @@ export const conditionalPlayButtonTest = (
   hasDocs: boolean,
   testTable: string,
 ) => {
-  const playExpectation: Expectation = hasDocs
-    ? newExpectationWithClickFlows(
+  const playExpectation: Tests = hasDocs
+    ? [newExpectationWithClickFlows(
         `should have test table ${testTable}`,
         `[data-cy=repo-tables-table-${testTable}]`,
         beVisible,
         [testTablePlayClickFlow(testTable)],
-      )
-    : newExpectation(
-        "TESTING",
+      )]
+    : [newExpectation(
+        "Should show a list of columns",
+        `[data-cy=repo-tables-table-${testTable}-column-list]`,
+        beVisible,
+      ),
+      newExpectation(
+        "Should show 'viewing'",
         `[data-cy=repo-tables-table-viewing]`,
         newShouldArgs("be.visible.and.contain", "Viewing"),
-      );
+      ),
+    ]
 
   return playExpectation;
 };
@@ -183,7 +189,7 @@ const notEmptyTableExpectations = (
   //   beVisible,
   //   [testTablePlayClickFlow(testTable)],
   // ),
-  conditionalPlayButtonTest(hasDocs, testTable),
+  ...conditionalPlayButtonTest(hasDocs, testTable),
   conditionalEditButtonTest(loggedIn, testTable),
   conditionalBranchTest(hasBranch),
   // WRITE MORE TABLE TESTS HERE
@@ -323,10 +329,6 @@ const testViewClickFlow = (testView: string): ClickFlow =>
     ),
   ]);
 
-// const emptyViewsExpectation = [
-//   newExpectation("", "[data-cy=repo-no-views]", beVisible),
-// ];
-
 export const emptyViewsExpectation = (hasBranch: boolean) => {
   const viewsExpectation: Expectation = hasBranch
     ? newExpectation("", "[data-cy=repo-no-views]", beVisible)
@@ -380,8 +382,6 @@ export const testViewsSection = (
     [viewsClickFlow(hasBranch, viewsLen, testView)],
   );
 };
-
-// newClickFlow("[data-cy=tab-views]",[])
 
 // QUERY CATALOG
 
