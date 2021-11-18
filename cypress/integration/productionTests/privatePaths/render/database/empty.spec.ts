@@ -1,3 +1,10 @@
+import {
+  testTablesSection,
+  testViewsSection,
+  testQueryCatalogSection,
+  testSchemaSection,
+} from "../../../../utils/sharedTests/repoDatabaseNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -14,12 +21,12 @@ const currentRepo = "empty_repo";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
 const hasDocs = false;
+const hasBranch = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  // TODO: Add tests for left side database navigation
   const tests = [
     ...testRepoHeaderForAll(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
@@ -54,6 +61,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
+    ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
+    testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0),
+    testSchemaSection(hasBranch, 0),
+    testSqlConsole,
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

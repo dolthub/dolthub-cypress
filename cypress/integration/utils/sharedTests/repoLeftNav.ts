@@ -34,7 +34,10 @@ export const testAboutSection = (initiallyOpen: boolean): Expectation =>
 
 // TABLES
 
-const testTableClickFlow = (tableLen: number, testTable: string): ClickFlow =>
+const testTablePlayClickFlow = (
+  tableLen: number,
+  testTable: string,
+): ClickFlow =>
   newClickFlow(
     `[data-cy=repo-tables-table-${testTable}${tableLen === 1 ? "" : "-play"}]`,
     [
@@ -63,7 +66,7 @@ const notEmptyTableExpectations = (
     "",
     `[data-cy=repo-tables-table-${testTable}]`,
     beVisible,
-    [testTableClickFlow(tableLen, testTable)],
+    [testTablePlayClickFlow(tableLen, testTable)],
   ),
 ];
 
@@ -324,9 +327,9 @@ const queryCatalogClickFlow = (
       : notEmptyQueriesExpectations(queryLen, testQuery);
 
   return newClickFlow(
-    "[data-cy=repo-query-catalog]",
+    "[data-cy=tab-queries]",
     expectations,
-    "[data-cy=repo-query-catalog]",
+    "[data-cy=tab-queries]",
   );
 };
 
@@ -339,7 +342,7 @@ export const testQueryCatalogSection = (
   }
   return newExpectationWithClickFlows(
     "should have repo Query Catalog section",
-    "[data-cy=repo-query-catalog]",
+    "[data-cy=tab-queries]",
     beVisible,
     [queryCatalogClickFlow(queryLen, testQuery)],
   );
