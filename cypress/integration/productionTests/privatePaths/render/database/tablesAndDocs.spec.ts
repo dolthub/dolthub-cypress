@@ -43,12 +43,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 1, "test_table"),
-    newExpectation(
-      "should have upload file button",
-      "[data-cy=upload-file-button]",
-      beVisible,
-    ),
     testSqlConsole,
+    // newExpectation(
+    //   "should have upload file button",
+    //   "[data-cy=upload-file-button]",
+    //   beVisible,
+    // ),
     // testAboutSection(true),
     // testIndexesSection(1, "test_table"),
     // testCommitSection(4),
