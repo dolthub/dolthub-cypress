@@ -86,10 +86,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", "3071"),
     ),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 4, "bigram_counts"),
+    ...testPaginationForRepoDataTable,
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 4, "bigram_counts"),
-    ...testPaginationForRepoDataTable,
     testSqlConsole,
   ];
 

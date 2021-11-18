@@ -186,12 +186,6 @@ const notEmptyTableExpectations = (
     "[data-cy=repo-tables-table-list] > ol > li",
     newShouldArgs("be.visible.and.have.length", tableLen),
   ),
-  // newExpectationWithClickFlows(
-  //   `should have test table ${testTable}`,
-  //   `[data-cy=repo-tables-table-${testTable}]`,
-  //   beVisible,
-  //   [testTablePlayClickFlow(testTable)],
-  // ),
   ...conditionalPlayButtonTest(hasDocs, testTable),
   conditionalEditButtonTest(loggedIn, testTable),
   conditionalBranchTest(hasBranch),
@@ -456,7 +450,7 @@ const schemaClickFlow = (
       ? [emptySchemaExpectation(hasBranch)]
       : notEmptySchemaExpectations(schemaLen, testSchema);
 
-  return newClickFlow("[data-cy=tab-schemas]", expectations);
+  return newClickFlow("[data-cy=tab-schemas]", expectations, "[data-cy=tab-tables]");
 };
 
 export const testSchemaSection = (
