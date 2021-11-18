@@ -332,7 +332,7 @@ const testQueryClickFlow = (testQuery: string): ClickFlow =>
     ),
   ]);
 
-export const emptyQueriesExpectation = (hasBranch: boolean): Expection => (
+export const emptyQueriesExpectation = (hasBranch: boolean): Expectation => (
   hasBranch
     ? newExpectation("", "[data-cy=repo-no-queries]", beVisible)
     : newExpectation("", "[data-cy=repo-queries-empty]", beVisible)
