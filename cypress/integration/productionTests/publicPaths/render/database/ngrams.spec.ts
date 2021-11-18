@@ -1,6 +1,7 @@
 import {
   tableExpectations,
   testViewsSection,
+  testQueryCatalogSection
 } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
@@ -85,6 +86,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 4, "bigram_counts"),
     testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0)
     // ...testPaginationForRepoDataTable,
     // testSqlConsole,
   ];

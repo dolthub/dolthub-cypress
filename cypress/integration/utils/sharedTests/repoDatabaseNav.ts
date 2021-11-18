@@ -394,15 +394,10 @@ const testQueryClickFlow = (testQuery: string): ClickFlow =>
     ),
     newExpectation(
       "",
-      "[data-cy=repo-table-header-query] div > span",
-      newShouldArgs("be.visible.and.contain", testQuery),
+      "[data-cy=sql-editor-collapsed]",
+      newShouldArgs("be.visible.and.contain", `select * from ${testQuery}`),
     ),
   ]);
-
-// const emptyQueriesExpectation = [
-//   newExpectation("", "[data-cy=repo-no-queries]", beVisible),
-//   newExpectation("", "[data-cy=repo-query-see-all]", notExist),
-// ];
 
 export const emptyQueriesExpectation = (hasBranch: boolean) => {
   const queriesExpectation: Expectation = hasBranch
@@ -428,7 +423,7 @@ const notEmptyQueriesExpectations = (
     newShouldArgs("be.visible.and.have.length", queryLen),
   ),
   newExpectationWithClickFlows(
-    "should successfully execute a view",
+    "should successfully execute a query",
     `[data-cy=repo-query-list-query-${testQuery}]`,
     beVisible,
     [testQueryClickFlow(testQuery)],

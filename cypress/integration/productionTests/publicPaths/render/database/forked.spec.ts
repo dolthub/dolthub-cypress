@@ -4,6 +4,7 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   tableExpectations,
   testViewsSection,
+  testQueryCatalogSection
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -51,10 +52,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 2, "IPv6ToCountry"),
     testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0),
     // testAboutSection(false),
     // ...testPaginationForRepoDataTable,
     // testSchemasSection(2, "IPv4ToCountry"),
-    // testQueryCatalogSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

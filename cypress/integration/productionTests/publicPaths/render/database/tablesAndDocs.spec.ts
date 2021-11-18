@@ -4,6 +4,7 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   tableExpectations,
   testViewsSection,
+  testQueryCatalogSection
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 // import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -40,10 +41,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     ...tableExpectations(true, hasBranch, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0),
     // testAboutSection(true),
     // testSqlConsole,
     // testSchemasSection(1, "test_table"),
-    // testQueryCatalogSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

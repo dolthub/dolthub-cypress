@@ -9,6 +9,7 @@ import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRe
 import {
   testTablesSection,
   testViewsSection,
+  testQueryCatalogSection
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
 // import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
@@ -67,6 +68,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testDoltInstallationSteps,
     ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
     testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0)
     // testSqlConsole,
   ];
 

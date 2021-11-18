@@ -4,6 +4,7 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   tableExpectations,
   testViewsSection,
+  testQueryCatalogSection
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
@@ -41,7 +42,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(hasBranch, 0),
     // testAboutSection(true),
     // testSchemasSection(0),
-    // testQueryCatalogSection(0),
+    testQueryCatalogSection(hasBranch, 0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
