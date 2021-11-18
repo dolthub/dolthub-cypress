@@ -3,8 +3,8 @@ import {
   testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
-} from "cypress/integration/utils/sharedTests/repoDatabaseNav";
-import { testSqlConsole } from "cypress/integration/utils/sharedTests/sqlEditor";
+} from "../../../../utils/sharedTests/repoDatabaseNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";

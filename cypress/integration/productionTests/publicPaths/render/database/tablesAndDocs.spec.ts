@@ -1,4 +1,4 @@
-import { testSqlConsole } from "cypress/integration/utils/sharedTests/sqlEditor";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
