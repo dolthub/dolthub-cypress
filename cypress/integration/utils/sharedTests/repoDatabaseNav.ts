@@ -405,10 +405,10 @@ export const testQueryCatalogSection = (
 // SCHEMAS
 
 const testSchemaClickFlow = (testSchema: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-schema-button-${testSchema}]`, [
+  newClickFlow(`[data-cy=repo-tables-schema-${testSchema}-play]`, [
     newExpectation(
       "",
-      `[data-cy=repo-schema-viewing-${testSchema}]`,
+      `[data-cy=repo-tables-schema-${testSchema}]`,
       newShouldArgs("be.visible.and.contain", "Viewing"),
     ),
     newExpectation(
@@ -420,7 +420,7 @@ const testSchemaClickFlow = (testSchema: string): ClickFlow =>
 
 export const emptySchemaExpectation = (hasBranch: boolean) => {
   const schemaExpectation: Expectation = hasBranch
-    ? newExpectation("", "[data-cy=repo-no-schemas]", beVisible)
+    ? newExpectation("", "[data-cy=repo-tables-empty]", beVisible)
     : newExpectation("", "[data-cy=repo-schemas-empty]", beVisible);
 
   return schemaExpectation;
@@ -437,7 +437,7 @@ const notEmptySchemaExpectations = (
   ),
   newExpectationWithClickFlows(
     "should successfully execute a schema",
-    `[data-cy=repo-schema-list-schema-${testSchema}]`,
+    `[data-cy=repo-tables-schema-${testSchema}]`,
     beVisible,
     [testSchemaClickFlow(testSchema)],
   ),
