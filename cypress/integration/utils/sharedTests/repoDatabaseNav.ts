@@ -120,7 +120,7 @@ export const conditionalEditButtonTest = (
 
 const testTablePlayClickFlow = (testTable: string): ClickFlow =>
   newClickFlow(
-    `[data-cy=repo-tables-table-${testTable}-play]` ,
+    `[data-cy=repo-tables-table-${testTable}-play]`,
     [
       newExpectation(
         "",
@@ -136,25 +136,25 @@ const testTablePlayClickFlow = (testTable: string): ClickFlow =>
     `[data-cy=repo-tables-table-${testTable}]`,
   );
 
-  export const conditionalPlayButtonTest = (
-    hasDocs: boolean,
-    testTable: string,
-  ) => {
-    const playExpectation: Expectation = hasDocs
-      ?   newExpectationWithClickFlows(
+export const conditionalPlayButtonTest = (
+  hasDocs: boolean,
+  testTable: string,
+) => {
+  const playExpectation: Expectation = hasDocs
+    ? newExpectationWithClickFlows(
         `should have test table ${testTable}`,
         `[data-cy=repo-tables-table-${testTable}]`,
         beVisible,
         [testTablePlayClickFlow(testTable)],
       )
-      : newExpectation(
+    : newExpectation(
         "TESTING",
         `[data-cy=repo-tables-table-viewing]`,
         newShouldArgs("be.visible.and.contain", "Viewing"),
-      )
-  
-    return playExpectation;
-  };
+      );
+
+  return playExpectation;
+};
 
 const emptyTablesExpectation = (hasBranch: boolean): Tests => [
   newExpectation(
@@ -203,7 +203,13 @@ export const tableExpectations = (
   const expectations =
     tableLen === 0 || !testTable
       ? emptyTablesExpectation(hasBranch)
-      : notEmptyTableExpectations(hasDocs, hasBranch, loggedIn, tableLen, testTable);
+      : notEmptyTableExpectations(
+          hasDocs,
+          hasBranch,
+          loggedIn,
+          tableLen,
+          testTable,
+        );
 
   return [
     newExpectation(
@@ -453,4 +459,3 @@ export const testQueryCatalogSection = (
 };
 
 // KATIE WRITE SCHEMAS TESTS, ALL
-

@@ -41,7 +41,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     //   beVisible,
     // ),
     // testSqlConsole,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),  
+    // Why can you still add a readme when it already has one? I think this is the only page that does that. Make sure to fix this logic later.
     // testAboutSection(true),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test_table"),
     // testIndexesSection(1, "test_table"),
