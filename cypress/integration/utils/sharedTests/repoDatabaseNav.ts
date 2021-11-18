@@ -256,66 +256,6 @@ export const testTablesSection = (
   ];
 };
 
-// INDEXES
-//! No longer on the site
-// const testIndexClickFlow = (testTable: string): ClickFlow =>
-//   newClickFlow(`[data-cy=repo-indexes-table-${testTable}]`, [
-//     newExpectation(
-//       "",
-//       `[data-cy=repo-indexes-table-${testTable}-no-indexes]`,
-//       beVisible,
-//     ),
-//   ]);
-
-// const emptyIndexesExpectation = [
-//   newExpectation("", "[data-cy=repo-indexes-empty]", beVisible),
-// ];
-
-// const notEmptyIndexesExpectations = (
-//   indexLen: number,
-//   testTable: string,
-// ): Tests => [
-//   newExpectation(
-//     "",
-//     "[data-cy=repo-indexes-table-list] > li",
-//     newShouldArgs("be.visible.and.have.length", indexLen),
-//   ),
-//   newExpectationWithClickFlows(
-//     "",
-//     `[data-cy=repo-indexes-table-${testTable}]`,
-//     beVisible,
-//     [testIndexClickFlow(testTable)],
-//   ),
-// ];
-
-// const indexesClickFlow = (indexLen: number, testTable?: string): ClickFlow => {
-//   const expectations =
-//     indexLen === 0 || !testTable
-//       ? emptyIndexesExpectation
-//       : notEmptyIndexesExpectations(indexLen, testTable);
-
-//   return newClickFlow(
-//     "[data-cy=repo-indexes]",
-//     expectations,
-//     "[data-cy=repo-indexes]",
-//   );
-// };
-
-// export const testIndexesSection = (
-//   indexLen: number,
-//   testTable?: string,
-// ): Expectation => {
-//   if (indexLen > 0 && !testTable) {
-//     throw new Error("Cannot have indexLen > 0 and no testTable");
-//   }
-//   return newExpectationWithClickFlows(
-//     "should have repo Indexes section",
-//     "[data-cy=repo-indexes]",
-//     beVisible,
-//     [indexesClickFlow(indexLen, testTable)],
-//   );
-// };
-
 // VIEWS
 
 const testViewClickFlow = (testView: string): ClickFlow =>
@@ -462,4 +402,72 @@ export const testQueryCatalogSection = (
   );
 };
 
-// KATIE WRITE SCHEMAS TESTS, ALL
+// SCHEMAS
+
+const testSchemaClickFlow = (testSchema: string): ClickFlow =>
+  newClickFlow(`[data-cy=repo-schema-button-${testSchema}]`, [
+    newExpectation(
+      "",
+      `[data-cy=repo-schema-viewing-${testSchema}]`,
+      newShouldArgs("be.visible.and.contain", "Viewing"),
+    ),
+    newExpectation(
+      "",
+      "[data-cy=sql-editor-collapsed]",
+      newShouldArgs("be.visible.and.contain", `SHOW CREATE TABLE ${testSchema}`),
+    ),
+  ]);
+
+export const emptySchemaExpectation = (hasBranch: boolean) => {
+  const schemaExpectation: Expectation = hasBranch
+    ? newExpectation("", "[data-cy=repo-no-schemas]", beVisible)
+    : newExpectation("", "[data-cy=repo-schemas-empty]", beVisible);
+
+  return schemaExpectation;
+};
+
+const notEmptySchemaExpectations = (
+  schemaLen: number,
+  testSchema: string,
+): Tests => [
+  newExpectation(
+    "",
+    "[data-cy=repo-tables-schema-list] > ol > li",
+    newShouldArgs("be.visible.and.have.length", schemaLen),
+  ),
+  newExpectationWithClickFlows(
+    "should successfully execute a schema",
+    `[data-cy=repo-schema-list-schema-${testSchema}]`,
+    beVisible,
+    [testSchemaClickFlow(testSchema)],
+  ),
+];
+
+const schemaClickFlow = (
+  hasBranch: boolean,
+  schemaLen: number,
+  testSchema?: string,
+): ClickFlow => {
+  const expectations =
+    schemaLen === 0 || !testSchema
+      ? [emptySchemaExpectation(hasBranch)]
+      : notEmptySchemaExpectations(schemaLen, testSchema);
+
+  return newClickFlow("[data-cy=tab-schemas]", expectations);
+};
+
+export const testSchemaSection = (
+  hasBranch: boolean,
+  schemaLen: number,
+  testSchema?: string,
+): Expectation => {
+  if (schemaLen > 0 && !testSchema) {
+    throw new Error("Cannot have schemaLen > 0 and no testSchema");
+  }
+  return newExpectationWithClickFlows(
+    "should have repo Schema section",
+    "[data-cy=tab-schemas]",
+    beVisible,
+    [schemaClickFlow(hasBranch, schemaLen, testSchema)],
+  );
+};

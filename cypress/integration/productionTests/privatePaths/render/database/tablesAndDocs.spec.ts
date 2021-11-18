@@ -2,6 +2,7 @@ import {
   tableExpectations,
   testViewsSection,
   testQueryCatalogSection,
+  testSchemaSection,
 } from "cypress/integration/utils/sharedTests/repoDatabaseNav";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
@@ -40,6 +41,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
+    testSchemaSection(hasBranch, 1, "test_table"),
 
     // newExpectation(
     //   "should have upload file button",

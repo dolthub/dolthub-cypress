@@ -10,6 +10,7 @@ import {
   testTablesSection,
   testViewsSection,
   testQueryCatalogSection,
+  testSchemaSection,
 } from "../../../../utils/sharedTests/repoDatabaseNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
@@ -62,6 +63,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
+    testSchemaSection(hasBranch, 0),
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
