@@ -189,8 +189,11 @@ const notEmptyTableExpectations = (
   ...conditionalPlayButtonTest(hasDocs, testTable),
   conditionalEditButtonTest(loggedIn, testTable),
   conditionalBranchTest(hasBranch),
-  // WRITE MORE TABLE TESTS HERE
-  //
+  newExpectation(
+    "",
+    "[data-cy=sql-editor-collapsed]",
+    newShouldArgs("be.visible.and.contain", `SELECT * FROM ${testTable}`),
+  ),
 ];
 
 //* Use tableExpectations when table is populated (left nav is initially open)
@@ -450,7 +453,11 @@ const schemaClickFlow = (
       ? [emptySchemaExpectation(hasBranch)]
       : notEmptySchemaExpectations(schemaLen, testSchema);
 
-  return newClickFlow("[data-cy=tab-schemas]", expectations, "[data-cy=tab-tables]");
+  return newClickFlow(
+    "[data-cy=tab-schemas]",
+    expectations,
+    "[data-cy=tab-tables]",
+  );
 };
 
 export const testSchemaSection = (
