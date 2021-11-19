@@ -4,7 +4,8 @@ import {
     newClickFlow,
     newExpectation,
     newShouldArgs,
-    newExpectationWithClickFlows
+    newExpectationWithClickFlows,
+    newExpectationWithScrollIntoView
 } from "../../../../utils/helpers";
 
 const pageName = "Logged in database page with no branch and no data";
@@ -126,10 +127,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
             beVisible,
             [addCollabModalClickflow],
         ),
-        newExpectation(
+        newExpectationWithScrollIntoView(
             "should have a Delete Database section with header",
             "[data-cy=repo-settings-delete-database-header]",
             beVisibleAndContain("Delete Database"),
+            true
         ),
         newExpectationWithClickFlows(
             "should have a Delete Database button that opens a modal",
