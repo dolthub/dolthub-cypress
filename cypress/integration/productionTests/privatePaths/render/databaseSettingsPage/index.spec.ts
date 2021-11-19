@@ -25,7 +25,24 @@ const addCollabModalClickflow = newClickFlow(
         "should have a Add Collaborator header",
         "[data-cy=modal-title]",
         beVisibleAndContain("Add Collaborator"),
-        ),
+      ),
+    // Check for 2 radio buttons
+    // Check for dropdown
+    // Check for disabled add button
+    // Check for cancel link
+    ],
+    "[data-cy=close-modal]")
+
+    const deleteDatabaseModalClickflow = newClickFlow(
+    "[data-cy=delete-database-button]", [
+    newExpectation(
+        "should have a Delete Database header",
+        "[data-cy=modal-title]",
+        beVisibleAndContain("Delete Database"),
+      ),
+    // Check for are you sure blurb
+    // Check for confirm delete button
+    // Check for cancel link
     ],
     "[data-cy=close-modal]")
 
@@ -108,6 +125,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
             "[data-cy=add-collab-button]",
             beVisible,
             [addCollabModalClickflow],
+        ),
+        newExpectation(
+            "should have a Delete Database section with header",
+            "[data-cy=repo-settings-delete-database-header]",
+            beVisibleAndContain("Delete Database"),
+        ),
+        newExpectationWithClickFlows(
+            "should have a Delete Database button that opens a modal",
+            "[data-cy=delete-database-button]",
+            beVisible,
+            [deleteDatabaseModalClickflow],
         ),
     ];
     const skip = false;
