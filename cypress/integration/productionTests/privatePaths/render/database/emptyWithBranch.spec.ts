@@ -12,7 +12,7 @@ import {
   testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
-} from "../../../../utils/sharedTests/repoDatabaseNav";
+} from "../../../../utils/sharedTests/repoLeftNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Logged in database page with branch and no data";

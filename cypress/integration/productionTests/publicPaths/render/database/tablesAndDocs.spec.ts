@@ -7,7 +7,7 @@ import {
   testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
-} from "../../../../utils/sharedTests/repoDatabaseNav";
+} from "../../../../utils/sharedTests/repoLeftNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Database page with tables and docs";

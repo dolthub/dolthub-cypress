@@ -12,9 +12,8 @@ import {
   testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
-} from "../../../../utils/sharedTests/repoDatabaseNav";
+} from "../../../../utils/sharedTests/repoLeftNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Database page with branch and no data";
 const currentOwner = "automated_testing";

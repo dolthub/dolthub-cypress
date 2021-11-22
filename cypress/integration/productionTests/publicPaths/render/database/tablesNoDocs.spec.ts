@@ -3,7 +3,7 @@ import {
   testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
-} from "../../../../utils/sharedTests/repoDatabaseNav";
+} from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
