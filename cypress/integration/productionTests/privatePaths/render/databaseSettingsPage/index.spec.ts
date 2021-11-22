@@ -8,7 +8,7 @@ import {
   newExpectationWithScrollIntoView,
 } from "../../../../utils/helpers";
 
-const pageName = "Logged in database page with no branch and no data";
+const pageName = "Logged in database settings page with no branch and no data";
 const currentOwner = "automated_testing";
 const currentRepo = "empty_repo";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/settings`;
