@@ -24,7 +24,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should show profile card profile name",
-      "[data-cy=profile-card-name]",
+      "[data-cy=profile-card-name-desktop]",
       newShouldArgs("be.visible.and.contain", orgName),
     ),
     newExpectation(
@@ -34,12 +34,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should show profile card profile url",
-      "[data-cy=profile-card-url]",
+      "[data-cy=profile-card-url-desktop]",
       beVisible,
     ),
     newExpectation(
       "should show profile card profile location",
-      "[data-cy=profile-card-location]",
+      "[data-cy=profile-card-location-desktop]",
       beVisible,
     ),
     newExpectation(
