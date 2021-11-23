@@ -24,7 +24,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should show profile card profile name",
-      "[data-cy=profile-card-name]",
+      "[data-cy=profile-card-name-desktop]",
       newShouldArgs("be.visible.and.contain", orgName),
     ),
     newExpectation(
