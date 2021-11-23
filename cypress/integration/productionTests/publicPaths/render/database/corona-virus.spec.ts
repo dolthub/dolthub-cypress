@@ -1,7 +1,13 @@
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
+import {
+  tableExpectations,
+  testViewsSection,
+  testQueryCatalogSection,
+  testSchemaSection,
+} from "../../../../utils/sharedTests/repoLeftNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Database page (corona-virus) with tables and docs";
@@ -10,11 +16,11 @@ const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = true;
+const hasBranch = true;
 
-// const testView = "cases_by_age_range";
-// const testQuery = "mortality_rates";
+const testView = "cases_by_age_range";
+const testQuery = "mortality_rates";
 
-// TODO: Write tests for commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
@@ -36,12 +42,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
-    // testAboutSection(true),
-    ...tableExpectations(11, "case_details"),
-    // ...testPaginationForRepoDataTable,
-    // testSchemasSection(11, "case_details"),
-    // testViewsSection(15, testView),
-    // testQueryCatalogSection(10, testQuery),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 11, "case_details"),
+    testViewsSection(hasBranch, 15, testView),
+    testQueryCatalogSection(hasBranch, 10, testQuery),
+    testSchemaSection(hasBranch, 11, "case_details"),
+    testSqlConsole,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

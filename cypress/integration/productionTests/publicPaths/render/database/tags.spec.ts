@@ -1,3 +1,4 @@
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -6,9 +7,13 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
-import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
+import {
+  tableExpectations,
+  testViewsSection,
+  testQueryCatalogSection,
+  testSchemaSection,
+} from "../../../../utils/sharedTests/repoLeftNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { Expectation } from "../../../../utils/types";
 
 const pageName = "Database page with tags and branches";
@@ -17,8 +22,9 @@ const currentRepo = "repo_with_tags_and_branches";
 
 const notExist = newShouldArgs("not.exist");
 const loggedIn = false;
+const hasBranch = true;
+const hasDocs = true;
 
-// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
@@ -29,11 +35,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
-    // testAboutSection(true),
-    ...tableExpectations(1, "test"),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test"),
+    testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0),
+    testSchemaSection(hasBranch, 1, "test"),
     testSqlConsole,
-    // testViewsSection(0),
-    // testQueryCatalogSection(0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

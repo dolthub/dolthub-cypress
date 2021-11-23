@@ -1,7 +1,12 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { tableExpectations } from "../../../../utils/sharedTests/repoDatabaseNav";
+import {
+  tableExpectations,
+  testViewsSection,
+  testQueryCatalogSection,
+  testSchemaSection,
+} from "../../../../utils/sharedTests/repoLeftNav";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
 const pageName = "Database page with docs and no tables";
@@ -10,8 +15,8 @@ const currentRepo = "repo_docs_no_tables";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = true;
+const hasBranch = true;
 
-// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
@@ -33,11 +38,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
-    // testAboutSection(true),
-    ...tableExpectations(0),
-    // testSchemasSection(0),
-    // testViewsSection(0),
-    // testQueryCatalogSection(0),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 0),
+    testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0),
+    testSchemaSection(hasBranch, 0),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];

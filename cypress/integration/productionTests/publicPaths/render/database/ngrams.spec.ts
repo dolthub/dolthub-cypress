@@ -1,3 +1,10 @@
+import {
+  tableExpectations,
+  testViewsSection,
+  testQueryCatalogSection,
+  testSchemaSection,
+} from "../../../../utils/sharedTests/repoLeftNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -8,7 +15,7 @@ import {
 } from "../../../../utils/helpers";
 import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Database page (wikipedia-ngrams) with tables";
 const currentOwner = "automated_testing";
@@ -16,10 +23,10 @@ const currentRepo = "wikipedia-ngrams";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = false;
+const hasBranch = true;
 
 const beVisible = newShouldArgs("be.visible");
 
-// TODO: Test commented out sections for left nav
 describe(`${pageName} renders expected components on different devices`, () => {
   const tablesClickFlow = newClickFlow(
     "[data-cy=active-tab-tables]",
@@ -61,8 +68,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [tablesClickFlow],
     ),
-    // testSchemasSection(4, "unigram_counts"),
-    // testViewsSection(0),
+
     newExpectation(
       "should find repo data",
       "[data-cy=repo-data-table-empty]",
@@ -78,7 +84,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "3071"),
     ),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 4, "bigram_counts"),
     ...testPaginationForRepoDataTable,
+    testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0),
+    testSchemaSection(hasBranch, 4, "bigram_counts"),
     testSqlConsole,
   ];
 
