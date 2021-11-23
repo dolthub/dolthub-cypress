@@ -5,7 +5,7 @@ import {
   newExpectation,
   newShouldArgs,
   newExpectationWithClickFlows,
-newExpectationWithScrollIntoView,
+  newExpectationWithScrollIntoView,
   newExpectationWithTypeString,
 } from "../../../../utils/helpers";
 
@@ -97,10 +97,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "test number 2",
     ),
     newExpectationWithScrollIntoView(
-        "Save button should now be visible",
-        "[data-cy=submit-edit-docs-button]",
-        newShouldArgs("be.visible.and.not.be.disabled"),
-        true
+      "Save button should now be visible",
+      "[data-cy=submit-edit-docs-button]",
+      newShouldArgs("be.visible.and.not.be.disabled"),
+      true,
     ),
     newExpectationWithClickFlows(
       "should submit the edited doc",
