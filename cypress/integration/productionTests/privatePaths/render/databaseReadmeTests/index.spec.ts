@@ -5,7 +5,7 @@ import {
   newExpectation,
   newShouldArgs,
   newExpectationWithClickFlows,
-  //   newExpectationWithScrollIntoView,
+newExpectationWithScrollIntoView,
   newExpectationWithTypeString,
 } from "../../../../utils/helpers";
 
@@ -73,7 +73,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     //     ],
     //   ),
     newExpectationWithClickFlows(
-      "the new license should render in the abut tab",
+      "the new license should render in the about tab",
       "[data-cy=repo-about-tab]",
       beVisible,
       [
@@ -86,7 +86,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
               beVisibleAndContain("test"),
             ),
           ],
-          // "[data-cy=edit-docs-button]",
+          "[data-cy=edit-docs-button]",
         ),
       ],
     ),
@@ -95,6 +95,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=textarea-container]",
       beVisible,
       "test number 2",
+    ),
+    newExpectationWithScrollIntoView(
+        "Save button should now be visible",
+        "[data-cy=submit-edit-docs-button]",
+        newShouldArgs("be.visible.and.not.be.disabled"),
+        true
     ),
     newExpectationWithClickFlows(
       "should submit the edited doc",
