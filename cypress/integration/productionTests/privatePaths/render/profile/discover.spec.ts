@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForAppLayout } from "../../../../utils/devices";
+import { desktopDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Profile discover page";
@@ -38,7 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should not render create database button",
-      ["[data-cy=create-database-button]"],
+      "[data-cy=create-database-button]",
       newShouldArgs("not.be.visible"),
     ),
     newExpectation(
@@ -53,10 +53,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
   const skip = false;
-  const devices = allDevicesForAppLayout(
+  const devices = desktopDevicesForAppLayout(
     pageName,
     desktopTests,
-    mobileTests,
     false,
     loggedIn,
   );

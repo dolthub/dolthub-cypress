@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForAppLayout } from "../../../../utils/devices";
+import { desktopDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "DoltHub org billing page";
@@ -163,7 +163,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const desktopTests = [...testProfileCardDesktop, ...testTabContainer];
   const mobileTests = [...testProfileCardMobile, ...testTabContainer];
 
-  const devices = allDevicesForAppLayout(pageName, desktopTests, mobileTests);
+  const devices = desktopDevicesForAppLayout(pageName, desktopTests);
 
   runTestsForDevices({ currentPage, devices });
 });

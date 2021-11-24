@@ -5,7 +5,7 @@ import {
   testSignedInNavbar,
   testSignedOutNavbar,
 } from "./sharedTests/navbar";
-import { Device, Devices, Tests } from "./types";
+import { Devices, Tests } from "./types";
 
 // Creates devices
 
@@ -49,18 +49,15 @@ export const iPhoneX = (pageName: string, tests: Tests, loggedIn: boolean) =>
 
 // App layout
 
-export const macbook15ForAppLayout = (
+export const mobileDevicesForAppLayout = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
   loggedIn = false,
-): Device => {
-  const t = getAppLayoutTests(tests, skipNavbar, loggedIn);
-  return macbook15(pageName, t, loggedIn);
+) => {
+  const t = getAppLayoutTestsMobile(tests, skipNavbar, loggedIn);
+  return [iPad2(pageName, t, loggedIn), iPhoneX(pageName, t, loggedIn)];
 };
-
-export const iPad2ForAppLayout = (pageName: string, tests: Tests): Device =>
-  iPad2(pageName, getAppLayoutTests(tests), false);
 
 export const desktopDevicesForAppLayout = (
   pageName: string,
@@ -80,8 +77,8 @@ export const allDevicesForAppLayout = (
   loggedIn = false,
 ) => {
   const desktopT = getAppLayoutTests(desktopTests, skipNavbar, loggedIn);
-  const iPadT = getAppLayoutTests(desktopTests, skipNavbar, loggedIn);
-  const iPhoneT = getAppLayoutTests(mobileTests, skipNavbar, loggedIn);
+  const iPadT = getAppLayoutTestsMobile(mobileTests, skipNavbar, loggedIn);
+  const iPhoneT = getAppLayoutTestsMobile(mobileTests, skipNavbar, loggedIn);
   return [
     macbook15(pageName, desktopT, loggedIn),
     macbook11(pageName, desktopT, loggedIn),
@@ -96,6 +93,18 @@ function getAppLayoutTests(tests: Tests, skipNavbar = false, loggedIn = false) {
     return [...testSignedInNavbar, ...tests];
   }
   return [...testSignedOutNavbar, ...tests];
+}
+
+function getAppLayoutTestsMobile(
+  tests: Tests,
+  skipNavbar = false,
+  loggedIn = false,
+) {
+  if (skipNavbar) return [...tests];
+  if (loggedIn) {
+    return [...testMobileNavbar, ...tests];
+  }
+  return [...testMobileNavbar, ...tests];
 }
 
 // SignedOut layout
