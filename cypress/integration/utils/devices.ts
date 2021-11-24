@@ -3,7 +3,7 @@ import { testFooter } from "./sharedTests/footer";
 import {
   testMobileNavbar,
   testSignedInNavbar,
-  testSignedOutNavbar
+  testSignedOutNavbar,
 } from "./sharedTests/navbar";
 import { Device, Devices, Tests } from "./types";
 
@@ -82,7 +82,12 @@ export const allDevicesForAppLayout = (
   const desktopT = getAppLayoutTests(desktopTests, skipNavbar, loggedIn);
   const iPadT = getAppLayoutTests(desktopTests, skipNavbar, loggedIn);
   const iPhoneT = getAppLayoutTests(mobileTests, skipNavbar, loggedIn);
-  return [macbook15(pageName, desktopT, loggedIn), macbook11(pageName, desktopT, loggedIn), iPad2(pageName, iPadT, loggedIn),iPhoneX(pageName, iPhoneT, loggedIn)];
+  return [
+    macbook15(pageName, desktopT, loggedIn),
+    macbook11(pageName, desktopT, loggedIn),
+    iPad2(pageName, iPadT, loggedIn),
+    iPhoneX(pageName, iPhoneT, loggedIn),
+  ];
 };
 
 function getAppLayoutTests(tests: Tests, skipNavbar = false, loggedIn = false) {

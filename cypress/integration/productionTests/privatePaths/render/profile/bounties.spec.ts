@@ -3,7 +3,7 @@ import { allDevicesForAppLayout } from "../../../../utils/devices";
 import {
   newExpectation,
   newShouldArgs,
-  scrollToPosition
+  scrollToPosition,
 } from "../../../../utils/helpers";
 
 const pageName = "Profile bounties repositories page";
@@ -49,6 +49,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
   const skip = false;
-  const devices = allDevicesForAppLayout(pageName, desktopTests, mobileTests, false, loggedIn);
+  const devices = allDevicesForAppLayout(
+    pageName,
+    desktopTests,
+    mobileTests,
+    false,
+    loggedIn,
+  );
   runTestsForDevices({ currentPage, devices, skip });
 });

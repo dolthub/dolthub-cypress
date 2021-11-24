@@ -33,8 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should not render create database button",
-      ["[data-cy=create-database-button]",
-    ],
+      ["[data-cy=create-database-button]"],
       newShouldArgs("not.be.visible"),
     ),
     newExpectation(
@@ -42,8 +41,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=search-input]",
       beVisible,
     ),
-];
+  ];
   const skip = false;
-  const devices = allDevicesForAppLayout(pageName, desktopTests, mobileTests, false, loggedIn);
+  const devices = allDevicesForAppLayout(
+    pageName,
+    desktopTests,
+    mobileTests,
+    false,
+    loggedIn,
+  );
   runTestsForDevices({ currentPage, devices, skip });
 });
