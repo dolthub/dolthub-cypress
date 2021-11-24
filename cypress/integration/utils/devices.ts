@@ -5,7 +5,7 @@ import {
   testSignedInNavbar,
   testSignedOutNavbar,
 } from "./sharedTests/navbar";
-import { Devices, Tests } from "./types";
+import { Device, Tests } from "./types";
 
 // Creates devices
 
