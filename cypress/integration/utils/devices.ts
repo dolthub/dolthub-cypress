@@ -48,6 +48,18 @@ export const iPhoneX = (pageName: string, tests: Tests, loggedIn: boolean) =>
   );
 
 // App layout
+export const macbook15ForAppLayout = (
+  pageName: string,
+  tests: Tests,
+  skipNavbar = false,
+  loggedIn = false,
+): Device => {
+  const t = getAppLayoutTests(tests, skipNavbar, loggedIn);
+  return macbook15(pageName, t, loggedIn);
+};
+
+export const iPad2ForAppLayout = (pageName: string, tests: Tests): Device =>
+  iPad2(pageName, getAppLayoutTestsMobile(tests), false);
 
 export const mobileDevicesForAppLayout = (
   pageName: string,
