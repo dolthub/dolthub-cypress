@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForAppLayout } from "../../../../utils/devices";
+import { allDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "DoltHub org billing page";
@@ -11,7 +11,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
   const notBeVisible = newShouldArgs("not.be.visible");
 
-  const testProfileCard = [
+  const testProfileCardDesktop = [
     newExpectation(
       "should show profile card",
       "[data-cy=profile-card]",
@@ -117,9 +117,53 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const tests = [...testProfileCard, ...testTabContainer];
+  const testProfileCardMobile = [
+    newExpectation(
+      "should show profile card",
+      "[data-cy=profile-card]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show profile card profile pic",
+      "[data-cy=profile-card-pic]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show profile card profile name",
+      "[data-cy=profile-card-name-mobile]",
+      newShouldArgs("be.visible.and.contain", orgName),
+    ),
+    newExpectation(
+      "should show profile card profile bio",
+      "[data-cy=profile-card-bio]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show profile card profile url",
+      "[data-cy=profile-card-url-mobile]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show profile card profile location",
+      "[data-cy=profile-card-location-mobile]",
+      beVisible,
+    ),
+    newExpectation(
+      "should show profile summary",
+      "[data-cy=profile-summary]",
+      beVisible,
+    ),
+    newExpectation(
+      "should not show next steps",
+      "[data-cy=profile-card-next-steps]",
+      notExist,
+    ),
+  ];
 
-  const devices = desktopDevicesForAppLayout(pageName, tests);
+  const desktopTests = [...testProfileCardDesktop, ...testTabContainer];
+  const mobileTests = [...testProfileCardMobile, ...testTabContainer];
+
+  const devices = allDevicesForAppLayout(pageName, desktopTests, mobileTests);
 
   runTestsForDevices({ currentPage, devices });
 });
