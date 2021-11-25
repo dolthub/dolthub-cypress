@@ -11,7 +11,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notBeVisible = newShouldArgs("not.be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const testProfileCardDesktop = [
+  const commonTest = [
     newExpectation(
       "should show profile card",
       "[data-cy=profile-card]",
@@ -23,11 +23,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should show profile card profile name",
-      "[data-cy=profile-card-name-desktop]",
-      newShouldArgs("be.visible.and.contain", orgName),
-    ),
-    newExpectation(
       "should show profile summary",
       "[data-cy=profile-summary]",
       beVisible,
@@ -36,6 +31,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should not show next steps",
       "[data-cy=profile-card-next-steps]",
       notExist,
+    ),
+  ];
+
+  const testProfileCardDesktop = [
+    newExpectation(
+      "should show profile card profile name",
+      "[data-cy=profile-card-name-desktop]",
+      newShouldArgs("be.visible.and.contain", orgName),
+    ),
+  ];
+
+  const testProfileCardMobile = [
+    newExpectation(
+      "should show profile card profile name",
+      "[data-cy=profile-card-name-mobile]",
+      newShouldArgs("be.visible.and.contain", orgName),
     ),
   ];
 
@@ -102,36 +113,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const testProfileCardMobile = [
-    newExpectation(
-      "should show profile card",
-      "[data-cy=profile-card]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show profile card profile pic",
-      "[data-cy=profile-card-pic]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show profile card profile name",
-      "[data-cy=profile-card-name-mobile]",
-      newShouldArgs("be.visible.and.contain", orgName),
-    ),
-    newExpectation(
-      "should show profile summary",
-      "[data-cy=profile-summary]",
-      beVisible,
-    ),
-    newExpectation(
-      "should not show next steps",
-      "[data-cy=profile-card-next-steps]",
-      notExist,
-    ),
+  const desktopTests = [
+    ...commonTest,
+    ...testProfileCardDesktop,
+    ...testTabContainer,
   ];
-
-  const desktopTests = [...testProfileCardDesktop, ...testTabContainer];
-  const mobileTests = [...testProfileCardMobile, ...testTabContainer];
+  const mobileTests = [
+    ...commonTest,
+    ...testProfileCardMobile,
+    ...testTabContainer,
+  ];
 
   const devices = allDevicesForAppLayout(pageName, desktopTests, mobileTests);
 

@@ -87,17 +87,10 @@ export const allDevicesForAppLayout = (
   mobileTests: Tests,
   skipNavbar = false,
   loggedIn = false,
-) => {
-  const desktopT = getAppLayoutTests(desktopTests, skipNavbar, loggedIn);
-  const iPadT = getAppLayoutTestsMobile(mobileTests, skipNavbar, loggedIn);
-  const iPhoneT = getAppLayoutTestsMobile(mobileTests, skipNavbar, loggedIn);
-  return [
-    macbook15(pageName, desktopT, loggedIn),
-    macbook11(pageName, desktopT, loggedIn),
-    iPad2(pageName, iPadT, loggedIn),
-    iPhoneX(pageName, iPhoneT, loggedIn),
-  ];
-};
+) => [
+  ...desktopDevicesForAppLayout(pageName, desktopTests, skipNavbar, loggedIn),
+  ...mobileDevicesForAppLayout(pageName, mobileTests, skipNavbar, loggedIn),
+];
 
 function getAppLayoutTests(tests: Tests, skipNavbar = false, loggedIn = false) {
   if (skipNavbar) return tests;
@@ -112,7 +105,7 @@ function getAppLayoutTestsMobile(
   skipNavbar = false,
   loggedIn = false,
 ) {
-  if (skipNavbar) return [...tests];
+  if (skipNavbar) return tests;
   if (loggedIn) {
     return [...testMobileNavbar, ...tests];
   }
