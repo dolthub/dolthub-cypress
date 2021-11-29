@@ -1,5 +1,3 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -7,15 +5,11 @@ import {
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
   newExpectationWithTypeString,
-} from "../../../../utils/helpers";
-
-const pageName = "Creating, Editing, and Deleting a readme";
-const currentOwner = "automated_testing";
-const currentRepo = "readme_testing_repo";
-const currentPage = `repositories/${currentOwner}/${currentRepo}`;
-const loggedIn = true;
+} from "../helpers";
+import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
+const notExist = newShouldArgs("not.exist");
 const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 
@@ -65,8 +59,7 @@ const mergingAndDeletingBranch = (status: string, value: string) => [
   ),
 ];
 
-describe(`${pageName} renders expected components on different devices`, () => {
-  const tests = [
+export const testDocs: Tests = [
     newExpectationWithClickFlows(
       "should navigate to the new docs page",
       "[data-cy=dropdown-database-nav]",
@@ -153,7 +146,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
           newExpectation(
             "should not have the repo doc markdown'",
             "[data-cy=repo-doc-markdown]",
-            newShouldArgs("not.exist"),
+            notExist,
           ),
         ]),
       ],
@@ -164,7 +157,4 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
   ];
-  const skip = true;
-  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  runTestsForDevices({ currentPage, devices, skip });
-});
+
