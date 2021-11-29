@@ -48,6 +48,11 @@ export const deleteTempDatabase = (
   repoName: string,
   ownerName: string,
 ): Tests => [
+  newExpectation(
+    "Settings tab should be visible",
+    "[data-cy=repo-settings-tab]",
+    beVisible,
+  ),
   newExpectationWithClickFlows(
     "should navigate to settings tab and delete database",
     "[data-cy=repo-settings-tab]",
