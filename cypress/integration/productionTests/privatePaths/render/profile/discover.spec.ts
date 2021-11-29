@@ -8,7 +8,7 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const tests = [
+  const desktopTests = [
     newExpectation(
       "should render repository list",
       "[data-cy=repository-list-most-recent]",
@@ -30,7 +30,36 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
   ];
+
+  // TODO: skip mobile test, wait for sign out button
+  /*   const mobileTests = [
+    newExpectation(
+      "should render repository list",
+      "[data-cy=repository-list-most-recent]",
+      beVisible,
+    ),
+    newExpectation(
+      "should not render create database button",
+      "[data-cy=create-database-button]",
+      newShouldArgs("not.be.visible"),
+    ),
+    newExpectation(
+      "should render search input",
+      "[data-cy=search-input]",
+      beVisible,
+    ),
+    newExpectation(
+      "should render sort select dropdown",
+      "[data-cy=sort-discover-select]",
+      beVisible,
+    ),
+  ]; */
   const skip = false;
-  const devices = desktopDevicesForAppLayout(pageName, tests, false, loggedIn);
+  const devices = desktopDevicesForAppLayout(
+    pageName,
+    desktopTests,
+    false,
+    loggedIn,
+  );
   runTestsForDevices({ currentPage, devices, skip });
 });
