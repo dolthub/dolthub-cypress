@@ -46,6 +46,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [newClickFlow("[data-cy=new-doc-create-button]", [])],
     ),
+    newExpectation(
+        "Should have title Add License",
+        "[data-cy=pull-page-title]",
+        beVisibleAndContain("Add License")
+    ),
+    newExpectation(
+        "Should have Open pull state",
+        "[data-cy=pull-state-label]",
+        beVisibleAndContain("Open")
+    ),
     newExpectationWithClickFlows(
       "should merge doc",
       "[data-cy=merge-button]",
@@ -59,6 +69,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
           ),
         ]),
       ],
+    ),
+    newExpectation(
+        "Should have Merged pull state",
+        "[data-cy=pull-state-label]",
+        beVisibleAndContain("Merged")
     ),
     //! Gotta figure out how to make branches delete
     // newExpectationWithClickFlows(
@@ -108,6 +123,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [newClickFlow("[data-cy=submit-edit-docs-button]", [])],
     ),
+    newExpectation(
+        "Should have title Update License",
+        "[data-cy=pull-page-title]",
+        beVisibleAndContain("Update License")
+    ),
+    newExpectation(
+        "Should have Open pull state",
+        "[data-cy=pull-state-label]",
+        beVisibleAndContain("Open")
+    ),
     newExpectationWithClickFlows(
       "should merge edited doc",
       "[data-cy=merge-button]",
@@ -122,6 +147,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ]),
       ],
     ),
+    newExpectation(
+        "Should have Merged pull state",
+        "[data-cy=pull-state-label]",
+        beVisibleAndContain("Merged")
+    ),
     //! Gotta figure out how to make branches delete
     // newExpectationWithClickFlows(
     //     "should delete branch",
@@ -135,7 +165,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     //     ],
     //   ),
     newExpectationWithClickFlows(
-      "the edited license should render in the abut tab",
+      "the edited license should render in the about tab",
       "[data-cy=repo-about-tab]",
       beVisible,
       [
@@ -143,7 +173,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
           "[data-cy=repo-about-tab]",
           [
             newExpectation(
-              "should contain 'test'",
+              "should contain 'test number 2'",
               "[data-cy=repo-doc-markdown]",
               beVisibleAndContain("test number 2"),
             ),
@@ -157,6 +187,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=confirm-delete-docs-button]",
       beVisible,
       [newClickFlow("[data-cy=confirm-delete-docs-button]", [])],
+    ),
+    newExpectation(
+        "Should have title Delete License",
+        "[data-cy=pull-page-title]",
+        beVisibleAndContain("Delete License")
+    ),
+    newExpectation(
+        "Should have Open pull state",
+        "[data-cy=pull-state-label]",
+        beVisibleAndContain("Open")
     ),
     newExpectationWithClickFlows(
       "should merge deleted doc",
@@ -172,6 +212,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ]),
       ],
     ),
+    newExpectation(
+        "Should have Merged pull state",
+        "[data-cy=pull-state-label]",
+        beVisibleAndContain("Merged")
+    ),
     //! Gotta figure out how to make branches delete
     // newExpectationWithClickFlows(
     //     "should delete branch",
@@ -181,6 +226,24 @@ describe(`${pageName} renders expected components on different devices`, () => {
     //       newClickFlow(
     //         "[data=cy=delete-branch-button]",
     //         []
+    //       ),
+    //     ],
+    //   ),
+    //! For some reason, this test makes logout fail.
+    // newExpectationWithClickFlows(
+    //     "the deleted license should not render in the about tab",
+    //     "[data-cy=repo-about-tab]",
+    //     beVisible,
+    //     [
+    //       newClickFlow(
+    //         "[data-cy=repo-about-tab]",
+    //         [
+    //           newExpectation(
+    //             "should not have the repo doc markdown'",
+    //             "[data-cy=repo-doc-markdown]",
+    //             newShouldArgs("not.exist"),
+    //           ),
+    //         ],
     //       ),
     //     ],
     //   ),
