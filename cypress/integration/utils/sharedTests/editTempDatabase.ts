@@ -2,13 +2,16 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
-const commitMsg1 = "Adding query changes 1";
+const commitMsg1 = `Run SQL query: CREATE TABLE tablename (
+  pk INT,
+  col1 VARCHAR(255),
+  PRIMARY KEY (pk)
+);`;
 
 const sqlConsoleClickFlow = newClickFlow(
   "[data-cy=sql-editor-collapsed]",
@@ -25,11 +28,10 @@ const sqlConsoleClickFlow = newClickFlow(
 const createCommit = newClickFlow(
   "[data-cy=create-commit]",
   [
-    newExpectationWithTypeString(
-      "should change commit message",
-      "textarea[name=commit-message]",
+    newExpectation(
+      "should show create commit form",
+      "[data-cy=create-commit-form]",
       beVisible,
-      commitMsg1,
     ),
   ],
   "[data-cy=create-commit-button]",
