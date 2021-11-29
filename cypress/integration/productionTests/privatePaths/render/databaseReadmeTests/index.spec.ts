@@ -29,44 +29,42 @@ const typingExpectation = (status: string, value: string) =>
   );
 
 const mergingAndDeletingBranch = (status: string, value: string) => [
-    newExpectation(
-        `Should have title ${status} License`,
-        "[data-cy=pull-page-title]",
-        beVisibleAndContain(`${status} License`),
-      ),
-      newExpectation(
-        "Should have Open pull state",
-        "[data-cy=pull-state-label]",
-        beVisibleAndContain("Open"),
-      ),
-      newExpectationWithClickFlows(
-        `should merge ${value}doc`,
-        "[data-cy=merge-button]",
-        beVisible,
-        [
-          newClickFlow("[data-cy=merge-button]", [
-            newExpectation(
-              "Should say 'merging'",
-              "[data-cy=merge-button]",
-              beVisibleAndContain("Merging..."),
-            ),
-          ]),
-        ],
-      ),
-      newExpectation(
-        "Should have Merged pull state",
-        "[data-cy=pull-state-label]",
-        beVisibleAndContain("Merged"),
-      ),
-      newExpectationWithClickFlows(
-        "should delete branch",
-        "[data-cy=delete-branch-button]",
-        beVisible,
-        [newClickFlow("[data-cy=delete-branch-button]", [])],
-      ),
-
-
-]
+  newExpectation(
+    `Should have title ${status} License`,
+    "[data-cy=pull-page-title]",
+    beVisibleAndContain(`${status} License`),
+  ),
+  newExpectation(
+    "Should have Open pull state",
+    "[data-cy=pull-state-label]",
+    beVisibleAndContain("Open"),
+  ),
+  newExpectationWithClickFlows(
+    `should merge ${value}doc`,
+    "[data-cy=merge-button]",
+    beVisible,
+    [
+      newClickFlow("[data-cy=merge-button]", [
+        newExpectation(
+          "Should say 'merging'",
+          "[data-cy=merge-button]",
+          beVisibleAndContain("Merging..."),
+        ),
+      ]),
+    ],
+  ),
+  newExpectation(
+    "Should have Merged pull state",
+    "[data-cy=pull-state-label]",
+    beVisibleAndContain("Merged"),
+  ),
+  newExpectationWithClickFlows(
+    "should delete branch",
+    "[data-cy=delete-branch-button]",
+    beVisible,
+    [newClickFlow("[data-cy=delete-branch-button]", [])],
+  ),
+];
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
@@ -89,7 +87,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [newClickFlow("[data-cy=new-doc-create-button]", [])],
     ),
-    ...mergingAndDeletingBranch('Add', ""),
+    ...mergingAndDeletingBranch("Add", ""),
     newExpectationWithClickFlows(
       "the new license should render in the about tab",
       "[data-cy=repo-about-tab]",
@@ -121,7 +119,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [newClickFlow("[data-cy=submit-edit-docs-button]", [])],
     ),
-    ...mergingAndDeletingBranch('Update', 'edited '),
+    ...mergingAndDeletingBranch("Update", "edited "),
     newExpectationWithClickFlows(
       "the edited license should render in the about tab",
       "[data-cy=repo-about-tab]",
@@ -146,7 +144,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [newClickFlow("[data-cy=confirm-delete-docs-button]", [])],
     ),
-    ...mergingAndDeletingBranch('Delete','deleted '),
+    ...mergingAndDeletingBranch("Delete", "deleted "),
     newExpectationWithClickFlows(
       "the deleted license should not render in the about tab",
       "[data-cy=repo-about-tab]",
