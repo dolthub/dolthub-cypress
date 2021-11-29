@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForAppLayout } from "../../../../utils/devices";
+import { allDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "DoltHub organizaton page";
@@ -12,7 +12,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notBeVisible = newShouldArgs("not.be.visible");
   const skip = false;
 
-  const testProfileCard = [
+  const commonTest = [
     newExpectation(
       "should show profile card",
       "[data-cy=profile-card]",
@@ -26,15 +26,29 @@ describe(`${pageName} renders expected components on different devices`, () => {
       skip,
     ),
     newExpectation(
-      "should show profile card profile name",
-      "[data-cy=profile-card-name-desktop]",
-      newShouldArgs("be.visible.and.contain", orgName),
-      skip,
-    ),
-    newExpectation(
       "should show profile card profile bio",
       "[data-cy=profile-card-bio]",
       beVisible,
+      skip,
+    ),
+    newExpectation(
+      "should show profile summary",
+      "[data-cy=profile-summary]",
+      beVisible,
+      skip,
+    ),
+    newExpectation(
+      "should not show next steps",
+      "[data-cy=profile-card-next-steps]",
+      notExist,
+      skip,
+    ),
+  ];
+  const testProfileCardDesktop = [
+    newExpectation(
+      "should show profile card profile name",
+      "[data-cy=profile-card-name-desktop]",
+      newShouldArgs("be.visible.and.contain", orgName),
       skip,
     ),
     newExpectation(
@@ -49,16 +63,25 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       skip,
     ),
+  ];
+
+  const testProfileCardMobile = [
     newExpectation(
-      "should show profile summary",
-      "[data-cy=profile-summary]",
+      "should show profile card profile name",
+      "[data-cy=profile-card-name-mobile]",
+      newShouldArgs("be.visible.and.contain", orgName),
+      skip,
+    ),
+    newExpectation(
+      "should show profile card profile url",
+      "[data-cy=profile-card-url-mobile]",
       beVisible,
       skip,
     ),
     newExpectation(
-      "should not show next steps",
-      "[data-cy=profile-card-next-steps]",
-      notExist,
+      "should show profile card profile location",
+      "[data-cy=profile-card-location-mobile]",
+      beVisible,
       skip,
     ),
   ];
@@ -132,9 +155,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const tests = [...testProfileCard, ...testTabContainer];
+  const desktopTests = [
+    ...commonTest,
+    ...testProfileCardDesktop,
+    ...testTabContainer,
+  ];
+  const mobileTests = [
+    ...commonTest,
+    ...testProfileCardMobile,
+    ...testTabContainer,
+  ];
 
-  const devices = desktopDevicesForAppLayout(pageName, tests, skip);
+  const devices = allDevicesForAppLayout(pageName, desktopTests, mobileTests);
 
   runTestsForDevices({ currentPage, devices });
 });
