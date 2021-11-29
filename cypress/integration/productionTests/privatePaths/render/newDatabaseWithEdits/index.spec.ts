@@ -16,8 +16,8 @@ const ownerName = "cypresstesting";
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...createTempDatabase(repoName, ownerName),
-    ...testDocs,
     ...editTempDatabase,
+    ...testDocs,
     ...deleteTempDatabase(repoName, ownerName),
   ];
 
