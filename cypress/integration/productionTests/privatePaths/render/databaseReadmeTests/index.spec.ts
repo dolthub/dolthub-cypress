@@ -20,10 +20,18 @@ const beVisible = newShouldArgs("be.visible");
 const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 
+const typingExpectation = (value: string) =>
+  newExpectationWithTypeString(
+    "should write description in textbox",
+    "[data-cy=textarea-container]",
+    beVisible,
+    value,
+  );
+
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     newExpectationWithClickFlows(
-      "should navigate to the new readme page",
+      "should navigate to the new docs page",
       "[data-cy=dropdown-database-nav]",
       beVisible,
       [
@@ -34,12 +42,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ),
       ],
     ),
-    newExpectationWithTypeString(
-      "should write description in textbox",
-      "[data-cy=textarea-container]",
-      beVisible,
-      "test",
-    ),
+    typingExpectation("test"),
     newExpectationWithClickFlows(
       "should create the new doc",
       "[data-cy=new-doc-create-button]",
@@ -47,14 +50,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [newClickFlow("[data-cy=new-doc-create-button]", [])],
     ),
     newExpectation(
-        "Should have title Add License",
-        "[data-cy=pull-page-title]",
-        beVisibleAndContain("Add License")
+      "Should have title Add License",
+      "[data-cy=pull-page-title]",
+      beVisibleAndContain("Add License"),
     ),
     newExpectation(
-        "Should have Open pull state",
-        "[data-cy=pull-state-label]",
-        beVisibleAndContain("Open")
+      "Should have Open pull state",
+      "[data-cy=pull-state-label]",
+      beVisibleAndContain("Open"),
     ),
     newExpectationWithClickFlows(
       "should merge doc",
@@ -71,9 +74,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ],
     ),
     newExpectation(
-        "Should have Merged pull state",
-        "[data-cy=pull-state-label]",
-        beVisibleAndContain("Merged")
+      "Should have Merged pull state",
+      "[data-cy=pull-state-label]",
+      beVisibleAndContain("Merged"),
     ),
     //! Gotta figure out how to make branches delete
     // newExpectationWithClickFlows(
@@ -105,12 +108,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ),
       ],
     ),
-    newExpectationWithTypeString(
-      "should write a new description in textbox",
-      "[data-cy=textarea-container]",
-      beVisible,
-      "test number 2",
-    ),
+    typingExpectation("test number 2"),
     newExpectationWithScrollIntoView(
       "Save button should now be visible",
       "[data-cy=submit-edit-docs-button]",
@@ -124,14 +122,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [newClickFlow("[data-cy=submit-edit-docs-button]", [])],
     ),
     newExpectation(
-        "Should have title Update License",
-        "[data-cy=pull-page-title]",
-        beVisibleAndContain("Update License")
+      "Should have title Update License",
+      "[data-cy=pull-page-title]",
+      beVisibleAndContain("Update License"),
     ),
     newExpectation(
-        "Should have Open pull state",
-        "[data-cy=pull-state-label]",
-        beVisibleAndContain("Open")
+      "Should have Open pull state",
+      "[data-cy=pull-state-label]",
+      beVisibleAndContain("Open"),
     ),
     newExpectationWithClickFlows(
       "should merge edited doc",
@@ -148,9 +146,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ],
     ),
     newExpectation(
-        "Should have Merged pull state",
-        "[data-cy=pull-state-label]",
-        beVisibleAndContain("Merged")
+      "Should have Merged pull state",
+      "[data-cy=pull-state-label]",
+      beVisibleAndContain("Merged"),
     ),
     //! Gotta figure out how to make branches delete
     // newExpectationWithClickFlows(
@@ -189,14 +187,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [newClickFlow("[data-cy=confirm-delete-docs-button]", [])],
     ),
     newExpectation(
-        "Should have title Delete License",
-        "[data-cy=pull-page-title]",
-        beVisibleAndContain("Delete License")
+      "Should have title Delete License",
+      "[data-cy=pull-page-title]",
+      beVisibleAndContain("Delete License"),
     ),
     newExpectation(
-        "Should have Open pull state",
-        "[data-cy=pull-state-label]",
-        beVisibleAndContain("Open")
+      "Should have Open pull state",
+      "[data-cy=pull-state-label]",
+      beVisibleAndContain("Open"),
     ),
     newExpectationWithClickFlows(
       "should merge deleted doc",
@@ -213,9 +211,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ],
     ),
     newExpectation(
-        "Should have Merged pull state",
-        "[data-cy=pull-state-label]",
-        beVisibleAndContain("Merged")
+      "Should have Merged pull state",
+      "[data-cy=pull-state-label]",
+      beVisibleAndContain("Merged"),
     ),
     //! Gotta figure out how to make branches delete
     // newExpectationWithClickFlows(
