@@ -128,8 +128,12 @@ function completeLoginForCypressTesting() {
 }
 
 Cypress.Commands.add("signout", () => {
-  cy.get("[data-cy=navbar-menu-avatar]", opts).should('be.visible').click(clickOpts);
-  cy.get("[data-cy=sign-out-button]", opts).should('be.visible').click(clickOpts);
+  cy.get("[data-cy=navbar-menu-avatar]", opts)
+    .should("be.visible")
+    .click(clickOpts);
+  cy.get("[data-cy=sign-out-button]", opts)
+    .should("be.visible")
+    .click(clickOpts);
   cy.clearCookie("dolthubToken");
 });
 
