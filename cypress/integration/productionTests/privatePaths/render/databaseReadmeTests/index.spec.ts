@@ -20,13 +20,53 @@ const beVisible = newShouldArgs("be.visible");
 const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 
-const typingExpectation = (value: string) =>
+const typingExpectation = (status: string, value: string) =>
   newExpectationWithTypeString(
-    "should write description in textbox",
+    `should write ${status}description in textbox`,
     "[data-cy=textarea-container]",
     beVisible,
     value,
   );
+
+const mergingAndDeletingBranch = (status: string, value: string) => [
+    newExpectation(
+        `Should have title ${status} License`,
+        "[data-cy=pull-page-title]",
+        beVisibleAndContain(`${status} License`),
+      ),
+      newExpectation(
+        "Should have Open pull state",
+        "[data-cy=pull-state-label]",
+        beVisibleAndContain("Open"),
+      ),
+      newExpectationWithClickFlows(
+        `should merge ${value}doc`,
+        "[data-cy=merge-button]",
+        beVisible,
+        [
+          newClickFlow("[data-cy=merge-button]", [
+            newExpectation(
+              "Should say 'merging'",
+              "[data-cy=merge-button]",
+              beVisibleAndContain("Merging..."),
+            ),
+          ]),
+        ],
+      ),
+      newExpectation(
+        "Should have Merged pull state",
+        "[data-cy=pull-state-label]",
+        beVisibleAndContain("Merged"),
+      ),
+      newExpectationWithClickFlows(
+        "should delete branch",
+        "[data-cy=delete-branch-button]",
+        beVisible,
+        [newClickFlow("[data-cy=delete-branch-button]", [])],
+      ),
+
+
+]
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
@@ -42,48 +82,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ),
       ],
     ),
-    typingExpectation("test"),
+    typingExpectation("", "test"),
     newExpectationWithClickFlows(
       "should create the new doc",
       "[data-cy=new-doc-create-button]",
       beVisible,
       [newClickFlow("[data-cy=new-doc-create-button]", [])],
     ),
-    newExpectation(
-      "Should have title Add License",
-      "[data-cy=pull-page-title]",
-      beVisibleAndContain("Add License"),
-    ),
-    newExpectation(
-      "Should have Open pull state",
-      "[data-cy=pull-state-label]",
-      beVisibleAndContain("Open"),
-    ),
-    newExpectationWithClickFlows(
-      "should merge doc",
-      "[data-cy=merge-button]",
-      beVisible,
-      [
-        newClickFlow("[data-cy=merge-button]", [
-          newExpectation(
-            "Should say 'merging'",
-            "[data-cy=merge-button]",
-            beVisibleAndContain("Merging..."),
-          ),
-        ]),
-      ],
-    ),
-    newExpectation(
-      "Should have Merged pull state",
-      "[data-cy=pull-state-label]",
-      beVisibleAndContain("Merged"),
-    ),
-    newExpectationWithClickFlows(
-      "should delete branch",
-      "[data-cy=delete-branch-button]",
-      beVisible,
-      [newClickFlow("[data-cy=delete-branch-button]", [])],
-    ),
+    ...mergingAndDeletingBranch('Add', ""),
     newExpectationWithClickFlows(
       "the new license should render in the about tab",
       "[data-cy=repo-about-tab]",
@@ -102,7 +108,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ),
       ],
     ),
-    typingExpectation("test number 2"),
+    typingExpectation("new ", "test number 2"),
     newExpectationWithScrollIntoView(
       "Save button should now be visible",
       "[data-cy=submit-edit-docs-button]",
@@ -115,41 +121,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [newClickFlow("[data-cy=submit-edit-docs-button]", [])],
     ),
-    newExpectation(
-      "Should have title Update License",
-      "[data-cy=pull-page-title]",
-      beVisibleAndContain("Update License"),
-    ),
-    newExpectation(
-      "Should have Open pull state",
-      "[data-cy=pull-state-label]",
-      beVisibleAndContain("Open"),
-    ),
-    newExpectationWithClickFlows(
-      "should merge edited doc",
-      "[data-cy=merge-button]",
-      beVisible,
-      [
-        newClickFlow("[data-cy=merge-button]", [
-          newExpectation(
-            "Should say 'merging'",
-            "[data-cy=merge-button]",
-            beVisibleAndContain("Merging..."),
-          ),
-        ]),
-      ],
-    ),
-    newExpectation(
-      "Should have Merged pull state",
-      "[data-cy=pull-state-label]",
-      beVisibleAndContain("Merged"),
-    ),
-    newExpectationWithClickFlows(
-      "should delete branch",
-      "[data-cy=delete-branch-button]",
-      beVisible,
-      [newClickFlow("[data-cy=delete-branch-button]", [])],
-    ),
+    ...mergingAndDeletingBranch('Update', 'edited '),
     newExpectationWithClickFlows(
       "the edited license should render in the about tab",
       "[data-cy=repo-about-tab]",
@@ -174,41 +146,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [newClickFlow("[data-cy=confirm-delete-docs-button]", [])],
     ),
-    newExpectation(
-      "Should have title Delete License",
-      "[data-cy=pull-page-title]",
-      beVisibleAndContain("Delete License"),
-    ),
-    newExpectation(
-      "Should have Open pull state",
-      "[data-cy=pull-state-label]",
-      beVisibleAndContain("Open"),
-    ),
-    newExpectationWithClickFlows(
-      "should merge deleted doc",
-      "[data-cy=merge-button]",
-      beVisible,
-      [
-        newClickFlow("[data-cy=merge-button]", [
-          newExpectation(
-            "Should say 'merging'",
-            "[data-cy=merge-button]",
-            beVisibleAndContain("Merging..."),
-          ),
-        ]),
-      ],
-    ),
-    newExpectation(
-      "Should have Merged pull state",
-      "[data-cy=pull-state-label]",
-      beVisibleAndContain("Merged"),
-    ),
-    newExpectationWithClickFlows(
-      "should delete branch",
-      "[data-cy=delete-branch-button]",
-      beVisible,
-      [newClickFlow("[data-cy=delete-branch-button]", [])],
-    ),
+    ...mergingAndDeletingBranch('Delete','deleted '),
     newExpectationWithClickFlows(
       "the deleted license should not render in the about tab",
       "[data-cy=repo-about-tab]",
