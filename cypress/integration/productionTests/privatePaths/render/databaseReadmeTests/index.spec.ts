@@ -78,18 +78,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=pull-state-label]",
       beVisibleAndContain("Merged"),
     ),
-    //! Gotta figure out how to make branches delete
-    // newExpectationWithClickFlows(
-    //     "should delete branch",
-    //     "[data=cy=delete-branch-button]",
-    //     beVisible,
-    //     [
-    //       newClickFlow(
-    //         "[data=cy=delete-branch-button]",
-    //         []
-    //       ),
-    //     ],
-    //   ),
+    newExpectationWithClickFlows(
+      "should delete branch",
+      "[data-cy=delete-branch-button]",
+      beVisible,
+      [newClickFlow("[data-cy=delete-branch-button]", [])],
+    ),
     newExpectationWithClickFlows(
       "the new license should render in the about tab",
       "[data-cy=repo-about-tab]",
@@ -150,18 +144,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=pull-state-label]",
       beVisibleAndContain("Merged"),
     ),
-    //! Gotta figure out how to make branches delete
-    // newExpectationWithClickFlows(
-    //     "should delete branch",
-    //     "[data=cy=delete-branch-button]",
-    //     beVisible,
-    //     [
-    //       newClickFlow(
-    //         "[data=cy=delete-branch-button]",
-    //         []
-    //       ),
-    //     ],
-    //   ),
+    newExpectationWithClickFlows(
+      "should delete branch",
+      "[data-cy=delete-branch-button]",
+      beVisible,
+      [newClickFlow("[data-cy=delete-branch-button]", [])],
+    ),
     newExpectationWithClickFlows(
       "the edited license should render in the about tab",
       "[data-cy=repo-about-tab]",
@@ -215,36 +203,31 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=pull-state-label]",
       beVisibleAndContain("Merged"),
     ),
-    //! Gotta figure out how to make branches delete
-    // newExpectationWithClickFlows(
-    //     "should delete branch",
-    //     "[data=cy=delete-branch-button]",
-    //     beVisible,
-    //     [
-    //       newClickFlow(
-    //         "[data=cy=delete-branch-button]",
-    //         []
-    //       ),
-    //     ],
-    //   ),
-    //! For some reason, this test makes logout fail.
-    // newExpectationWithClickFlows(
-    //     "the deleted license should not render in the about tab",
-    //     "[data-cy=repo-about-tab]",
-    //     beVisible,
-    //     [
-    //       newClickFlow(
-    //         "[data-cy=repo-about-tab]",
-    //         [
-    //           newExpectation(
-    //             "should not have the repo doc markdown'",
-    //             "[data-cy=repo-doc-markdown]",
-    //             newShouldArgs("not.exist"),
-    //           ),
-    //         ],
-    //       ),
-    //     ],
-    //   ),
+    newExpectationWithClickFlows(
+      "should delete branch",
+      "[data-cy=delete-branch-button]",
+      beVisible,
+      [newClickFlow("[data-cy=delete-branch-button]", [])],
+    ),
+    newExpectationWithClickFlows(
+      "the deleted license should not render in the about tab",
+      "[data-cy=repo-about-tab]",
+      beVisible,
+      [
+        newClickFlow("[data-cy=repo-about-tab]", [
+          newExpectation(
+            "should not have the repo doc markdown'",
+            "[data-cy=repo-doc-markdown]",
+            newShouldArgs("not.exist"),
+          ),
+        ]),
+      ],
+    ),
+    newExpectation(
+      "Avatar should be visible",
+      "[data-cy=navbar-menu-avatar]",
+      beVisible,
+    ),
   ];
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
