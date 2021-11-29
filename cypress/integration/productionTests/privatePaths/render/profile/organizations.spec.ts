@@ -31,7 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // skip mobile test, wait for sign out button
+  // TODO: skip mobile test, wait for sign out button
   /*   const mobileTests = [
     newExpectation(
       "should render create organization button",
