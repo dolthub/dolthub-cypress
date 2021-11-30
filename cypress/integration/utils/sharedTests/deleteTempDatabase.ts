@@ -50,7 +50,7 @@ export const deleteTempDatabase = (
 ): Tests => [
   newExpectation(
     "Settings tab should be visible",
-    "[data-cy=repo-settings-tab]",
+    "[data-cy=submit-delete-database]",
     beVisible,
   ),
   newExpectationWithClickFlows(
@@ -58,8 +58,6 @@ export const deleteTempDatabase = (
     "[data-cy=repo-settings-tab]",
     beVisible,
     [settingsClickFlow(repoName, ownerName)],
-    false,
-    true,
   ),
   newExpectationWithURL(
     "should navigate to profile after deletion",
