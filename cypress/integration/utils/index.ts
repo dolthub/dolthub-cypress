@@ -9,12 +9,13 @@ import {
 
 // defaultTimeout is the time in ms cypress will wait attempting
 // to .get() an element before failing
-export const defaultTimeout = 5000;
+export const defaultTimeout = 10000;
 export const opts: Partial<Cypress.Timeoutable> = {
   timeout: defaultTimeout,
 };
 export const clickOpts: Partial<Cypress.ClickOptions> = {
   scrollBehavior: false,
+  force: false,
 };
 
 const username = Cypress.env("TEST_USERNAME");
@@ -66,6 +67,7 @@ export function runTests({
           testClickFlows({
             clickFlows: t.clickFlows,
             description: t.description,
+            forceClick: t.forceClick,
           });
         }
 
@@ -173,34 +175,43 @@ function getAssertionTest(
 type ClickFlowsArgs = {
   description: string;
   clickFlows?: ClickFlow[];
+  forceClick?: boolean;
 };
 
 // testClickFlows recursively runs clickFlow tests
 // clicking each toClickBefore first, then making assertions
 // the clicking each toClickAfter
-export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
+export function testClickFlows({
+  description,
+  clickFlows,
+  forceClick,
+}: ClickFlowsArgs) {
   if (!clickFlows) return;
 
   clickFlows.forEach(({ toClickBefore, expectations, toClickAfter }) => {
-    if (toClickBefore) runClicks(toClickBefore);
+    if (toClickBefore) runClicks(toClickBefore, forceClick);
 
     expectations.forEach(t => {
       testAssertion(t);
-      testClickFlows({ description, clickFlows: t.clickFlows });
+      testClickFlows({
+        description,
+        clickFlows: t.clickFlows,
+        forceClick: t.forceClick,
+      });
     });
 
-    if (toClickAfter) runClicks(toClickAfter);
+    if (toClickAfter) runClicks(toClickAfter, forceClick);
   });
 }
 
 // runClicks clicks on each selectorStr
-function runClicks(clickStrOrArr: string | string[]) {
+function runClicks(clickStrOrArr: string | string[], forceClick?: boolean) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, opts).click(clickOpts);
+      cy.get(clickStr, opts).click({ ...clickOpts, force: forceClick });
     });
   } else {
-    cy.get(clickStrOrArr, opts).click(clickOpts);
+    cy.get(clickStrOrArr, opts).click({ ...clickOpts, force: forceClick });
   }
 }
 

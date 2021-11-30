@@ -47,8 +47,9 @@ export function newExpectationWithClickFlows(
   shouldArgs: ShouldArgs,
   clickFlows: ClickFlow[],
   skip = false,
+  forceClick = false,
 ): Expectation {
-  return { description, selector, shouldArgs, clickFlows, skip };
+  return { description, selector, shouldArgs, clickFlows, skip, forceClick };
 }
 
 export function newExpectationWithScrollIntoView(
