@@ -79,7 +79,7 @@ export function runTests({
         }
 
         if (t.forceClick) {
-          cy.get(`${t.selector}`).click({force: true})
+          cy.get(`${t.selector}`).click({ force: true });
         }
       });
     }
