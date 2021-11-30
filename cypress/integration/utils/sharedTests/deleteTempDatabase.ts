@@ -58,6 +58,8 @@ export const deleteTempDatabase = (
     "[data-cy=repo-settings-tab]",
     beVisible,
     [settingsClickFlow(repoName, ownerName)],
+    false,
+    true,
   ),
   newExpectationWithURL(
     "should navigate to profile after deletion",

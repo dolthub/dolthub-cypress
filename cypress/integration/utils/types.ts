@@ -41,6 +41,7 @@ export type Expectation = {
   typeString?: string;
   redirect?: string;
   url?: string;
+  forceClick?: boolean;
 };
 
 export type Tests = Expectation[];

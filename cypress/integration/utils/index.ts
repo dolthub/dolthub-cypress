@@ -77,6 +77,10 @@ export function runTests({
           // Sign out after signing in for redirect and running tests
           cy.signout();
         }
+
+        if (t.forceClick) {
+          cy.get(`${t.selector}`).click({force: true})
+        }
       });
     }
   });
