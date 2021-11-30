@@ -50,7 +50,7 @@ export const deleteTempDatabase = (
 ): Tests => [
   newExpectation(
     "Settings tab should be visible",
-    "[data-cy=submit-delete-database]",
+    "[data-cy=repo-settings-tab]",
     beVisible,
   ),
   newExpectationWithClickFlows(
