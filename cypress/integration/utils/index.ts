@@ -15,7 +15,6 @@ export const opts: Partial<Cypress.Timeoutable> = {
 };
 export const clickOpts: Partial<Cypress.ClickOptions> = {
   scrollBehavior: false,
-  force: false,
 };
 
 const username = Cypress.env("TEST_USERNAME");
@@ -67,7 +66,6 @@ export function runTests({
           testClickFlows({
             clickFlows: t.clickFlows,
             description: t.description,
-            forceClick: t.forceClick,
           });
         }
 
@@ -175,7 +173,6 @@ function getAssertionTest(
 type ClickFlowsArgs = {
   description: string;
   clickFlows?: ClickFlow[];
-  forceClick?: boolean;
 };
 
 // testClickFlows recursively runs clickFlow tests
@@ -184,34 +181,32 @@ type ClickFlowsArgs = {
 export function testClickFlows({
   description,
   clickFlows,
-  forceClick,
 }: ClickFlowsArgs) {
   if (!clickFlows) return;
 
   clickFlows.forEach(({ toClickBefore, expectations, toClickAfter }) => {
-    if (toClickBefore) runClicks(toClickBefore, forceClick);
+    if (toClickBefore) runClicks(toClickBefore);
 
     expectations.forEach(t => {
       testAssertion(t);
       testClickFlows({
         description,
         clickFlows: t.clickFlows,
-        forceClick: t.forceClick,
       });
     });
 
-    if (toClickAfter) runClicks(toClickAfter, forceClick);
+    if (toClickAfter) runClicks(toClickAfter);
   });
 }
 
 // runClicks clicks on each selectorStr
-function runClicks(clickStrOrArr: string | string[], forceClick?: boolean) {
+function runClicks(clickStrOrArr: string | string[]) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, opts).click({ ...clickOpts, force: forceClick });
+      cy.get(clickStr, opts).click(clickOpts);
     });
   } else {
-    cy.get(clickStrOrArr, opts).click({ ...clickOpts, force: forceClick });
+    cy.get(clickStrOrArr, opts).click(clickOpts);
   }
 }
 
