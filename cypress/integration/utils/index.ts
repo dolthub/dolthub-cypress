@@ -182,7 +182,11 @@ type ClickFlowsArgs = {
 // testClickFlows recursively runs clickFlow tests
 // clicking each toClickBefore first, then making assertions
 // the clicking each toClickAfter
-export function testClickFlows({ description, clickFlows, forceClick }: ClickFlowsArgs) {
+export function testClickFlows({
+  description,
+  clickFlows,
+  forceClick,
+}: ClickFlowsArgs) {
   if (!clickFlows) return;
 
   clickFlows.forEach(({ toClickBefore, expectations, toClickAfter }) => {
@@ -190,7 +194,11 @@ export function testClickFlows({ description, clickFlows, forceClick }: ClickFlo
 
     expectations.forEach(t => {
       testAssertion(t);
-      testClickFlows({ description, clickFlows: t.clickFlows, forceClick: t.forceClick });
+      testClickFlows({
+        description,
+        clickFlows: t.clickFlows,
+        forceClick: t.forceClick,
+      });
     });
 
     if (toClickAfter) runClicks(toClickAfter, forceClick);
@@ -201,10 +209,10 @@ export function testClickFlows({ description, clickFlows, forceClick }: ClickFlo
 function runClicks(clickStrOrArr: string | string[], forceClick?: boolean) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, opts).click({...clickOpts, force: forceClick});
+      cy.get(clickStr, opts).click({ ...clickOpts, force: forceClick });
     });
   } else {
-    cy.get(clickStrOrArr, opts).click({...clickOpts, force: forceClick});
+    cy.get(clickStrOrArr, opts).click({ ...clickOpts, force: forceClick });
   }
 }
 
