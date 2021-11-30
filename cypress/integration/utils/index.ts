@@ -178,10 +178,7 @@ type ClickFlowsArgs = {
 // testClickFlows recursively runs clickFlow tests
 // clicking each toClickBefore first, then making assertions
 // the clicking each toClickAfter
-export function testClickFlows({
-  description,
-  clickFlows,
-}: ClickFlowsArgs) {
+export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
   if (!clickFlows) return;
 
   clickFlows.forEach(({ toClickBefore, expectations, toClickAfter }) => {
