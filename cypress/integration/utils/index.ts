@@ -79,7 +79,7 @@ export function runTests({
         }
 
         if (t.waitTime) {
-          cy.wait(t.waitTime)
+          cy.wait(t.waitTime);
         }
       });
     }
