@@ -81,6 +81,16 @@ export function newExpectationWithTypeString(
   return { description, selector, shouldArgs, typeString, skip };
 }
 
+export function newExpectationWithWait(
+  description: string,
+  selector: Selector,
+  shouldArgs: ShouldArgs,
+  waitTime: number,
+  skip = false,
+): Expectation {
+  return { description, selector, shouldArgs, waitTime, skip };
+}
+
 // Click flows
 
 export function newClickFlow(
