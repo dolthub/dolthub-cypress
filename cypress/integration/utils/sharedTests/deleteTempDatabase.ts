@@ -7,6 +7,7 @@ import {
   newExpectationWithURL,
   newShouldArgs,
 } from "../helpers";
+import { testRepoHeaderWithBranch } from "./repoHeaderNav";
 import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
@@ -49,11 +50,12 @@ export const deleteTempDatabase = (
   repoName: string,
   ownerName: string,
 ): Tests => [
-  newExpectation(
-    "Settings tab should be visible",
-    "[data-cy=repo-settings-tab]",
-    beVisible,
-  ),
+  // newExpectation(
+  //   "Settings tab should be visible",
+  //   "[data-cy=repo-settings-tab]",
+  //   beVisible,
+  // ),
+  ...testRepoHeaderWithBranch(repoName, ownerName, true, false),
   newExpectationWithClickFlowsAndWait(
     "should navigate to settings tab and delete database",
     "[data-cy=repo-settings-tab]",
