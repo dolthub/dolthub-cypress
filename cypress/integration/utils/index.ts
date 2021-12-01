@@ -60,6 +60,10 @@ export function runTests({
           cy.loginAsCypressTestingFromSigninPageWithRedirect(t.redirect);
         }
 
+        if (t.waitTime) {
+          cy.wait(t.waitTime);
+        }
+
         testAssertion(t);
 
         if (t.clickFlows) {
@@ -76,10 +80,6 @@ export function runTests({
         if (t.redirect) {
           // Sign out after signing in for redirect and running tests
           cy.signout();
-        }
-
-        if (t.waitTime) {
-          cy.wait(t.waitTime);
         }
       });
     }

@@ -2,9 +2,9 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithClickFlowsAndWait,
   newExpectationWithScrollIntoView,
   newExpectationWithURL,
-  newExpectationWithWait,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
@@ -49,17 +49,17 @@ export const deleteTempDatabase = (
   repoName: string,
   ownerName: string,
 ): Tests => [
-  newExpectationWithWait(
+  newExpectation(
     "Settings tab should be visible",
     "[data-cy=repo-settings-tab]",
     beVisible,
-    5000,
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlowsAndWait(
     "should navigate to settings tab and delete database",
     "[data-cy=repo-settings-tab]",
     beVisible,
     [settingsClickFlow(repoName, ownerName)],
+    5000,
   ),
   newExpectationWithURL(
     "should navigate to profile after deletion",
