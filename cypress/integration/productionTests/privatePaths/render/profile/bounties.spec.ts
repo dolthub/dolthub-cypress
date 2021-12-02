@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForAppLayout } from "../../../../utils/devices";
+import { allDevicesForAppLayout } from "../../../../utils/devices";
 import {
   newExpectation,
   newShouldArgs,
@@ -31,8 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // TODO: skip mobile test, wait for sign out button
-  /*   const mobileTests = [
+  const mobileTests = [
     newExpectation(
       "should not render create database button",
       "[data-cy=create-database-button]",
@@ -49,11 +48,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-list-completed-bounties]",
       beVisible,
     ),
-  ]; */
+  ];
+
   const skip = false;
-  const devices = desktopDevicesForAppLayout(
+  const devices = allDevicesForAppLayout(
     pageName,
     desktopTests,
+    mobileTests,
     false,
     loggedIn,
   );

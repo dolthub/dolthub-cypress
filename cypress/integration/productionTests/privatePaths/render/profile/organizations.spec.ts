@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForAppLayout } from "../../../../utils/devices";
+import { allDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Profile organization page";
@@ -31,8 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // TODO: skip mobile test, wait for sign out button
-  /*   const mobileTests = [
+  const mobileTests = [
     newExpectation(
       "should render create organization button",
       "[data-cy=create-org-button]",
@@ -53,11 +52,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=search-input]",
       beVisible,
     ),
-  ]; */
+  ];
   const skip = false;
-  const devices = desktopDevicesForAppLayout(
+  const devices = allDevicesForAppLayout(
     pageName,
     desktopTests,
+    mobileTests,
     false,
     loggedIn,
   );
