@@ -131,8 +131,7 @@ Cypress.Commands.add("signout", isMobile => {
   if (!isMobile) {
     cy.get("[data-cy=navbar-menu-avatar]", opts).click(clickOpts);
     cy.get("[data-cy=sign-out-button-desktop]", opts).click(clickOpts);
-  }
-  if (isMobile) {
+  } else {
     cy.get("[data-cy=mobile-navbar-menu-button]", opts).click(clickOpts);
     cy.get("[data-cy=sign-out-button-mobile]", opts).click(clickOpts);
   }
