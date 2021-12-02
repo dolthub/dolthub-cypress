@@ -77,8 +77,7 @@ export const testDocs: Tests = [
       newClickFlow(
         "[data-cy=dropdown-database-nav]",
         [],
-        // "[data-cy=dropdown-new-docs-link]",
-        "[data-cy=dropdown-new-readme-link]",
+        "[data-cy=dropdown-new-docs-link]",
       ),
     ],
   ),
@@ -150,8 +149,7 @@ export const testDocs: Tests = [
       newClickFlow(
         "[data-cy=dropdown-database-nav]",
         [],
-        // "[data-cy=dropdown-new-docs-link]",
-        "[data-cy=dropdown-new-readme-link]",
+        "[data-cy=dropdown-new-docs-link]",
       ),
     ],
   ),
@@ -192,8 +190,7 @@ export const testDocs: Tests = [
       newClickFlow(
         "[data-cy=dropdown-database-nav]",
         [],
-        // "[data-cy=dropdown-new-docs-link]",
-        "[data-cy=dropdown-new-readme-link]",
+        "[data-cy=dropdown-new-docs-link]",
       ),
     ],
   ),
