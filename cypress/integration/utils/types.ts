@@ -41,7 +41,6 @@ export type Expectation = {
   typeString?: string;
   redirect?: string;
   url?: string;
-  waitTime?: number;
 };
 
 export type Tests = Expectation[];

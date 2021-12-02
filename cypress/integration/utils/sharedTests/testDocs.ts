@@ -8,12 +8,16 @@ import {
 } from "../helpers";
 import { Tests } from "../types";
 
+const licenseMarkdown = "test";
+const updatedLicenseMarkdown = "test number 2";
+const readmeMarkdown = "test number 3";
+
 const beVisible = newShouldArgs("be.visible");
 const notExist = newShouldArgs("not.exist");
 const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 
-const typingExpectation = (status: string, value: string) =>
+const typingExpectation = (value: string, status?: string) =>
   newExpectationWithTypeString(
     `should write ${status}description in textbox`,
     "[data-cy=textarea-container]",
@@ -21,11 +25,15 @@ const typingExpectation = (status: string, value: string) =>
     value,
   );
 
-const mergingAndDeletingBranch = (status: string, value: string) => [
+const mergingAndDeletingBranch = (
+  value: string,
+  status?: string,
+  doc?: string,
+) => [
   newExpectation(
-    `Should have title ${status} License`,
+    `Should have title ${status} ${doc}`,
     "[data-cy=pull-page-title]",
-    beVisibleAndContain(`${status} License`),
+    beVisibleAndContain(`${status} ${doc}`),
   ),
   newExpectation(
     "Should have Open pull state",
@@ -60,6 +68,7 @@ const mergingAndDeletingBranch = (status: string, value: string) => [
 ];
 
 export const testDocs: Tests = [
+  //! CREATE A NEW LICENSE
   newExpectationWithClickFlows(
     "should navigate to the new docs page",
     "[data-cy=dropdown-database-nav]",
@@ -68,18 +77,19 @@ export const testDocs: Tests = [
       newClickFlow(
         "[data-cy=dropdown-database-nav]",
         [],
+        // "[data-cy=dropdown-new-docs-link]",
         "[data-cy=dropdown-new-readme-link]",
       ),
     ],
   ),
-  typingExpectation("", "test"),
+  typingExpectation(licenseMarkdown, ""),
   newExpectationWithClickFlows(
     "should create the new doc",
     "[data-cy=new-doc-create-button]",
     beVisible,
     [newClickFlow("[data-cy=new-doc-create-button]", [])],
   ),
-  ...mergingAndDeletingBranch("Add", ""),
+  ...mergingAndDeletingBranch("", "Add", "License"),
   newExpectationWithClickFlows(
     "the new license should render in the about tab",
     "[data-cy=repo-about-tab]",
@@ -91,14 +101,15 @@ export const testDocs: Tests = [
           newExpectation(
             "should contain 'test'",
             "[data-cy=repo-doc-markdown]",
-            beVisibleAndContain("test"),
+            beVisibleAndContain(licenseMarkdown),
           ),
         ],
         "[data-cy=edit-docs-button]",
       ),
     ],
   ),
-  typingExpectation("new ", "test number 2"),
+  //! EDIT LICESNE
+  typingExpectation(updatedLicenseMarkdown, "new"),
   newExpectationWithScrollIntoView(
     "Save button should now be visible",
     "[data-cy=submit-edit-docs-button]",
@@ -111,7 +122,7 @@ export const testDocs: Tests = [
     beVisible,
     [newClickFlow("[data-cy=submit-edit-docs-button]", [])],
   ),
-  ...mergingAndDeletingBranch("Update", "edited "),
+  ...mergingAndDeletingBranch("edited ", "Update", "License"),
   newExpectationWithClickFlows(
     "the edited license should render in the about tab",
     "[data-cy=repo-about-tab]",
@@ -123,20 +134,116 @@ export const testDocs: Tests = [
           newExpectation(
             "should contain 'test number 2'",
             "[data-cy=repo-doc-markdown]",
-            beVisibleAndContain("test number 2"),
+            beVisibleAndContain(updatedLicenseMarkdown),
           ),
         ],
-        "[data-cy=delete-docs-button]",
+        // "[data-cy=delete-docs-button]",
       ),
     ],
   ),
+  //! CREATE README
   newExpectationWithClickFlows(
-    "should be able to delete the docs",
-    "[data-cy=confirm-delete-docs-button]",
+    "should navigate to the new docs page",
+    "[data-cy=dropdown-database-nav]",
     beVisible,
-    [newClickFlow("[data-cy=confirm-delete-docs-button]", [])],
+    [
+      newClickFlow(
+        "[data-cy=dropdown-database-nav]",
+        [],
+        // "[data-cy=dropdown-new-docs-link]",
+        "[data-cy=dropdown-new-readme-link]",
+      ),
+    ],
   ),
-  ...mergingAndDeletingBranch("Delete", "deleted "),
+  typingExpectation(readmeMarkdown, ""),
+  newExpectationWithClickFlows(
+    "should create the new doc",
+    "[data-cy=new-doc-create-button]",
+    beVisible,
+    [newClickFlow("[data-cy=new-doc-create-button]", [])],
+  ),
+  ...mergingAndDeletingBranch("", "Add", "Readme"),
+  newExpectationWithClickFlows(
+    "the new readme should render in the about tab",
+    "[data-cy=repo-about-tab]",
+    beVisible,
+    [
+      newClickFlow("[data-cy=repo-about-tab]", [
+        newExpectation(
+          "should contain 'test'",
+          "[data-cy=repo-doc-markdown]",
+          beVisibleAndContain(readmeMarkdown),
+        ),
+      ]),
+    ],
+  ),
+  // //! CHECK THAT BOTH DOCS ARE IN ABOUT
+  newExpectation(
+    "Docs list should contain both license and readme",
+    "[data-cy=repo-docs-list]",
+    newShouldArgs("be.visible.and.contin", ["LICENSE.md", "README.md"]),
+  ),
+  // //! CHECK CANT MAKE NEW DOCS
+  newExpectationWithClickFlows(
+    "should navigate to the new docs page",
+    "[data-cy=dropdown-database-nav]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=dropdown-database-nav]",
+        [],
+        // "[data-cy=dropdown-new-docs-link]",
+        "[data-cy=dropdown-new-readme-link]",
+      ),
+    ],
+  ),
+  newExpectation(
+    "should not be able to create a new doc",
+    "[data-cy=new-doc-create-button]",
+    newShouldArgs("be.disabled"),
+  ),
+  //! DELETE README
+  newExpectationWithClickFlows(
+    "should be able to delete the readme",
+    "[data-cy=delete-docs-button]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=delete-docs-button]",
+        [],
+        "[data-cy=confirm-delete-docs-button]",
+      ),
+    ],
+  ),
+  ...mergingAndDeletingBranch("deleted ", "Delete", "Readme"),
+  newExpectationWithClickFlows(
+    "the deleted readme should not render in the about tab",
+    "[data-cy=repo-about-tab]",
+    beVisible,
+    [
+      newClickFlow("[data-cy=repo-about-tab]", [
+        newExpectation(
+          "should not have the readme markdown'",
+          "[data-cy=repo-doc-markdown]",
+          newShouldArgs("be.visible.and.not.contain", "README.md"),
+        ),
+      ]),
+    ],
+  ),
+  //! DELETE LICENSE
+  newExpectationWithClickFlows(
+    "should be able to delete the license",
+    "[data-cy=delete-docs-button]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=delete-docs-button]",
+        [],
+        "[data-cy=confirm-delete-docs-button]",
+      ),
+    ],
+  ),
+  ...mergingAndDeletingBranch("deleted ", "Delete", "License"),
   newExpectationWithClickFlows(
     "the deleted license should not render in the about tab",
     "[data-cy=repo-about-tab]",
@@ -150,10 +257,5 @@ export const testDocs: Tests = [
         ),
       ]),
     ],
-  ),
-  newExpectation(
-    "Avatar should be visible",
-    "[data-cy=navbar-menu-avatar]",
-    beVisible,
   ),
 ];

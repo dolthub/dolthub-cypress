@@ -50,11 +50,13 @@ export const conditionalReadMeTest = (hasDocs: boolean) => {
   const docsExpectation: Expectation = hasDocs
     ? newExpectation(
         "Should not have readmeLink",
+        // "[data-cy=dropdown-new-docs-link]",
         "[data-cy=dropdown-new-readme-link]",
         newShouldArgs("not.exist"),
       )
     : newExpectation(
         "Should have a create new readme link",
+        // "[data-cy=dropdown-new-docs-link]",
         "[data-cy=dropdown-new-readme-link]",
         beVisible,
       );

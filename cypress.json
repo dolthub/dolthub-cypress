@@ -5,5 +5,5 @@
   "video": false,
   "projectId": "f6ssqp",
   "integrationFolder": "cypress/integration/productionTests",
-  "retries": 2
+  "numTestsKeptInMemory": 0
 }
