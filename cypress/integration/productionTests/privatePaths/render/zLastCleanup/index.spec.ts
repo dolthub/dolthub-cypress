@@ -18,7 +18,7 @@ describe.skip(pageName, () => {
   });
 
   after(() => {
-    if (loggedIn) cy.signout();
+    if (loggedIn) cy.signout(false);
   });
 
   it("deletes temp databases if they exist", () => {

@@ -27,10 +27,12 @@ type TestsArgs = {
   device: Cypress.ViewportPreset;
   currentPage: string;
   tests: Tests;
+  isMobile: boolean;
 };
 
 export function runTests({
   device,
+  isMobile,
   currentPage,
   tests,
   loggedIn = false,
@@ -47,7 +49,7 @@ export function runTests({
   });
 
   after(() => {
-    if (loggedIn) cy.signout();
+    if (loggedIn) cy.signout(isMobile);
   });
 
   tests.forEach(t => {
@@ -75,7 +77,7 @@ export function runTests({
 
         if (t.redirect) {
           // Sign out after signing in for redirect and running tests
-          cy.signout();
+          cy.signout(isMobile);
         }
       });
     }
