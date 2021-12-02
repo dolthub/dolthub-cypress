@@ -147,8 +147,9 @@ export function newDevice(
   description: string,
   loggedIn: boolean,
   tests: Tests,
+  isMobile: boolean,
 ): Device {
-  return { device, description, loggedIn, tests };
+  return { device, description, loggedIn, tests, isMobile };
 }
 
 // Should args

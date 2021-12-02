@@ -127,9 +127,15 @@ function completeLoginForCypressTesting() {
     .type("{enter}", clickOpts);
 }
 
-Cypress.Commands.add("signout", () => {
-  cy.get("[data-cy=navbar-menu-avatar]", opts).click(clickOpts);
-  cy.get("[data-cy=sign-out-button]", opts).click(clickOpts);
+Cypress.Commands.add("signout", isMobile => {
+  if (!isMobile) {
+    cy.get("[data-cy=navbar-menu-avatar]", opts).click(clickOpts);
+    cy.get("[data-cy=sign-out-button-desktop]", opts).click(clickOpts);
+  }
+  if (isMobile) {
+    cy.get("[data-cy=mobile-navbar-menu-button]", opts).click(clickOpts);
+    cy.get("[data-cy=sign-out-button-mobile]", opts).click(clickOpts);
+  }
   cy.clearCookie("dolthubToken");
 });
 
