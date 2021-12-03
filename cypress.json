@@ -5,5 +5,4 @@
   "video": false,
   "projectId": "f6ssqp",
   "integrationFolder": "cypress/integration/productionTests",
-  "numTestsKeptInMemory": 0
 }
