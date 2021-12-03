@@ -1400,7 +1400,7 @@
     "@types/node" "*"
     form-data "^3.0.0"
 
-"@types/node@*":
+"@types/node@*", "@types/node@^16.11.11":
   version "16.11.11"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.11.tgz#6ea7342dfb379ea1210835bada87b3c512120234"
   integrity sha512-KB0sixD67CeecHC33MYn+eYARkqTheIRNuu97y2XMjR7Wu3XibO1vaY6VBV6O/a89SPI81cEUIYT87UqUWlZNw==
@@ -1409,11 +1409,6 @@
   version "14.17.34"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.34.tgz#fe4b38b3f07617c0fa31ae923fca9249641038f0"
   integrity sha512-USUftMYpmuMzeWobskoPfzDi+vkpe0dvcOBRNOscFrGxVp4jomnRxWuVohgqBow2xyIPC0S3gjxV/5079jhmDg==
-
-"@types/node@^16.11.8":
-  version "16.11.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.8.tgz#a1aeb23f0aa33cb111e64ccaa1687b2ae0423b69"
-  integrity sha512-hmT5gfpRkkHr7DZZHMf3jBe/zNcVGN+jXSL2f8nAsYfBPxQFToKwQlS/zES4Sjp488Bi73i+p6bvrNRRGU0x9Q==
 
 "@types/responselike@*", "@types/responselike@^1.0.0":
   version "1.0.0"
