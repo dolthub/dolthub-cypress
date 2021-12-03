@@ -136,7 +136,6 @@ export const testDocs: Tests = [
             beVisibleAndContain(updatedLicenseMarkdown),
           ),
         ],
-        // "[data-cy=delete-docs-button]",
       ),
     ],
   ),
