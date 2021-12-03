@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForAppLayout } from "../../../../utils/devices";
+import { allDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Profile discover page";
@@ -31,8 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // TODO: skip mobile test, wait for sign out button
-  /*   const mobileTests = [
+  const mobileTests = [
     newExpectation(
       "should render repository list",
       "[data-cy=repository-list-most-recent]",
@@ -53,11 +52,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=sort-discover-select]",
       beVisible,
     ),
-  ]; */
+  ];
   const skip = false;
-  const devices = desktopDevicesForAppLayout(
+  const devices = allDevicesForAppLayout(
     pageName,
     desktopTests,
+    mobileTests,
     false,
     loggedIn,
   );

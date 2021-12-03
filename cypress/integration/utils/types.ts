@@ -50,6 +50,7 @@ export type Device = {
   description: string;
   loggedIn: boolean;
   tests: Tests;
+  isMobile: boolean;
 };
 
 export type Devices = Device[];
