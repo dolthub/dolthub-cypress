@@ -127,16 +127,13 @@ export const testDocs: Tests = [
     "[data-cy=repo-about-tab]",
     beVisible,
     [
-      newClickFlow(
-        "[data-cy=repo-about-tab]",
-        [
-          newExpectation(
-            "should contain 'test number 2'",
-            "[data-cy=repo-doc-markdown]",
-            beVisibleAndContain(updatedLicenseMarkdown),
-          ),
-        ],
-      ),
+      newClickFlow("[data-cy=repo-about-tab]", [
+        newExpectation(
+          "should contain 'test number 2'",
+          "[data-cy=repo-doc-markdown]",
+          beVisibleAndContain(updatedLicenseMarkdown),
+        ),
+      ]),
     ],
   ),
   //! CREATE README
