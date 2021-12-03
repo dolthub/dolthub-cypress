@@ -178,8 +178,8 @@ export const testDocs: Tests = [
   // //! CHECK THAT BOTH DOCS ARE IN ABOUT
   newExpectation(
     "Docs list should contain both license and readme",
-    "[data-cy=repo-docs-list]",
-    newShouldArgs("be.visible.and.contin", ["LICENSE.md", "README.md"]),
+    "[data-cy=repo-docs-list] > li",
+    newShouldArgs("be.visible.and.have.length", 2),
   ),
   // //! CHECK CANT MAKE NEW DOCS
   newExpectationWithClickFlows(
@@ -194,10 +194,11 @@ export const testDocs: Tests = [
       ),
     ],
   ),
-  newExpectation(
+  newExpectationWithClickFlows(
     "should not be able to create a new doc",
     "[data-cy=new-doc-create-button]",
     newShouldArgs("be.disabled"),
+    [newClickFlow("[data-cy=repo-about-tab]", [])],
   ),
   //! DELETE README
   newExpectationWithClickFlows(
