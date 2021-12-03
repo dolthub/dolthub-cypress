@@ -10,7 +10,7 @@
     "cy-chrome": "cypress run --browser chrome --headless",
     "cy-open-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress open",
     "cy-run-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress run",
-    "cylo-open-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_BASE_URL=http://localhost:3000 cypress open && CYPRESS_NUM_TESTS_KEPT_IN_MEMORY=0",
+    "cylo-open-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_NUM_TESTS_KEPT_IN_MEMORY=0 && CYPRESS_BASE_URL=http://localhost:3000 cypress open",
     "cylo-open-blog": "export CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress open",
     "cylo-run-dolthub": "export CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_BASE_URL=http://localhost:3000 cypress run",
     "cylo-run-blog": "export CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress run",
