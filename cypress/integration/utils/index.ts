@@ -188,7 +188,10 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
 
     expectations.forEach(t => {
       testAssertion(t);
-      testClickFlows({ description, clickFlows: t.clickFlows });
+      testClickFlows({
+        description,
+        clickFlows: t.clickFlows,
+      });
     });
 
     if (toClickAfter) runClicks(toClickAfter);
