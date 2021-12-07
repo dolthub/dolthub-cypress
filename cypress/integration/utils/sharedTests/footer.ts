@@ -9,7 +9,6 @@ const exist = newShouldArgs("exist");
 
 const footerTags = [
   "[data-cy=footer-about-dolt]",
-  "[data-cy=footer-solutions]",
   "[data-cy=footer-pricing]",
   "[data-cy=footer-documentation]",
   "[data-cy=footer-blog]",
