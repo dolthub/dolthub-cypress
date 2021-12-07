@@ -29,7 +29,7 @@ const typingExpectation = (value: string, status?: string) =>
 const typingTitleExpectation = (value: string, status?: string) =>
   newExpectationWithTypeString(
     `should write ${status}description in textbox`,
-    "[data-cy=issue-title-input]",
+    "[data-cy=issue-title-input] > input",
     beVisible,
     value,
   );
