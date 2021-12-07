@@ -77,6 +77,46 @@ const mergingAndDeletingBranch = (
 ];
 
 export const testDocs: Tests = [
+  //! CREATE A NEW ISSUE
+  newExpectationWithClickFlows(
+    "should navigate to the new issue page",
+    "[data-cy=dropdown-database-nav]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=dropdown-database-nav]",
+        [],
+        "[data-cy=dropdown-new-issue-link]",
+      ),
+    ],
+  ),
+  typingTitleExpectation(issueTitle, ""),
+  typingExpectation(issueContent, ""),
+  newExpectationWithClickFlows(
+    "should create the new issue",
+    "[data-cy=new-issue-button]",
+    beVisible,
+    [newClickFlow("[data-cy=new-issue-button]", [])],
+  ),
+  newExpectationWithClickFlows(
+    "the new issue should render in the issue tab",
+    "[data-cy=repo-issues-tab]",
+    beVisible,
+    [
+      newClickFlow("[data-cy=repo-issues-tab]", [
+        newExpectation(
+          "should contain a new issue",
+          "[data-cy=issue-row-1]",
+          beVisible,
+        ),
+        newExpectation(
+          "title should contain 'test'",
+          "[data-cy=issue-title-1]",
+          beVisibleAndContain(issueTitle),
+        ),
+      ]),
+    ],
+  ),
   //! CREATE A NEW LICENSE
   newExpectationWithClickFlows(
     "should navigate to the new docs page",
@@ -257,46 +297,6 @@ export const testDocs: Tests = [
           "should not have the repo doc markdown'",
           "[data-cy=repo-doc-markdown]",
           notExist,
-        ),
-      ]),
-    ],
-  ),
-  //! CREATE A NEW ISSUE
-  newExpectationWithClickFlows(
-    "should navigate to the new issue page",
-    "[data-cy=dropdown-database-nav]",
-    beVisible,
-    [
-      newClickFlow(
-        "[data-cy=dropdown-database-nav]",
-        [],
-        "[data-cy=dropdown-new-issue-link]",
-      ),
-    ],
-  ),
-  typingTitleExpectation(issueTitle, ""),
-  typingExpectation(issueContent, ""),
-  newExpectationWithClickFlows(
-    "should create the new issue",
-    "[data-cy=new-issue-button]",
-    beVisible,
-    [newClickFlow("[data-cy=new-issue-button]", [])],
-  ),
-  newExpectationWithClickFlows(
-    "the new issue should render in the issue tab",
-    "[data-cy=repo-issues-tab]",
-    beVisible,
-    [
-      newClickFlow("[data-cy=repo-issues-tab]", [
-        newExpectation(
-          "should contain a new issue",
-          "[data-cy=issue-table]>tbody>tr",
-          newShouldArgs("be.visible.and.have.length.of.at.least", 1),
-        ),
-        newExpectation(
-          "title should contain 'test'",
-          "[data-cy=issue-table]>tbody>tr",
-          beVisibleAndContain(issueTitle),
         ),
       ]),
     ],
