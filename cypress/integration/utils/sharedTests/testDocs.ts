@@ -29,7 +29,7 @@ const typingExpectation = (value: string, status?: string) =>
 const typingTitleExpectation = (value: string, status?: string) =>
   newExpectationWithTypeString(
     `should write ${status}description in textbox`,
-    "[data-cy=issue-title-input] > input",
+    "[data-cy=issue-title-input]",
     beVisible,
     value,
   );
@@ -290,12 +290,12 @@ export const testDocs: Tests = [
       newClickFlow("[data-cy=repo-issues-tab]", [
         newExpectation(
           "should contain a new issue",
-          "[data-cy=issue-row-1]",
-          beVisible,
+          "[data-cy=issue-table]>tbody>tr",
+          newShouldArgs("be.visible.and.have.length.of.at.least", 1),
         ),
         newExpectation(
           "title should contain 'test'",
-          "[data-cy=issue-title-1]",
+          "[data-cy=issue-table]>tbody>tr",
           beVisibleAndContain(issueTitle),
         ),
       ]),
