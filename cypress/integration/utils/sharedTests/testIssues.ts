@@ -131,7 +131,7 @@ export const testIssues: Tests = [
 
   newExpectation(
     "should show the comment",
-    "[data-cy=new-comment]>div>p",
+    "[data-cy=comment-markdown]>div>p",
     beVisibleAndContain("test comment"),
   ),
 
@@ -156,7 +156,7 @@ export const testIssues: Tests = [
 
   newExpectation(
     "should updated the comment",
-    "[data-cy=new-comment]>div>p",
+    "[data-cy=comment-markdown]>div>p",
     beVisibleAndContain("test comment update"),
   ),
 
