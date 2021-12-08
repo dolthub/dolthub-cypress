@@ -11,8 +11,6 @@ import { Tests } from "../types";
 const licenseMarkdown = "test";
 const updatedLicenseMarkdown = "test number 2";
 const readmeMarkdown = "test number 3";
-const issueTitle = "test";
-const issueContent = "test content";
 
 const beVisible = newShouldArgs("be.visible");
 const notExist = newShouldArgs("not.exist");
@@ -23,13 +21,6 @@ const typingExpectation = (value: string, status?: string) =>
   newExpectationWithTypeString(
     `should write ${status}description in textbox`,
     "[data-cy=textarea-container]",
-    beVisible,
-    value,
-  );
-const typingTitleExpectation = (value: string, status?: string) =>
-  newExpectationWithTypeString(
-    `should write ${status}description in textbox`,
-    "[data-cy=issue-title-input]",
     beVisible,
     value,
   );
@@ -77,46 +68,6 @@ const mergingAndDeletingBranch = (
 ];
 
 export const testDocs: Tests = [
-  //! CREATE A NEW ISSUE
-  newExpectationWithClickFlows(
-    "should navigate to the new issue page",
-    "[data-cy=dropdown-database-nav]",
-    beVisible,
-    [
-      newClickFlow(
-        "[data-cy=dropdown-database-nav]",
-        [],
-        "[data-cy=dropdown-new-issue-link]",
-      ),
-    ],
-  ),
-  typingTitleExpectation(issueTitle, ""),
-  typingExpectation(issueContent, ""),
-  newExpectationWithClickFlows(
-    "should create the new issue",
-    "[data-cy=new-issue-button]",
-    beVisible,
-    [newClickFlow("[data-cy=new-issue-button]", [])],
-  ),
-  newExpectationWithClickFlows(
-    "the new issue should render in the issue tab",
-    "[data-cy=repo-issues-tab]",
-    beVisible,
-    [
-      newClickFlow("[data-cy=repo-issues-tab]", [
-        newExpectation(
-          "should contain a new issue",
-          "[data-cy=issue-row-1]",
-          beVisible,
-        ),
-        newExpectation(
-          "title should contain 'test'",
-          "[data-cy=issue-title-1]",
-          beVisibleAndContain(issueTitle),
-        ),
-      ]),
-    ],
-  ),
   //! CREATE A NEW LICENSE
   newExpectationWithClickFlows(
     "should navigate to the new docs page",

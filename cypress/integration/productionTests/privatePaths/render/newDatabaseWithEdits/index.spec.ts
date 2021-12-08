@@ -4,6 +4,7 @@ import { createTempDatabase } from "../../../../utils/sharedTests/createTempData
 import { deleteTempDatabase } from "../../../../utils/sharedTests/deleteTempDatabase";
 import { editTempDatabase } from "../../../../utils/sharedTests/editTempDatabase";
 import { testDocs } from "../../../../utils/sharedTests/testDocs";
+import { testIssues } from "../../../../utils/sharedTests/testIssues";
 
 const pageName = "Create, edit, teardown database";
 const currentPage = "/profile/new-repository";
@@ -17,6 +18,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...createTempDatabase(repoName, ownerName),
     ...editTempDatabase,
+    ...testIssues,
     ...testDocs,
     ...deleteTempDatabase(repoName, ownerName),
   ];
