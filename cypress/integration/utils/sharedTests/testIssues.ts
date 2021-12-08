@@ -25,14 +25,6 @@ const typingExpectation = (value: string, datacy: string, status?: string) =>
     value,
   );
 
-const typingTitleExpectation = (value: string, status?: string) =>
-  newExpectationWithTypeString(
-    `should write ${status}description in textbox`,
-    "[data-cy=issue-title-input]",
-    beVisible,
-    value,
-  );
-
 export const testIssues: Tests = [
   //! CREATE A NEW ISSUE
   newExpectationWithClickFlows(
@@ -47,7 +39,7 @@ export const testIssues: Tests = [
       ),
     ],
   ),
-  typingTitleExpectation(issueTitle, ""),
+  typingExpectation(issueTitle, "issue-title-input", ""),
   typingExpectation(issueContent, "textarea-container", ""),
   newExpectationWithClickFlows(
     "should create the new issue",
@@ -96,7 +88,7 @@ export const testIssues: Tests = [
       newClickFlow(
         "[data-cy=issue-page-edit-description-button]",
         [
-          typingTitleExpectation(issueTitleEdits, ""),
+          typingExpectation(issueTitleEdits, "issue-title-input", ""),
           typingExpectation(
             issueContentEdits,
             "issue-description-textarea",
