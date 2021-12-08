@@ -97,7 +97,11 @@ export const testIssues: Tests = [
         "[data-cy=issue-page-edit-description-button]",
         [
           typingTitleExpectation(issueTitleEdits, ""),
-          typingExpectation(issueContentEdits, "textarea-container", ""),
+          typingExpectation(
+            issueContentEdits,
+            "issue-description-textarea",
+            "",
+          ),
         ],
         "[data-cy=issue-edit-save]",
       ),
@@ -116,7 +120,7 @@ export const testIssues: Tests = [
     beVisibleAndContain("test edited"),
   ),
 
-  typingExpectation(issueComment, "textarea-container", ""),
+  typingExpectation(issueComment, "comment-textarea-content", ""),
 
   newExpectationWithClickFlows(
     "should be able to submit the comment",
@@ -133,11 +137,11 @@ export const testIssues: Tests = [
 
   newExpectationWithClickFlows(
     "should show the comment update button",
-    "[data-cy=issue-comment-edit-button]",
+    "[data-cy=comment-edit-button]",
     beVisible,
     [
       newClickFlow(
-        "[data-cy=issue-comment-edit-button]",
+        "[data-cy=comment-edit-button]",
         [
           typingExpectation(
             issueCommentUpdate,
