@@ -31,6 +31,14 @@ const createPullRequest = () => [
 ];
 
 export const testSaveQuery: Tests = [
+  //! NAVIGATE TO THE DATABASE TAB
+  newExpectationWithClickFlows(
+    "should be able to navigate to database tab",
+    "[data-cy=repo-database-tab]",
+    beVisible,
+    [newClickFlow("[data-cy=repo-database-tab]", [])],
+  ),
+
   //! SAVE THE QUERY
   newExpectationWithClickFlows(
     "should show save query button",
@@ -95,9 +103,9 @@ export const testSaveQuery: Tests = [
   //! REMOVE THE QUERY
   newExpectationWithClickFlows(
     "should be able to remove query",
-    "data-cy=[remove-query-button]",
+    "[data-cy=remove-query-button]",
     beVisible,
-    [newClickFlow("data-cy=[remove-query-button]", [])],
+    [newClickFlow("[data-cy=remove-query-button]", [])],
   ),
   ...createPullRequest(),
   ...mergingAndDeletingBranch("Changes", "from", "workspace"),
