@@ -39,8 +39,8 @@ export const testIssues: Tests = [
       ),
     ],
   ),
-  typingExpectation(issueTitle, "issue-title-input", ""),
-  typingExpectation(issueContent, "textarea-container", ""),
+  typingExpectation(issueTitle, "issue-title-input"),
+  typingExpectation(issueContent, "textarea-container"),
   newExpectationWithClickFlows(
     "should create the new issue",
     "[data-cy=new-issue-button]",
@@ -88,12 +88,8 @@ export const testIssues: Tests = [
       newClickFlow(
         "[data-cy=issue-page-edit-description-button]",
         [
-          typingExpectation(issueTitleEdits, "issue-title-input", ""),
-          typingExpectation(
-            issueContentEdits,
-            "issue-description-textarea",
-            "",
-          ),
+          typingExpectation(issueTitleEdits, "issue-title-input"),
+          typingExpectation(issueContentEdits, "issue-description-textarea"),
         ],
         "[data-cy=issue-edit-save]",
       ),
@@ -134,13 +130,7 @@ export const testIssues: Tests = [
     [
       newClickFlow(
         "[data-cy=comment-edit-button]",
-        [
-          typingExpectation(
-            issueCommentUpdate,
-            "update-textarea-container",
-            "",
-          ),
-        ],
+        [typingExpectation(issueCommentUpdate, "update-textarea-container")],
         "[data-cy=comment-edit-button]",
       ),
     ],
