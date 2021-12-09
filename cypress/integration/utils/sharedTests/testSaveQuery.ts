@@ -40,8 +40,8 @@ export const testSaveQuery: Tests = [
       newClickFlow(
         "[data-cy=save-query-button]",
         [
-          typingExpectation(testQueryName, "query-name", ""),
-          typingExpectation(testQueryDescription, "query-description", ""),
+          typingExpectation(testQueryName, "query-name"),
+          typingExpectation(testQueryDescription, "query-description"),
         ],
         "[data-cy=query-save-button]",
       ),
