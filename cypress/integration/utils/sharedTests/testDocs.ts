@@ -1,10 +1,10 @@
 import {
   newClickFlow,
   newExpectation,
-  newShouldArgs,
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
   newExpectationWithTypeString,
+  newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
 
