@@ -108,7 +108,7 @@ export const testIssues: Tests = [
     beVisibleAndContain("test content edited"),
   ),
 
-  typingExpectation(issueComment, "comment-textarea-content", ""),
+  typingExpectation(issueComment, "comment-textarea-content"),
 
   newExpectationWithClickFlows(
     "should be able to submit the comment",
