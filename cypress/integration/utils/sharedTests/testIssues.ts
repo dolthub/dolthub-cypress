@@ -17,13 +17,9 @@ const issueContentEdits = "test content edited";
 const issueComment = "test comment";
 const issueCommentUpdate = "test comment update";
 
-export const typingExpectation = (
-  value: string,
-  datacy: string,
-  status?: string,
-) =>
+export const typingExpectation = (value: string, datacy: string) =>
   newExpectationWithTypeString(
-    `should write ${status}description in textbox`,
+    `should write description in textbox`,
     `[data-cy=${datacy}]`,
     beVisible,
     value,
