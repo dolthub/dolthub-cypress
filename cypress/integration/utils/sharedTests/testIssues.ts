@@ -17,7 +17,11 @@ const issueContentEdits = "test content edited";
 const issueComment = "test comment";
 const issueCommentUpdate = "test comment update";
 
-const typingExpectation = (value: string, datacy: string, status?: string) =>
+export const typingExpectation = (
+  value: string,
+  datacy: string,
+  status?: string,
+) =>
   newExpectationWithTypeString(
     `should write ${status}description in textbox`,
     `[data-cy=${datacy}]`,
@@ -67,7 +71,7 @@ export const testIssues: Tests = [
         newExpectation(
           "Issue state should be Open",
           "[data-cy=issue-state-label]",
-          newShouldArgs("equal", "Open"),
+          beVisibleAndContain("Open"),
         ),
       ]),
     ],
@@ -109,7 +113,7 @@ export const testIssues: Tests = [
   newExpectation(
     "should have changed issue content",
     "[data-cy=issue-page-description]>div>p",
-    beVisibleAndContain("test edited"),
+    beVisibleAndContain("test content edited"),
   ),
 
   typingExpectation(issueComment, "comment-textarea-content", ""),
@@ -141,7 +145,7 @@ export const testIssues: Tests = [
             "",
           ),
         ],
-        "[data-cy=issue-comment-update-button]",
+        "[data-cy=comment-edit-button]",
       ),
     ],
   ),
@@ -170,7 +174,7 @@ export const testIssues: Tests = [
           newExpectation(
             "Issue state should be Closed",
             "[data-cy=issue-state-label]",
-            newShouldArgs("equal", "Closed"),
+            beVisibleAndContain("Closed"),
           ),
         ],
         "[data-cy=issue-title-1]",
@@ -194,7 +198,7 @@ export const testIssues: Tests = [
         newExpectation(
           "Issue state should be Open",
           "[data-cy=issue-state-label]",
-          newShouldArgs("equal", "Open"),
+          beVisibleAndContain("Open"),
         ),
       ]),
     ],
