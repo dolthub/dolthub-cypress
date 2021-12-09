@@ -25,7 +25,7 @@ const typingExpectation = (value: string, status?: string) =>
     value,
   );
 
-const mergingAndDeletingBranch = (
+export const mergingAndDeletingBranch = (
   value: string,
   status?: string,
   doc?: string,
