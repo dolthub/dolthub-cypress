@@ -2,33 +2,19 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
-import { mergingAndDeletingBranch } from "./testDocs";
+import {
+  beVisible,
+  beVisibleAndContain,
+  createPullRequest,
+  mergingAndDeletingBranch,
+  notExist,
+} from "./sharedFunctionsAndVariables";
 import { typingExpectation } from "./testIssues";
 
-const beVisible = newShouldArgs("be.visible");
-const notExist = newShouldArgs("not.exist");
-const beVisibleAndContain = (value: string) =>
-  newShouldArgs("be.visible.and.contain", value);
 const testQueryName = "test-query-name";
 const testQueryDescription = "test-query-description";
-
-const createPullRequest = () => [
-  newExpectationWithClickFlows(
-    "should show create pull request button",
-    "[data-cy=create-pull]",
-    beVisible,
-    [newClickFlow("[data-cy=create-pull]", [])],
-  ),
-  newExpectationWithClickFlows(
-    "should be able to create pull request",
-    "[data-cy=create-pull-button]",
-    beVisible,
-    [newClickFlow("[data-cy=create-pull-button]", [])],
-  ),
-];
 
 export const testSaveQuery: Tests = [
   //! NAVIGATE TO THE DATABASE TAB
@@ -61,7 +47,7 @@ export const testSaveQuery: Tests = [
     beVisibleAndContain(testQueryName),
   ),
   ...createPullRequest(),
-  ...mergingAndDeletingBranch("Changes", "from", "workspace"),
+  ...mergingAndDeletingBranch(),
   newExpectationWithClickFlows(
     "should switch back to the database tab",
     "[data-cy=repo-database-tab]",
@@ -108,7 +94,7 @@ export const testSaveQuery: Tests = [
     [newClickFlow("[data-cy=remove-query-button]", [])],
   ),
   ...createPullRequest(),
-  ...mergingAndDeletingBranch("Changes", "from", "workspace"),
+  ...mergingAndDeletingBranch(),
   newExpectationWithClickFlows(
     "should switch back to the database tab",
     "[data-cy=repo-database-tab]",

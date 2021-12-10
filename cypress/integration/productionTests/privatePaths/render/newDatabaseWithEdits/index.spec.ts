@@ -5,6 +5,7 @@ import { deleteTempDatabase } from "../../../../utils/sharedTests/deleteTempData
 import { editTempDatabase } from "../../../../utils/sharedTests/editTempDatabase";
 import { testDocs } from "../../../../utils/sharedTests/testDocs";
 import { testIssues } from "../../../../utils/sharedTests/testIssues";
+import { testPullRequest } from "../../../../utils/sharedTests/testPullRequest";
 import { testSaveQuery } from "../../../../utils/sharedTests/testSaveQuery";
 
 const pageName = "Create, edit, teardown database";
@@ -19,6 +20,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...createTempDatabase(repoName, ownerName),
     ...editTempDatabase,
+    ...testPullRequest(ownerName, ownerName),
     ...testIssues,
     ...testDocs,
     ...testSaveQuery,

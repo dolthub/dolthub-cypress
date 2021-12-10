@@ -121,6 +121,7 @@ function testAssertion(t: Expectation) {
         s,
         t.shouldArgs,
         t.typeString,
+        t.selectOption,
         t.url,
         t.scrollIntoView,
       ),
@@ -132,6 +133,7 @@ function testAssertion(t: Expectation) {
     t.shouldArgs,
     t.typeString,
     t.url,
+    t.selectOption,
     t.scrollIntoView,
   );
 }
@@ -141,6 +143,7 @@ function getAssertionTest(
   selectorStr: string,
   shouldArgs: ShouldArgs,
   typeString?: string,
+  selectOption?: string,
   url?: string,
   scrollIntoView?: boolean,
 ) {
@@ -154,6 +157,9 @@ function getAssertionTest(
       .get(selectorStr, opts)
       .clear(clickOpts)
       .type(typeString, clickOpts);
+  }
+  if (selectOption) {
+    cy.get(selectorStr).contains(selectOption).click();
   }
   if (url) {
     const base = Cypress.config().baseUrl;

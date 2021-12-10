@@ -158,3 +158,12 @@ export function newDevice(
 export function newShouldArgs(chainer: string, value?: any): ShouldArgs {
   return { chainer, value };
 }
+
+export function newExpectationWithSelector(
+  description: string,
+  selector: string,
+  selectOption: string,
+  shouldArgs: ShouldArgs,
+): Expectation {
+  return { description, selector, shouldArgs, selectOption };
+}

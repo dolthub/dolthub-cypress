@@ -39,6 +39,7 @@ export type Expectation = {
   scrollTo?: ScrollTo;
   skip?: boolean;
   typeString?: string;
+  selectOption?: string;
   redirect?: string;
   url?: string;
 };
