@@ -23,6 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+// eslint-disable-next-line import/no-extraneous-dependencies
+import "cypress-file-upload";
 
 export const defaultTimeout = 10000;
 const opts: Partial<Cypress.Timeoutable> = {

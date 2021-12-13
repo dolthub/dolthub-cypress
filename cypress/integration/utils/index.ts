@@ -122,6 +122,8 @@ function testAssertion(t: Expectation) {
         t.shouldArgs,
         t.typeString,
         t.selectOption,
+        t.targetPage,
+        t.fileUpload,
         t.url,
         t.scrollIntoView,
       ),
@@ -132,8 +134,10 @@ function testAssertion(t: Expectation) {
     t.selector,
     t.shouldArgs,
     t.typeString,
-    t.url,
     t.selectOption,
+    t.targetPage,
+    t.fileUpload,
+    t.url,
     t.scrollIntoView,
   );
 }
@@ -144,6 +148,8 @@ function getAssertionTest(
   shouldArgs: ShouldArgs,
   typeString?: string,
   selectOption?: string,
+  targetPage?: string,
+  fileUpload?: string,
   url?: string,
   scrollIntoView?: boolean,
 ) {
@@ -159,7 +165,13 @@ function getAssertionTest(
       .type(typeString, clickOpts);
   }
   if (selectOption) {
-    cy.get(selectorStr).contains(selectOption).click();
+    cy.get(selectorStr).type(selectOption).pause();
+  }
+  if (targetPage) {
+    cy.visitPage(targetPage, false);
+  }
+  if (fileUpload) {
+    cy.get(selectorStr).attachFile(fileUpload, { subjectType: "drag-n-drop" });
   }
   if (url) {
     const base = Cypress.config().baseUrl;

@@ -40,6 +40,8 @@ export type Expectation = {
   skip?: boolean;
   typeString?: string;
   selectOption?: string;
+  targetPage?: string;
+  fileUpload?: string;
   redirect?: string;
   url?: string;
 };

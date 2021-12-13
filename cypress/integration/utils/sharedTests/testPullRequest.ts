@@ -1,8 +1,9 @@
 import {
   newClickFlow,
+  newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithSelector,
-  newExpectationWithURL,
+  newExpectationWithVisitPage,
 } from "../helpers";
 import { Tests } from "../types";
 import {
@@ -31,27 +32,39 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
 
   //! EDIT THE TABLE
   newExpectationWithClickFlows(
-    "should show edit table button",
-    "[data-cy=repo-tables-table-tablename-edit]",
+    "should have new table in left navbutton",
+    "[data-cy=repo-tables-table-tablename]",
     beVisible,
     [
       newClickFlow(
+        "",
+        [
+          newExpectation(
+            "should show edit table button",
+            "[data-cy=repo-tables-table-tablename-edit]",
+            beVisible,
+          ),
+        ],
         "[data-cy=repo-tables-table-tablename-edit]",
-        [],
-        "[data-cy=SQL-Query-edit-button]",
       ),
     ],
   ),
   newExpectationWithClickFlows(
     "should show run query button",
-    "[data-cy=run-query-button]",
+    "[data-cy=sql-query-edit-button]",
     beVisible,
-    [newClickFlow("[data-cy=run-query-button]", [])],
+    [
+      newClickFlow(
+        "[data-cy=sql-query-edit-button]",
+        [],
+        "[data-cy=run-query-button]",
+      ),
+    ],
   ),
   ...createPullRequest(),
 
   //! REDIRECT TO PARENT DATABASE
-  newExpectationWithURL(
+  newExpectationWithVisitPage(
     "should route to database page",
     "[data-cy=repo-breadcrumbs]",
     beVisibleAndContain(`${ownerName}`),
@@ -89,7 +102,7 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
   newExpectationWithSelector(
     "should select the fork repo",
     "[data-cy=from-repo-selector]>div>div>div>div>input",
-    `automated_testing`,
+    `automated_testing/${repoName}`,
     beVisibleAndContain("automated_testing"),
   ),
   //! SELECT THE BASE BRANCH
@@ -115,7 +128,7 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
       newClickFlow(
         "",
         [
-          typingExpectation("test pull", "pull-form-input"),
+          typingExpectation("test pull", "pull-form-title-input"),
           typingExpectation("test pull description", "pull-form-description"),
         ],
         "[data-cy=pull-form-submit]",

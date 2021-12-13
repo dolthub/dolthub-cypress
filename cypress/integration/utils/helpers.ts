@@ -167,3 +167,19 @@ export function newExpectationWithSelector(
 ): Expectation {
   return { description, selector, shouldArgs, selectOption };
 }
+export function newExpectationWithVisitPage(
+  description: string,
+  selector: string,
+  shouldArgs: ShouldArgs,
+  targetPage: string,
+): Expectation {
+  return { description, selector, shouldArgs, targetPage };
+}
+export function newExpectationWithFileUpload(
+  description: string,
+  selector: string,
+  fileUpload: string,
+  shouldArgs: ShouldArgs,
+): Expectation {
+  return { description, selector, shouldArgs, fileUpload };
+}
