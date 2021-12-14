@@ -162,10 +162,11 @@ export function newShouldArgs(chainer: string, value?: any): ShouldArgs {
 export function newExpectationWithSelector(
   description: string,
   selector: string,
-  selectOption: string,
+  selectOption: number,
+  selectedValue: string,
   shouldArgs: ShouldArgs,
 ): Expectation {
-  return { description, selector, shouldArgs, selectOption };
+  return { description, selector, shouldArgs, selectedValue, selectOption };
 }
 export function newExpectationWithVisitPage(
   description: string,
@@ -182,4 +183,13 @@ export function newExpectationWithFileUpload(
   shouldArgs: ShouldArgs,
 ): Expectation {
   return { description, selector, shouldArgs, fileUpload };
+}
+
+export function newExpectationWithSqlConsole(
+  description: string,
+  selector: string,
+  shouldArgs: ShouldArgs,
+  sqlQuery: string,
+): Expectation {
+  return { description, selector, shouldArgs, sqlQuery };
 }

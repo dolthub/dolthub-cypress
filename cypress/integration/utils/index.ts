@@ -122,6 +122,8 @@ function testAssertion(t: Expectation) {
         t.shouldArgs,
         t.typeString,
         t.selectOption,
+        t.selectedValue,
+        t.sqlQuery,
         t.targetPage,
         t.fileUpload,
         t.url,
@@ -135,6 +137,8 @@ function testAssertion(t: Expectation) {
     t.shouldArgs,
     t.typeString,
     t.selectOption,
+    t.selectedValue,
+    t.sqlQuery,
     t.targetPage,
     t.fileUpload,
     t.url,
@@ -147,7 +151,9 @@ function getAssertionTest(
   selectorStr: string,
   shouldArgs: ShouldArgs,
   typeString?: string,
-  selectOption?: string,
+  selectOption?: number,
+  selectedValue?: string,
+  sqlQuery?: string,
   targetPage?: string,
   fileUpload?: string,
   url?: string,
@@ -164,8 +170,13 @@ function getAssertionTest(
       .clear(clickOpts)
       .type(typeString, clickOpts);
   }
-  if (selectOption) {
-    cy.get(selectorStr).type(selectOption).pause();
+  if (selectedValue) {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    cy.get(selectorStr).eq(selectOption!).click();
+  }
+  if (sqlQuery) {
+    cy.get("[data-cy=sql-editor-collapsed]").click();
+    cy.get(selectorStr).get("textarea").clear().type(sqlQuery);
   }
   if (targetPage) {
     cy.visitPage(targetPage, false);

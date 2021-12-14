@@ -1,8 +1,8 @@
 import {
   newClickFlow,
-  newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithSelector,
+  newExpectationWithSqlConsole,
   newExpectationWithVisitPage,
 } from "../helpers";
 import { Tests } from "../types";
@@ -13,6 +13,19 @@ import {
   mergingAndDeletingBranch,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
+
+const sqlConsoleClickFlow = newClickFlow(
+  "[data-cy=sql-editor-collapsed]",
+  [
+    newExpectationWithSqlConsole(
+      "should use sql console to edit table",
+      "[data-cy=sql-editor-expanded]>div>div",
+      beVisibleAndContain("INSERT INTO"),
+      'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")',
+    ),
+  ],
+  "[data-cy=run-query-button]",
+);
 
 export const testPullRequest = (repoName: string, ownerName: string): Tests => [
   //! FORK THE DATABASE
@@ -32,35 +45,12 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
 
   //! EDIT THE TABLE
   newExpectationWithClickFlows(
-    "should have new table in left navbutton",
-    "[data-cy=repo-tables-table-tablename]",
+    "should execute insert query",
+    "[data-cy=sql-editor-collapsed]",
     beVisible,
-    [
-      newClickFlow(
-        "",
-        [
-          newExpectation(
-            "should show edit table button",
-            "[data-cy=repo-tables-table-tablename-edit]",
-            beVisible,
-          ),
-        ],
-        "[data-cy=repo-tables-table-tablename-edit]",
-      ),
-    ],
+    [sqlConsoleClickFlow],
   ),
-  newExpectationWithClickFlows(
-    "should show run query button",
-    "[data-cy=sql-query-edit-button]",
-    beVisible,
-    [
-      newClickFlow(
-        "[data-cy=sql-query-edit-button]",
-        [],
-        "[data-cy=run-query-button]",
-      ),
-    ],
-  ),
+
   ...createPullRequest(),
 
   //! REDIRECT TO PARENT DATABASE
@@ -99,25 +89,67 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
   ),
 
   //! SELECT THE FROM DATABASE
-  newExpectationWithSelector(
-    "should select the fork repo",
+  newExpectationWithClickFlows(
+    "should show the from database",
     "[data-cy=from-repo-selector]>div>div>div>div>input",
-    `automated_testing/${repoName}`,
-    beVisibleAndContain("automated_testing"),
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=from-repo-selector]>div>div>div>div>input",
+        [
+          newExpectationWithSelector(
+            "should select the fork repo",
+            "[data-cy=from-repo-selector]>div>div",
+            1,
+            `automated_testing/${repoName}`,
+            beVisibleAndContain("automated_testing"),
+          ),
+        ],
+        "",
+      ),
+    ],
   ),
   //! SELECT THE BASE BRANCH
-  newExpectationWithSelector(
-    "should select the main branch",
+  newExpectationWithClickFlows(
+    "should show the from database",
     "[data-cy=to-branch-selector]>div>div>div>div>input",
-    "main",
-    beVisibleAndContain("main"),
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=to-branch-selector]>div>div>div>div>input",
+        [
+          newExpectationWithSelector(
+            "should select the fork repo",
+            "[data-cy=to-branch-selector]>div>div",
+            1,
+            "main",
+            beVisibleAndContain("main"),
+          ),
+        ],
+        "",
+      ),
+    ],
   ),
-  //! SELECT THE BASE BRANCH
-  newExpectationWithSelector(
-    "should select the main branch",
-    "[data-cy=to-branch-selector]>div>div>div>div>input",
-    `cypresstesting`,
-    beVisibleAndContain("cypresstesting"),
+  //! SELECT THE FROM BRANCH
+  newExpectationWithClickFlows(
+    "should show the from database",
+    "[data-cy=from-branch-selector]>div>div>div>div>input",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=from-branch-selector]>div>div>div>div>input",
+        [
+          newExpectationWithSelector(
+            "should select the fork repo",
+            "[data-cy=from-branch-selector]>div>div>div>div",
+            3,
+            "cypresstesting",
+            beVisibleAndContain("cypresstesting"),
+          ),
+        ],
+        "",
+      ),
+    ],
   ),
 
   newExpectationWithClickFlows(

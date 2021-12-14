@@ -39,7 +39,9 @@ export type Expectation = {
   scrollTo?: ScrollTo;
   skip?: boolean;
   typeString?: string;
-  selectOption?: string;
+  selectOption?: number;
+  selectedValue?: string;
+  sqlQuery?: string;
   targetPage?: string;
   fileUpload?: string;
   redirect?: string;

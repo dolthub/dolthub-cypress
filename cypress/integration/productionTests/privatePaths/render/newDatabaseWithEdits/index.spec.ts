@@ -20,8 +20,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...createTempDatabase(repoName, ownerName),
     ...editTempDatabase,
-    ...testPullRequest(repoName, ownerName),
     ...testIssues,
+    ...testPullRequest(repoName, ownerName),
     ...testDocs,
     ...testSaveQuery,
     ...deleteTempDatabase(repoName, ownerName),

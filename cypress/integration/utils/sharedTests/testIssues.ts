@@ -29,11 +29,11 @@ export const testIssues: Tests = [
   //! CREATE A NEW ISSUE
   newExpectationWithClickFlows(
     "should navigate to the new issue page",
-    "[data-cy=dropdown-database-nav]",
+    "[data-cy=repo-dropdown-button]",
     beVisible,
     [
       newClickFlow(
-        "[data-cy=dropdown-database-nav]",
+        "[data-cy=repo-dropdown-button]",
         [],
         "[data-cy=dropdown-new-issue-link]",
       ),
