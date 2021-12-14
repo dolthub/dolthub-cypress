@@ -25,7 +25,7 @@ const typingExpectation = (value: string, status?: string) =>
     value,
   );
 
-const mergingAndDeletingBranch = (
+export const mergingAndDeletingBranch = (
   value: string,
   status?: string,
   doc?: string,
@@ -71,11 +71,11 @@ export const testDocs: Tests = [
   //! CREATE A NEW LICENSE
   newExpectationWithClickFlows(
     "should navigate to the new docs page",
-    "[data-cy=dropdown-database-nav]",
+    "[data-cy=repo-dropdown-button]",
     beVisible,
     [
       newClickFlow(
-        "[data-cy=dropdown-database-nav]",
+        "[data-cy=repo-dropdown-button]",
         [],
         "[data-cy=dropdown-new-docs-link]",
       ),
@@ -139,11 +139,11 @@ export const testDocs: Tests = [
   //! CREATE README
   newExpectationWithClickFlows(
     "should navigate to the new docs page",
-    "[data-cy=dropdown-database-nav]",
+    "[data-cy=repo-dropdown-button]",
     beVisible,
     [
       newClickFlow(
-        "[data-cy=dropdown-database-nav]",
+        "[data-cy=repo-dropdown-button]",
         [],
         "[data-cy=dropdown-new-docs-link]",
       ),
@@ -180,11 +180,11 @@ export const testDocs: Tests = [
   // //! CHECK CANT MAKE NEW DOCS
   newExpectationWithClickFlows(
     "should navigate to the new docs page",
-    "[data-cy=dropdown-database-nav]",
+    "[data-cy=repo-dropdown-button]",
     beVisible,
     [
       newClickFlow(
-        "[data-cy=dropdown-database-nav]",
+        "[data-cy=repo-dropdown-button]",
         [],
         "[data-cy=dropdown-new-docs-link]",
       ),
