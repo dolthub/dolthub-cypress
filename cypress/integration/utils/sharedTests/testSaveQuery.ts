@@ -57,7 +57,7 @@ export const testSaveQuery: Tests = [
   ),
   newExpectation(
     "should have saved query listed",
-    "[data-cy=workspace-commit-list]>li:first>a",
+    "[data-cy=workspace-commit-list]>li:first>div>a",
     beVisibleAndContain(testQueryName),
   ),
   ...createPullRequest,
