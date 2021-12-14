@@ -43,7 +43,7 @@ export const testSaveQuery: Tests = [
   ),
   newExpectation(
     "should have saved query listed",
-    "[data-cy=workspace-commit-list]>li>div>a",
+    "[data-cy=workspace-commit-list]>li:first>div>a",
     beVisibleAndContain(testQueryName),
   ),
   ...createPullRequest,
@@ -101,15 +101,9 @@ export const testSaveQuery: Tests = [
     beVisible,
     [newClickFlow("[data-cy=repo-database-tab]", [])],
   ),
-  newExpectationWithClickFlows(
-    "should switch back to the database tab",
-    "[data-cy=repo-database-tab]",
-    beVisible,
-    [newClickFlow("[data-cy=repo-database-tab]", [])],
-  ),
 
   newExpectationWithClickFlows(
-    "the removed query should not be shown in the queries tab",
+    "should have the query deleted",
     "[data-cy=tab-queries]",
     beVisible,
     [
@@ -118,6 +112,11 @@ export const testSaveQuery: Tests = [
           "should not have removed query listed",
           `[data-cy=repo-query-list-query-${testQueryName}`,
           notExist,
+        ),
+        newExpectation(
+          "should have no queries message showing",
+          "[data-cy=repo-no-queries]",
+          beVisibleAndContain("No saved queries."),
         ),
       ]),
     ],
