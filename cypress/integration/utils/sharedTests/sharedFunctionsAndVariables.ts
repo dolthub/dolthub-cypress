@@ -5,6 +5,7 @@ import {
   newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
+import { Tests } from "../types";
 
 export const beVisible = newShouldArgs("be.visible");
 export const notExist = newShouldArgs("not.exist");
@@ -53,7 +54,7 @@ export const typingExpectation = (value: string, datacy: string) =>
     value,
   );
 
-export const createPullRequest = () => [
+export const createPullRequest: Tests = [
   newExpectationWithClickFlows(
     "should show create pull request button",
     "[data-cy=create-pull]",

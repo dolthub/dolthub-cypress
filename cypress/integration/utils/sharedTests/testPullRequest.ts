@@ -51,7 +51,7 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
     [sqlConsoleClickFlow],
   ),
 
-  ...createPullRequest(),
+  ...createPullRequest,
 
   //! REDIRECT TO PARENT DATABASE
   newExpectationWithVisitPage(

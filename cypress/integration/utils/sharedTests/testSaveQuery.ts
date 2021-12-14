@@ -46,7 +46,7 @@ export const testSaveQuery: Tests = [
     "[data-cy=workspace-commit-list]>li>div>a",
     beVisibleAndContain(testQueryName),
   ),
-  ...createPullRequest(),
+  ...createPullRequest,
   ...mergingAndDeletingBranch(),
   newExpectationWithClickFlows(
     "should switch back to the database tab",
@@ -93,7 +93,7 @@ export const testSaveQuery: Tests = [
     beVisible,
     [newClickFlow("[data-cy=remove-query-button]", [])],
   ),
-  ...createPullRequest(),
+  ...createPullRequest,
   ...mergingAndDeletingBranch(),
   newExpectationWithClickFlows(
     "should switch back to the database tab",
