@@ -12,8 +12,12 @@ export const notExist = newShouldArgs("not.exist");
 export const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 
-export const mergingAndDeletingBranch = () => [
-  newExpectation("Should have title", "[data-cy=pull-page-title]", beVisible),
+export const mergingAndDeletingBranch = (title: string) => [
+  newExpectation(
+    `Should have title ${title}`,
+    "[data-cy=pull-page-title]",
+    beVisible,
+  ),
   newExpectation(
     "Should have Open pull state",
     "[data-cy=pull-state-label]",

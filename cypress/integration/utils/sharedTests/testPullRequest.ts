@@ -90,7 +90,7 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
 
   //! SELECT THE FROM DATABASE
   newExpectationWithClickFlows(
-    "should show the from database",
+    "should show and select the from database",
     "[data-cy=from-repo-selector]>div>div>div>div>input",
     beVisible,
     [
@@ -111,7 +111,7 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
   ),
   //! SELECT THE BASE BRANCH
   newExpectationWithClickFlows(
-    "should show the from database",
+    "should show and select the base branch",
     "[data-cy=to-branch-selector]>div>div>div>div>input",
     beVisible,
     [
@@ -132,7 +132,7 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
   ),
   //! SELECT THE FROM BRANCH
   newExpectationWithClickFlows(
-    "should show the from database",
+    "should show and select the from branch",
     "[data-cy=from-branch-selector]>div>div>div>div>input",
     beVisible,
     [
@@ -167,5 +167,5 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
       ),
     ],
   ),
-  ...mergingAndDeletingBranch(),
+  ...mergingAndDeletingBranch("test pull"),
 ];

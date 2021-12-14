@@ -47,7 +47,7 @@ export const testSaveQuery: Tests = [
     beVisibleAndContain(testQueryName),
   ),
   ...createPullRequest,
-  ...mergingAndDeletingBranch(),
+  ...mergingAndDeletingBranch("Temporary Workspace"),
   newExpectationWithClickFlows(
     "should switch back to the database tab",
     "[data-cy=repo-database-tab]",
@@ -94,7 +94,7 @@ export const testSaveQuery: Tests = [
     [newClickFlow("[data-cy=remove-query-button]", [])],
   ),
   ...createPullRequest,
-  ...mergingAndDeletingBranch(),
+  ...mergingAndDeletingBranch("Temporary Workspace"),
   newExpectationWithClickFlows(
     "should switch back to the database tab",
     "[data-cy=repo-database-tab]",
