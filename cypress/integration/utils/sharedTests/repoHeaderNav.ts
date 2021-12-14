@@ -67,7 +67,7 @@ export const databaseDropdownClickFlow = (
   hasDocs: boolean,
 ) =>
   newClickFlow(
-    "[data-cy=dropdown-database-nav]",
+    "[data-cy=repo-dropdown-button]",
     loggedIn
       ? [
           newExpectation(
@@ -104,7 +104,7 @@ export const databaseDropdownClickFlow = (
             beVisible,
           ),
         ],
-    "[data-cy=dropdown-database-nav]",
+    "[data-cy=repo-dropdown-button]",
   );
 
 // DATABASE TAB
@@ -228,7 +228,7 @@ export const testRepoHeaderForAll = (
     testDeployTab,
     newExpectationWithClickFlows(
       "should have functioning nav dropdown",
-      "[data-cy=dropdown-database-nav]",
+      "[data-cy=repo-dropdown-button]",
       beVisible,
       [databaseDropdownClickFlow(loggedIn, hasDocs)],
     ),
