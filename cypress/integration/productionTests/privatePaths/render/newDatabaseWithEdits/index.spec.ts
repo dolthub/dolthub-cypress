@@ -1,4 +1,5 @@
 import { editTempDatabase } from "cypress/integration/utils/sharedTests/editTempDatabase";
+import { testAddTable } from "cypress/integration/utils/sharedTests/testAddTable";
 import { testDocs } from "cypress/integration/utils/sharedTests/testDocs";
 import { testIssues } from "cypress/integration/utils/sharedTests/testIssues";
 import { testPullRequest } from "cypress/integration/utils/sharedTests/testPullRequest";
@@ -24,7 +25,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testPullRequest(repoName, ownerName),
     ...testDocs,
     ...testSaveQuery,
-    // ...testAddTable,
+    ...testAddTable,
     ...deleteTempDatabase(repoName, ownerName),
   ];
 
