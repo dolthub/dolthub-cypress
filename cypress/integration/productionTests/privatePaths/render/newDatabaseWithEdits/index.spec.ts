@@ -1,12 +1,13 @@
+import { editTempDatabase } from "cypress/integration/utils/sharedTests/editTempDatabase";
+import { testDocs } from "cypress/integration/utils/sharedTests/testDocs";
+import { testFileUpload } from "cypress/integration/utils/sharedTests/testFileUpload";
+import { testIssues } from "cypress/integration/utils/sharedTests/testIssues";
 import { testPullRequest } from "cypress/integration/utils/sharedTests/testPullRequest";
+import { testSaveQuery } from "cypress/integration/utils/sharedTests/testSaveQuery";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { createTempDatabase } from "../../../../utils/sharedTests/createTempDatabase";
 import { deleteTempDatabase } from "../../../../utils/sharedTests/deleteTempDatabase";
-import { editTempDatabase } from "../../../../utils/sharedTests/editTempDatabase";
-import { testDocs } from "../../../../utils/sharedTests/testDocs";
-import { testIssues } from "../../../../utils/sharedTests/testIssues";
-import { testSaveQuery } from "../../../../utils/sharedTests/testSaveQuery";
 
 const pageName = "Create, edit, teardown database";
 const currentPage = "/profile/new-repository";
@@ -24,6 +25,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testPullRequest(repoName, ownerName),
     ...testDocs,
     ...testSaveQuery,
+    ...testFileUpload,
     ...deleteTempDatabase(repoName, ownerName),
   ];
 
