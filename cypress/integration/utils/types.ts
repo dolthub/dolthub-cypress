@@ -42,6 +42,7 @@ export type Expectation = {
   selectOption?: number;
   selectedValue?: string;
   sqlQuery?: string;
+  gridValue?: string;
   targetPage?: string;
   fileUpload?: string;
   redirect?: string;

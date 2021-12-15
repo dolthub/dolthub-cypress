@@ -2,6 +2,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithSqlConsole,
   newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
@@ -70,5 +71,118 @@ export const createPullRequest: Tests = [
     "[data-cy=create-pull-button]",
     beVisible,
     [newClickFlow("[data-cy=create-pull-button]", [])],
+  ),
+];
+
+export const sqlConsoleEditClickFlow = (queryType: string, sqlQuery: string) =>
+  newClickFlow(
+    "[data-cy=sql-editor-collapsed]",
+    [
+      newExpectationWithSqlConsole(
+        "should use sql console to edit table",
+        "[data-cy=sql-editor-expanded]>div>div",
+        beVisibleAndContain(queryType),
+        sqlQuery,
+      ),
+    ],
+    "[data-cy=run-query-button]",
+  );
+
+export const preUploadSteps = (
+  description: string,
+  uploadMethod: string,
+  uploadMethodTitle: string,
+  tableName: string,
+) => [
+  //! CLICK ADD TABLE
+  newExpectationWithClickFlows(
+    "should show add table button",
+    "[data-cy=repo-tables-add-table]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=repo-tables-add-table]",
+        [
+          newExpectation(
+            `should show and click ${description}`,
+            `[data-cy=file-upload-${uploadMethod}-branch-link]`,
+            beVisibleAndContain(uploadMethodTitle),
+          ),
+        ],
+        `[data-cy=file-upload-${uploadMethod}-branch-link]`,
+      ),
+    ],
+  ),
+
+  //! CHOOSE BRANCH AND TABLE NAME
+  newExpectationWithClickFlows(
+    "should show File Importer page",
+    "[data-cy=upload-nav]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=upload-next-button]",
+        [typingExpectation(tableName, "choose-table-name")],
+        "[data-cy=upload-next-button]",
+      ),
+    ],
+  ),
+];
+
+export const afterUploadSteps = (
+  fileName: string,
+  description: string,
+  mergingTitle: string,
+) => [
+  //! REVIEW CHANGES
+  newExpectationWithClickFlows(
+    "should show Review your changes message",
+    "[data-cy=review-title]",
+    beVisibleAndContain("Review your changes"),
+    [
+      newClickFlow(
+        "",
+        [
+          newExpectation(
+            "should match the file name",
+            "[data-cy=file-name]",
+            beVisibleAndContain(fileName),
+          ),
+        ],
+        "[data-cy=upload-next-button]",
+      ),
+    ],
+  ),
+
+  //! COMMIT
+  newExpectationWithClickFlows(
+    "should show Commit changes message",
+    "[data-cy=commit-title]",
+    beVisibleAndContain("Commit changes"),
+    [
+      newClickFlow(
+        "",
+        [
+          typingExpectation(
+            `Creating test with changes from ${description}`,
+            "[data-cy=textarea-container]>textarea",
+          ),
+        ],
+        "[data-cy=upload-next-button]",
+      ),
+    ],
+  ),
+  ...mergingAndDeletingBranch(mergingTitle),
+  //! CHECK UPLOADED TABLE
+  newExpectationWithClickFlows(
+    "should be able to navigate to database tab",
+    "[data-cy=repo-database-tab]",
+    beVisible,
+    [newClickFlow("[data-cy=repo-database-tab]", [])],
+  ),
+  newExpectation(
+    "should show the uploaded table",
+    `[data-cy=repo-tables-table-${fileName}`,
+    beVisibleAndContain(fileName),
   ),
 ];

@@ -2,7 +2,6 @@ import {
   newClickFlow,
   newExpectationWithClickFlows,
   newExpectationWithSelector,
-  newExpectationWithSqlConsole,
   newExpectationWithVisitPage,
 } from "../helpers";
 import { Tests } from "../types";
@@ -11,22 +10,12 @@ import {
   beVisibleAndContain,
   createPullRequest,
   mergingAndDeletingBranch,
+  sqlConsoleEditClickFlow,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
-const sqlConsoleClickFlow = newClickFlow(
-  "[data-cy=sql-editor-collapsed]",
-  [
-    newExpectationWithSqlConsole(
-      "should use sql console to edit table",
-      "[data-cy=sql-editor-expanded]>div>div",
-      beVisibleAndContain("INSERT INTO"),
-      'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")',
-    ),
-  ],
-  "[data-cy=run-query-button]",
-);
-
+const insertQuery = `INSERT INTO \`tablename\` (\`pk\`, \`col1\`) VALUES (1, "test")`;
+const queryType = "INSERT INTO";
 export const testPullRequest = (repoName: string, ownerName: string): Tests => [
   //! FORK THE DATABASE
 
@@ -48,7 +37,7 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
     "should execute insert query",
     "[data-cy=sql-editor-collapsed]",
     beVisible,
-    [sqlConsoleClickFlow],
+    [sqlConsoleEditClickFlow(queryType, insertQuery)],
   ),
 
   ...createPullRequest,

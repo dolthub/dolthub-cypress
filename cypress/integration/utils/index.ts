@@ -124,6 +124,7 @@ function testAssertion(t: Expectation) {
         t.selectOption,
         t.selectedValue,
         t.sqlQuery,
+        t.gridValue,
         t.targetPage,
         t.fileUpload,
         t.url,
@@ -139,6 +140,7 @@ function testAssertion(t: Expectation) {
     t.selectOption,
     t.selectedValue,
     t.sqlQuery,
+    t.gridValue,
     t.targetPage,
     t.fileUpload,
     t.url,
@@ -154,6 +156,7 @@ function getAssertionTest(
   selectOption?: number,
   selectedValue?: string,
   sqlQuery?: string,
+  gridValue?: string,
   targetPage?: string,
   fileUpload?: string,
   url?: string,
@@ -180,6 +183,10 @@ function getAssertionTest(
   }
   if (targetPage) {
     cy.visitPage(targetPage, false);
+  }
+  if (gridValue) {
+    $("div[role='gridcell']:first").text("pk");
+    $("div[role='gridcell']:nth-child(2)").text(gridValue);
   }
   if (fileUpload) {
     cy.get(selectorStr).attachFile(fileUpload, { subjectType: "drag-n-drop" });

@@ -193,3 +193,11 @@ export function newExpectationWithSqlConsole(
 ): Expectation {
   return { description, selector, shouldArgs, sqlQuery };
 }
+export function newExpectationWithSpreadSheetEditor(
+  description: string,
+  selector: string,
+  shouldArgs: ShouldArgs,
+  gridValue: string,
+): Expectation {
+  return { description, selector, shouldArgs, gridValue };
+}
