@@ -133,7 +133,7 @@ export const testAddTable: Tests = [
           newExpectation(
             "should show uploaded file",
             "[data-cy=file-name]",
-            beVisibleAndContain(tableName),
+            beVisibleAndContain("editor.csv"),
           ),
         ],
         "[data-cy=upload-next-button]",
@@ -141,6 +141,7 @@ export const testAddTable: Tests = [
     ],
   ),
   ...afterUploadSteps(tableName, "spreadsheet editor", "Create new table"),
+
   //! USE FILE UPLOAD TO ADD TABLE
   ...testFileUpload,
 ];
