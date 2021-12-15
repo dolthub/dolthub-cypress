@@ -18,7 +18,7 @@ export const testFileUpload: Tests = [
   newExpectationWithFileUpload(
     "should be able to upload file",
     "[data-cy=drop-container]",
-    "./test-table.csv",
+    "./TestFileUploadTable.csv",
     beVisible,
   ),
 
