@@ -51,10 +51,10 @@ export const mergingAndDeletingBranch = (title: string) => [
   ),
 ];
 
-export const typingExpectation = (value: string, datacy: string) =>
+export const typingExpectation = (value: string, selectorStr: string) =>
   newExpectationWithTypeString(
     `should write description in textbox`,
-    `[data-cy=${datacy}]`,
+    selectorStr,
     beVisible,
     value,
   );
@@ -76,7 +76,7 @@ export const createPullRequest: Tests = [
 
 export const sqlConsoleEditClickFlow = (queryType: string, sqlQuery: string) =>
   newClickFlow(
-    "[data-cy=sql-editor-collapsed]",
+    "",
     [
       newExpectationWithSqlConsole(
         "should use sql console to edit table",
@@ -113,16 +113,23 @@ export const preUploadSteps = (
       ),
     ],
   ),
-
-  //! CHOOSE BRANCH AND TABLE NAME
+  //! CHOOSE BRANCH
   newExpectationWithClickFlows(
     "should show File Importer page",
-    "[data-cy=upload-nav]",
-    beVisible,
+    "[data-cy=branch-title]",
+    beVisibleAndContain("Choose a base branch"),
+    [newClickFlow("[data-cy=upload-next-button]", [])],
+  ),
+
+  //! CHOOSE TABLE
+  newExpectationWithClickFlows(
+    "should show Create a new table",
+    "[data-cy=upload-table-create]",
+    beVisibleAndContain("Create a new table"),
     [
       newClickFlow(
-        "[data-cy=upload-next-button]",
-        [typingExpectation(tableName, "choose-table-name")],
+        "",
+        [typingExpectation(tableName, "[data-cy=choose-table-name]")],
         "[data-cy=upload-next-button]",
       ),
     ],
@@ -130,6 +137,7 @@ export const preUploadSteps = (
 ];
 
 export const afterUploadSteps = (
+  tableName: string,
   fileName: string,
   description: string,
   mergingTitle: string,
@@ -182,7 +190,7 @@ export const afterUploadSteps = (
   ),
   newExpectation(
     "should show the uploaded table",
-    `[data-cy=repo-tables-table-${fileName}`,
-    beVisibleAndContain(fileName),
+    `[data-cy=repo-tables-table-${tableName}`,
+    beVisibleAndContain(tableName),
   ),
 ];

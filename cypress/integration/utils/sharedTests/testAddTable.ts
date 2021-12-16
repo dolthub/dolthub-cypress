@@ -22,12 +22,12 @@ const queryType = "CREATE TABLE";
 const tableName = "TestSpreadSheetTable";
 
 export const testAddTable: Tests = [
-  //! NAVIGATE TO THE DATABASE TAB
+  //! NAVIGATE TO THE TABLES TAB
   newExpectationWithClickFlows(
-    "should be able to navigate to database tab",
+    "should be able to navigate to tables tab",
     "[data-cy=repo-database-tab]",
     beVisible,
-    [newClickFlow("[data-cy=repo-database-tab]", [])],
+    [newClickFlow("[data-cy=tab-tables]>button", [])],
   ),
 
   //! CLICK ADD TABLE AND SHOW 3 WAYS OF ADDING TABLE
@@ -77,7 +77,7 @@ export const testAddTable: Tests = [
   ),
   newExpectationWithClickFlows(
     "should execute insert query",
-    "[data-cy=sql-editor-collapsed]",
+    "[data-cy=sql-editor-expanded]",
     beVisible,
     [sqlConsoleEditClickFlow(queryType, createTableQuery)],
   ),
@@ -140,7 +140,12 @@ export const testAddTable: Tests = [
       ),
     ],
   ),
-  ...afterUploadSteps(tableName, "spreadsheet editor", "Create new table"),
+  ...afterUploadSteps(
+    tableName,
+    "editor.csv",
+    "spreadsheet editor",
+    "Create new table",
+  ),
 
   //! USE FILE UPLOAD TO ADD TABLE
   ...testFileUpload,

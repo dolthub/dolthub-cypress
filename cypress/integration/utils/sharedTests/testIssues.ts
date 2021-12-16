@@ -2,10 +2,10 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
+import { typingExpectation } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 const beVisibleAndContain = (value: string) =>
@@ -16,14 +16,6 @@ const issueTitleEdits = "test edited";
 const issueContentEdits = "test content edited";
 const issueComment = "test comment";
 const issueCommentUpdate = "test comment update";
-
-export const typingExpectation = (value: string, datacy: string) =>
-  newExpectationWithTypeString(
-    `should write description in textbox`,
-    `[data-cy=${datacy}]`,
-    beVisible,
-    value,
-  );
 
 export const testIssues: Tests = [
   //! CREATE A NEW ISSUE
@@ -39,8 +31,8 @@ export const testIssues: Tests = [
       ),
     ],
   ),
-  typingExpectation(issueTitle, "issue-title-input"),
-  typingExpectation(issueContent, "textarea-container"),
+  typingExpectation(issueTitle, "[data-cy=issue-title-input]"),
+  typingExpectation(issueContent, "[data-cy=textarea-container]"),
   newExpectationWithClickFlows(
     "should create the new issue",
     "[data-cy=new-issue-button]",
@@ -88,8 +80,11 @@ export const testIssues: Tests = [
       newClickFlow(
         "[data-cy=issue-page-edit-description-button]",
         [
-          typingExpectation(issueTitleEdits, "issue-title-input"),
-          typingExpectation(issueContentEdits, "issue-description-textarea"),
+          typingExpectation(issueTitleEdits, "[data-cy=issue-title-input]"),
+          typingExpectation(
+            issueContentEdits,
+            "[data-cy=issue-description-textarea]",
+          ),
         ],
         "[data-cy=issue-edit-save]",
       ),
@@ -108,7 +103,7 @@ export const testIssues: Tests = [
     beVisibleAndContain("test content edited"),
   ),
 
-  typingExpectation(issueComment, "comment-textarea-content"),
+  typingExpectation(issueComment, "[data-cy=comment-textarea-content]"),
 
   newExpectationWithClickFlows(
     "should be able to submit the comment",
@@ -130,7 +125,12 @@ export const testIssues: Tests = [
     [
       newClickFlow(
         "[data-cy=comment-edit-button]",
-        [typingExpectation(issueCommentUpdate, "update-textarea-container")],
+        [
+          typingExpectation(
+            issueCommentUpdate,
+            "[data-cy=update-textarea-container]",
+          ),
+        ],
         "[data-cy=comment-edit-button]",
       ),
     ],

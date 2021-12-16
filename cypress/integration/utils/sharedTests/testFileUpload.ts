@@ -32,6 +32,7 @@ export const testFileUpload: Tests = [
   ...afterUploadSteps(
     tableName,
     `${tableName}.csv`,
+    `${tableName}.csv`,
     `Import of ${tableName}.csv`,
   ),
 ];

@@ -37,6 +37,18 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
     "should execute insert query",
     "[data-cy=sql-editor-collapsed]",
     beVisible,
+    [
+      newClickFlow(
+        "[data-cy=sql-editor-collapsed]",
+        [],
+        "[data-cy=sql-editor-collapsed]",
+      ),
+    ],
+  ),
+  newExpectationWithClickFlows(
+    "should execute insert query",
+    "[data-cy=sql-editor-expanded]",
+    beVisible,
     [sqlConsoleEditClickFlow(queryType, insertQuery)],
   ),
 
@@ -149,8 +161,11 @@ export const testPullRequest = (repoName: string, ownerName: string): Tests => [
       newClickFlow(
         "",
         [
-          typingExpectation("test pull", "pull-form-title-input"),
-          typingExpectation("test pull description", "pull-form-description"),
+          typingExpectation("test pull", "[data-cy=pull-form-title-input]"),
+          typingExpectation(
+            "test pull description",
+            "[data-cy=pull-form-description]",
+          ),
         ],
         "[data-cy=pull-form-submit]",
       ),

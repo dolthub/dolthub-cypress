@@ -178,15 +178,14 @@ function getAssertionTest(
     cy.get(selectorStr).eq(selectOption!).click();
   }
   if (sqlQuery) {
-    cy.get("[data-cy=sql-editor-collapsed]").click();
     cy.get(selectorStr).get("textarea").clear().type(sqlQuery);
   }
   if (targetPage) {
     cy.visitPage(targetPage, false);
   }
   if (gridValue) {
-    $("div[role='gridcell']:first").text("pk");
-    $("div[role='gridcell']:nth-child(2)").text(gridValue);
+    cy.get('[aria-rowindex="2"]>div').eq(1).type("pk");
+    cy.get('[aria-rowindex="2"]>div').eq(2).type(gridValue);
   }
   if (fileUpload) {
     cy.get(selectorStr).attachFile(fileUpload, { subjectType: "drag-n-drop" });
