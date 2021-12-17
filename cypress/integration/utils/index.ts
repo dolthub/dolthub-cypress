@@ -5,6 +5,7 @@ import {
   ScrollTo,
   ShouldArgs,
   Tests,
+  TypeStringType,
 } from "./types";
 
 // defaultTimeout is the time in ms cypress will wait attempting
@@ -122,7 +123,6 @@ function testAssertion(t: Expectation) {
         t.shouldArgs,
         t.typeString,
         t.selectOption,
-        t.selectedValue,
         t.sqlQuery,
         t.targetPage,
         t.fileUpload,
@@ -137,7 +137,6 @@ function testAssertion(t: Expectation) {
     t.shouldArgs,
     t.typeString,
     t.selectOption,
-    t.selectedValue,
     t.sqlQuery,
     t.targetPage,
     t.fileUpload,
@@ -150,9 +149,8 @@ function getAssertionTest(
   description: string,
   selectorStr: string,
   shouldArgs: ShouldArgs,
-  typeString?: string,
+  typeString?: TypeStringType,
   selectOption?: number,
-  selectedValue?: string,
   sqlQuery?: string,
   targetPage?: string,
   fileUpload?: string,
@@ -165,17 +163,22 @@ function getAssertionTest(
   related selector: ${selectorStr},
 `;
   if (typeString) {
+    if (typeString.eq) {
+      return cy
+        .get(selectorStr, opts)
+        .eq(typeString.eq)
+        .clear(clickOpts)
+        .type(typeString.value, clickOpts);
+    }
     return cy
       .get(selectorStr, opts)
       .clear(clickOpts)
-      .type(typeString, clickOpts);
+      .type(typeString.value, clickOpts);
   }
-  if (selectedValue) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    cy.get(selectorStr).eq(selectOption!).click();
+  if (selectOption !== undefined) {
+    cy.get(selectorStr).eq(selectOption).click();
   }
   if (sqlQuery) {
-    cy.get("[data-cy=sql-editor-collapsed]").click();
     cy.get(selectorStr).get("textarea").clear().type(sqlQuery);
   }
   if (targetPage) {

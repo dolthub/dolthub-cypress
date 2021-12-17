@@ -9,6 +9,7 @@ import { Tests } from "../types";
 
 export const beVisible = newShouldArgs("be.visible");
 export const notExist = newShouldArgs("not.exist");
+export const Exist = newShouldArgs("exist");
 export const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 
@@ -55,7 +56,7 @@ export const typingExpectation = (value: string, datacy: string) =>
     `should write description in textbox`,
     `[data-cy=${datacy}]`,
     beVisible,
-    value,
+    { value },
   );
 
 export const createPullRequest: Tests = [

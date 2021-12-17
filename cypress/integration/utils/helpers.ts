@@ -71,16 +71,6 @@ export function newExpectationWithScrollTo(
   return { description, selector, shouldArgs, scrollTo, skip };
 }
 
-export function newExpectationWithTypeString(
-  description: string,
-  selector: Selector,
-  shouldArgs: ShouldArgs,
-  typeString: string,
-  skip = false,
-): Expectation {
-  return { description, selector, shouldArgs, typeString, skip };
-}
-
 // Click flows
 
 export function newClickFlow(
@@ -163,10 +153,9 @@ export function newExpectationWithSelector(
   description: string,
   selector: string,
   selectOption: number,
-  selectedValue: string,
   shouldArgs: ShouldArgs,
 ): Expectation {
-  return { description, selector, shouldArgs, selectedValue, selectOption };
+  return { description, selector, shouldArgs, selectOption };
 }
 export function newExpectationWithVisitPage(
   description: string,
@@ -192,4 +181,14 @@ export function newExpectationWithSqlConsole(
   sqlQuery: string,
 ): Expectation {
   return { description, selector, shouldArgs, sqlQuery };
+}
+
+export function newExpectationWithTypeString(
+  description: string,
+  selector: Selector,
+  shouldArgs: ShouldArgs,
+  typeString: { value: string; eq?: number },
+  skip = false,
+): Expectation {
+  return { description, selector, shouldArgs, typeString, skip };
 }
