@@ -1,13 +1,13 @@
-import { editTempDatabase } from "cypress/integration/utils/sharedTests/editTempDatabase";
-import { testAddTable } from "cypress/integration/utils/sharedTests/testAddTable";
-import { testDocs } from "cypress/integration/utils/sharedTests/testDocs";
-import { testIssues } from "cypress/integration/utils/sharedTests/testIssues";
-import { testPullRequest } from "cypress/integration/utils/sharedTests/testPullRequest";
-import { testSaveQuery } from "cypress/integration/utils/sharedTests/testSaveQuery";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { createTempDatabase } from "../../../../utils/sharedTests/createTempDatabase";
 import { deleteTempDatabase } from "../../../../utils/sharedTests/deleteTempDatabase";
+import { editTempDatabase } from "../../../../utils/sharedTests/editTempDatabase";
+import { testAddTable } from "../../../../utils/sharedTests/testAddTable";
+import { testDocs } from "../../../../utils/sharedTests/testDocs";
+import { testIssues } from "../../../../utils/sharedTests/testIssues";
+import { testPullRequest } from "../../../../utils/sharedTests/testPullRequest";
+import { testSaveQuery } from "../../../../utils/sharedTests/testSaveQuery";
 
 const pageName = "Create, edit, teardown database";
 const currentPage = "/profile/new-repository";

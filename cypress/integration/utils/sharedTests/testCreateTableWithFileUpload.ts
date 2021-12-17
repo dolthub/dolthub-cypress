@@ -11,7 +11,7 @@ import {
 } from "./sharedFunctionsAndVariables";
 
 const tableName = "TestFileUploadTable";
-export const testFileUpload: Tests = [
+export const testCreateTableWithFileUpload: Tests = [
   ...preUploadSteps("file upload link", "fileupload", "File Upload", tableName),
 
   //! UPLOAD FILE
