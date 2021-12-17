@@ -123,7 +123,6 @@ function testAssertion(t: Expectation) {
         t.shouldArgs,
         t.typeString,
         t.selectOption,
-        t.sqlQuery,
         t.targetPage,
         t.fileUpload,
         t.url,
@@ -137,7 +136,6 @@ function testAssertion(t: Expectation) {
     t.shouldArgs,
     t.typeString,
     t.selectOption,
-    t.sqlQuery,
     t.targetPage,
     t.fileUpload,
     t.url,
@@ -151,7 +149,6 @@ function getAssertionTest(
   shouldArgs: ShouldArgs,
   typeString?: TypeStringType,
   selectOption?: number,
-  sqlQuery?: string,
   targetPage?: string,
   fileUpload?: string,
   url?: string,
@@ -177,9 +174,6 @@ function getAssertionTest(
   }
   if (selectOption !== undefined) {
     cy.get(selectorStr).eq(selectOption).click();
-  }
-  if (sqlQuery) {
-    cy.get(selectorStr).get("textarea").clear().type(sqlQuery);
   }
   if (targetPage) {
     cy.visitPage(targetPage, false);

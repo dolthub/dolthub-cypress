@@ -43,7 +43,6 @@ export type Expectation = {
   skip?: boolean;
   typeString?: TypeStringType;
   selectOption?: number;
-  sqlQuery?: string;
   targetPage?: string;
   fileUpload?: string;
   redirect?: string;

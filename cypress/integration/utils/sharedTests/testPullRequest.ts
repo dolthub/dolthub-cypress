@@ -3,7 +3,7 @@ import {
   newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithSelector,
-  newExpectationWithSqlConsole,
+  newExpectationWithTypeString,
 } from "../helpers";
 import { Tests } from "../types";
 import { deleteTempDatabase } from "./deleteTempDatabase";
@@ -14,19 +14,6 @@ import {
   mergingAndDeletingBranch,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
-
-const sqlConsoleClickFlow = newClickFlow(
-  "[data-cy=sql-editor-collapsed]",
-  [
-    newExpectationWithSqlConsole(
-      "should use sql console to edit table",
-      "[data-cy=sql-editor-expanded]>div>div",
-      beVisibleAndContain("INSERT INTO"),
-      'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")',
-    ),
-  ],
-  "[data-cy=run-query-button]",
-);
 
 export const testPullRequest = (
   repoName: string,
@@ -57,7 +44,23 @@ export const testPullRequest = (
     "should execute insert query",
     "[data-cy=sql-editor-collapsed]",
     beVisible,
-    [sqlConsoleClickFlow],
+    [
+      newClickFlow(
+        "[data-cy=sql-editor-collapsed]",
+        [
+          newExpectationWithTypeString(
+            "should use sql console to edit table",
+            "[data-cy=sql-editor-expanded]>div>div>textarea",
+            beVisibleAndContain("INSERT INTO"),
+            {
+              value:
+                'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")',
+            },
+          ),
+        ],
+        "[data-cy=run-query-button]",
+      ),
+    ],
   ),
 
   ...createPullRequest,
@@ -169,5 +172,18 @@ export const testPullRequest = (
     ],
   ),
 
+  //! CHECK THE COMMIT IS THERE
+  newExpectationWithClickFlows(
+    "should be able to navigate to database tab",
+    "[data-cy=repo-database-tab]",
+    beVisible,
+    [newClickFlow("[data-cy=repo-database-tab]", [])],
+  ),
+
+  newExpectation(
+    "should show the new commit",
+    "[data-cy=repo-tables-table-column-col1] span",
+    beVisibleAndContain("col1"),
+  ),
   ...deleteTempDatabase(repoName, forkOwnerName),
 ];

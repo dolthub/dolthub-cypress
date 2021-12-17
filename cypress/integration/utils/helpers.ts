@@ -174,15 +174,6 @@ export function newExpectationWithFileUpload(
   return { description, selector, shouldArgs, fileUpload };
 }
 
-export function newExpectationWithSqlConsole(
-  description: string,
-  selector: string,
-  shouldArgs: ShouldArgs,
-  sqlQuery: string,
-): Expectation {
-  return { description, selector, shouldArgs, sqlQuery };
-}
-
 export function newExpectationWithTypeString(
   description: string,
   selector: Selector,
