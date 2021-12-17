@@ -7,6 +7,7 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
+import { mergingAndDeletingBranch } from "./sharedFunctionsAndVariables";
 
 const licenseMarkdown = "test";
 const updatedLicenseMarkdown = "test number 2";
@@ -22,50 +23,8 @@ const typingExpectation = (value: string, status?: string) =>
     `should write ${status}description in textbox`,
     "[data-cy=textarea-container]",
     beVisible,
-    value,
+    { value },
   );
-
-export const mergingAndDeletingBranch = (
-  value: string,
-  status?: string,
-  doc?: string,
-) => [
-  newExpectation(
-    `Should have title ${status} ${doc}`,
-    "[data-cy=pull-page-title]",
-    beVisibleAndContain(`${status} ${doc}`),
-  ),
-  newExpectation(
-    "Should have Open pull state",
-    "[data-cy=pull-state-label]",
-    beVisibleAndContain("Open"),
-  ),
-  newExpectationWithClickFlows(
-    `should merge ${value}doc`,
-    "[data-cy=merge-button]",
-    beVisible,
-    [
-      newClickFlow("[data-cy=merge-button]", [
-        newExpectation(
-          "Should say 'merging'",
-          "[data-cy=merge-button]",
-          beVisibleAndContain("Merging..."),
-        ),
-      ]),
-    ],
-  ),
-  newExpectation(
-    "Should have Merged pull state",
-    "[data-cy=pull-state-label]",
-    beVisibleAndContain("Merged"),
-  ),
-  newExpectationWithClickFlows(
-    "should delete branch",
-    "[data-cy=delete-branch-button]",
-    beVisible,
-    [newClickFlow("[data-cy=delete-branch-button]", [])],
-  ),
-];
 
 export const testDocs: Tests = [
   //! CREATE A NEW LICENSE
@@ -88,7 +47,7 @@ export const testDocs: Tests = [
     beVisible,
     [newClickFlow("[data-cy=new-doc-create-button]", [])],
   ),
-  ...mergingAndDeletingBranch("", "Add", "License"),
+  ...mergingAndDeletingBranch("Add License"),
   newExpectationWithClickFlows(
     "the new license should render in the about tab",
     "[data-cy=repo-about-tab]",
@@ -121,7 +80,7 @@ export const testDocs: Tests = [
     beVisible,
     [newClickFlow("[data-cy=submit-edit-docs-button]", [])],
   ),
-  ...mergingAndDeletingBranch("edited ", "Update", "License"),
+  ...mergingAndDeletingBranch("Update License"),
   newExpectationWithClickFlows(
     "the edited license should render in the about tab",
     "[data-cy=repo-about-tab]",
@@ -156,7 +115,7 @@ export const testDocs: Tests = [
     beVisible,
     [newClickFlow("[data-cy=new-doc-create-button]", [])],
   ),
-  ...mergingAndDeletingBranch("", "Add", "Readme"),
+  ...mergingAndDeletingBranch("Add Readme"),
   newExpectationWithClickFlows(
     "the new readme should render in the about tab",
     "[data-cy=repo-about-tab]",
@@ -209,7 +168,7 @@ export const testDocs: Tests = [
       ),
     ],
   ),
-  ...mergingAndDeletingBranch("deleted ", "Delete", "Readme"),
+  ...mergingAndDeletingBranch("Delete Readme"),
   newExpectationWithClickFlows(
     "the deleted readme should not render in the about tab",
     "[data-cy=repo-about-tab]",
@@ -237,7 +196,7 @@ export const testDocs: Tests = [
       ),
     ],
   ),
-  ...mergingAndDeletingBranch("deleted ", "Delete", "License"),
+  ...mergingAndDeletingBranch("Delete License"),
   newExpectationWithClickFlows(
     "the deleted license should not render in the about tab",
     "[data-cy=repo-about-tab]",

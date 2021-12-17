@@ -8,6 +8,7 @@ import {
   Selector,
   ShouldArgs,
   Tests,
+  TypeStringType,
 } from "./types";
 
 // Expectations
@@ -69,16 +70,6 @@ export function newExpectationWithScrollTo(
   skip = false,
 ): Expectation {
   return { description, selector, shouldArgs, scrollTo, skip };
-}
-
-export function newExpectationWithTypeString(
-  description: string,
-  selector: Selector,
-  shouldArgs: ShouldArgs,
-  typeString: string,
-  skip = false,
-): Expectation {
-  return { description, selector, shouldArgs, typeString, skip };
 }
 
 // Click flows
@@ -163,10 +154,9 @@ export function newExpectationWithSelector(
   description: string,
   selector: string,
   selectOption: number,
-  selectedValue: string,
   shouldArgs: ShouldArgs,
 ): Expectation {
-  return { description, selector, shouldArgs, selectedValue, selectOption };
+  return { description, selector, shouldArgs, selectOption };
 }
 export function newExpectationWithVisitPage(
   description: string,
@@ -185,19 +175,12 @@ export function newExpectationWithFileUpload(
   return { description, selector, shouldArgs, fileUpload };
 }
 
-export function newExpectationWithSqlConsole(
+export function newExpectationWithTypeString(
   description: string,
-  selector: string,
+  selector: Selector,
   shouldArgs: ShouldArgs,
-  sqlQuery: string,
+  typeString: TypeStringType | string[],
+  skip = false,
 ): Expectation {
-  return { description, selector, shouldArgs, sqlQuery };
-}
-export function newExpectationWithSpreadSheetEditor(
-  description: string,
-  selector: string,
-  shouldArgs: ShouldArgs,
-  gridValue: string,
-): Expectation {
-  return { description, selector, shouldArgs, gridValue };
+  return { description, selector, shouldArgs, typeString, skip };
 }

@@ -5,6 +5,7 @@ import {
   ScrollTo,
   ShouldArgs,
   Tests,
+  TypeStringType,
 } from "./types";
 
 // defaultTimeout is the time in ms cypress will wait attempting
@@ -122,9 +123,6 @@ function testAssertion(t: Expectation) {
         t.shouldArgs,
         t.typeString,
         t.selectOption,
-        t.selectedValue,
-        t.sqlQuery,
-        t.gridValue,
         t.targetPage,
         t.fileUpload,
         t.url,
@@ -138,9 +136,6 @@ function testAssertion(t: Expectation) {
     t.shouldArgs,
     t.typeString,
     t.selectOption,
-    t.selectedValue,
-    t.sqlQuery,
-    t.gridValue,
     t.targetPage,
     t.fileUpload,
     t.url,
@@ -152,11 +147,8 @@ function getAssertionTest(
   description: string,
   selectorStr: string,
   shouldArgs: ShouldArgs,
-  typeString?: string,
+  typeString?: TypeStringType | string[],
   selectOption?: number,
-  selectedValue?: string,
-  sqlQuery?: string,
-  gridValue?: string,
   targetPage?: string,
   fileUpload?: string,
   url?: string,
@@ -168,24 +160,31 @@ function getAssertionTest(
   related selector: ${selectorStr},
 `;
   if (typeString) {
-    return cy
-      .get(selectorStr, opts)
-      .clear(clickOpts)
-      .type(typeString, clickOpts);
+    if (Array.isArray(typeString)) {
+      typeString.forEach((val, idx) => {
+        cy.get('[aria-rowindex="2"]>div')
+          .eq(idx + 1)
+          .type(val);
+      });
+    } else if (typeString.eq) {
+      return cy
+        .get(selectorStr, opts)
+        .eq(typeString.eq)
+        .clear(clickOpts)
+        .type(typeString.value, clickOpts);
+    } else {
+      return cy
+        .get(selectorStr, opts)
+        .clear(clickOpts)
+        .type(typeString.value, clickOpts);
+    }
   }
-  if (selectedValue) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    cy.get(selectorStr).eq(selectOption!).click();
-  }
-  if (sqlQuery) {
-    cy.get(selectorStr).get("textarea").clear().type(sqlQuery);
+
+  if (selectOption !== undefined) {
+    cy.get(selectorStr).eq(selectOption).click();
   }
   if (targetPage) {
     cy.visitPage(targetPage, false);
-  }
-  if (gridValue) {
-    cy.get('[aria-rowindex="2"]>div').eq(1).type("pk");
-    cy.get('[aria-rowindex="2"]>div').eq(2).type(gridValue);
   }
   if (fileUpload) {
     cy.get(selectorStr).attachFile(fileUpload, { subjectType: "drag-n-drop" });

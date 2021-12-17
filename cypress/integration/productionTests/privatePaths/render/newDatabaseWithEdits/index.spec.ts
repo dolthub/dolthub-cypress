@@ -16,20 +16,21 @@ const loggedIn = true;
 const randomNum = Math.ceil(Math.random() * 10000);
 const repoName = `temp_db_${randomNum}`;
 const ownerName = "cypresstesting";
+const forkOwnerName = "automated_testing";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...createTempDatabase(repoName, ownerName),
     ...editTempDatabase,
     ...testIssues,
-    ...testPullRequest(repoName, ownerName),
     ...testDocs,
     ...testSaveQuery,
     ...testAddTable,
+    ...testPullRequest(repoName, forkOwnerName),
     ...deleteTempDatabase(repoName, ownerName),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

@@ -2,7 +2,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newExpectationWithSpreadSheetEditor,
+  newExpectationWithTypeString,
 } from "../helpers";
 import { Tests } from "../types";
 import {
@@ -12,6 +12,7 @@ import {
 } from "./sharedFunctionsAndVariables";
 
 const spreadSheetTable = "TestSpreadSheetTable";
+const grids = ["pk", "col1"];
 
 export const testCreateTableWithSpreadsheetEditor: Tests = [
   //! USE SPREAD SHEET TO ADD TABLE
@@ -27,11 +28,11 @@ export const testCreateTableWithSpreadsheetEditor: Tests = [
     beVisibleAndContain("Upload file or create spreadsheet"),
     [newClickFlow("[data-cy=spread-sheet-button]", [])],
   ),
-  newExpectationWithSpreadSheetEditor(
+  newExpectationWithTypeString(
     "should show spreadsheet editor title",
     "[data-cy=spreadsheet-editor-title]",
     beVisibleAndContain("Spreadsheet Editor"),
-    "col1",
+    grids,
   ),
   newExpectationWithClickFlows(
     "should show upload table button",

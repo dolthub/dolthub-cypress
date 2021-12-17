@@ -2,7 +2,6 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newExpectationWithSqlConsole,
   newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
@@ -10,6 +9,7 @@ import { Tests } from "../types";
 
 export const beVisible = newShouldArgs("be.visible");
 export const notExist = newShouldArgs("not.exist");
+export const Exist = newShouldArgs("exist");
 export const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 
@@ -56,7 +56,7 @@ export const typingExpectation = (value: string, selectorStr: string) =>
     `should write description in textbox`,
     selectorStr,
     beVisible,
-    value,
+    { value },
   );
 
 export const createPullRequest: Tests = [
@@ -78,11 +78,11 @@ export const sqlConsoleEditClickFlow = (queryType: string, sqlQuery: string) =>
   newClickFlow(
     "",
     [
-      newExpectationWithSqlConsole(
+      newExpectationWithTypeString(
         "should use sql console to edit table",
-        "[data-cy=sql-editor-expanded]>div>div",
+        "[data-cy=sql-editor-expanded]>div>div textarea",
         beVisibleAndContain(queryType),
-        sqlQuery,
+        { value: sqlQuery },
       ),
     ],
     "[data-cy=run-query-button]",

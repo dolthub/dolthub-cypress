@@ -33,7 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "should change input",
         "[data-cy=blog-search-input]",
         newShouldArgs("be.visible.and.have.value", query1),
-        `${query2}{enter}`,
+        { value: `${query2}{enter}` },
       ),
       ...testSearched(
         query2,
@@ -69,7 +69,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have blank search input",
       "[data-cy=blog-search-input]",
       newShouldArgs("be.visible.and.have.value", ""),
-      `${query1}{enter}`,
+      { value: `${query1}{enter}` },
     ),
     newExpectationWithClickFlows(
       "should have searched and cleared",
