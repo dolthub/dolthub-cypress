@@ -9,7 +9,7 @@ import { Tests } from "../types";
 
 export const beVisible = newShouldArgs("be.visible");
 export const notExist = newShouldArgs("not.exist");
-export const Exist = newShouldArgs("exist");
+export const exist = newShouldArgs("exist");
 export const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 

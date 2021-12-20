@@ -1,6 +1,8 @@
 import { clickOpts, opts } from "../../../../utils";
 
-function zLastCleanup(owner: string) {
+const tempDbOwnerNames = ["automated_testing", "cypresstesting"];
+
+function cleanupLeftoverTempDbs(owner: string) {
   const pageName = `Delete all remaining ${owner} temp databases`;
   const currentPage = `/repositories/${owner}`;
   const loggedIn = true;
@@ -70,5 +72,7 @@ function zLastCleanup(owner: string) {
     cy.location("href", opts).should("eq", `${base}/profile`);
   }
 }
-zLastCleanup("automated_testing");
-zLastCleanup("cypresstesting");
+
+tempDbOwnerNames.forEach(owner => {
+  cleanupLeftoverTempDbs(owner);
+});
