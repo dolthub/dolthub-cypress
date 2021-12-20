@@ -15,6 +15,8 @@ import {
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
+const sqlQuery = 'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")';
+
 export const testPullRequest = (
   repoName: string,
   forkOwnerName: string,
@@ -53,8 +55,7 @@ export const testPullRequest = (
             "[data-cy=sql-editor-expanded]>div>div>textarea",
             beVisibleAndContain("INSERT INTO"),
             {
-              value:
-                'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")',
+              value: sqlQuery,
             },
           ),
         ],
@@ -173,6 +174,18 @@ export const testPullRequest = (
   ),
 
   //! CHECK THE COMMIT IS THERE
+  newExpectationWithClickFlows(
+    "should be able to navigate to commit log page",
+    "[data-cy=repo-commit-log-tab]",
+    beVisibleAndContain("Commit Log"),
+    [newClickFlow("[data-cy=repo-commit-log-tab]", [])],
+  ),
+  newExpectation(
+    "should show the new commit",
+    "[data-cy=commit-log-item]:first a:first",
+    beVisibleAndContain(sqlQuery),
+  ),
+
   newExpectationWithClickFlows(
     "should be able to navigate to database tab",
     "[data-cy=repo-database-tab]",

@@ -8,7 +8,7 @@ import {
 } from "../helpers";
 import { Tests } from "../types";
 import { testRepoHeaderForAll } from "./repoHeaderNav";
-import { Exist } from "./sharedFunctionsAndVariables";
+import { exist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -56,7 +56,7 @@ export const createTempDatabase = (
   newExpectationWithClickFlows(
     "should choose visibility for database",
     `[data-cy=radio-${visibility}]`,
-    Exist,
+    exist,
     [newClickFlow(`[data-cy=radio-${visibility}]`, [])],
   ),
   newExpectationWithClickFlows(
