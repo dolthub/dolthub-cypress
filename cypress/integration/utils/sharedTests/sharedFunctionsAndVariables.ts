@@ -24,6 +24,42 @@ export const mergingAndDeletingBranch = (title: string) => [
     "[data-cy=pull-state-label]",
     beVisibleAndContain("Open"),
   ),
+
+  //! VIEW DIFF
+  newExpectationWithClickFlows(
+    "should show view diff button",
+    "[data-cy=view-diffs-button]>button",
+    beVisibleAndContain("View Diff "),
+    [
+      newClickFlow(
+        "[data-cy=view-diffs-button]>button",
+        [
+          newExpectation(
+            "should should diff title",
+            "[data-cy=diff-table-name]",
+            beVisible,
+          ),
+          newExpectation(
+            "should show diff stats",
+            "[data-cy=diff-table-stats]",
+            beVisible,
+          ),
+          newExpectation(
+            "should show data button",
+            "[data-cy=data-button]",
+            beVisible,
+          ),
+          newExpectation(
+            "should show schema button",
+            "[data-cy=schema-button]",
+            beVisible,
+          ),
+        ],
+        "",
+      ),
+    ],
+  ),
+
   newExpectationWithClickFlows(
     "should merge",
     "[data-cy=merge-button]",
@@ -92,7 +128,6 @@ export const preUploadSteps = (
   description: string,
   uploadMethod: string,
   uploadMethodTitle: string,
-  tableName: string,
 ) => [
   //! CLICK ADD TABLE
   newExpectationWithClickFlows(
@@ -120,20 +155,6 @@ export const preUploadSteps = (
     beVisibleAndContain("Choose a base branch"),
     [newClickFlow("[data-cy=upload-next-button]", [])],
   ),
-
-  //! CHOOSE TABLE
-  newExpectationWithClickFlows(
-    "should show Create a new table",
-    "[data-cy=upload-table-create]",
-    beVisibleAndContain("Create a new table"),
-    [
-      newClickFlow(
-        "",
-        [typingExpectation(tableName, "[data-cy=choose-table-name]")],
-        "[data-cy=upload-next-button]",
-      ),
-    ],
-  ),
 ];
 
 export const afterUploadSteps = (
@@ -141,7 +162,40 @@ export const afterUploadSteps = (
   fileName: string,
   description: string,
   mergingTitle: string,
+  primaryKey: string,
+  uploadMethod: string,
 ) => [
+  newExpectation(
+    "should show upload successful message",
+    `[data-cy=${uploadMethod}upload-successful]`,
+    beVisibleAndContain("Upload successful"),
+  ),
+  newExpectation(
+    "should show uploaded file",
+    "[data-cy=file-name]",
+    beVisibleAndContain(`${fileName}.csv`),
+  ),
+
+  //! CHOOSE PRIMARY KEY
+  newExpectationWithClickFlows(
+    "should show choose primary key button",
+    "[data-cy=choose-primary-keys-button]",
+    beVisibleAndContain("Choose primary keys"),
+    [newClickFlow("[data-cy=choose-primary-keys-button]", [], "")],
+  ),
+  newExpectationWithClickFlows(
+    "should choose the primary key",
+    `data-cy=${primaryKey}-checkbox`,
+    beVisibleAndContain(primaryKey),
+    [
+      newClickFlow(
+        `data-cy=${primaryKey}-checkbox`,
+        [],
+        "[data-cy=upload-next-button]",
+      ),
+    ],
+  ),
+
   //! REVIEW CHANGES
   newExpectationWithClickFlows(
     "should show Review your changes message",
@@ -154,7 +208,7 @@ export const afterUploadSteps = (
           newExpectation(
             "should match the file name",
             "[data-cy=file-name]",
-            beVisibleAndContain(fileName),
+            beVisibleAndContain(`${fileName}.csv`),
           ),
         ],
         "[data-cy=upload-next-button]",
@@ -192,5 +246,10 @@ export const afterUploadSteps = (
     "should show the uploaded table",
     `[data-cy=repo-tables-table-${tableName}`,
     beVisibleAndContain(tableName),
+  ),
+  newExpectation(
+    "should show the primary key",
+    `[data-cy=repo-tables-table-${tableName} [data-cy=${primaryKey}-primary-key]`,
+    beVisible,
   ),
 ];

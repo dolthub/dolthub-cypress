@@ -41,7 +41,7 @@ export type Expectation = {
   scrollIntoView?: boolean;
   scrollTo?: ScrollTo;
   skip?: boolean;
-  typeString?: TypeStringType | string[];
+  typeString?: TypeStringType | string[][];
   selectOption?: number;
   targetPage?: string;
   fileUpload?: string;

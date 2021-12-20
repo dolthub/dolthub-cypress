@@ -147,7 +147,7 @@ function getAssertionTest(
   description: string,
   selectorStr: string,
   shouldArgs: ShouldArgs,
-  typeString?: TypeStringType | string[],
+  typeString?: TypeStringType | string[][],
   selectOption?: number,
   targetPage?: string,
   fileUpload?: string,
@@ -161,10 +161,12 @@ function getAssertionTest(
 `;
   if (typeString) {
     if (Array.isArray(typeString)) {
-      typeString.forEach((val, idx) => {
-        cy.get('[aria-rowindex="2"]>div')
-          .eq(idx + 1)
-          .type(val);
+      typeString.forEach((row, rowidx) => {
+        row.forEach((val, colidx) => {
+          cy.get(`[aria-rowindex="${rowidx + 2}"]>div`)
+            .eq(colidx + 1)
+            .type(val);
+        });
       });
     } else if (typeString.eq) {
       return cy

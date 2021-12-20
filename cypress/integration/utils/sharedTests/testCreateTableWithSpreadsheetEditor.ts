@@ -1,6 +1,5 @@
 import {
   newClickFlow,
-  newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithTypeString,
 } from "../helpers";
@@ -9,19 +8,33 @@ import {
   afterUploadSteps,
   beVisibleAndContain,
   preUploadSteps,
+  typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
 const spreadSheetTable = "TestSpreadSheetTable";
-const grids = ["pk", "col1"];
+const grids = [
+  ["pk", "col1"],
+  ["id1", "colvalue"],
+];
 
 export const testCreateTableWithSpreadsheetEditor: Tests = [
   //! USE SPREAD SHEET TO ADD TABLE
-  ...preUploadSteps(
-    "spread sheet editor",
-    "spreadsheet",
-    "Spreadsheet Editor",
-    spreadSheetTable,
+  ...preUploadSteps("spread sheet editor", "spreadsheet", "Spreadsheet Editor"),
+
+  //! CHOOSE TABLE
+  newExpectationWithClickFlows(
+    "should show Create a new table",
+    "[data-cy=upload-table-create]",
+    beVisibleAndContain("Create a new table"),
+    [
+      newClickFlow(
+        "",
+        [typingExpectation(spreadSheetTable, "[data-cy=choose-table-name]")],
+        "[data-cy=upload-next-button]",
+      ),
+    ],
   ),
+
   newExpectationWithClickFlows(
     "should show File Importer page",
     "[data-cy=upload-title]",
@@ -41,28 +54,12 @@ export const testCreateTableWithSpreadsheetEditor: Tests = [
     [newClickFlow("[data-cy=upload-table-button]", [])],
   ),
 
-  newExpectationWithClickFlows(
-    "should show upload successful message",
-    "[data-cy=spreadsheet-upload-successful]",
-    beVisibleAndContain("Upload successful"),
-    [
-      newClickFlow(
-        "",
-        [
-          newExpectation(
-            "should show uploaded file",
-            "[data-cy=file-name]",
-            beVisibleAndContain("editor.csv"),
-          ),
-        ],
-        "[data-cy=upload-next-button]",
-      ),
-    ],
-  ),
   ...afterUploadSteps(
     spreadSheetTable,
-    "editor.csv",
+    "editor",
     "spreadsheet editor",
     "Create new table",
+    grids[0][0],
+    "spreadsheet-",
   ),
 ];

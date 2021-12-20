@@ -179,7 +179,7 @@ export function newExpectationWithTypeString(
   description: string,
   selector: Selector,
   shouldArgs: ShouldArgs,
-  typeString: TypeStringType | string[],
+  typeString: TypeStringType | string[][],
   skip = false,
 ): Expectation {
   return { description, selector, shouldArgs, typeString, skip };
