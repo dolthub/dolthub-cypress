@@ -5,6 +5,7 @@ import { deleteTempDatabase } from "../../../../utils/sharedTests/deleteTempData
 import { editTempDatabase } from "../../../../utils/sharedTests/editTempDatabase";
 import { testDocs } from "../../../../utils/sharedTests/testDocs";
 import { testIssues } from "../../../../utils/sharedTests/testIssues";
+import { testPullRequest } from "../../../../utils/sharedTests/testPullRequest";
 import { testSaveQuery } from "../../../../utils/sharedTests/testSaveQuery";
 
 const pageName = "Create, edit, teardown database";
@@ -14,6 +15,7 @@ const loggedIn = true;
 const randomNum = Math.ceil(Math.random() * 10000);
 const repoName = `temp_db_${randomNum}`;
 const ownerName = "cypresstesting";
+const forkOwnerName = "automated_testing";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
@@ -22,6 +24,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testIssues,
     ...testDocs,
     ...testSaveQuery,
+    ...testPullRequest(repoName, forkOwnerName),
     ...deleteTempDatabase(repoName, ownerName),
   ];
 

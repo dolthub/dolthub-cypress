@@ -23,6 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+import "cypress-file-upload";
 
 export const defaultTimeout = 10000;
 const opts: Partial<Cypress.Timeoutable> = {

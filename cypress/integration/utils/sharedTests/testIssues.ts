@@ -22,7 +22,7 @@ export const typingExpectation = (value: string, datacy: string) =>
     `should write description in textbox`,
     `[data-cy=${datacy}]`,
     beVisible,
-    value,
+    { value },
   );
 
 export const testIssues: Tests = [

@@ -5,6 +5,7 @@ import {
   ScrollTo,
   ShouldArgs,
   Tests,
+  TypeStringType,
 } from "./types";
 
 // defaultTimeout is the time in ms cypress will wait attempting
@@ -121,6 +122,9 @@ function testAssertion(t: Expectation) {
         s,
         t.shouldArgs,
         t.typeString,
+        t.selectOption,
+        t.targetPage,
+        t.fileUpload,
         t.url,
         t.scrollIntoView,
       ),
@@ -131,6 +135,9 @@ function testAssertion(t: Expectation) {
     t.selector,
     t.shouldArgs,
     t.typeString,
+    t.selectOption,
+    t.targetPage,
+    t.fileUpload,
     t.url,
     t.scrollIntoView,
   );
@@ -140,7 +147,10 @@ function getAssertionTest(
   description: string,
   selectorStr: string,
   shouldArgs: ShouldArgs,
-  typeString?: string,
+  typeString?: TypeStringType,
+  selectOption?: number,
+  targetPage?: string,
+  fileUpload?: string,
   url?: string,
   scrollIntoView?: boolean,
 ) {
@@ -150,10 +160,26 @@ function getAssertionTest(
   related selector: ${selectorStr},
 `;
   if (typeString) {
+    if (typeString.eq) {
+      return cy
+        .get(selectorStr, opts)
+        .eq(typeString.eq)
+        .clear(clickOpts)
+        .type(typeString.value, clickOpts);
+    }
     return cy
       .get(selectorStr, opts)
       .clear(clickOpts)
-      .type(typeString, clickOpts);
+      .type(typeString.value, clickOpts);
+  }
+  if (selectOption !== undefined) {
+    cy.get(selectorStr).eq(selectOption).click();
+  }
+  if (targetPage) {
+    cy.visitPage(targetPage, false);
+  }
+  if (fileUpload) {
+    cy.get(selectorStr).attachFile(fileUpload, { subjectType: "drag-n-drop" });
   }
   if (url) {
     const base = Cypress.config().baseUrl;

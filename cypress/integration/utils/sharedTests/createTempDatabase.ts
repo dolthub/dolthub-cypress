@@ -8,6 +8,7 @@ import {
 } from "../helpers";
 import { Tests } from "../types";
 import { testRepoHeaderForAll } from "./repoHeaderNav";
+import { exist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -30,6 +31,7 @@ const createDBClickFlow = (repoName: string, ownerName: string) =>
 export const createTempDatabase = (
   repoName: string,
   ownerName: string,
+  visibility = "public",
 ): Tests => [
   newExpectation(
     "should find new database form",
@@ -40,13 +42,22 @@ export const createTempDatabase = (
     "should input new database name",
     "input[name=database-name]",
     beVisible,
-    repoName,
+    { value: repoName },
   ),
   newExpectationWithTypeString(
     "should input new database description",
     "textarea[name=database-description]",
     beVisible,
-    "This is a temporary database to test write operations in DoltHub's Cypress tests (https://github.com/dolthub/dolthub-cypress). Delete me if my last update is over an hour ago.",
+    {
+      value:
+        "This is a temporary database to test write operations in DoltHub's Cypress tests (https://github.com/dolthub/dolthub-cypress). Delete me if my last update is over an hour ago.",
+    },
+  ),
+  newExpectationWithClickFlows(
+    "should choose visibility for database",
+    `[data-cy=radio-${visibility}]`,
+    exist,
+    [newClickFlow(`[data-cy=radio-${visibility}]`, [])],
   ),
   newExpectationWithClickFlows(
     "should create new database",

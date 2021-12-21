@@ -71,16 +71,6 @@ export function newExpectationWithScrollTo(
   return { description, selector, shouldArgs, scrollTo, skip };
 }
 
-export function newExpectationWithTypeString(
-  description: string,
-  selector: Selector,
-  shouldArgs: ShouldArgs,
-  typeString: string,
-  skip = false,
-): Expectation {
-  return { description, selector, shouldArgs, typeString, skip };
-}
-
 // Click flows
 
 export function newClickFlow(
@@ -157,4 +147,41 @@ export function newDevice(
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function newShouldArgs(chainer: string, value?: any): ShouldArgs {
   return { chainer, value };
+}
+
+export function newExpectationWithSelector(
+  description: string,
+  selector: string,
+  selectOption: number,
+  shouldArgs: ShouldArgs,
+): Expectation {
+  return { description, selector, shouldArgs, selectOption };
+}
+
+export function newExpectationWithVisitPage(
+  description: string,
+  selector: string,
+  shouldArgs: ShouldArgs,
+  targetPage: string,
+): Expectation {
+  return { description, selector, shouldArgs, targetPage };
+}
+
+export function newExpectationWithFileUpload(
+  description: string,
+  selector: string,
+  fileUpload: string,
+  shouldArgs: ShouldArgs,
+): Expectation {
+  return { description, selector, shouldArgs, fileUpload };
+}
+
+export function newExpectationWithTypeString(
+  description: string,
+  selector: Selector,
+  shouldArgs: ShouldArgs,
+  typeString: { value: string; eq?: number },
+  skip = false,
+): Expectation {
+  return { description, selector, shouldArgs, typeString, skip };
 }

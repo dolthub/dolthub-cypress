@@ -4,9 +4,11 @@ import {
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
   newExpectationWithURL,
+  newExpectationWithVisitPage,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
+import { beVisibleAndContain } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -48,6 +50,12 @@ export const deleteTempDatabase = (
   repoName: string,
   ownerName: string,
 ): Tests => [
+  newExpectationWithVisitPage(
+    "should route to database page",
+    "[data-cy=repo-breadcrumbs]",
+    beVisibleAndContain(`${ownerName}`),
+    `/repositories/${ownerName}/${repoName}`,
+  ),
   newExpectationWithClickFlows(
     "should navigate to settings tab and delete database",
     "[data-cy=repo-settings-tab]",

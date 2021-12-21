@@ -22,13 +22,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should input invalid username and get error",
       "input[name=username]",
       beVisible,
-      "invalid^username",
+      { value: "invalid^username" },
     ),
     newExpectationWithTypeString(
       "should input password and enter",
       "input[name=password]",
       beVisible,
-      "password123{enter}", // should also maybe test clicking on button too
+      { value: "password123{enter}" }, // should also maybe test clicking on button too
     ),
     newExpectation(
       "should have error message",

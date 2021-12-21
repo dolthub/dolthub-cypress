@@ -2,7 +2,10 @@
 export type ShouldArgs = { chainer: string; value?: any };
 
 export type Selector = string | string[];
-
+export type TypeStringType = {
+  value: string;
+  eq?: number;
+};
 export type ScrollToPosition = {
   position: Cypress.PositionType;
   selectorStr?: string;
@@ -38,7 +41,10 @@ export type Expectation = {
   scrollIntoView?: boolean;
   scrollTo?: ScrollTo;
   skip?: boolean;
-  typeString?: string;
+  typeString?: TypeStringType;
+  selectOption?: number;
+  targetPage?: string;
+  fileUpload?: string;
   redirect?: string;
   url?: string;
 };
