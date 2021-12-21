@@ -11,7 +11,7 @@ function cleanupLeftoverTempDbs(owner: string) {
     scrollBehavior: "bottom",
   };
 
-  describe(pageName, () => {
+  describe.skip(pageName, () => {
     before(() => {
       cy.visitPage(currentPage, loggedIn);
     });
