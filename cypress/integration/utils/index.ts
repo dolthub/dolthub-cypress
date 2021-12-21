@@ -163,9 +163,9 @@ function getAssertionTest(
     if (Array.isArray(typeString)) {
       typeString.forEach((row, rowidx) => {
         row.forEach((val, colidx) => {
-          cy.get(`[aria-rowindex="${rowidx + 2}"]>div`)
-            .eq(colidx + 1)
-            .type(val);
+          cy.get(
+            `[aria-rowindex="${rowidx + 3}"]>[aria-colindex="${colidx + 2}"]`,
+          ).type(val);
         });
       });
     } else if (typeString.eq) {

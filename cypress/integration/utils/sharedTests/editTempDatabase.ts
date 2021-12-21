@@ -76,13 +76,17 @@ export const editTempDatabase: Tests = [
     "[data-cy=repo-commit-log-tab]",
     beVisible,
     [
-      newClickFlow("[data-cy=repo-commit-log-tab]", [
-        newExpectation(
-          "should have new commit",
-          "[data-cy=commit-log-item]:first",
-          newShouldArgs("be.visible.and.contain", commitMsg1),
-        ),
-      ]),
+      newClickFlow(
+        "[data-cy=repo-commit-log-tab]",
+        [
+          newExpectation(
+            "should have new commit",
+            "[data-cy=commit-log-item]:first",
+            newShouldArgs("be.visible.and.contain", commitMsg1),
+          ),
+        ],
+        "[data-cy=repo-database-tab]",
+      ),
     ],
   ),
 ];

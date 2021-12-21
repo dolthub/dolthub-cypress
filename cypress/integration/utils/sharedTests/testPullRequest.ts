@@ -69,8 +69,15 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     beVisibleAndContain("Open"),
     [
       newClickFlow(
+        "",
+        [
+          newExpectation(
+            "should click the link to parent database",
+            "[data-cy=forked-parent-repo-detail] [data-cy=repo-name-breadcrumb-link]",
+            beVisible,
+          ),
+        ],
         "[data-cy=forked-parent-repo-detail] [data-cy=repo-name-breadcrumb-link]",
-        [],
       ),
     ],
   ),

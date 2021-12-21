@@ -1,3 +1,4 @@
+import { testUpdateTable } from "cypress/integration/utils/sharedTests/testUpdateTable";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { createTempDatabase } from "../../../../utils/sharedTests/createTempDatabase";
@@ -27,6 +28,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testSaveQuery,
     ...testPullRequest(forkOwnerName),
     ...testAddTable,
+    ...testUpdateTable,
     ...deleteTempDatabase(repoName, forkOwnerName),
     ...deleteTempDatabase(repoName, ownerName),
   ];

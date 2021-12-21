@@ -107,7 +107,7 @@ export const createPullRequest: Tests = [
     "should be able to create pull request",
     "[data-cy=create-pull-button]",
     beVisible,
-    [newClickFlow("[data-cy=create-pull-button]", [])],
+    [newClickFlow("", [], "[data-cy=create-pull-button]")],
   ),
 ];
 
