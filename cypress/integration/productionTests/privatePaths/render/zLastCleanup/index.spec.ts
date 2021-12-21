@@ -1,4 +1,4 @@
-import { clickOpts, opts } from "../../../../utils";
+import { opts } from "../../../../utils";
 
 const tempDbOwnerNames = ["automated_testing", "cypresstesting"];
 
@@ -7,8 +7,11 @@ function cleanupLeftoverTempDbs(owner: string) {
   const currentPage = `/repositories/${owner}`;
   const loggedIn = true;
   const base = Cypress.config().baseUrl;
+  const clickOpts: Partial<Cypress.ClickOptions> = {
+    scrollBehavior: "bottom",
+  };
 
-  describe.skip(pageName, () => {
+  describe(pageName, () => {
     before(() => {
       cy.visitPage(currentPage, loggedIn);
     });
@@ -52,14 +55,9 @@ function cleanupLeftoverTempDbs(owner: string) {
 
   function deleteDatabase(href: string | null) {
     if (!href || !href.includes("temp_db_")) return;
-
-    cy.visitPage(href, false);
+    cy.visitPage(`${href}/settings`, false);
 
     cy.wait(300);
-
-    cy.get("[data-cy=repo-settings-tab]>a", opts)
-      .should("be.visible")
-      .click(clickOpts);
 
     cy.location("pathname", opts).should("contain", "settings");
 

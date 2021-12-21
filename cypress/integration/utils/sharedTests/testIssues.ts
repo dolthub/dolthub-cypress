@@ -83,7 +83,7 @@ export const testIssues: Tests = [
           typingExpectation(issueTitleEdits, "[data-cy=issue-title-input]"),
           typingExpectation(
             issueContentEdits,
-            "[data-cy=issue-description-textarea]",
+            "[data-cy=issue-description-textarea",
           ),
         ],
         "[data-cy=issue-edit-save]",

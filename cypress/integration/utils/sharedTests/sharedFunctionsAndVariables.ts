@@ -2,6 +2,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
@@ -28,11 +29,11 @@ export const mergingAndDeletingBranch = (title: string) => [
   //! VIEW DIFF
   newExpectationWithClickFlows(
     "should show view diff button",
-    "[data-cy=view-diffs-button]>button",
+    "[data-cy=view-diffs-button] button",
     beVisibleAndContain("View Diff "),
     [
       newClickFlow(
-        "[data-cy=view-diffs-button]>button",
+        "[data-cy=view-diffs-button] button",
         [
           newExpectation(
             "should should diff title",
@@ -55,7 +56,7 @@ export const mergingAndDeletingBranch = (title: string) => [
             beVisible,
           ),
         ],
-        "",
+        "[data-cy=back-to-pull] button",
       ),
     ],
   ),
@@ -173,7 +174,7 @@ export const afterUploadSteps = (
   newExpectation(
     "should show uploaded file",
     "[data-cy=file-name]",
-    beVisibleAndContain(`${fileName}.csv`),
+    beVisibleAndContain(fileName),
   ),
 
   //! CHOOSE PRIMARY KEY
@@ -185,15 +186,21 @@ export const afterUploadSteps = (
   ),
   newExpectationWithClickFlows(
     "should choose the primary key",
-    `data-cy=${primaryKey}-checkbox`,
-    beVisibleAndContain(primaryKey),
-    [
-      newClickFlow(
-        `data-cy=${primaryKey}-checkbox`,
-        [],
-        "[data-cy=upload-next-button]",
-      ),
-    ],
+    `[data-cy=${primaryKey}-checkbox]`,
+    exist,
+    [newClickFlow(`[data-cy=${primaryKey}-checkbox]`, [])],
+  ),
+  newExpectationWithScrollIntoView(
+    "should show the upload button",
+    "[data-cy=upload-next-button]",
+    beVisible,
+    true,
+  ),
+  newExpectationWithClickFlows(
+    "should click the upload button",
+    "[data-cy=upload-next-button]",
+    beVisible,
+    [newClickFlow("[data-cy=upload-next-button]", [])],
   ),
 
   //! REVIEW CHANGES
@@ -208,7 +215,7 @@ export const afterUploadSteps = (
           newExpectation(
             "should match the file name",
             "[data-cy=file-name]",
-            beVisibleAndContain(`${fileName}.csv`),
+            beVisibleAndContain(fileName),
           ),
         ],
         "[data-cy=upload-next-button]",
@@ -249,7 +256,7 @@ export const afterUploadSteps = (
   ),
   newExpectation(
     "should show the primary key",
-    `[data-cy=repo-tables-table-${tableName} [data-cy=${primaryKey}-primary-key]`,
+    `[data-cy=repo-tables-table-${tableName}] [data-cy=${primaryKey}-primary-key]`,
     beVisible,
   ),
 ];

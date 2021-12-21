@@ -88,5 +88,6 @@ export const testUpdateTable: Tests = [
     "spreadsheet editor",
     "Create new table",
     grids[0][0],
+    "spreadsheet",
   ),
 ];

@@ -6,7 +6,6 @@ import {
   newExpectationWithTypeString,
 } from "../helpers";
 import { Tests } from "../types";
-import { deleteTempDatabase } from "./deleteTempDatabase";
 import {
   beVisible,
   beVisibleAndContain,
@@ -78,7 +77,11 @@ export const testPullRequest = (
       ),
     ],
   ),
-
+  newExpectation(
+    "should redirect to parent database",
+    "[data-cy=repo-owner-breadcrumb-link]",
+    beVisibleAndContain("cypresstesting"),
+  ),
   //! NAVIGATE TO PULL REQUEST PAGE
   newExpectationWithClickFlows(
     "should show navigate to pull request page",
@@ -86,7 +89,7 @@ export const testPullRequest = (
     beVisible,
     [
       newClickFlow(
-        "[data-cy=repo-pull-requests-tab]>a",
+        "[data-cy=repo-pull-requests-tab]",
         [],
         "[data-cy=create-pull-request-button]",
       ),
@@ -191,24 +194,19 @@ export const testPullRequest = (
     "[data-cy=repo-database-tab]",
     beVisible,
     [
-      newClickFlow(
-        "[data-cy=repo-database-tab]",
-        [
-          newExpectation(
-            "should show tablename",
-            "[data-cy=repo-tables-table-tablename]",
-            beVisibleAndContain("tablename"),
-          ),
-        ],
-        "[data-cy=repo-tables-table-tablename]>div>span:first button",
-      ),
+      newClickFlow("[data-cy=repo-database-tab]", [
+        newExpectation(
+          "should show tablename",
+          "[data-cy=repo-tables-table-tablename]",
+          beVisibleAndContain("tablename"),
+        ),
+      ]),
     ],
   ),
 
   newExpectation(
-    "should show the new commit",
+    "should show the inserted column",
     "[data-cy=repo-tables-table-column-col1] span",
     beVisibleAndContain("col1"),
   ),
-  ...deleteTempDatabase(repoName, forkOwnerName),
 ];

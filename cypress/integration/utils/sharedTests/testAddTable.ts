@@ -10,14 +10,6 @@ import { testCreateTableWithSpreadsheetEditor } from "./testCreateTableWithSprea
 import { testCreateTableWithSqlQuery } from "./testCreateTableWithSqlQuery";
 
 export const testAddTable: Tests = [
-  //! NAVIGATE TO THE TABLES TAB
-  newExpectationWithClickFlows(
-    "should be able to navigate to tables tab",
-    "[data-cy=repo-database-tab]",
-    beVisible,
-    [newClickFlow("[data-cy=tab-tables]>button", [])],
-  ),
-
   //! CLICK ADD TABLE AND SHOW 3 WAYS OF ADDING TABLE
   newExpectationWithClickFlows(
     "should show add table button",

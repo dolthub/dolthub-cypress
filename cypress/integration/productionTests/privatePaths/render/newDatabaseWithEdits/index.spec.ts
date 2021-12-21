@@ -25,8 +25,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testIssues,
     ...testDocs,
     ...testSaveQuery,
-    ...testAddTable,
     ...testPullRequest(repoName, forkOwnerName),
+    ...testAddTable,
+    ...deleteTempDatabase(repoName, forkOwnerName),
     ...deleteTempDatabase(repoName, ownerName),
   ];
 
