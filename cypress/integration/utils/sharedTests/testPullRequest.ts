@@ -16,10 +16,7 @@ import {
 
 const sqlQuery = 'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")';
 
-export const testPullRequest = (
-  repoName: string,
-  forkOwnerName: string,
-): Tests => [
+export const testPullRequest = (forkOwnerName: string): Tests => [
   //! FORK THE DATABASE
   newExpectationWithClickFlows(
     "should show fork button",
