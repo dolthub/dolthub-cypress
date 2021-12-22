@@ -1,4 +1,3 @@
-import { testUpdateTable } from "cypress/integration/utils/sharedTests/testUpdateTable";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { createTempDatabase } from "../../../../utils/sharedTests/createTempDatabase";
@@ -9,6 +8,7 @@ import { testDocs } from "../../../../utils/sharedTests/testDocs";
 import { testIssues } from "../../../../utils/sharedTests/testIssues";
 import { testPullRequest } from "../../../../utils/sharedTests/testPullRequest";
 import { testSaveQuery } from "../../../../utils/sharedTests/testSaveQuery";
+import { testUpdateTable } from "../../../../utils/sharedTests/testUpdateTable";
 
 const pageName = "Create, edit, teardown database";
 const currentPage = "/profile/new-repository";
