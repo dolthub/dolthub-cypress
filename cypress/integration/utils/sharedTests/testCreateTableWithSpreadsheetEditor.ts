@@ -1,12 +1,13 @@
 import {
   newClickFlow,
+  newExpectation,
   newExpectationWithClickFlows,
-  newExpectationWithTypeString,
 } from "../helpers";
 import { Tests } from "../types";
 import {
   afterUploadSteps,
   beVisibleAndContain,
+  getTypeInGridTests,
   preUploadSteps,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
@@ -41,12 +42,12 @@ export const testCreateTableWithSpreadsheetEditor: Tests = [
     beVisibleAndContain("Upload file or create spreadsheet"),
     [newClickFlow("[data-cy=spread-sheet-button]", [])],
   ),
-  newExpectationWithTypeString(
+  newExpectation(
     "should show spreadsheet editor title",
     "[data-cy=spreadsheet-editor-title]",
     beVisibleAndContain("Spreadsheet Editor"),
-    grids,
   ),
+  ...getTypeInGridTests(grids, true),
   newExpectationWithClickFlows(
     "should show upload table button",
     "[data-cy=upload-table-button]",

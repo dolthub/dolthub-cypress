@@ -3,12 +3,12 @@ import {
   newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithSelector,
-  newExpectationWithTypeString,
 } from "../helpers";
 import { Tests } from "../types";
 import {
   beVisible,
   beVisibleAndContain,
+  getTypeInGridTests,
   mergingAndDeletingBranch,
   preUploadSteps,
   typingExpectation,
@@ -61,14 +61,14 @@ export const testUpdateTable: Tests = [
     "should show upload page",
     "[data-cy=spread-sheet-button]",
     beVisible,
-    [newClickFlow("", [], "[data-cy=spread-sheet-button]")],
+    [newClickFlow("[data-cy=spread-sheet-button]", [])],
   ),
-  newExpectationWithTypeString(
+  newExpectation(
     "should show spreadsheet editor title",
     "[data-cy=spreadsheet-editor-title]",
     beVisibleAndContain("Spreadsheet Editor"),
-    grids,
   ),
+  ...getTypeInGridTests(grids, true),
   newExpectationWithClickFlows(
     "should show upload table button",
     "[data-cy=upload-table-button]",

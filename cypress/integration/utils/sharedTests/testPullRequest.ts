@@ -10,6 +10,7 @@ import {
   beVisible,
   beVisibleAndContain,
   createPullRequest,
+  exist,
   mergingAndDeletingBranch,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
@@ -49,7 +50,7 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
           newExpectationWithTypeString(
             "should use sql console to edit table",
             "[data-cy=sql-editor-expanded]>div>div>textarea",
-            beVisibleAndContain("INSERT INTO"),
+            exist,
             {
               value: sqlQuery,
             },

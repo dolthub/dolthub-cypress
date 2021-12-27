@@ -6,7 +6,7 @@ import {
   newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
-import { Tests } from "../types";
+import { Expectation, Tests } from "../types";
 
 export const beVisible = newShouldArgs("be.visible");
 export const notExist = newShouldArgs("not.exist");
@@ -111,14 +111,14 @@ export const createPullRequest: Tests = [
   ),
 ];
 
-export const sqlConsoleEditClickFlow = (queryType: string, sqlQuery: string) =>
+export const sqlConsoleEditClickFlow = (sqlQuery: string) =>
   newClickFlow(
     "",
     [
       newExpectationWithTypeString(
         "should use sql console to edit table",
         "[data-cy=sql-editor-expanded]>div>div textarea",
-        beVisibleAndContain(queryType),
+        exist,
         { value: sqlQuery },
       ),
     ],
@@ -164,7 +164,7 @@ export const afterUploadSteps = (
   description: string,
   mergingTitle: string,
   primaryKey: string,
-  uploadMethod: string,
+  uploadMethod = "",
 ) => [
   newExpectation(
     "should show upload successful message",
@@ -182,7 +182,7 @@ export const afterUploadSteps = (
     "should show choose primary key button",
     "[data-cy=choose-primary-keys-button]",
     beVisibleAndContain("Choose primary keys"),
-    [newClickFlow("[data-cy=choose-primary-keys-button]", [], "")],
+    [newClickFlow("[data-cy=choose-primary-keys-button]", [])],
   ),
   newExpectationWithClickFlows(
     "should choose the primary key",
@@ -260,3 +260,21 @@ export const afterUploadSteps = (
     beVisible,
   ),
 ];
+
+// type function for spread sheet input
+export function getTypeInGridTests(grids: string[][], skipClear = false) {
+  const tests: Expectation[] = [];
+  grids.forEach((row: string[], rowidx: number) => {
+    row.forEach((val: string, colidx: number) => {
+      tests.push(
+        newExpectationWithTypeString(
+          `should enter value ${row[1]} in column ${row[0]}`,
+          `[aria-rowindex="${rowidx + 3}"]>[aria-colindex="${colidx + 2}"]`,
+          beVisible,
+          { value: val, skipClear },
+        ),
+      );
+    });
+  });
+  return tests;
+}

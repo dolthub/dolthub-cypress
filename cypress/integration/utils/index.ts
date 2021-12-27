@@ -147,7 +147,7 @@ function getAssertionTest(
   description: string,
   selectorStr: string,
   shouldArgs: ShouldArgs,
-  typeString?: TypeStringType | string[][],
+  typeString?: TypeStringType,
   selectOption?: number,
   targetPage?: string,
   fileUpload?: string,
@@ -160,26 +160,22 @@ function getAssertionTest(
   related selector: ${selectorStr},
 `;
   if (typeString) {
-    if (Array.isArray(typeString)) {
-      typeString.forEach((row, rowidx) => {
-        row.forEach((val, colidx) => {
-          cy.get(
-            `[aria-rowindex="${rowidx + 3}"]>[aria-colindex="${colidx + 2}"]`,
-          ).type(val);
-        });
-      });
-    } else if (typeString.eq) {
-      return cy
-        .get(selectorStr, opts)
-        .eq(typeString.eq)
-        .clear(clickOpts)
-        .type(typeString.value, clickOpts);
-    } else {
-      return cy
-        .get(selectorStr, opts)
-        .clear(clickOpts)
-        .type(typeString.value, clickOpts);
-    }
+    // cannot assign or work with the return values of any Cypress command, use closure instead
+    cy.get(selectorStr, opts).then($test => {
+      if (typeString.eq) {
+        return cy
+          .wrap($test)
+          .eq(typeString.eq)
+          .type(typeString.value, clickOpts);
+      }
+      if (!typeString.skipClear) {
+        return cy
+          .wrap($test)
+          .clear(clickOpts)
+          .type(typeString.value, clickOpts);
+      }
+      return cy.wrap($test).type(typeString.value, clickOpts);
+    });
   }
 
   if (selectOption !== undefined) {

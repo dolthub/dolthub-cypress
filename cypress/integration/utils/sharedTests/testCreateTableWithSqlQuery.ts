@@ -14,7 +14,6 @@ import {
 
 const sqlQueryTable = "TestSqlCreateTable";
 const createTableQuery = `CREATE TABLE ${sqlQueryTable} (pk INT,col1 VARCHAR(255),PRIMARY KEY (pk));`;
-const queryType = "CREATE TABLE";
 
 export const testCreateTableWithSqlQuery: Tests = [
   //! USE SQL QUERY FOR ADDING TABLE
@@ -40,7 +39,7 @@ export const testCreateTableWithSqlQuery: Tests = [
     "should execute insert query",
     "[data-cy=sql-editor-expanded]",
     beVisible,
-    [sqlConsoleEditClickFlow(queryType, createTableQuery)],
+    [sqlConsoleEditClickFlow(createTableQuery)],
   ),
   ...createPullRequest,
   ...mergingAndDeletingBranch("Changes from workspace"),

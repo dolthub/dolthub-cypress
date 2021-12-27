@@ -42,6 +42,5 @@ export const testCreateTableWithFileUpload: Tests = [
     `${tableName}.csv`,
     `Import of ${tableName}.csv`,
     "Col1",
-    "",
   ),
 ];
