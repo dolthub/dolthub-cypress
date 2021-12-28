@@ -164,14 +164,17 @@ function getAssertionTest(
       return cy
         .get(selectorStr, opts)
         .eq(typeString.eq)
+        .type(typeString.value, clickOpts);
+    }
+    if (!typeString.skipClear) {
+      return cy
+        .get(selectorStr, opts)
         .clear(clickOpts)
         .type(typeString.value, clickOpts);
     }
-    return cy
-      .get(selectorStr, opts)
-      .clear(clickOpts)
-      .type(typeString.value, clickOpts);
+    return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
   }
+
   if (selectOption !== undefined) {
     cy.get(selectorStr).eq(selectOption).click();
   }

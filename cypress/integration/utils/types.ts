@@ -5,6 +5,7 @@ export type Selector = string | string[];
 export type TypeStringType = {
   value: string;
   eq?: number;
+  skipClear?: boolean;
 };
 export type ScrollToPosition = {
   position: Cypress.PositionType;

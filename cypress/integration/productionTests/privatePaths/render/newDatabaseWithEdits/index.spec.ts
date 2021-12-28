@@ -3,10 +3,12 @@ import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { createTempDatabase } from "../../../../utils/sharedTests/createTempDatabase";
 import { deleteTempDatabase } from "../../../../utils/sharedTests/deleteTempDatabase";
 import { editTempDatabase } from "../../../../utils/sharedTests/editTempDatabase";
+import { testAddTable } from "../../../../utils/sharedTests/testAddTable";
 import { testDocs } from "../../../../utils/sharedTests/testDocs";
 import { testIssues } from "../../../../utils/sharedTests/testIssues";
 import { testPullRequest } from "../../../../utils/sharedTests/testPullRequest";
 import { testSaveQuery } from "../../../../utils/sharedTests/testSaveQuery";
+import { testUpdateTable } from "../../../../utils/sharedTests/testUpdateTable";
 
 const pageName = "Create, edit, teardown database";
 const currentPage = "/profile/new-repository";
@@ -24,7 +26,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testIssues,
     ...testDocs,
     ...testSaveQuery,
-    ...testPullRequest(repoName, forkOwnerName),
+    ...testPullRequest(forkOwnerName),
+    ...testAddTable,
+    ...testUpdateTable,
+    ...deleteTempDatabase(repoName, forkOwnerName),
     ...deleteTempDatabase(repoName, ownerName),
   ];
 

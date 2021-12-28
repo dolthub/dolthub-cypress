@@ -6,21 +6,18 @@ import {
   newExpectationWithTypeString,
 } from "../helpers";
 import { Tests } from "../types";
-import { deleteTempDatabase } from "./deleteTempDatabase";
 import {
   beVisible,
   beVisibleAndContain,
   createPullRequest,
+  exist,
   mergingAndDeletingBranch,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
 const sqlQuery = 'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")';
 
-export const testPullRequest = (
-  repoName: string,
-  forkOwnerName: string,
-): Tests => [
+export const testPullRequest = (forkOwnerName: string): Tests => [
   //! FORK THE DATABASE
   newExpectationWithClickFlows(
     "should show fork button",
@@ -53,7 +50,7 @@ export const testPullRequest = (
           newExpectationWithTypeString(
             "should use sql console to edit table",
             "[data-cy=sql-editor-expanded]>div>div>textarea",
-            beVisibleAndContain("INSERT INTO"),
+            exist,
             {
               value: sqlQuery,
             },
@@ -73,12 +70,23 @@ export const testPullRequest = (
     beVisibleAndContain("Open"),
     [
       newClickFlow(
+        "",
+        [
+          newExpectation(
+            "should click the link to parent database",
+            "[data-cy=forked-parent-repo-detail] [data-cy=repo-name-breadcrumb-link]",
+            beVisible,
+          ),
+        ],
         "[data-cy=forked-parent-repo-detail] [data-cy=repo-name-breadcrumb-link]",
-        [],
       ),
     ],
   ),
-
+  newExpectation(
+    "should redirect to parent database",
+    "[data-cy=repo-owner-breadcrumb-link]",
+    beVisibleAndContain("cypresstesting"),
+  ),
   //! NAVIGATE TO PULL REQUEST PAGE
   newExpectationWithClickFlows(
     "should show navigate to pull request page",
@@ -159,8 +167,8 @@ export const testPullRequest = (
     "[data-cy=new-pull-page]",
     beVisible,
   ),
-  typingExpectation("test pull", "pull-form-title-input"),
-  typingExpectation("test pull description", "pull-form-description"),
+  typingExpectation("test pull", "[data-cy=pull-form-title-input]"),
+  typingExpectation("test pull description", "[data-cy=pull-form-description]"),
   newExpectationWithClickFlows(
     "should submit the pull form",
     "[data-cy=pull-form-submit]",
@@ -190,13 +198,20 @@ export const testPullRequest = (
     "should be able to navigate to database tab",
     "[data-cy=repo-database-tab]",
     beVisible,
-    [newClickFlow("[data-cy=repo-database-tab]", [])],
+    [
+      newClickFlow("[data-cy=repo-database-tab]", [
+        newExpectation(
+          "should show tablename",
+          "[data-cy=repo-tables-table-tablename]",
+          beVisibleAndContain("tablename"),
+        ),
+      ]),
+    ],
   ),
 
   newExpectation(
-    "should show the new commit",
+    "should show the inserted column",
     "[data-cy=repo-tables-table-column-col1] span",
     beVisibleAndContain("col1"),
   ),
-  ...deleteTempDatabase(repoName, forkOwnerName),
 ];

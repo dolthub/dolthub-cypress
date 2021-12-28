@@ -10,8 +10,8 @@ import {
   createPullRequest,
   mergingAndDeletingBranch,
   notExist,
+  typingExpectation,
 } from "./sharedFunctionsAndVariables";
-import { typingExpectation } from "./testIssues";
 
 const testQueryName = "test-query-name";
 const testQueryDescription = "test-query-description";
@@ -34,8 +34,11 @@ export const testSaveQuery: Tests = [
       newClickFlow(
         "[data-cy=save-query-button]",
         [
-          typingExpectation(testQueryName, "query-name"),
-          typingExpectation(testQueryDescription, "query-description"),
+          typingExpectation(testQueryName, "[data-cy=query-name]"),
+          typingExpectation(
+            testQueryDescription,
+            "[data-cy=query-description]",
+          ),
         ],
         "[data-cy=query-save-button]",
       ),

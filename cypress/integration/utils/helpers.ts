@@ -8,6 +8,7 @@ import {
   Selector,
   ShouldArgs,
   Tests,
+  TypeStringType,
 } from "./types";
 
 // Expectations
@@ -180,7 +181,7 @@ export function newExpectationWithTypeString(
   description: string,
   selector: Selector,
   shouldArgs: ShouldArgs,
-  typeString: { value: string; eq?: number },
+  typeString: TypeStringType,
   skip = false,
 ): Expectation {
   return { description, selector, shouldArgs, typeString, skip };
