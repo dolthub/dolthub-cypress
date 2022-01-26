@@ -84,7 +84,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     pageName,
     desktopAndIpadTests(),
     desktopAndIpadTests(true),
-    mobileTests(currentOwner, currentRepo, hasDocs),
+    mobileTests(currentOwner, currentRepo, currentPage, hasDocs),
   );
   runTestsForDevices({ currentPage, devices });
 });

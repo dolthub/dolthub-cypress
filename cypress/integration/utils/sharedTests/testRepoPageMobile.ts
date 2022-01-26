@@ -61,7 +61,7 @@ export const testDesktopOnlyWarnings = (
   currentPage: string,
   hasDocs: boolean,
 ): Tests => {
-  const pageName = currentPage.split("/")[3];
+  const pageName = currentPage.toString().split("/")[3];
   const notDocPage = !(pageName === "doc")
     ? [
         newExpectation(
@@ -94,6 +94,7 @@ export const testDesktopOnlyWarnings = (
 export const mobileTests = (
   currentOwner: string,
   currentRepo: string,
+  currentPage: string,
   hasDocs: boolean,
 ): Tests => [
   ...testMobileRepoHeaderNav(currentOwner, currentRepo),

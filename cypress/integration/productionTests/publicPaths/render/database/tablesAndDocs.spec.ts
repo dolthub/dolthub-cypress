@@ -1,14 +1,15 @@
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { mobileTests } from "cypress/integration/utils/sharedTests/testRepoPageMobile";
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
-  testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
+  testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Database page with tables and docs";
 const currentOwner = "automated_testing";
@@ -22,7 +23,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const tests = [
+  const desktopAndIpadTests = (isIpad = false) => [
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
@@ -38,7 +39,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      isIpad,
+    ),
     ...tableExpectations(true, hasBranch, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
@@ -46,7 +53,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = allDevicesDiffTestsForSignedOut(
+    pageName,
+    desktopAndIpadTests(),
+    desktopAndIpadTests(true),
+    mobileTests(currentOwner, currentRepo, currentPage, hasDocs),
+  );
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
