@@ -12,7 +12,7 @@ import {
 } from "../../../../utils/sharedTests/blog";
 
 const pageName = "Blog list page with query";
-const query = "figma of databases";
+const query = "figma of databases video";
 const currentPage = Cypress.env("LOCAL_BLOG")
   ? `/?q=${query}`
   : `/blog/?q=${query}`;
@@ -37,8 +37,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testSearched(
       query,
-      "DoltHub is the Figma of Databases",
-      "2021-11-08-figma-of-databases/",
+      "DoltHub is the Figma of Databases Video",
+      "2022-01-25-figma-of-databases-video/",
     ),
     newExpectationWithClickFlows(
       "should clear search",
