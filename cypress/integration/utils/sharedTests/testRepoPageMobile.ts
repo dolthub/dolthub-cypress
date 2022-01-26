@@ -1,5 +1,6 @@
 import { newExpectation, newShouldArgs } from "../helpers";
 import { Tests } from "../types";
+import { testMobileRepoHeaderNav } from "./repoHeaderNav";
 import {
   beVisible,
   beVisibleAndContain,
@@ -89,3 +90,12 @@ export const testDesktopOnlyWarnings = (
     ...docsTests,
   ];
 };
+
+export const mobileTests = (
+  currentOwner: string,
+  currentRepo: string,
+  hasDocs: boolean,
+): Tests => [
+  ...testMobileRepoHeaderNav(currentOwner, currentRepo),
+  ...testDesktopOnlyWarnings(currentPage, hasDocs),
+];

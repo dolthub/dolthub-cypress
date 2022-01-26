@@ -1,13 +1,15 @@
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
-  testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
+  testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
+import { Tests } from "../../../../utils/types";
 
 const pageName = "Database page with docs and no tables";
 const currentOwner = "automated_testing";
@@ -21,7 +23,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const tests = [
+  const desktopAndIpadTests = (isIpad = false): Tests => [
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
@@ -37,14 +39,25 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      isIpad,
+    ),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 0),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 0),
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = allDevicesDiffTestsForSignedOut(
+    pageName,
+    desktopAndIpadTests(),
+    desktopAndIpadTests(true),
+    mobileTests(currentOwner, currentRepo, hasDocs),
+  );
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

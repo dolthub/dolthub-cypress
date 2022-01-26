@@ -1,19 +1,20 @@
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
 import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
-  testTablesSection,
-  testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
+  testTablesSection,
+  testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Database page with branch and no data";
 const currentOwner = "automated_testing";
@@ -26,8 +27,14 @@ const hasBranch = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+  const desktopAndIpadTests = (isIpad = false) => [
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      isIpad,
+    ),
     newExpectation(
       "should have database Get Started section",
       "[data-cy=repo-empty-get-started]",
@@ -68,7 +75,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = allDevicesDiffTestsForSignedOut(
+    pageName,
+    desktopAndIpadTests(),
+    desktopAndIpadTests(true),
+    mobileTests(currentOwner, currentRepo, hasDocs),
+  );
 
   runTestsForDevices({ currentPage, devices });
 });
