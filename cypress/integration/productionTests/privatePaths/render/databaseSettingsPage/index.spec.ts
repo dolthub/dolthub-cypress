@@ -3,9 +3,9 @@ import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newShouldArgs,
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
+  newShouldArgs,
 } from "../../../../utils/helpers";
 
 const pageName = "Logged in database settings page with no branch and no data";
@@ -99,11 +99,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have one visibility radio button that says Public",
       "[data-cy=repo-settings-visibility-radios]",
       beVisibleAndContain("Public"),
-    ),
-    newExpectation(
-      "should have a link to sign up for DolthubPro",
-      "[data-cy=repo-settings-dolthub-pro-org-link]",
-      beVisible,
     ),
     newExpectationWithClickFlows(
       "should have Save button",
