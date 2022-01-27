@@ -1,7 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { leftNavTests } from "../../../../utils/sharedTests/diffs";
+import { leftNavDiffRangeTests } from "../../../../utils/sharedTests/diffs";
 
 const pageName = "Diff page with no changes";
 const currentOwner = "automated_testing";
@@ -16,7 +16,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
-    ...leftNavTests(currentFromCommit, 1),
+    ...leftNavDiffRangeTests(currentFromCommit, currentToCommit),
     newExpectation(
       "should show commit diff summary",
       "[data-cy=commit-diff-summary]",

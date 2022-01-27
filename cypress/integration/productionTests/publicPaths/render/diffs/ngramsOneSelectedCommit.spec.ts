@@ -1,7 +1,7 @@
-import { diffsWithCommits } from "cypress/integration/utils/sharedTests/diffs";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { diffsWithCommitTests } from "../../../../utils/sharedTests/diffs";
 
 const pageName = "Diff page with one selected commit";
 const currentOwner = "automated_testing";
@@ -15,7 +15,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...diffsWithCommits(currentFromCommit, 1),
+    ...diffsWithCommitTests(currentFromCommit, 1),
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",

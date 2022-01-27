@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { leftNavDiffRangeTests } from "../../../../utils/sharedTests/diffs";
 
 const pageName = "Diff page with changes";
 const currentOwner = "automated_testing";
@@ -12,47 +13,9 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branc
 
 describe(`${pageName} renders expected component on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notExist = newShouldArgs("not.exist");
 
   const tests = [
-    newExpectation(
-      "should show back to commit log button",
-      "[data-cy=back-to-commits]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show commit diff breadcrumbs",
-      "[data-cy=repo-commit-diff-breadcrumbs]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show commit info",
-      "[data-cy=commit-info]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have viewing message",
-      "[data-cy=viewing-message]",
-      newShouldArgs(
-        "be.visible.and.contain",
-        `${currentFromCommit.slice(0, 7)}..${currentToCommit.slice(0, 7)}`,
-      ),
-    ),
-    newExpectation(
-      "should not have browse tables link",
-      "[data-cy=browse-tables]",
-      notExist,
-    ),
-    newExpectation(
-      "should not have commit message",
-      "[data-cy=commit-message]",
-      notExist,
-    ),
-    newExpectation(
-      `should have no parents`,
-      "[data-cy=parent-commit]",
-      notExist,
-    ),
+    ...leftNavDiffRangeTests(currentFromCommit, currentToCommit),
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",

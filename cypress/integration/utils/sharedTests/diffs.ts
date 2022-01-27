@@ -45,7 +45,40 @@ export const leftNavTests = (
   ),
 ];
 
-export const diffsWithCommits = (
+export const leftNavDiffRangeTests = (fromCommit: string, toCommit: string) => [
+  newExpectation(
+    "should show back to commit log button",
+    "[data-cy=back-to-commits]",
+    beVisible,
+  ),
+  newExpectation(
+    "should show commit diff breadcrumbs",
+    "[data-cy=repo-commit-diff-breadcrumbs]",
+    beVisible,
+  ),
+  newExpectation("should show commit info", "[data-cy=commit-info]", beVisible),
+  newExpectation(
+    "should have viewing message",
+    "[data-cy=viewing-message]",
+    newShouldArgs(
+      "be.visible.and.contain",
+      `${fromCommit.slice(0, 7)}..${toCommit.slice(0, 7)}`,
+    ),
+  ),
+  newExpectation(
+    "should not have browse tables link",
+    "[data-cy=browse-tables]",
+    notExist,
+  ),
+  newExpectation(
+    "should not have commit message",
+    "[data-cy=commit-message]",
+    notExist,
+  ),
+  newExpectation(`should have no parents`, "[data-cy=parent-commit]", notExist),
+];
+
+export const diffsWithCommitTests = (
   currentFromCommit: string,
   numParents: number,
 ): Tests => [
@@ -67,7 +100,7 @@ export const diffsWithCommits = (
   ),
 ];
 
-export const noCommits = [
+export const noCommitsTests = [
   ...diffTests,
   newExpectation(
     "should show repo breadcrumbs",
