@@ -28,16 +28,19 @@ describe(`${pageName} renders expected component on different devices`, () => {
       "should show diff selector",
       "[data-cy=diff-selector]",
       beVisible,
+      true,
     ),
     newExpectation(
       "should show two form selects",
       "[data-cy=form-select]",
       newShouldArgs("be.visible.and.have.length", 2),
+      true,
     ),
     newExpectation(
       "should not have viewing message",
       "[data-cy=viewing-message]",
       newShouldArgs("not.exist"),
+      true,
     ),
     newExpectation(
       "should show diff table name",

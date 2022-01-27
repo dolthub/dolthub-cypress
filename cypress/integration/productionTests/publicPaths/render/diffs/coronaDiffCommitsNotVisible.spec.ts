@@ -27,11 +27,13 @@ describe(`${pageName} renders expected component on different devices`, () => {
       "should show diff selector",
       "[data-cy=diff-selector]",
       beVisible,
+      true,
     ),
     newExpectation(
       "should have viewing message",
       "[data-cy=viewing-message]",
       newShouldArgs("be.visible.and.contain", currentFromCommit),
+      true,
     ),
     newExpectation(
       "should show diff table name",
