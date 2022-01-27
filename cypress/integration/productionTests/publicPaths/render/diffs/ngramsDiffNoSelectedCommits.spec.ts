@@ -21,21 +21,25 @@ describe(`${pageName} renders expected component on different devices`, () => {
       "should show back to commit log button",
       "[data-cy=back-to-commits]",
       beVisible,
+      true,
     ),
     newExpectation(
       "should show diff selector",
       "[data-cy=diff-selector]",
       beVisible,
+      true,
     ),
     newExpectation(
       "should show two form selects",
       "[data-cy=form-select]",
       newShouldArgs("be.visible.and.have.length", 2),
+      true,
     ),
     newExpectation(
       "should not have viewing message",
       "[data-cy=viewing-message]",
       notExist,
+      true,
     ),
     newExpectation(
       "should not show commit diff summary",
