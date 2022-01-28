@@ -6,10 +6,7 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
-import {
-  checkRepoListForTab,
-  testMobileRepoList,
-} from "../../../../utils/sharedTests/reposContainer";
+import { checkRepoListForTab } from "../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Discover page with query";
 const searchTerm = "ip-to-country";
@@ -30,7 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     "",
   );
 
-  const desktopTests = [
+  const tests = [
     newExpectation(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
@@ -51,13 +48,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkRepoListForTab("most-recent", 20),
   ];
 
-  const iPhoneTests = testMobileRepoList("[data-cy=discover-repo-lists]");
-
   const devices = allDevicesDiffTestsForSignedOut(
     pageName,
-    desktopTests,
-    desktopTests,
-    iPhoneTests,
+    tests,
+    tests,
+    tests,
   );
 
   const skip = false;

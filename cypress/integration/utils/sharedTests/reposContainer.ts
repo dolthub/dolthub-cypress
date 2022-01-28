@@ -1,9 +1,4 @@
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithScrollIntoView,
-  newShouldArgs,
-} from "../helpers";
+import { newClickFlow, newExpectation, newShouldArgs } from "../helpers";
 import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
@@ -27,15 +22,3 @@ export const mostRecentReposClickFlow = newClickFlow(
   "[data-cy=discover-repos-tab]",
   [...checkRepoListForTab("most-recent", 20)],
 );
-
-export const testMobileRepoList = (dataCy: string): Tests => [
-  newExpectationWithScrollIntoView(
-    "should have repo list with title on mobile",
-    dataCy,
-    newShouldArgs("be.visible.and.contain", [
-      "Discover Databases",
-      "Explore more public databases on your desktop",
-    ]),
-    true,
-  ),
-];
