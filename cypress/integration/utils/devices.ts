@@ -65,6 +65,9 @@ export const macbook15ForAppLayout = (
 export const iPad2ForAppLayout = (pageName: string, tests: Tests): Device =>
   iPad2(pageName, getAppLayoutTestsMobile(tests), false);
 
+export const iPhoneXForAppLayout = (pageName: string, tests: Tests): Device =>
+  iPhoneX(pageName, getAppLayoutTestsMobile(tests), false);
+
 export const mobileDevicesForAppLayout = (
   pageName: string,
   tests: Tests,

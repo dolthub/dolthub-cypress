@@ -1,5 +1,9 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
@@ -57,12 +61,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    desktopAndIpadTests(),
-    desktopAndIpadTests(true),
-    mobileTests(currentOwner, currentRepo, hasDocs),
-  );
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests(false)),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

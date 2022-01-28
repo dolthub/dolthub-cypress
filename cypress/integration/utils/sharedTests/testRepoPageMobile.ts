@@ -1,12 +1,56 @@
-import { newExpectation, newShouldArgs } from "../helpers";
+import {
+  newExpectation,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "../helpers";
 import { Tests } from "../types";
 import { testMobileRepoHeaderNav } from "./repoHeaderNav";
 import {
   beVisible,
   beVisibleAndContain,
-  notBeVisible,
+  notExist,
 } from "./sharedFunctionsAndVariables";
 
+export const testEmptyRepo = (hasBranch: boolean): Tests => {
+  const pushCommitDescription = hasBranch ? "" : "not ";
+  const pushCommitExist = hasBranch ? beVisible : notExist;
+  return [
+    newExpectation(
+      "should have database Get Started section",
+      "[data-cy=repo-empty-get-started]",
+      beVisible,
+    ),
+    newExpectation(
+      `should ${pushCommitDescription}have database Push a commit section`,
+      "[data-cy=repo-empty-push-a-commit]",
+      pushCommitExist,
+    ),
+    newExpectationWithScrollIntoView(
+      "should have upload file link",
+      "[data-cy=repo-empty-upload-file]",
+      beVisible,
+      true,
+    ),
+    newExpectationWithScrollIntoView(
+      "should have sql console link",
+      "[data-cy=repo-empty-sql-console]",
+      beVisible,
+      true,
+    ),
+    newExpectationWithScrollIntoView(
+      "should have Create new database section",
+      "[data-cy=repo-empty-create-new-repo]",
+      beVisible,
+      true,
+    ),
+    newExpectationWithScrollIntoView(
+      "should have Push existing database section",
+      "[data-cy=repo-empty-push-local-repo]",
+      beVisible,
+      true,
+    ),
+  ];
+};
 export const testRepoWithDocsMobile: Tests = [
   newExpectation(
     "should show the doc description",
@@ -16,7 +60,7 @@ export const testRepoWithDocsMobile: Tests = [
   newExpectation(
     "should not show the edit description button for mobile",
     "[data-cy=edit-description-button]",
-    notBeVisible,
+    notExist,
   ),
   newExpectation(
     "should show the doc list",
@@ -25,7 +69,7 @@ export const testRepoWithDocsMobile: Tests = [
   ),
   newExpectation(
     "should show the doc markdown",
-    "data-cy=repo-doc-markdown]",
+    "[data-cy=repo-doc-markdown]",
     beVisible,
   ),
 ];
@@ -60,20 +104,27 @@ export const testRepoWithoutDocsMobile: Tests = [
 export const testDesktopOnlyWarnings = (
   currentPage: string,
   hasDocs: boolean,
+  hasBranch: boolean,
 ): Tests => {
   const pageName = currentPage.toString().split("/")[3];
-  const notDocPage = !(pageName === "doc")
+  const notDocPage = !(pageName === "doc" || pageName === undefined)
     ? [
         newExpectation(
-          "should show not accessible on mobile info",
-          "data-cy=[not-accessible-on-mobile]",
+          `should show not ${pageName} accessible on mobile info`,
+          "[data-cy=not-accessible-on-mobile]",
           beVisibleAndContain(""),
         ),
       ]
     : [];
-  const docsTests = hasDocs
-    ? testRepoWithDocsMobile
-    : testRepoWithoutDocsMobile;
+  let docsTests;
+  if (hasDocs) {
+    docsTests = testRepoWithDocsMobile;
+  } else if (pageName !== "doc") {
+    docsTests = testEmptyRepo(hasBranch);
+  } else {
+    docsTests = testRepoWithoutDocsMobile;
+  }
+
   return [
     ...notDocPage,
     // test the better On Desktop part
@@ -96,7 +147,8 @@ export const mobileTests = (
   currentRepo: string,
   currentPage: string,
   hasDocs: boolean,
+  hasBranch: boolean,
 ): Tests => [
   ...testMobileRepoHeaderNav(currentOwner, currentRepo),
-  ...testDesktopOnlyWarnings(currentPage, hasDocs),
+  ...testDesktopOnlyWarnings(currentPage, hasDocs, hasBranch),
 ];

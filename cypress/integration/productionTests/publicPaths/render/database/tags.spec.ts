@@ -1,8 +1,8 @@
 import { mobileTests } from "cypress/integration/utils/sharedTests/testRepoPageMobile";
 import { runTestsForDevices } from "../../../../utils";
 import {
-  allDevicesDiffTestsForSignedOut,
   iPad2ForAppLayout,
+  iPhoneXForAppLayout,
   macbook15ForAppLayout,
 } from "../../../../utils/devices";
 import {
@@ -53,12 +53,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    desktopAndIpadTests(),
-    desktopAndIpadTests(true),
-    mobileTests(currentOwner, currentRepo, currentPage, hasDocs),
-  );
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests(false)),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

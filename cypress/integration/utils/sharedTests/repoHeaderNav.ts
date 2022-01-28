@@ -5,6 +5,7 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { Expectation, ShouldArgs, Tests } from "../types";
+import { notExist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 const notBeVisible = newShouldArgs("not.be.visible");
@@ -108,60 +109,63 @@ export const databaseDropdownClickFlow = (
     "[data-cy=repo-dropdown-button]",
   );
 
-export const testTabs = (visiblity: ShouldArgs): Expectation[] => [
-  // DATABASE TAB
-  newExpectation(
-    "should have repo Database tab",
-    "[data-cy=repo-database-tab]",
-    visiblity,
-  ),
+export const testTabs = (visiblity: ShouldArgs): Expectation[] => {
+  const tabsvisibility = visiblity.chainer === "be.visible" ? "" : "not ";
+  return [
+    // DATABASE TAB
+    newExpectation(
+      `should ${tabsvisibility}have repo Database tab`,
+      "[data-cy=repo-database-tab]",
+      visiblity,
+    ),
 
-  // ABOUT TAB
+    // ABOUT TAB
 
-  newExpectation(
-    "should have repo About tab",
-    "[data-cy=repo-about-tab]",
-    visiblity,
-  ),
+    newExpectation(
+      `should ${tabsvisibility}have repo About tab`,
+      "[data-cy=repo-about-tab]",
+      visiblity,
+    ),
 
-  // COMMIT LOG TAB
-  newExpectation(
-    "should have repo Commit Log tab",
-    "[data-cy=repo-commit-log-tab]",
-    visiblity,
-  ),
+    // COMMIT LOG TAB
+    newExpectation(
+      `should ${tabsvisibility}have repo Commit Log tab`,
+      "[data-cy=repo-commit-log-tab]",
+      visiblity,
+    ),
 
-  // RELEASES TAB
+    // RELEASES TAB
 
-  newExpectation(
-    "should have repo Tag List tab",
-    "[data-cy=repo-releases-tab]",
-    visiblity,
-  ),
+    newExpectation(
+      `should ${tabsvisibility}have repo Tag List tab`,
+      "[data-cy=repo-releases-tab]",
+      visiblity,
+    ),
 
-  // PULL REQUESTS TAB
+    // PULL REQUESTS TAB
 
-  newExpectation(
-    "should have repo Pull Requests tab",
-    "[data-cy=repo-pull-requests-tab]",
-    visiblity,
-  ),
+    newExpectation(
+      `should ${tabsvisibility}have repo Pull Requests tab`,
+      "[data-cy=repo-pull-requests-tab]",
+      visiblity,
+    ),
 
-  // ISSUES TAB
+    // ISSUES TAB
 
-  newExpectation(
-    "should have repo Issues tab",
-    "[data-cy=repo-issues-tab]",
-    visiblity,
-  ),
-  // DEPLOY TAB
+    newExpectation(
+      `should ${tabsvisibility}have repo Issues tab`,
+      "[data-cy=repo-issues-tab]",
+      visiblity,
+    ),
+    // DEPLOY TAB
 
-  newExpectation(
-    "should have repo Deploy tab",
-    "[data-cy=repo-deploy-tab]",
-    beVisible,
-  ),
-];
+    newExpectation(
+      `should ${tabsvisibility}have repo Deploy tab`,
+      "[data-cy=repo-deploy-tab]",
+      visiblity,
+    ),
+  ];
+};
 
 // SETTINGS TAB
 
@@ -222,11 +226,10 @@ export const testRepoHeaderForAll = (
   const loggedOutRepoHeaderTests = isIpad
     ? [
         ...testCommonHeader(repoName, ownerName),
-        newExpectationWithClickFlows(
-          "should have repo clone button",
+        newExpectation(
+          "should not have repo clone button",
           "[data-cy=repo-clone-button]",
-          beVisible,
-          [cloneClickFlow],
+          notBeVisible,
         ),
         ...testTabs(beVisible),
         newExpectation(
@@ -278,7 +281,7 @@ export const testMobileRepoHeaderNav = (
   newExpectation(
     "should not have Repo Settings section",
     "[data-cy=repo-settings-tab]",
-    notBeVisible,
+    notExist,
   ),
 ];
 
