@@ -8,6 +8,7 @@ import { testMobileRepoHeaderNav } from "./repoHeaderNav";
 import {
   beVisible,
   beVisibleAndContain,
+  notBeVisible,
   notExist,
 } from "./sharedFunctionsAndVariables";
 
@@ -60,7 +61,7 @@ export const testRepoWithDocsMobile: Tests = [
   newExpectation(
     "should not show the edit description button for mobile",
     "[data-cy=edit-description-button]",
-    notExist,
+    notBeVisible,
   ),
   newExpectation(
     "should show the doc list",
@@ -110,9 +111,9 @@ export const testDesktopOnlyWarnings = (
   const notDocPage = !(pageName === "doc" || pageName === undefined)
     ? [
         newExpectation(
-          `should show not ${pageName} accessible on mobile info`,
+          `should show ${pageName} page not accessible on mobile info`,
           "[data-cy=not-accessible-on-mobile]",
-          beVisibleAndContain(""),
+          beVisibleAndContain(pageName),
         ),
       ]
     : [];

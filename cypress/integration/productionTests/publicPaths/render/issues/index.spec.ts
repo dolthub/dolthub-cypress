@@ -1,7 +1,13 @@
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
+import { Tests } from "../../../../utils/types";
 
 const pageName = "Issues page";
 const currentOwner = "automated_testing";
@@ -15,13 +21,19 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newShouldArgs("be.visible.and.contain", value);
   const notExist = newShouldArgs("not.exist");
 
-  const tests = [
+  const desktopAndIpadTests = (isIpad = false): Tests => [
     newExpectation(
       "should not find empty issue message",
       "[data-cy=issue-no-issues]",
       notExist,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      isIpad,
+    ),
     newExpectation(
       "should find issue table with header",
       "[data-cy=issue-table] > thead > tr > th",
@@ -50,7 +62,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // ...testNewIssueButton(loggedIn),
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests(), false, loggedIn),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, true),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
