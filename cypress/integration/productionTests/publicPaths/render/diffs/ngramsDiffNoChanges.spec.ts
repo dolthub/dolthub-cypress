@@ -1,6 +1,7 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { leftNavDiffRangeTests } from "../../../../utils/sharedTests/diffs";
 
 const pageName = "Diff page with no changes";
 const currentOwner = "automated_testing";
@@ -15,34 +16,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
-    newExpectation(
-      "should show commit diff breadcrumbs",
-      "[data-cy=repo-commit-diff-breadcrumbs]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show back to commit log button",
-      "[data-cy=back-to-commits]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show diff selector",
-      "[data-cy=diff-selector]",
-      beVisible,
-      true,
-    ),
-    newExpectation(
-      "should not have viewing message",
-      "[data-cy=viewing-message]",
-      notExist,
-      true,
-    ),
-    newExpectation(
-      "should show two form selects",
-      "[data-cy=form-select]",
-      newShouldArgs("be.visible.and.have.length", 2),
-      true,
-    ),
+    ...leftNavDiffRangeTests(currentFromCommit, currentToCommit),
     newExpectation(
       "should show commit diff summary",
       "[data-cy=commit-diff-summary]",
