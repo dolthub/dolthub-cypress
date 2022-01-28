@@ -16,7 +16,7 @@ const currentPage = "/discover";
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const desktopTests = [
+  const tests = [
     newExpectation(
       "should have repository search input",
       "[data-cy=search-input]",
@@ -38,9 +38,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = allDevicesDiffTestsForSignedOut(
     pageName,
-    desktopTests,
-    desktopTests,
-    desktopTests,
+    tests,
+    tests,
+    tests,
   );
 
   runTestsForDevices({ currentPage, devices });
