@@ -8,7 +8,6 @@ import {
 import {
   checkRepoListForTab,
   mostRecentReposClickFlow,
-  testMobileRepoList,
 } from "../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Discover page";
@@ -37,13 +36,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const iPhoneTests = testMobileRepoList("[data-cy=discover-repo-lists]");
-
   const devices = allDevicesDiffTestsForSignedOut(
     pageName,
     desktopTests,
     desktopTests,
-    iPhoneTests,
+    desktopTests,
   );
 
   runTestsForDevices({ currentPage, devices });
