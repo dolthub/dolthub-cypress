@@ -1,5 +1,10 @@
+import { mobileTests } from "cypress/integration/utils/sharedTests/testRepoPageMobile";
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 
@@ -8,13 +13,15 @@ const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentBranch = "master";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/commits/${currentBranch}`;
+const hasDocs = true;
+const hasBranch = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
+  const desktopAndIpadTests = (isIpad = false) => [
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
     newExpectation(
       "should not find create pull button",
       "[data-cy=new-pull-button]",
@@ -52,7 +59,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

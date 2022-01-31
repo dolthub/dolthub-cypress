@@ -265,7 +265,7 @@ function runClicks(clickStrOrArr: string | string[]) {
       cy.get(clickStr, opts).click(clickOpts);
     });
   } else {
-    cy.get(clickStrOrArr, opts).click(clickOpts);
+    cy.get(clickStrOrArr, opts).scrollIntoView().click(clickOpts);
   }
 }
 
@@ -273,13 +273,10 @@ function runClicks(clickStrOrArr: string | string[]) {
 function scrollSelectorIntoView(clickStrOrArr: string | string[]) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.pause();
       cy.get(clickStr, opts).scrollIntoView();
     });
   } else {
-    cy.pause();
     cy.get(clickStrOrArr, opts).scrollIntoView();
-    cy.pause();
   }
 }
 
