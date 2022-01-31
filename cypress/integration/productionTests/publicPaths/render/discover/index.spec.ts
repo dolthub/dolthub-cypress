@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { allDevicesForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithClickFlows,
@@ -36,12 +36,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    tests,
-    tests,
-    tests,
-  );
+  const devices = allDevicesForSignedOut(pageName, tests, tests);
 
   runTestsForDevices({ currentPage, devices });
 });

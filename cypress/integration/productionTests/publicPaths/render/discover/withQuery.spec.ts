@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { allDevicesForSignedOut } from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -48,12 +48,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkRepoListForTab("most-recent", 20),
   ];
 
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    tests,
-    tests,
-    tests,
-  );
+  const devices = allDevicesForSignedOut(pageName, tests, tests);
 
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
