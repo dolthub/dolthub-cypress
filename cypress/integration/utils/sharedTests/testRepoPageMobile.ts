@@ -8,7 +8,6 @@ import { testMobileRepoHeaderNav } from "./repoHeaderNav";
 import {
   beVisible,
   beVisibleAndContain,
-  notBeVisible,
   notExist,
 } from "./sharedFunctionsAndVariables";
 
@@ -61,7 +60,7 @@ export const testRepoWithDocsMobile: Tests = [
   newExpectation(
     "should not show the edit description button for mobile",
     "[data-cy=edit-description-button]",
-    notBeVisible,
+    notExist,
   ),
   newExpectation(
     "should show the doc list",
@@ -106,6 +105,7 @@ export const testDesktopOnlyWarnings = (
   currentPage: string,
   hasDocs: boolean,
   hasBranch: boolean,
+  hasData: boolean,
 ): Tests => {
   const pageName = currentPage.toString().split("/")[3];
   const notDocPage = !(pageName === "doc" || pageName === undefined)
@@ -120,10 +120,10 @@ export const testDesktopOnlyWarnings = (
   let docsTests;
   if (hasDocs) {
     docsTests = testRepoWithDocsMobile;
-  } else if (pageName !== "doc") {
-    docsTests = testEmptyRepo(hasBranch);
-  } else {
+  } else if (hasData) {
     docsTests = testRepoWithoutDocsMobile;
+  } else {
+    docsTests = testEmptyRepo(hasBranch);
   }
 
   return [
@@ -149,7 +149,8 @@ export const mobileTests = (
   currentPage: string,
   hasDocs: boolean,
   hasBranch: boolean,
+  hasData = true,
 ): Tests => [
   ...testMobileRepoHeaderNav(currentOwner, currentRepo),
-  ...testDesktopOnlyWarnings(currentPage, hasDocs, hasBranch),
+  ...testDesktopOnlyWarnings(currentPage, hasDocs, hasBranch, hasData),
 ];

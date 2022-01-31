@@ -27,6 +27,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = false;
 const hasBranch = true;
+const hasData = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -84,7 +85,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+      mobileTests(
+        currentOwner,
+        currentRepo,
+        currentPage,
+        hasDocs,
+        hasBranch,
+        hasData,
+      ),
     ),
   ];
 

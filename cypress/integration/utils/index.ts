@@ -21,6 +21,26 @@ export const clickOpts: Partial<Cypress.ClickOptions> = {
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
 
+export const deviceDimentions = {
+  "macbook-15": { width: 1440, height: 900 },
+  "macbook-16": { width: 1536, height: 960 },
+  "macbook-13": { width: 1280, height: 800 },
+  "macbook-11": { width: 1366, height: 768 },
+  "ipad-2": { width: 768, height: 1024 },
+  "ipad-mini": { width: 768, height: 1024 },
+  "iphone-xr": { width: 414, height: 896 },
+  "iphone-x": { width: 375, height: 812 },
+  "iphone-6+": { width: 414, height: 736 },
+  "iphone-se2": { width: 375, height: 667 },
+  "iphone-8": { width: 375, height: 667 },
+  "iphone-7": { width: 375, height: 667 },
+  "iphone-3": { width: 320, height: 480 },
+  "iphone-4": { width: 320, height: 480 },
+  "iphone-5": { width: 320, height: 568 },
+  "iphone-6": { width: 375, height: 667 },
+  "samsung-note9": { width: 414, height: 846 },
+  "samsung-s10": { width: 360, height: 760 },
+};
 // RUN TESTS
 
 type TestsArgs = {
@@ -32,7 +52,6 @@ type TestsArgs = {
 };
 
 export function runTests({
-  device,
   isMobile,
   currentPage,
   tests,
@@ -45,8 +64,6 @@ export function runTests({
   beforeEach(() => {
     // Preserve dolthubToken cookie through all tests for page
     Cypress.Cookies.preserveOnce("dolthubToken");
-
-    cy.visitViewport(device);
   });
 
   after(() => {
@@ -101,13 +118,27 @@ export function runTestsForDevices({
     const skipForLogin = d.loggedIn && (!username || !password);
 
     if (skip || skipForLogin) {
-      describe.skip(d.description, () => {
-        runTests({ ...d, currentPage });
-      });
+      describe.skip(
+        d.description,
+        {
+          viewportHeight: deviceDimentions[d.device].height,
+          viewportWidth: deviceDimentions[d.device].width,
+        },
+        () => {
+          runTests({ ...d, currentPage });
+        },
+      );
     } else {
-      describe(d.description, () => {
-        runTests({ ...d, currentPage });
-      });
+      describe(
+        d.description,
+        {
+          viewportHeight: deviceDimentions[d.device].height,
+          viewportWidth: deviceDimentions[d.device].width,
+        },
+        () => {
+          runTests({ ...d, currentPage });
+        },
+      );
     }
   });
 }
@@ -242,10 +273,13 @@ function runClicks(clickStrOrArr: string | string[]) {
 function scrollSelectorIntoView(clickStrOrArr: string | string[]) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
+      cy.pause();
       cy.get(clickStr, opts).scrollIntoView();
     });
   } else {
+    cy.pause();
     cy.get(clickStrOrArr, opts).scrollIntoView();
+    cy.pause();
   }
 }
 

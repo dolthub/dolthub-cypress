@@ -5,6 +5,7 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { Expectation, ShouldArgs, Tests } from "../types";
+import { notExist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 const notBeVisible = newShouldArgs("not.be.visible");
@@ -280,7 +281,7 @@ export const testMobileRepoHeaderNav = (
   newExpectation(
     "should not have Repo Settings section",
     "[data-cy=repo-settings-tab]",
-    notBeVisible,
+    notExist,
   ),
 ];
 
