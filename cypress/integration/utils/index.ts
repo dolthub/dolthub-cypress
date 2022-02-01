@@ -52,6 +52,7 @@ type TestsArgs = {
 };
 
 export function runTests({
+  device,
   isMobile,
   currentPage,
   tests,
@@ -59,6 +60,7 @@ export function runTests({
 }: TestsArgs) {
   before(() => {
     cy.visitPage(currentPage, loggedIn);
+    cy.visitViewport(device);
   });
 
   beforeEach(() => {
@@ -116,7 +118,6 @@ export function runTestsForDevices({
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
     const skipForLogin = d.loggedIn && (!username || !password);
-
     if (skip || skipForLogin) {
       describe.skip(
         d.description,
