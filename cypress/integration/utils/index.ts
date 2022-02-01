@@ -266,7 +266,7 @@ function runClicks(clickStrOrArr: string | string[]) {
       cy.get(clickStr, opts).click(clickOpts);
     });
   } else {
-    cy.get(clickStrOrArr, opts).scrollIntoView().click(clickOpts);
+    cy.get(clickStrOrArr, opts).click(clickOpts);
   }
 }
 
