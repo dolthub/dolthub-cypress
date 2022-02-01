@@ -18,7 +18,7 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const query1 = "figma of databases";
+  const query1 = "figma of databases video";
   const query2 = "wikipedia ngrams";
 
   const searchClickFlow = newClickFlow(
@@ -26,8 +26,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     [
       ...testSearched(
         query1,
-        "DoltHub is the Figma of Databases",
-        "2021-11-08-figma-of-databases/",
+        "DoltHub is the Figma of Databases Video",
+        "2022-01-25-figma-of-databases-video/",
       ),
       newExpectationWithTypeString(
         "should change input",
