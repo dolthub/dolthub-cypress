@@ -21,7 +21,7 @@ export const clickOpts: Partial<Cypress.ClickOptions> = {
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
 
-export const deviceDimentions = {
+export const deviceDimensions = {
   "macbook-15": { width: 1440, height: 900 },
   "macbook-16": { width: 1536, height: 960 },
   "macbook-13": { width: 1280, height: 800 },
@@ -121,8 +121,8 @@ export function runTestsForDevices({
       describe.skip(
         d.description,
         {
-          viewportHeight: deviceDimentions[d.device].height,
-          viewportWidth: deviceDimentions[d.device].width,
+          viewportHeight: deviceDimensions[d.device].height,
+          viewportWidth: deviceDimensions[d.device].width,
         },
         () => {
           runTests({ ...d, currentPage });
@@ -132,8 +132,8 @@ export function runTestsForDevices({
       describe(
         d.description,
         {
-          viewportHeight: deviceDimentions[d.device].height,
-          viewportWidth: deviceDimentions[d.device].width,
+          viewportHeight: deviceDimensions[d.device].height,
+          viewportWidth: deviceDimensions[d.device].width,
         },
         () => {
           runTests({ ...d, currentPage });
