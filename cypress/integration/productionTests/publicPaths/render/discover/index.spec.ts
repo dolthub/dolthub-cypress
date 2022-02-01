@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { allDevicesForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithClickFlows,
@@ -8,7 +8,6 @@ import {
 import {
   checkRepoListForTab,
   mostRecentReposClickFlow,
-  testMobileRepoList,
 } from "../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Discover page";
@@ -17,7 +16,7 @@ const currentPage = "/discover";
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const desktopTests = [
+  const tests = [
     newExpectation(
       "should have repository search input",
       "[data-cy=search-input]",
@@ -37,14 +36,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const iPhoneTests = testMobileRepoList("[data-cy=discover-repo-lists]");
-
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    desktopTests,
-    desktopTests,
-    iPhoneTests,
-  );
+  const devices = allDevicesForSignedOut(pageName, tests, tests);
 
   runTestsForDevices({ currentPage, devices });
 });
