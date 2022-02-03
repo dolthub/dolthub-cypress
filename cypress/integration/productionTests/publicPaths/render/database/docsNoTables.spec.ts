@@ -1,9 +1,9 @@
+import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
-} from "cypress/integration/utils/devices";
-import { runTestsForDevices } from "../../../../utils";
+} from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
