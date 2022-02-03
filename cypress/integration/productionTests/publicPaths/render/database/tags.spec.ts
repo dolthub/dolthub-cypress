@@ -1,4 +1,3 @@
-import { mobileTests } from "cypress/integration/utils/sharedTests/testRepoPageMobile";
 import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -19,6 +18,7 @@ import {
   testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 import { Expectation } from "../../../../utils/types";
 
 const pageName = "Database page with tags and branches";
@@ -54,7 +54,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests(false)),
+    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
     iPhoneXForAppLayout(
       pageName,

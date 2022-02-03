@@ -1,4 +1,3 @@
-import { mobileTests } from "cypress/integration/utils/sharedTests/testRepoPageMobile";
 import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -7,6 +6,7 @@ import {
 } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Commit log page";
 const currentOwner = "automated_testing";

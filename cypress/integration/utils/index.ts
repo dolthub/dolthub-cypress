@@ -21,25 +21,28 @@ export const clickOpts: Partial<Cypress.ClickOptions> = {
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
 
-export const deviceDimensions = {
-  "macbook-15": { width: 1440, height: 900 },
-  "macbook-16": { width: 1536, height: 960 },
-  "macbook-13": { width: 1280, height: 800 },
-  "macbook-11": { width: 1366, height: 768 },
-  "ipad-2": { width: 768, height: 1024 },
-  "ipad-mini": { width: 768, height: 1024 },
-  "iphone-xr": { width: 414, height: 896 },
-  "iphone-x": { width: 375, height: 812 },
-  "iphone-6+": { width: 414, height: 736 },
-  "iphone-se2": { width: 375, height: 667 },
-  "iphone-8": { width: 375, height: 667 },
-  "iphone-7": { width: 375, height: 667 },
-  "iphone-3": { width: 320, height: 480 },
-  "iphone-4": { width: 320, height: 480 },
-  "iphone-5": { width: 320, height: 568 },
-  "iphone-6": { width: 375, height: 667 },
-  "samsung-note9": { width: 414, height: 846 },
-  "samsung-s10": { width: 360, height: 760 },
+export const deviceDimensions: Record<
+  Cypress.ViewportPreset,
+  Cypress.Viewport
+> = {
+  "macbook-15": { viewportWidth: 1440, viewportHeight: 900 },
+  "macbook-16": { viewportWidth: 1536, viewportHeight: 960 },
+  "macbook-13": { viewportWidth: 1280, viewportHeight: 800 },
+  "macbook-11": { viewportWidth: 1366, viewportHeight: 768 },
+  "ipad-2": { viewportWidth: 768, viewportHeight: 1024 },
+  "ipad-mini": { viewportWidth: 768, viewportHeight: 1024 },
+  "iphone-xr": { viewportWidth: 414, viewportHeight: 896 },
+  "iphone-x": { viewportWidth: 375, viewportHeight: 812 },
+  "iphone-6+": { viewportWidth: 414, viewportHeight: 736 },
+  "iphone-se2": { viewportWidth: 375, viewportHeight: 667 },
+  "iphone-8": { viewportWidth: 375, viewportHeight: 667 },
+  "iphone-7": { viewportWidth: 375, viewportHeight: 667 },
+  "iphone-3": { viewportWidth: 320, viewportHeight: 480 },
+  "iphone-4": { viewportWidth: 320, viewportHeight: 480 },
+  "iphone-5": { viewportWidth: 320, viewportHeight: 568 },
+  "iphone-6": { viewportWidth: 375, viewportHeight: 667 },
+  "samsung-note9": { viewportWidth: 414, viewportHeight: 846 },
+  "samsung-s10": { viewportWidth: 360, viewportHeight: 760 },
 };
 // RUN TESTS
 
@@ -119,27 +122,13 @@ export function runTestsForDevices({
     // Skip tests that require login if username and password not found
     const skipForLogin = d.loggedIn && (!username || !password);
     if (skip || skipForLogin) {
-      describe.skip(
-        d.description,
-        {
-          viewportHeight: deviceDimensions[d.device].height,
-          viewportWidth: deviceDimensions[d.device].width,
-        },
-        () => {
-          runTests({ ...d, currentPage });
-        },
-      );
+      describe.skip(d.description, deviceDimensions[d.device], () => {
+        runTests({ ...d, currentPage });
+      });
     } else {
-      describe(
-        d.description,
-        {
-          viewportHeight: deviceDimensions[d.device].height,
-          viewportWidth: deviceDimensions[d.device].width,
-        },
-        () => {
-          runTests({ ...d, currentPage });
-        },
-      );
+      describe(d.description, deviceDimensions[d.device], () => {
+        runTests({ ...d, currentPage });
+      });
     }
   });
 }

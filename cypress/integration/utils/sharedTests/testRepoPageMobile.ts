@@ -100,7 +100,15 @@ export const testRepoWithoutDocsMobile: Tests = [
     newShouldArgs("be.visible.and.have.length.of.at.least", 3),
   ),
 ];
-
+function docsTestsFunc(hasDocs: boolean, hasData: boolean, hasBranch: boolean) {
+  if (hasDocs) {
+    return testRepoWithDocsMobile;
+  }
+  if (hasData) {
+    return testRepoWithoutDocsMobile;
+  }
+  return testEmptyRepo(hasBranch);
+}
 export const testDesktopOnlyWarnings = (
   currentPage: string,
   hasDocs: boolean,
@@ -117,14 +125,7 @@ export const testDesktopOnlyWarnings = (
         ),
       ]
     : [];
-  let docsTests;
-  if (hasDocs) {
-    docsTests = testRepoWithDocsMobile;
-  } else if (hasData) {
-    docsTests = testRepoWithoutDocsMobile;
-  } else {
-    docsTests = testEmptyRepo(hasBranch);
-  }
+  const docsTests = docsTestsFunc(hasDocs, hasData, hasBranch);
 
   return [
     ...notDocPage,
