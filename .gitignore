@@ -1,3 +1,5 @@
+.DS_Store
+
 # ignore stored screenshots and videos
 cypress/screenshots/
 cypress/videos/
