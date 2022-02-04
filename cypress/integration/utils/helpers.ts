@@ -61,7 +61,14 @@ export function newExpectationWithScrollIntoView(
 ): Expectation {
   return { description, selector, scrollIntoView, shouldArgs, skip };
 }
-
+export function pauseDebug(
+  description: string,
+  selector: Selector,
+  shouldArgs: ShouldArgs,
+  pauseHere: boolean,
+): Expectation {
+  return { description, selector, pauseHere, shouldArgs };
+}
 export function newExpectationWithScrollTo(
   description: string,
   selector: string,

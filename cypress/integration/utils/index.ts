@@ -97,7 +97,9 @@ export function runTests({
         if (t.scrollTo) {
           handleScrollTo(t.scrollTo);
         }
-
+        if (t.pauseHere) {
+          cy.pause();
+        }
         if (t.redirect) {
           // Sign out after signing in for redirect and running tests
           cy.signout(isMobile);
@@ -225,6 +227,7 @@ function getAssertionTest(
 type ClickFlowsArgs = {
   description: string;
   clickFlows?: ClickFlow[];
+  pauseHere?: boolean;
 };
 
 // testClickFlows recursively runs clickFlow tests

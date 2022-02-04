@@ -48,6 +48,7 @@ export type Expectation = {
   fileUpload?: string;
   redirect?: string;
   url?: string;
+  pauseHere?: boolean;
 };
 
 export type Tests = Expectation[];
