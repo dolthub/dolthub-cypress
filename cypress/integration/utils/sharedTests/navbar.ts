@@ -74,7 +74,7 @@ export const testMobileNavbar: Tests = [
   ),
   newExpectationWithScrollIntoView(
     "should scroll header into view",
-    "header",
+    "header:first",
     beVisible,
     true,
   ),
