@@ -3,7 +3,7 @@ import { allDevicesForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Organization page with no repos";
-const orgName = "test-org";
+const orgName = "no-repos-org";
 const currentPage = `/organizations/${orgName}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
