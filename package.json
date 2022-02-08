@@ -18,7 +18,8 @@
     "compile": "tsc -b",
     "lint": "eslint --cache --ext .ts,.js .",
     "prettier": "prettier --check 'cypress/**/*.{ts,js}'",
-    "prettier:fix": "prettier --write 'cypress/**/*.{ts,js}'"
+    "prettier:fix": "prettier --write 'cypress/**/*.{ts,js}'",
+    "clean": "rimraf node_modules dist .eslintcache .yarn/cache tsconfig.tsbuildinfo"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
@@ -27,6 +28,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@cypress/github-action": "latest",
     "@types/node": "^17.0.7",
+    "@types/rimraf": "^3",
     "@typescript-eslint/eslint-plugin": "^4.33",
     "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.32.0",
@@ -36,7 +38,8 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.4",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "cypress": "9.4.1",
