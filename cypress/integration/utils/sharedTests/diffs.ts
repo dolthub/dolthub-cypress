@@ -1,4 +1,9 @@
-import { newExpectation, newShouldArgs } from "../helpers";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../helpers";
 import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
@@ -83,10 +88,24 @@ export const diffsWithCommitTests = (
   numParents: number,
 ): Tests => [
   ...leftNavTests(currentFromCommit, numParents),
-  newExpectation(
-    "should show View SQL link",
-    "[data-cy=view-sql-link]",
+  newExpectationWithClickFlows(
+    "Option dropdown should have appropriate links",
+    "[data-cy=options-button]",
     beVisible,
+    [
+      newClickFlow("[data-cy=options-button]", [
+        newExpectation(
+          "should have toggle whitespace button",
+          "[data-cy=toggle-whitespace-button]",
+          beVisible,
+        ),
+        newExpectation(
+          "should show View SQL link",
+          "[data-cy=view-sql-link]",
+          beVisible,
+        ),
+      ]),
+    ],
   ),
   newExpectation(
     "should show filter by diff type selector",
