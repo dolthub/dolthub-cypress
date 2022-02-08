@@ -20,7 +20,9 @@
         with:
           node-version: '14.17'
       - name: Install dependencies
-        run: yarn install --immutable --immutable-cache
+        run: |
+          yarn policies set-version 3.1.1
+          yarn
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
