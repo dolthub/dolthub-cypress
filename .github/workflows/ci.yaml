@@ -9,9 +9,10 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14.17'
+    - name: Install yarn
+      run: npm install -g yarn
     - name: Install and run CI
       run: |
-        yarn policies set-version 3.1.1
         yarn
         yarn run ci
         
