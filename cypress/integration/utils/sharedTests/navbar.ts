@@ -72,12 +72,6 @@ export const testMobileNavbar: Tests = [
     beVisible,
     true,
   ),
-  newExpectationWithScrollIntoView(
-    "should scroll header into view",
-    "header:first",
-    beVisible,
-    true,
-  ),
   newExpectationWithClickFlows(
     "should show menu button and open nav on mobile",
     "[data-cy=mobile-navbar-menu-button]",
