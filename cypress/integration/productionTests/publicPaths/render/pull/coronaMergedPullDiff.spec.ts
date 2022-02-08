@@ -1,6 +1,11 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../../../../utils/helpers";
 
 const pageName = "Merged pull diff page";
 const currentOwner = "automated_testing";
@@ -44,10 +49,24 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=diff-table-name]",
       newShouldArgs("be.visible.and.contain", "case_details"),
     ),
-    newExpectation(
-      "should not show View SQL link",
-      "[data-cy=view-sql-link]",
-      newShouldArgs("not.exist"),
+    newExpectationWithClickFlows(
+      "Option dropdown should have appropriate links",
+      "[data-cy=options-button]",
+      beVisible,
+      [
+        newClickFlow("[data-cy=options-button]", [
+          newExpectation(
+            "should have toggle whitespace button",
+            "[data-cy=toggle-whitespace-button]",
+            beVisible,
+          ),
+          newExpectation(
+            "should not show View SQL link",
+            "[data-cy=view-sql-link]",
+            newShouldArgs("not.exist"),
+          ),
+        ]),
+      ],
     ),
     newExpectation(
       "should show filter by diff type selector",
