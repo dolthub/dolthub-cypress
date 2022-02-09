@@ -69,7 +69,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = [
     macbook15ForAppLayout(pageName, desktopAndIpadTests()),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true),
     iPhoneXForAppLayout(
       pageName,
       mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),

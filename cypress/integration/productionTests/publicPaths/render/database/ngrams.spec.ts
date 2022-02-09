@@ -257,7 +257,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
 
   const devices = [
     macbook15ForAppLayout(pageName, desktopAndIpadTests),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests, true),
     iPhoneXForAppLayout(
       pageName,
       mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
