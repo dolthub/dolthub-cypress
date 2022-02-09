@@ -23,3 +23,12 @@ lerna-debug.log*
 *.env.json
 
 tsconfig.tsbuildinfo
+
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
