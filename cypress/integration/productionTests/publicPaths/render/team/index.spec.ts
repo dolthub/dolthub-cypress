@@ -27,6 +27,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=team-section] ul > li",
       newShouldArgs("be.visible.and.have.length.of.at.least", 10),
     ),
+    newExpectation(
+      "should have apply on linkedin button",
+      "[data-cy=apply-on-linkedin-button] button",
+      newShouldArgs("be.exist"),
+    ),
   ];
 
   const devices = allDevicesForSignedOut(pageName, tests, tests);
