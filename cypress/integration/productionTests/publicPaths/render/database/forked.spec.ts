@@ -73,6 +73,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPhoneXForAppLayout(
       pageName,
       mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+      true,
     ),
   ];
   const skip = false;
