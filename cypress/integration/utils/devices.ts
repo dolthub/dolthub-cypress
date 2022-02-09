@@ -62,11 +62,18 @@ export const macbook15ForAppLayout = (
   return macbook15(pageName, t, loggedIn);
 };
 
-export const iPad2ForAppLayout = (pageName: string, tests: Tests): Device =>
-  iPad2(pageName, getAppLayoutTestsMobile(tests), false);
+export const iPad2ForAppLayout = (
+  pageName: string,
+  tests: Tests,
+  skipNavbar = false,
+): Device => iPad2(pageName, getAppLayoutTestsMobile(tests, skipNavbar), false);
 
-export const iPhoneXForAppLayout = (pageName: string, tests: Tests): Device =>
-  iPhoneX(pageName, getAppLayoutTestsMobile(tests), false);
+export const iPhoneXForAppLayout = (
+  pageName: string,
+  tests: Tests,
+  skipNavbar = false,
+): Device =>
+  iPhoneX(pageName, getAppLayoutTestsMobile(tests, skipNavbar), false);
 
 export const mobileDevicesForAppLayout = (
   pageName: string,
