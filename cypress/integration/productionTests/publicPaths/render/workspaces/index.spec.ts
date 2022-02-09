@@ -1,5 +1,9 @@
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -8,6 +12,7 @@ import {
 } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -33,13 +38,19 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ]);
 
-  const tests = [
+  const desktopAndIpadTests = (isIpad = false) => [
     newExpectation(
       "should have repository layout",
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      isIpad,
+    ),
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",
@@ -88,7 +99,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests(), false, loggedIn),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, true),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

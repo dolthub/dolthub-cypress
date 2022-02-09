@@ -1,14 +1,20 @@
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
-  testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
+  testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
+import { Tests } from "../../../../utils/types";
 
 const pageName = "Database page (corona-virus) with tables and docs";
 const currentOwner = "automated_testing";
@@ -25,7 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const tests = [
+  const desktopAndIpadTests = (isIpad = false): Tests => [
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
@@ -41,7 +47,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      isIpad,
+    ),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 11, "case_details"),
     testViewsSection(hasBranch, 15, testView),
     testQueryCatalogSection(hasBranch, 10, testQuery),
@@ -49,7 +61,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

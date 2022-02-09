@@ -1,7 +1,12 @@
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Pull requests page with tables and docs";
 const currentOwner = "automated_testing";
@@ -12,13 +17,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const tests = [
-    // newExpectation(
-    //   "should find create pull button",
-    //   "[data-cy=new-pull-button]",s
-    //   beVisible,
-    // ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
+  const desktopAndIpadTests = (isIpad = false) => [
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
     newExpectation(
       "should not find empty pull message",
       "[data-cy=pull-requests-no-pulls]",
@@ -56,7 +56,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests(), false),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, true, true),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

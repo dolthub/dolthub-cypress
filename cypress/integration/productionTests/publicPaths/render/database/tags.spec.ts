@@ -1,19 +1,24 @@
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
-  testViewsSection,
   testQueryCatalogSection,
   testSchemaSection,
+  testViewsSection,
 } from "../../../../utils/sharedTests/repoLeftNav";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 import { Expectation } from "../../../../utils/types";
 
 const pageName = "Database page with tags and branches";
@@ -28,13 +33,19 @@ const hasDocs = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
-  const tests = [
+  const desktopAndIpadTests = (isIpad = false) => [
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      false,
+      isIpad,
+    ),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
@@ -42,7 +53,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
@@ -163,7 +181,10 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
     const tag = `v${i}`;
     const tagPageName = `${pageName} (tag ${tag})`;
     const currentPage = `repositories/${currentOwner}/${currentRepo}/data/${tag}`;
-    const devices = [macbook15ForAppLayout(tagPageName, tests(i))];
+    const devices = [
+      macbook15ForAppLayout(tagPageName, tests(i)),
+      iPad2ForAppLayout(tagPageName, tests(i)),
+    ];
     const skip = false;
     runTestsForDevices({ currentPage, devices, skip });
   }

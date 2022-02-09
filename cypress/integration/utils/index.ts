@@ -21,6 +21,29 @@ export const clickOpts: Partial<Cypress.ClickOptions> = {
 const username = Cypress.env("TEST_USERNAME");
 const password = Cypress.env("TEST_PASSWORD");
 
+export const deviceDimensions: Record<
+  Cypress.ViewportPreset,
+  Cypress.Viewport
+> = {
+  "macbook-15": { viewportWidth: 1440, viewportHeight: 900 },
+  "macbook-16": { viewportWidth: 1536, viewportHeight: 960 },
+  "macbook-13": { viewportWidth: 1280, viewportHeight: 800 },
+  "macbook-11": { viewportWidth: 1366, viewportHeight: 768 },
+  "ipad-2": { viewportWidth: 768, viewportHeight: 1024 },
+  "ipad-mini": { viewportWidth: 768, viewportHeight: 1024 },
+  "iphone-xr": { viewportWidth: 414, viewportHeight: 896 },
+  "iphone-x": { viewportWidth: 375, viewportHeight: 812 },
+  "iphone-6+": { viewportWidth: 414, viewportHeight: 736 },
+  "iphone-se2": { viewportWidth: 375, viewportHeight: 667 },
+  "iphone-8": { viewportWidth: 375, viewportHeight: 667 },
+  "iphone-7": { viewportWidth: 375, viewportHeight: 667 },
+  "iphone-3": { viewportWidth: 320, viewportHeight: 480 },
+  "iphone-4": { viewportWidth: 320, viewportHeight: 480 },
+  "iphone-5": { viewportWidth: 320, viewportHeight: 568 },
+  "iphone-6": { viewportWidth: 375, viewportHeight: 667 },
+  "samsung-note9": { viewportWidth: 414, viewportHeight: 846 },
+  "samsung-s10": { viewportWidth: 360, viewportHeight: 760 },
+};
 // RUN TESTS
 
 type TestsArgs = {
@@ -40,13 +63,12 @@ export function runTests({
 }: TestsArgs) {
   before(() => {
     cy.visitPage(currentPage, loggedIn);
+    cy.visitViewport(device);
   });
 
   beforeEach(() => {
     // Preserve dolthubToken cookie through all tests for page
     Cypress.Cookies.preserveOnce("dolthubToken");
-
-    cy.visitViewport(device);
   });
 
   after(() => {
@@ -99,13 +121,12 @@ export function runTestsForDevices({
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
     const skipForLogin = d.loggedIn && (!username || !password);
-
     if (skip || skipForLogin) {
-      describe.skip(d.description, () => {
+      describe.skip(d.description, deviceDimensions[d.device], () => {
         runTests({ ...d, currentPage });
       });
     } else {
-      describe(d.description, () => {
+      describe(d.description, deviceDimensions[d.device], () => {
         runTests({ ...d, currentPage });
       });
     }
@@ -231,10 +252,10 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
 function runClicks(clickStrOrArr: string | string[]) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, opts).click(clickOpts);
+      cy.get(clickStr, opts).should("be.visible").click(clickOpts);
     });
   } else {
-    cy.get(clickStrOrArr, opts).click(clickOpts);
+    cy.get(clickStrOrArr, opts).should("be.visible").click(clickOpts);
   }
 }
 

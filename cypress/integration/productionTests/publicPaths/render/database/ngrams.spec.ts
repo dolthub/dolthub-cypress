@@ -1,12 +1,9 @@
-import {
-  tableExpectations,
-  testViewsSection,
-  testQueryCatalogSection,
-  testSchemaSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -15,7 +12,14 @@ import {
 } from "../../../../utils/helpers";
 import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-// import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import {
+  tableExpectations,
+  testQueryCatalogSection,
+  testSchemaSection,
+  testViewsSection,
+} from "../../../../utils/sharedTests/repoLeftNav";
+import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Database page (wikipedia-ngrams) with tables";
 const currentOwner = "automated_testing";
@@ -60,8 +64,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     "[data-cy=repo-tables-table-list]",
   );
 
-  const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+  const desktopAndIpadTests = (isIpad = false) => [
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      isIpad,
+    ),
     newExpectationWithClickFlows(
       "should have repo Tables section",
       "[data-cy=repo-tables-table-list]",
@@ -92,7 +102,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
@@ -222,7 +239,7 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     ],
   );
 
-  const tests = [
+  const desktopAndIpadTests = [
     newExpectationWithClickFlows(
       "should update data table when table clicked",
       "[data-cy=repo-tables-table-column-bigram]",
@@ -237,7 +254,14 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     ),
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests)];
+  const devices = [
+    macbook15ForAppLayout(pageName, desktopAndIpadTests),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests),
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+    ),
+  ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

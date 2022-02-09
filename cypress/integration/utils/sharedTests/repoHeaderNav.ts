@@ -4,9 +4,11 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../helpers";
-import { Expectation, Tests } from "../types";
+import { Expectation, ShouldArgs, Tests } from "../types";
+import { notExist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
+const notBeVisible = newShouldArgs("not.be.visible");
 
 // HEADER
 
@@ -107,53 +109,63 @@ export const databaseDropdownClickFlow = (
     "[data-cy=repo-dropdown-button]",
   );
 
-// DATABASE TAB
+export const testTabs = (visiblity: ShouldArgs): Expectation[] => {
+  const tabsvisibility = visiblity.chainer === "be.visible" ? "" : "not ";
+  return [
+    // DATABASE TAB
+    newExpectation(
+      `should ${tabsvisibility}have repo Database tab`,
+      "[data-cy=repo-database-tab]",
+      visiblity,
+    ),
 
-export const testDatabaseTab: Expectation = newExpectation(
-  "should have repo Database tab",
-  "[data-cy=repo-database-tab]",
-  newShouldArgs("be.visible"),
-);
+    // ABOUT TAB
 
-// ABOUT TAB
+    newExpectation(
+      `should ${tabsvisibility}have repo About tab`,
+      "[data-cy=repo-about-tab]",
+      visiblity,
+    ),
 
-export const testAboutTab: Expectation = newExpectation(
-  "should have repo About tab",
-  "[data-cy=repo-about-tab]",
-  newShouldArgs("be.visible"),
-);
+    // COMMIT LOG TAB
+    newExpectation(
+      `should ${tabsvisibility}have repo Commit Log tab`,
+      "[data-cy=repo-commit-log-tab]",
+      visiblity,
+    ),
 
-// COMMIT LOG TAB
+    // RELEASES TAB
 
-export const testCommitLogTab: Expectation = newExpectation(
-  "should have repo Commit Log tab",
-  "[data-cy=repo-commit-log-tab]",
-  beVisible,
-);
+    newExpectation(
+      `should ${tabsvisibility}have repo Tag List tab`,
+      "[data-cy=repo-releases-tab]",
+      visiblity,
+    ),
 
-// RELEASES TAB
+    // PULL REQUESTS TAB
 
-export const testReleasesTab: Expectation = newExpectation(
-  "should have repo Tag List tab",
-  "[data-cy=repo-releases-tab]",
-  beVisible,
-);
+    newExpectation(
+      `should ${tabsvisibility}have repo Pull Requests tab`,
+      "[data-cy=repo-pull-requests-tab]",
+      visiblity,
+    ),
 
-// PULL REQUESTS TAB
+    // ISSUES TAB
 
-export const testPullRequestsTab: Expectation = newExpectation(
-  "should have repo Pull Requests tab",
-  "[data-cy=repo-pull-requests-tab]",
-  beVisible,
-);
+    newExpectation(
+      `should ${tabsvisibility}have repo Issues tab`,
+      "[data-cy=repo-issues-tab]",
+      visiblity,
+    ),
+    // DEPLOY TAB
 
-// ISSUES TAB
-
-export const testIssuesTab: Expectation = newExpectation(
-  "should have repo Issues tab",
-  "[data-cy=repo-issues-tab]",
-  beVisible,
-);
+    newExpectation(
+      `should ${tabsvisibility}have repo Deploy tab`,
+      "[data-cy=repo-deploy-tab]",
+      visiblity,
+    ),
+  ];
+};
 
 // SETTINGS TAB
 
@@ -163,76 +175,85 @@ export const testRepoSettingsTab = newExpectation(
   beVisible,
 );
 
-// DEPLOY TAB
-
-export const testDeployTab: Expectation = newExpectation(
-  "should have repo Deploy tab",
-  "[data-cy=repo-deploy-tab]",
-  beVisible,
-);
+export const testCommonHeader = (
+  repoName: string,
+  ownerName: string,
+): Expectation[] => [
+  newExpectation(
+    "should have repo header",
+    "[data-cy=repository-page-header]",
+    beVisible,
+  ),
+  newExpectation(
+    "should have owner's name",
+    "[data-cy=repo-breadcrumbs]",
+    newShouldArgs("be.visible.and.contain", ownerName),
+  ),
+  newExpectation(
+    "should have repo's name",
+    "[data-cy=repo-breadcrumbs]",
+    newShouldArgs("be.visible.and.contain", repoName),
+  ),
+  newExpectation(
+    "should have repo last updated",
+    "[data-cy=updated-at]",
+    newShouldArgs("be.visible"),
+  ),
+  newExpectation(
+    "should have repo's size",
+    "[data-cy=repo-size]",
+    newShouldArgs("be.visible"),
+  ),
+  newExpectation(
+    "should have repo star button",
+    "[data-cy=repo-star]",
+    beVisible,
+  ),
+  newExpectation(
+    "should have repo fork button",
+    "[data-cy=repo-fork-button]",
+    beVisible,
+  ),
+];
 
 export const testRepoHeaderForAll = (
   repoName: string,
   ownerName: string,
   loggedIn: boolean,
   hasDocs: boolean,
+  isIpad = false,
 ): Tests => {
-  const loggedOutRepoHeaderTests = [
-    newExpectation(
-      "should have repo header",
-      "[data-cy=repository-page-header]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have owner's name",
-      "[data-cy=repo-breadcrumbs]",
-      newShouldArgs("be.visible.and.contain", ownerName),
-    ),
-    newExpectation(
-      "should have repo's name",
-      "[data-cy=repo-breadcrumbs]",
-      newShouldArgs("be.visible.and.contain", repoName),
-    ),
-    newExpectation(
-      "should have repo last updated",
-      "[data-cy=updated-at]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectation(
-      "should have repo's size",
-      "[data-cy=repo-size]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectation(
-      "should have repo star button",
-      "[data-cy=repo-star]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have repo fork button",
-      "[data-cy=repo-fork-button]",
-      beVisible,
-    ),
-    newExpectationWithClickFlows(
-      "should have repo clone button",
-      "[data-cy=repo-clone-button]",
-      beVisible,
-      [cloneClickFlow],
-    ),
-    testDatabaseTab,
-    testAboutTab,
-    testCommitLogTab,
-    testReleasesTab,
-    testPullRequestsTab,
-    testIssuesTab,
-    testDeployTab,
-    newExpectationWithClickFlows(
-      "should have functioning nav dropdown",
-      "[data-cy=repo-dropdown-button]",
-      beVisible,
-      [databaseDropdownClickFlow(loggedIn, hasDocs)],
-    ),
-  ];
+  const loggedOutRepoHeaderTests = isIpad
+    ? [
+        ...testCommonHeader(repoName, ownerName),
+        newExpectation(
+          "should not have repo clone button",
+          "[data-cy=repo-clone-button]",
+          notBeVisible,
+        ),
+        ...testTabs(beVisible),
+        newExpectation(
+          "should not have nav dropdown",
+          "[data-cy=repo-dropdown-button]",
+          notBeVisible,
+        ),
+      ]
+    : [
+        ...testCommonHeader(repoName, ownerName),
+        newExpectationWithClickFlows(
+          "should have repo clone button",
+          "[data-cy=repo-clone-button]",
+          beVisible,
+          [cloneClickFlow],
+        ),
+        ...testTabs(beVisible),
+        newExpectationWithClickFlows(
+          "should have functioning nav dropdown",
+          "[data-cy=repo-dropdown-button]",
+          beVisible,
+          [databaseDropdownClickFlow(loggedIn, hasDocs)],
+        ),
+      ];
 
   const loggedInRepoHeaderTests = [testRepoSettingsTab];
 
@@ -241,13 +262,37 @@ export const testRepoHeaderForAll = (
     : loggedOutRepoHeaderTests;
 };
 
+export const testMobileRepoHeaderNav = (
+  ownerName: string,
+  repoName: string,
+): Expectation[] => [
+  ...testCommonHeader(repoName, ownerName),
+  newExpectation(
+    "should not have repo clone button",
+    "[data-cy=repo-clone-button]",
+    notBeVisible,
+  ),
+  newExpectation(
+    "should not have nav dropdown",
+    "[data-cy=repo-dropdown-button]",
+    notBeVisible,
+  ),
+  ...testTabs(notBeVisible),
+  newExpectation(
+    "should not have Repo Settings section",
+    "[data-cy=repo-settings-tab]",
+    notExist,
+  ),
+];
+
 export const testRepoHeaderWithBranch = (
   repoName: string,
   ownerName: string,
   loggedIn: boolean,
   hasDocs: boolean,
+  isIpad = false,
 ): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs),
+  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs, isIpad),
   newExpectationWithClickFlows(
     "should open create fork modal on fork button click",
     "[data-cy=repo-fork-button]",
