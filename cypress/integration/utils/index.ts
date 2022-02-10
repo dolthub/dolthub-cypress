@@ -252,10 +252,10 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
 function runClicks(clickStrOrArr: string | string[]) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, opts).should("be.visible").click(clickOpts);
+      cy.get(clickStr, opts).click(clickOpts);
     });
   } else {
-    cy.get(clickStrOrArr, opts).should("be.visible").click(clickOpts);
+    cy.get(clickStrOrArr, opts).click(clickOpts);
   }
 }
 
