@@ -10,8 +10,6 @@ import {
 
 const pageName = "Team page";
 const currentPage = "/team";
-const notBeVisibleAndContain = (value: string) =>
-  newShouldArgs("not.be.visible.or.contain", value);
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
