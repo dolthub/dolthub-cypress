@@ -8,6 +8,7 @@ import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
+  testClickDeleteRow,
   testQueryCatalogSection,
   testSchemaSection,
   testViewsSection,
@@ -55,6 +56,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       isIpad,
     ),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, 11, "case_details"),
+    ...testClickDeleteRow(
+      "error-modal",
+      newShouldArgs("be.visible.and.contain", ["No authentication", "sign in"]),
+    ),
     testViewsSection(hasBranch, 15, testView),
     testQueryCatalogSection(hasBranch, 10, testQuery),
     testSchemaSection(hasBranch, 11, "case_details"),

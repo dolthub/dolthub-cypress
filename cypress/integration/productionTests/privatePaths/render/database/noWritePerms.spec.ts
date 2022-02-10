@@ -1,17 +1,12 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-} from "../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
-import { tableExpectations } from "../../../../utils/sharedTests/repoLeftNav";
 import {
-  beVisible,
-  notExist,
-} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+  tableExpectations,
+  testClickDeleteRow,
+} from "../../../../utils/sharedTests/repoLeftNav";
+import { beVisible } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Logged in database page with no write perms";
 const currentOwner = "dolthub";
@@ -37,32 +32,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       11,
       "characteristics_case_severity",
     ),
-    newExpectationWithClickFlows(
-      "should click first row dropdown button",
-      "[data-cy=repo-data-table-row-0-col-0]",
-      beVisible,
-      [
-        newClickFlow(
-          "[data-cy=row-dropdown-button]:first",
-          [],
-          "[data-cy=delete-row-button]",
-          true,
-        ),
-      ],
-    ),
-    newExpectationWithClickFlows(
-      "should show fork modal",
-      "[data-cy=create-fork-modal]",
+    ...testClickDeleteRow(
+      "create-fork-modal",
       newShouldArgs("be.visible.and.contain", "cypresstesting"),
-      [
-        newClickFlow("[data-cy=cancel-button]", [
-          newExpectation(
-            "should not have open fork modal",
-            "[data-cy=create-fork-modal]",
-            notExist,
-          ),
-        ]),
-      ],
     ),
   ];
 
