@@ -6,9 +6,17 @@
       steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14.17'
+      - name: Install yarn and dependencies
+        run: |
+          npm install -g yarn
+          yarn
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          install: false
           browser: chrome
           headless: true
         env:
