@@ -1,13 +1,17 @@
+import { beVisible } from "cypress/integration/utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../utils";
 import { allDevicesForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
   scrollToPosition,
 } from "../../../../utils/helpers";
 
 const pageName = "Team page";
 const currentPage = "/team";
+const notBeVisibleAndContain = (value: string) =>
+  newShouldArgs("not.be.visible.or.contain", value);
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
@@ -27,10 +31,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=team-section] ul > li",
       newShouldArgs("be.visible.and.have.length.of.at.least", 10),
     ),
+    newExpectationWithScrollIntoView(
+      "should scroll apply button into view",
+      "[data-cy=apply-on-linkedin-button] button",
+      beVisible,
+      true,
+    ),
     newExpectation(
       "should have apply on linkedin button",
       "[data-cy=apply-on-linkedin-button] button",
-      newShouldArgs("be.exist"),
+      beVisible,
     ),
   ];
 
