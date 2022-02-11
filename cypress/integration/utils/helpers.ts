@@ -78,11 +78,13 @@ export function newClickFlow(
   toClickBefore: Selector,
   expectations: Tests,
   toClickAfter?: Selector,
+  force = false,
 ): ClickFlow {
   return {
     toClickBefore,
     expectations,
     toClickAfter,
+    force,
   };
 }
 
