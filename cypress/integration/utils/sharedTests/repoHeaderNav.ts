@@ -46,7 +46,7 @@ export const forkButtonClickFlow = (loggedIn: boolean) =>
     "[data-cy=close-modal]",
   );
 
-// DATABSE DROPDOWN CLICKFLOW
+// DATABASE DROPDOWN CLICK FLOW
 
 export const conditionalReadMeTest = (hasDocs: boolean) => {
   const docsExpectation: Expectation = hasDocs
@@ -109,60 +109,60 @@ export const databaseDropdownClickFlow = (
     "[data-cy=repo-dropdown-button]",
   );
 
-export const testTabs = (visiblity: ShouldArgs): Expectation[] => {
-  const tabsvisibility = visiblity.chainer === "be.visible" ? "" : "not ";
+export const testTabs = (visibility: ShouldArgs): Expectation[] => {
+  const tabsVisibility = visibility.chainer === "be.visible" ? "" : "not ";
   return [
     // DATABASE TAB
     newExpectation(
-      `should ${tabsvisibility}have repo Database tab`,
+      `should ${tabsVisibility}have repo Database tab`,
       "[data-cy=repo-database-tab]",
-      visiblity,
+      visibility,
     ),
 
     // ABOUT TAB
 
     newExpectation(
-      `should ${tabsvisibility}have repo About tab`,
+      `should ${tabsVisibility}have repo About tab`,
       "[data-cy=repo-about-tab]",
-      visiblity,
+      visibility,
     ),
 
     // COMMIT LOG TAB
     newExpectation(
-      `should ${tabsvisibility}have repo Commit Log tab`,
+      `should ${tabsVisibility}have repo Commit Log tab`,
       "[data-cy=repo-commit-log-tab]",
-      visiblity,
+      visibility,
     ),
 
     // RELEASES TAB
 
     newExpectation(
-      `should ${tabsvisibility}have repo Tag List tab`,
+      `should ${tabsVisibility}have repo Tag List tab`,
       "[data-cy=repo-releases-tab]",
-      visiblity,
+      visibility,
     ),
 
     // PULL REQUESTS TAB
 
     newExpectation(
-      `should ${tabsvisibility}have repo Pull Requests tab`,
+      `should ${tabsVisibility}have repo Pull Requests tab`,
       "[data-cy=repo-pull-requests-tab]",
-      visiblity,
+      visibility,
     ),
 
     // ISSUES TAB
 
     newExpectation(
-      `should ${tabsvisibility}have repo Issues tab`,
+      `should ${tabsVisibility}have repo Issues tab`,
       "[data-cy=repo-issues-tab]",
-      visiblity,
+      visibility,
     ),
     // DEPLOY TAB
 
     newExpectation(
-      `should ${tabsvisibility}have repo Deploy tab`,
+      `should ${tabsVisibility}have repo Deploy tab`,
       "[data-cy=repo-deploy-tab]",
-      visiblity,
+      visibility,
     ),
   ];
 };

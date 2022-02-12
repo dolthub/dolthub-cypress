@@ -5,7 +5,7 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../helpers";
-import { ClickFlow, Expectation, Tests } from "../types";
+import { ClickFlow, Expectation, ShouldArgs, Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
 const notExist = newShouldArgs("not.exist");
@@ -245,6 +245,42 @@ export const testTablesSection = (
       ],
     ),
     ...tableExpectations(hasDocs, hasBranch, loggedIn, tableLen, testTable),
+  ];
+};
+
+export const testClickDeleteRow = (
+  modalTag: string,
+  modalShould: ShouldArgs,
+): Expectation[] => {
+  const modalName = modalTag.split("-").join(" ");
+  return [
+    newExpectationWithClickFlows(
+      "should click first row dropdown button",
+      "[data-cy=repo-data-table-row-0-col-0]",
+      beVisible,
+      [
+        newClickFlow(
+          "[data-cy=row-dropdown-button]:first",
+          [],
+          "[data-cy=delete-row-button]",
+          true,
+        ),
+      ],
+    ),
+    newExpectationWithClickFlows(
+      `should show ${modalName}`,
+      `[data-cy=${modalTag}]`,
+      modalShould,
+      [
+        newClickFlow("[data-cy=close-modal]", [
+          newExpectation(
+            `should not have open ${modalName}`,
+            `[data-cy=${modalTag}]`,
+            notExist,
+          ),
+        ]),
+      ],
+    ),
   ];
 };
 
