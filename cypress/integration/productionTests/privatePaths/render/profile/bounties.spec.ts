@@ -4,7 +4,6 @@ import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-  scrollToPosition,
 } from "../../../../utils/helpers";
 
 const pageName = "Profile bounties repositories page";
@@ -43,7 +42,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=search-input]",
       beVisible,
     ),
-    scrollToPosition("#main-content", "center"),
     newExpectationWithScrollIntoView(
       "should render completed bounty databases list",
       "[data-cy=repository-list-completed-bounties]",
