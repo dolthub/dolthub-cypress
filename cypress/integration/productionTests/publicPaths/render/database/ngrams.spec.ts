@@ -241,6 +241,11 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
   );
 
   const desktopAndIpadTests = [
+    newExpectation(
+      "should show data table",
+      "[data-cy=repo-tables-table-column-bigram]",
+      beVisible,
+    ),
     newExpectationWithClickFlows(
       "should update data table when table clicked",
       "[data-cy=repo-tables-table-column-bigram]",
