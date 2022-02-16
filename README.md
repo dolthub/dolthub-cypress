@@ -51,7 +51,7 @@ $ yarn cylo-run-blog
 ```
 
 All the dolthub tests are located in `cypress/integration/dolthub`.
-All the dolthub tests are located in `cypress/integration/doltlab`.
+All the doltlab tests are located in `cypress/integration/doltlab`.
 
 ### Private paths
 
