@@ -64,58 +64,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     "[data-cy=repo-tables-table-list]",
   );
 
-  const desktopAndIpadTests = (isIpad = false) => [
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      isIpad,
-    ),
-    newExpectationWithClickFlows(
-      "should have repo Tables section",
-      "[data-cy=repo-tables-table-list]",
-      beVisible,
-      [tablesClickFlow],
-    ),
-
-    newExpectation(
-      "should find repo data",
-      "[data-cy=repo-data-table-empty]",
-      newShouldArgs("not.exist"),
-    ),
-    newExpectation(
-      "should display repo data columns",
-      "[data-cy=repo-data-table-columns] > th",
-      newShouldArgs("be.visible.and.have.length", 4),
-    ),
-    newExpectation(
-      "should display repo data row column values",
-      "[data-cy=repo-data-table-row-0-col-1]",
-      newShouldArgs("be.visible.and.contain", "3071"),
-    ),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, 4, "bigram_counts"),
-    ...testPaginationForRepoDataTable,
-    testViewsSection(hasBranch, 0),
-    testQueryCatalogSection(hasBranch, 0),
-    testSchemaSection(hasBranch, 4, "bigram_counts"),
-    testSqlConsole,
-  ];
-
-  const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true),
-    iPhoneXForAppLayout(
-      pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
-      true,
-    ),
-  ];
-  const skip = false;
-  runTestsForDevices({ currentPage, devices, skip });
-});
-
-describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on different devices", () => {
   const bigramsToTotalsClickFlow = newClickFlow(
     "[data-cy=repo-tables-table-total_counts-play]",
     [
@@ -180,7 +128,23 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     ],
   );
 
-  const tablesClickFlow = newClickFlow("", [
+  const unigramClickFlow = newClickFlow(
+    "[data-cy=repo-tables-table-unigram_counts-play]",
+    [
+      newExpectation(
+        "",
+        "[data-cy=repo-tables-table-column-unigram]",
+        newShouldArgs("be.visible.and.contain", "unigram"),
+      ),
+      newExpectation(
+        "",
+        "[data-cy=repo-tables-table-unigram_counts]",
+        beVisible,
+      ),
+    ],
+  );
+
+  const tablesClickFlow2 = newClickFlow("", [
     newExpectationWithClickFlows(
       "",
       "[data-cy=repo-tables-table-total_counts]",
@@ -207,22 +171,6 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     ),
   ]);
 
-  const unigramClickFlow = newClickFlow(
-    "[data-cy=repo-tables-table-unigram_counts-play]",
-    [
-      newExpectation(
-        "",
-        "[data-cy=repo-tables-table-column-unigram]",
-        newShouldArgs("be.visible.and.contain", "unigram"),
-      ),
-      newExpectation(
-        "",
-        "[data-cy=repo-tables-table-unigram_counts]",
-        beVisible,
-      ),
-    ],
-  );
-
   const tablesCloseClickFlow = newClickFlow(
     "[data-cy=repo-tables-table-trigram_counts-play]",
     [
@@ -240,17 +188,42 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
     ],
   );
 
-  const desktopAndIpadTests = [
-    newExpectation(
-      "should show data table",
-      "[data-cy=repo-tables-table-column-bigram]",
-      beVisible,
+  const desktopAndIpadTests = (isIpad = false) => [
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      isIpad,
     ),
+    newExpectationWithClickFlows(
+      "should have repo Tables section",
+      "[data-cy=repo-tables-table-list]",
+      beVisible,
+      [tablesClickFlow],
+    ),
+
+    newExpectation(
+      "should find repo data",
+      "[data-cy=repo-data-table-empty]",
+      newShouldArgs("not.exist"),
+    ),
+    newExpectation(
+      "should display repo data columns",
+      "[data-cy=repo-data-table-columns] > th",
+      newShouldArgs("be.visible.and.have.length", 4),
+    ),
+    newExpectation(
+      "should display repo data row column values",
+      "[data-cy=repo-data-table-row-0-col-1]",
+      newShouldArgs("be.visible.and.contain", "3071"),
+    ),
+    ...tableExpectations(hasDocs, hasBranch, loggedIn, 4, "bigram_counts"),
     newExpectationWithClickFlows(
       "should update data table when table clicked",
       "[data-cy=repo-tables-table-column-bigram]",
       beVisible,
-      [tablesClickFlow],
+      [tablesClickFlow2],
     ),
     newExpectationWithClickFlows(
       "should stay on Tables tab after a new table is selected",
@@ -258,11 +231,16 @@ describe("RepositoryPage wikipedia-ngrams re-re-renders expected components on d
       beVisible,
       [tablesCloseClickFlow],
     ),
+    ...testPaginationForRepoDataTable,
+    testViewsSection(hasBranch, 0),
+    testQueryCatalogSection(hasBranch, 0),
+    testSchemaSection(hasBranch, 4, "bigram_counts"),
+    testSqlConsole,
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests, true),
+    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
+    iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true),
     iPhoneXForAppLayout(
       pageName,
       mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
