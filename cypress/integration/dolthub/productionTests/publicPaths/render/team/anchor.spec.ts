@@ -40,6 +40,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
+  const skip = true;
   const skipNavbar = true;
   const devices = allDevicesDiffTestsForSignedOut(
     pageName,
@@ -49,5 +50,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     [],
     skipNavbar,
   );
-  runTestsForDevices({ currentPage, devices, skip: true });
+  // TODO: Fix flakey test!
+  //* Error is: CypressError: `cy.visit()` failed trying to load:
+  runTestsForDevices({ currentPage, devices, skip });
 });
