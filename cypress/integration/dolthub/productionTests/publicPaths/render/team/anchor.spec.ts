@@ -49,5 +49,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
     [],
     skipNavbar,
   );
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip: true });
 });
