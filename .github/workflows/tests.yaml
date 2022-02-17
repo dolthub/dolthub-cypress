@@ -1,6 +1,11 @@
   name: Tests (DoltHub Prod)
-  on: |
-    workflow_dispatch
+  on: 
+    workflow_dispatch:
+      inputs:
+        tags:
+          description: 'Ignore me'
+          required: false 
+          type: boolean
     schedule:
       # run every hour during business hours (UTC time)
       - cron: '0 0,16-23 * * 1-5'
