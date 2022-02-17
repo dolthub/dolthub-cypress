@@ -1,5 +1,6 @@
   name: Tests (DoltHub Prod)
-  on: 
+  on: |
+    workflow_dispatch
     schedule:
       # run every hour during business hours (UTC time)
       - cron: '0 0,16-23 * * 1-5'
