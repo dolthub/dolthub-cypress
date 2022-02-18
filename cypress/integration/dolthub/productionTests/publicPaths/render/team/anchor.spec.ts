@@ -40,7 +40,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const skip = true;
+  const skip = false;
   const skipNavbar = true;
   const devices = allDevicesDiffTestsForSignedOut(
     pageName,

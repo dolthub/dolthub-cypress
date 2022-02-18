@@ -29,7 +29,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const skip = true;
+  const skip = false;
   const devices = allDevicesForSignedOut(pageName, tests, tests);
   // TODO: Fix flakey test!
   //* Error is: CypressError: `cy.visit()` failed trying to load:
