@@ -75,7 +75,6 @@ Cypress.Commands.add("visitAndWait", (path: string) => {
     onBeforeLoad: spyOnAddEventListener,
     failOnStatusCode: false,
     retryOnNetworkFailure: true,
-    retryOnStatusCodeFailure: true,
   }).then(waitForAppStart);
 });
 
