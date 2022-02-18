@@ -4,5 +4,5 @@
   "supportFile": "cypress/support/index.ts",
   "video": false,
   "projectId": "f6ssqp",
-  "integrationFolder": "cypress/integration/productionTests"
+  "integrationFolder": "cypress/integration/dolthub/productionTests"
 }
