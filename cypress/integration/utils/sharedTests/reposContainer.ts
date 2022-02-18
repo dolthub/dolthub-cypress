@@ -22,3 +22,15 @@ export const mostRecentReposClickFlow = newClickFlow(
   "[data-cy=discover-repos-tab]",
   [...checkRepoListForTab("most-recent", 20)],
 );
+
+export const clearSearchClickFlow = newClickFlow(
+  "[data-cy=clear-search-button]",
+  [
+    newExpectation(
+      "should have repository search bar",
+      "[data-cy=search-input]",
+      newShouldArgs("be.visible.and.have.value", ""),
+    ),
+  ],
+  "",
+);
