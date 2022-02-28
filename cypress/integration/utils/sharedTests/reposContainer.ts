@@ -1,11 +1,5 @@
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithSelector,
-  newShouldArgs,
-} from "../helpers";
+import { newClickFlow, newExpectation, newShouldArgs } from "../helpers";
 import { Tests } from "../types";
-import { beVisibleAndContain } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -23,23 +17,12 @@ export const checkRepoListForTab = (
     ),
   ];
 };
+
 export const mostRecentReposClickFlow = newClickFlow(
   "[data-cy=discover-repos-tab]",
   [...checkRepoListForTab("most-recent", 20)],
 );
 
-export const mostRecentReposClickFlowMobile = newClickFlow(
-  "[data-cy=discover-mobile-selector] input",
-  [
-    newExpectationWithSelector(
-      "should select Discover",
-      "[data-cy=discover-mobile-selector]>div>div>div",
-      1,
-      beVisibleAndContain("Discover"),
-    ),
-  ],
-  "",
-);
 export const clearSearchClickFlow = newClickFlow(
   "[data-cy=clear-search-button]",
   [
