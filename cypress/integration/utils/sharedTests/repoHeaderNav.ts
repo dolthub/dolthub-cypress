@@ -234,7 +234,7 @@ export const testRepoHeaderForAll = (
         ...testTabs(beVisible),
         newExpectation(
           "should not have nav dropdown",
-          "[data-cy=repo-dropdown-button]",
+          "[data-cy=dropdown-database-nav]",
           notBeVisible,
         ),
       ]
