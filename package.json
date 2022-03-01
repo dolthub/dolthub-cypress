@@ -21,7 +21,8 @@
     "compile": "tsc -b",
     "lint": "eslint --cache --ext .ts,.js .",
     "prettier": "prettier --check 'cypress/**/*.{ts,js}'",
-    "prettier:fix": "prettier --write 'cypress/**/*.{ts,js}'"
+    "prettier:fix": "prettier --write 'cypress/**/*.{ts,js}'",
+    "postinstall": "bash -c 'if [ -z \"$HUSKY_SKIP_INSTALL\" ]; then husky install .husky; fi'"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
@@ -38,8 +39,10 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.4",
+    "husky": "^7.0.4",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "yarnhook": "^0.5.1"
   },
   "dependencies": {
     "cypress": "9.4.1",
