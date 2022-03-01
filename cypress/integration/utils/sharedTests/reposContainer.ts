@@ -34,7 +34,7 @@ export const mostRecentReposClickFlowMobile = newClickFlow(
     newExpectationWithSelector(
       "should select Discover",
       "[data-cy=discover-mobile-selector]>div>div>div",
-      1,
+      2,
       beVisibleAndContain("Discover"),
     ),
   ],
