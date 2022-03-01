@@ -117,8 +117,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     newExpectation(
-      "should show no org settings permissions message",
-      "[data-cy=not-org-owner-settings-msg]",
+      "should show no authentication error message",
+      "[data-cy=error-msg]",
       beVisible,
     ),
     newExpectation(
