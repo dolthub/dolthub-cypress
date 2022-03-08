@@ -1,5 +1,9 @@
 import { runTestsForDevices } from "../../../../../utils";
-import { allDevicesForAppLayout } from "../../../../../utils/devices";
+import {
+  iPad2,
+  iPhoneX,
+  macbook15ForAppLayout,
+} from "../../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 
 const pageName = "Profile starred page";
@@ -8,7 +12,7 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const desktopTests = [
+  const tests = [
     newExpectation(
       "should render repository list",
       "[data-cy=repository-list-top-20-starred]",
@@ -26,7 +30,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const mobileTests = [
+  const ipadTests = [
     newExpectation(
       "should render repository list",
       "[data-cy=repository-list-top-20-starred]",
@@ -43,13 +47,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
   ];
+
   const skip = false;
-  const devices = allDevicesForAppLayout(
-    pageName,
-    desktopTests,
-    mobileTests,
-    false,
-    loggedIn,
-  );
+  const devices = [
+    macbook15ForAppLayout(pageName, tests, false, loggedIn),
+    iPad2(pageName, ipadTests, loggedIn),
+    iPhoneX(pageName, tests, loggedIn),
+  ];
   runTestsForDevices({ currentPage, devices, skip });
 });

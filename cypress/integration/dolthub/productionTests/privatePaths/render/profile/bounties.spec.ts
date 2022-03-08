@@ -1,5 +1,9 @@
 import { runTestsForDevices } from "../../../../../utils";
-import { allDevicesForAppLayout } from "../../../../../utils/devices";
+import {
+  iPad2,
+  iPhoneX,
+  macbook15ForAppLayout,
+} from "../../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithScrollIntoView,
@@ -12,7 +16,7 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const desktopTests = [
+  const tests = [
     newExpectation(
       "should render create database button",
       "[data-cy=create-database-button]",
@@ -30,8 +34,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
   ];
-
-  const mobileTests = [
+  const ipadTests = [
     newExpectation(
       "should not render create database button",
       "[data-cy=create-database-button]",
@@ -49,14 +52,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
   ];
-
   const skip = false;
-  const devices = allDevicesForAppLayout(
-    pageName,
-    desktopTests,
-    mobileTests,
-    false,
-    loggedIn,
-  );
+  const devices = [
+    macbook15ForAppLayout(pageName, tests, false, loggedIn),
+    iPad2(pageName, ipadTests, loggedIn),
+    iPhoneX(pageName, tests, loggedIn),
+  ];
   runTestsForDevices({ currentPage, devices, skip });
 });
