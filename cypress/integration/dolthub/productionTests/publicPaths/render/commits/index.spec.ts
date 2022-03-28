@@ -40,7 +40,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should find first commit commit and user links",
       "[data-cy=commit-log-item]:first a",
-      newShouldArgs("be.visible.and.have.length", 3),
+      newShouldArgs("be.visible.and.have.length", 4),
     ),
     newExpectation(
       "should find first commit prof pic",
