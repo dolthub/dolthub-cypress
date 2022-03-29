@@ -8,7 +8,7 @@ updates:
     timezone: America/Los_Angeles
   open-pull-requests-limit: 10
   reviewers:
-  - cheshirekate8
+  - liuliu-dev
   labels:
   - dependencies
   ignore:
