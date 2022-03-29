@@ -60,7 +60,7 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
       .its("body.schema")
       .should("deep.equal", [
         {
-          columnName: "Table",
+          columnName: "Tables_in_dolt",
           columnType: "LONGTEXT",
           isPrimaryKey: false,
         },
@@ -130,7 +130,7 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
       .its("body.schema")
       .should("deep.equal", [
         {
-          columnName: "Table",
+          columnName: "Tables_in_dolt",
           columnType: "LONGTEXT",
           isPrimaryKey: false,
         },
