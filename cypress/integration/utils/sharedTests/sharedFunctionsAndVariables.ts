@@ -3,7 +3,9 @@ import {
   newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
+  newExpectationWithScrollTo,
   newExpectationWithTypeString,
+  newScrollToPosition,
   newShouldArgs,
 } from "../helpers";
 import { Expectation, Tests } from "../types";
@@ -108,7 +110,7 @@ export const createPullRequest: Tests = [
     "should be able to create pull request",
     "[data-cy=create-pull-button]",
     beVisible,
-    [newClickFlow("", [], "[data-cy=create-pull-button]")],
+    [newClickFlow("[data-cy=create-pull-button]", [])],
   ),
 ];
 
@@ -184,6 +186,12 @@ export const afterUploadSteps = (
     "[data-cy=choose-primary-keys-button]",
     beVisibleAndContain("Choose primary keys"),
     [newClickFlow("[data-cy=choose-primary-keys-button]", [])],
+  ),
+  newExpectationWithScrollTo(
+    "should scroll to bottom",
+    "#main-content",
+    beVisible,
+    newScrollToPosition("bottom", "#main-content"),
   ),
   newExpectationWithClickFlows(
     "should choose the primary key",
@@ -269,10 +277,10 @@ export function getTypeInGridTests(grids: string[][], skipClear = false) {
     row.forEach((val: string, colidx: number) => {
       tests.push(
         newExpectationWithTypeString(
-          `should enter value ${row[1]} in column ${row[0]}`,
-          `[aria-rowindex="${rowidx + 3}"]>[aria-colindex="${colidx + 2}"]`,
+          `should enter value in row ${rowidx} in column ${colidx}`,
+          `[aria-rowindex="${rowidx + 2}"]>[aria-colindex="${colidx + 2}"]`,
           beVisible,
-          { value: val, skipClear },
+          { value: `0${val}`, skipClear },
         ),
       );
     });

@@ -10,7 +10,13 @@ import { testCreateTableWithSpreadsheetEditor } from "./testCreateTableWithSprea
 import { testCreateTableWithSqlQuery } from "./testCreateTableWithSqlQuery";
 
 export const testAddTable: Tests = [
-  //! CLICK ADD TABLE AND SHOW 3 WAYS OF ADDING TABLE
+  // CLICK ADD TABLE AND SHOW 3 WAYS OF ADDING TABLE
+  newExpectationWithClickFlows(
+    "should open left nav",
+    "[data-cy=left-nav-toggle-icon]",
+    beVisible,
+    [newClickFlow("[data-cy=left-nav-toggle-icon]", [])],
+  ),
   newExpectationWithClickFlows(
     "should show add table button",
     "[data-cy=repo-tables-add-table]",

@@ -1,63 +1,47 @@
-import { opts } from "../../../../../utils";
+import { deviceDimensions, opts } from "../../../../../utils";
 
-const tempDbOwnerNames = ["automated_testing", "cypresstesting"];
+const tempDbOwnerNames = ["cypresstesting"];
+const pageName = `Delete all remaining temp databases`;
+const loggedIn = true;
+const base = Cypress.config().baseUrl;
+const clickOpts: Partial<Cypress.ClickOptions> = {
+  scrollBehavior: "bottom",
+};
 
 function cleanupLeftoverTempDbs(owner: string) {
-  const pageName = `Delete all remaining ${owner} temp databases`;
-  const currentPage = `/repositories/${owner}`;
-  const loggedIn = true;
-  const base = Cypress.config().baseUrl;
-  const clickOpts: Partial<Cypress.ClickOptions> = {
-    scrollBehavior: "bottom",
-  };
-
-  describe.skip(pageName, () => {
-    before(() => {
-      cy.visitPage(currentPage, loggedIn);
-    });
-
-    beforeEach(() => {
-      // Preserve dolthubToken cookie through all tests for page
-      Cypress.Cookies.preserveOnce("dolthubToken");
-
-      cy.visitViewport("macbook-15");
-    });
-
-    after(() => {
-      if (loggedIn) cy.signout(false);
-    });
-
-    it("deletes temp databases if they exist", () => {
-      cy.get("body", opts).then($body => {
-        // Check if cypresstesting databases exist
-        if ($body.text().includes(`No search results for "${owner}"`)) {
-          cy.get("[data-cy=no-repos-msg]").should("be.visible");
-          cy.get("[data-cy=navbar-desktop-profile-link]", opts).click();
-          cy.location("href", opts).should(
-            "eq",
-            `${Cypress.config().baseUrl}/profile`,
-          );
-        } else {
-          // If they do exist, go through each database and delete
-          cy.get(
-            "[data-cy=repository-list-most-recent] [data-cy=repo-list-item] a",
-            opts,
-          ).then(items => {
-            [...items].forEach(i => {
-              deleteDatabase(i.getAttribute("href"));
-            });
+  it(`deletes temp databases for ${owner} if they exist`, () => {
+    const currentPage = `/repositories/${owner}`;
+    cy.visitAndWait(currentPage);
+    cy.get("[data-cy=discover-repos-tab]").should("be.visible");
+    cy.get("body", opts).then($body => {
+      // Check if cypresstesting databases exist
+      if ($body.text().includes(`No search results for "${owner}"`)) {
+        cy.get("[data-cy=no-repos-msg]").should("be.visible");
+        cy.get("[data-cy=navbar-desktop-profile-link]", opts).click();
+        cy.location("href", opts).should(
+          "eq",
+          `${Cypress.config().baseUrl}/profile`,
+        );
+      } else {
+        // If they do exist, go through each database and delete
+        cy.get(
+          "[data-cy=repository-list-most-recent] [data-cy=repo-list-item] a",
+          opts,
+        ).then(items => {
+          [...items].forEach(i => {
+            deleteDatabase(i.getAttribute("href"));
           });
-          cy.visitPage("/profile", loggedIn); // after deleting, automated_testing lands on a page that has different navbar, redirect to profile to get the same navbar data-cy for signout
-        }
-      });
+        });
+        cy.visitAndWait("/profile"); // after deleting, automated_testing lands on a page that has different navbar, redirect to profile to get the same navbar data-cy for signout
+      }
     });
   });
+  // });
 
   function deleteDatabase(href: string | null) {
     if (!href || !href.includes("temp_db_")) return;
-    cy.visitPage(`${href}/settings`, false);
 
-    cy.wait(300);
+    cy.visitAndWait(`${href}/settings`);
 
     cy.location("pathname", opts).should("contain", "settings");
 
@@ -71,6 +55,19 @@ function cleanupLeftoverTempDbs(owner: string) {
   }
 }
 
-tempDbOwnerNames.forEach(owner => {
-  cleanupLeftoverTempDbs(owner);
+describe(pageName, deviceDimensions["macbook-15"], () => {
+  before(() => {
+    cy.handleGoogle();
+    if (loggedIn) {
+      cy.loginAsCypressTestingAfterNavigateToSignin();
+    }
+  });
+
+  after(() => {
+    if (loggedIn) cy.signout(false);
+  });
+
+  tempDbOwnerNames.forEach(owner => {
+    cleanupLeftoverTempDbs(owner);
+  });
 });

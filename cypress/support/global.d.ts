@@ -23,5 +23,7 @@ declare namespace Cypress {
     visitViewport(device: Cypress.ViewportPreset): void;
 
     visitAndWait(path: string): void;
+
+    handleGoogle(): void;
   }
 }
