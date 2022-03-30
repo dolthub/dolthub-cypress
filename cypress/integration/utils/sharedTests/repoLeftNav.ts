@@ -148,7 +148,7 @@ export const conditionalPlayButtonTest = (
   return playExpectation;
 };
 
-const emptyTablesExpectation = (hasBranch: boolean): Tests => [
+const emptyTablesExpectation: Tests = [
   newExpectation(
     "should show empty tables message",
     "[data-cy=repo-tables-empty]",
@@ -188,14 +188,13 @@ const notEmptyTableExpectations = (
 
 export const tableExpectations = (
   hasDocs: boolean,
-  hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
   testTable?: string,
 ): Expectation[] => {
   const expectations =
     tableLen === 0 || !testTable
-      ? emptyTablesExpectation(hasBranch)
+      ? emptyTablesExpectation
       : notEmptyTableExpectations(hasDocs, loggedIn, tableLen, testTable);
 
   return [
@@ -210,7 +209,6 @@ export const tableExpectations = (
 
 export const testTablesSection = (
   hasDocs: boolean,
-  hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
   testTable?: string,
@@ -230,7 +228,7 @@ export const testTablesSection = (
         checkSchemaClickflow,
       ],
     ),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, tableLen, testTable),
+    ...tableExpectations(hasDocs, loggedIn, tableLen, testTable),
   ];
 };
 

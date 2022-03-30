@@ -50,7 +50,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       hasDocs,
       isIpad,
     ),
-    ...tableExpectations(true, hasBranch, loggedIn, 1, "test_table"),
+    ...tableExpectations(true, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 1, "test_table"),
