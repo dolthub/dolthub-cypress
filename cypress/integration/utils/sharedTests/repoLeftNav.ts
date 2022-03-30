@@ -72,23 +72,6 @@ export const checkSchemaClickflow: ClickFlow = newClickFlow(
 
 // TABLES
 
-export const conditionalBranchTest = (hasBranch: boolean) => {
-  const branchExpectation: Expectation = hasBranch
-    ? newExpectationWithScrollIntoView(
-        "Should have an Add New Table button",
-        "[data-cy=repo-tables-add-table]",
-        beVisible,
-        true,
-      )
-    : newExpectation(
-        "Should not have an Add New Table button",
-        "[data-cy=repo-tables-add-table]",
-        notExist,
-      );
-
-  return branchExpectation;
-};
-
 const testTableEditClickFlow = (testTable: string): ClickFlow =>
   newClickFlow(`[data-cy=repo-tables-table-${testTable}-edit]`, [
     newExpectation(
@@ -171,12 +154,16 @@ const emptyTablesExpectation = (hasBranch: boolean): Tests => [
     "[data-cy=repo-tables-empty]",
     beVisible,
   ),
-  conditionalBranchTest(hasBranch),
+  newExpectationWithScrollIntoView(
+    "should have an Add New Table button",
+    "[data-cy=repo-tables-add-table]",
+    beVisible,
+    true,
+  ),
 ];
 
 const notEmptyTableExpectations = (
   hasDocs: boolean,
-  hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
   testTable: string,
@@ -188,7 +175,12 @@ const notEmptyTableExpectations = (
   ),
   ...conditionalPlayButtonTest(hasDocs, testTable),
   conditionalEditButtonTest(loggedIn, testTable),
-  conditionalBranchTest(hasBranch),
+  newExpectationWithScrollIntoView(
+    "should have an Add New Table button",
+    "[data-cy=repo-tables-add-table]",
+    beVisible,
+    true,
+  ),
 ];
 
 //* Use tableExpectations when table is populated (left nav is initially open)
@@ -204,13 +196,7 @@ export const tableExpectations = (
   const expectations =
     tableLen === 0 || !testTable
       ? emptyTablesExpectation(hasBranch)
-      : notEmptyTableExpectations(
-          hasDocs,
-          hasBranch,
-          loggedIn,
-          tableLen,
-          testTable,
-        );
+      : notEmptyTableExpectations(hasDocs, loggedIn, tableLen, testTable);
 
   return [
     newExpectation(
