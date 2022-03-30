@@ -2,22 +2,26 @@ import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
 import { createTempDatabase } from "../../../../../utils/sharedTests/createTempDatabase";
 import { deleteTempDatabase } from "../../../../../utils/sharedTests/deleteTempDatabase";
-import { editTempDatabase } from "../../../../../utils/sharedTests/editTempDatabase";
-import { testIssues } from "../../../../../utils/sharedTests/testIssues";
+import { testDocs } from "../../../../../utils/sharedTests/testDocs";
+import { testPullRequest } from "../../../../../utils/sharedTests/testPullRequest";
+import { testSaveQuery } from "../../../../../utils/sharedTests/testSaveQuery";
 
-const pageName = "Create, edit, teardown database";
+const pageName = "Create, pull request, teardown database";
 const currentPage = "/profile/new-repository";
 const loggedIn = true;
 
 const randomNum = Math.ceil(Math.random() * 10000);
 const repoName = `temp_db_${randomNum}`;
 const ownerName = "cypresstesting";
+const forkOwnerName = "a_dolthub_testing_org";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...createTempDatabase(repoName, ownerName),
-    ...editTempDatabase,
-    ...testIssues,
+    ...testPullRequest(forkOwnerName),
+    ...testDocs,
+    ...testSaveQuery,
+    ...deleteTempDatabase(repoName, forkOwnerName),
     ...deleteTempDatabase(repoName, ownerName),
   ];
 

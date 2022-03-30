@@ -280,6 +280,8 @@ export function getTypeInGridTests(grids: string[][], skipClear = false) {
           `should enter value in row ${rowidx} in column ${colidx}`,
           `[aria-rowindex="${rowidx + 2}"]>[aria-colindex="${colidx + 2}"]`,
           beVisible,
+          // The first character activates the cell so that we can type. It is
+          // not included in the typed value.
           { value: `0${val}`, skipClear },
         ),
       );

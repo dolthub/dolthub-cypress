@@ -14,7 +14,7 @@ const sqlQueryTable = "TestSqlCreateTable";
 const createTableQuery = `CREATE TABLE ${sqlQueryTable} (pk INT,col1 VARCHAR(255),PRIMARY KEY (pk));`;
 
 export const testCreateTableWithSqlQuery: Tests = [
-  //! USE SQL QUERY FOR ADDING TABLE
+  // USE SQL QUERY FOR ADDING TABLE
   newExpectationWithClickFlows(
     "should show sql query button",
     "[data-cy=sql-query-create-table]",
@@ -51,14 +51,6 @@ export const testCreateTableWithSqlQuery: Tests = [
     beVisible,
     [newClickFlow("[data-cy=create-commit-button]", [])],
   ),
-  // ...mergingAndDeletingBranch("Changes from workspace"),
-  //! NAVIGATE TO THE DATABASE TAB
-  // newExpectationWithClickFlows(
-  //   "should be able to navigate to database tab",
-  //   "[data-cy=repo-database-tab]",
-  //   beVisible,
-  //   [newClickFlow("[data-cy=repo-database-tab]", [])],
-  // ),
   newExpectation(
     `should have ${sqlQueryTable} listed`,
     `[data-cy=repo-tables-table-${sqlQueryTable}]`,

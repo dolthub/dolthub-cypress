@@ -56,6 +56,11 @@ export const deleteTempDatabase = (
     beVisibleAndContain(`${ownerName}`),
     `/repositories/${ownerName}/${repoName}`,
   ),
+  newExpectation(
+    "should have settings tab",
+    "[data-cy=repo-settings-tab]",
+    beVisible,
+  ),
   newExpectationWithClickFlows(
     "should navigate to settings tab and delete database",
     "[data-cy=repo-settings-tab]",

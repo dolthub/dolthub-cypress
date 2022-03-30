@@ -17,7 +17,7 @@ const testQueryName = "test-query-name";
 const testQueryDescription = "test-query-description";
 
 export const testSaveQuery: Tests = [
-  //! NAVIGATE TO THE DATABASE TAB
+  // NAVIGATE TO THE DATABASE TAB
   newExpectationWithClickFlows(
     "should be able to navigate to database tab",
     "[data-cy=repo-database-tab]",
@@ -25,7 +25,7 @@ export const testSaveQuery: Tests = [
     [newClickFlow("[data-cy=repo-database-tab]", [])],
   ),
 
-  //! SAVE THE QUERY
+  // SAVE THE QUERY
   newExpectationWithClickFlows(
     "should show save query button",
     "[data-cy=save-query-button]",
@@ -49,14 +49,26 @@ export const testSaveQuery: Tests = [
     "[data-cy=workspace-commit-list]>li:first>div>a",
     beVisibleAndContain(testQueryName),
   ),
-  ...createPullRequest,
-  ...mergingAndDeletingBranch("Temporary Workspace"),
+  // ...createPullRequest,
+  // ...mergingAndDeletingBranch("Temporary Workspace"),
   newExpectationWithClickFlows(
-    "should switch back to the database tab",
-    "[data-cy=repo-database-tab]",
+    "should show create commit button",
+    "[data-cy=create-commit]",
     beVisible,
-    [newClickFlow("[data-cy=repo-database-tab]", [])],
+    [newClickFlow("[data-cy=create-commit]", [])],
   ),
+  newExpectationWithClickFlows(
+    "should be able to create commit",
+    "[data-cy=create-commit-button]",
+    beVisible,
+    [newClickFlow("[data-cy=create-commit-button]", [])],
+  ),
+  // newExpectationWithClickFlows(
+  //   "should switch back to the database tab",
+  //   "[data-cy=repo-database-tab]",
+  //   beVisible,
+  //   [newClickFlow("[data-cy=repo-database-tab]", [])],
+  // ),
 
   newExpectationWithClickFlows(
     "the saved query should be rendered in the queries tab",
