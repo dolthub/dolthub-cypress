@@ -193,7 +193,6 @@ function getAssertionTest(
         .clear(clickOpts)
         .type(typeString.value, clickOpts);
     }
-    cy.log("VALUE", typeString.value);
     return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
   }
 

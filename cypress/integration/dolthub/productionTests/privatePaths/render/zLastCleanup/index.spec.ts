@@ -12,7 +12,7 @@ function cleanupLeftoverTempDbs(owner: string) {
   it(`deletes temp databases for ${owner} if they exist`, () => {
     const currentPage = `/repositories/${owner}`;
     cy.visitAndWait(currentPage);
-    cy.get("[data-cy=discover-repos-tab]").should("be.visible");
+    cy.get("[data-cy=repo-list-container]").should("be.visible");
     cy.get("body", opts).then($body => {
       // Check if cypresstesting databases exist
       if ($body.text().includes(`No search results for "${owner}"`)) {
@@ -32,11 +32,12 @@ function cleanupLeftoverTempDbs(owner: string) {
             deleteDatabase(i.getAttribute("href"));
           });
         });
-        cy.visitAndWait("/profile"); // after deleting, automated_testing lands on a page that has different navbar, redirect to profile to get the same navbar data-cy for signout
+        // After deleting, we land on a page that does not have the user
+        // avatar. We must navigate to the profile page to log out.
+        cy.visitAndWait("/profile");
       }
     });
   });
-  // });
 
   function deleteDatabase(href: string | null) {
     if (!href || !href.includes("temp_db_")) return;

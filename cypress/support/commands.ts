@@ -105,6 +105,10 @@ Cypress.Commands.add(
 );
 
 function ensureSuccessfulLogin(redirectValue?: string) {
+  // Must set cookie for localhost so navbar renders correctly
+  if (!!Cypress.env("LOCAL_DOLTHUB")) {
+    cy.setCookie("dolthubToken", "fake-token");
+  }
   if (redirectValue) {
     cy.location("pathname", opts).should("include", `/${redirectValue}`);
   } else {
