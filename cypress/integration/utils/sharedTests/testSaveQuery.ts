@@ -49,8 +49,6 @@ export const testSaveQuery: Tests = [
     "[data-cy=workspace-commit-list]>li:first>div>a",
     beVisibleAndContain(testQueryName),
   ),
-  // ...createPullRequest,
-  // ...mergingAndDeletingBranch("Temporary Workspace"),
   newExpectationWithClickFlows(
     "should show create commit button",
     "[data-cy=create-commit]",
@@ -63,13 +61,6 @@ export const testSaveQuery: Tests = [
     beVisible,
     [newClickFlow("[data-cy=create-commit-button]", [])],
   ),
-  // newExpectationWithClickFlows(
-  //   "should switch back to the database tab",
-  //   "[data-cy=repo-database-tab]",
-  //   beVisible,
-  //   [newClickFlow("[data-cy=repo-database-tab]", [])],
-  // ),
-
   newExpectationWithClickFlows(
     "the saved query should be rendered in the queries tab",
     "[data-cy=tab-queries]",
