@@ -72,23 +72,6 @@ export const checkSchemaClickflow: ClickFlow = newClickFlow(
 
 // TABLES
 
-export const conditionalBranchTest = (hasBranch: boolean) => {
-  const branchExpectation: Expectation = hasBranch
-    ? newExpectationWithScrollIntoView(
-        "Should have an Add New Table button",
-        "[data-cy=repo-tables-add-table]",
-        beVisible,
-        true,
-      )
-    : newExpectation(
-        "Should not have an Add New Table button",
-        "[data-cy=repo-tables-add-table]",
-        notExist,
-      );
-
-  return branchExpectation;
-};
-
 const testTableEditClickFlow = (testTable: string): ClickFlow =>
   newClickFlow(`[data-cy=repo-tables-table-${testTable}-edit]`, [
     newExpectation(
@@ -165,18 +148,22 @@ export const conditionalPlayButtonTest = (
   return playExpectation;
 };
 
-const emptyTablesExpectation = (hasBranch: boolean): Tests => [
+const emptyTablesExpectation: Tests = [
   newExpectation(
     "should show empty tables message",
     "[data-cy=repo-tables-empty]",
     beVisible,
   ),
-  conditionalBranchTest(hasBranch),
+  newExpectationWithScrollIntoView(
+    "should have an Add New Table button",
+    "[data-cy=repo-tables-add-table]",
+    beVisible,
+    true,
+  ),
 ];
 
 const notEmptyTableExpectations = (
   hasDocs: boolean,
-  hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
   testTable: string,
@@ -188,7 +175,12 @@ const notEmptyTableExpectations = (
   ),
   ...conditionalPlayButtonTest(hasDocs, testTable),
   conditionalEditButtonTest(loggedIn, testTable),
-  conditionalBranchTest(hasBranch),
+  newExpectationWithScrollIntoView(
+    "should have an Add New Table button",
+    "[data-cy=repo-tables-add-table]",
+    beVisible,
+    true,
+  ),
 ];
 
 //* Use tableExpectations when table is populated (left nav is initially open)
@@ -196,21 +188,14 @@ const notEmptyTableExpectations = (
 
 export const tableExpectations = (
   hasDocs: boolean,
-  hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
   testTable?: string,
 ): Expectation[] => {
   const expectations =
     tableLen === 0 || !testTable
-      ? emptyTablesExpectation(hasBranch)
-      : notEmptyTableExpectations(
-          hasDocs,
-          hasBranch,
-          loggedIn,
-          tableLen,
-          testTable,
-        );
+      ? emptyTablesExpectation
+      : notEmptyTableExpectations(hasDocs, loggedIn, tableLen, testTable);
 
   return [
     newExpectation(
@@ -224,7 +209,6 @@ export const tableExpectations = (
 
 export const testTablesSection = (
   hasDocs: boolean,
-  hasBranch: boolean,
   loggedIn: boolean,
   tableLen: number,
   testTable?: string,
@@ -244,7 +228,7 @@ export const testTablesSection = (
         checkSchemaClickflow,
       ],
     ),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, tableLen, testTable),
+    ...tableExpectations(hasDocs, loggedIn, tableLen, testTable),
   ];
 };
 

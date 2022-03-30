@@ -78,7 +78,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
-    ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
+    ...testTablesSection(hasDocs, loggedIn, 0),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 0),

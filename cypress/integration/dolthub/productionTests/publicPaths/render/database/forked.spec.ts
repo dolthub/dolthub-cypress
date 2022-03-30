@@ -60,7 +60,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=forked-parent-repo-detail]",
       beVisible,
     ),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, 2, "IPv4ToCountry"),
+    ...tableExpectations(hasDocs, loggedIn, 2, "IPv4ToCountry"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 2, "IPv4ToCountry"),

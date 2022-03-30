@@ -1,14 +1,14 @@
-import {
-  tableExpectations,
-  testViewsSection,
-  testQueryCatalogSection,
-  testSchemaSection,
-} from "../../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
+import {
+  tableExpectations,
+  testQueryCatalogSection,
+  testSchemaSection,
+  testViewsSection,
+} from "../../../../../utils/sharedTests/repoLeftNav";
+import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Logged in database page with tables and docs";
 const currentOwner = "automated_testing";
@@ -39,7 +39,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test_table"),
+    ...tableExpectations(hasDocs, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 1, "test_table"),

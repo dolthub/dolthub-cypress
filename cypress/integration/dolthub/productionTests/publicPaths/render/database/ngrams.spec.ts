@@ -218,7 +218,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "3071"),
     ),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, 4, "bigram_counts"),
+    ...tableExpectations(hasDocs, loggedIn, 4, "bigram_counts"),
     newExpectationWithClickFlows(
       "should update data table when table clicked",
       "[data-cy=repo-tables-table-column-bigram]",

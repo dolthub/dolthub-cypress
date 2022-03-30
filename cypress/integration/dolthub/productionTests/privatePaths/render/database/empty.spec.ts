@@ -1,10 +1,3 @@
-import {
-  testTablesSection,
-  testViewsSection,
-  testQueryCatalogSection,
-  testSchemaSection,
-} from "../../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
 import {
@@ -14,6 +7,13 @@ import {
 } from "../../../../../utils/helpers";
 import { testDoltInstallationSteps } from "../../../../../utils/sharedTests/emptyRepo";
 import { testRepoHeaderForAll } from "../../../../../utils/sharedTests/repoHeaderNav";
+import {
+  testQueryCatalogSection,
+  testSchemaSection,
+  testTablesSection,
+  testViewsSection,
+} from "../../../../../utils/sharedTests/repoLeftNav";
+import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
 
 const pageName = "Logged in database page with no branch and no data";
 const currentOwner = "automated_testing";
@@ -61,7 +61,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...testDoltInstallationSteps,
-    ...testTablesSection(hasDocs, hasBranch, loggedIn, 0),
+    ...testTablesSection(hasDocs, loggedIn, 0),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 0),

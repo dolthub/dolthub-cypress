@@ -60,7 +60,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "b"),
     ),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, 1, "test_table"),
+    ...tableExpectations(hasDocs, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
     testSchemaSection(hasBranch, 1, "test_table"),

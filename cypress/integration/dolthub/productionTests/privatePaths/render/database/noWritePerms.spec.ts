@@ -15,7 +15,6 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
 const canWrite = false;
 const hasDocs = true;
-const hasBranch = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
@@ -27,7 +26,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testRepoHeaderForAll(currentRepo, currentOwner, canWrite, hasDocs),
     ...tableExpectations(
       hasDocs,
-      hasBranch,
       canWrite,
       11,
       "characteristics_case_severity",

@@ -55,7 +55,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       hasDocs,
       isIpad,
     ),
-    ...tableExpectations(hasDocs, hasBranch, loggedIn, 11, "case_details"),
+    ...tableExpectations(hasDocs, loggedIn, 11, "case_details"),
     ...testClickDeleteRow(
       "error-modal",
       newShouldArgs("be.visible.and.contain", ["No authentication", "sign in"]),
