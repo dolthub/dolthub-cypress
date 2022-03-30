@@ -6,7 +6,7 @@ import { testDocs } from "../../../../../utils/sharedTests/testDocs";
 import { testPullRequest } from "../../../../../utils/sharedTests/testPullRequest";
 import { testSaveQuery } from "../../../../../utils/sharedTests/testSaveQuery";
 
-const pageName = "Create, pull request, teardown database";
+const pageName = "Create, pull request/docs/saved query, teardown database";
 const currentPage = "/profile/new-repository";
 const loggedIn = true;
 
@@ -18,9 +18,9 @@ const forkOwnerName = "a_dolthub_testing_org";
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...createTempDatabase(repoName, ownerName),
-    ...testPullRequest(forkOwnerName),
     ...testDocs,
     ...testSaveQuery,
+    ...testPullRequest(forkOwnerName),
     ...deleteTempDatabase(repoName, forkOwnerName),
     ...deleteTempDatabase(repoName, ownerName),
   ];
