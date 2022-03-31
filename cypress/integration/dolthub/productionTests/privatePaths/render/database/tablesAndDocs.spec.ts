@@ -38,7 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, true),
     ...tableExpectations(hasDocs, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
