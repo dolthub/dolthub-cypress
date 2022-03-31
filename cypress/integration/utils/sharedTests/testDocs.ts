@@ -27,7 +27,7 @@ const typingExpectation = (value: string, status?: string) =>
   );
 
 export const testDocs: Tests = [
-  //! CREATE A NEW LICENSE
+  // CREATE A NEW LICENSE
   newExpectationWithClickFlows(
     "should navigate to the new docs page",
     "[data-cy=repo-dropdown-button]",
@@ -47,9 +47,9 @@ export const testDocs: Tests = [
     beVisible,
     [newClickFlow("[data-cy=new-doc-create-button]", [])],
   ),
-  ...mergingAndDeletingBranch("Add License"),
+  // ...mergingAndDeletingBranch("Add License"),
   newExpectationWithClickFlows(
-    "the new license should render in the about tab",
+    "should render new license  in the about tab",
     "[data-cy=repo-about-tab]",
     beVisible,
     [
@@ -66,10 +66,10 @@ export const testDocs: Tests = [
       ),
     ],
   ),
-  //! EDIT LICESNE
+  // EDIT LICENSE
   typingExpectation(updatedLicenseMarkdown, "new"),
   newExpectationWithScrollIntoView(
-    "Save button should now be visible",
+    "should show save button",
     "[data-cy=submit-edit-docs-button]",
     newShouldArgs("be.visible.and.not.be.disabled"),
     true,
@@ -82,7 +82,7 @@ export const testDocs: Tests = [
   ),
   ...mergingAndDeletingBranch("Update License"),
   newExpectationWithClickFlows(
-    "the edited license should render in the about tab",
+    "should render the edited license in the about tab",
     "[data-cy=repo-about-tab]",
     beVisible,
     [

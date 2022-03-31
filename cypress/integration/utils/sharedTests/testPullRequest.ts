@@ -18,7 +18,7 @@ import {
 const sqlQuery = 'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")';
 
 export const testPullRequest = (forkOwnerName: string): Tests => [
-  //! FORK THE DATABASE
+  // FORK THE DATABASE
   newExpectationWithClickFlows(
     "should show fork button",
     "[data-cy=repo-fork-button]",
@@ -32,13 +32,13 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     ],
   ),
 
-  //! SHOW THE FORKED DATABASE PAGE:
+  // SHOW THE FORKED DATABASE PAGE:
   newExpectation(
     "should show the forked database page",
     "[data-cy=repo-owner-breadcrumb-link]",
     beVisibleAndContain(forkOwnerName),
   ),
-  //! EDIT THE TABLE
+  // EDIT THE TABLE
   newExpectationWithClickFlows(
     "should execute insert query",
     "[data-cy=sql-editor-collapsed]",
@@ -63,7 +63,7 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
 
   ...createPullRequest,
 
-  //! REDIRECT TO PARENT DATABASE
+  // REDIRECT TO PARENT DATABASE
   newExpectationWithClickFlows(
     "Should have Open pull state",
     "[data-cy=pull-state-label]",
@@ -87,7 +87,7 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     "[data-cy=repo-owner-breadcrumb-link]",
     beVisibleAndContain("cypresstesting"),
   ),
-  //! NAVIGATE TO PULL REQUEST PAGE
+  // NAVIGATE TO PULL REQUEST PAGE
   newExpectationWithClickFlows(
     "should show navigate to pull request page",
     "[data-cy=repo-pull-requests-tab]",
@@ -101,7 +101,7 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     ],
   ),
 
-  //! SELECT THE FROM DATABASE
+  // SELECT THE FROM DATABASE
   newExpectationWithClickFlows(
     "should show and select the from database",
     "[data-cy=from-repo-selector] input",
@@ -121,7 +121,7 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
       ),
     ],
   ),
-  //! SELECT THE BASE BRANCH
+  // SELECT THE BASE BRANCH
   newExpectationWithClickFlows(
     "should show and select the base branch",
     "[data-cy=to-branch-selector] input",
@@ -141,7 +141,7 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
       ),
     ],
   ),
-  //! SELECT THE FROM BRANCH
+  // SELECT THE FROM BRANCH
   newExpectationWithClickFlows(
     "should show and select the from branch",
     "[data-cy=from-branch-selector] input",
@@ -181,7 +181,7 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     ],
   ),
 
-  //! CHECK THE COMMIT IS THERE
+  // CHECK THE COMMIT IS THERE
   newExpectationWithClickFlows(
     "should be able to navigate to commit log page",
     "[data-cy=repo-commit-log-tab]",

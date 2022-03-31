@@ -1,5 +1,5 @@
 import { runTestsForDevices } from "../../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../../utils/devices";
+import { allDevicesForSignedOut } from "../../../../../utils/devices";
 import {
   newExpectation,
   newShouldArgs,
@@ -21,13 +21,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=team-item-taylor]",
       newShouldArgs("be.visible.and.contain", "Taylor Bantle"),
     ),
-    scrollToPosition("#main-content", "top"),
-    ...navbarTests,
-    newExpectation(
-      "should have about section",
-      "[data-cy=about-us-section]",
-      newShouldArgs("be.visible.and.contain", "About Us"),
-    ),
     newExpectation(
       "should have team list",
       "[data-cy=team-section]",
@@ -38,19 +31,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=team-section] ul > li",
       newShouldArgs("be.visible.and.have.length.of.at.least", 10),
     ),
+    scrollToPosition("#main-content", "top"),
+    ...navbarTests,
+    newExpectation(
+      "should have about section",
+      "[data-cy=about-us-section]",
+      newShouldArgs("be.visible.and.contain", "About Us"),
+    ),
   ];
 
-  const skip = true;
+  const skip = false;
   const skipNavbar = true;
-  const devices = allDevicesDiffTestsForSignedOut(
+  const devices = allDevicesForSignedOut(
     pageName,
     tests(testSignedOutNavbar),
     tests(testMobileNavbar),
-    // Skip flaky iPhone tests for now
-    [],
     skipNavbar,
   );
-  // TODO: Fix flakey test!
-  //* Error is: CypressError: `cy.visit()` failed trying to load:
   runTestsForDevices({ currentPage, devices, skip });
 });

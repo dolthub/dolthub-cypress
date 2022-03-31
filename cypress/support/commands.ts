@@ -105,6 +105,10 @@ Cypress.Commands.add(
 );
 
 function ensureSuccessfulLogin(redirectValue?: string) {
+  // Must set cookie for localhost so navbar renders correctly
+  if (Cypress.env("LOCAL_DOLTHUB")) {
+    cy.setCookie("dolthubToken", "fake-token");
+  }
   if (redirectValue) {
     cy.location("pathname", opts).should("include", `/${redirectValue}`);
   } else {
@@ -139,7 +143,7 @@ Cypress.Commands.add("signout", isMobile => {
   cy.clearCookie("dolthubToken");
 });
 
-Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
+Cypress.Commands.add("handleGoogle", () => {
   // create the stub here
   const ga = cy.stub().as("ga");
 
@@ -154,6 +158,10 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
       });
     }
   });
+});
+
+Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
+  cy.handleGoogle();
 
   if (loggedIn) {
     // If page tests require a user to be logged in, go to signin page and log in test user
@@ -169,3 +177,8 @@ Cypress.Commands.add("visitViewport", (device: Cypress.ViewportPreset) => {
   // eslint-disable-next-line cypress/no-unnecessary-waiting
   cy.wait(500);
 });
+
+Cypress.on(
+  "uncaught:exception",
+  err => !err.message.includes("ResizeObserver loop limit exceeded"),
+);

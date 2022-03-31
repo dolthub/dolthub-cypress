@@ -19,10 +19,10 @@ const grids = [
 ];
 
 export const testCreateTableWithSpreadsheetEditor: Tests = [
-  //! USE SPREAD SHEET TO ADD TABLE
+  // USE SPREAD SHEET TO ADD TABLE
   ...preUploadSteps("spread sheet editor", "spreadsheet", "Spreadsheet Editor"),
 
-  //! CHOOSE TABLE
+  // CHOOSE TABLE
   newExpectationWithClickFlows(
     "should show Create a new table",
     "[data-cy=upload-table-create]",

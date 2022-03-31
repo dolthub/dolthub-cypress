@@ -2,10 +2,10 @@ import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
 import { createTempDatabase } from "../../../../../utils/sharedTests/createTempDatabase";
 import { deleteTempDatabase } from "../../../../../utils/sharedTests/deleteTempDatabase";
-import { editTempDatabase } from "../../../../../utils/sharedTests/editTempDatabase";
-import { testIssues } from "../../../../../utils/sharedTests/testIssues";
+import { testAddTable } from "../../../../../utils/sharedTests/testAddTable";
+import { testUpdateTable } from "../../../../../utils/sharedTests/testUpdateTable";
 
-const pageName = "Create, edit, teardown database";
+const pageName = "Create, edit tables, teardown database";
 const currentPage = "/profile/new-repository";
 const loggedIn = true;
 
@@ -16,8 +16,8 @@ const ownerName = "cypresstesting";
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...createTempDatabase(repoName, ownerName),
-    ...editTempDatabase,
-    ...testIssues,
+    ...testAddTable,
+    ...testUpdateTable,
     ...deleteTempDatabase(repoName, ownerName),
   ];
 

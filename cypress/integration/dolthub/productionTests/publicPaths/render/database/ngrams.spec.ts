@@ -1,6 +1,5 @@
 import { runTestsForDevices } from "../../../../../utils";
 import {
-  iPad2ForAppLayout,
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
 } from "../../../../../utils/devices";
@@ -240,7 +239,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = [
     macbook15ForAppLayout(pageName, desktopAndIpadTests()),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true),
+    // iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true), // Not optimized for ipad, test is flaky
     iPhoneXForAppLayout(
       pageName,
       mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),

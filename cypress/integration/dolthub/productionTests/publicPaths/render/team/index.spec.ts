@@ -1,4 +1,3 @@
-import { beVisible } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../../utils";
 import { allDevicesForSignedOut } from "../../../../../utils/devices";
 import {
@@ -7,6 +6,7 @@ import {
   newShouldArgs,
   scrollToPosition,
 } from "../../../../../utils/helpers";
+import { beVisible } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Team page";
 const currentPage = "/team";
@@ -42,9 +42,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const skip = true;
+  const skip = false;
   const devices = allDevicesForSignedOut(pageName, tests, tests);
-  // TODO: Fix flakey test!
-  //* Error is: CypressError: `cy.visit()` failed trying to load:
   runTestsForDevices({ currentPage, devices, skip });
 });

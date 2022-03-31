@@ -18,7 +18,12 @@ const issueComment = "test comment";
 const issueCommentUpdate = "test comment update";
 
 export const testIssues: Tests = [
-  //! CREATE A NEW ISSUE
+  // CREATE A NEW ISSUE
+  newExpectation(
+    "should have add dropdown",
+    "[data-cy=repo-dropdown-button]",
+    beVisible,
+  ),
   newExpectationWithClickFlows(
     "should navigate to the new issue page",
     "[data-cy=repo-dropdown-button]",

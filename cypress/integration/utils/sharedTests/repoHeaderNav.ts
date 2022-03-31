@@ -51,12 +51,12 @@ export const forkButtonClickFlow = (loggedIn: boolean) =>
 export const conditionalReadMeTest = (hasDocs: boolean) => {
   const docsExpectation: Expectation = hasDocs
     ? newExpectation(
-        "Should not have readmeLink",
+        "should not have README link",
         "[data-cy=dropdown-new-docs-link]",
         newShouldArgs("not.exist"),
       )
     : newExpectation(
-        "Should have a create new readme link",
+        "should have a create new readme link",
         "[data-cy=dropdown-new-docs-link]",
         beVisible,
       );
@@ -73,22 +73,22 @@ export const databaseDropdownClickFlow = (
     loggedIn
       ? [
           newExpectation(
-            "Should have a create new table link",
+            "should have a create new table link",
             "[data-cy=dropdown-create-new-table-link]",
             beVisible,
           ),
           newExpectation(
-            "Should have a upload a file link",
+            "should have a upload a file link",
             "[data-cy=dropdown-upload-a-file-link]",
             beVisible,
           ),
           newExpectation(
-            "Should have a create new issue link",
+            "should have a create new issue link",
             "[data-cy=dropdown-new-issue-link]",
             beVisible,
           ),
           newExpectation(
-            "Should have a create new pull request link",
+            "should have a create new pull request link",
             "[data-cy=dropdown-new-pull-request-link]",
             beVisible,
           ),
@@ -96,12 +96,12 @@ export const databaseDropdownClickFlow = (
         ]
       : [
           newExpectation(
-            "Should have a create new issue link",
+            "should have a create new issue link",
             "[data-cy=dropdown-new-issue-link]",
             beVisible,
           ),
           newExpectation(
-            "Should have a create new pull request link",
+            "should have a create new pull request link",
             "[data-cy=dropdown-new-pull-request-link]",
             beVisible,
           ),

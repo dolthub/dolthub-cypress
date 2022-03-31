@@ -7,8 +7,6 @@ import { Tests } from "../types";
 import {
   beVisible,
   beVisibleAndContain,
-  createPullRequest,
-  mergingAndDeletingBranch,
   sqlConsoleEditClickFlow,
 } from "./sharedFunctionsAndVariables";
 
@@ -16,7 +14,7 @@ const sqlQueryTable = "TestSqlCreateTable";
 const createTableQuery = `CREATE TABLE ${sqlQueryTable} (pk INT,col1 VARCHAR(255),PRIMARY KEY (pk));`;
 
 export const testCreateTableWithSqlQuery: Tests = [
-  //! USE SQL QUERY FOR ADDING TABLE
+  // USE SQL QUERY FOR ADDING TABLE
   newExpectationWithClickFlows(
     "should show sql query button",
     "[data-cy=sql-query-create-table]",
@@ -41,14 +39,17 @@ export const testCreateTableWithSqlQuery: Tests = [
     beVisible,
     [sqlConsoleEditClickFlow(createTableQuery)],
   ),
-  ...createPullRequest,
-  ...mergingAndDeletingBranch("Changes from workspace"),
-  //! NAVIGATE TO THE DATABASE TAB
   newExpectationWithClickFlows(
-    "should be able to navigate to database tab",
-    "[data-cy=repo-database-tab]",
+    "should show create commit button",
+    "[data-cy=create-commit]",
     beVisible,
-    [newClickFlow("[data-cy=repo-database-tab]", [])],
+    [newClickFlow("[data-cy=create-commit]", [])],
+  ),
+  newExpectationWithClickFlows(
+    "should be able to create commit",
+    "[data-cy=create-commit-button]",
+    beVisible,
+    [newClickFlow("[data-cy=create-commit-button]", [])],
   ),
   newExpectation(
     `should have ${sqlQueryTable} listed`,
