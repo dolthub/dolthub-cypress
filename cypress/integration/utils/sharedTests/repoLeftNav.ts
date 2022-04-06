@@ -280,7 +280,7 @@ const testViewClickFlow = (testView: string): ClickFlow =>
     newExpectation(
       "",
       "[data-cy=sql-editor-collapsed]",
-      newShouldArgs("be.visible.and.contain", `SELECT * FROM ${testView}`),
+      newShouldArgs("be.visible.and.contain", `SELECT * FROM \`${testView}\``),
     ),
   ]);
 
@@ -422,7 +422,7 @@ const testSchemaClickFlow = (testSchema: string): ClickFlow =>
       "[data-cy=sql-editor-collapsed]",
       newShouldArgs(
         "be.visible.and.contain",
-        `SHOW CREATE TABLE ${testSchema}`,
+        `SHOW CREATE TABLE \`${testSchema}\``,
       ),
     ),
   ]);
