@@ -26,20 +26,8 @@ export const testEmptyRepo = (hasBranch: boolean): Tests => {
       pushCommitExist,
     ),
     newExpectationWithScrollIntoView(
-      "should have upload file section",
-      "[data-cy=file-upload-fileupload-branch-link]",
-      beVisible,
-      true,
-    ),
-    newExpectationWithScrollIntoView(
       "should have sql section",
       "[data-cy=sql-query-create-table]",
-      beVisible,
-      true,
-    ),
-    newExpectationWithScrollIntoView(
-      "should have spreadsheet section",
-      "[data-cy=file-upload-spreadsheet-branch-link]",
       beVisible,
       true,
     ),
