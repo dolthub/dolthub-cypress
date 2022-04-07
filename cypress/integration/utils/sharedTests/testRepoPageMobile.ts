@@ -26,12 +26,6 @@ export const testEmptyRepo = (hasBranch: boolean): Tests => {
       pushCommitExist,
     ),
     newExpectationWithScrollIntoView(
-      "should have sql section",
-      "[data-cy=sql-query-create-table]",
-      beVisible,
-      true,
-    ),
-    newExpectationWithScrollIntoView(
       "should have Create new database section",
       "[data-cy=repo-empty-create-new-repo]",
       beVisible,
