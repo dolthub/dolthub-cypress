@@ -51,13 +51,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should have upload file link",
-      "[data-cy=repo-empty-upload-file]",
+      "should have sql query section",
+      "[data-cy=sql-query-create-table]",
       beVisible,
     ),
     newExpectation(
-      "should have sql console link",
-      "[data-cy=repo-empty-sql-console]",
+      "should have spreadsheet editor section",
+      "[data-cy=file-upload-spreadsheet-table-link]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have file upload section",
+      "[data-cy=file-upload-fileupload-table-link]",
       beVisible,
     ),
     newExpectationWithScrollIntoView(
