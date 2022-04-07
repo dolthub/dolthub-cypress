@@ -40,8 +40,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should have sql console link",
-      "[data-cy=repo-empty-sql-console]",
+      "should have sql query section",
+      "[data-cy=sql-query-create-table]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have spreadsheet editor section",
+      "[data-cy=file-upload-spreadsheet-branch-link]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have file upload section",
+      "[data-cy=file-upload-fileupload-branch-link]",
       beVisible,
     ),
     newExpectation(
