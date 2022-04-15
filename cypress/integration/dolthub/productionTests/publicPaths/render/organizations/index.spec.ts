@@ -126,7 +126,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show list of owner repositories",
       "[data-cy=repository-list-for-owner] li",
-      newShouldArgs("be.visible.and.have.length.of.at.least", 10),
+      newShouldArgs("be.visible.and.have.length.of.at.least", 9),
       skip,
     ),
     newExpectation(
