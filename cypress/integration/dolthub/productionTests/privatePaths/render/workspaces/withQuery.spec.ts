@@ -19,7 +19,7 @@ const workspace = isProd
   : "348d4226-fa12-4c6f-a624-7a597e1af128";
 const query = "insert into test_table (pk, a, b, c) values (2, 3, 4, 5);";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}?q=${query}`;
-const loggedIn = false;
+const loggedIn = true;
 const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -42,14 +42,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
-      "should show workspace title",
-      "[data-cy=workspace-title]",
-      newShouldArgs("be.visible.and.contain", "Temporary Workspace"),
-    ),
-    newExpectation(
       "should show run message",
       "[data-cy=workspaces-run-msg]",
       beVisible,
+    ),
+    newExpectation(
+      "should show workspace title",
+      "[data-cy=workspace-title]",
+      newShouldArgs("be.visible.and.contain", "Temporary Workspace"),
     ),
     newExpectation(
       "should have link button",
@@ -58,14 +58,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation("should have info icon", "[data-cy=info-icon]", beVisible),
     newExpectation(
-      "should not show pull button",
+      "should show pull button",
       "[data-cy=create-pull]",
-      notExist,
+      beVisible,
     ),
     newExpectation(
-      "should not show discard workspace button",
+      "should show discard workspace button",
       "[data-cy=discard-work]",
-      notExist,
+      beVisible,
     ),
     newExpectation(
       "should show diff tabs",
