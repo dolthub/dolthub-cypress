@@ -57,6 +57,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const devices = [
     macbook15ForAppLayout(pageName, desktopAndIpadTests(), false),
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    /* 
+    TODO: mobile pull request page test
+    iPhoneXForAppLayout(
+      pageName,
+      mobileTests(currentOwner, currentRepo, currentPage, true, true),
+    ), 
+    */
   ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
