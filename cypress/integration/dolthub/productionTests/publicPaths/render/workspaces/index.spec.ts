@@ -20,7 +20,7 @@ const pageName = "Workspaces page logged out";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const workspace = isProd
-  ? "bd283677-206b-444b-bde4-13332f7cd385"
+  ? "4ef937bb-d5ee-4a75-93b0-424396f76a71"
   : "348d4226-fa12-4c6f-a624-7a597e1af128";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}`;
 const loggedIn = false;

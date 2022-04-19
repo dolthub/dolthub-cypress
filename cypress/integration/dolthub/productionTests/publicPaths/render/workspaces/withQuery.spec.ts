@@ -1,11 +1,6 @@
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-} from "../../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
 import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
 
@@ -15,7 +10,7 @@ const pageName = "Workspaces page with query logged out";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const workspace = isProd
-  ? "bd283677-206b-444b-bde4-13332f7cd385"
+  ? "4ef937bb-d5ee-4a75-93b0-424396f76a71"
   : "348d4226-fa12-4c6f-a624-7a597e1af128";
 const query = "insert into test_table (pk, a, b, c) values (2, 3, 4, 5)";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}?q=${query}`;
@@ -26,14 +21,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const noButtonClickFlow = newClickFlow("[data-cy=no-button]", [
-    newExpectation(
-      "should remove run message",
-      "[data-cy=workspaces-run-msg]",
-      notExist,
-    ),
-  ]);
-
   const tests = [
     newExpectation(
       "should have repository layout",
@@ -41,11 +28,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
-    newExpectation(
-      "should show run message",
-      "[data-cy=workspaces-run-msg]",
-      beVisible,
-    ),
     newExpectation(
       "should show workspace title",
       "[data-cy=workspace-title]",
@@ -79,12 +61,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should show commit list",
       "[data-cy=workspace-commit-list] li",
       newShouldArgs("be.visible.and.have.length", 1),
-    ),
-    newExpectationWithClickFlows(
-      "should remove run message on no click",
-      "[data-cy=no-button]",
-      beVisible,
-      [noButtonClickFlow],
     ),
     testSqlConsole,
   ];
