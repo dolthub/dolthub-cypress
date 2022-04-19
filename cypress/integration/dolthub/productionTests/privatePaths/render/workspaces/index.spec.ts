@@ -13,7 +13,7 @@ const pageName = "Workspaces page logged in";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const workspace = isProd
-  ? "bd283677-206b-444b-bde4-13332f7cd385"
+  ? "4ef937bb-d5ee-4a75-93b0-424396f76a71"
   : "348d4226-fa12-4c6f-a624-7a597e1af128";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}`;
 const loggedIn = true;
@@ -21,23 +21,6 @@ const loggedIn = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
-
-  const pullClickFlow = newClickFlow(
-    "[data-cy=create-pull]",
-    [
-      newExpectation(
-        "should have cancel button",
-        "[data-cy=cancel-button]",
-        beVisible,
-      ),
-      newExpectation(
-        "should have pull button",
-        "[data-cy=create-pull-button]",
-        beVisible,
-      ),
-    ],
-    "[data-cy=close-modal]",
-  );
 
   const discardClickFlow = newClickFlow(
     "[data-cy=discard-work]",
@@ -86,11 +69,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=sql-editor-collapsed]",
       beVisible,
     ),
-    newExpectationWithClickFlows(
+    newExpectation(
       "should show pull button",
       "[data-cy=create-pull]",
       beVisible,
-      [pullClickFlow],
     ),
     newExpectationWithClickFlows(
       "should show discard workspace button",
