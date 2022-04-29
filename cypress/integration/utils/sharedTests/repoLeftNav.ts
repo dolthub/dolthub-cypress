@@ -422,7 +422,7 @@ const testSchemaClickFlow = (testSchema: string): ClickFlow =>
       "[data-cy=sql-editor-collapsed]",
       newShouldArgs(
         "be.visible.and.contain",
-        `SHOW CREATE TABLE ${testSchema}`,
+        `SHOW CREATE TABLE \`${testSchema}\``,
       ),
     ),
   ]);
