@@ -1651,9 +1651,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/github-action@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "@cypress/github-action@npm:3.0.3"
+"@cypress/github-action@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "@cypress/github-action@npm:3.0.4"
   dependencies:
     "@actions/cache": 1.0.11
     "@actions/core": 1.6.0
@@ -1661,13 +1661,13 @@ __metadata:
     "@actions/io": 1.1.2
     "@octokit/core": 3.6.0
     argument-vector: 1.0.2
-    debug: 4.3.3
+    debug: 4.3.4
     execa: 6.1.0
     find-yarn-workspace-root: 2.0.0
     got: 11.8.3
     hasha: 5.2.2
     quote: 0.4.0
-  checksum: 0a501e0f2d25024a09664c89c7fc47a0024f61c7a95f2e3f48e4d24083dd5db7dfc47aedae5a1afc3aaf7c1a30e46ba56c30cbf6c5a052691a7757a8e5e568db
+  checksum: 53e2e47e4fc6941238da1fd1ed5f10cdba5dda10037e2db230292dcbb45e5af523b2ae1d43e9492472f71bd4ea0d6c35470d13e40b1853192728fe271368b0ca
   languageName: node
   linkType: hard
 
@@ -3071,7 +3071,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:4.3.3, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2":
+"debug@npm:4, debug@npm:^4.0.1, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2":
   version: 4.3.3
   resolution: "debug@npm:4.3.3"
   dependencies:
@@ -3080,6 +3080,18 @@ __metadata:
     supports-color:
       optional: true
   checksum: 14472d56fe4a94dbcfaa6dbed2dd3849f1d72ba78104a1a328047bb564643ca49df0224c3a17fa63533fd11dd3d4c8636cd861191232a2c6735af00cc2d4de16
+  languageName: node
+  linkType: hard
+
+"debug@npm:4.3.4":
+  version: 4.3.4
+  resolution: "debug@npm:4.3.4"
+  dependencies:
+    ms: 2.1.2
+  peerDependenciesMeta:
+    supports-color:
+      optional: true
+  checksum: 3dbad3f94ea64f34431a9cbf0bafb61853eda57bff2880036153438f50fb5a84f27683ba0d8e5426bf41a8c6ff03879488120cf5b3a761e77953169c0600a708
   languageName: node
   linkType: hard
 
@@ -3196,7 +3208,7 @@ __metadata:
     "@babel/core": ^7.17.8
     "@babel/preset-env": ^7.16.7
     "@babel/preset-typescript": ^7.16.7
-    "@cypress/github-action": ^3.0.3
+    "@cypress/github-action": ^3.0.4
     "@types/node": ^17.0.7
     "@typescript-eslint/eslint-plugin": ^4.33
     "@typescript-eslint/parser": ^4.33.0
