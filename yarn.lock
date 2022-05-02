@@ -220,11 +220,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/cli@npm:^7.17.6":
-  version: 7.17.6
-  resolution: "@babel/cli@npm:7.17.6"
+"@babel/cli@npm:^7.17.10":
+  version: 7.17.10
+  resolution: "@babel/cli@npm:7.17.10"
   dependencies:
-    "@jridgewell/trace-mapping": ^0.3.4
+    "@jridgewell/trace-mapping": ^0.3.8
     "@nicolo-ribaudo/chokidar-2": 2.1.8-no-fsevents.3
     chokidar: ^3.4.0
     commander: ^4.0.1
@@ -233,7 +233,6 @@ __metadata:
     glob: ^7.0.0
     make-dir: ^2.1.0
     slash: ^2.0.0
-    source-map: ^0.5.0
   peerDependencies:
     "@babel/core": ^7.0.0-0
   dependenciesMeta:
@@ -244,7 +243,7 @@ __metadata:
   bin:
     babel: ./bin/babel.js
     babel-external-helpers: ./bin/babel-external-helpers.js
-  checksum: 362c9baf14e3984bad2388647941e0ce3bf1894a5f25cd8595ca0b9bdcd8b94eb06d15eef6590e2215cfc5a191e186ae65c0c6214ed4a3eec226bd0eacc37c44
+  checksum: 66b50a7d60e9366c82301c45346a1639b2a7351d2049ff9c47812093060802711fbb1690243826e09823cf06be5306d608327fa8c8ea2827fd6340923ac827a0
   languageName: node
   linkType: hard
 
@@ -1773,13 +1772,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jridgewell/trace-mapping@npm:^0.3.4":
-  version: 0.3.4
-  resolution: "@jridgewell/trace-mapping@npm:0.3.4"
+"@jridgewell/trace-mapping@npm:^0.3.8":
+  version: 0.3.9
+  resolution: "@jridgewell/trace-mapping@npm:0.3.9"
   dependencies:
     "@jridgewell/resolve-uri": ^3.0.3
     "@jridgewell/sourcemap-codec": ^1.4.10
-  checksum: ab8bce84bbbc8c34f3ba8325ed926f8f2d3098983c10442a80c55764c4eb6e47d5b92d8ff20a0dd868c3e76a3535651fd8a0138182c290dbfc8396195685c37b
+  checksum: d89597752fd88d3f3480845691a05a44bd21faac18e2185b6f436c3b0fd0c5a859fbbd9aaa92050c4052caf325ad3e10e2e1d1b64327517471b7d51babc0ddef
   languageName: node
   linkType: hard
 
@@ -3204,8 +3203,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dolthub-cypress@workspace:."
   dependencies:
-    "@babel/cli": ^7.17.6
-    "@babel/core": ^7.17.8
+    "@babel/cli": ^7.17.10
+    "@babel/core": ^7.17.10
     "@babel/preset-env": ^7.16.7
     "@babel/preset-typescript": ^7.16.7
     "@cypress/github-action": ^3.0.4
@@ -3222,8 +3221,8 @@ __metadata:
     eslint-plugin-import: ^2.25.4
     husky: ^7.0.4
     npm-run-all: ^4.1.5
-    prettier: ^2.6.1
-    typescript: ^4.6.3
+    prettier: ^2.6.2
+    typescript: ^4.6.4
     yarnhook: ^0.5.1
   languageName: unknown
   linkType: soft
@@ -6577,23 +6576,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.3":
-  version: 4.6.3
-  resolution: "typescript@npm:4.6.3"
+"typescript@npm:^4.6.4":
+  version: 4.6.4
+  resolution: "typescript@npm:4.6.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 255bb26c8cb846ca689dd1c3a56587af4f69055907aa2c154796ea28ee0dea871535b1c78f85a6212c77f2657843a269c3a742d09d81495b97b914bf7920415b
+  checksum: e7bfcc39cd4571a63a54e5ea21f16b8445268b9900bf55aee0e02ad981be576acc140eba24f1af5e3c1457767c96cea6d12861768fb386cf3ffb34013718631a
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.3#~builtin<compat/typescript>":
-  version: 4.6.3
-  resolution: "typescript@patch:typescript@npm%3A4.6.3#~builtin<compat/typescript>::version=4.6.3&hash=493e53"
+"typescript@patch:typescript@^4.6.4#~builtin<compat/typescript>":
+  version: 4.6.4
+  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=493e53"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: fe6bdc1afb2f145ddb7b0a3a31f96352209f6a5704d97f038414ea22ff9d8dd42f32cfb6652e30458d7d958d2d4e85de2df11c574899c6f750a6b3c0e90a3a76
+  checksum: 8cff08bf66d9ecfbf9fcc5edde04a5a7923e6cac3b21d99b4e9a06973bf5bd7f9a83ec7eed24129c1b9e13fd861de8c1070110d4b9ce9f18ab57c6999e9c9a6f
   languageName: node
   linkType: hard
 
