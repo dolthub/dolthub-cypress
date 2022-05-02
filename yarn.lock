@@ -3203,13 +3203,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "dolthub-cypress@workspace:."
   dependencies:
-<<<<<<< HEAD
-    "@babel/cli": ^7.17.6
-    "@babel/core": ^7.17.8
-=======
     "@babel/cli": ^7.17.10
     "@babel/core": ^7.17.10
->>>>>>> origin/main
     "@babel/preset-env": ^7.16.7
     "@babel/preset-typescript": ^7.16.7
     "@cypress/github-action": ^3.0.4
@@ -3226,13 +3221,8 @@ __metadata:
     eslint-plugin-import: ^2.25.4
     husky: ^7.0.4
     npm-run-all: ^4.1.5
-<<<<<<< HEAD
-    prettier: ^2.6.1
-    typescript: ^4.6.3
-=======
     prettier: ^2.6.2
     typescript: ^4.6.4
->>>>>>> origin/main
     yarnhook: ^0.5.1
   languageName: unknown
   linkType: soft
