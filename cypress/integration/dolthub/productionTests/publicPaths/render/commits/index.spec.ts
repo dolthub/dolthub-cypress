@@ -38,6 +38,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.length.of.at.least", 20),
     ),
     newExpectation(
+      "should find csv download icon",
+      "[data-cy=commit-dump-csv]",
+      beVisible,
+    ),
+    newExpectation(
       "should find first commit commit and user links",
       "[data-cy=commit-log-item]:first a",
       newShouldArgs("be.visible.and.have.length", 4),
