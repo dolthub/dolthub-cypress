@@ -4,7 +4,12 @@ import {
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
 } from "../../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
@@ -59,6 +64,30 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should display database data row column values",
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "b"),
+    ),
+    newExpectationWithClickFlows(
+      "Option dropdown should have appropriate links",
+      "[data-cy=options-button]",
+      beVisible,
+      [
+        newClickFlow("[data-cy=options-button]", [
+          newExpectation(
+            "should have toggle whitespace button",
+            "[data-cy=toggle-whitespace-button]",
+            beVisible,
+          ),
+          newExpectation(
+            "should have download query result as csv button",
+            "[data-cy=open-download-csv-modal-button]",
+            beVisible,
+          ),
+          newExpectation(
+            "should have download table as csv button",
+            "[data-cy=download-table-as-csv]",
+            beVisible,
+          ),
+        ]),
+      ],
     ),
     ...tableExpectations(hasDocs, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
