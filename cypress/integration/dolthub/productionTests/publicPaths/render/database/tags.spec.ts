@@ -1,3 +1,4 @@
+import { beVisible } from "cypress/integration/utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -142,6 +143,11 @@ export const testReleasesSection = (tagLen: number): Expectation =>
           "",
           "[data-cy=release-list-item]",
           newShouldArgs("be.visible.and.have.length.of.at.least", tagLen - 1),
+        ),
+        newExpectation(
+          "should find csv download icon",
+          "[data-cy=dump-csv]",
+          beVisible,
         ),
       ]),
     ],
