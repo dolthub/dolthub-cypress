@@ -138,30 +138,6 @@ export const conditionalPlayButtonTest = (
           `[data-cy=repo-tables-table-${testTable}-column-list]`,
           beVisible,
         ),
-        newExpectationWithClickFlows(
-          "Option dropdown should have appropriate links",
-          "[data-cy=options-button]",
-          beVisible,
-          [
-            newClickFlow("[data-cy=options-button]", [
-              newExpectation(
-                "should have toggle whitespace button",
-                "[data-cy=toggle-whitespace-button]",
-                beVisible,
-              ),
-              newExpectation(
-                "should have download query result as csv button",
-                "[data-cy=open-download-csv-modal-button]",
-                beVisible,
-              ),
-              newExpectation(
-                "should have download table as csv button",
-                "[data-cy=download-table-as-csv]",
-                beVisible,
-              ),
-            ]),
-          ],
-        ),
         newExpectation(
           "Should show 'viewing'",
           `[data-cy=repo-tables-table-viewing]`,
