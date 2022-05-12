@@ -27,6 +27,13 @@ export const signedOutNavbarLinks = [
 
 const signedInNavbarLinks = sharedLinks;
 
+const signedOutDoltLabNavbarLinks = [
+  "[data-cy=navbar-logo]",
+  "[data-cy=navbar-databases]",
+  "[data-cy=navbar-documentation]",
+  "[data-cy=navbar-signin-button]",
+];
+
 export const testSignedOutNavbar: Tests = [
   newExpectation(
     "should have signed out navbar and correct links",
@@ -44,6 +51,14 @@ export const testSignedInNavbar: Tests = [
   newExpectation(
     "should have user avatar",
     "[data-cy=navbar-menu-avatar]",
+    beVisible,
+  ),
+];
+
+export const testSignedOutDoltLabNavbar: Tests = [
+  newExpectation(
+    "should have signed out navbar and correct links",
+    signedOutDoltLabNavbarLinks,
     beVisible,
   ),
 ];

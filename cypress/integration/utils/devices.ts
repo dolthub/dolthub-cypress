@@ -1,8 +1,9 @@
 import { newDevice } from "./helpers";
-import { testFooter } from "./sharedTests/footer";
+import { testDoltLabFooter, testFooter } from "./sharedTests/footer";
 import {
   testMobileNavbar,
   testSignedInNavbar,
+  testSignedOutDoltLabNavbar,
   testSignedOutNavbar,
 } from "./sharedTests/navbar";
 import { Device, Devices, Tests } from "./types";
@@ -177,3 +178,21 @@ function getSignedOutTests(t: Tests, skipNavbar = false): Tests {
   if (skipNavbar) return [...t, ...testFooter];
   return [...testSignedOutNavbar, ...t, ...testFooter];
 }
+
+// For DoltLab
+
+function getSignedOutDoltLabTests(t: Tests, skipNavbar = false): Tests {
+  if (skipNavbar) return [...t, ...testFooter];
+  return [...testSignedOutDoltLabNavbar, ...t, ...testDoltLabFooter];
+}
+
+// Signed out layout
+export const macbook15ForDoltLabSignedOutLayout = (
+  pageName: string,
+  tests: Tests,
+  skipNavbar = false,
+  loggedIn = false,
+): Device => {
+  const t = getSignedOutDoltLabTests(tests, skipNavbar);
+  return macbook15(pageName, t, loggedIn);
+};

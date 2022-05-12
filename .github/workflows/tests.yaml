@@ -27,7 +27,16 @@
           node-version: '14.17'
       - name: Install dependencies
         run: yarn
-      - name: Cypress run
+      - name: Cypress run doltlab tests
+        uses: cypress-io/github-action@v2
+        with:
+          install: false
+          browser: chrome
+          headless: true
+          config: baseUrl=http://doltlab.dolthub.com,integrationFolder=cypress/integration/doltlab/productionTests
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Cypress run dolthub tests
         uses: cypress-io/github-action@v2
         with:
           install: false
@@ -37,3 +46,4 @@
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
