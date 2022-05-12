@@ -19,6 +19,8 @@ const footerTags = [
   "[data-cy=footer-dolthub-logo]",
 ];
 
+const doltLabFooterTags = ["[data-cy=footer-dolthub-logo]"];
+
 export const testFooter: Tests = [
   newExpectationWithScrollIntoView(
     "should have footer",
@@ -27,4 +29,26 @@ export const testFooter: Tests = [
     true,
   ),
   newExpectation("should have footer links and images", footerTags, exist),
+];
+
+export const testDoltLabFooter: Tests = [
+  newExpectationWithScrollIntoView(
+    "should have footer",
+    "[data-cy=site-footer]",
+    exist,
+    true,
+  ),
+  newExpectation(
+    "should have footer links and images",
+    doltLabFooterTags,
+    exist,
+  ),
+  newExpectation(
+    "should have download doltlab button",
+    "[data-cy=site-footer]",
+    newShouldArgs("be.visible.and.contain", [
+      "Download DoltLab",
+      "All rights reserved.",
+    ]),
+  ),
 ];

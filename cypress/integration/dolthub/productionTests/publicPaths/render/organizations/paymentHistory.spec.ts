@@ -4,7 +4,7 @@ import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 
 const pageName = "DoltHub org payment history page";
 const orgName = "DoltHub";
-const currentPage = `/organizations/Liquidata/payment-history`;
+const currentPage = `/organizations/dolthub/payment-history`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
