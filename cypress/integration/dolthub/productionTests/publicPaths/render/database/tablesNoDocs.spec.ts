@@ -8,6 +8,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
@@ -64,6 +65,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should display database data row column values",
       "[data-cy=repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "b"),
+    ),
+    newExpectationWithScrollIntoView(
+      "should have Option dropdown",
+      "[data-cy=options-button]",
+      beVisible,
+      true,
     ),
     newExpectationWithClickFlows(
       "Option dropdown should have appropriate links",
