@@ -9,7 +9,7 @@ A suite of [Cypress.io](https://docs.cypress.io/) tests written in Typescript to
 ```bash
 $ yarn && yarn compile
 ```
-* [Running Cypress on the Apple M1 ARM Architecture using Rosetta 2](https://www.cypress.io/blog/2021/01/20/running-cypress-on-the-apple-m1-silicon-arm-architecture-using-rosetta-2/) then you need to run the following: 
+* [Running Cypress on the Apple M1 ARM Architecture](https://www.cypress.io/blog/2021/01/20/running-cypress-on-the-apple-m1-silicon-arm-architecture-using-rosetta-2/) then you need to run the following: 
 ```bash
 $ softwareupdate --install-rosetta --agree-to-license
 ```
