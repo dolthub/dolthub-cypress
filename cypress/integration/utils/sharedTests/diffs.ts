@@ -34,11 +34,6 @@ export const leftNavTests = (
     newShouldArgs("be.visible.and.contain", currentFromCommit),
   ),
   newExpectation(
-    "should have browse tables link",
-    "[data-cy=browse-tables]",
-    beVisible,
-  ),
-  newExpectation(
     "should have commit message",
     "[data-cy=commit-message]",
     beVisible,
@@ -69,11 +64,6 @@ export const leftNavDiffRangeTests = (fromCommit: string, toCommit: string) => [
       "be.visible.and.contain",
       `${fromCommit.slice(0, 7)}..${toCommit.slice(0, 7)}`,
     ),
-  ),
-  newExpectation(
-    "should not have browse tables link",
-    "[data-cy=browse-tables]",
-    notExist,
   ),
   newExpectation(
     "should not have commit message",
