@@ -2,20 +2,21 @@ import {
     newClickFlow,
     newExpectation,
     newExpectationWithClickFlows,
-  } from "../helpers";
-  import { Tests } from "../types";
-  import {
+} from "../helpers";
+import { Tests } from "../types";
+import {
     beVisible,
     beVisibleAndContain,
     createPullRequest,
     mergingAndDeletingBranch,
     notExist,
     typingExpectation,
-  } from "./sharedFunctionsAndVariables";
+} from "./sharedFunctionsAndVariables";
   
-  const testQueryName = "test-view-name";
+const testQueryName = "test-view-name";
   
-  export const testViewQuery: Tests = [
+
+export const testViewQuery: Tests = [
     // NAVIGATE TO THE DATABASE TAB
     newExpectationWithClickFlows(
       "should be able to navigate to database tab",
@@ -70,6 +71,7 @@ import {
         ]),
       ],
     ),
+    
     newExpectationWithClickFlows(
       "the saved query description should be rendered",
       `[data-cy=repo-view-views-${testQueryName}]`,
