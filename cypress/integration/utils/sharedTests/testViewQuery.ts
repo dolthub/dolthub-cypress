@@ -7,9 +7,6 @@ import { Tests } from "../types";
 import {
   beVisible,
   beVisibleAndContain,
-  createPullRequest,
-  mergingAndDeletingBranch,
-  notExist,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
