@@ -21,7 +21,7 @@ export const testViewQuery: Tests = [
     [newClickFlow("[data-cy=repo-database-tab]", [])],
   ),
 
-  // SAVE THE QUERY
+  // SAVE THE VIEW
   newExpectationWithClickFlows(
     "should show create view button",
     "[data-cy=create-view-button]",
@@ -52,7 +52,7 @@ export const testViewQuery: Tests = [
     [newClickFlow("[data-cy=create-commit-button]", [])],
   ),
   newExpectationWithClickFlows(
-    "the saved query should be rendered in the queries tab",
+    "the saved view should be rendered in the view tab",
     "[data-cy=tab-views]",
     beVisible,
     [
