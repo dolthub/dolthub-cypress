@@ -4,7 +4,12 @@ import {
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
 } from "../../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
+import {
+  newExpectation,
+  newShouldArgs,
+  newClickFlow,
+  newExpectationWithClickFlows,
+} from "../../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
@@ -16,6 +21,7 @@ import {
 import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
 import { mobileTests } from "../../../../../utils/sharedTests/testRepoPageMobile";
 import { Tests } from "../../../../../utils/types";
+import { typingExpectation } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Database page (corona-virus) with tables and docs";
 const currentOwner = "automated_testing";
@@ -61,6 +67,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", ["No authentication", "sign in"]),
     ),
     testViewsSection(hasBranch, 15, testView),
+    newExpectationWithClickFlows(
+      "should show view query button",
+      "[data-cy=create-view-button]",
+      beVisible,
+      [
+        newClickFlow(
+          "[data-cy=create-view-button]",
+          [typingExpectation("testQueryName", "[data-cy=query-name]")],
+          "[data-cy=close-modal]",
+        ),
+      ],
+    ),
     testQueryCatalogSection(hasBranch, 10, testQuery),
     testSchemaSection(hasBranch, 11, "case_details"),
     testSqlConsole,
