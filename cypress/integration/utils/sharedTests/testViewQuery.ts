@@ -10,7 +10,7 @@ import {
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
-const testQueryName = "test-view-name";
+const testViewName = "test-view-name";
 
 export const testViewQuery: Tests = [
   // NAVIGATE TO THE DATABASE TAB
@@ -23,13 +23,13 @@ export const testViewQuery: Tests = [
 
   // SAVE THE QUERY
   newExpectationWithClickFlows(
-    "should show view query button",
+    "should show create view button",
     "[data-cy=create-view-button]",
     beVisible,
     [
       newClickFlow(
         "[data-cy=create-view-button]",
-        [typingExpectation(testQueryName, "[data-cy=query-name]")],
+        [typingExpectation(testViewName, "[data-cy=query-name]")],
         "[data-cy=modal-create-view-button]",
       ),
     ],
@@ -37,7 +37,7 @@ export const testViewQuery: Tests = [
   newExpectation(
     "should have saved view listed",
     "[data-cy=workspace-commit-list]>li:first>div>a",
-    beVisibleAndContain(testQueryName),
+    beVisibleAndContain(testViewName),
   ),
   newExpectationWithClickFlows(
     "should show create commit button",
@@ -59,22 +59,22 @@ export const testViewQuery: Tests = [
       newClickFlow("[data-cy=tab-views]", [
         newExpectation(
           "should have saved view listed",
-          `[data-cy=repo-view-views-${testQueryName}`,
-          beVisibleAndContain(testQueryName),
+          `[data-cy=repo-view-views-${testViewName}`,
+          beVisibleAndContain(testViewName),
         ),
       ]),
     ],
   ),
 
   newExpectationWithClickFlows(
-    "the saved query description should be rendered",
-    `[data-cy=repo-view-views-${testQueryName}]`,
+    "the saved view should be rendered",
+    `[data-cy=repo-view-views-${testViewName}]`,
     beVisible,
     [
-      newClickFlow(`[data-cy=repo-view-views-${testQueryName}]>div>button`, [
+      newClickFlow(`[data-cy=repo-view-views-${testViewName}]>div>button`, [
         newExpectation(
-          "should have view query listed",
-          `[data-cy=repo-views-view-button-${testQueryName}]`,
+          "should have view listed",
+          `[data-cy=repo-views-view-button-${testViewName}]`,
           beVisibleAndContain("Viewing"),
         ),
       ]),

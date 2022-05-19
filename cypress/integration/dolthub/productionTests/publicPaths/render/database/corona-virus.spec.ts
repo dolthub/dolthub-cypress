@@ -68,7 +68,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     testViewsSection(hasBranch, 15, testView),
     newExpectationWithClickFlows(
-      "should show view query button",
+      "should show create view button",
       "[data-cy=create-view-button]",
       beVisible,
       [
