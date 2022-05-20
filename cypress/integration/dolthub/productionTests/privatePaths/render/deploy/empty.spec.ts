@@ -7,7 +7,7 @@ import {
   newClickFlow,
 } from "../../../../../utils/helpers";
 
-const pageName = "Issues page for non-existent database";
+const pageName = "Deploy page for empty database";
 const currentOwner = "automated_testing";
 const currentRepo = "empty_repo";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/deploy`;
