@@ -5,6 +5,7 @@ import { deleteTempDatabase } from "../../../../../utils/sharedTests/deleteTempD
 import { testDocs } from "../../../../../utils/sharedTests/testDocs";
 import { testPullRequest } from "../../../../../utils/sharedTests/testPullRequest";
 import { testSaveQuery } from "../../../../../utils/sharedTests/testSaveQuery";
+import { testViewQuery } from "../../../../../utils/sharedTests/testViewQuery";
 
 const pageName = "Create, pull request/docs/saved query, teardown database";
 const currentPage = "/profile/new-repository";
@@ -20,6 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...createTempDatabase(repoName, ownerName),
     ...testDocs,
     ...testSaveQuery,
+    ...testViewQuery,
     ...testPullRequest(forkOwnerName),
     ...deleteTempDatabase(repoName, forkOwnerName),
     ...deleteTempDatabase(repoName, ownerName),
