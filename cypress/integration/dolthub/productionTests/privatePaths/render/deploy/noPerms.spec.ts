@@ -23,8 +23,13 @@ describe(`${pageName} expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
+    newExpectation(
+      "should be able to fork to deploy",
+      "[data-cy=fork-confirm-button]",
+      notExist,
+    ),
     newExpectationWithClickFlows(
-      "should be prompted to sign in",
+      "should be able to close fork modal",
       "[data-cy=close-modal]",
       beVisible,
       [newClickFlow("[data-cy=close-modal]", [])],

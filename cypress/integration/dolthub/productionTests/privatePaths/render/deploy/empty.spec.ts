@@ -5,6 +5,7 @@ import {
   testDeploySelfHosted,
   testDeployHosted,
 } from "../../../../../utils/sharedTests/testDeployTab";
+import { beVisibleAndContain } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Deploy page for empty database";
 const currentOwner = "automated_testing";
@@ -21,6 +22,13 @@ describe(`${pageName} expected components on different devices`, () => {
       "should not find Create Deployment button",
       "[data-cy=hosted-create-deployment-button]",
       notExist,
+    ),
+    newExpectation(
+      "should find empty database message",
+      "[data-cy=empty-db-message]",
+      beVisibleAndContain(
+        "Cannot deploy an empty database. Please add data to deploy.",
+      ),
     ),
     ...testDeploySelfHosted,
   ];
