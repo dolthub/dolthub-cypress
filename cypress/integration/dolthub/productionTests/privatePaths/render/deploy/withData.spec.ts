@@ -1,3 +1,4 @@
+import { testDeploySelfHosted } from "cypress/integration/utils/sharedTests/testDeploySelfHosted";
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
 import {
@@ -27,17 +28,7 @@ describe(`${pageName} expected components on different devices`, () => {
       "[data-cy=hosted-create-deployment-button]",
       beVisible,
     ),
-    newExpectationWithClickFlows(
-      "should show self hosted button",
-      "[data-cy=self-hosted-button]",
-      beVisible,
-      [newClickFlow("[data-cy=self-hosted-button]", [])],
-    ),
-    newExpectation(
-      "should find download docker button",
-      "[data-cy=self-hosted-download-dockerfile-button]",
-      beVisible,
-    ),
+    ...testDeploySelfHosted,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

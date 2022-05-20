@@ -1,3 +1,5 @@
+import { beVisibleAndContain } from "cypress/integration/utils/sharedTests/sharedFunctionsAndVariables";
+import { testDeploySelfHosted } from "cypress/integration/utils/sharedTests/testDeploySelfHosted";
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
 import {
@@ -32,24 +34,16 @@ describe(`${pageName} expected components on different devices`, () => {
     newExpectation(
       "should find error message",
       "[data-cy=error-msg]",
-      beVisible,
+      beVisibleAndContain(
+        "Must be an owner of the organization 'dolthub' to create a deployment for this repo. Fork this repo to be able to create a deployment.",
+      ),
     ),
     newExpectation(
       "should not find Create Deployment button",
       "[data-cy=hosted-create-deployment-button]",
       notExist,
     ),
-    newExpectationWithClickFlows(
-      "should show self hosted button",
-      "[data-cy=self-hosted-button]",
-      beVisible,
-      [newClickFlow("[data-cy=self-hosted-button]", [])],
-    ),
-    newExpectation(
-      "should find download docker button",
-      "[data-cy=self-hosted-download-dockerfile-button]",
-      beVisible,
-    ),
+    ...testDeploySelfHosted,
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
