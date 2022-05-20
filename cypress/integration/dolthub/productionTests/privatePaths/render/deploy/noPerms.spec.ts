@@ -1,5 +1,3 @@
-import { beVisibleAndContain } from "cypress/integration/utils/sharedTests/sharedFunctionsAndVariables";
-import { testDeploySelfHosted } from "cypress/integration/utils/sharedTests/testDeploySelfHosted";
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
 import {
@@ -8,6 +6,8 @@ import {
   newExpectationWithClickFlows,
   newClickFlow,
 } from "../../../../../utils/helpers";
+import { testDeploySelfHosted } from "../../../../../utils/sharedTests/testDeploySelfHosted";
+import { beVisibleAndContain } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Deploy page for database for user without permissions";
 const currentOwner = "dolthub";

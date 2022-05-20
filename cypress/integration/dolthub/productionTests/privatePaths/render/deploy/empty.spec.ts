@@ -1,12 +1,7 @@
 import { testDeploySelfHosted } from "cypress/integration/utils/sharedTests/testDeploySelfHosted";
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
-import {
-  newExpectation,
-  newShouldArgs,
-  newExpectationWithClickFlows,
-  newClickFlow,
-} from "../../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 
 const pageName = "Deploy page for empty database";
 const currentOwner = "automated_testing";
