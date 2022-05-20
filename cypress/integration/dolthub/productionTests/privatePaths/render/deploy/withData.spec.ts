@@ -1,7 +1,10 @@
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
-import { testDeploySelfHosted } from "../../../../../utils/sharedTests/testDeploySelfHosted";
+import {
+  testDeploySelfHosted,
+  testDeployHosted,
+} from "../../../../../utils/sharedTests/testDeployTab";
 
 const pageName = "Deploy page for database";
 const currentOwner = "automated_testing";
@@ -13,11 +16,7 @@ describe(`${pageName} expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    newExpectation(
-      "should find hosted button",
-      "[data-cy=hosted-button]",
-      beVisible,
-    ),
+    ...testDeployHosted,
     newExpectation(
       "should find Create Deployment button",
       "[data-cy=hosted-create-deployment-button]",

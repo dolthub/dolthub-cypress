@@ -6,7 +6,10 @@ import {
   newExpectationWithClickFlows,
   newClickFlow,
 } from "../../../../../utils/helpers";
-import { testDeploySelfHosted } from "../../../../../utils/sharedTests/testDeploySelfHosted";
+import {
+  testDeploySelfHosted,
+  testDeployHosted,
+} from "../../../../../utils/sharedTests/testDeployTab";
 import { beVisibleAndContain } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Deploy page for database for user without permissions";
@@ -26,11 +29,7 @@ describe(`${pageName} expected components on different devices`, () => {
       beVisible,
       [newClickFlow("[data-cy=close-modal]", [])],
     ),
-    newExpectation(
-      "should find hosted button",
-      "[data-cy=hosted-button]",
-      beVisible,
-    ),
+    ...testDeployHosted,
     newExpectation(
       "should find error message",
       "[data-cy=error-msg]",

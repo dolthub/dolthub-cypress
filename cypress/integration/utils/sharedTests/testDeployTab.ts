@@ -21,3 +21,11 @@ export const testDeploySelfHosted: Tests = [
     beVisible,
   ),
 ];
+
+export const testDeployHosted: Tests = [
+  newExpectation(
+    "should find hosted button",
+    "[data-cy=hosted-button]",
+    beVisible,
+  ),
+];
