@@ -13,7 +13,6 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/deploy`;
 const loggedIn = true;
 
 describe(`${pageName} expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
