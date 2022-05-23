@@ -23,7 +23,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repos-container-with-tabs]",
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
-    ...checkRepoListForTab("most-recent", 2),
+    ...checkRepoListForTab("most-recent", 1),
     newExpectation(
       "should have repository search bar with query",
       "[data-cy=search-input]",
