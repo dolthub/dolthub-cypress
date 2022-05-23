@@ -26,7 +26,7 @@ describe(`${pageName} expected components on different devices`, () => {
     newExpectation(
       "should be able to fork to deploy",
       "[data-cy=fork-confirm-button]",
-      notExist,
+      beVisible,
     ),
     newExpectationWithClickFlows(
       "should be able to close fork modal",
