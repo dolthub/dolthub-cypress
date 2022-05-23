@@ -3,9 +3,11 @@ import { allDevicesForSignedOut } from "../../../../../utils/devices";
 import {
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../../utils/helpers";
 import {
+  checkForkList,
   checkRepoListForTab,
   clearSearchClickFlow,
 } from "../../../../../utils/sharedTests/reposContainer";
@@ -24,6 +26,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
     ...checkRepoListForTab("most-recent", 1),
+    ...checkForkList,
+    newExpectationWithScrollIntoView(
+      "should scroll search bar into view",
+      "[data-cy=search-input]",
+      beVisible,
+      true,
+    ),
     newExpectation(
       "should have repository search bar with query",
       "[data-cy=search-input]",

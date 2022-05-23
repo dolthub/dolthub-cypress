@@ -1,11 +1,13 @@
 import {
   newClickFlow,
   newExpectation,
+  newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newExpectationWithSelector,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
-import { beVisibleAndContain } from "./sharedFunctionsAndVariables";
+import { beVisibleAndContain, notExist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 
@@ -51,3 +53,58 @@ export const clearSearchClickFlow = newClickFlow(
   ],
   "",
 );
+
+export const checkForkList = [
+  newExpectation(
+    "should have show forks button",
+    "[data-cy=show-toggle-forks-button]",
+    beVisible,
+  ),
+  newExpectationWithClickFlows(
+    "should have show forks button",
+    "[data-cy=show-toggle-forks-button]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=show-toggle-forks-button]",
+        [
+          newExpectation(
+            "should show fork list",
+            "[data-cy=fork-list]",
+            beVisible,
+          ),
+          newExpectation(
+            "should have at least 13 forks",
+            "[data-cy=fork-list] li",
+            newShouldArgs("be.visible.and.have.length.of.at.least", 13),
+          ),
+        ],
+        "",
+      ),
+    ],
+  ),
+  newExpectationWithScrollIntoView(
+    "should scroll to show collapse fork list button",
+    "[data-cy=collapse-fork-list-button]",
+    beVisible,
+    true,
+  ),
+  newExpectationWithClickFlows(
+    "should have show collapse fork list button",
+    "[data-cy=collapse-fork-list-button]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=collapse-fork-list-button]",
+        [
+          newExpectation(
+            "should not show fork list",
+            "[data-cy=fork-list]",
+            notExist,
+          ),
+        ],
+        "",
+      ),
+    ],
+  ),
+];
