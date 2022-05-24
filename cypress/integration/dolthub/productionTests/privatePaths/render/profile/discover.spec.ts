@@ -1,3 +1,4 @@
+import { checkForkList } from "cypress/integration/utils/sharedTests/reposContainer";
 import { runTestsForDevices } from "../../../../../utils";
 import {
   iPad2,
@@ -7,12 +8,13 @@ import {
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 
 const pageName = "Profile discover page";
-const currentPage = "/profile/discover";
+const searchTerm = "ip-to-country";
+const currentPage = `/profile/discover?q=${searchTerm}`;
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const tests = [
+  const tests = (isMobile: boolean) => [
     newExpectation(
       "should render repository list",
       "[data-cy=repository-list-most-recent]",
@@ -33,6 +35,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=sort-discover-select]",
       beVisible,
     ),
+    ...checkForkList(isMobile),
   ];
   const ipadTests = [
     newExpectation(
@@ -55,12 +58,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=sort-discover-select]",
       beVisible,
     ),
+    ...checkForkList(false),
   ];
   const skip = false;
   const devices = [
-    macbook15ForAppLayout(pageName, tests, false, loggedIn),
+    macbook15ForAppLayout(pageName, tests(false), false, loggedIn),
     iPad2(pageName, ipadTests, loggedIn),
-    iPhoneX(pageName, tests, loggedIn),
+    iPhoneX(pageName, tests(true), loggedIn),
   ];
   runTestsForDevices({ currentPage, devices, skip });
 });
