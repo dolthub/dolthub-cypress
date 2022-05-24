@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
     ...checkRepoListForTab("most-recent", 1),
-    ...checkForkList,
+    ...checkForkList(false),
     newExpectationWithScrollIntoView(
       "should scroll search bar into view",
       "[data-cy=search-input]",
