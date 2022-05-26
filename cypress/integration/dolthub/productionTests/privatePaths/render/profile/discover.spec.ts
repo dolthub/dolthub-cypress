@@ -8,7 +8,7 @@ import {
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 
 const pageName = "Profile discover page";
-const searchTerm = "ip-to-country";
+const searchTerm = "repo_with_tags_and_branches";
 const currentPage = `/profile/discover?q=${searchTerm}`;
 const loggedIn = true;
 
@@ -58,7 +58,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=sort-discover-select]",
       beVisible,
     ),
-    ...checkForkList(false),
+    ...checkForkList(true),
   ];
   const skip = false;
   const devices = [
