@@ -13,7 +13,7 @@ import {
 } from "../../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Repositories page with query";
-const searchTerm = "ip-to-country";
+const searchTerm = "repo_with_tags_and_branches";
 const currentPage = `/repositories/${searchTerm}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {

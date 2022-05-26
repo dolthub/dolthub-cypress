@@ -8,7 +8,7 @@ import {
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 
 const pageName = "Profile discover page";
-const searchTerm = "ip-to-country";
+const searchTerm = "repo_with_tags_and_branches";
 const currentPage = `/profile/discover?q=${searchTerm}`;
 const loggedIn = true;
 

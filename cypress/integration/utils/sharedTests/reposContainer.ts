@@ -125,7 +125,7 @@ export const checkForkList = (isMobile: boolean) => [
           newExpectation(
             "should have at least 3 forks",
             "[data-cy=fork-list] li",
-            newShouldArgs("be.visible.and.have.length.of.at.least", 3),
+            newShouldArgs("be.visible.and.have.length.of.at.least", 1),
           ),
         ],
         "",
