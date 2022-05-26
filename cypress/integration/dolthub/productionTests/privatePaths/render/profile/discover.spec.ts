@@ -58,7 +58,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=sort-discover-select]",
       beVisible,
     ),
-    ...checkForkList(false),
+    ...checkForkList(true),
   ];
   const skip = false;
   const devices = [
