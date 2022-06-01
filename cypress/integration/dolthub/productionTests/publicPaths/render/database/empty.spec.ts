@@ -10,7 +10,10 @@ import {
   newShouldArgs,
 } from "../../../../../utils/helpers";
 import { testDoltInstallationSteps } from "../../../../../utils/sharedTests/emptyRepo";
-import { testRepoHeaderForAll } from "../../../../../utils/sharedTests/repoHeaderNav";
+import {
+  testMobileRepoHeaderNav,
+  testRepoHeaderForAll,
+} from "../../../../../utils/sharedTests/repoHeaderNav";
 import {
   testQueryCatalogSection,
   testSchemaSection,
@@ -18,7 +21,6 @@ import {
   testViewsSection,
 } from "../../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
-import { mobileTests } from "../../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Database page with no branch and no data";
 const currentOwner = "automated_testing";
@@ -27,7 +29,6 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = false;
 const hasDocs = false;
 const hasBranch = false;
-const hasData = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -95,14 +96,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(
-        currentOwner,
-        currentRepo,
-        currentPage,
-        hasDocs,
-        hasBranch,
-        hasData,
-      ),
+      testMobileRepoHeaderNav(currentOwner, currentRepo),
     ),
   ];
   runTestsForDevices({ currentPage, devices });

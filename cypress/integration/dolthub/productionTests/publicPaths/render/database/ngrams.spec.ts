@@ -10,7 +10,10 @@ import {
   newShouldArgs,
 } from "../../../../../utils/helpers";
 import { testPaginationForRepoDataTable } from "../../../../../utils/sharedTests/pagination";
-import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
+import {
+  testMobileRepoHeaderNav,
+  testRepoHeaderWithBranch,
+} from "../../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testQueryCatalogSection,
@@ -18,7 +21,6 @@ import {
   testViewsSection,
 } from "../../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
-import { mobileTests } from "../../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Database page (wikipedia-ngrams) with tables";
 const currentOwner = "automated_testing";
@@ -73,7 +75,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ),
       newExpectation(
         "",
-        "[data-cy=repo-data-table-row-1-col-0]",
+        "[data-cy=desktop-repo-data-table-row-1-col-0]",
         newShouldArgs("be.visible.and.contain", "8-01-19"),
       ),
     ],
@@ -84,12 +86,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     [
       newExpectation(
         "",
-        "[data-cy=repo-data-table-column-trigram]",
+        "[data-cy=desktop-repo-data-table-column-trigram]",
         newShouldArgs("be.visible.and.contain", "trigram"),
       ),
       newExpectation(
         "",
-        "[data-cy=repo-data-table-row-0-col-2]",
+        "[data-cy=desktop-repo-data-table-row-0-col-2]",
         newShouldArgs("be.visible.and.contain", "113"),
       ),
     ],
@@ -100,12 +102,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     [
       newExpectation(
         "",
-        "[data-cy=repo-data-table-column-unigram]",
+        "[data-cy=desktop-repo-data-table-column-unigram]",
         newShouldArgs("be.visible.and.contain", "unigram"),
       ),
       newExpectation(
         "",
-        "[data-cy=repo-data-table-row-0-col-1]",
+        "[data-cy=desktop-repo-data-table-row-0-col-1]",
         newShouldArgs("be.visible.and.contain", "65929"),
       ),
     ],
@@ -116,12 +118,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     [
       newExpectation(
         "",
-        "[data-cy=repo-data-table-column-bigram]",
+        "[data-cy=desktop-repo-data-table-column-bigram]",
         newShouldArgs("be.visible.and.contain", "bigram"),
       ),
       newExpectation(
         "",
-        "[data-cy=repo-data-table-row-0-col-2]",
+        "[data-cy=desktop-repo-data-table-row-0-col-2]",
         newShouldArgs("be.visible.and.contain", "1444"),
       ),
     ],
@@ -209,12 +211,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should display repo data columns",
-      "[data-cy=repo-data-table-columns] > th",
+      "[data-cy=desktop-repo-data-table-columns] > th",
       newShouldArgs("be.visible.and.have.length", 4),
     ),
     newExpectation(
       "should display repo data row column values",
-      "[data-cy=repo-data-table-row-0-col-1]",
+      "[data-cy=desktop-repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "3071"),
     ),
     ...tableExpectations(hasDocs, loggedIn, 4, "bigram_counts"),
@@ -242,7 +244,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true), // Not optimized for ipad, test is flaky
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+      testMobileRepoHeaderNav(currentOwner, currentRepo),
       true,
     ),
   ];
