@@ -407,23 +407,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-create-class-features-plugin@npm:^7.16.7":
-  version: 7.16.7
-  resolution: "@babel/helper-create-class-features-plugin@npm:7.16.7"
-  dependencies:
-    "@babel/helper-annotate-as-pure": ^7.16.7
-    "@babel/helper-environment-visitor": ^7.16.7
-    "@babel/helper-function-name": ^7.16.7
-    "@babel/helper-member-expression-to-functions": ^7.16.7
-    "@babel/helper-optimise-call-expression": ^7.16.7
-    "@babel/helper-replace-supers": ^7.16.7
-    "@babel/helper-split-export-declaration": ^7.16.7
-  peerDependencies:
-    "@babel/core": ^7.0.0
-  checksum: 55f4eccb93ce12c3a5d9acadf8176ed26a6f02db12d3b2d1a7337bb81139677c7b6fb54ddc01c160895e1f8134946b3bebe59428ef3a7cd9b62692bd3a2c654f
-  languageName: node
-  linkType: hard
-
 "@babel/helper-create-class-features-plugin@npm:^7.17.12, @babel/helper-create-class-features-plugin@npm:^7.18.0":
   version: 7.18.0
   resolution: "@babel/helper-create-class-features-plugin@npm:7.18.0"
@@ -1220,14 +1203,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-typescript@npm:^7.16.7":
-  version: 7.16.7
-  resolution: "@babel/plugin-syntax-typescript@npm:7.16.7"
+"@babel/plugin-syntax-typescript@npm:^7.17.12":
+  version: 7.17.12
+  resolution: "@babel/plugin-syntax-typescript@npm:7.17.12"
   dependencies:
-    "@babel/helper-plugin-utils": ^7.16.7
+    "@babel/helper-plugin-utils": ^7.17.12
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 661e636060609ede9a402e22603b01784c21fabb0a637e65f561c8159351fe0130bbc11fdefe31902107885e3332fc34d95eb652ac61d3f61f2d61f5da20609e
+  checksum: 50ab09f1953a2b0586cff9e29bf7cea3d886b48c1361a861687c2aef46356c6d73778c3341b0c051dc82a34417f19e9d759ae918353c5a98d25e85f2f6d24181
   languageName: node
   linkType: hard
 
@@ -1588,16 +1571,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-transform-typescript@npm:^7.16.7":
-  version: 7.16.7
-  resolution: "@babel/plugin-transform-typescript@npm:7.16.7"
+"@babel/plugin-transform-typescript@npm:^7.17.12":
+  version: 7.18.4
+  resolution: "@babel/plugin-transform-typescript@npm:7.18.4"
   dependencies:
-    "@babel/helper-create-class-features-plugin": ^7.16.7
-    "@babel/helper-plugin-utils": ^7.16.7
-    "@babel/plugin-syntax-typescript": ^7.16.7
+    "@babel/helper-create-class-features-plugin": ^7.18.0
+    "@babel/helper-plugin-utils": ^7.17.12
+    "@babel/plugin-syntax-typescript": ^7.17.12
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 47553554331cdcbff603fc760363f98aa3ba89b8da6cfddc589f29457ddbdfcf45885a26ea776edf47d85ffbab86783780605d7ce468fdeecac2ce1e08fab60a
+  checksum: d4575d473af634f77070f847478dfd8de7662f9a531dbaedf1f99c49b6e9b7c76d7f562a9595a82a02867a55e1f3f0a4f48c6f8756712414065a232ed856b7ae
   languageName: node
   linkType: hard
 
@@ -1724,16 +1707,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:^7.16.7":
-  version: 7.16.7
-  resolution: "@babel/preset-typescript@npm:7.16.7"
+"@babel/preset-typescript@npm:^7.17.12":
+  version: 7.17.12
+  resolution: "@babel/preset-typescript@npm:7.17.12"
   dependencies:
-    "@babel/helper-plugin-utils": ^7.16.7
+    "@babel/helper-plugin-utils": ^7.17.12
     "@babel/helper-validator-option": ^7.16.7
-    "@babel/plugin-transform-typescript": ^7.16.7
+    "@babel/plugin-transform-typescript": ^7.17.12
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 44e2f3fa302befe0dc50a01b79e5aa8c27a9c7047c46df665beae97201173030646ddf7c83d7d3ed3724fc38151745b11693e7b4502c81c4cd67781ff5677da5
+  checksum: f4ee9eeb0ef631a47d1c9bd7f6e365ae0bacefa3f47c702b03c51652ea764c267b26fdcf2814718b26c73accdd0fff7fcec1bb2d00625a967ecd7dac2f5fdce1
   languageName: node
   linkType: hard
 
@@ -3453,7 +3436,7 @@ __metadata:
     "@babel/cli": ^7.17.10
     "@babel/core": ^7.17.10
     "@babel/preset-env": ^7.18.2
-    "@babel/preset-typescript": ^7.16.7
+    "@babel/preset-typescript": ^7.17.12
     "@cypress/github-action": ^3.0.4
     "@types/node": ^17.0.7
     "@typescript-eslint/eslint-plugin": ^4.33
