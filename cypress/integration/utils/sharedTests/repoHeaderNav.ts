@@ -227,9 +227,9 @@ export const testRepoHeaderForAll = (
     ? [
         ...testCommonHeader(repoName, ownerName),
         newExpectation(
-          "should not have repo clone button",
+          "should  have repo clone button",
           "[data-cy=repo-clone-button]",
-          notBeVisible,
+          beVisible,
         ),
         ...testTabs(beVisible),
         newExpectation(

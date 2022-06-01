@@ -10,7 +10,10 @@ import {
   newShouldArgs,
 } from "../../../../../utils/helpers";
 import { testPaginationForRepoDataTable } from "../../../../../utils/sharedTests/pagination";
-import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
+import {
+  testMobileRepoHeaderNav,
+  testRepoHeaderWithBranch,
+} from "../../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testQueryCatalogSection,
@@ -18,7 +21,6 @@ import {
   testViewsSection,
 } from "../../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
-import { mobileTests } from "../../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Database page (wikipedia-ngrams) with tables";
 const currentOwner = "automated_testing";
@@ -242,7 +244,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true), // Not optimized for ipad, test is flaky
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+      testMobileRepoHeaderNav(currentOwner, currentRepo),
       true,
     ),
   ];

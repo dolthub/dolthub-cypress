@@ -5,7 +5,10 @@ import {
   macbook15ForAppLayout,
 } from "../../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
+import {
+  testMobileRepoHeaderNav,
+  testRepoHeaderWithBranch,
+} from "../../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testQueryCatalogSection,
@@ -13,7 +16,6 @@ import {
   testViewsSection,
 } from "../../../../../utils/sharedTests/repoLeftNav";
 import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
-import { mobileTests } from "../../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Forked database page";
 const currentOwner = "automated_testing";
@@ -35,7 +37,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should find database table data",
-      "[data-cy=repo-data-table]",
+      "[data-cy=desktop-repo-data-table]",
       beVisible,
     ),
     newExpectation(
@@ -72,7 +74,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true),
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+      testMobileRepoHeaderNav(currentOwner, currentRepo),
       true,
     ),
   ];

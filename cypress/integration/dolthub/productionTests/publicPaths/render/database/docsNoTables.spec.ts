@@ -5,14 +5,16 @@ import {
   macbook15ForAppLayout,
 } from "../../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
+import {
+  testMobileRepoHeaderNav,
+  testRepoHeaderWithBranch,
+} from "../../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testQueryCatalogSection,
   testSchemaSection,
   testViewsSection,
 } from "../../../../../utils/sharedTests/repoLeftNav";
-import { mobileTests } from "../../../../../utils/sharedTests/testRepoPageMobile";
 import { Tests } from "../../../../../utils/types";
 
 const pageName = "Database page with docs and no tables";
@@ -61,7 +63,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+      testMobileRepoHeaderNav(currentOwner, currentRepo),
     ),
   ];
   const skip = false;
