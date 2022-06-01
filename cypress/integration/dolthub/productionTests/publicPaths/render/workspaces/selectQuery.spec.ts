@@ -75,7 +75,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should show data table",
-      "[data-cy=repo-data-table]",
+      "[data-cy=desktop-repo-data-table]",
       beVisible,
     ),
     newExpectation(
