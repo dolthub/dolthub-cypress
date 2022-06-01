@@ -5,12 +5,15 @@ import {
   macbook15ForAppLayout,
 } from "../../../../../utils/devices";
 import {
-  newExpectation,
-  newShouldArgs,
   newClickFlow,
+  newExpectation,
   newExpectationWithClickFlows,
+  newShouldArgs,
 } from "../../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../../utils/sharedTests/repoHeaderNav";
+import {
+  testMobileRepoHeaderNav,
+  testRepoHeaderWithBranch,
+} from "../../../../../utils/sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testClickDeleteRow,
@@ -18,10 +21,9 @@ import {
   testSchemaSection,
   testViewsSection,
 } from "../../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
-import { mobileTests } from "../../../../../utils/sharedTests/testRepoPageMobile";
-import { Tests } from "../../../../../utils/types";
 import { typingExpectation } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
+import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
+import { Tests } from "../../../../../utils/types";
 
 const pageName = "Database page (corona-virus) with tables and docs";
 const currentOwner = "automated_testing";
@@ -89,7 +91,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, hasBranch),
+      testMobileRepoHeaderNav(currentOwner, currentRepo),
     ),
   ];
   const skip = false;

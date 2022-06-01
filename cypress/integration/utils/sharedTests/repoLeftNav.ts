@@ -240,13 +240,13 @@ export const testClickDeleteRow = (
   return [
     newExpectationWithClickFlows(
       "should click first row dropdown button",
-      "[data-cy=repo-data-table-row-0-col-0]",
+      "[data-cy=desktop-repo-data-table-row-0-col-0]",
       beVisible,
       [
         newClickFlow(
-          "[data-cy=row-dropdown-button]:first",
+          "[data-cy=desktop-row-dropdown-button]:first",
           [],
-          "[data-cy=delete-row-button]",
+          "[data-cy=desktop-delete-row-button]",
           true,
         ),
       ],

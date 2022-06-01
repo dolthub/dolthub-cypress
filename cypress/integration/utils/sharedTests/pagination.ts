@@ -64,7 +64,7 @@ export const testPaginationForList = (
   );
 
 export const testPaginationForRepoDataTable = testPaginationForTable(
-  "[data-cy=repo-data-table]",
+  "[data-cy=desktop-repo-data-table]",
   "[id=main-content]",
   51,
 );
