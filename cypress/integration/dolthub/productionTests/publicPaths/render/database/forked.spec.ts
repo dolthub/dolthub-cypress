@@ -45,7 +45,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should display data columns",
-      "[data-cy=repo-data-table-columns] > th",
+      "[data-cy=desktop-repo-data-table-columns] > th",
       newShouldArgs("be.visible.and.have.length", 8),
     ),
     ...testRepoHeaderWithBranch(

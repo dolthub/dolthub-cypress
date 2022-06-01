@@ -58,12 +58,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should display data columns",
-      "[data-cy=repo-data-table-columns] > th",
+      "[data-cy=desktop-repo-data-table-columns] > th",
       newShouldArgs("be.visible.and.have.length", 5),
     ),
     newExpectation(
       "should display database data row column values",
-      "[data-cy=repo-data-table-row-0-col-1]",
+      "[data-cy=desktop-repo-data-table-row-0-col-1]",
       newShouldArgs("be.visible.and.contain", "b"),
     ),
     newExpectationWithScrollIntoView(
