@@ -59,11 +59,11 @@ const checkCollapseForkList = (isMobile: boolean) =>
     ? [
         newExpectationWithClickFlows(
           "should find hide forks button",
-          "[data-cy=show-toggle-forks-button]",
+          "[data-cy=show-toggle-forks-button-mobile]",
           beVisible,
           [
             newClickFlow(
-              "[data-cy=show-toggle-forks-button]",
+              "[data-cy=show-toggle-forks-button-mobile]",
               [
                 newExpectation(
                   "should not show fork list",
@@ -106,16 +106,16 @@ const checkCollapseForkList = (isMobile: boolean) =>
 export const checkForkList = (isMobile: boolean) => [
   newExpectation(
     "should have show forks button",
-    "[data-cy=show-toggle-forks-button]",
+    `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
     beVisible,
   ),
   newExpectationWithClickFlows(
     "should have show forks button",
-    "[data-cy=show-toggle-forks-button]",
+    `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
     beVisible,
     [
       newClickFlow(
-        "[data-cy=show-toggle-forks-button]",
+        `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
         [
           newExpectation(
             "should show fork list",
