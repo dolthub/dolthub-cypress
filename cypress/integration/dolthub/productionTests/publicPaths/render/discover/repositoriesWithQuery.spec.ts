@@ -19,14 +19,14 @@ const currentPage = `/repositories/${searchTerm}`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const tests = [
+  const tests = (isMobile: boolean) => [
     newExpectation(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
     ...checkRepoListForTab("most-recent", 1),
-    ...checkForkList(false),
+    ...checkForkList(isMobile),
     newExpectationWithScrollIntoView(
       "should scroll search bar into view",
       "[data-cy=search-input]",
@@ -47,7 +47,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkRepoListForTab("most-recent", 20),
   ];
 
-  const devices = allDevicesForSignedOut(pageName, tests, tests);
+  const devices = allDevicesForSignedOut(pageName, tests(false), tests(true));
 
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
