@@ -7,7 +7,7 @@
   "scripts": {
     "cy-open": "cypress open --config-file=cypress.config.ts",
     "cy-run": "cypress run --config-file=cypress.config.ts",
-    "cy-chrome": "cypress run --browser chrome --headless",
+    "cy-chrome": "cypress run --browser chrome --headless --config-file=cypress.config.ts",
     "cy-open-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress open --config-file=cypress.config.ts",
     "cy-run-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress run --config-file=cypress.config.ts",
     "cylo-open-dolthub": "CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_NUM_TESTS_KEPT_IN_MEMORY=0 && CYPRESS_BASE_URL=http://localhost:3000 cypress open --config-file=cypress.config.ts",
