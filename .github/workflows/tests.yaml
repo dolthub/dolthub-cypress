@@ -33,7 +33,7 @@ jobs:
           install: false
           browser: chrome
           headless: true
-          config: baseUrl=http://doltlab.dolthub.com,fileServerFolder	=cypress/integration/doltlab/productionTests
+          config: baseUrl=http://doltlab.dolthub.com,integrationFolder=cypress/integration/doltlab/productionTests
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Cypress run dolthub tests
