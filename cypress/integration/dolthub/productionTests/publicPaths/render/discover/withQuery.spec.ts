@@ -12,7 +12,7 @@ import {
 } from "../../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Discover page with query";
-const searchTerm = "dolthub";
+const searchTerm = "automated_testing";
 const currentPage = `/discover?q=${searchTerm}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -24,7 +24,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repos-container-with-tabs]",
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
-    ...checkRepoListForTab("most-recent", 20),
+    ...checkRepoListForTab("most-recent", 8),
     newExpectation(
       "should have repository search bar with query",
       "[data-cy=search-input]",
