@@ -1,30 +1,30 @@
-  name: Tests (DoltHub Prod)
-  on: 
-    workflow_dispatch:
-      inputs:
-        tags:
-          description: 'Ignore me'
-          required: false 
-          type: boolean
-    schedule:
-      # run every hour during business hours (UTC time)
-      - cron: '0 0,16-23 * * 1-5'
-      # run every 3 hours outside of business hours
-      - cron: '0 1-15/3 * * 1-5'
-      # run every 3 hours on weekends
-      - cron: '0 */3 * * 6,0'
-    pull_request:
-      branches:
-        - main
-  jobs:
-    cypress-run:
-      runs-on: ubuntu-latest
-      steps:
+name: Tests (DoltHub Prod)
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: "Ignore me"
+        required: false
+        type: boolean
+  schedule:
+    # run every hour during business hours (UTC time)
+    - cron: "0 0,16-23 * * 1-5"
+    # run every 3 hours outside of business hours
+    - cron: "0 1-15/3 * * 1-5"
+    # run every 3 hours on weekends
+    - cron: "0 */3 * * 6,0"
+  pull_request:
+    branches:
+      - main
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '14.17'
+          node-version: "14.17"
       - name: Install dependencies
         run: yarn
       - name: Cypress run doltlab tests
@@ -33,7 +33,7 @@
           install: false
           browser: chrome
           headless: true
-          config: baseUrl=http://doltlab.dolthub.com,integrationFolder=cypress/integration/doltlab/productionTests
+          config: baseUrl=http://doltlab.dolthub.com,e2eFolder=cypress/integration/doltlab/productionTests
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Cypress run dolthub tests
@@ -42,8 +42,7 @@
           install: false
           browser: chrome
           headless: true
-        env: 
+        env:
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
