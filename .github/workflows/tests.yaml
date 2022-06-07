@@ -34,7 +34,7 @@ jobs:
           browser: chrome
           headless: true
           config-file: cypress.config.ts
-          config: baseUrl=http://doltlab.dolthub.com,e2eFolder=cypress/integration/doltlab/productionTests
+          config: baseUrl=http://doltlab.dolthub.com,specPattern=cypress/integration/doltlab/productionTests/**/*.{js,jsx,ts,tsx}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Cypress run dolthub tests
