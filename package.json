@@ -7,7 +7,7 @@
   "scripts": {
     "cy-open": "cypress open",
     "cy-run": "cypress run",
-    "cy-chrome": "cypress run --browser chrome --headless",
+    "cy-chrome": "cypress run --browser chrome",
     "cy-open-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress open",
     "cy-run-dev": "CYPRESS_BASE_URL=https://dolthub.awsdev.ld-corp.com cypress run",
     "cylo-open-dolthub": "CYPRESS_LOCAL_DOLTHUB=true && CYPRESS_NUM_TESTS_KEPT_IN_MEMORY=0 && CYPRESS_BASE_URL=http://localhost:3000 cypress open",
@@ -16,7 +16,7 @@
     "cylo-run-blog": "CYPRESS_LOCAL_BLOG=true && CYPRESS_BASE_URL=http://localhost:8000 cypress run",
     "cy-open-doltlab": "CYPRESS_BASE_URL=http://doltlab.dolthub.com cypress open --config '{\"specPattern\":[\"cypress/integration/doltlab/productionTests/**/*.{js,jsx,ts,tsx}\"]}'",
     "cy-run-doltlab": "CYPRESS_BASE_URL=http://doltlab.dolthub.com cypress run --config '{\"specPattern\":[\"cypress/integration/doltlab/productionTests/**/*.{js,jsx,ts,tsx}\"]}'",
-    "cy-chrome-doltlab": "CYPRESS_BASE_URL=http://doltlab.dolthub.com cypress run --config '{\"specPattern\":[\"cypress/integration/doltlab/productionTests/**/*.{js,jsx,ts,tsx}\"]}' --browser chrome --headless",
+    "cy-chrome-doltlab": "CYPRESS_BASE_URL=http://doltlab.dolthub.com cypress run --config '{\"specPattern\":[\"cypress/integration/doltlab/productionTests/**/*.{js,jsx,ts,tsx}\"]}' --browser chrome",
     "ci": "npm-run-all prettier compile lint",
     "compile": "tsc -b",
     "lint": "eslint --cache --ext .ts,.js .",
