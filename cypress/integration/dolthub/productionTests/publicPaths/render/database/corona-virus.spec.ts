@@ -22,7 +22,10 @@ import {
   testViewsSection,
 } from "../../../../../utils/sharedTests/repoLeftNav";
 import { typingExpectation } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
-import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
+import {
+  testSqlConsole,
+  testSqlConsoleMobile,
+} from "../../../../../utils/sharedTests/sqlEditor";
 import { Tests } from "../../../../../utils/types";
 
 const pageName = "Database page (corona-virus) with tables and docs";
@@ -93,6 +96,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const mobileTests = [
     ...commonTests,
     ...testMobileRepoHeaderNav(currentOwner, currentRepo),
+    ...tableExpectations(hasDocs, loggedIn, 11, "case_details", true),
+    testViewsSection(hasBranch, 15, testView, true),
+    testQueryCatalogSection(hasBranch, 10, testQuery, true),
+    testSchemaSection(hasBranch, 11, "case_details", true),
+    newExpectationWithClickFlows(
+      "should click button to close repo nav",
+      "[data-cy=close-table-nav-button]",
+      beVisible,
+      [newClickFlow("[data-cy=close-table-nav-button]", [])],
+    ),
+    testSqlConsoleMobile,
   ];
   const devices = [
     macbook15ForAppLayout(pageName, desktopAndIpadTests()),

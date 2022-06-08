@@ -137,10 +137,10 @@ export const testDesktopOnlyWarnings = (
 export const mobileRepoNavTests = [
   newExpectationWithClickFlows(
     "should show repo nav button",
-    "[data-cy=close-table-nav-button]",
+    "[data-cy=show-table-nav-button]",
     beVisible,
     [
-      newClickFlow("[data-cy=close-table-nav-button]", [
+      newClickFlow("[data-cy=show-table-nav-button]", [
         newExpectation(
           "should have repo branch selector",
           "[data-cy=branch-selector]",
