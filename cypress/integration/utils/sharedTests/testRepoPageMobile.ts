@@ -1,5 +1,7 @@
 import {
+  newClickFlow,
   newExpectation,
+  newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../helpers";
@@ -131,6 +133,23 @@ export const testDesktopOnlyWarnings = (
     ...docsTests,
   ];
 };
+
+export const mobileRepoNavTests = [
+  newExpectationWithClickFlows(
+    "should show repo nav button",
+    "[data-cy=close-table-nav-button]",
+    beVisible,
+    [
+      newClickFlow("[data-cy=close-table-nav-button]", [
+        newExpectation(
+          "should have repo branch selector",
+          "[data-cy=branch-selector]",
+          beVisible,
+        ),
+      ]),
+    ],
+  ),
+];
 
 export const mobileTests = (
   currentOwner: string,

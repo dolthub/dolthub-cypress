@@ -167,6 +167,7 @@ const notEmptyTableExpectations = (
   loggedIn: boolean,
   tableLen: number,
   testTable: string,
+  isMobile = false,
 ): Tests => [
   newExpectation(
     `should have table list with ${tableLen} items`,
@@ -191,11 +192,18 @@ export const tableExpectations = (
   loggedIn: boolean,
   tableLen: number,
   testTable?: string,
+  isMobile = false,
 ): Expectation[] => {
   const expectations =
     tableLen === 0 || !testTable
       ? emptyTablesExpectation
-      : notEmptyTableExpectations(hasDocs, loggedIn, tableLen, testTable);
+      : notEmptyTableExpectations(
+          hasDocs,
+          loggedIn,
+          tableLen,
+          testTable,
+          isMobile,
+        );
 
   return [
     newExpectation(
