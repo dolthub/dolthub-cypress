@@ -104,7 +104,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should click button to close repo nav",
       "[data-cy=close-table-nav-button]",
       beVisible,
-      [newClickFlow("[data-cy=close-table-nav-button]", [])],
+      [
+        newClickFlow("[data-cy=close-table-nav-button]", [
+          newExpectation(
+            "mobile table nav should be closed",
+            "[data-cy=close-table-nav-button]",
+            notExist,
+          ),
+        ]),
+      ],
     ),
     testSqlConsoleMobile,
   ];
