@@ -1,3 +1,4 @@
+import { notBeVisible } from "cypress/integration/utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -20,8 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const desktopAndIpadTests = (isIpad = false) => [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
+  const commonTests = [
     newExpectation(
       "should not find create pull button",
       "[data-cy=new-pull-button]",
@@ -38,11 +38,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.length.of.at.least", 20),
     ),
     newExpectation(
-      "should find csv download icon",
-      "[data-cy=dump-csv]",
-      beVisible,
-    ),
-    newExpectation(
       "should find first commit commit and user links",
       "[data-cy=commit-log-item]:first a",
       newShouldArgs("be.visible.and.have.length", 3),
@@ -57,6 +52,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=commit-log-item-date]:first",
       beVisible,
     ),
+  ];
+
+  const desktopAndIpadTests = (isIpad = false) => [
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
+    ...commonTests,
+    newExpectation(
+      "should find csv download icon",
+      "[data-cy=dump-csv]",
+      beVisible,
+    ),
     newExpectation(
       "should find first commit commit ID",
       "[data-cy=commit-log-id-desktop]:first",
@@ -64,13 +69,26 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
+  const mobileTests = [
+    ...testMobileRepoHeaderNav(currentOwner, currentRepo),
+    ...commonTests,
+    newExpectation(
+      "should not find csv download icon",
+      "[data-cy=dump-csv]",
+      notBeVisible,
+    ),
+
+    newExpectation(
+      "should find first commit commit ID",
+      "[data-cy=commit-log-id-mobile]:first",
+      beVisible,
+    ),
+  ];
+
   const devices = [
     macbook15ForAppLayout(pageName, desktopAndIpadTests()),
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
-    iPhoneXForAppLayout(
-      pageName,
-      testMobileRepoHeaderNav(currentOwner, currentRepo),
-    ),
+    iPhoneXForAppLayout(pageName, mobileTests),
   ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
