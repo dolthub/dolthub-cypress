@@ -5,7 +5,7 @@ import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 const pageName = "Merged pull page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "1";
+const currentPullId = "4";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
 
 // Need to investigate why the tests for this page are flaky

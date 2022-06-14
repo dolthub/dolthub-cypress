@@ -10,7 +10,7 @@ import {
 const pageName = "Open pull diff page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "5";
+const currentPullId = "4";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -94,7 +94,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table rows",
       "[data-cy=data-diff-cases] > tbody > tr",
-      newShouldArgs("be.visible.and.have.length.of.at.least", 50),
+      newShouldArgs("be.visible.and.have.length.of.at.least", 1),
     ),
     newExpectation(
       "should not find 404 page",
