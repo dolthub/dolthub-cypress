@@ -185,7 +185,7 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
     ];
   };
 
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 1; i <= 10; i++) {
     const tag = `v${i}`;
     const tagPageName = `${pageName} (tag ${tag})`;
     const currentPage = `repositories/${currentOwner}/${currentRepo}/data/${tag}`;
