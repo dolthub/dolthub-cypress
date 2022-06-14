@@ -5,10 +5,10 @@ import { diffsWithCommitTests } from "../../../../../utils/sharedTests/diffs";
 
 const pageName = "Diff page with one selected commit";
 const currentOwner = "automated_testing";
-const currentRepo = "wikipedia-ngrams";
-const currentFromCommit = "q2l59dla1vak1fp0gp2me451bq9sli2k";
+const currentRepo = "corona-virus";
+const currentFromCommit = "ebdftm98jrf5rts2ir21jtaoui5rrq3h";
 const branch = "master";
-const tableName = "unigram_counts";
+const tableName = "case_details";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}?tableName=${tableName}`;
 
 describe(`${pageName} renders expected component on different devices`, () => {
@@ -24,7 +24,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should show diff table list summaries",
       "[data-cy=diff-table-list-summaries] > li",
-      newShouldArgs("be.visible.and.have.length", 3),
+      newShouldArgs("be.visible.and.have.length", 1),
     ),
     newExpectation(
       "should show table diff summary",
@@ -39,7 +39,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should show diff table rows",
       `[data-cy=data-diff-${tableName}] > tbody > tr`,
-      newShouldArgs("be.visible.and.have.length.of.at.least", 50),
+      newShouldArgs("be.visible.and.have.length.of.at.least", 20),
     ),
   ];
 
