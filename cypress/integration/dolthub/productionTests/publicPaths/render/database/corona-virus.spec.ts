@@ -22,7 +22,10 @@ import {
   testViewsSection,
 } from "../../../../../utils/sharedTests/repoLeftNav";
 import { typingExpectation } from "../../../../../utils/sharedTests/sharedFunctionsAndVariables";
-import { testSqlConsole } from "../../../../../utils/sharedTests/sqlEditor";
+import {
+  testSqlConsole,
+  testSqlConsoleMobile,
+} from "../../../../../utils/sharedTests/sqlEditor";
 import { Tests } from "../../../../../utils/types";
 
 const pageName = "Database page (corona-virus) with tables and docs";
@@ -40,7 +43,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const desktopAndIpadTests = (isIpad = false): Tests => [
+  const commonTests = [
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
@@ -56,6 +59,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
+  ];
+
+  const desktopAndIpadTests = (isIpad = false): Tests => [
+    ...commonTests,
     ...testRepoHeaderWithBranch(
       currentRepo,
       currentOwner,
@@ -86,13 +93,33 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsole,
   ];
 
+  const mobileTests = [
+    ...commonTests,
+    ...testMobileRepoHeaderNav(currentOwner, currentRepo),
+    ...tableExpectations(hasDocs, loggedIn, 11, "case_details", true),
+    testViewsSection(hasBranch, 15, testView, true),
+    testQueryCatalogSection(hasBranch, 10, testQuery, true),
+    testSchemaSection(hasBranch, 11, "case_details", true),
+    newExpectationWithClickFlows(
+      "should click button to close repo nav",
+      "[data-cy=close-table-nav-button]",
+      beVisible,
+      [
+        newClickFlow("[data-cy=close-table-nav-button]", [
+          newExpectation(
+            "mobile table nav should be closed",
+            "[data-cy=close-table-nav-button]",
+            notExist,
+          ),
+        ]),
+      ],
+    ),
+    testSqlConsoleMobile,
+  ];
   const devices = [
     macbook15ForAppLayout(pageName, desktopAndIpadTests()),
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
-    iPhoneXForAppLayout(
-      pageName,
-      testMobileRepoHeaderNav(currentOwner, currentRepo),
-    ),
+    iPhoneXForAppLayout(pageName, mobileTests),
   ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
