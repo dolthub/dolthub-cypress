@@ -14,4 +14,6 @@ export default defineConfig({
     specPattern:
       "cypress/integration/dolthub/productionTests/**/*.{js,jsx,ts,tsx}",
   },
+  viewportWidth: 1440,
+  viewportHeight: 900,
 });
