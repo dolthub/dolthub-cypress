@@ -32,7 +32,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff selector",
       "[data-cy=diff-selector]",
-      newShouldArgs("be.visible.and.contain", "all commits"),
+      beVisible,
     ),
     newExpectation(
       "should show one form select",
