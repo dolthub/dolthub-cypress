@@ -16,6 +16,7 @@ jobs:
         with:
           install: false
           browser: chrome
+          config-file: cypress.config.ts
         env:
           CYPRESS_BASE_URL: https://dolthub.awsdev.ld-corp.com
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
