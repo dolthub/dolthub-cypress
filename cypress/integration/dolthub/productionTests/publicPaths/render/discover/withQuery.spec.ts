@@ -1,14 +1,17 @@
 import { runTestsForDevices } from "../../../../../utils";
 import { allDevicesForSignedOut } from "../../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
-import { checkRepoListForTab } from "../../../../../utils/sharedTests/reposContainer";
+import {
+  checkRepoListForTab,
+  clearSearchTest,
+} from "../../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Discover page with query";
 const searchTerm = "automated_testing";
 const currentPage = `/discover?q=${searchTerm}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const tests = [
+  const searchTests = [
     newExpectation(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
@@ -21,8 +24,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.value", searchTerm),
     ),
   ];
+  const tests = (skip: boolean) =>
+    skip ? searchTests : [...searchTests, ...clearSearchTest];
 
-  const devices = allDevicesForSignedOut(pageName, tests, tests);
+  const skip = true;
+  const devices = allDevicesForSignedOut(pageName, tests(skip), tests(skip));
 
   runTestsForDevices({ currentPage, devices });
 });
