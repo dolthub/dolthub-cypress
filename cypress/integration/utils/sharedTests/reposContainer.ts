@@ -134,3 +134,19 @@ export const checkForkList = (isMobile: boolean) => [
   ),
   ...checkCollapseForkList(isMobile),
 ];
+
+export const clearSearchTest = [
+  newExpectationWithClickFlows(
+    "should successfully clear search",
+    "[data-cy=clear-search-button]",
+    beVisible,
+    [clearSearchClickFlow],
+  ),
+  newExpectationWithScrollIntoView(
+    "should scroll to footer",
+    "[data-cy=site-footer]",
+    beVisible,
+    true,
+  ),
+  ...checkRepoListForTab("most-recent", 40),
+];
