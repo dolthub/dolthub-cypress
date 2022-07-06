@@ -1,14 +1,9 @@
 import { runTestsForDevices } from "../../../../../utils";
 import { allDevicesForSignedOut } from "../../../../../utils/devices";
-import {
-  newExpectation,
-  newExpectationWithClickFlows,
-  newExpectationWithScrollIntoView,
-  newShouldArgs,
-} from "../../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../../utils/helpers";
 import {
   checkRepoListForTab,
-  clearSearchClickFlow,
+  clearSearchTest,
 } from "../../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Discover page with query";
@@ -16,9 +11,7 @@ const searchTerm = "automated_testing";
 const currentPage = `/discover?q=${searchTerm}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
-
-  const tests = [
+  const searchTests = [
     newExpectation(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
@@ -30,22 +23,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=search-input]",
       newShouldArgs("be.visible.and.have.value", searchTerm),
     ),
-    newExpectationWithClickFlows(
-      "should successfully clear search",
-      "[data-cy=clear-search-button]",
-      beVisible,
-      [clearSearchClickFlow],
-    ),
-    newExpectationWithScrollIntoView(
-      "should scroll to footer",
-      "[data-cy=site-footer]",
-      beVisible,
-      true,
-    ),
-    ...checkRepoListForTab("most-recent", 40),
   ];
+  const tests = (skip: boolean) =>
+    skip ? searchTests : [...searchTests, ...clearSearchTest];
 
-  const devices = allDevicesForSignedOut(pageName, tests, tests);
+  const skip = true;
+  const devices = allDevicesForSignedOut(pageName, tests(skip), tests(skip));
 
   runTestsForDevices({ currentPage, devices });
 });
