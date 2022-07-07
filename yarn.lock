@@ -3161,9 +3161,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "cypress@npm:10.0.1"
+"cypress@npm:^10.3.0":
+  version: 10.3.0
+  resolution: "cypress@npm:10.3.0"
   dependencies:
     "@cypress/request": ^2.88.10
     "@cypress/xvfb": ^1.2.4
@@ -3209,7 +3209,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 77327168729bc39142dc0c3b5dc7f81cba36be087c532e907ee11ccda1fcb60f5d5bbc8ea28ac761b263be94d85d041b4c4de065cea3ed58d4a4151ca1e63863
+  checksum: 9cc6d8cd087d7c79f07ad83b8ef9b183f44cf816499bba53e1cee2b6f987d0a6893be209fcd47660cdd0e8456bd132813abe8a6bd15f446d9c96e0129be2de29
   languageName: node
   linkType: hard
 
@@ -3370,7 +3370,7 @@ __metadata:
     "@types/node": ^18.0.0
     "@typescript-eslint/eslint-plugin": ^4.33
     "@typescript-eslint/parser": ^4.33.0
-    cypress: ^10.0.1
+    cypress: ^10.3.0
     cypress-file-upload: ^5.0.8
     eslint: ^7.32.0
     eslint-config-airbnb-base: ^15.0.0
