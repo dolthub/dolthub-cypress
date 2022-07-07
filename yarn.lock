@@ -3382,7 +3382,7 @@ __metadata:
     npm-run-all: ^4.1.5
     prettier: ^2.7.1
     typescript: ^4.7.4
-    yarnhook: ^0.5.1
+    yarnhook: ^0.6.0
   languageName: unknown
   linkType: soft
 
@@ -7155,15 +7155,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yarnhook@npm:^0.5.1":
-  version: 0.5.1
-  resolution: "yarnhook@npm:0.5.1"
+"yarnhook@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "yarnhook@npm:0.6.0"
   dependencies:
     execa: ^4.0.3
     find-parent-dir: ^0.3.0
   bin:
     yarnhook: index.js
-  checksum: 8af2420e392c13792a6c8a44688c830a27661d917954d87faacab732299e79bf0cdefb55d68affc2543bcb65b0404e96dacd5230c92dd838026c4eed26409fef
+  checksum: 63f6222257ae53c70da6642039cba34ab1a96b0f53336eef4644b4988ef9401d9792a4532dc72d4b34b4018506ecdf17b9eb4ae193cb08cea196c044d382a1f5
   languageName: node
   linkType: hard
 
