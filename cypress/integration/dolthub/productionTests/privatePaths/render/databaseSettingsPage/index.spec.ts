@@ -76,13 +76,8 @@ const deleteDatabaseModalClickflow = newClickFlow(
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     newExpectation(
-      "should have Settings header",
-      "[data-cy=repo-settings-header]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have an Update Repo form with Database Details header",
-      "[data-cy=update-repo-form] > h2",
+      "should have a Database Details tab",
+      "[data-cy=database-settings-button]",
       beVisibleAndContain("Database Details"),
     ),
     newExpectation(
