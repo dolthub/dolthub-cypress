@@ -53,9 +53,9 @@ describe(`${pageName} renders branch protection settings`, () => {
           [
             newExpectationWithSelector(
               "should select the master branch",
-              "[data-cy=branch-protection-branch-selector]>div>div>div>div>div",
-              1,
-              beVisibleAndContain("master"),
+              "[data-cy=branch-protection-branch-selector]>div>div>div>div>div>div>div",
+              3,
+              beVisibleAndContain("main"),
             ),
           ],
           "",
