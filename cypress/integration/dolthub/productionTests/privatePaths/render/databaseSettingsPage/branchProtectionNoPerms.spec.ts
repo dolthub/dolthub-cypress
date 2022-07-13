@@ -2,7 +2,6 @@ import {
   beVisible,
   beVisibleAndContain,
   exist,
-  notExist,
 } from "cypress/integration/utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
@@ -15,8 +14,8 @@ import {
 
 const pageName =
   "Logged in branch protection settings page with tables and docs";
-const currentOwner = "automated_testing";
-const currentRepo = "repo_docs_no_tables";
+const currentOwner = "liuliu";
+const currentRepo = "test";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/settings/branch-protections`;
 const loggedIn = true;
 
@@ -83,30 +82,9 @@ describe(`${pageName} renders branch protection settings`, () => {
       [newClickFlow("[data-cy=branch-protection-submit-button]", [])],
     ),
     newExpectation(
-      "should have protected branches list title",
-      "[data-cy=protected-branch-list-title]",
-      beVisibleAndContain("Protected Branches"),
-    ),
-    newExpectation(
-      "should have master branch listed",
-      "[data-cy=branch-name]",
-      beVisibleAndContain("master"),
-    ),
-    newExpectation(
-      "should have delete protection",
-      "[data-cy=protection-rule]",
-      beVisibleAndContain("Cannot delete"),
-    ),
-    newExpectationWithClickFlows(
-      "should delete the protection",
-      "[data-cy=delete-rule-button]",
-      beVisible,
-      [newClickFlow("[data-cy=delete-rule-button]", [])],
-    ),
-    newExpectation(
-      "should not have master branch listed",
-      "[data-cy=branch-name]",
-      notExist,
+      "should show error message",
+      "[data-cy=error-msg]",
+      beVisibleAndContain("must be repo admin to create branch protection"),
     ),
   ];
 
