@@ -32,8 +32,7 @@ jobs:
         with:
           install: false
           browser: chrome
-          config-file: cypress.config.ts
-          config: baseUrl=http://doltlab.dolthub.com,specPattern=cypress/integration/doltlab/productionTests/**/*.{js,jsx,ts,tsx}
+          config-file: cypress.doltlab.config.ts
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Cypress run dolthub tests
@@ -41,7 +40,6 @@ jobs:
         with:
           install: false
           browser: chrome
-          config-file: cypress.config.ts
         env:
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
