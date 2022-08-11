@@ -1,8 +1,8 @@
 import {
+  beChecked,
   beVisible,
   beVisibleAndContain,
-  exist,
-  notExist,
+  notBeChecked,
 } from "cypress/integration/utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../../utils";
 import { macbook15ForAppLayout } from "../../../../../utils/devices";
@@ -16,7 +16,7 @@ import {
 const pageName =
   "Logged in branch protection settings page with tables and docs";
 const currentOwner = "automated_testing";
-const currentRepo = "repo_docs_no_tables";
+const currentRepo = "repo_with_branch_protection";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/settings/branch-protections`;
 const loggedIn = true;
 
@@ -53,60 +53,83 @@ describe(`${pageName} renders branch protection settings`, () => {
           "[data-cy=branch-protection-branch-selector]>div>div",
           [
             newExpectationWithSelector(
-              "should select the master branch",
+              "should select the branch_can_not_be_deleted branch",
               "[data-cy=branch-protection-branch-selector]>div>div>div>div>div",
               1,
-              beVisibleAndContain("master"),
+              beVisibleAndContain("branch_can_not_be_deleted"),
             ),
           ],
           "",
         ),
       ],
     ),
-    newExpectationWithClickFlows(
-      "should check the delete protection checkbox",
-      "[data-cy=delete-protection-checkbox]",
-      exist,
-      [newClickFlow("[data-cy=delete-protection-checkbox]", [])],
+    newExpectation(
+      "should have prevent deletion checked",
+      "[data-cy=prevent-deletions-checkbox]",
+      beChecked,
     ),
     newExpectation(
-      "should have delete branch protection rule description",
-      "[data-cy=delete-branch-rule-description]",
-      beVisibleAndContain(
-        "Prevents database collaborators from deleting branch.",
-      ),
+      "should not have prevent force push checked",
+      "[data-cy=prevent-force-push-checkbox]",
+      notBeChecked,
     ),
+
     newExpectationWithClickFlows(
-      "should save the branch protection settings",
-      "[data-cy=branch-protection-submit-button]",
+      "should show and select the branch",
+      "[data-cy=branch-protection-branch-selector] input",
       beVisible,
-      [newClickFlow("[data-cy=branch-protection-submit-button]", [])],
+      [
+        newClickFlow(
+          "[data-cy=branch-protection-branch-selector]>div>div",
+          [
+            newExpectationWithSelector(
+              "should select the branch_can_not_be_deleted branch",
+              "[data-cy=branch-protection-branch-selector]>div>div>div>div>div",
+              2,
+              beVisibleAndContain("branch_can_not_be_force_pushed"),
+            ),
+          ],
+          "",
+        ),
+      ],
     ),
+    newExpectation(
+      "should have prevent deletion checked",
+      "[data-cy=prevent-deletions-checkbox]",
+      beChecked,
+    ),
+    newExpectation(
+      "should have prevent force push checked",
+      "[data-cy=prevent-force-push-checkbox]",
+      beChecked,
+    ),
+
     newExpectation(
       "should have protected branches list title",
       "[data-cy=protected-branch-list-title]",
       beVisibleAndContain("Protected Branches"),
     ),
     newExpectation(
-      "should have master branch listed",
+      "should have branch_can_not_be_deleted branch listed",
       "[data-cy=branch-name]",
-      beVisibleAndContain("master"),
+      beVisibleAndContain("branch_can_not_be_deleted"),
     ),
+    newExpectation(
+      "should have branch_can_not_be_deleted branch listed",
+      "[data-cy=branch-name-branch_can_not_be_deleted]",
+      beVisibleAndContain("branch_can_not_be_deleted"),
+    ),
+
     newExpectation(
       "should have delete protection",
       "[data-cy=protection-rule]",
       beVisibleAndContain("Cannot delete"),
     ),
-    newExpectationWithClickFlows(
-      "should delete the protection",
-      "[data-cy=delete-rule-button]",
-      beVisible,
-      [newClickFlow("[data-cy=delete-rule-button]", [])],
-    ),
+
     newExpectation(
-      "should not have master branch listed",
-      "[data-cy=branch-name]",
-      notExist,
+      "should have branch_can_not_be_deleted branch listed",
+      "[data-cy=branch-name-branch_can_not_be_force_pushed]",
+      beVisibleAndContain("branch_can_not_be_force_pushed"),
     ),
   ];
 
