@@ -61,7 +61,7 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
       .should("deep.equal", [
         {
           columnName: "Tables_in_dolt",
-          columnType: "LONGTEXT",
+          columnType: "longtext",
           isPrimaryKey: false,
         },
       ]);
@@ -131,7 +131,7 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
       .should("deep.equal", [
         {
           columnName: "Tables_in_dolt",
-          columnType: "LONGTEXT",
+          columnType: "longtext",
           isPrimaryKey: false,
         },
       ]);
@@ -194,27 +194,27 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
       .should("deep.equal", [
         {
           columnName: "place_id",
-          columnType: "BIGINT",
+          columnType: "bigint",
           isPrimaryKey: false,
         },
         {
           columnName: "province_state",
-          columnType: "VARCHAR(16383)",
+          columnType: "varchar(16383)",
           isPrimaryKey: false,
         },
         {
           columnName: "country_region",
-          columnType: "VARCHAR(16383)",
+          columnType: "varchar(16383)",
           isPrimaryKey: false,
         },
         {
           columnName: "latitude",
-          columnType: "DOUBLE",
+          columnType: "double",
           isPrimaryKey: false,
         },
         {
           columnName: "longitude",
-          columnType: "DOUBLE",
+          columnType: "double",
           isPrimaryKey: false,
         },
       ]);
