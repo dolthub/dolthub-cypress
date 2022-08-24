@@ -9,11 +9,12 @@ A suite of [Cypress.io](https://docs.cypress.io/) tests written in Typescript to
 ```bash
 $ yarn && yarn compile
 ```
+
 > Note: If you're running the Cypress tests on the [Apple M1 ARM Architecture](https://www.cypress.io/blog/2021/01/20/running-cypress-on-the-apple-m1-silicon-arm-architecture-using-rosetta-2), you may need to install Rosetta before running the tests:
+
 ```bash
 $ softwareupdate --install-rosetta --agree-to-license
 ```
-
 
 ## Running the tests
 
@@ -44,7 +45,7 @@ $ yarn cylo-open-dolthub
 $ yarn cylo-run-dolthub
 
 # runs specific tests against local server
-$ yarn cylo-run-dolthub --spec 'cypress/integration/dolthub/productionTests/publicPaths/render/database/*'
+$ yarn cylo-run-dolthub --spec 'cypress/e2e/dolthub/publicPaths/render/database/*'
 ```
 
 Running tests against our local webserver gets slightly more complicated when testing our [blog](https://www.dolthub.com/blog), which is a separate application (learn more about our front-end stack and architecture [here](https://www.dolthub.com/blog/2020-03-11-how-we-built-dolthub-stack-and-architecture/)). Cypress can only run against a single host, so running our `blog` tests against our local DoltHub server won't work (`localhost:3000/blog` does not exist, but `dolthub.com/blog` does). You can test our blog against their local webservers by running these commands:
@@ -55,8 +56,8 @@ $ yarn cylo-open-blog
 $ yarn cylo-run-blog
 ```
 
-All the dolthub tests are located in `cypress/integration/dolthub`.
-All the doltlab tests are located in `cypress/integration/doltlab`.
+All the dolthub tests are located in `cypress/e2e/dolthub`.
+All the doltlab tests are located in `cypress/e2e/doltlab`.
 
 ### Private paths
 
@@ -94,9 +95,9 @@ We use this `data-cy` attribute on elements so that changes to a component or el
 
 ## Cypress utility functions and types
 
-To help in test writing, included are some helper functions (which can be found in `cypress/integration/utils`) designed to abstract away some of the details of cypress test writing and allow for a collection of tests to be written once, then tested across a variety of device sizes.
+To help in test writing, included are some helper functions (which can be found in `cypress/e2e/utils`) designed to abstract away some of the details of cypress test writing and allow for a collection of tests to be written once, then tested across a variety of device sizes.
 
-Most type definitions within `cypress/integration/utils/types.ts` have a corresponding `new[typeName]` function in `cypress/integration/utils/helpers.ts`. This helps with writing tests without worrying about the type requirements.
+Most type definitions within `cypress/e2e/utils/types.ts` have a corresponding `new[typeName]` function in `cypress/e2e/utils/helpers.ts`. This helps with writing tests without worrying about the type requirements.
 
 We'll go through the concepts the types were derived from:
 
@@ -180,7 +181,7 @@ type Device = {
 };
 ```
 
-Continuing with our example above, lets do two things to define the device we want to run `likeButtonRendersExp` on. First, we will make an array of all our `Expectation`s. These are our tests. Second, we will use `newDevice` to define an iphone6 to test on (we have some pre-baked `Device` helper functions in `cypress/integration/utils/device.ts`).
+Continuing with our example above, lets do two things to define the device we want to run `likeButtonRendersExp` on. First, we will make an array of all our `Expectation`s. These are our tests. Second, we will use `newDevice` to define an iphone6 to test on (we have some pre-baked `Device` helper functions in `cypress/e2e/utils/device.ts`).
 
 ```ts
 const deviceDescription = "iphone6 renders a Like button";
