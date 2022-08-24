@@ -13,7 +13,6 @@ const loggedIn = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
-  const notBeVisible = newShouldArgs("not.be.visible");
   const skip = false;
 
   const commonTest = [
