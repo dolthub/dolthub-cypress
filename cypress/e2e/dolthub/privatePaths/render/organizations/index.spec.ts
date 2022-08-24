@@ -5,7 +5,7 @@ import {
 } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
-const pageName = "automated_testing organizaton page";
+const pageName = "automated_testing organization page";
 const orgName = "automated_testing";
 const currentPage = `/organizations/automated_testing`;
 const loggedIn = true;
