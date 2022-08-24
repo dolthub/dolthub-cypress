@@ -1,14 +1,14 @@
-import { runTestsForDevices } from "../../../../../utils";
+import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
   macbook15ForAppLayout,
-} from "../../../../../utils/devices";
+} from "../../../../utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-} from "../../../../../utils/helpers";
+} from "../../../../utils/helpers";
 
 const pageName = "Database page with tables and docs";
 const currentOwner = "automated_testing";
