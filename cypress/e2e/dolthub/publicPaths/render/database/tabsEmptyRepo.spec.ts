@@ -1,11 +1,10 @@
+import {
+  loopTabsWithNewExpectation,
+  TabParams,
+} from "cypress/e2e/utils/sharedTests/loopTabsWithNewExpection";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-} from "../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 
 const pageName = "Database page with tables and docs";
 const currentOwner = "automated_testing";
@@ -75,20 +74,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
 
-    ...tabs.map(tab =>
-      newExpectationWithClickFlows(
-        `should click to ${tab.test}`,
-        `[data-cy=${tab.data_cy}]`,
-        beVisible,
-        [
-          newClickFlow(`[data-cy=${tab.data_cy}]`, [
-            newExpectation(
-              `Should find ${tab.text}`,
-              `[data-cy=${tab.find}]`,
-              beVisibleAndContain(tab.text),
-            ),
-          ]),
-        ],
+    ...loopTabsWithNewExpectation(tabs, (tab: TabParams) =>
+      newExpectation(
+        `Should find ${tab.text}`,
+        `[data-cy=${tab.find}]`,
+        beVisibleAndContain(tab.text ?? ""),
       ),
     ),
   ];

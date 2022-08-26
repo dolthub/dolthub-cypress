@@ -10,10 +10,9 @@ const beVisible = newShouldArgs("be.visible");
 const checkCurrentBranch = (currentBranch: string) =>
   newExpectation(
     "should have current branch",
-    `[data-cy=none-found-branch]`,
+    `[data-cy=branch-selector]`,
     newShouldArgs("be.visible.and.contain", currentBranch),
   );
-
 export const clickAndCheckCurrentBranch = (
   currentBranch: string,
   openMenu: boolean,
@@ -21,11 +20,11 @@ export const clickAndCheckCurrentBranch = (
   openMenu
     ? newExpectationWithClickFlows(
         "should click to open left nav",
-        `[data-cy=left-nav-toggle-icon]`,
+        `[data-cy=DatabaseTableNav_menu]`,
         beVisible,
 
         [
-          newClickFlow(`[data-cy=left-nav-toggle-icon]`, [
+          newClickFlow(`[data-cy=DatabaseTableNav_menu]`, [
             checkCurrentBranch(currentBranch),
           ]),
         ],
