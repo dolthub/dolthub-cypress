@@ -12,13 +12,13 @@ export type TabParams = {
 
 export const loopTabsWithNewExpectation = (
   tabs: TabParams[],
-  func: (tab: TabParams) => Expectation,
+  expectation: (tab: TabParams) => Expectation,
 ) =>
   tabs.map(tab =>
     newExpectationWithClickFlows(
       `should click to ${tab.test}`,
       `[data-cy=${tab.data_cy}]`,
       beVisible,
-      [newClickFlow(`[data-cy=${tab.data_cy}]`, [func(tab)])],
+      [newClickFlow(`[data-cy=${tab.data_cy}]`, [expectation(tab)])],
     ),
   );

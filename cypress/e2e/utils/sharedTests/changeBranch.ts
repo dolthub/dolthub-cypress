@@ -56,6 +56,7 @@ const openBranch = (testParams: TestParams) =>
           ]),
         ],
       );
+
 export const changeBranch = (testParams: TestParams) => [
   newExpectation(
     `should check current branch ${testParams.branchCheckID}`,

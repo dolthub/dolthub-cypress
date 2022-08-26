@@ -13,6 +13,7 @@ const checkCurrentBranch = (currentBranch: string) =>
     `[data-cy=branch-selector]`,
     newShouldArgs("be.visible.and.contain", currentBranch),
   );
+
 export const clickAndCheckCurrentBranch = (
   currentBranch: string,
   openMenu: boolean,
