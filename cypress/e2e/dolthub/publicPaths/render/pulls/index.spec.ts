@@ -1,3 +1,4 @@
+import { changeBranch } from "cypress/e2e/utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -14,8 +15,16 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
+  const changeBranchParams = {
+    openMenu: true,
+    branchCheckID: "create-pull-request-button",
+    optionalText: "Create Pull Request",
+    newBranch: "archived",
+    newBranchOptionalText: "Create Pull Request",
+  };
 
   const desktopAndIpadTests = (isIpad = false) => [
+    ...changeBranch(changeBranchParams),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
     newExpectation(
       "should not find empty pull message",
