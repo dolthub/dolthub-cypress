@@ -1,3 +1,4 @@
+import { changeBranch } from "cypress/e2e/utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -15,8 +16,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
   const skipNavbar = false;
+  const changeParams = {
+    openMenu: true,
+    branchCheckID: "pull-page-title",
+    newBranch: "archived",
+  };
 
   const tests = [
+    ...changeBranch(changeParams),
     newExpectation("should show title", "[data-cy=pull-page-title]", beVisible),
     newExpectation(
       "should show view diffs button",

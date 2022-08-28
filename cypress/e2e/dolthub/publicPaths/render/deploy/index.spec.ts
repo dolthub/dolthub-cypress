@@ -1,3 +1,4 @@
+import { changeBranch } from "cypress/e2e/utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -13,8 +14,14 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/deploy`;
 
 describe(`${pageName} expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
+  const changeParams = {
+    openMenu: true,
+    branchCheckID: "hosted-button",
+    newBranch: "archived",
+  };
 
   const tests = [
+    ...changeBranch(changeParams),
     ...testDeployHosted,
 
     newExpectation(
