@@ -41,16 +41,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       openMenu: true,
     },
     {
-      test: "bounties tab",
-      data_cy: "repo-bounties-tab",
-      openMenu: true,
-    },
-    {
-      test: "setting tab",
-      data_cy: "repo-settings-tab",
-      openMenu: true,
-    },
-    {
       test: "deploy tab",
       data_cy: "repo-deploy-tab",
       openMenu: true,

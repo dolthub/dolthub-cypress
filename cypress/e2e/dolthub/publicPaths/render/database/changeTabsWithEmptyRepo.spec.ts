@@ -48,22 +48,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       text: "No pulls found",
     },
     {
-      test: "bounties tab",
-      data_cy: "repo-bounties-tab",
-      find: "bounties-table-no-bounties",
-      text: "No bounties found",
-    },
-    {
-      test: "setting tab",
-      data_cy: "repo-settings-tab",
-      find: "repo-settings-description-textarea",
-      text: "empty repository for testing",
-    },
-    {
       test: "deploy tab",
       data_cy: "repo-deploy-tab",
-      find: "empty-db-message",
-      text: "Cannot deploy an empty database. Please",
+      find: "hosted-button",
+      text: "Hosted",
     },
   ];
 

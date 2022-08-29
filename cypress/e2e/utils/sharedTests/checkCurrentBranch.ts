@@ -21,11 +21,11 @@ export const clickAndCheckCurrentBranch = (
   openMenu
     ? newExpectationWithClickFlows(
         "should click to open left nav",
-        `[data-cy=DatabaseTableNav_menu]`,
+        `[data-cy=database-table-nav-menu`,
         beVisible,
 
         [
-          newClickFlow(`[data-cy=DatabaseTableNav_menu]`, [
+          newClickFlow(`[data-cy=database-table-nav-menu]`, [
             checkCurrentBranch(currentBranch),
           ]),
         ],
