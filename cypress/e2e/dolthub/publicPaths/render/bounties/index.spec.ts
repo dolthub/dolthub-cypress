@@ -1,7 +1,9 @@
+import { beVisible } from "cypress/e2e/utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../utils";
 import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {
   newExpectation,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
   scrollToPosition,
 } from "../../../../utils/helpers";
@@ -48,10 +50,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=bounties-pay-section]",
       newShouldArgs("be.visible.and.contain", "Pay for Data You Want"),
     ),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should render image in Pay section",
       "[data-cy=bounties-pay-section] img[src='/images/bounties-pay-for-what-you-want.png']",
-      shouldBeVisible,
+      beVisible,
+      true,
     ),
   ];
 
