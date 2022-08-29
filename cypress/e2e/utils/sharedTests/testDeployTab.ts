@@ -16,7 +16,7 @@ export const testDeploySelfHosted: Tests = [
     [newClickFlow("[data-cy=self-hosted-button]", [])],
   ),
   newExpectation(
-    "should find download docker button",
+    "should have download docker button",
     "[data-cy=self-hosted-download-dockerfile-button]",
     beVisible,
   ),
@@ -24,8 +24,13 @@ export const testDeploySelfHosted: Tests = [
 
 export const testDeployHosted: Tests = [
   newExpectation(
-    "should find hosted button",
-    "[data-cy=hosted-button]",
+    "should have hosted directions",
+    "[data-cy=hosted-doltdb-directions]",
+    beVisible,
+  ),
+  newExpectation(
+    "should have Create Deployment button",
+    "[data-cy=hosted-create-deployment-button]",
     beVisible,
   ),
 ];

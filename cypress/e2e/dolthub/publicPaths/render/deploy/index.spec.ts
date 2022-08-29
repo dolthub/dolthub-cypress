@@ -1,6 +1,5 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   testDeployHosted,
   testDeploySelfHosted,
@@ -12,18 +11,7 @@ const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/deploy`;
 
 describe(`${pageName} expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
-
-  const tests = [
-    ...testDeployHosted,
-
-    newExpectation(
-      "should find link to sign in",
-      "[data-cy=sign-in-with-redirect-link]",
-      beVisible,
-    ),
-    ...testDeploySelfHosted,
-  ];
+  const tests = [...testDeployHosted, ...testDeploySelfHosted];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
   const skip = false;
