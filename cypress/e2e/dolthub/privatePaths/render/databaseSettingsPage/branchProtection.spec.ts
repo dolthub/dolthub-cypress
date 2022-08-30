@@ -54,11 +54,11 @@ describe(`${pageName} renders branch protection settings`, () => {
           [
             newExpectation(
               "should select the branch_can_not_be_deleted branch",
-              "[data-cy=branch_can_not_be_deleted",
+              "[data-cy=branch_can_not_be_deleted]",
               beVisibleAndContain("branch_can_not_be_deleted"),
             ),
           ],
-          "[data-cy=branch_can_not_be_deleted",
+          "[data-cy=branch_can_not_be_deleted]",
         ),
       ],
     ),
@@ -85,11 +85,11 @@ describe(`${pageName} renders branch protection settings`, () => {
           [
             newExpectation(
               "should select the branch_can_not_be_deleted branch",
-              "[data-cy=branch_can_not_be_force_pushed",
+              "[data-cy=branch_can_not_be_force_pushed]",
               beVisibleAndContain("branch_can_not_be_force_pushed"),
             ),
           ],
-          "[data-cy=branch_can_not_be_force_pushed",
+          "[data-cy=branch_can_not_be_force_pushed]",
         ),
       ],
     ),
