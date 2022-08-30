@@ -73,7 +73,7 @@ export const changeBranch = (testParams: TestParams) => [
     [
       newClickFlow(`[data-cy=${testParams.newBranch}]`, [
         newExpectation(
-          "should see see new branch ",
+          "should see new branch ",
           `[data-cy=${testParams.branchCheckID}]`,
           testParams.newBranchOptionalText
             ? beVisibleAndContain(testParams.newBranchOptionalText)

@@ -24,9 +24,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const changeBranchParams = {
     openMenu: true,
     branchCheckID: "commit-log-commits-list",
-    optionalText: "3 years ago",
     newBranch: "master",
-    newBranchOptionalText: "2 years ago",
   };
 
   const commonTests = [
