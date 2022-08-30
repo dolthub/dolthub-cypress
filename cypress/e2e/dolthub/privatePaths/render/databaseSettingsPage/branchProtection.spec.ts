@@ -4,7 +4,6 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newExpectationWithSelector,
   scrollToPosition,
 } from "../../../../utils/helpers";
 import {
@@ -42,7 +41,7 @@ describe(`${pageName} renders branch protection settings`, () => {
     ),
     newExpectation(
       "should have branch selector",
-      "[data-cy=branch-protection-branch-selector]",
+      "[data-cy=branch-protection-branch-selector] input",
       beVisible,
     ),
     newExpectationWithClickFlows(
@@ -53,14 +52,13 @@ describe(`${pageName} renders branch protection settings`, () => {
         newClickFlow(
           "[data-cy=branch-protection-branch-selector]>div>div",
           [
-            newExpectationWithSelector(
+            newExpectation(
               "should select the branch_can_not_be_deleted branch",
-              "[data-cy=branch-protection-branch-selector]>div>div>div>div>div>div>div",
-              3,
+              "[data-cy=branch_can_not_be_deleted",
               beVisibleAndContain("branch_can_not_be_deleted"),
             ),
           ],
-          "",
+          "[data-cy=branch_can_not_be_deleted",
         ),
       ],
     ),
@@ -85,14 +83,13 @@ describe(`${pageName} renders branch protection settings`, () => {
         newClickFlow(
           "[data-cy=branch-protection-branch-selector]>div>div",
           [
-            newExpectationWithSelector(
+            newExpectation(
               "should select the branch_can_not_be_deleted branch",
-              "[data-cy=branch-protection-branch-selector]>div>div>div>div>div>div>div",
-              4,
+              "[data-cy=branch_can_not_be_force_pushed",
               beVisibleAndContain("branch_can_not_be_force_pushed"),
             ),
           ],
-          "",
+          "[data-cy=branch_can_not_be_force_pushed",
         ),
       ],
     ),
@@ -117,14 +114,13 @@ describe(`${pageName} renders branch protection settings`, () => {
         newClickFlow(
           "[data-cy=branch-protection-branch-selector]>div>div",
           [
-            newExpectationWithSelector(
+            newExpectation(
               "should select the main branch",
-              "[data-cy=branch-protection-branch-selector]>div>div>div>div>div>div>div",
-              5,
+              "[data-cy=main]",
               beVisibleAndContain("main"),
             ),
           ],
-          "",
+          "[data-cy=main]",
         ),
       ],
     ),
@@ -138,7 +134,7 @@ describe(`${pageName} renders branch protection settings`, () => {
       "[data-cy=require-approval-checkbox]",
       beChecked,
     ),
-
+    scrollToPosition("#main-content", "bottom"),
     newExpectation(
       "should have protected branches list title",
       "[data-cy=protected-branch-list-title]",
