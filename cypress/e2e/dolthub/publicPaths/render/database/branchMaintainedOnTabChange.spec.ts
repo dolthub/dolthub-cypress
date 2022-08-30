@@ -19,31 +19,37 @@ describe(`${pageName} renders expected components on different devices`, () => {
       test: "about tab",
       data_cy: "repo-about-tab",
       openMenu: false,
+      find: "repo-doc-markdown",
     },
     {
       test: "commit tab",
       data_cy: "repo-commit-log-tab",
       openMenu: true,
+      find: "commit-log-commits-list",
     },
     {
       test: "releases tab",
       data_cy: "repo-releases-tab",
       openMenu: true,
+      find: "release-list-no-releases",
     },
     {
       test: "issues tab",
       data_cy: "repo-issues-tab",
       openMenu: true,
+      find: "issue-table",
     },
     {
       test: "pulls tab",
       data_cy: "repo-pull-requests-tab",
       openMenu: true,
+      find: "create-pull-request-button",
     },
     {
       test: "deploy tab",
       data_cy: "repo-deploy-tab",
       openMenu: true,
+      find: "hosted-button",
     },
   ];
 
