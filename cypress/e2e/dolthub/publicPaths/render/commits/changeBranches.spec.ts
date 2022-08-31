@@ -4,16 +4,16 @@ import { macbook15ForAppLayout } from "../../../../utils/devices";
 
 const pageName = "Commit log page";
 const currentOwner = "automated_testing";
-const currentRepo = "repo_with_branch_protection";
-const currentBranch = "branch_can_not_be_deleted";
+const currentRepo = "corona-virus";
+const currentBranch = "master";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/commits/`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const changeBranchParams = {
     isLeftNavClosed: true,
     currentTabDataCy: "commit-log-commits-list",
-    destinationBranch: "main",
-    destinationURL: `/${currentPage}main`,
+    destinationBranch: "archived",
+    destinationURL: `/${currentPage}archived`,
   };
 
   const devices = [
