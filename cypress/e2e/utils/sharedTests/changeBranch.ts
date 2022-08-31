@@ -101,15 +101,4 @@ export const changeBranch = (testParams: TestParams) => [
           ]),
         ],
       ),
-  // newExpectationWithClickFlows(
-  //   "should click on other branch",
-  //   `[data-cy=${testParams.destinationBranch}]`,
-  //   beVisible,
-  //   [
-  //     newClickFlow(
-  //       `[data-cy=${testParams.destinationBranch}]`,
-  //       checkCurrentBranch(testParams),
-  //     ),
-  //   ],
-  // ),
 ];
