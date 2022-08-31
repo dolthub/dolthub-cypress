@@ -64,10 +64,16 @@ export const changeBranch = (testParams: TestParams) => [
               beVisible,
               [
                 newClickFlow(`[data-cy=branch-selector]`, [
-                  newExpectation(
-                    "should see see new branch ",
+                  newExpectationWithClickFlows(
+                    "should click on other branch",
                     `[data-cy=${testParams.destinationBranch}]`,
                     beVisible,
+                    [
+                      newClickFlow(
+                        `[data-cy=${testParams.destinationBranch}]`,
+                        checkCurrentBranch(testParams),
+                      ),
+                    ],
                   ),
                 ]),
               ],
@@ -81,23 +87,29 @@ export const changeBranch = (testParams: TestParams) => [
         beVisible,
         [
           newClickFlow(`[data-cy=branch-selector]`, [
-            newExpectation(
-              "should see see new branch ",
+            newExpectationWithClickFlows(
+              "should click on other branch",
               `[data-cy=${testParams.destinationBranch}]`,
               beVisible,
+              [
+                newClickFlow(
+                  `[data-cy=${testParams.destinationBranch}]`,
+                  checkCurrentBranch(testParams),
+                ),
+              ],
             ),
           ]),
         ],
       ),
-  newExpectationWithClickFlows(
-    "should click on other branch",
-    `[data-cy=${testParams.destinationBranch}]`,
-    beVisible,
-    [
-      newClickFlow(
-        `[data-cy=${testParams.destinationBranch}]`,
-        checkCurrentBranch(testParams),
-      ),
-    ],
-  ),
+  // newExpectationWithClickFlows(
+  //   "should click on other branch",
+  //   `[data-cy=${testParams.destinationBranch}]`,
+  //   beVisible,
+  //   [
+  //     newClickFlow(
+  //       `[data-cy=${testParams.destinationBranch}]`,
+  //       checkCurrentBranch(testParams),
+  //     ),
+  //   ],
+  // ),
 ];
