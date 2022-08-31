@@ -1,7 +1,7 @@
 import {
   loopTabsWithNewExpectation,
   TabParams,
-} from "cypress/e2e/utils/sharedTests/loopTabsWithNewExpection";
+} from "../../../../utils/sharedTests/loopTabsWithNewExpection";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -18,55 +18,55 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tabs = [
     {
-      test: "about tab",
-      data_cy: "repo-about-tab",
-      find: "description",
-      text: "empty repository for testing",
+      tabName: "about",
+      tabDataCy: "repo-about-tab",
+      dataCyToFind: "description",
+      textToFind: "empty repository for testing",
     },
     {
-      test: "commit tab",
-      data_cy: "repo-commit-log-tab",
-      find: "repo-empty-get-started",
-      text: "Get Started",
+      tabName: "commit",
+      tabDataCy: "repo-commit-log-tab",
+      dataCyToFind: "repo-empty-get-started",
+      textToFind: "Get Started",
     },
     {
-      test: "releases tab",
-      data_cy: "repo-releases-tab",
-      find: "release-list-no-releases",
-      text: "No releases found",
+      tabName: "releases",
+      tabDataCy: "repo-releases-tab",
+      dataCyToFind: "release-list-no-releases",
+      textToFind: "No releases found",
     },
     {
-      test: "issues tab",
-      data_cy: "repo-issues-tab",
-      find: "issue-no-issues",
-      text: "No issues found",
+      tabName: "issues",
+      tabDataCy: "repo-issues-tab",
+      dataCyToFind: "issue-no-issues",
+      textToFind: "No issues found",
     },
     {
-      test: "pulls tab",
-      data_cy: "repo-pull-requests-tab",
-      find: "pull-requests-no-pulls",
-      text: "No pulls found",
+      tabName: "pulls",
+      tabDataCy: "repo-pull-requests-tab",
+      dataCyToFind: "pull-requests-no-pulls",
+      textToFind: "No pulls found",
     },
     {
-      test: "deploy tab",
-      data_cy: "repo-deploy-tab",
-      find: "hosted-button",
-      text: "Hosted",
+      tabName: "deploy",
+      tabDataCy: "repo-deploy-tab",
+      dataCyToFind: "hosted-button",
+      textToFind: "Hosted",
     },
   ];
 
   const tests = () => [
     newExpectation(
-      `Should find empty database`,
+      `Should dataCyToFind empty database`,
       `[data-cy=repo-empty-get-started]`,
       beVisible,
     ),
 
     ...loopTabsWithNewExpectation(tabs, (tab: TabParams) =>
       newExpectation(
-        `Should find ${tab.text}`,
-        `[data-cy=${tab.find}]`,
-        beVisibleAndContain(tab.text ?? ""),
+        `Should dataCyToFind ${tab.textToFind}`,
+        `[data-cy=${tab.dataCyToFind}]`,
+        beVisibleAndContain(tab.textToFind ?? ""),
       ),
     ),
   ];

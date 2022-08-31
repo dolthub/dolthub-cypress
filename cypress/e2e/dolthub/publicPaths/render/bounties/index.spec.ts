@@ -1,4 +1,4 @@
-import { beVisible } from "cypress/e2e/utils/sharedTests/sharedFunctionsAndVariables";
+import { beVisible } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../utils";
 import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
 import {

@@ -1,8 +1,8 @@
-import { clickAndCheckCurrentBranch } from "cypress/e2e/utils/sharedTests/checkCurrentBranch";
 import {
   loopTabsWithNewExpectation,
   TabParams,
-} from "cypress/e2e/utils/sharedTests/loopTabsWithNewExpection";
+} from "../../../../utils/sharedTests/loopTabsWithNewExpection";
+import { openLeftNavAndCheckCurrentBranch } from "../../../../utils/sharedTests/checkCurrentBranch";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -16,40 +16,40 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/data/${currentB
 describe(`${pageName} renders expected components on different devices`, () => {
   const tabs = [
     {
-      test: "about tab",
-      data_cy: "repo-about-tab",
+      tabName: "about tab",
+      tabDataCy: "repo-about-tab",
       isLeftNavClosed: false,
-      find: "repo-doc-markdown",
+      dataCyToFind: "repo-doc-markdown",
     },
     {
-      test: "commit tab",
-      data_cy: "repo-commit-log-tab",
+      tabName: "commit tab",
+      tabDataCy: "repo-commit-log-tab",
       isLeftNavClosed: true,
-      find: "commit-log-commits-list",
+      dataCyToFind: "commit-log-commits-list",
     },
     {
-      test: "releases tab",
-      data_cy: "repo-releases-tab",
+      tabName: "releases tab",
+      tabDataCy: "repo-releases-tab",
       isLeftNavClosed: true,
-      find: "release-list-no-releases",
+      dataCyToFind: "release-list-no-releases",
     },
     {
-      test: "issues tab",
-      data_cy: "repo-issues-tab",
+      tabName: "issues tab",
+      tabDataCy: "repo-issues-tab",
       isLeftNavClosed: true,
-      find: "issue-table",
+      dataCyToFind: "issue-table",
     },
     {
-      test: "pulls tab",
-      data_cy: "repo-pull-requests-tab",
+      tabName: "pulls tab",
+      tabDataCy: "repo-pull-requests-tab",
       isLeftNavClosed: true,
-      find: "create-pull-request-button",
+      dataCyToFind: "create-pull-request-button",
     },
     {
-      test: "deploy tab",
-      data_cy: "repo-deploy-tab",
+      tabName: "deploy tab",
+      tabDataCy: "repo-deploy-tab",
       isLeftNavClosed: true,
-      find: "hosted-button",
+      dataCyToFind: "hosted-button",
     },
   ];
 
@@ -60,7 +60,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", currentBranch),
     ),
     ...loopTabsWithNewExpectation(tabs, (tab: TabParams) =>
-      clickAndCheckCurrentBranch(currentBranch, tab.isLeftNavClosed ?? false),
+      openLeftNavAndCheckCurrentBranch(
+        currentBranch,
+        tab.isLeftNavClosed ?? false,
+      ),
     ),
   ];
 

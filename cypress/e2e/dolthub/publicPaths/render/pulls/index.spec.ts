@@ -1,4 +1,4 @@
-import { changeBranch } from "cypress/e2e/utils/sharedTests/changeBranch";
+import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -18,7 +18,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
   const changeBranchParams = {
     isLeftNavClosed: true,
-    currentTabID: "create-pull-request-button",
+    currentTabDataCy: "create-pull-request-button",
     destinationBranch,
     destinationURL: `/${currentPage}?refName=${destinationBranch}`,
   };

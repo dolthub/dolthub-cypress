@@ -5,6 +5,7 @@ import {
   newExpectationWithURL,
   newShouldArgs,
 } from "../helpers";
+import { Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
 const beVisibleAndContain = (value: string) =>
@@ -12,41 +13,41 @@ const beVisibleAndContain = (value: string) =>
 
 type TestParams = {
   isLeftNavClosed: boolean;
-  currentTabID: string;
+  currentTabDataCy: string;
   destinationURL: string;
   optionalText?: string;
   destinationBranch: string;
   destinationBranchOptionalText?: string;
 };
 
-const checkCurrentBranch = (testParams: TestParams) =>
+const checkCurrentBranch = (testParams: TestParams): Tests =>
   testParams.destinationBranchOptionalText
     ? [
         newExpectationWithURL(
-          "should have page load in ",
-          `[data-cy=${testParams.currentTabID}]`,
+          `should load page for tab ${testParams.currentTabDataCy}`,
+          `[data-cy=${testParams.currentTabDataCy}]`,
           beVisible,
           `${testParams.destinationURL}`,
         ),
         newExpectation(
           "should see new branch ",
-          `[data-cy=${testParams.currentTabID}]`,
+          `[data-cy=${testParams.currentTabDataCy}]`,
           beVisibleAndContain(testParams.destinationBranchOptionalText),
         ),
       ]
     : [
         newExpectationWithURL(
           "should have page load in ",
-          `[data-cy=${testParams.currentTabID}]`,
+          `[data-cy=${testParams.currentTabDataCy}]`,
           beVisible,
           `${testParams.destinationURL}`,
         ),
       ];
 
-export const changeBranch = (testParams: TestParams) => [
+export const changeBranch = (testParams: TestParams): Tests => [
   newExpectation(
-    `should check current branch ${testParams.currentTabID}`,
-    `[data-cy=${testParams.currentTabID}]`,
+    `should check current branch ${testParams.currentTabDataCy}`,
+    `[data-cy=${testParams.currentTabDataCy}]`,
     testParams.optionalText
       ? beVisibleAndContain(testParams.optionalText)
       : beVisible,

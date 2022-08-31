@@ -1,4 +1,4 @@
-import { changeBranch } from "cypress/e2e/utils/sharedTests/changeBranch";
+import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
@@ -15,7 +15,7 @@ const destinationBranch = "archived";
 describe(`${pageName} expected components on different devices`, () => {
   const changeParams = {
     isLeftNavClosed: true,
-    currentTabID: "hosted-button",
+    currentTabDataCy: "hosted-button",
     destinationBranch,
     destinationURL: `/${currentPage}?refName=${destinationBranch}`,
   };

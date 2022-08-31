@@ -1,4 +1,4 @@
-import { changeBranch } from "cypress/e2e/utils/sharedTests/changeBranch";
+import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -19,7 +19,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const skipNavbar = false;
   const changeParams = {
     isLeftNavClosed: true,
-    currentTabID: "pull-page-title",
+    currentTabDataCy: "pull-page-title",
     destinationBranch,
     destinationURL: `/${currentPage}?refName=${destinationBranch}`,
   };

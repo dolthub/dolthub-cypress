@@ -4,20 +4,21 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../helpers";
+import { Expectation } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
 
-const checkCurrentBranch = (currentBranch: string) =>
+const checkCurrentBranch = (currentBranch: string): Expectation =>
   newExpectation(
     "should have current branch",
     `[data-cy=branch-selector]`,
     newShouldArgs("be.visible.and.contain", currentBranch),
   );
 
-export const clickAndCheckCurrentBranch = (
+export const openLeftNavAndCheckCurrentBranch = (
   currentBranch: string,
   isLeftNavClosed: boolean,
-) =>
+): Expectation =>
   isLeftNavClosed
     ? newExpectationWithClickFlows(
         "should click to open left nav",

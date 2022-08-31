@@ -1,4 +1,4 @@
-import { changeBranch } from "cypress/e2e/utils/sharedTests/changeBranch";
+import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 
@@ -12,7 +12,7 @@ const currentPage = `${currentPath}${currentBranch}`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const changeBranchParams = {
     isLeftNavClosed: true,
-    currentTabID: "commit-log-commits-list",
+    currentTabDataCy: "commit-log-commits-list",
     destinationBranch: "main",
     destinationURL: `/${currentPath}main`,
   };
