@@ -1,3 +1,4 @@
+import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -10,7 +11,9 @@ import { Tests } from "../../../../utils/types";
 const pageName = "Issues page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPage = `repositories/${currentOwner}/${currentRepo}/issues`;
+const currentBranch = "archived";
+const currentPage = `repositories/${currentOwner}/${currentRepo}/issues?refName=`;
+const destinationBranch = "master";
 const loggedIn = false;
 const hasDocs = true;
 
@@ -18,8 +21,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisibleAndContain = (value: string) =>
     newShouldArgs("be.visible.and.contain", value);
   const notExist = newShouldArgs("not.exist");
+  const changeBranchParams = {
+    isLeftNavClosed: true,
+    currentTabDataCy: "issue-table",
+    destinationBranch,
+    destinationURL: `/${currentPage}${destinationBranch}`,
+  };
 
   const desktopAndIpadTests = (isIpad = false): Tests => [
+    ...changeBranch(changeBranchParams),
     newExpectation(
       "should not find empty issue message",
       "[data-cy=issue-no-issues]",
@@ -72,5 +82,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     */
   ];
   const skip = false;
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({
+    currentPage: `${currentPage}${currentBranch}`,
+    devices,
+    skip,
+  });
 });

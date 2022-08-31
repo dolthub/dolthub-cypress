@@ -1,3 +1,4 @@
+import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
@@ -7,6 +8,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPullId = "4";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
+const destinationBranch = "archived";
 
 // Need to investigate why the tests for this page are flaky
 const skip = false;
@@ -15,8 +17,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
   const skipNavbar = false;
+  const changeParams = {
+    isLeftNavClosed: true,
+    currentTabDataCy: "pull-page-title",
+    destinationBranch,
+    destinationURL: `/${currentPage}?refName=${destinationBranch}`,
+  };
 
   const tests = [
+    ...changeBranch(changeParams),
     newExpectation("should show title", "[data-cy=pull-page-title]", beVisible),
     newExpectation(
       "should show view diffs button",

@@ -1,3 +1,4 @@
+import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -10,12 +11,20 @@ const pageName = "Pull requests page with tables and docs";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls`;
+const destinationBranch = "archived";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
+  const changeBranchParams = {
+    isLeftNavClosed: true,
+    currentTabDataCy: "create-pull-request-button",
+    destinationBranch,
+    destinationURL: `/${currentPage}?refName=${destinationBranch}`,
+  };
 
   const desktopAndIpadTests = (isIpad = false) => [
+    ...changeBranch(changeBranchParams),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
     newExpectation(
       "should not find empty pull message",
