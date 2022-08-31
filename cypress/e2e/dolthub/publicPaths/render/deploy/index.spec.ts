@@ -10,12 +10,14 @@ const pageName = "Deploy page for unsigned in User";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/deploy`;
+const destinationBranch = "archived";
 
 describe(`${pageName} expected components on different devices`, () => {
   const changeParams = {
-    openMenu: true,
-    branchCheckID: "hosted-button",
-    newBranch: "archived",
+    isLeftNavClosed: true,
+    currentTabID: "hosted-button",
+    destinationBranch,
+    destinationURL: `/${currentPage}?refName=${destinationBranch}`,
   };
 
   const tests = [

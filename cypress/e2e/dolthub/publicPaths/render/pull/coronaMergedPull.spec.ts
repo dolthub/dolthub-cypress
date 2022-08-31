@@ -8,6 +8,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPullId = "4";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
+const destinationBranch = "archived";
 
 // Need to investigate why the tests for this page are flaky
 const skip = false;
@@ -17,9 +18,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
   const skipNavbar = false;
   const changeParams = {
-    openMenu: true,
-    branchCheckID: "pull-page-title",
-    newBranch: "archived",
+    isLeftNavClosed: true,
+    currentTabID: "pull-page-title",
+    destinationBranch,
+    destinationURL: `/${currentPage}?refName=${destinationBranch}`,
   };
 
   const tests = [

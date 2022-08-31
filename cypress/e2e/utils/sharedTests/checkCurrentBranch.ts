@@ -16,9 +16,9 @@ const checkCurrentBranch = (currentBranch: string) =>
 
 export const clickAndCheckCurrentBranch = (
   currentBranch: string,
-  openMenu: boolean,
+  isLeftNavClosed: boolean,
 ) =>
-  openMenu
+  isLeftNavClosed
     ? newExpectationWithClickFlows(
         "should click to open left nav",
         `[data-cy=left-nav-toggle-icon`,

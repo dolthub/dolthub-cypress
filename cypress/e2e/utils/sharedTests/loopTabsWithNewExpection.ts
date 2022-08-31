@@ -11,7 +11,7 @@ export type TabParams = {
   data_cy: string;
   find: string;
   text?: string;
-  openMenu?: boolean;
+  isLeftNavClosed?: boolean;
 };
 
 export const loopTabsWithNewExpectation = (

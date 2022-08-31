@@ -11,16 +11,16 @@ const pageName = "Pull requests page with tables and docs";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls`;
+const destinationBranch = "archived";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
   const changeBranchParams = {
-    openMenu: true,
-    branchCheckID: "create-pull-request-button",
-    optionalText: "Create Pull Request",
-    newBranch: "archived",
-    newBranchOptionalText: "Create Pull Request",
+    isLeftNavClosed: true,
+    currentTabID: "create-pull-request-button",
+    destinationBranch,
+    destinationURL: `/${currentPage}?refName=${destinationBranch}`,
   };
 
   const desktopAndIpadTests = (isIpad = false) => [

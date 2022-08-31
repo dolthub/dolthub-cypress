@@ -18,37 +18,37 @@ describe(`${pageName} renders expected components on different devices`, () => {
     {
       test: "about tab",
       data_cy: "repo-about-tab",
-      openMenu: false,
+      isLeftNavClosed: false,
       find: "repo-doc-markdown",
     },
     {
       test: "commit tab",
       data_cy: "repo-commit-log-tab",
-      openMenu: true,
+      isLeftNavClosed: true,
       find: "commit-log-commits-list",
     },
     {
       test: "releases tab",
       data_cy: "repo-releases-tab",
-      openMenu: true,
+      isLeftNavClosed: true,
       find: "release-list-no-releases",
     },
     {
       test: "issues tab",
       data_cy: "repo-issues-tab",
-      openMenu: true,
+      isLeftNavClosed: true,
       find: "issue-table",
     },
     {
       test: "pulls tab",
       data_cy: "repo-pull-requests-tab",
-      openMenu: true,
+      isLeftNavClosed: true,
       find: "create-pull-request-button",
     },
     {
       test: "deploy tab",
       data_cy: "repo-deploy-tab",
-      openMenu: true,
+      isLeftNavClosed: true,
       find: "hosted-button",
     },
   ];
@@ -60,7 +60,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", currentBranch),
     ),
     ...loopTabsWithNewExpectation(tabs, (tab: TabParams) =>
-      clickAndCheckCurrentBranch(currentBranch, tab.openMenu ?? false),
+      clickAndCheckCurrentBranch(currentBranch, tab.isLeftNavClosed ?? false),
     ),
   ];
 

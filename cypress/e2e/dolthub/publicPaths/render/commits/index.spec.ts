@@ -1,4 +1,3 @@
-import { changeBranch } from "cypress/e2e/utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
@@ -15,17 +14,12 @@ import { notBeVisible } from "../../../../utils/sharedTests/sharedFunctionsAndVa
 const pageName = "Commit log page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentBranch = "archived";
+const currentBranch = "master";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/commits/${currentBranch}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
-  const changeBranchParams = {
-    openMenu: true,
-    branchCheckID: "commit-log-commits-list",
-    newBranch: "master",
-  };
 
   const commonTests = [
     newExpectation(
@@ -61,7 +55,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const desktopAndIpadTests = (isIpad = false) => [
-    ...changeBranch(changeBranchParams),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
     ...commonTests,
     newExpectation(
