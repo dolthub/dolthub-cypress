@@ -79,6 +79,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
     },
   ];
 
+  const doltInActionTopFindAndContain = [
+    { dataCy: "doltInAction-title", text: "Dolt In Action" },
+    {
+      dataCy: "doltInAction-description",
+      text: "In this demo we use Dolt and GitHub Actions to version a public dataset and run SQL against the result",
+    },
+  ];
+
   const tests = [
     findAndBeVisible("top-right-container"),
     ...topRightFindAndContain.map(find =>
@@ -141,6 +149,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...bulletVersionFindAndContain.map(find =>
+      findAndContains(find.dataCy, find.text),
+    ),
+
+    newExpectationWithScrollIntoView(
+      "should find Dolt In Action top container",
+      "[data-cy=doltInAction-top-container]",
+      beVisible,
+      true,
+    ),
+    ...doltInActionTopFindAndContain.map(find =>
       findAndContains(find.dataCy, find.text),
     ),
   ];
