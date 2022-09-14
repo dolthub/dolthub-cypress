@@ -96,7 +96,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
     newExpectationWithScrollIntoView(
       "should find Dolt In Action: top container",
-      "[data-cy=doltInAction-top-container]",
+      "[data-cy=dolt-in-action-top-container]",
       beVisible,
       true,
     ),
@@ -106,7 +106,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
     newExpectationWithScrollIntoView(
       "should find Dolt In Action: List",
-      "[data-cy=doltInAction-list]",
+      "[data-cy=dolt-in-action-list]",
       beVisible,
       true,
     ),

@@ -66,28 +66,28 @@ export const bulletVersionFindAndContain = [
 ];
 
 export const doltInActionTopFindAndContain = [
-  { dataCy: "doltInAction-title", text: "Dolt In Action" },
+  { dataCy: "dolt-in-action-title", text: "Dolt In Action" },
   {
-    dataCy: "doltInAction-description",
+    dataCy: "dolt-in-action-description",
     text: "In this demo we use Dolt and GitHub Actions to version a public dataset and run SQL against the result",
   },
 ];
 
 export const doltInActionListFindAndContain = [
   {
-    dataCy: "doltInAction-list-item-one",
+    dataCy: "dolt-in-action-list-item-one",
     text: "Simple, fully customizable GitHub Action driven ETL process",
   },
   {
-    dataCy: "doltInAction-list-item-two",
+    dataCy: "dolt-in-action-list-item-two",
     text: "Run SQL over every version of the data",
   },
   {
-    dataCy: "doltInAction-list-item-three",
+    dataCy: "dolt-in-action-list-item-three",
     text: "Data diffs in SQL tables",
   },
   {
-    dataCy: "doltInAction-list-item-four",
+    dataCy: "dolt-in-action-list-item-four",
     text: "A commit for each version of the data",
   },
 ];
