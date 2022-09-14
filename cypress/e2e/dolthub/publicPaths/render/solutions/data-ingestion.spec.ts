@@ -1,8 +1,8 @@
 import {
   beVisible,
   beVisibleAndContain,
-  findAndBeVisible,
-  findAndContains,
+  shouldFindAndBeVisible,
+  shouldFindAndContains,
 } from "cypress/e2e/utils/sharedTests/sharedFunctionsAndVariables";
 import {
   topRightFindAndContain,
@@ -30,9 +30,9 @@ const currentPage = "/solutions/data-ingestion";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    findAndBeVisible("top-right-container"),
+    shouldFindAndBeVisible("top-right-container"),
     ...topRightFindAndContain.map(find =>
-      findAndContains(find.dataCy, find.text),
+      shouldFindAndContains(find.dataCy, find.text),
     ),
 
     newExpectationWithScrollIntoView(
@@ -42,7 +42,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...topBottomFindAndContain.map(find =>
-      findAndContains(find.dataCy, find.text),
+      shouldFindAndContains(find.dataCy, find.text),
     ),
 
     newExpectationWithScrollIntoView(
@@ -61,7 +61,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...bulletQueryFindAndContain.map(find =>
-      findAndContains(find.dataCy, find.text),
+      shouldFindAndContains(find.dataCy, find.text),
     ),
 
     newExpectationWithScrollIntoView(
@@ -71,7 +71,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...bulletQueryFindAndContain.map(find =>
-      findAndContains(find.dataCy, find.text),
+      shouldFindAndContains(find.dataCy, find.text),
     ),
 
     newExpectationWithScrollIntoView(
@@ -81,7 +81,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...bulletScriptFindAndContain.map(find =>
-      findAndContains(find.dataCy, find.text),
+      shouldFindAndContains(find.dataCy, find.text),
     ),
 
     newExpectationWithScrollIntoView(
@@ -91,7 +91,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...bulletVersionFindAndContain.map(find =>
-      findAndContains(find.dataCy, find.text),
+      shouldFindAndContains(find.dataCy, find.text),
     ),
 
     newExpectationWithScrollIntoView(
@@ -101,7 +101,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...doltInActionTopFindAndContain.map(find =>
-      findAndContains(find.dataCy, find.text),
+      shouldFindAndContains(find.dataCy, find.text),
     ),
 
     newExpectationWithScrollIntoView(
@@ -111,7 +111,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       true,
     ),
     ...doltInActionListFindAndContain.map(find =>
-      findAndContains(find.dataCy, find.text),
+      shouldFindAndContains(find.dataCy, find.text),
     ),
 
     newExpectationWithScrollIntoView(
@@ -122,8 +122,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...exampleItemsFindAndContain.map(
       find => (
-        findAndContains(find.dataCyTitle, find.textTitle),
-        findAndContains(find.dataCyDescription, find.textDescription),
+        shouldFindAndContains(find.dataCyTitle, find.textTitle),
+        shouldFindAndContains(find.dataCyDescription, find.textDescription),
         newExpectationWithClickFlows(
           "should find right button",
           "[aria-label=example-right-button]",
