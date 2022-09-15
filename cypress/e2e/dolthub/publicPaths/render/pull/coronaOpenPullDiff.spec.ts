@@ -59,9 +59,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
             beVisible,
           ),
           newExpectation(
-            "should not show View SQL link",
+            "should show View SQL link",
             "[data-cy=view-sql-link]",
-            newShouldArgs("not.exist"),
+            beVisible,
           ),
         ]),
       ],
