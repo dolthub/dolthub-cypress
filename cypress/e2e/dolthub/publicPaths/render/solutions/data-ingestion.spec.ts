@@ -4,18 +4,16 @@ import {
   shouldFindAndBeVisible,
   shouldFindAndContain,
 } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
-import {
-  topRightFindAndContain,
-  exampleItemsFindAndContain,
-  dataIngestionTests,
-} from "../../../../utils/constants/data-IngestionConstants";
+
 import { runTestsForDevices } from "../../../../utils";
 import {
   desktopDevicesForSignedOut,
   iPad2ForAppLayout,
+  iPhoneXForAppLayout,
 } from "../../../../utils/devices";
 import {
   newClickFlow,
+  newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
 } from "../../../../utils/helpers";
@@ -23,8 +21,61 @@ import {
 const pageName = "Data-ingestion page";
 const currentPage = "/solutions/data-ingestion";
 
+const dataIngestionTests = [
+  {
+    scrollToCy: "top-right-title",
+    text: "DATA IS CRITICAL",
+  },
+  {
+    scrollToCy: "turbine-quote",
+    text: "Dolt allows us to verify and test cancer genome data from our research partners around the world",
+  },
+  {
+    scrollToCy: "bullet-query",
+    text: "Query",
+  },
+  {
+    scrollToCy: "bullet-script",
+    text: "Script",
+  },
+  {
+    scrollToCy: "bullet-version",
+    text: "Version",
+  },
+  {
+    scrollToCy: "dolt-in-action-top-container",
+    text: "Dolt In Action",
+  },
+  {
+    scrollToCy: "dolt-in-action-list",
+  },
+  {
+    scrollToCy: "workflow-item",
+  },
+];
+
+const topRightFindAndContain = {
+  dataCy: "top-right-title",
+  text: "DATA IS CRITICAL",
+};
+
+const exampleItemsFindAndContain = [
+  {
+    dataCy: "workflow-title",
+    text: "The workflow file",
+  },
+  {
+    dataCy: "script-title",
+    text: "The script",
+  },
+  {
+    dataCy: "output-title",
+    text: "The output",
+  },
+];
+
 describe(`${pageName} renders expected components on different devices`, () => {
-  const tests = [
+  const commonTests = [
     shouldFindAndBeVisible("top-right-container"),
     shouldFindAndContain(
       topRightFindAndContain.dataCy,
@@ -39,7 +90,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
         true,
       ),
     ),
+  ];
 
+  const DesktopAndTabletTests = [
+    ...commonTests,
     ...exampleItemsFindAndContain.map(
       find => (
         shouldFindAndContain(find.dataCy, find.text),
@@ -51,11 +105,37 @@ describe(`${pageName} renders expected components on different devices`, () => {
         )
       ),
     ),
+    newExpectation(
+      "should find left button",
+      "[aria-label=example-left-button]",
+      beVisible,
+    ),
+  ];
+
+  const MobileAndTabletTests = [
+    ...commonTests,
+    ...exampleItemsFindAndContain.map(
+      find => (
+        shouldFindAndContain(find.dataCy, find.text),
+        newExpectationWithClickFlows(
+          "should find right button",
+          "[aria-label=mobile-example-right-button]",
+          beVisible,
+          [newClickFlow("[aria-label=mobile-example-right-button]", [])],
+        )
+      ),
+    ),
+    newExpectation(
+      "should find left button",
+      "[aria-label=mobile-example-left-button]",
+      beVisible,
+    ),
   ];
 
   const devices = [
-    ...desktopDevicesForSignedOut(pageName, tests, false),
-    iPad2ForAppLayout(pageName, tests),
+    ...desktopDevicesForSignedOut(pageName, DesktopAndTabletTests, false),
+    iPad2ForAppLayout(pageName, DesktopAndTabletTests),
+    iPhoneXForAppLayout(pageName, MobileAndTabletTests),
   ];
 
   runTestsForDevices({ currentPage, devices });

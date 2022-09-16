@@ -2,7 +2,7 @@ const pageName = "Blog RSS feed page";
 const currentPage = "/blog/rss.xml";
 const skip = !!Cypress.env("LOCAL_DOLTHUB") || !!Cypress.env("LOCAL_BLOG");
 
-describe(`${pageName} feed page renders expected components on different devices`, () => {
+describe(`${pageName} renders expected components on different devices`, () => {
   if (skip) {
     xit("gets blog RSS feed", () => {});
   } else {
