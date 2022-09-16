@@ -92,7 +92,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const DesktopAndTabletTests = [
+  const desktopAndTabletTests = [
     ...commonTests,
     newExpectation(
       "should find right button",
@@ -114,7 +114,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const MobileAndTabletTests = [
+  const mobileAndTabletTests = [
     ...commonTests,
     newExpectation(
       "should find right button",
@@ -137,9 +137,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    ...desktopDevicesForSignedOut(pageName, DesktopAndTabletTests, false),
-    iPad2ForAppLayout(pageName, DesktopAndTabletTests),
-    iPhoneXForAppLayout(pageName, MobileAndTabletTests),
+    ...desktopDevicesForSignedOut(pageName, desktopAndTabletTests, false),
+    iPad2ForAppLayout(pageName, desktopAndTabletTests),
+    iPhoneXForAppLayout(pageName, mobileAndTabletTests),
   ];
 
   runTestsForDevices({ currentPage, devices });
