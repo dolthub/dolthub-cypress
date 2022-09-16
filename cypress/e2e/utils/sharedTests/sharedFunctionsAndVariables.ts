@@ -295,7 +295,7 @@ export function getTypeInGridTests(grids: string[][], skipClear = false) {
 export const shouldFindAndBeVisible = (dataCy: string): Expectation =>
   newExpectation(`should find ${dataCy}`, `[data-cy=${dataCy}]`, beVisible);
 
-export const shouldFindAndContains = (
+export const shouldFindAndContain = (
   dataCy: string,
   text: string,
 ): Expectation =>

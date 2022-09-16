@@ -2,7 +2,7 @@ import { newExpectation } from "../../../../utils/helpers";
 import {
   beVisibleAndContain,
   shouldFindAndBeVisible,
-  shouldFindAndContains,
+  shouldFindAndContain,
 } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 import { runTestsForDevices } from "../../../../utils";
 import { allDevicesForSignedOut } from "../../../../utils/devices";
@@ -13,7 +13,7 @@ const currentPage = "/subscribe";
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     shouldFindAndBeVisible("mailing-container"),
-    shouldFindAndContains("mailing-header", "Subscribe to our mailing list"),
+    shouldFindAndContain("mailing-header", "Subscribe to our mailing list"),
 
     newExpectation(
       "should find mailing list msg",
@@ -23,7 +23,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
     shouldFindAndBeVisible("mailing-list-form"),
     shouldFindAndBeVisible("mailchimp-input"),
-    shouldFindAndContains("mailchimp-submit-button", "Submit"),
+    shouldFindAndContain("mailchimp-submit-button", "Submit"),
   ];
 
   const devices = allDevicesForSignedOut(pageName, tests, tests);
