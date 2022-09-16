@@ -94,15 +94,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const DesktopAndTabletTests = [
     ...commonTests,
-    ...exampleItemsFindAndContain.map(
-      find => (
-        shouldFindAndContain(find.dataCy, find.text),
-        newExpectationWithClickFlows(
-          "should find right button",
-          "[aria-label=example-right-button]",
-          beVisible,
-          [newClickFlow("[aria-label=example-right-button]", [])],
-        )
+    newExpectation(
+      "should find right button",
+      "[aria-label=example-right-button]",
+      beVisible,
+    ),
+    ...exampleItemsFindAndContain.map(find =>
+      newExpectationWithClickFlows(
+        `should find ${find.dataCy}`,
+        `[data-cy=${find.dataCy}]`,
+        beVisibleAndContain(find.text),
+        [newClickFlow("[aria-label=example-right-button]", [])],
       ),
     ),
     newExpectation(
@@ -114,15 +116,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const MobileAndTabletTests = [
     ...commonTests,
-    ...exampleItemsFindAndContain.map(
-      find => (
-        shouldFindAndContain(find.dataCy, find.text),
-        newExpectationWithClickFlows(
-          "should find right button",
-          "[aria-label=mobile-example-right-button]",
-          beVisible,
-          [newClickFlow("[aria-label=mobile-example-right-button]", [])],
-        )
+    newExpectation(
+      "should find right button",
+      "[aria-label=mobile-example-right-button]",
+      beVisible,
+    ),
+    ...exampleItemsFindAndContain.map(find =>
+      newExpectationWithClickFlows(
+        `should find ${find.dataCy}`,
+        `[data-cy=${find.dataCy}]`,
+        beVisibleAndContain(find.text),
+        [newClickFlow("[aria-label=mobile-example-right-button]", [])],
       ),
     ),
     newExpectation(
