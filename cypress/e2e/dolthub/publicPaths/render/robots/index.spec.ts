@@ -1,8 +1,11 @@
-describe(`$robots page renders expected components on different devices`, () => {
+const pageName = "robots page";
+const currentPage = "/robots.txt";
+
+describe(`${pageName} page renders expected components on different devices`, () => {
   it("gets robots", () => {
-    cy.request({ url: "/robots.txt" }).its("status").should("equal", 200);
-    cy.request({ url: "/robots.txt" })
-      .its("body")
-      .should("contain", "Sitemap: ");
+    cy.request({ url: currentPage }).its("status").should("equal", 200);
+    cy.request({ url: currentPage }).its("body").should("contain", "Sitemap: ");
   });
 });
+
+export {};

@@ -14,3 +14,5 @@ describe(`${pageName} feed page renders expected components on different devices
     });
   }
 });
+
+export {};
