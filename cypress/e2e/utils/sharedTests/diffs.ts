@@ -85,11 +85,6 @@ export const diffsWithCommitTests = (
     [
       newClickFlow("[data-cy=options-button]", [
         newExpectation(
-          "should have toggle whitespace button",
-          "[data-cy=toggle-whitespace-button]",
-          beVisible,
-        ),
-        newExpectation(
           "should show View SQL link",
           "[data-cy=view-sql-link]",
           beVisible,
