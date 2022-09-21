@@ -81,11 +81,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [
         newClickFlow("[data-cy=options-button]", [
           newExpectation(
-            "should have toggle whitespace button",
-            "[data-cy=toggle-whitespace-button]",
-            beVisible,
-          ),
-          newExpectation(
             "should have download query result as csv button",
             "[data-cy=open-download-csv-modal-button]",
             beVisible,

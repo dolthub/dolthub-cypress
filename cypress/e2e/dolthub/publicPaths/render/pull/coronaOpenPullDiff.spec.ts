@@ -54,11 +54,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [
         newClickFlow("[data-cy=options-button]", [
           newExpectation(
-            "should have toggle whitespace button",
-            "[data-cy=toggle-whitespace-button]",
-            beVisible,
-          ),
-          newExpectation(
             "should not show View SQL link",
             "[data-cy=view-sql-link]",
             newShouldArgs("not.exist"),
