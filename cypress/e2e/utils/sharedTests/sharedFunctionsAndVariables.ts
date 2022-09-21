@@ -291,3 +291,16 @@ export function getTypeInGridTests(grids: string[][], skipClear = false) {
   });
   return tests;
 }
+
+export const shouldFindAndBeVisible = (dataCy: string): Expectation =>
+  newExpectation(`should find ${dataCy}`, `[data-cy=${dataCy}]`, beVisible);
+
+export const shouldFindAndContain = (
+  dataCy: string,
+  text: string,
+): Expectation =>
+  newExpectation(
+    `should find ${dataCy}`,
+    `[data-cy=${dataCy}]`,
+    beVisibleAndContain(text),
+  );

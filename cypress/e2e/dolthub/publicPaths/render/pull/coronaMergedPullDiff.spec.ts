@@ -56,9 +56,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       [
         newClickFlow("[data-cy=options-button]", [
           newExpectation(
-            "should not show View SQL link",
+            "should show View SQL link",
             "[data-cy=view-sql-link]",
-            newShouldArgs("not.exist"),
+            beVisible,
           ),
         ]),
       ],
