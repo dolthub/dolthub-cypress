@@ -10,9 +10,9 @@ import {
 const pageName = "Merged pull diff range page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "1";
-const currentFromCommit = "d4vefgq8pq90v3qal0kp8rqddvh94nl6";
-const currentToCommit = "8omjtv2r828d9sr2e84m12so9qr1evgn";
+const currentPullId = "4";
+const currentFromCommit = "sqro9krqj2seruh1u2no2om1ef5i9cvv";
+const currentToCommit = "2mqjv675o7ci8v9qs75d8tohmovnqcoc";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare/${currentFromCommit}...${currentToCommit}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -35,7 +35,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=diff-selector]",
       newShouldArgs(
         "be.visible.and.contain",
-        "Added two Chicago cases (8omjtv)",
+        "Add fake case from Jan 21 (2mqjv6)",
       ),
     ),
     newExpectation(
@@ -51,7 +51,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",
-      newShouldArgs("be.visible.and.contain", "case_details"),
+      newShouldArgs("be.visible.and.contain", "case"),
     ),
     newExpectationWithClickFlows(
       "Option dropdown should have appropriate links",
@@ -80,7 +80,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table list summaries",
       "[data-cy=diff-table-list-summaries] > li",
-      newShouldArgs("be.visible.and.have.length", 1),
+      newShouldArgs("be.visible.and.have.length", 3),
     ),
     newExpectation(
       "should show table diff summary",
@@ -89,13 +89,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should show diff table",
-      "[data-cy=data-diff-case_details]",
+      "[data-cy=data-diff-cases]",
       beVisible,
     ),
     newExpectation(
       "should show diff table rows",
-      "[data-cy=data-diff-case_details] > tbody > tr",
-      newShouldArgs("be.visible.and.have.length", 2),
+      "[data-cy=data-diff-cases] > tbody > tr",
+      newShouldArgs("be.visible.and.have.length", 1),
     ),
     newExpectation(
       "should not find 404 page",
