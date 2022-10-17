@@ -33,7 +33,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=search-input]",
       beVisible,
     ),
-
+    newExpectation(
+      "should render sort select dropdown",
+      "[data-cy=sort-discover-select]",
+      beVisible,
+    ),
     uncheckShowForkListOption,
     newExpectation(
       "should only have one repo in the list",
