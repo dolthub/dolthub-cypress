@@ -5,7 +5,10 @@ import {
   macbook15ForAppLayout,
 } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { checkForkList } from "../../../../utils/sharedTests/reposContainer";
+import {
+  checkForkList,
+  uncheckShowForkListOption,
+} from "../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Profile discover page";
 const searchTerm = "repo_with_tags_and_branches";
@@ -35,6 +38,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=sort-discover-select]",
       beVisible,
     ),
+    uncheckShowForkListOption,
+    newExpectation(
+      "should only have one repo in the list",
+      "[data-cy=repository-list-most-recent]>li",
+      newShouldArgs("be.visible.and.have.length.of.at.most", 1),
+    ),
     ...checkForkList(isMobile),
   ];
   const ipadTests = [
@@ -57,6 +66,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should render sort select dropdown",
       "[data-cy=sort-discover-select]",
       beVisible,
+    ),
+    uncheckShowForkListOption,
+    newExpectation(
+      "should only have one repo in the list",
+      "[data-cy=repository-list-most-recent]>li",
+      newShouldArgs("be.visible.and.have.length.of.at.most", 1),
     ),
     ...checkForkList(true),
   ];

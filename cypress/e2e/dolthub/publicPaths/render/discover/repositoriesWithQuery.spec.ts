@@ -10,6 +10,7 @@ import {
   checkForkList,
   checkRepoListForTab,
   clearSearchClickFlow,
+  uncheckShowForkListOption,
 } from "../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Repositories page with query";
@@ -26,6 +27,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
     ...checkRepoListForTab("most-recent", 1),
+    uncheckShowForkListOption,
+
     ...checkForkList(isMobile),
     newExpectationWithScrollIntoView(
       "should scroll search bar into view",
