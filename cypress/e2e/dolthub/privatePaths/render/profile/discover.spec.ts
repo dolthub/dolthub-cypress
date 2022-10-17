@@ -4,8 +4,15 @@ import {
   iPhoneX,
   macbook15ForAppLayout,
 } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { checkForkList } from "../../../../utils/sharedTests/reposContainer";
+import {
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "../../../../utils/helpers";
+import {
+  checkForkList,
+  clearSearchClickFlow,
+} from "../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Profile discover page";
 const searchTerm = "repo_with_tags_and_branches";
@@ -30,6 +37,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=search-input]",
       beVisible,
     ),
+    newExpectationWithClickFlows(
+      "should successfully clear search",
+      "[data-cy=clear-search-button]",
+      beVisible,
+      [clearSearchClickFlow],
+    ),
     newExpectation(
       "should render sort select dropdown",
       "[data-cy=sort-discover-select]",
@@ -52,6 +65,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should render search input",
       "[data-cy=search-input]",
       beVisible,
+    ),
+    newExpectationWithClickFlows(
+      "should successfully clear search",
+      "[data-cy=clear-search-button]",
+      beVisible,
+      [clearSearchClickFlow],
     ),
     newExpectation(
       "should render sort select dropdown",

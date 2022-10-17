@@ -26,7 +26,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
     ...checkRepoListForTab("most-recent", 1),
-    ...checkForkList(isMobile),
     newExpectationWithScrollIntoView(
       "should scroll search bar into view",
       "[data-cy=search-input]",
@@ -44,6 +43,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [clearSearchClickFlow],
     ),
+    ...checkForkList(isMobile),
     ...checkRepoListForTab("most-recent", 20),
   ];
 
