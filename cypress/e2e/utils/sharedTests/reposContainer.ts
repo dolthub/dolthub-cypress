@@ -103,19 +103,33 @@ const checkCollapseForkList = (isMobile: boolean) =>
         ),
       ];
 
+export const uncheckShowForkListOption = newExpectationWithClickFlows(
+  "should check show fork list option",
+  "[data-cy=filter-button",
+  beVisible,
+  [
+    newClickFlow(
+      "[data-cy=filter-button",
+      [],
+      "[data-cy=show-fork-repos-checkbox-checkbox]",
+    ),
+    newClickFlow("[data-cy=filter-button", []),
+  ],
+);
+
 export const checkForkList = (isMobile: boolean) => [
   newExpectation(
     "should have show forks button",
-    `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]:first`,
+    `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
     beVisible,
   ),
   newExpectationWithClickFlows(
     "should have show forks button",
-    `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]:first`,
+    `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
     beVisible,
     [
       newClickFlow(
-        `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]:first`,
+        `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
         [
           newExpectation(
             "should show fork list",

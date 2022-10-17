@@ -4,14 +4,10 @@ import {
   iPhoneX,
   macbook15ForAppLayout,
 } from "../../../../utils/devices";
-import {
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-} from "../../../../utils/helpers";
+import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   checkForkList,
-  clearSearchClickFlow,
+  uncheckShowForkListOption,
 } from "../../../../utils/sharedTests/reposContainer";
 
 const pageName = "Profile discover page";
@@ -37,16 +33,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=search-input]",
       beVisible,
     ),
-    newExpectationWithClickFlows(
-      "should successfully clear search",
-      "[data-cy=clear-search-button]",
-      beVisible,
-      [clearSearchClickFlow],
-    ),
+
+    uncheckShowForkListOption,
     newExpectation(
-      "should render sort select dropdown",
-      "[data-cy=sort-discover-select]",
-      beVisible,
+      "should only have one repo in the list",
+      "[data-cy=repository-list-most-recent]>li",
+      newShouldArgs("be.visible.and.have.length.of.at.most", 1),
     ),
     ...checkForkList(isMobile),
   ];
@@ -66,16 +58,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=search-input]",
       beVisible,
     ),
-    newExpectationWithClickFlows(
-      "should successfully clear search",
-      "[data-cy=clear-search-button]",
-      beVisible,
-      [clearSearchClickFlow],
-    ),
     newExpectation(
       "should render sort select dropdown",
       "[data-cy=sort-discover-select]",
       beVisible,
+    ),
+    uncheckShowForkListOption,
+    newExpectation(
+      "should only have one repo in the list",
+      "[data-cy=repository-list-most-recent]>li",
+      newShouldArgs("be.visible.and.have.length.of.at.most", 1),
     ),
     ...checkForkList(true),
   ];
