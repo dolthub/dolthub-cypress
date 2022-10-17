@@ -26,9 +26,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repos-container-with-tabs]",
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
-    ...checkRepoListForTab("most-recent", 1),
     uncheckShowForkListOption,
-
+    ...checkRepoListForTab("most-recent", 1),
     ...checkForkList(isMobile),
     newExpectationWithScrollIntoView(
       "should scroll search bar into view",
