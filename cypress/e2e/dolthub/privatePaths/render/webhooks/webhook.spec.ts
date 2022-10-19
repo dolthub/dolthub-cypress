@@ -6,6 +6,10 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import {
+  beVisible,
+  beVisibleAndContain,
+} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Webhook page";
 const currentOwner = "automated_testing";
@@ -18,8 +22,6 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/webhooks/${curr
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
-
   // const viewDeliveryClickFlow = newClickFlow(
   //   "[data-cy=view-attempt-button-68fc0528-c258-4c55-a79a-1709b79759ec]",
   //   [
@@ -55,6 +57,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
+    newExpectation(
+      "should have an active Webhooks tab",
+      "[data-cy=active-webhooks-settings-tab]",
+      beVisibleAndContain("Webhooks"),
+    ),
     newExpectation(
       "should render repo webhooks page",
       "[data-cy=repo-page-for-webhooks]",

@@ -13,18 +13,17 @@ import {
   notBeChecked,
 } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
-const pageName =
-  "Logged in branch protection settings page with tables and docs";
+const pageName = "Logged in branch protection settings page";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_with_branch_protection";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/settings/branch-protections`;
 const loggedIn = true;
 
-describe(`${pageName} renders branch protection settings`, () => {
+describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     newExpectation(
-      "should have a branch protection tab",
-      "[data-cy=branch-protection-settings-button]",
+      "should have an active branch protection tab",
+      "[data-cy=active-branch-protections-settings-tab]",
       beVisibleAndContain("Branch Protection"),
     ),
     newExpectation(
