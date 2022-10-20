@@ -6,6 +6,10 @@ import {
 } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import {
+  beVisible,
+  notExist,
+} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Webhooks page logged out";
@@ -16,7 +20,6 @@ const loggedIn = false;
 const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
   const desktopAndIpadTests = (isIpad = false) => [
     newExpectation(
       "should have repository layout",
@@ -31,12 +34,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
       isIpad,
     ),
     newExpectation(
-      "should render 404 page",
-      "[data-cy=404-page]",
-      newShouldArgs(
-        "be.visible.and.contain",
-        "Must have database write perms to manage webhooks",
-      ),
+      "should not find active webhooks settings tab",
+      "[data-cy=active-webhooks-settings-tab]",
+      notExist,
+    ),
+    newExpectation(
+      "should render no write perms message",
+      "#main-content",
+      newShouldArgs("be.visible.and.contain", [
+        "Settings",
+        "Must have write permissions to edit database.",
+      ]),
     ),
   ];
 
