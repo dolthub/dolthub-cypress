@@ -7,7 +7,7 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
-import { mergingAndDeletingBranch } from "./sharedFunctionsAndVariables";
+import { mergingAndDeletingBranch } from "./editRepo";
 
 const licenseMarkdown = "test";
 const updatedLicenseMarkdown = "test number 2";

@@ -4,11 +4,10 @@ import {
   newExpectationWithClickFlows,
 } from "../helpers";
 import { Tests } from "../types";
+import { afterUploadSteps, preUploadSteps } from "./editRepo";
 import {
-  afterUploadSteps,
   beVisibleAndContain,
   getTypeInGridTests,
-  preUploadSteps,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 

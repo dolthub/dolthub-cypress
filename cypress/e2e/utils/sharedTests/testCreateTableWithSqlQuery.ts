@@ -4,11 +4,8 @@ import {
   newExpectationWithClickFlows,
 } from "../helpers";
 import { Tests } from "../types";
-import {
-  beVisible,
-  beVisibleAndContain,
-  sqlConsoleEditClickFlow,
-} from "./sharedFunctionsAndVariables";
+import { sqlConsoleEditClickFlow } from "./editRepo";
+import { beVisible, beVisibleAndContain } from "./sharedFunctionsAndVariables";
 
 const sqlQueryTable = "TestSqlCreateTable";
 const createTableQuery = `CREATE TABLE ${sqlQueryTable} (pk INT,col1 VARCHAR(255),PRIMARY KEY (pk));`;

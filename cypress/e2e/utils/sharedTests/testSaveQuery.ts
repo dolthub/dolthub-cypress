@@ -4,11 +4,10 @@ import {
   newExpectationWithClickFlows,
 } from "../helpers";
 import { Tests } from "../types";
+import { createPullRequest, mergingAndDeletingBranch } from "./editRepo";
 import {
   beVisible,
   beVisibleAndContain,
-  createPullRequest,
-  mergingAndDeletingBranch,
   notExist,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
