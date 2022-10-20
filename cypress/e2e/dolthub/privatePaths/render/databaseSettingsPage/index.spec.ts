@@ -7,77 +7,45 @@ import {
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../../../../utils/helpers";
+import {
+  beVisible,
+  beVisibleAndContain,
+} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
-const pageName = "Logged in database settings page with no branch and no data";
+const pageName = "Logged in database settings page";
 const currentOwner = "automated_testing";
 const currentRepo = "empty_repo";
-const currentPage = `repositories/${currentOwner}/${currentRepo}/settings`;
+const currentPageOne = `repositories/${currentOwner}/${currentRepo}/settings`;
+const currentPageTwo = `${currentPageOne}/database`;
 const loggedIn = true;
 
-const beVisible = newShouldArgs("be.visible");
-const notExist = newShouldArgs("not.exist");
-const beVisibleAndContain = (value: string) =>
-  newShouldArgs("be.visible.and.contain", value);
-
-const addCollabModalClickflow = newClickFlow(
-  "[data-cy=add-collab-button]",
-  [
-    newExpectation(
-      "should have a Add Collaborator header",
-      "[data-cy=modal-title]",
-      beVisibleAndContain("Add Collaborator"),
-    ),
-    newExpectation(
-      "should have two radio options",
-      "[data-cy=add-collab-radios]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have a New Collaborator form",
-      "[data-cy=new-collab-form]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have a disabled Add button",
-      "[data-cy=add-collab-modal-button]",
-      newShouldArgs("be.disabled"),
-    ),
-    newExpectation(
-      "should render a cancel button",
-      "[data-cy=cancel-button]",
-      newShouldArgs("be.visible"),
-    ),
-  ],
-  "[data-cy=close-modal]",
-);
-
-const deleteDatabaseModalClickflow = newClickFlow(
-  "[data-cy=delete-database-button]",
-  [
-    newExpectation(
-      "should have a Delete Database header",
-      "[data-cy=modal-title]",
-      beVisibleAndContain("Delete Database"),
-    ),
-    newExpectation(
-      "should render a delete database button in modal",
-      "[data-cy=submit-delete-database]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectation(
-      "should render a cancel button",
-      "[data-cy=cancel-button]",
-      newShouldArgs("be.visible"),
-    ),
-  ],
-  "[data-cy=close-modal]",
-);
-
 describe(`${pageName} renders expected components on different devices`, () => {
+  const deleteDatabaseModalClickFlow = newClickFlow(
+    "[data-cy=delete-database-button]",
+    [
+      newExpectation(
+        "should have a Delete Database header",
+        "[data-cy=modal-title]",
+        beVisibleAndContain("Delete Database"),
+      ),
+      newExpectation(
+        "should render a delete database button in modal",
+        "[data-cy=submit-delete-database]",
+        newShouldArgs("be.visible"),
+      ),
+      newExpectation(
+        "should render a cancel button",
+        "[data-cy=cancel-button]",
+        newShouldArgs("be.visible"),
+      ),
+    ],
+    "[data-cy=close-modal]",
+  );
+
   const tests = [
     newExpectation(
-      "should have a Database Details tab",
-      "[data-cy=database-settings-button]",
+      "should have an active Database Details tab",
+      "[data-cy=active-database-settings-tab]",
       beVisibleAndContain("Database Details"),
     ),
     newExpectation(
@@ -109,37 +77,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ]),
       ],
     ),
-    newExpectation(
-      "should have a Webhooks section with header",
-      "[data-cy=repo-settings-webhooks] > h2",
-      beVisibleAndContain("Webhooks"),
-    ),
-    newExpectation(
-      "should have a manage webhooks link",
-      "[data-cy=repo-settings-manage-webhooks-link]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have a Collaborators section with header",
-      "[data-cy=repo-settings-collab] > h2",
-      beVisibleAndContain("Collaborators"),
-    ),
-    newExpectation(
-      "should have a no collaborators section",
-      "[data-cy=collab-table-no-collabs]",
-      beVisible,
-    ),
-    newExpectation(
-      "should not have a collaborators table",
-      "[data-cy=collab-table]",
-      notExist,
-    ),
-    newExpectationWithClickFlows(
-      "should have an Add Collaborator button that opens a modal",
-      "[data-cy=add-collab-button]",
-      beVisible,
-      [addCollabModalClickflow],
-    ),
     newExpectationWithScrollIntoView(
       "should have a Delete Database section with header",
       "[data-cy=repo-settings-delete-database-header]",
@@ -150,10 +87,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have a Delete Database button that opens a modal",
       "[data-cy=delete-database-button]",
       beVisible,
-      [deleteDatabaseModalClickflow],
+      [deleteDatabaseModalClickFlow],
     ),
   ];
+
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
-  runTestsForDevices({ currentPage, devices, skip });
+
+  // Tests work for both database settings links (/settings and /settings/database)
+  runTestsForDevices({ currentPage: currentPageOne, devices, skip });
+  runTestsForDevices({ currentPage: currentPageTwo, devices, skip });
 });

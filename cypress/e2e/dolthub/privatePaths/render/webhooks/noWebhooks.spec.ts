@@ -1,6 +1,10 @@
 import { runTestsForDevices } from "../../../../utils";
 import { macbook15ForAppLayout } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import {
+  beVisible,
+  beVisibleAndContain,
+} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Webhooks page with no webhooks";
 const currentOwner = "automated_testing";
@@ -9,8 +13,12 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/webhooks`;
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
   const tests = [
+    newExpectation(
+      "should have an active Webhooks tab",
+      "[data-cy=active-webhooks-settings-tab]",
+      beVisibleAndContain("Webhooks"),
+    ),
     newExpectation(
       "should render repo webhooks page",
       "[data-cy=repo-page-for-webhooks]",
