@@ -53,7 +53,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, true),
+      mobileTests(
+        currentOwner,
+        currentRepo,
+        `repositories/${currentOwner}/${currentRepo}/settings`,
+        hasDocs,
+        true,
+      ),
     ),
   ];
   const skip = false;
