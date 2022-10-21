@@ -5,12 +5,11 @@ import {
   newExpectationWithSelector,
 } from "../helpers";
 import { Tests } from "../types";
+import { mergingAndDeletingBranch, preUploadSteps } from "./editRepo";
 import {
   beVisible,
   beVisibleAndContain,
   getTypeInGridTests,
-  mergingAndDeletingBranch,
-  preUploadSteps,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 

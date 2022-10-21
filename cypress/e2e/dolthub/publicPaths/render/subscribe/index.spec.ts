@@ -1,18 +1,18 @@
+import { runTestsForDevices } from "../../../../utils";
+import { allDevicesForSignedOut } from "../../../../utils/devices";
 import { newExpectation } from "../../../../utils/helpers";
 import {
   beVisibleAndContain,
-  shouldFindAndBeVisible,
+  shouldBeVisible,
   shouldFindAndContain,
 } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
 
 const pageName = "Subscribe page";
 const currentPage = "/subscribe";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    shouldFindAndBeVisible("mailing-container"),
+    shouldBeVisible("mailing-container"),
     shouldFindAndContain("mailing-header", "Subscribe to our mailing list"),
 
     newExpectation(
@@ -21,8 +21,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisibleAndContain("Join our mailing list to get product updates."),
     ),
 
-    shouldFindAndBeVisible("mailing-list-form"),
-    shouldFindAndBeVisible("mailchimp-input"),
+    shouldBeVisible("mailing-list-form"),
+    shouldBeVisible("mailchimp-input"),
     shouldFindAndContain("mailchimp-submit-button", "Submit"),
   ];
 

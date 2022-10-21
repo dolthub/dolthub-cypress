@@ -6,12 +6,11 @@ import {
   newExpectationWithTypeString,
 } from "../helpers";
 import { Tests } from "../types";
+import { createPullRequest, mergingAndDeletingBranch } from "./editRepo";
 import {
   beVisible,
   beVisibleAndContain,
-  createPullRequest,
   exist,
-  mergingAndDeletingBranch,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 

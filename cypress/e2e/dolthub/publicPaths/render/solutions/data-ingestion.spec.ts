@@ -1,7 +1,7 @@
 import {
   beVisible,
   beVisibleAndContain,
-  shouldFindAndBeVisible,
+  shouldBeVisible,
   shouldFindAndContain,
 } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
@@ -76,7 +76,7 @@ const exampleItemsFindAndContain = [
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const commonTests = [
-    shouldFindAndBeVisible("top-right-container"),
+    shouldBeVisible("top-right-container"),
     shouldFindAndContain(
       topRightFindAndContain.dataCy,
       topRightFindAndContain.text,

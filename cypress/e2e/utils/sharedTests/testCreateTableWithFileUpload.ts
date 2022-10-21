@@ -4,11 +4,10 @@ import {
   newExpectationWithFileUpload,
 } from "../helpers";
 import { Tests } from "../types";
+import { afterUploadSteps, preUploadSteps } from "./editRepo";
 import {
-  afterUploadSteps,
   beVisible,
   beVisibleAndContain,
-  preUploadSteps,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
