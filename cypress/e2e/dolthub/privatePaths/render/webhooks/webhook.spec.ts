@@ -4,11 +4,12 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newShouldArgs,
 } from "../../../../utils/helpers";
 import {
   beVisible,
-  beVisibleAndContain,
+  haveLength,
+  shouldBeVisible,
+  shouldFindAndContain,
 } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Webhook page";
@@ -22,66 +23,38 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/webhooks/${curr
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  // const viewDeliveryClickFlow = newClickFlow(
-  //   "[data-cy=view-attempt-button-68fc0528-c258-4c55-a79a-1709b79759ec]",
-  //   [
-  //     newExpectation(
-  //       "should have delivery attempt details",
-  //       "[data-cy=delivery-attempt-details]",
-  //       beVisible,
-  //     ),
-  //     newExpectation(
-  //       "should have request payload",
-  //       "[data-cy=webhook-request-payload]",
-  //       beVisible,
-  //     ),
-  //   ],
-  // );
+  const attemptId = isProd
+    ? "2a962909-6f88-41af-b613-12266e1f7b3a"
+    : "68fc0528-c258-4c55-a79a-1709b79759ec";
 
-  // TODO: Investigate auth error for delivery attempts table
-  // const attemptId = isProd
-  //   ? "2a962909-6f88-41af-b613-12266e1f7b3a"
-  //   : "68fc0528-c258-4c55-a79a-1709b79759ec";
-  const deliveriesClickFlow = newClickFlow("[data-cy=webhook-deliveries-tab]", [
-    // newExpectation(
-    //   "should have delivery attempt table with one row",
-    //   "[data-cy=delivery-attempt-table] tr",
-    //   newShouldArgs("be.visible.and.have.length", 2),
-    // ),
-    // newExpectationWithClickFlows(
-    //   "should have view button for attempt",
-    //   `[data-cy=view-attempt-button-${attemptId}]`,
-    //   beVisible,
-    //   [viewDeliveryClickFlow],
-    // ),
-  ]);
+  const viewDeliveryClickFlow = newClickFlow(
+    `[data-cy=view-attempt-button-${attemptId}]`,
+    [
+      shouldBeVisible("webhook-attempt-breadcrumbs"),
+      shouldBeVisible("delivery-attempt-details"),
+      shouldBeVisible("webhook-request-payload"),
+      shouldBeVisible("back-to-webhook-link"),
+    ],
+  );
 
   const tests = [
+    shouldFindAndContain("active-webhooks-settings-tab", "Webhooks"),
+    shouldBeVisible("repo-page-for-webhooks"),
+    shouldFindAndContain("webhook-header", ["Webhooks", "Manage Webhook"]),
+    shouldBeVisible("webhook-breadcrumbs"),
+    shouldBeVisible("back-to-webhooks-link"),
+    shouldBeVisible("webhook-settings-form"),
+    shouldBeVisible("delivery-attempt-table"),
     newExpectation(
-      "should have an active Webhooks tab",
-      "[data-cy=active-webhooks-settings-tab]",
-      beVisibleAndContain("Webhooks"),
-    ),
-    newExpectation(
-      "should render repo webhooks page",
-      "[data-cy=repo-page-for-webhooks]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show webhook header",
-      "[data-cy=webhook-header]",
-      newShouldArgs("be.visible.and.contain", ["Webhooks", "Manage Webhook"]),
-    ),
-    newExpectation(
-      "should show webhook settings form",
-      "[data-cy=webhook-settings-form]",
-      beVisible,
+      "should have delivery attempt table with one row",
+      "[data-cy=delivery-attempt-table] tbody tr",
+      haveLength(1),
     ),
     newExpectationWithClickFlows(
-      "should have deliveries tab",
-      "[data-cy=webhook-deliveries-tab]",
+      "should have view button for attempt",
+      `[data-cy=view-attempt-button-${attemptId}]`,
       beVisible,
-      [deliveriesClickFlow],
+      [viewDeliveryClickFlow],
     ),
   ];
 
