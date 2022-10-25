@@ -4,11 +4,10 @@ import {
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
 } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
 import {
-  beVisible,
-  notExist,
+  shouldBeVisible,
+  shouldNotExist,
 } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
 import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 
@@ -21,11 +20,7 @@ const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const desktopAndIpadTests = (isIpad = false) => [
-    newExpectation(
-      "should have repository layout",
-      "[data-cy=repository-layout-container]",
-      beVisible,
-    ),
+    shouldBeVisible("repository-layout-container"),
     ...testRepoHeaderWithBranch(
       currentRepo,
       currentOwner,
@@ -33,19 +28,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       hasDocs,
       isIpad,
     ),
-    newExpectation(
-      "should not find active webhooks settings tab",
-      "[data-cy=active-webhooks-settings-tab]",
-      notExist,
-    ),
-    newExpectation(
-      "should render no write perms message",
-      "#main-content",
-      newShouldArgs("be.visible.and.contain", [
-        "Settings",
-        "Must have write permissions to edit database.",
-      ]),
-    ),
+    shouldNotExist("active-webhooks-settings-tab"),
+    shouldBeVisible("settings-no-write-perms"),
   ];
 
   const devices = [
