@@ -4,6 +4,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  scrollToPosition,
 } from "../../../../utils/helpers";
 import {
   beVisible,
@@ -27,16 +28,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ? "2a962909-6f88-41af-b613-12266e1f7b3a"
     : "68fc0528-c258-4c55-a79a-1709b79759ec";
 
-  const viewDeliveryClickFlow = newClickFlow(
-    `[data-cy=view-attempt-button-${attemptId}]`,
-    [
-      shouldBeVisible("webhook-attempt-breadcrumbs"),
-      shouldBeVisible("delivery-attempt-details"),
-      shouldBeVisible("webhook-request-payload"),
-      shouldBeVisible("back-to-webhook-link"),
-    ],
-  );
-
   const tests = [
     shouldFindAndContain("active-webhooks-settings-tab", "Webhooks"),
     shouldBeVisible("repo-page-for-webhooks"),
@@ -54,8 +45,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have view button for attempt",
       `[data-cy=view-attempt-button-${attemptId}]`,
       beVisible,
-      [viewDeliveryClickFlow],
+      [newClickFlow(`[data-cy=view-attempt-button-${attemptId}]`, [])],
     ),
+    shouldBeVisible("webhook-attempt-breadcrumbs"),
+    shouldBeVisible("delivery-attempt-details"),
+    shouldBeVisible("webhook-request-payload"),
+    scrollToPosition("#main-content", "bottom"),
+    shouldBeVisible("back-to-webhook-link"),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
