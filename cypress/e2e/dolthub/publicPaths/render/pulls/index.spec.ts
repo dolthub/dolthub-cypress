@@ -1,11 +1,13 @@
-import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { runTestsForDevices } from "../../../../utils";
 import {
   iPad2ForAppLayout,
+  iPhoneXForAppLayout,
   macbook15ForAppLayout,
 } from "../../../../utils/devices";
 import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
 import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Pull requests page with tables and docs";
 const currentOwner = "automated_testing";
@@ -66,13 +68,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const devices = [
     macbook15ForAppLayout(pageName, desktopAndIpadTests(), false),
     iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
-    /* 
-    TODO: mobile pull request page test
+
+    // TODO: mobile pull request page tests
     iPhoneXForAppLayout(
       pageName,
       mobileTests(currentOwner, currentRepo, currentPage, true, true),
-    ), 
-    */
+    ),
   ];
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });

@@ -158,7 +158,10 @@ export const mobileTests = (
   hasDocs: boolean,
   hasBranch: boolean,
   hasData = true,
+  desktopOnly = false,
 ): Tests => [
   ...testMobileRepoHeaderNav(currentOwner, currentRepo),
-  ...testDesktopOnlyWarnings(currentPage, hasDocs, hasBranch, hasData),
+  ...(desktopOnly
+    ? testDesktopOnlyWarnings(currentPage, hasDocs, hasBranch, hasData)
+    : []),
 ];
