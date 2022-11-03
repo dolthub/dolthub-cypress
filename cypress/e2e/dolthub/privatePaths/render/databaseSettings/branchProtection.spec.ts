@@ -33,11 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "protect important branches by setting branch protection rules",
       ),
     ),
-    newExpectation(
-      "should have branch name title for branch selector",
-      "[data-cy=branch-name-title]",
-      beVisibleAndContain("Branch name"),
-    ),
+
     newExpectation(
       "should have branch selector",
       "[data-cy=branch-protection-branch-selector] input",
@@ -103,8 +99,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beChecked,
     ),
 
-    scrollToPosition("#main-content", "top"),
-
     newExpectationWithClickFlows(
       "should show and select the branch",
       "[data-cy=branch-protection-branch-selector]",
@@ -123,6 +117,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ),
       ],
     ),
+
     newExpectation(
       "should have prevent deletion checked",
       "[data-cy=prevent-deletions-checkbox]",
@@ -133,7 +128,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=require-approval-checkbox]",
       beChecked,
     ),
-    scrollToPosition("#main-content", "bottom"),
+    scrollToPosition("#main-content", "top"),
     newExpectation(
       "should have protected branches list title",
       "[data-cy=protected-branch-list-title]",
