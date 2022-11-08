@@ -1,8 +1,8 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import { testSqlConsole } from "@sharedTests/sqlEditor";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Workspace 404 page logged out";
 const currentOwner = "automated_testing";

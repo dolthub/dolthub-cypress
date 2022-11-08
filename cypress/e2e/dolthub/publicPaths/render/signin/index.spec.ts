@@ -1,13 +1,13 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
   scrollToXY,
-} from "../../../../utils/helpers";
-import { Expectation } from "../../../../utils/types";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
+import { Expectation } from "@utils/types";
 
 const pageName = "Sign in page";
 const currentPage = "/signin";

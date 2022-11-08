@@ -1,6 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15 } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { macbook15 } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "404 page for path that does not exist";
 const currentPage = "/does-not-exist";

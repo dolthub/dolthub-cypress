@@ -1,6 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { noCommitsTests } from "../../../../utils/sharedTests/diffs";
+import { noCommitsTests } from "@sharedTests/diffs";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Diff page without selected commits";
 const currentOwner = "automated_testing";

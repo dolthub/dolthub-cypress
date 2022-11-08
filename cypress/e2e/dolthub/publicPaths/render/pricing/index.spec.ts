@@ -1,6 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { allDevicesForSignedOut } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Pricing page";
 const currentPage = "/pricing";

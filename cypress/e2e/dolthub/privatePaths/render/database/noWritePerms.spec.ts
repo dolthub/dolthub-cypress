@@ -1,12 +1,12 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testRepoHeaderForAll } from "@sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testClickDeleteRow,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { beVisible } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@sharedTests/repoLeftNav";
+import { beVisible } from "@sharedTests/sharedFunctionsAndVariables";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Logged in database page with no write perms";
 const currentOwner = "dolthub";

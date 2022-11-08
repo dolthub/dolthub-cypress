@@ -1,13 +1,13 @@
-import { beVisible } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesDiffTestsForSignedOut } from "../../../../utils/devices";
+import { beVisible } from "@sharedTests/sharedFunctionsAndVariables";
+import { allDevicesDiffTestsForSignedOut } from "@utils/devices";
 import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
   scrollToPosition,
-} from "../../../../utils/helpers";
-import { Expectation } from "../../../../utils/types";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
+import { Expectation } from "@utils/types";
 
 const pageName = "Bounties page";
 const currentPage = "/bounties";

@@ -1,12 +1,12 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
+import { beVisible } from "@sharedTests/sharedFunctionsAndVariables";
+import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
   scrollToPosition,
-} from "../../../../utils/helpers";
-import { beVisible } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Team page";
 const currentPage = "/team";

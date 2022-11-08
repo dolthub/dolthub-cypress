@@ -1,9 +1,9 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
   testDeployHosted,
   testDeploySelfHosted,
-} from "../../../../utils/sharedTests/testDeployTab";
+} from "@sharedTests/testDeployTab";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Deploy page for database";
 const currentOwner = "automated_testing";

@@ -1,11 +1,11 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-} from "../../../../utils/helpers";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Profile Settings";
 const currentPage = "/settings/profile";

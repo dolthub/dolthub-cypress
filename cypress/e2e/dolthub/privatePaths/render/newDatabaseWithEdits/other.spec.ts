@@ -1,11 +1,11 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { createTempDatabase } from "../../../../utils/sharedTests/createTempDatabase";
-import { deleteTempDatabase } from "../../../../utils/sharedTests/deleteTempDatabase";
-import { testDocs } from "../../../../utils/sharedTests/testDocs";
-import { testPullRequest } from "../../../../utils/sharedTests/testPullRequest";
-import { testSaveQuery } from "../../../../utils/sharedTests/testSaveQuery";
-import { testViewQuery } from "../../../../utils/sharedTests/testViewQuery";
+import { createTempDatabase } from "@sharedTests/createTempDatabase";
+import { deleteTempDatabase } from "@sharedTests/deleteTempDatabase";
+import { testDocs } from "@sharedTests/testDocs";
+import { testPullRequest } from "@sharedTests/testPullRequest";
+import { testSaveQuery } from "@sharedTests/testSaveQuery";
+import { testViewQuery } from "@sharedTests/testViewQuery";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Create, pull request/docs/saved query, teardown database";
 const currentPage = "/profile/new-repository";

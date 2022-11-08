@@ -1,9 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import {
-  newExpectationWithURL,
-  newShouldArgs,
-} from "../../../../utils/helpers";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectationWithURL, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Settings page for logged out user";
 const currentPage = "/settings";

@@ -1,10 +1,10 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   checkRepoListForTab,
   clearSearchTest,
-} from "../../../../utils/sharedTests/reposContainer";
+} from "@sharedTests/reposContainer";
+import { allDevicesForSignedOut } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Discover page with query";
 const searchTerm = "automated_testing";

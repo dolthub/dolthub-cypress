@@ -1,6 +1,6 @@
-import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { changeBranch } from "@sharedTests/changeBranch";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Database page with tables and docs";
 const currentOwner = "automated_testing";

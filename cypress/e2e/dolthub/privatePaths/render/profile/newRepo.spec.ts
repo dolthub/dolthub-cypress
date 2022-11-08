@@ -1,6 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { desktopDevicesForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Profile new repository page";
 const currentPage = "/profile/new-repository";

@@ -1,7 +1,7 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testRepoHeaderForAll } from "@sharedTests/repoHeaderNav";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Commit log page";
 const currentOwner = "automated_testing";

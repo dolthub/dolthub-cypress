@@ -1,26 +1,23 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPhoneXForAppLayout,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-} from "../../../../utils/helpers";
-import { testPaginationForRepoDataTable } from "../../../../utils/sharedTests/pagination";
+import { testPaginationForRepoDataTable } from "@sharedTests/pagination";
 import {
   testMobileRepoHeaderNav,
   testRepoHeaderWithBranch,
-} from "../../../../utils/sharedTests/repoHeaderNav";
+} from "@sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testQueryCatalogSection,
   testSchemaSection,
   testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+} from "@sharedTests/repoLeftNav";
+import { testSqlConsole } from "@sharedTests/sqlEditor";
+import { iPhoneXForAppLayout, macbook15ForAppLayout } from "@utils/devices";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Database page (wikipedia-ngrams) with tables";
 const currentOwner = "automated_testing";

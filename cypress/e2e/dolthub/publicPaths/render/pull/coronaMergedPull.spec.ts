@@ -1,7 +1,7 @@
-import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { changeBranch } from "@sharedTests/changeBranch";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Merged pull page";
 const currentOwner = "automated_testing";

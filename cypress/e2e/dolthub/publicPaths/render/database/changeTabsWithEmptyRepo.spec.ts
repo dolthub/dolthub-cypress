@@ -1,10 +1,10 @@
 import {
   loopTabsWithNewExpectation,
   TabParams,
-} from "../../../../utils/sharedTests/loopTabsWithNewExpection";
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+} from "@sharedTests/loopTabsWithNewExpection";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Database page with tables and docs";
 const currentOwner = "automated_testing";

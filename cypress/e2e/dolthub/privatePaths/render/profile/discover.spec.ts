@@ -1,14 +1,10 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPad2,
-  iPhoneX,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
 import {
   checkForkList,
   uncheckShowForkListOption,
-} from "../../../../utils/sharedTests/reposContainer";
+} from "@sharedTests/reposContainer";
+import { iPad2, iPhoneX, macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Profile discover page";
 const searchTerm = "repo_with_tags_and_branches";

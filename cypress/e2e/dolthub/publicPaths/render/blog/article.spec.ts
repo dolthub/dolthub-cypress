@@ -1,6 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { allDevicesForSignedOut } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Blog article page";
 const currentBlog = "2020-03-06-so-you-want-git-for-data";

@@ -1,19 +1,19 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import {
-  newExpectation,
-  newExpectationWithScrollIntoView,
-  newShouldArgs,
-} from "../../../../utils/helpers";
-import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
-import { testRepoHeaderForAll } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testDoltInstallationSteps } from "@sharedTests/emptyRepo";
+import { testRepoHeaderForAll } from "@sharedTests/repoHeaderNav";
 import {
   testQueryCatalogSection,
   testSchemaSection,
   testTablesSection,
   testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+} from "@sharedTests/repoLeftNav";
+import { testSqlConsole } from "@sharedTests/sqlEditor";
+import { macbook15ForAppLayout } from "@utils/devices";
+import {
+  newExpectation,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Logged in database page with no branch and no data";
 const currentOwner = "automated_testing";

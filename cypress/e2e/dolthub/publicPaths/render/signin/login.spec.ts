@@ -1,10 +1,10 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15 } from "../../../../utils/devices";
+import { macbook15 } from "@utils/devices";
 import {
   newExpectation,
   newExpectationWithTypeString,
   newShouldArgs,
-} from "../../../../utils/helpers";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Sign in page with log in";
 const currentPage = "/signin";

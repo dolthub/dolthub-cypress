@@ -1,7 +1,7 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Pull requests page with no pulls";
 const currentOwner = "automated_testing";

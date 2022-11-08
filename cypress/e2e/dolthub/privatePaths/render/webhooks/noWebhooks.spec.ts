@@ -1,10 +1,10 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
 import {
   shouldBeVisible,
   shouldFindAndContain,
   shouldNotExist,
-} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@sharedTests/sharedFunctionsAndVariables";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Webhooks page with no webhooks";
 const currentOwner = "automated_testing";

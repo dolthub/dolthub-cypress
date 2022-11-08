@@ -1,18 +1,18 @@
-import { runTestsForDevices } from "../../../../utils";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import { testSqlConsole } from "@sharedTests/sqlEditor";
+import { mobileTests } from "@sharedTests/testRepoPageMobile";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
-} from "../../../../utils/devices";
+} from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-} from "../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
-import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
