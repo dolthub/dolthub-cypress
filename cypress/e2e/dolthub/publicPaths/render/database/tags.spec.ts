@@ -1,28 +1,28 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPad2ForAppLayout,
-  iPhoneXForAppLayout,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-} from "../../../../utils/helpers";
 import {
   testMobileRepoHeaderNav,
   testRepoHeaderWithBranch,
-} from "../../../../utils/sharedTests/repoHeaderNav";
+} from "@sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testQueryCatalogSection,
   testSchemaSection,
   testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { beVisible } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
-import { Expectation } from "../../../../utils/types";
+} from "@sharedTests/repoLeftNav";
+import { beVisible } from "@sharedTests/sharedFunctionsAndVariables";
+import { testSqlConsole } from "@sharedTests/sqlEditor";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "@utils/devices";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
+import { Expectation } from "@utils/types";
 
 const pageName = "Database page with tags and branches";
 const currentOwner = "automated_testing";

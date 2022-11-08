@@ -1,11 +1,11 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
-import { newExpectation } from "../../../../utils/helpers";
 import {
   beVisibleAndContain,
   shouldBeVisible,
   shouldFindAndContain,
-} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@sharedTests/sharedFunctionsAndVariables";
+import { allDevicesForSignedOut } from "@utils/devices";
+import { newExpectation } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Subscribe page";
 const currentPage = "/subscribe";

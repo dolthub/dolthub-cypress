@@ -3,20 +3,20 @@ import {
   beVisibleAndContain,
   shouldBeVisible,
   shouldFindAndContain,
-} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@sharedTests/sharedFunctionsAndVariables";
 
-import { runTestsForDevices } from "../../../../utils";
 import {
   desktopDevicesForSignedOut,
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
-} from "../../../../utils/devices";
+} from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
-} from "../../../../utils/helpers";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Data-ingestion page";
 const currentPage = "/solutions/data-ingestion";

@@ -1,15 +1,12 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
+import { testMobileNavbar, testSignedOutNavbar } from "@sharedTests/navbar";
+import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newExpectation,
   newShouldArgs,
   scrollToPosition,
-} from "../../../../utils/helpers";
-import {
-  testMobileNavbar,
-  testSignedOutNavbar,
-} from "../../../../utils/sharedTests/navbar";
-import { Tests } from "../../../../utils/types";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
+import { Tests } from "@utils/types";
 
 const pageName = "Team page with anchor";
 const currentPage = "/team#taylor";

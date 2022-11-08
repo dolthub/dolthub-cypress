@@ -1,9 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPhoneXForAppLayout,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { iPhoneXForAppLayout, macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "cypresstesting users page";
 const username = "cypresstesting";

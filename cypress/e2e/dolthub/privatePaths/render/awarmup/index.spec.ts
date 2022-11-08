@@ -1,6 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { desktopDevicesForSignedOut } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { desktopDevicesForSignedOut } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Signin page warmup";
 const currentPage = "/signin";

@@ -1,6 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { allDevicesForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Organization page with no repos";
 const orgName = "no-repos-org";

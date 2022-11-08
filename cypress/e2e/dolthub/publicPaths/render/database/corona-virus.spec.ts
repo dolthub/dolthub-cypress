@@ -1,32 +1,29 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPad2ForAppLayout,
-  iPhoneXForAppLayout,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-} from "../../../../utils/helpers";
 import {
   testMobileRepoHeaderNav,
   testRepoHeaderWithBranch,
-} from "../../../../utils/sharedTests/repoHeaderNav";
+} from "@sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testClickDeleteRow,
   testQueryCatalogSection,
   testSchemaSection,
   testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { typingExpectation } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@sharedTests/repoLeftNav";
+import { typingExpectation } from "@sharedTests/sharedFunctionsAndVariables";
+import { testSqlConsole, testSqlConsoleMobile } from "@sharedTests/sqlEditor";
 import {
-  testSqlConsole,
-  testSqlConsoleMobile,
-} from "../../../../utils/sharedTests/sqlEditor";
-import { Tests } from "../../../../utils/types";
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "@utils/devices";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
+import { Tests } from "@utils/types";
 
 const pageName = "Database page (corona-virus) with tables and docs";
 const currentOwner = "automated_testing";

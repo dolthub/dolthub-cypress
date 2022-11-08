@@ -1,11 +1,11 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation } from "../../../../utils/helpers";
 import {
   haveLength,
   shouldBeVisible,
   shouldFindAndContain,
-} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@sharedTests/sharedFunctionsAndVariables";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Webhooks page with webhook";
 const currentOwner = "automated_testing";

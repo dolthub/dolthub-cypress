@@ -1,14 +1,14 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
   scrollToPosition,
-} from "../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { ClickFlow } from "../../../../utils/types";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
+import { ClickFlow } from "@utils/types";
 
 const pageName = "Query catalog page with tables and docs";
 const currentOwner = "automated_testing";

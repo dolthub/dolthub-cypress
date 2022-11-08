@@ -1,17 +1,17 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  scrollToPosition,
-} from "../../../../utils/helpers";
 import {
   beVisible,
   haveLength,
   shouldBeVisible,
   shouldFindAndContain,
-} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@sharedTests/sharedFunctionsAndVariables";
+import { macbook15ForAppLayout } from "@utils/devices";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  scrollToPosition,
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Webhook page";
 const currentOwner = "automated_testing";

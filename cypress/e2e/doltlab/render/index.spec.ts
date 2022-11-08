@@ -1,7 +1,7 @@
-import { runTestsForDevices } from "../../utils";
-import { macbook15ForDoltLabSignedOutLayout } from "../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../utils/helpers";
-import { checkRepoListForTab } from "../../utils/sharedTests/reposContainer";
+import { checkRepoListForTab } from "@sharedTests/reposContainer";
+import { macbook15ForDoltLabSignedOutLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "home page";
 const currentPage = "/";

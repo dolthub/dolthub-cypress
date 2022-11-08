@@ -1,19 +1,19 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPad2ForAppLayout,
-  iPhoneXForAppLayout,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import {
-  newExpectation,
-  newExpectationWithClickFlows,
-  newShouldArgs,
-} from "../../../../utils/helpers";
 import {
   checkRepoListForTab,
   mostRecentReposClickFlow,
   mostRecentReposClickFlowMobile,
-} from "../../../../utils/sharedTests/reposContainer";
+} from "@sharedTests/reposContainer";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "@utils/devices";
+import {
+  newExpectation,
+  newExpectationWithClickFlows,
+  newShouldArgs,
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Discover page";
 const currentPage = "/discover";

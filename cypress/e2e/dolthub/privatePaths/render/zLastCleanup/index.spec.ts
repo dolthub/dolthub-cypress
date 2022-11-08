@@ -1,4 +1,4 @@
-import { deviceDimensions, opts } from "../../../../utils";
+import { deviceDimensions, opts } from "@utils/index";
 
 const tempDbOwnerNames = ["cypresstesting"];
 const pageName = `Delete all remaining temp databases`;

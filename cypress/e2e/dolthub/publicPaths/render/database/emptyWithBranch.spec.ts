@@ -1,26 +1,26 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPad2ForAppLayout,
-  iPhoneXForAppLayout,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import {
-  newExpectation,
-  newExpectationWithScrollIntoView,
-  newShouldArgs,
-} from "../../../../utils/helpers";
-import { testDoltInstallationSteps } from "../../../../utils/sharedTests/emptyRepo";
+import { testDoltInstallationSteps } from "@sharedTests/emptyRepo";
 import {
   testMobileRepoHeaderNav,
   testRepoHeaderWithBranch,
-} from "../../../../utils/sharedTests/repoHeaderNav";
+} from "@sharedTests/repoHeaderNav";
 import {
   testQueryCatalogSection,
   testSchemaSection,
   testTablesSection,
   testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+} from "@sharedTests/repoLeftNav";
+import { testSqlConsole } from "@sharedTests/sqlEditor";
+import {
+  iPad2ForAppLayout,
+  iPhoneXForAppLayout,
+  macbook15ForAppLayout,
+} from "@utils/devices";
+import {
+  newExpectation,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Database page with branch and no data";
 const currentOwner = "automated_testing";

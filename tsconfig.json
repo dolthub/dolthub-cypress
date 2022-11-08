@@ -12,13 +12,17 @@
     "sourceMap": true,
     "outDir": "dist",
     "rootDir": "cypress",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "skipLibCheck": true,
     "incremental": true,
     "composite": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "types": ["cypress", "node", "cypress-file-upload"],
+    "paths": {
+      "@utils/*": ["cypress/e2e/utils/*"],
+      "@sharedTests/*": ["cypress/e2e/utils/sharedTests/*"]
+    }
   },
   "exclude": ["dist"],
   "include": ["cypress"]

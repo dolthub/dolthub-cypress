@@ -1,9 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15 } from "../../../../utils/devices";
-import {
-  newExpectationWithRedirect,
-  newShouldArgs,
-} from "../../../../utils/helpers";
+import { macbook15 } from "@utils/devices";
+import { newExpectationWithRedirect, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Sign in page";
 const currentPageWithRedirect = "/signin?redirect=%2Fsettings";

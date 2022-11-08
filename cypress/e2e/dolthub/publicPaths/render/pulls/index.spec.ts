@@ -1,13 +1,13 @@
-import { runTestsForDevices } from "../../../../utils";
+import { changeBranch } from "@sharedTests/changeBranch";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import { mobileTests } from "@sharedTests/testRepoPageMobile";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
+} from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Pull requests page with tables and docs";
 const currentOwner = "automated_testing";

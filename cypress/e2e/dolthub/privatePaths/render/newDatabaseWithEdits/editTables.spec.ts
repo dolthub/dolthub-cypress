@@ -1,9 +1,9 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { createTempDatabase } from "../../../../utils/sharedTests/createTempDatabase";
-import { deleteTempDatabase } from "../../../../utils/sharedTests/deleteTempDatabase";
-import { testAddTable } from "../../../../utils/sharedTests/testAddTable";
-import { testUpdateTable } from "../../../../utils/sharedTests/testUpdateTable";
+import { createTempDatabase } from "@sharedTests/createTempDatabase";
+import { deleteTempDatabase } from "@sharedTests/deleteTempDatabase";
+import { testAddTable } from "@sharedTests/testAddTable";
+import { testUpdateTable } from "@sharedTests/testUpdateTable";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Create, edit tables, teardown database";
 const currentPage = "/profile/new-repository";

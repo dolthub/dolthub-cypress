@@ -1,15 +1,12 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
+import { testBlogIndexNoSearch, testSearched } from "@sharedTests/blog";
+import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-} from "../../../../utils/helpers";
-import {
-  testBlogIndexNoSearch,
-  testSearched,
-} from "../../../../utils/sharedTests/blog";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Blog list page with query";
 const query = "figma of databases video";

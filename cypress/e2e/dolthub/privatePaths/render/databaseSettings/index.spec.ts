@@ -1,16 +1,16 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import {
+  beVisible,
+  beVisibleAndContain,
+} from "@sharedTests/sharedFunctionsAndVariables";
+import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-} from "../../../../utils/helpers";
-import {
-  beVisible,
-  beVisibleAndContain,
-} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Logged in database settings page";
 const currentOwner = "automated_testing";

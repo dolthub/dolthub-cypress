@@ -1,10 +1,6 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPad2,
-  iPhoneX,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
+import { iPad2, iPhoneX, macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Profile my repositories page";
 const currentPage = "/profile";

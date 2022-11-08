@@ -1,14 +1,10 @@
-import { runTestsForDevices } from "../../../../utils";
-import {
-  iPad2,
-  iPhoneX,
-  macbook15ForAppLayout,
-} from "../../../../utils/devices";
+import { iPad2, iPhoneX, macbook15ForAppLayout } from "@utils/devices";
 import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-} from "../../../../utils/helpers";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Profile bounties repositories page";
 const currentPage = "/profile/bounties";

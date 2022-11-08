@@ -1,15 +1,15 @@
-import { runTestsForDevices } from "../../../../utils";
+import {
+  testMobileRepoHeaderNav,
+  testRepoHeaderWithBranch,
+} from "@sharedTests/repoHeaderNav";
+import { notBeVisible } from "@sharedTests/sharedFunctionsAndVariables";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import {
-  testMobileRepoHeaderNav,
-  testRepoHeaderWithBranch,
-} from "../../../../utils/sharedTests/repoHeaderNav";
-import { notBeVisible } from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
+} from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Commit log page";
 const currentOwner = "automated_testing";

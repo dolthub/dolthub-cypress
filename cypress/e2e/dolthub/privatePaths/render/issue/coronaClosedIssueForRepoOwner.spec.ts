@@ -1,8 +1,8 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { testIssuePageForAll } from "../../../../utils/sharedTests/issuePage";
-import { testLoggedInSignInTo } from "../../../../utils/sharedTests/signInTo";
+import { testIssuePageForAll } from "@sharedTests/issuePage";
+import { testLoggedInSignInTo } from "@sharedTests/signInTo";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Closed issue page";

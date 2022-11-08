@@ -1,7 +1,7 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
-import { newExpectation, newShouldArgs } from "../../../../utils/helpers";
-import { leftNavDiffRangeTests } from "../../../../utils/sharedTests/diffs";
+import { leftNavDiffRangeTests } from "@sharedTests/diffs";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Diff page with changes";
 const currentOwner = "automated_testing";

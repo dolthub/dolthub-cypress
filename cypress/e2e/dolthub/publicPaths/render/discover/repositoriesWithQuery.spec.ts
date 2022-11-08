@@ -1,17 +1,17 @@
-import { runTestsForDevices } from "../../../../utils";
-import { allDevicesForSignedOut } from "../../../../utils/devices";
-import {
-  newExpectation,
-  newExpectationWithClickFlows,
-  newExpectationWithScrollIntoView,
-  newShouldArgs,
-} from "../../../../utils/helpers";
 import {
   checkForkList,
   checkRepoListForTab,
   clearSearchClickFlow,
   uncheckShowForkListOption,
-} from "../../../../utils/sharedTests/reposContainer";
+} from "@sharedTests/reposContainer";
+import { allDevicesForSignedOut } from "@utils/devices";
+import {
+  newExpectation,
+  newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Repositories page with query";
 const searchTerm = "repo_with_tags_and_branches";

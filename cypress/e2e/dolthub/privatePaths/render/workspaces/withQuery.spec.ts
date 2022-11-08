@@ -1,13 +1,13 @@
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import { testSqlConsole } from "@sharedTests/sqlEditor";
+import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newShouldArgs,
-} from "../../../../utils/helpers";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 

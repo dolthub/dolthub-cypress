@@ -1,27 +1,27 @@
-import { runTestsForDevices } from "../../../../utils";
+import {
+  testMobileRepoHeaderNav,
+  testRepoHeaderWithBranch,
+} from "@sharedTests/repoHeaderNav";
+import {
+  tableExpectations,
+  testQueryCatalogSection,
+  testSchemaSection,
+  testViewsSection,
+} from "@sharedTests/repoLeftNav";
+import { testSqlConsole } from "@sharedTests/sqlEditor";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
-} from "../../../../utils/devices";
+} from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-} from "../../../../utils/helpers";
-import {
-  testMobileRepoHeaderNav,
-  testRepoHeaderWithBranch,
-} from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  tableExpectations,
-  testQueryCatalogSection,
-  testSchemaSection,
-  testViewsSection,
-} from "../../../../utils/sharedTests/repoLeftNav";
-import { testSqlConsole } from "../../../../utils/sharedTests/sqlEditor";
+} from "@utils/helpers";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Database page with tables and no docs";
 const currentOwner = "automated_testing";

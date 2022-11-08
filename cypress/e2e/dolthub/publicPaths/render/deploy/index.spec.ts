@@ -1,10 +1,10 @@
-import { changeBranch } from "../../../../utils/sharedTests/changeBranch";
-import { runTestsForDevices } from "../../../../utils";
-import { macbook15ForAppLayout } from "../../../../utils/devices";
+import { changeBranch } from "@sharedTests/changeBranch";
 import {
   testDeployHosted,
   testDeploySelfHosted,
-} from "../../../../utils/sharedTests/testDeployTab";
+} from "@sharedTests/testDeployTab";
+import { macbook15ForAppLayout } from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Deploy page for unsigned in User";
 const currentOwner = "automated_testing";

@@ -1,15 +1,15 @@
-import { runTestsForDevices } from "../../../../utils";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import {
+  shouldBeVisible,
+  shouldNotExist,
+} from "@sharedTests/sharedFunctionsAndVariables";
+import { mobileTests } from "@sharedTests/testRepoPageMobile";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
-} from "../../../../utils/devices";
-import { testRepoHeaderWithBranch } from "../../../../utils/sharedTests/repoHeaderNav";
-import {
-  shouldBeVisible,
-  shouldNotExist,
-} from "../../../../utils/sharedTests/sharedFunctionsAndVariables";
-import { mobileTests } from "../../../../utils/sharedTests/testRepoPageMobile";
+} from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Webhooks page logged out";
 const currentOwner = "automated_testing";
