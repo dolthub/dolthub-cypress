@@ -229,7 +229,7 @@ export const testRepoHeaderForAll = (
         newExpectation(
           "should  not have repo clone button",
           "[data-cy=repo-clone-button]",
-          notBeVisible,
+          beVisible,
         ),
         ...testTabs(beVisible),
         newExpectation(
