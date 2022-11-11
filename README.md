@@ -2,7 +2,7 @@
 
 [![Tests (DoltHub/DoltLab Prod)](https://github.com/dolthub/dolthub-cypress/actions/workflows/tests.yaml/badge.svg)](https://github.com/dolthub/dolthub-cypress/actions/workflows/tests.yaml)
 
-A suite of [Cypress.io](https://docs.cypress.io/) tests written in Typescript to UI test [DoltHub](https://www.dolthub.com).
+A suite of [Cypress.io](https://docs.cypress.io/) tests written in Typescript to UI test [DoltHub](https://www.dolthub.com) and [DoltLab](http://doltlab.dolthub.com/).
 
 ## Installation
 
