@@ -94,7 +94,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...pricingTests
       .map(test => [
         newExpectationWithScrollIntoView(
-          "should have Push existing database section",
+          `should find and scroll to ${test.card} pricing section`,
           `[data-cy=${test.card}]`,
           beVisible,
           true,
