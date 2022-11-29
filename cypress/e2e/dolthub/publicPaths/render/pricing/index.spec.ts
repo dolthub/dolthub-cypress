@@ -18,7 +18,7 @@ const pricingTests = [
         text: "GIT FOR DATA",
       },
       {
-        datacy: "dolt-link",
+        datacy: "download-dolt-button",
         text: "Download for free",
       },
     ],
@@ -58,18 +58,18 @@ const pricingTests = [
     ],
   },
   {
-    card: "dolt-lab-card",
+    card: "doltlab-card",
     shouldFind: [
       {
-        datacy: "dolt-lab-header",
+        datacy: "doltlab-header",
         text: "SELF-HOSTED DOLTHUB",
       },
       {
-        datacy: "dolt-lab-download-button",
+        datacy: "doltlab-download-button",
         text: "Download for free",
       },
       {
-        datacy: "dolt-lab-contact-link",
+        datacy: "doltlab-contact-link",
         text: "Contact Enterprise Sales ",
       },
     ],
