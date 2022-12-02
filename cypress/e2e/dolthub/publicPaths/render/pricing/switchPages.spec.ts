@@ -1,15 +1,5 @@
-import {
-  allDevicesForSignedOut,
-  desktopDevicesForSignedOut,
-  iPhoneX,
-  mobileDevicesForSignedOut,
-} from "@utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlows,
-  newExpectationWithScrollIntoView,
-} from "@utils/helpers";
+import { desktopDevicesForSignedOut, iPhoneX } from "@utils/devices";
+import { newClickFlow, newExpectationWithClickFlows } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
   beVisible,
