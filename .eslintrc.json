@@ -37,10 +37,7 @@
       }
     ],
     "@typescript-eslint/prefer-interface": "off",
-    "@typescript-eslint/prefer-nullish-coalescing": [
-      "warn",
-      { "forceSuggestionFixer": true }
-    ],
+    "@typescript-eslint/prefer-nullish-coalescing": ["warn"],
     "@typescript-eslint/prefer-optional-chain": "error",
     "@typescript-eslint/prefer-string-starts-ends-with": "warn",
     "@typescript-eslint/promise-function-async": "error",
