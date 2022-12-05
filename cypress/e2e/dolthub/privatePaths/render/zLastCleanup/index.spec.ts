@@ -40,7 +40,7 @@ function cleanupLeftoverTempDbs(owner: string) {
   });
 
   function deleteDatabase(href: string | null) {
-    if (!href || !href.includes("temp_db_")) return;
+    if (!href?.includes("temp_db_")) return;
 
     cy.visitAndWait(`${href}/settings`);
 
