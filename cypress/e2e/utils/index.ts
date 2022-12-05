@@ -282,7 +282,7 @@ function handleScrollTo(scrollTo: ScrollTo) {
     return cy.scrollTo(scrollTo.position, scrollTo.options);
   }
 
-  if ("x" in scrollTo || "y" in scrollTo) {
+  if ("x" in scrollTo && "y" in scrollTo) {
     if (scrollTo.selectorStr) {
       return cy
         .get(scrollTo.selectorStr)
