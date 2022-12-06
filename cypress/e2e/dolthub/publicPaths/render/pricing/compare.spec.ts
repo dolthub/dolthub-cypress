@@ -1,9 +1,4 @@
-import {
-  allDevicesForSignedOut,
-  desktopDevicesForSignedOut,
-  iPhoneX,
-  mobileDevicesForSignedOut,
-} from "@utils/devices";
+import { desktopDevicesForSignedOut, iPhoneX } from "@utils/devices";
 import { newExpectationWithScrollIntoView } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
@@ -15,10 +10,10 @@ const pageName = "Compare page";
 const currentPage = "/compare";
 
 const pricingTests = [
-  "dolt-label",
-  "hosted-dolt-starting",
-  "dolthub-plans",
-  "doltlab-label",
+  "dolt-pricing",
+  "hosted-dolt-pricing",
+  "dolthub-pricing",
+  "doltlab-pricing",
 ];
 
 describe(`${pageName} renders expected components on different devices`, () => {
