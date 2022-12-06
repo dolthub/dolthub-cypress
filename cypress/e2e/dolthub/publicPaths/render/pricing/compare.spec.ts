@@ -1,4 +1,4 @@
-import { desktopDevicesForSignedOut, iPad2, iPhoneX } from "@utils/devices";
+import { allDevicesDiffTestsForSignedOut } from "@utils/devices";
 import { newExpectationWithScrollIntoView } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
@@ -17,7 +17,7 @@ const pricingTests = [
 ];
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const desktopTests = [
+  const desktopAndIpadTests = [
     shouldBeVisible("desktop-table-container"),
     ...pricingTests.map(datacy => shouldBeVisible(datacy)),
   ];
@@ -34,14 +34,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const desktopDevices = desktopDevicesForSignedOut(pageName, desktopTests);
-  const ipad = iPad2(pageName, desktopTests, false);
-  const iphone = iPhoneX(pageName, mobileTests, false);
+  const devices = allDevicesDiffTestsForSignedOut(
+    pageName,
+    desktopAndIpadTests,
+    desktopAndIpadTests,
+    mobileTests,
+  );
 
   const skip = false;
   runTestsForDevices({
     currentPage,
-    devices: [...desktopDevices, ipad, iphone],
+    devices,
     skip,
   });
 });
