@@ -7,7 +7,7 @@ import {
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
 import { Expectation } from "@utils/types";
 
-const pageName = "Compare page";
+const pageName = "Switch between Compare page and Pricing Page";
 const currentPage = "/compare";
 
 type SwitchTest = {

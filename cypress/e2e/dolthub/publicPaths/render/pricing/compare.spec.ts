@@ -1,4 +1,9 @@
-import { desktopDevicesForSignedOut, iPhoneX } from "@utils/devices";
+import {
+  allDevicesForSignedOut,
+  desktopDevicesForSignedOut,
+  iPad2,
+  iPhoneX,
+} from "@utils/devices";
 import { newExpectationWithScrollIntoView } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
@@ -6,7 +11,7 @@ import {
   shouldBeVisible,
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
-const pageName = "Switch between Compare page and Pricing Page";
+const pageName = "Compare page";
 const currentPage = "/compare";
 
 const pricingTests = [
@@ -35,12 +40,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const desktopDevices = desktopDevicesForSignedOut(pageName, desktopTests);
+  const ipad = iPad2(pageName, desktopTests, false);
   const iphone = iPhoneX(pageName, mobileTests, false);
 
   const skip = false;
   runTestsForDevices({
     currentPage,
-    devices: [...desktopDevices, iphone],
+    devices: [...desktopDevices, ipad, iphone],
     skip,
   });
 });
