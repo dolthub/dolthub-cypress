@@ -1,9 +1,4 @@
-import {
-  allDevicesForSignedOut,
-  desktopDevicesForSignedOut,
-  iPad2,
-  iPhoneX,
-} from "@utils/devices";
+import { desktopDevicesForSignedOut, iPad2, iPhoneX } from "@utils/devices";
 import { newExpectationWithScrollIntoView } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
