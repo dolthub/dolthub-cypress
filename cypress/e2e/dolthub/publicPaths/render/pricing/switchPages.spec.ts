@@ -17,12 +17,12 @@ type SwitchTest = {
 
 function getSwitchTests(isMobile: boolean): SwitchTest[] {
   const switchTests = [
-    { routeTo: "to-compare", find: "table-container" },
+    {
+      routeTo: "to-compare",
+      find: isMobile ? "mobile-table-container" : "table-container",
+    },
     { routeTo: "to-pricing", find: "dolt-card" },
   ];
-  if (isMobile) {
-    switchTests[0].find = `mobile-${switchTests[0].find}`;
-  }
   return switchTests;
 }
 
