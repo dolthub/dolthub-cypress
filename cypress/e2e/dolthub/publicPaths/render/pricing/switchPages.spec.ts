@@ -31,7 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     return getSwitchTests(isMobile)
       .map(test => [
         newExpectationWithClickFlows(
-          "should show and find ToggleButton",
+          "should show and find Toggle",
           `[data-cy=${test.routeTo}]`,
           beVisible,
           [
