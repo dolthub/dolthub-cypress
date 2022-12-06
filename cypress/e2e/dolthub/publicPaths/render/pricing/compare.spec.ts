@@ -6,7 +6,7 @@ import {
   shouldBeVisible,
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
-const pageName = "Compare page";
+const pageName = "Switch between Compare page and Pricing Page";
 const currentPage = "/compare";
 
 const pricingTests = [
@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     shouldBeVisible("mobile-table-container"),
     ...pricingTests.map(datacy =>
       newExpectationWithScrollIntoView(
-        `should find and scroll to ${datacy} table cell`,
+        `should find and scroll to ${datacy} section`,
         `[data-cy=mobile-${datacy}]`,
         beVisible,
         true,

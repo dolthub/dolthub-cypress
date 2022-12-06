@@ -28,21 +28,18 @@ function getSwitchTests(isMobile: boolean): SwitchTest[] {
 
 describe(`${pageName} renders expected components on different devices`, () => {
   function getTests(isMobile: boolean): Expectation[] {
-    return getSwitchTests(isMobile)
-      .map(test => [
-        newExpectationWithClickFlows(
-          "should show and find Toggle",
-          `[data-cy=${test.routeTo}]`,
-          beVisible,
-          [
-            newClickFlow(`[data-cy=${test.routeTo}]`, [
-              shouldBeVisible(test.routeTo),
-            ]),
-          ],
-        ),
-        shouldBeVisible(test.routeTo),
-      ])
-      .flat();
+    return getSwitchTests(isMobile).map(test =>
+      newExpectationWithClickFlows(
+        `should route to ${test.routeTo} and find ${test.find}`,
+        `[data-cy=${test.routeTo}]`,
+        beVisible,
+        [
+          newClickFlow(`[data-cy=${test.routeTo}]`, [
+            shouldBeVisible(test.routeTo),
+          ]),
+        ],
+      ),
+    );
   }
 
   const desktopDevices = desktopDevicesForSignedOut(pageName, getTests(false));
