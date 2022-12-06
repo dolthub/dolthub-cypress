@@ -1,4 +1,4 @@
-import { desktopDevicesForSignedOut, iPhoneX } from "@utils/devices";
+import { allDevicesForSignedOut } from "@utils/devices";
 import { newClickFlow, newExpectationWithClickFlows } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
@@ -42,13 +42,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
     );
   }
 
-  const desktopDevices = desktopDevicesForSignedOut(pageName, getTests(false));
-  const iphone = iPhoneX(pageName, getTests(true), false);
+  const devices = allDevicesForSignedOut(
+    pageName,
+    getTests(false),
+    getTests(true),
+  );
 
   const skip = false;
   runTestsForDevices({
     currentPage,
-    devices: [...desktopDevices, iphone],
+    devices,
     skip,
   });
 });
