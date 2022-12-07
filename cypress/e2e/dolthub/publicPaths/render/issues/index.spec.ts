@@ -39,7 +39,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       notExist,
     ),
     newExpectation(
-      "should have pull search input",
+      "should have issue search input",
       "[data-cy=issue-search-input]",
       beVisible,
     ),
