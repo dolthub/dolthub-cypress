@@ -20,7 +20,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkRepoListForTab("most-recent", 8),
     newExpectation(
       "should have repository search bar with query",
-      "[data-cy=search-input]",
+      "[data-cy=repolist-search-input]",
       newShouldArgs("be.visible.and.have.value", searchTerm),
     ),
   ];

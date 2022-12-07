@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should render search input",
-      "[data-cy=search-input]",
+      "[data-cy=repolist-search-input]",
       beVisible,
     ),
   ];
@@ -48,7 +48,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should render search input",
-      "[data-cy=search-input]",
+      "[data-cy=repolist-search-input]",
       beVisible,
     ),
   ];

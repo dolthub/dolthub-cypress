@@ -31,18 +31,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkForkList(isMobile),
     newExpectationWithScrollIntoView(
       "should scroll search bar into view",
-      "[data-cy=search-input]",
+      "[data-cy=repolist-search-input]",
       beVisible,
       true,
     ),
     newExpectation(
       "should have repository search bar with query",
-      "[data-cy=search-input]",
+      "[data-cy=repolist-search-input]",
       newShouldArgs("be.visible.and.have.value", searchTerm),
     ),
     newExpectationWithClickFlows(
       "should successfully clear search",
-      "[data-cy=clear-search-button]",
+      "[data-cy=clear-repolist-search]",
       beVisible,
       [clearSearchClickFlow],
     ),
