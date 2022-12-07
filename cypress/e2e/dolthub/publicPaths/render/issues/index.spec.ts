@@ -8,6 +8,7 @@ import {
 } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { beVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 import { Tests } from "@utils/types";
 
 const pageName = "Issues page";
@@ -36,6 +37,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should not find empty issue message",
       "[data-cy=issue-no-issues]",
       notExist,
+    ),
+    newExpectation(
+      "should have pull search input",
+      "[data-cy=issue-search-input]",
+      beVisible,
     ),
     ...testRepoHeaderWithBranch(
       currentRepo,

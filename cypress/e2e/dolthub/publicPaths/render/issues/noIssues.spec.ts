@@ -19,6 +19,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
+      "should not have issue search input",
+      "[data-cy=issue-search-input]",
+      newShouldArgs("not.exist"),
+    ),
+    newExpectation(
       "should not find issues",
       "[data-cy=issue-table]",
       newShouldArgs("not.exist"),
