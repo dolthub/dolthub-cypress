@@ -43,11 +43,11 @@ export const mostRecentReposClickFlowMobile = newClickFlow(
   "",
 );
 export const clearSearchClickFlow = newClickFlow(
-  "[data-cy=clear-search-button]",
+  "[data-cy=clear-repolist-search]",
   [
     newExpectation(
       "should have repository search bar",
-      "[data-cy=search-input]",
+      "[data-cy=repolist-search-input]",
       newShouldArgs("be.visible.and.have.value", ""),
     ),
   ],
@@ -152,7 +152,7 @@ export const checkForkList = (isMobile: boolean) => [
 export const clearSearchTest = [
   newExpectationWithClickFlows(
     "should successfully clear search",
-    "[data-cy=clear-search-button]",
+    "[data-cy=clear-repolist-search]",
     beVisible,
     [clearSearchClickFlow],
   ),

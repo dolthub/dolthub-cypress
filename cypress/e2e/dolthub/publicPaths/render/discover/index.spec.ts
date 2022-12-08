@@ -24,7 +24,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     newExpectation(
       "should have repository search input",
-      "[data-cy=search-input]",
+      "[data-cy=repolist-search-input]",
       beVisible,
     ),
     newExpectation(
@@ -43,7 +43,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const mobileTests = [
     newExpectation(
       "should have repository search input",
-      "[data-cy=search-input]",
+      "[data-cy=repolist-search-input]",
       beVisible,
     ),
     newExpectation(
