@@ -11,7 +11,7 @@ describe(`DoltLab ${pageName} renders expected components`, () => {
   const tests = [
     newExpectation(
       "should have database search input",
-      "[data-cy=repolist-search-input]",
+      "[data-cy=search-input]",
       beVisible,
     ),
     newExpectation(
