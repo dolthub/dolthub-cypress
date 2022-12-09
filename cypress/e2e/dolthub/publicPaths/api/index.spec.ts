@@ -62,7 +62,6 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
         {
           columnName: "Tables_in_dolt",
           columnType: "longtext",
-          isPrimaryKey: false,
         },
       ]);
   });
@@ -132,7 +131,6 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
         {
           columnName: "Tables_in_dolt",
           columnType: "longtext",
-          isPrimaryKey: false,
         },
       ]);
   });
@@ -195,27 +193,22 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
         {
           columnName: "place_id",
           columnType: "bigint",
-          isPrimaryKey: false,
         },
         {
           columnName: "province_state",
           columnType: "varchar(16383)",
-          isPrimaryKey: false,
         },
         {
           columnName: "country_region",
           columnType: "varchar(16383)",
-          isPrimaryKey: false,
         },
         {
           columnName: "latitude",
           columnType: "double",
-          isPrimaryKey: false,
         },
         {
           columnName: "longitude",
           columnType: "double",
-          isPrimaryKey: false,
         },
       ]);
   });
