@@ -1,6 +1,7 @@
 .DS_Store
 
-# ignore stored videos
+# ignore stored screenshots and videos
+cypress/screenshots/
 cypress/videos/
 
 # compiled output
