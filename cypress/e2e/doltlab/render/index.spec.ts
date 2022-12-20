@@ -24,6 +24,11 @@ describe(`DoltLab ${pageName} renders expected components`, () => {
       "[data-cy=repos-container-with-tabs]",
       newShouldArgs("be.visible.and.contain", "Discover"),
     ),
+    newExpectation(
+      "this test should fail",
+      "[data-cy=not-found-ever]",
+      beVisible,
+    ),
     ...checkRepoListForTab("most-recent", 3),
   ];
 
