@@ -34,3 +34,10 @@ jobs:
           CYPRESS_BASE_URL: https://${{ github.event.inputs.preview }}.awsdev.ld-corp.com
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
+      - name: Save screenshots of failed tests
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          retention-days: 7

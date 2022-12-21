@@ -44,3 +44,10 @@ jobs:
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Save screenshots of failed tests
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          retention-days: 7
