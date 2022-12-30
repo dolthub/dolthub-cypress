@@ -35,14 +35,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const desktopAndIpadTests = (isIpad = false) => [
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      isIpad,
-    ),
+  const tests = [
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
@@ -101,8 +95,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true),
+    macbook15ForAppLayout(pageName, tests),
+    iPad2ForAppLayout(pageName, tests, true),
     iPhoneXForAppLayout(
       pageName,
       testMobileRepoHeaderNav(currentOwner, currentRepo),

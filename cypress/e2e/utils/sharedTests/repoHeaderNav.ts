@@ -21,7 +21,7 @@ const cloneClickFlow = newClickFlow(
       newShouldArgs("be.visible.and.have.length", 2),
     ),
   ],
-  "[data-cy=repository-layout-container]",
+  "[data-cy=updated-at]",
 );
 
 export const forkButtonClickFlow = (loggedIn: boolean) =>
@@ -221,39 +221,23 @@ export const testRepoHeaderForAll = (
   ownerName: string,
   loggedIn: boolean,
   hasDocs: boolean,
-  isIpad = false,
 ): Tests => {
-  const loggedOutRepoHeaderTests = isIpad
-    ? [
-        ...testCommonHeader(repoName, ownerName),
-        newExpectation(
-          "should  not have repo clone button",
-          "[data-cy=repo-clone-button]",
-          notBeVisible,
-        ),
-        ...testTabs(beVisible),
-        newExpectation(
-          "should not have nav dropdown",
-          "[data-cy=dropdown-database-nav]",
-          notBeVisible,
-        ),
-      ]
-    : [
-        ...testCommonHeader(repoName, ownerName),
-        newExpectationWithClickFlows(
-          "should have repo clone button",
-          "[data-cy=repo-clone-button]",
-          beVisible,
-          [cloneClickFlow],
-        ),
-        ...testTabs(beVisible),
-        newExpectationWithClickFlows(
-          "should have functioning nav dropdown",
-          "[data-cy=repo-dropdown-button]",
-          beVisible,
-          [databaseDropdownClickFlow(loggedIn, hasDocs)],
-        ),
-      ];
+  const loggedOutRepoHeaderTests = [
+    ...testCommonHeader(repoName, ownerName),
+    newExpectationWithClickFlows(
+      "should have repo clone button",
+      "[data-cy=repo-clone-button]",
+      beVisible,
+      [cloneClickFlow],
+    ),
+    ...testTabs(beVisible),
+    newExpectationWithClickFlows(
+      "should have functioning nav dropdown",
+      "[data-cy=repo-dropdown-button]",
+      beVisible,
+      [databaseDropdownClickFlow(loggedIn, hasDocs)],
+    ),
+  ];
 
   const loggedInRepoHeaderTests = [testRepoSettingsTab];
 
@@ -290,9 +274,8 @@ export const testRepoHeaderWithBranch = (
   ownerName: string,
   loggedIn: boolean,
   hasDocs: boolean,
-  isIpad = false,
 ): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs, isIpad),
+  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs),
   newExpectationWithClickFlows(
     "should open create fork modal on fork button click",
     "[data-cy=repo-fork-button]",

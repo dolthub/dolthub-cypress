@@ -36,19 +36,13 @@ const hasDocs = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 
-  const desktopAndIpadTests = (isIpad = false) => [
+  const tests = [
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      false,
-      isIpad,
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false),
     ...tableExpectations(hasDocs, loggedIn, 1, "test"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
@@ -57,8 +51,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    macbook15ForAppLayout(pageName, tests),
+    iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(
       pageName,
       testMobileRepoHeaderNav(currentOwner, currentRepo),

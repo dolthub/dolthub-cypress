@@ -54,8 +54,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const desktopAndIpadTests = (isIpad = false) => [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
+  const tests = [
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
     ...commonTests,
     newExpectation(
       "should find csv download icon",
@@ -86,8 +86,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    macbook15ForAppLayout(pageName, tests),
+    iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(pageName, mobileTests),
   ];
   const skip = false;

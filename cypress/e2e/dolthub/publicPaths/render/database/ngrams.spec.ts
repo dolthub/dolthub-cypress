@@ -186,14 +186,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ],
   );
 
-  const desktopAndIpadTests = (isIpad = false) => [
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      isIpad,
-    ),
+  const tests = [
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectationWithClickFlows(
       "should have repo Tables section",
       "[data-cy=repo-tables-table-list]",
@@ -237,7 +231,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
+    macbook15ForAppLayout(pageName, tests),
     // iPad2ForAppLayout(pageName, desktopAndIpadTests(true), true), // Not optimized for ipad, test is flaky
     iPhoneXForAppLayout(
       pageName,

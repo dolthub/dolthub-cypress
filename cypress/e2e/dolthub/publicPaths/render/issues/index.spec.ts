@@ -31,7 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     destinationURL: `/${currentPage}${destinationBranch}`,
   };
 
-  const desktopAndIpadTests = (isIpad = false): Tests => [
+  const tests: Tests = [
     ...changeBranch(changeBranchParams),
     newExpectation(
       "should not find empty issue message",
@@ -43,13 +43,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-search-input]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      isIpad,
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should find issue table with header",
       "[data-cy=issue-table] > thead > tr > th",
@@ -79,8 +73,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests(), false, loggedIn),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    macbook15ForAppLayout(pageName, tests, false, loggedIn),
+    iPad2ForAppLayout(pageName, tests),
 
     // TODO: mobile issue page tests
     iPhoneXForAppLayout(

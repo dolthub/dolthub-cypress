@@ -25,9 +25,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     destinationURL: `/${currentPage}?refName=${destinationBranch}`,
   };
 
-  const desktopAndIpadTests = (isIpad = false) => [
+  const tests = [
     ...changeBranch(changeBranchParams),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, isIpad),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
     newExpectation(
       "should not find empty pull message",
       "[data-cy=pull-requests-no-pulls]",
@@ -66,8 +66,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests(), false),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    macbook15ForAppLayout(pageName, tests, false),
+    iPad2ForAppLayout(pageName, tests),
 
     // TODO: mobile pull request page tests
     iPhoneXForAppLayout(
