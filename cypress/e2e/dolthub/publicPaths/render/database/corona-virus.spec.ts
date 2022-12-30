@@ -58,15 +58,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const desktopAndIpadTests = (isIpad = false): Tests => [
+  const tests: Tests = [
     ...commonTests,
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      isIpad,
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     ...tableExpectations(hasDocs, loggedIn, 11, "case_details"),
     ...testClickDeleteRow(
       "error-modal",
@@ -114,8 +108,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testSqlConsoleMobile,
   ];
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    macbook15ForAppLayout(pageName, tests),
+    iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(pageName, mobileTests),
   ];
   const skip = false;

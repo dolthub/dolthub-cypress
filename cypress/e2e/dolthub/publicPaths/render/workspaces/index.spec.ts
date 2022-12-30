@@ -38,19 +38,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ]);
 
-  const desktopAndIpadTests = (isIpad = false) => [
+  const tests = [
     newExpectation(
       "should have repository layout",
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      isIpad,
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",
@@ -100,8 +94,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests(), false, loggedIn),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    macbook15ForAppLayout(pageName, tests, false, loggedIn),
+    iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(
       pageName,
       mobileTests(currentOwner, currentRepo, currentPage, hasDocs, true, true),

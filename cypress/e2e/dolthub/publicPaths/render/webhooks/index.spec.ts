@@ -19,22 +19,16 @@ const loggedIn = false;
 const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const desktopAndIpadTests = (isIpad = false) => [
+  const tests = [
     shouldBeVisible("repository-layout-container"),
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      isIpad,
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     shouldNotExist("active-webhooks-settings-tab"),
     shouldBeVisible("settings-no-write-perms"),
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests(), false, loggedIn),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    macbook15ForAppLayout(pageName, tests, false, loggedIn),
+    iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(
       pageName,
       mobileTests(

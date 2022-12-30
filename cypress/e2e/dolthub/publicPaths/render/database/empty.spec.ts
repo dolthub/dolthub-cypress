@@ -34,14 +34,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const notExist = newShouldArgs("not.exist");
 
-  const desktopAndIpadTests = (isIpad = false) => [
-    ...testRepoHeaderForAll(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      isIpad,
-    ),
+  const tests = [
+    ...testRepoHeaderForAll(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should have disabled Fork button",
       "[data-cy=repo-fork-button]",
@@ -92,8 +86,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopAndIpadTests()),
-    iPad2ForAppLayout(pageName, desktopAndIpadTests(true)),
+    macbook15ForAppLayout(pageName, tests),
+    iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(
       pageName,
       testMobileRepoHeaderNav(currentOwner, currentRepo),
