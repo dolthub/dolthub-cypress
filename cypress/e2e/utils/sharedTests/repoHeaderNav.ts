@@ -21,7 +21,7 @@ const cloneClickFlow = newClickFlow(
       newShouldArgs("be.visible.and.have.length", 2),
     ),
   ],
-  "[data-cy=updated-at]",
+  "#main-content",
 );
 
 export const forkButtonClickFlow = (loggedIn: boolean) =>
