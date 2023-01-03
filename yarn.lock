@@ -5,24 +5,25 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@actions/cache@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@actions/cache@npm:1.0.11"
+"@actions/cache@npm:3.0.6":
+  version: 3.0.6
+  resolution: "@actions/cache@npm:3.0.6"
   dependencies:
-    "@actions/core": ^1.2.6
+    "@actions/core": ^1.10.0
     "@actions/exec": ^1.0.1
     "@actions/glob": ^0.1.0
-    "@actions/http-client": ^1.0.9
+    "@actions/http-client": ^2.0.1
     "@actions/io": ^1.0.1
+    "@azure/abort-controller": ^1.1.0
     "@azure/ms-rest-js": ^2.6.0
     "@azure/storage-blob": ^12.8.0
     semver: ^6.1.0
     uuid: ^3.3.3
-  checksum: f747b023c1542e09c16fa374351d3c39d5dd48c2af27ed9c642568fe04fad58aed036c6d699b1eaef571a904215411ba99e22236b653c22a84b6ca0b13d2a04f
+  checksum: 1cc63d07ad514454d7fb4d2cde928157d31847c2b9eafb081fbd518c8619ed6a66c9bd570d60787610ad152bd69839358176f03f1ee5f9d1baa660236cdfcfdf
   languageName: node
   linkType: hard
 
-"@actions/core@npm:1.10.0":
+"@actions/core@npm:1.10.0, @actions/core@npm:^1.10.0":
   version: 1.10.0
   resolution: "@actions/core@npm:1.10.0"
   dependencies:
@@ -60,15 +61,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/http-client@npm:^1.0.9":
-  version: 1.0.11
-  resolution: "@actions/http-client@npm:1.0.11"
-  dependencies:
-    tunnel: 0.0.6
-  checksum: 2c72834ec36a121ae95d2cb61fd28234eae2ab265a2aefe857a9eeb788ea77b284ad727ecd3c67fefd1920d5f2800b6c1ba6916b39d44f81f293b4b0020d367c
-  languageName: node
-  linkType: hard
-
 "@actions/http-client@npm:^2.0.1":
   version: 2.0.1
   resolution: "@actions/http-client@npm:2.0.1"
@@ -100,6 +92,15 @@ __metadata:
   dependencies:
     tslib: ^2.0.0
   checksum: 3bdb4d13505e91813729f053b5e50573aabcbb88cd7b187e8fd09aaf7a3ea8e2907ab6d6ee9bbe016060d312aecf189b2e1273e9fcc15bd93699632dcebafc06
+  languageName: node
+  linkType: hard
+
+"@azure/abort-controller@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@azure/abort-controller@npm:1.1.0"
+  dependencies:
+    tslib: ^2.2.0
+  checksum: 0f45e504d4aea799486867179afe7589255f6c111951279958e9d0aa5faebb2c96b8f88e3e3c958ce07b02bcba0b0cddb1bbec94705f573a48ecdb93eec1a92a
   languageName: node
   linkType: hard
 
@@ -1713,11 +1714,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/github-action@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "@cypress/github-action@npm:4.2.2"
+"@cypress/github-action@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "@cypress/github-action@npm:5.0.1"
   dependencies:
-    "@actions/cache": 1.0.11
+    "@actions/cache": 3.0.6
     "@actions/core": 1.10.0
     "@actions/exec": 1.1.1
     "@actions/io": 1.1.2
@@ -1729,7 +1730,7 @@ __metadata:
     got: 11.8.3
     hasha: 5.2.2
     quote: 0.4.0
-  checksum: 8f87102cd4e710b70e11ae4ab1455c01bbbcd86972eb23fb69245bc448f93669d070f293da9ec45fbc575456d63f55fb87281bafad2a7b33d2273de4864a8444
+  checksum: ed1f258ae5d76b9dad24cbb59721faf50dfa3eb93507802ae02b2709406eb1805906f872efacb9e2ea0ad307d7b37848a71bdcd38606a2e7d029b59a608b1aab
   languageName: node
   linkType: hard
 
@@ -3289,7 +3290,7 @@ __metadata:
     "@babel/core": ^7.20.7
     "@babel/preset-env": ^7.20.2
     "@babel/preset-typescript": ^7.18.6
-    "@cypress/github-action": ^4.2.2
+    "@cypress/github-action": ^5.0.1
     "@types/node": ^18.11.18
     "@typescript-eslint/eslint-plugin": ^5.47
     "@typescript-eslint/parser": ^5.45.0
