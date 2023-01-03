@@ -3,7 +3,7 @@ import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Databases Settings";
-const currentPage = "/settings/repositories";
+const currentPage = "/settings/databases";
 
 const loggedIn = true;
 
