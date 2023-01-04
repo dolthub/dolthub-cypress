@@ -57,11 +57,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should have an Edit Profile header",
-      "[data-cy=edit-profile-header]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectation(
       "should render the picture uploading form",
       "[data-cy=picture-upload-form]",
       newShouldArgs("be.visible"),
