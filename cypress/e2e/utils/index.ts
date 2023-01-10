@@ -66,11 +66,6 @@ export function runTests({
     cy.visitViewport(device);
   });
 
-  beforeEach(() => {
-    // Preserve dolthubToken cookie through all tests for page
-    Cypress.Cookies.preserveOnce("dolthubToken");
-  });
-
   after(() => {
     if (loggedIn) cy.signout(isMobile);
   });
