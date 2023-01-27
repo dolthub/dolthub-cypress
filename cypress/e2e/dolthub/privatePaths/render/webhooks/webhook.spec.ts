@@ -33,6 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     shouldBeVisible("repo-page-for-webhooks"),
     shouldFindAndContain("webhook-header", ["Webhooks", "Manage Webhook"]),
     shouldBeVisible("webhook-breadcrumbs"),
+    scrollToPosition("#main-content", "bottom"),
     shouldBeVisible("back-to-webhooks-link"),
     shouldBeVisible("webhook-settings-form"),
     shouldBeVisible("delivery-attempt-table"),
