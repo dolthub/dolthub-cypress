@@ -13,6 +13,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should render create organization button",
       "[data-cy=create-org-button]",
       beVisible,
+      true,
     ),
     newExpectation(
       "should render organizations list",
@@ -35,6 +36,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should render create organization button",
       "[data-cy=create-org-button]",
       beVisible,
+      true,
     ),
     newExpectation(
       "should render organizations list",
