@@ -10,12 +10,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const tests = [
     newExpectation(
-      "should render create organization button",
-      "[data-cy=create-org-button]",
-      beVisible,
-      true,
-    ),
-    newExpectation(
       "should render organizations list",
       "[data-cy=organization-list]",
       beVisible,
@@ -30,14 +24,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repolist-search-input]",
       beVisible,
     ),
+    newExpectation(
+      "should render create organization form",
+      "[data-cy=new-org-form]",
+      beVisible,
+    ),
   ];
   const ipadTests = [
-    newExpectation(
-      "should render create organization button",
-      "[data-cy=create-org-button]",
-      beVisible,
-      true,
-    ),
     newExpectation(
       "should render organizations list",
       "[data-cy=organization-list]",
@@ -51,6 +44,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should render search input",
       "[data-cy=repolist-search-input]",
+      beVisible,
+    ),
+    newExpectation(
+      "should render create organization form",
+      "[data-cy=new-org-form]",
       beVisible,
     ),
   ];
