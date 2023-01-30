@@ -26,14 +26,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should render a button to Create Organizations",
-      "[data-cy=create-org-button]",
-      beVisible,
-      true,
-    ),
-    newExpectation(
       "should render a table of the user's organizations",
       "[data-cy=organization-list]",
+      beVisible,
+    ),
+    newExpectation(
+      "should render create organization form",
+      "[data-cy=new-org-form]",
       beVisible,
     ),
   ];
