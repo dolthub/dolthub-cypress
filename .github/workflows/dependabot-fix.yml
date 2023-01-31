@@ -38,7 +38,7 @@ jobs:
 
       - uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '18'
       
       # Undo yarn.lock changes from last commit (if any), run yarn install,
       # and add/commit any yarn.lock changes
