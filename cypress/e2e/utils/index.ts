@@ -61,45 +61,35 @@ export function runTests({
   tests,
   loggedIn = false,
 }: TestsArgs) {
-  before(() => {
-    cy.visitPage(currentPage, loggedIn);
-    cy.visitViewport(device);
-  });
-
-  after(() => {
-    if (loggedIn) cy.signout(isMobile);
-  });
+  // Visit page and log in if needed
+  cy.visitPage(currentPage, loggedIn);
+  cy.viewport(device);
 
   tests.forEach(t => {
-    if (t.skip) {
-      xit(t.description, () => {});
-    } else {
-      it(t.description, () => {
-        if (t.redirect) {
-          // Sign in and continue to redirect value before starting test assertions
-          cy.loginAsCypressTestingFromSigninPageWithRedirect(t.redirect);
-        }
+    cy.log(t.description);
+    if (t.skip) return;
+    if (t.redirect) {
+      // Sign in and continue to redirect value before starting test assertions
+      cy.loginAsCypressTestingFromSigninPageWithRedirect(t.redirect);
+    }
 
-        testAssertion(t);
-
-        if (t.clickFlows) {
-          testClickFlows({
-            clickFlows: t.clickFlows,
-            description: t.description,
-          });
-        }
-
-        if (t.scrollTo) {
-          handleScrollTo(t.scrollTo);
-        }
-
-        if (t.redirect) {
-          // Sign out after signing in for redirect and running tests
-          cy.signout(isMobile);
-        }
+    if (t.clickFlows) {
+      testClickFlows({
+        clickFlows: t.clickFlows,
+        description: t.description,
       });
     }
+
+    if (t.scrollTo) {
+      handleScrollTo(t.scrollTo);
+    }
+
+    if (t.redirect) {
+      // Sign out after signing in for redirect and running tests
+      cy.signout(isMobile);
+    }
   });
+  if (loggedIn) cy.signout(isMobile);
 }
 
 type TestsForDevicesArgs = {
@@ -117,11 +107,11 @@ export function runTestsForDevices({
     // Skip tests that require login if username and password not found
     const skipForLogin = d.loggedIn && (!username || !password);
     if (skip || skipForLogin) {
-      describe.skip(d.description, deviceDimensions[d.device], () => {
+      xit(d.description, deviceDimensions[d.device], () => {
         runTests({ ...d, currentPage });
       });
     } else {
-      describe(d.description, deviceDimensions[d.device], () => {
+      it(d.description, deviceDimensions[d.device], () => {
         runTests({ ...d, currentPage });
       });
     }
@@ -227,6 +217,7 @@ type ClickFlowsArgs = {
 // the clicking each toClickAfter
 export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
   if (!clickFlows) return;
+  cy.log(description);
 
   clickFlows.forEach(({ toClickBefore, expectations, toClickAfter, force }) => {
     if (toClickBefore) runClicks(toClickBefore, force);

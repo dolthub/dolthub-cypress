@@ -20,8 +20,6 @@ declare namespace Cypress {
 
     visitPage(currentPage: string, loggedIn: boolean): void;
 
-    visitViewport(device: Cypress.ViewportPreset): void;
-
     visitAndWait(path: string): void;
 
     handleGoogle(): void;
