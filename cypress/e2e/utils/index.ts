@@ -84,6 +84,10 @@ export function runTests({
       handleScrollTo(t.scrollTo);
     }
 
+    if (t.scrollIntoView) {
+      testAssertion(t);
+    }
+
     if (t.redirect) {
       // Sign out after signing in for redirect and running tests
       cy.signout(isMobile);
