@@ -73,6 +73,7 @@ export function runTests({
       cy.loginAsCypressTestingFromSigninPageWithRedirect(t.redirect);
     }
 
+    testAssertion(t);
     if (t.clickFlows) {
       testClickFlows({
         clickFlows: t.clickFlows,
@@ -82,10 +83,6 @@ export function runTests({
 
     if (t.scrollTo) {
       handleScrollTo(t.scrollTo);
-    }
-
-    if (t.scrollIntoView) {
-      testAssertion(t);
     }
 
     if (t.redirect) {
