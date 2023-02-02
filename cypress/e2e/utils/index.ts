@@ -101,7 +101,6 @@ export function runTestsForDevices({
     cy.visitPage(currentPage, loggedIn);
   });
   devices.forEach(d => {
-    console.log(currentPage);
     // Skip tests that require login if username and password not found
     const skipForLogin = loggedIn && (!username || !password);
     if (skip || skipForLogin) {
