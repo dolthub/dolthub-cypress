@@ -21,7 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...deleteTempDatabase(repoName, ownerName),
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
+  const devices = [macbook15ForAppLayout(pageName, tests, false)];
   const skip = true;
   runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

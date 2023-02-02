@@ -4,6 +4,7 @@ import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Sign in page";
 const currentPageWithRedirect = "/signin?redirect=%2Fsettings";
+const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -24,5 +25,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     currentPage: currentPageWithRedirect,
     devices: devicesForRedirectLink,
     skip,
+    loggedIn,
   });
 });

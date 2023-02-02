@@ -63,13 +63,17 @@ export const iPad2ForAppLayout = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
-): Device => iPad2(pageName, getAppLayoutTestsMobile(tests, skipNavbar));
+  loggedIn = false,
+): Device =>
+  iPad2(pageName, getAppLayoutTestsMobile(tests, skipNavbar, loggedIn));
 
 export const iPhoneXForAppLayout = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
-): Device => iPhoneX(pageName, getAppLayoutTestsMobile(tests, skipNavbar));
+  loggedIn = false,
+): Device =>
+  iPhoneX(pageName, getAppLayoutTestsMobile(tests, skipNavbar, loggedIn));
 
 export const mobileDevicesForAppLayout = (
   pageName: string,

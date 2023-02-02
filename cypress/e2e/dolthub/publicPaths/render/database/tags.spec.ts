@@ -19,6 +19,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithVisitPage,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -149,7 +150,16 @@ export const testReleasesSection = (tagLen: number): Expectation =>
     ],
   );
 
-export const testCommitSection = (commitLen: number): Expectation =>
+export const testCommitSection = (
+  commitLen: number,
+  targetPage: string,
+): Expectation[] => [
+  newExpectationWithVisitPage(
+    "",
+    "[data-cy=repo-commit-log-tab]",
+    beVisible,
+    targetPage,
+  ),
   newExpectationWithClickFlows(
     "should have database Commit Log section",
     "[data-cy=repo-commit-log-tab]",
@@ -163,10 +173,11 @@ export const testCommitSection = (commitLen: number): Expectation =>
         ),
       ]),
     ],
-  );
+  ),
+];
 
 describe(`All refs for repo_with_tags_and_branches are usable`, () => {
-  const tests = (i: number) => {
+  const tests = (i: number, targetPage: string) => {
     const num = i + 2;
     return [
       newExpectation(
@@ -174,7 +185,7 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
         "[data-cy=repo-data-table-empty]",
         notExist,
       ),
-      testCommitSection(num),
+      ...testCommitSection(num, targetPage),
       testReleasesSection(21),
     ];
   };
@@ -184,8 +195,8 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
     const tagPageName = `${pageName} (tag ${tag})`;
     const currentPage = `repositories/${currentOwner}/${currentRepo}/data/${tag}`;
     const devices = [
-      macbook15ForAppLayout(tagPageName, tests(i)),
-      iPad2ForAppLayout(tagPageName, tests(i)),
+      macbook15ForAppLayout(tagPageName, tests(i, currentPage)),
+      iPad2ForAppLayout(tagPageName, tests(i, currentPage)),
     ];
     const skip = false;
     runTestsForDevices({ currentPage, devices, skip });

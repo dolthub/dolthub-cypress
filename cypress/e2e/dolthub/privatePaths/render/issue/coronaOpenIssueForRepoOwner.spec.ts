@@ -10,6 +10,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentIssueId = isProd ? "6" : "7";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues/${currentIssueId}`;
+const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
@@ -45,7 +46,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testLoggedInSignInTo,
   ];
 
-  const devices = [macbook15ForAppLayout(pageName, tests, false, true)];
+  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
   const skip = false;
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

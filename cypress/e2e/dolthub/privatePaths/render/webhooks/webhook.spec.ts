@@ -9,6 +9,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -35,7 +36,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     shouldBeVisible("webhook-breadcrumbs"),
     shouldBeVisible("back-to-webhooks-link"),
     shouldBeVisible("webhook-settings-form"),
-    shouldBeVisible("delivery-attempt-table"),
+    newExpectationWithScrollIntoView(
+      "should find delivery attempt table",
+      "[data-cy=delivery-attempt-table]",
+      beVisible,
+      true,
+    ),
     newExpectation(
       "should have delivery attempt table with one row",
       "[data-cy=delivery-attempt-table] tbody tr",
