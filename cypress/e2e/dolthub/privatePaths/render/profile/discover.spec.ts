@@ -74,8 +74,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const skip = false;
   const devices = [
     macbook15ForAppLayout(pageName, tests(false), false, loggedIn),
-    iPad2(pageName, ipadTests, loggedIn),
-    iPhoneX(pageName, tests(true), loggedIn),
+    iPad2(pageName, ipadTests),
+    iPhoneX(pageName, tests(true)),
   ];
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

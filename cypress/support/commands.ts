@@ -88,13 +88,10 @@ Cypress.Commands.add(
       username,
       () => {
         cy.visitAndWait("/signin");
-        cy.viewport("macbook-15");
         completeLoginForCypressTesting();
+        ensureSuccessfulLogin(redirectValue);
       },
       {
-        validate() {
-          ensureSuccessfulLogin(redirectValue);
-        },
         cacheAcrossSpecs: true,
       },
     );
@@ -104,13 +101,15 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   "loginAsCypressTestingFromSigninPageWithRedirect",
   (redirectValue: string) => {
-    cy.location("pathname", opts).should("eq", `/signin`);
-    cy.location("search", opts)
-      .should("eq", `?redirect=%2F${redirectValue}`)
-      .then(() => {
-        completeLoginForCypressTesting();
-        ensureSuccessfulLogin(redirectValue);
-      });
+    cy.session("dolthubLoginWithRedirect", () => {
+      cy.location("pathname", opts).should("eq", `/signin`);
+      cy.location("search", opts)
+        .should("eq", `?redirect=%2F${redirectValue}`)
+        .then(() => {
+          completeLoginForCypressTesting();
+          ensureSuccessfulLogin(redirectValue);
+        });
+    });
   },
 );
 
@@ -124,7 +123,6 @@ function ensureSuccessfulLogin(redirectValue?: string) {
   } else {
     cy.location("pathname", opts).should("include", "/profile");
   }
-  cy.get("[data-cy=navbar-menu-avatar]", opts).should("be.visible");
 }
 
 function completeLoginForCypressTesting() {

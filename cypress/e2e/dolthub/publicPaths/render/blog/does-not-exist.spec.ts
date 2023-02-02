@@ -30,7 +30,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = [macbook15(pageName, tests, false)];
+  const devices = [macbook15(pageName, tests)];
 
   runTestsForDevices({ currentPage, devices, skip });
 });

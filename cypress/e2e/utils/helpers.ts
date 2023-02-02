@@ -138,11 +138,10 @@ export function newScrollToXY(
 export function newDevice(
   device: Cypress.ViewportPreset,
   description: string,
-  loggedIn: boolean,
   tests: Tests,
   isMobile: boolean,
 ): Device {
-  return { device, description, loggedIn, tests, isMobile };
+  return { device, description, tests, isMobile };
 }
 
 // Should args
