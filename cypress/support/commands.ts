@@ -112,7 +112,7 @@ Cypress.Commands.add(
   },
 );
 
-export function ensureSuccessfulLogin(redirectValue?: string) {
+function ensureSuccessfulLogin(redirectValue?: string) {
   // Must set cookie for localhost so navbar renders correctly
   if (Cypress.env("LOCAL_DOLTHUB")) {
     cy.setCookie("dolthubToken", "fake-token");
@@ -124,7 +124,7 @@ export function ensureSuccessfulLogin(redirectValue?: string) {
   }
 }
 
-export function completeLoginForCypressTesting() {
+function completeLoginForCypressTesting() {
   // Check that email form has rendered
   cy.get("[data-cy=signin-email-form]", opts).should("be.visible");
 
