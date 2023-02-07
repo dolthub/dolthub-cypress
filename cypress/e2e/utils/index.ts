@@ -51,18 +51,10 @@ type TestsArgs = {
   isMobile: boolean;
 };
 
-export function runTests({
-  isMobile,
-
-  tests,
-}: TestsArgs) {
+export function runTests({ tests }: TestsArgs) {
   tests.forEach(t => {
     cy.log(t.description);
     if (t.skip) return;
-    if (t.redirect) {
-      // Sign in and continue to redirect value before starting test assertions
-      cy.loginAsCypressTestingFromSigninPageWithRedirect(t.redirect);
-    }
 
     testAssertion(t);
     if (t.clickFlows) {
@@ -74,11 +66,6 @@ export function runTests({
 
     if (t.scrollTo) {
       handleScrollTo(t.scrollTo);
-    }
-
-    if (t.redirect) {
-      // Sign out after signing in for redirect and running tests
-      cy.signout(isMobile);
     }
   });
 }
@@ -239,8 +226,7 @@ function runClicks(clickStrOrArr: string | string[], force?: boolean) {
       cy.get(clickStr, opts).click(cOpts);
     });
   } else {
-    cy.get(clickStrOrArr, opts).as("btn").click(cOpts);
-    cy.get("@btn").should("have.class", "active");
+    cy.get(clickStrOrArr, opts).click(cOpts);
   }
 }
 

@@ -75,6 +75,7 @@ Cypress.Commands.add("visitAndWait", (path: string) => {
     onBeforeLoad: spyOnAddEventListener,
     failOnStatusCode: false,
   }).then(waitForAppStart);
+  cy.wait(500);
 });
 
 Cypress.Commands.add(
@@ -101,15 +102,13 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   "loginAsCypressTestingFromSigninPageWithRedirect",
   (redirectValue: string) => {
-    cy.session("dolthubLoginWithRedirect", () => {
-      cy.location("pathname", opts).should("eq", `/signin`);
-      cy.location("search", opts)
-        .should("eq", `?redirect=%2F${redirectValue}`)
-        .then(() => {
-          completeLoginForCypressTesting();
-          ensureSuccessfulLogin(redirectValue);
-        });
-    });
+    cy.location("pathname", opts).should("eq", `/signin`);
+    cy.location("search", opts)
+      .should("eq", `?redirect=%2F${redirectValue}`)
+      .then(() => {
+        completeLoginForCypressTesting();
+        ensureSuccessfulLogin(redirectValue);
+      });
   },
 );
 
