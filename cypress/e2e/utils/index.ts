@@ -203,23 +203,30 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
   if (!clickFlows) return;
   cy.log(description);
 
-  clickFlows.forEach(({ toClickBefore, expectations, toClickAfter, force }) => {
-    if (toClickBefore) runClicks(toClickBefore, force);
+  clickFlows.forEach(
+    ({ toClickBefore, expectations, toClickAfter, force, waitForGraphql }) => {
+      if (toClickBefore) runClicks(toClickBefore, force, waitForGraphql);
 
-    expectations.forEach(t => {
-      testAssertion(t);
-      testClickFlows({
-        description,
-        clickFlows: t.clickFlows,
+      expectations.forEach(t => {
+        testAssertion(t);
+        testClickFlows({
+          description,
+          clickFlows: t.clickFlows,
+        });
       });
-    });
 
-    if (toClickAfter) runClicks(toClickAfter);
-  });
+      if (toClickAfter) runClicks(toClickAfter);
+    },
+  );
 }
 
 // runClicks clicks on each selectorStr
-function runClicks(clickStrOrArr: string | string[], force?: boolean) {
+function runClicks(
+  clickStrOrArr: string | string[],
+  force?: boolean,
+  waitForGraphql?: boolean,
+) {
+  cy.intercept("POST", "/graphql").as("graphql");
   const cOpts = { ...clickOpts, force };
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
@@ -227,6 +234,9 @@ function runClicks(clickStrOrArr: string | string[], force?: boolean) {
     });
   } else {
     cy.get(clickStrOrArr, opts).click(cOpts);
+    if (waitForGraphql) {
+      cy.wait("@graphql");
+    }
   }
 }
 

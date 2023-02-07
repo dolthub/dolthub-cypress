@@ -68,12 +68,14 @@ export function newClickFlow(
   toClickBefore: Selector,
   expectations: Tests,
   toClickAfter?: Selector,
+  waitForGraphql = false,
   force = false,
 ): ClickFlow {
   return {
     toClickBefore,
     expectations,
     toClickAfter,
+    waitForGraphql,
     force,
   };
 }

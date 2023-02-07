@@ -32,6 +32,7 @@ export type ClickFlow = {
   // eslint-disable-next-line no-use-before-define
   expectations: Expectation[];
   toClickAfter?: Selector;
+  waitForGraphql?: boolean;
   force?: boolean;
 };
 
