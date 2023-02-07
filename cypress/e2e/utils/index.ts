@@ -239,7 +239,8 @@ function runClicks(clickStrOrArr: string | string[], force?: boolean) {
       cy.get(clickStr, opts).click(cOpts);
     });
   } else {
-    cy.get(clickStrOrArr, opts).click(cOpts);
+    cy.get(clickStrOrArr, opts).as("btn").click(cOpts);
+    cy.get("@btn").should("have.class", "active");
   }
 }
 
