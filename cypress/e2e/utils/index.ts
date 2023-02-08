@@ -232,7 +232,9 @@ function runClicks(
       cy.get(clickStr, opts).click(cOpts);
     });
   } else if (waitTime) {
-    cy.get(clickStrOrArr, opts).wait(waitTime).click(cOpts);
+    cy.get(clickStrOrArr, opts).as("button");
+    cy.wait(waitTime);
+    cy.get("@button").click(cOpts);
   } else {
     cy.get(clickStrOrArr, opts).click(cOpts);
   }
