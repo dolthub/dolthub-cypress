@@ -1,3 +1,4 @@
+import { beVisible } from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
@@ -18,17 +19,17 @@ const modalClickflow = newClickFlow(
     newExpectation(
       "should render a Upload New Picture header",
       "[data-cy=modal-title]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should render a button to browse files",
       "[data-cy=browse-picture-files-button]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should render current avatar",
       "[data-cy=current-avatar]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should render a disabled save button",
@@ -38,7 +39,7 @@ const modalClickflow = newClickFlow(
     newExpectation(
       "should render a cancel button",
       "[data-cy=cancel-button]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
   ],
   "[data-cy=close-modal]",
@@ -49,22 +50,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should render Settings header",
       "[data-cy=settings-header]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should render Settings Profile link",
       "[data-cy=settings-profile-section-link]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should render the picture uploading form",
       "[data-cy=picture-upload-form]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectationWithClickFlows(
       "modal should open on clicking edit",
       "[data-cy=edit-user-picture-button]",
-      newShouldArgs("be.visible"),
+      beVisible,
       [modalClickflow],
     ),
     newExpectation(
@@ -75,27 +76,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should have an input for user's biography",
       "[data-cy=bio-input]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should have an input for user's website",
       "[data-cy=website-input]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should have an input for user's location",
       "[data-cy=location-input]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should have a submit profile settings button",
       "[data-cy=submit-profile-settings]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectation(
-      "should have a cancel button",
-      "[data-cy=cancel-button]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
   ];
   const skip = false;

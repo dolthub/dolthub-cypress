@@ -45,8 +45,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible"),
     ),
     newExpectation(
-      "should render an input for state",
-      "[data-cy=state-input]",
+      "should render an input for zip code",
+      "[data-cy=zip-input]",
       newShouldArgs("be.visible"),
     ),
     newExpectation(
