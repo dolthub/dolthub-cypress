@@ -203,30 +203,41 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
   if (!clickFlows) return;
   cy.log(description);
 
-  clickFlows.forEach(({ toClickBefore, expectations, toClickAfter, force }) => {
-    if (toClickBefore) runClicks(toClickBefore, force);
+  clickFlows.forEach(
+    ({ toClickBefore, expectations, toClickAfter, force, waitTime }) => {
+      if (toClickBefore) runClicks(toClickBefore, force, waitTime);
 
-    expectations.forEach(t => {
-      testAssertion(t);
-      testClickFlows({
-        description,
-        clickFlows: t.clickFlows,
+      expectations.forEach(t => {
+        testAssertion(t);
+        testClickFlows({
+          description,
+          clickFlows: t.clickFlows,
+        });
       });
-    });
 
-    if (toClickAfter) runClicks(toClickAfter);
-  });
+      if (toClickAfter) runClicks(toClickAfter);
+    },
+  );
 }
 
 // runClicks clicks on each selectorStr
-function runClicks(clickStrOrArr: string | string[], force?: boolean) {
+function runClicks(
+  clickStrOrArr: string | string[],
+  force?: boolean,
+  waitTime?: number,
+) {
   const cOpts = { ...clickOpts, force };
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, opts).click(cOpts);
+      cy.get(clickStr, opts).should("be.be.visible").click(cOpts);
     });
+  } else if (waitTime) {
+    cy.get(clickStrOrArr, opts)
+      .should("be.be.visible")
+      .wait(waitTime)
+      .click(cOpts);
   } else {
-    cy.get(clickStrOrArr, opts).click(cOpts);
+    cy.get(clickStrOrArr, opts).should("be.be.visible").click(cOpts);
   }
 }
 

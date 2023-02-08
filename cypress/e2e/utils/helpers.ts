@@ -69,12 +69,15 @@ export function newClickFlow(
   expectations: Tests,
   toClickAfter?: Selector,
   force = false,
+  waitTime?: number,
 ): ClickFlow {
+  console.log(expectations, waitTime);
   return {
     toClickBefore,
     expectations,
     toClickAfter,
     force,
+    waitTime,
   };
 }
 

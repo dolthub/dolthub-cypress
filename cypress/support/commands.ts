@@ -70,12 +70,10 @@ Cypress.Commands.add("visitAndWait", (path: string) => {
       isReady();
     });
   }
-
   cy.visit(path, {
     onBeforeLoad: spyOnAddEventListener,
     failOnStatusCode: false,
   }).then(waitForAppStart);
-  cy.wait(500);
 });
 
 Cypress.Commands.add(
