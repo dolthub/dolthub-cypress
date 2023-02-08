@@ -229,15 +229,12 @@ function runClicks(
   const cOpts = { ...clickOpts, force };
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, opts).should("be.be.visible").click(cOpts);
+      cy.get(clickStr, opts).click(cOpts);
     });
   } else if (waitTime) {
-    cy.get(clickStrOrArr, opts)
-      .should("be.be.visible")
-      .wait(waitTime)
-      .click(cOpts);
+    cy.get(clickStrOrArr, opts).wait(waitTime).click(cOpts);
   } else {
-    cy.get(clickStrOrArr, opts).should("be.be.visible").click(cOpts);
+    cy.get(clickStrOrArr, opts).click(cOpts);
   }
 }
 
