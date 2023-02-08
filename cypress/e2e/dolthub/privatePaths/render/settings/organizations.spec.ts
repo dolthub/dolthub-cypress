@@ -1,5 +1,6 @@
+import { beVisible } from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { newExpectation } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Organizations Settings";
@@ -12,27 +13,27 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should render Settings header",
       "[data-cy=settings-header]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should render Settings Organizations link",
       "[data-cy=settings-organizations-section-link]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should have an Org Memberships header",
       "[data-cy=org-memberships-header]",
-      newShouldArgs("be.visible"),
-    ),
-    newExpectation(
-      "should render a button to Create Organizations",
-      "[data-cy=create-org-button]",
-      newShouldArgs("be.visible"),
+      beVisible,
     ),
     newExpectation(
       "should render a table of the user's organizations",
       "[data-cy=organization-list]",
-      newShouldArgs("be.visible"),
+      beVisible,
+    ),
+    newExpectation(
+      "should render create organization form",
+      "[data-cy=new-org-form]",
+      beVisible,
     ),
   ];
   const skip = false;
