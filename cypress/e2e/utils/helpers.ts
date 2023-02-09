@@ -71,7 +71,6 @@ export function newClickFlow(
   force = false,
   waitTime?: number,
 ): ClickFlow {
-  console.log(expectations, waitTime);
   return {
     toClickBefore,
     expectations,

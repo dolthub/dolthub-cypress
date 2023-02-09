@@ -232,6 +232,7 @@ function runClicks(
       cy.get(clickStr, opts).click(cOpts);
     });
   } else if (waitTime) {
+    // add wait time to avoid race condition, see https://github.com/cypress-io/cypress/issues/25644
     cy.get(clickStrOrArr, opts).as("button");
     cy.wait(waitTime);
     cy.get("@button").click(cOpts);
