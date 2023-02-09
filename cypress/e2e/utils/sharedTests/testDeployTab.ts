@@ -13,7 +13,7 @@ export const testDeploySelfHosted: Tests = [
     "should show self hosted button",
     "[data-cy=self-hosted-button]",
     beVisible,
-    [newClickFlow("[data-cy=self-hosted-button]", [])],
+    [newClickFlow("[data-cy=self-hosted-button]", [], "", false, 500)],
   ),
   newExpectation(
     "should have download docker button",
