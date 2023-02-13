@@ -33,7 +33,6 @@ export type ClickFlow = {
   expectations: Expectation[];
   toClickAfter?: Selector;
   force?: boolean;
-  waitTime?: number;
 };
 
 export type Expectation = {
