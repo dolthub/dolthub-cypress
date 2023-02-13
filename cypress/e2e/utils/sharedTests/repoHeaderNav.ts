@@ -22,8 +22,6 @@ const cloneClickFlow = newClickFlow(
     ),
   ],
   "#main-content",
-  false,
-  1000,
 );
 
 export const forkButtonClickFlow = (loggedIn: boolean) =>

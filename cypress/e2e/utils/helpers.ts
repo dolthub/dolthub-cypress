@@ -79,14 +79,12 @@ export function newClickFlow(
   expectations: Tests,
   toClickAfter?: Selector,
   force = false,
-  waitTime?: number,
 ): ClickFlow {
   return {
     toClickBefore,
     expectations,
     toClickAfter,
     force,
-    waitTime,
   };
 }
 
