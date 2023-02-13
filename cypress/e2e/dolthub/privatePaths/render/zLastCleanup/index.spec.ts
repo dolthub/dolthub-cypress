@@ -58,7 +58,7 @@ function cleanupLeftoverTempDbs(owner: string) {
 
 describe(pageName, deviceDimensions["macbook-15"], () => {
   before(() => {
-    // cy.handleGoogle();
+    cy.handleGoogle();
     if (loggedIn) {
       cy.loginAsCypressTestingAfterNavigateToSignin();
     }

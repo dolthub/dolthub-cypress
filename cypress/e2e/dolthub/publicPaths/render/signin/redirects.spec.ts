@@ -1,4 +1,8 @@
 import { deviceDimensions } from "@utils/index";
+import {
+  completeLoginForCypressTesting,
+  ensureSuccessfulLogin,
+} from "cypress/support/commands";
 
 const pageName = "Sign in page";
 const currentPageWithRedirect = "/signin?redirect=%2Fsettings";
@@ -8,7 +12,13 @@ describe(pageName, deviceDimensions["macbook-15"], () => {
   before(() => {
     cy.visitAndWait(currentPageWithRedirect);
     cy.handleGoogle();
-    cy.loginAsCypressTestingFromSigninPageWithRedirect("settings");
+    cy.location("pathname").should("eq", `/signin`);
+    cy.location("search")
+      .should("eq", `?redirect=%2Fsettings`)
+      .then(() => {
+        completeLoginForCypressTesting();
+        ensureSuccessfulLogin("settings");
+      });
   });
 
   after(() => {

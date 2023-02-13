@@ -100,13 +100,15 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   "loginAsCypressTestingFromSigninPageWithRedirect",
   (redirectValue: string) => {
-    cy.location("pathname", opts).should("eq", `/signin`);
-    cy.location("search", opts)
-      .should("eq", `?redirect=%2F${redirectValue}`)
-      .then(() => {
-        completeLoginForCypressTesting();
-        ensureSuccessfulLogin(redirectValue);
-      });
+    cy.session("dolthubLoginWithRedirect", () => {
+      cy.location("pathname", opts).should("eq", `/signin`);
+      cy.location("search", opts)
+        .should("eq", `?redirect=%2F${redirectValue}`)
+        .then(() => {
+          completeLoginForCypressTesting();
+          ensureSuccessfulLogin(redirectValue);
+        });
+    });
   },
 );
 

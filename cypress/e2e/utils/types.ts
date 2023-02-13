@@ -48,6 +48,7 @@ export type Expectation = {
   selectOption?: number;
   targetPage?: string;
   fileUpload?: string;
+  redirect?: string;
   url?: string;
 };
 
