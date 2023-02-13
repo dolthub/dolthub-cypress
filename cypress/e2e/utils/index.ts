@@ -59,10 +59,6 @@ export function runTests({
   tests.forEach(t => {
     cy.log(t.description);
     if (t.skip) return;
-    if (t.redirect) {
-      // Sign in and continue to redirect value before starting test assertions
-      cy.loginAsCypressTestingFromSigninPageWithRedirect(t.redirect);
-    }
 
     testAssertion(t);
     if (t.clickFlows) {
@@ -74,11 +70,6 @@ export function runTests({
 
     if (t.scrollTo) {
       handleScrollTo(t.scrollTo);
-    }
-
-    if (t.redirect) {
-      // Sign out after signing in for redirect and running tests
-      cy.signout(isMobile);
     }
   });
 }
