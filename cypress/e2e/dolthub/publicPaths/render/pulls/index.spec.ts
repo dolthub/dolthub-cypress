@@ -27,7 +27,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...changeBranch(changeBranchParams),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
     newExpectation(
       "should not find empty pull message",
       "[data-cy=pull-requests-no-pulls]",
@@ -63,6 +62,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=pull-requests-row-1] [data-cy=pull-state-label]",
       beVisible,
     ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
   ];
 
   const devices = [

@@ -43,7 +43,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-search-input]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     newExpectation(
       "should find issue table with header",
       "[data-cy=issue-table] > thead > tr > th",
@@ -69,6 +68,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-row-8] [data-cy=issue-state-label]",
       beVisibleAndContain("Closed"),
     ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     // ...testNewIssueButton(loggedIn),
   ];
 
