@@ -86,6 +86,7 @@ export function runTestsForDevices({
   beforeEach(() => {
     // Visit page and log in if needed
     cy.visitPage(currentPage, loggedIn);
+    cy.wait(500);
   });
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
@@ -203,39 +204,28 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
   if (!clickFlows) return;
   cy.log(description);
 
-  clickFlows.forEach(
-    ({ toClickBefore, expectations, toClickAfter, force, waitTime }) => {
-      if (toClickBefore) runClicks(toClickBefore, force, waitTime);
+  clickFlows.forEach(({ toClickBefore, expectations, toClickAfter, force }) => {
+    if (toClickBefore) runClicks(toClickBefore, force);
 
-      expectations.forEach(t => {
-        testAssertion(t);
-        testClickFlows({
-          description,
-          clickFlows: t.clickFlows,
-        });
+    expectations.forEach(t => {
+      testAssertion(t);
+      testClickFlows({
+        description,
+        clickFlows: t.clickFlows,
       });
+    });
 
-      if (toClickAfter) runClicks(toClickAfter);
-    },
-  );
+    if (toClickAfter) runClicks(toClickAfter);
+  });
 }
 
 // runClicks clicks on each selectorStr
-function runClicks(
-  clickStrOrArr: string | string[],
-  force?: boolean,
-  waitTime?: number,
-) {
+function runClicks(clickStrOrArr: string | string[], force?: boolean) {
   const cOpts = { ...clickOpts, force };
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
       cy.get(clickStr, opts).click(cOpts);
     });
-  } else if (waitTime) {
-    // add wait time to avoid race condition, see https://github.com/cypress-io/cypress/issues/25644
-    cy.get(clickStrOrArr, opts).as("button");
-    cy.wait(waitTime);
-    cy.get("@button").click(cOpts);
   } else {
     cy.get(clickStrOrArr, opts).click(cOpts);
   }

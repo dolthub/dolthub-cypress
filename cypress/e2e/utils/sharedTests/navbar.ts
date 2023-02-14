@@ -78,8 +78,6 @@ const mobileNavbarClickFlow = newClickFlow(
     ),
   ],
   "[data-cy=mobile-navbar-close-button]",
-  false,
-  1000,
 );
 
 export const testMobileNavbar: Tests = [
