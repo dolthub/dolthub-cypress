@@ -21,7 +21,7 @@ const cloneClickFlow = newClickFlow(
       newShouldArgs("be.visible.and.have.length", 2),
     ),
   ],
-  "#main-content",
+  "[data-cy=repo-clone-code-block]",
 );
 
 export const forkButtonClickFlow = (loggedIn: boolean) =>
