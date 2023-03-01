@@ -80,8 +80,6 @@ Cypress.Commands.add("visitAndWait", (path: string) => {
 Cypress.Commands.add(
   "loginAsCypressTestingAfterNavigateToSignin",
   (redirectValue?: string) => {
-    cy.task("log", { p: password, u: username });
-
     if (!password || !username) {
       throw new Error("Username or password env not set");
     }
