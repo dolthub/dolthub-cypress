@@ -56,7 +56,7 @@ function cleanupLeftoverTempDbs(owner: string) {
   }
 }
 
-describe(pageName, deviceDimensions["macbook-15"], () => {
+describe.skip(pageName, deviceDimensions["macbook-15"], () => {
   before(() => {
     cy.handleGoogle();
     if (loggedIn) {
@@ -68,9 +68,7 @@ describe(pageName, deviceDimensions["macbook-15"], () => {
     if (loggedIn) cy.signout(false);
   });
 
-  it.skip("skip the test", () => {
-    tempDbOwnerNames.forEach(owner => {
-      cleanupLeftoverTempDbs(owner);
-    });
+  tempDbOwnerNames.forEach(owner => {
+    cleanupLeftoverTempDbs(owner);
   });
 });
