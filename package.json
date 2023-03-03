@@ -37,7 +37,7 @@
     "@babel/preset-typescript": "^7.21.0",
     "@cypress/github-action": "^5.0.1",
     "@types/node": "^18.11.18",
-    "@typescript-eslint/eslint-plugin": "^5.50",
+    "@typescript-eslint/eslint-plugin": "^5.54",
     "@typescript-eslint/parser": "^5.54.0",
     "eslint": "^8.33.0",
     "eslint-config-airbnb-base": "^15.0.0",
