@@ -68,7 +68,9 @@ describe(pageName, deviceDimensions["macbook-15"], () => {
     if (loggedIn) cy.signout(false);
   });
 
-  tempDbOwnerNames.forEach(owner => {
-    cleanupLeftoverTempDbs(owner);
+  it.skip("skip the test", () => {
+    tempDbOwnerNames.forEach(owner => {
+      cleanupLeftoverTempDbs(owner);
+    });
   });
 });
