@@ -18,10 +18,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=about-us-section]",
       newShouldArgs("be.visible.and.contain", "About Us"),
     ),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should have team list",
       "[data-cy=team-section]",
       newShouldArgs("be.visible.and.contain", "Meet the Team"),
+      true,
     ),
     scrollToPosition("#main-content", "center"),
     newExpectation(
