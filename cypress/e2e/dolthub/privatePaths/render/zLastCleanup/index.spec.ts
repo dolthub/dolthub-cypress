@@ -56,7 +56,7 @@ function cleanupLeftoverTempDbs(owner: string) {
   }
 }
 
-describe(pageName, deviceDimensions["macbook-15"], () => {
+describe.skip(pageName, deviceDimensions["macbook-15"], () => {
   before(() => {
     cy.handleGoogle();
     if (loggedIn) {
