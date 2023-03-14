@@ -1,5 +1,10 @@
 import { allDevicesForSignedOut } from "@utils/devices";
-import { newExpectationWithScrollIntoView } from "@utils/helpers";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
+} from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
   beVisible,
@@ -12,6 +17,7 @@ const currentPage = "/pricing";
 const pricingTests = [
   {
     card: "dolt-card",
+    name: "dolt",
     shouldFind: [
       {
         datacy: "dolt-header",
@@ -25,6 +31,7 @@ const pricingTests = [
   },
   {
     card: "hosted-dolt-card",
+    name: "hosted-dolt",
     shouldFind: [
       {
         datacy: "hosted-dolt-header",
@@ -42,6 +49,7 @@ const pricingTests = [
   },
   {
     card: "dolthub-card",
+    name: "dolthub",
     shouldFind: [
       {
         datacy: "dolthub-header",
@@ -59,6 +67,7 @@ const pricingTests = [
   },
   {
     card: "doltlab-card",
+    name: "doltlab",
     shouldFind: [
       {
         datacy: "doltlab-header",
@@ -102,6 +111,25 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ...test.shouldFind.map(find =>
           shouldFindAndContain(find.datacy, find.text),
         ),
+
+        ...(test.name
+          ? [
+              newExpectationWithClickFlows(
+                "should click on the enterprise card button",
+                `[data-cy=enterprise-card-${test.name}]`,
+                beVisible,
+                [
+                  newClickFlow(`[data-cy=enterprise-card-${test.name}]`, [
+                    newExpectation(
+                      "should find the enterprise card",
+                      `[data-cy=enterprise-card]`,
+                      beVisible,
+                    ),
+                  ]),
+                ],
+              ),
+            ]
+          : []),
       ])
       .flat(),
   ];
