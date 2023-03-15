@@ -45,7 +45,7 @@ const pricingTests = [
     shouldFind: [
       {
         datacy: "dolthub-header",
-        text: "FORKS, CLONES, & PULLS REQUESTS",
+        text: "FORKS, CLONES, & PULL REQUESTS",
       },
       {
         datacy: "dolthub-sign-up-button",
