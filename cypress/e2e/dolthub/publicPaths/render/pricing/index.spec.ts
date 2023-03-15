@@ -16,7 +16,6 @@ const currentPage = "/pricing";
 
 const pricingTests = [
   {
-    card: "dolt-card",
     name: "dolt",
     shouldFind: [
       {
@@ -30,7 +29,6 @@ const pricingTests = [
     ],
   },
   {
-    card: "hosted-dolt-card",
     name: "hosted-dolt",
     shouldFind: [
       {
@@ -48,7 +46,6 @@ const pricingTests = [
     ],
   },
   {
-    card: "dolthub-card",
     name: "dolthub",
     shouldFind: [
       {
@@ -66,7 +63,6 @@ const pricingTests = [
     ],
   },
   {
-    card: "doltlab-card",
     name: "doltlab",
     shouldFind: [
       {
@@ -84,7 +80,6 @@ const pricingTests = [
     ],
   },
   {
-    card: "enterprise-card",
     shouldFind: [
       {
         datacy: "enterprise-header",
@@ -103,8 +98,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...pricingTests
       .map(test => [
         newExpectationWithScrollIntoView(
-          `should find and scroll to ${test.card} pricing section`,
-          `[data-cy=${test.card}]`,
+          `should find and scroll to ${test.name}-card pricing section`,
+          `[data-cy=${test.name}-card]`,
           beVisible,
           true,
         ),
