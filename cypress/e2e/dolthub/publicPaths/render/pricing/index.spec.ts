@@ -80,6 +80,7 @@ const pricingTests = [
     ],
   },
   {
+    name: "enterprise",
     shouldFind: [
       {
         datacy: "enterprise-header",
@@ -107,7 +108,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
           shouldFindAndContain(find.datacy, find.text),
         ),
 
-        ...(test.name
+        ...(test.name && test.name !== "enterprise"
           ? [
               newExpectationWithClickFlows(
                 "should click on the enterprise banner button",
