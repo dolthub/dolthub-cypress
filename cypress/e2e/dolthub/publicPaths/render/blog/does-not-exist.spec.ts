@@ -11,6 +11,9 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
+  it("should ignore Gatsby server error", () => {
+    cy.ignoreGatsbyServerError("Error: Minified React error");
+  });
 
   const tests = [
     newExpectation(

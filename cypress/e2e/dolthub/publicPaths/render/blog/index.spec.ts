@@ -18,7 +18,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const query1 = "figma of databases video";
   const query2 = "wikipedia ngrams";
 
-  cy.ignoreGatsbyServerError("Error: Minified React error");
+  it("should ignore Gatsby server error", () => {
+    cy.ignoreGatsbyServerError("Error: Minified React error");
+  });
 
   const searchClickFlow = newClickFlow(
     "",
