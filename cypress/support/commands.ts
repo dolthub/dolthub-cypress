@@ -182,3 +182,14 @@ Cypress.on(
   "uncaught:exception",
   err => !err.message.includes("ResizeObserver loop limit exceeded"),
 );
+
+Cypress.Commands.add("ignoreUncaughtErrors", (errorMessages: string[]) => {
+  errorMessages.forEach(errorMessage => {
+    cy.on("uncaught:exception", err => {
+      if (err.message.includes(errorMessage)) {
+        return false;
+      }
+      return true;
+    });
+  });
+});
