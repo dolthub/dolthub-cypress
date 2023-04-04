@@ -12,6 +12,7 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
+  // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
   it("should ignore Gatsby server error", () => {
     cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
   });

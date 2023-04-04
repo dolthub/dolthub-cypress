@@ -19,6 +19,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const query1 = "figma of databases video";
   const query2 = "wikipedia ngrams";
 
+  // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
   it("should ignore Gatsby server error", () => {
     cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
   });
