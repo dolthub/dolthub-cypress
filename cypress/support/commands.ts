@@ -183,7 +183,7 @@ Cypress.on(
   err => !err.message.includes("ResizeObserver loop limit exceeded"),
 );
 
-Cypress.Commands.add("ignoreGatsbyServerError", (errorMessage: string) => {
+Cypress.Commands.add("ignoreGatsbyServerBuildError", (errorMessage: string) => {
   cy.on("uncaught:exception", err => {
     if (err.message.includes(errorMessage)) {
       return false;

@@ -19,7 +19,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const query2 = "wikipedia ngrams";
 
   it("should ignore Gatsby server error", () => {
-    cy.ignoreGatsbyServerError("Error: Minified React error");
+    cy.ignoreGatsbyServerBuildError("Error: Minified React error #425");
+    cy.ignoreGatsbyServerBuildError("Error: Minified React error #418");
+    cy.ignoreGatsbyServerBuildError("Error: Minified React error #423");
   });
 
   const searchClickFlow = newClickFlow(

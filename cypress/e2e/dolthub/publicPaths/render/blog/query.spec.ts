@@ -18,7 +18,9 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   it("should ignore Gatsby server error", () => {
-    cy.ignoreGatsbyServerError("Error: Minified React error");
+    cy.ignoreGatsbyServerBuildError("Error: Minified React error #425");
+    cy.ignoreGatsbyServerBuildError("Error: Minified React error #418");
+    cy.ignoreGatsbyServerBuildError("Error: Minified React error #423");
   });
   const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
     newExpectation(
