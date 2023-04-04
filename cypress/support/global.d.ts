@@ -26,6 +26,6 @@ declare namespace Cypress {
 
     handleGoogle(): void;
 
-    ignoreGatsbyServerBuildError(errorMessage: string): void;
+    ignoreUncaughtErrors(errorMessage: string[]): void;
   }
 }

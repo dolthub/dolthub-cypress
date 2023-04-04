@@ -7,6 +7,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { gatsbyServerBuildErrors } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog list page with query";
 const query = "figma of databases video";
@@ -18,9 +19,7 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   it("should ignore Gatsby server error", () => {
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #425");
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #418");
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #423");
+    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
   });
   const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
     newExpectation(

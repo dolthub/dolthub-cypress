@@ -8,6 +8,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { gatsbyServerBuildErrors } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog list page";
 const currentPage = Cypress.env("LOCAL_BLOG") ? "/" : "/blog/";
@@ -19,9 +20,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const query2 = "wikipedia ngrams";
 
   it("should ignore Gatsby server error", () => {
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #425");
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #418");
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #423");
+    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
   });
 
   const searchClickFlow = newClickFlow(

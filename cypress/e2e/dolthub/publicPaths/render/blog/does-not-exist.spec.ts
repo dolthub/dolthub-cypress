@@ -1,6 +1,7 @@
 import { macbook15 } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { gatsbyServerBuildErrors } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog 404 page for path that does not exist";
 const currentPath = "/does-not-exist";
@@ -12,9 +13,7 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   it("should ignore Gatsby server error", () => {
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #425");
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #418");
-    cy.ignoreGatsbyServerBuildError("Error: Minified React error #423");
+    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
   });
 
   const tests = [
