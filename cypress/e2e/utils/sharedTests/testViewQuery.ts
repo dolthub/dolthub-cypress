@@ -59,7 +59,7 @@ export const testViewQuery: Tests = [
       newClickFlow("[data-cy=tab-views]", [
         newExpectation(
           "should have saved view listed",
-          `[data-cy=repo-view-views-${testViewName}`,
+          `[data-cy=db-view-views-${testViewName}`,
           beVisibleAndContain(testViewName),
         ),
       ]),
@@ -68,13 +68,13 @@ export const testViewQuery: Tests = [
 
   newExpectationWithClickFlows(
     "the saved view should be rendered",
-    `[data-cy=repo-view-views-${testViewName}]`,
+    `[data-cy=db-view-views-${testViewName}]`,
     beVisible,
     [
-      newClickFlow(`[data-cy=repo-view-views-${testViewName}]>div>button`, [
+      newClickFlow(`[data-cy=db-view-views-${testViewName}]>div>button`, [
         newExpectation(
           "should have view listed",
-          `[data-cy=repo-views-view-button-${testViewName}]`,
+          `[data-cy=db-views-view-button-${testViewName}]`,
           beVisibleAndContain("Viewing"),
         ),
       ]),

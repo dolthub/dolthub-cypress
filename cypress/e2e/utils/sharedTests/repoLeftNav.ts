@@ -347,7 +347,7 @@ export const testClickDeleteRow = (
 // VIEWS
 
 const testViewClickFlow = (testView: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-views-view-${testView}]`, [
+  newClickFlow(`[data-cy=db-views-view-${testView}]`, [
     newExpectation(
       "",
       `[data-cy=repo-views-view-button-${testView}]`,
@@ -363,11 +363,11 @@ const testViewClickFlow = (testView: string): ClickFlow =>
 const testViewMobile = (testView: string): Expectation[] => [
   newExpectationWithClickFlows(
     "should click view",
-    `[data-cy=repo-views-view-${testView}]`,
+    `[data-cy=db-views-view-${testView}]`,
     beVisible,
     [
       newClickFlow(
-        `[data-cy=repo-views-view-${testView}]`,
+        `[data-cy=db-views-view-${testView}]`,
         [
           newExpectation(
             "",
@@ -384,7 +384,7 @@ const testViewMobile = (testView: string): Expectation[] => [
   ),
   newExpectation(
     "",
-    `[data-cy=repo-views-view-button-${testView}]`,
+    `[data-cy=db-views-view-button-${testView}]`,
     newShouldArgs("be.visible.and.contain", "Viewing"),
   ),
   newExpectation(
@@ -421,7 +421,7 @@ const notEmptyViewsExpectations = (
         ),
         newExpectationWithClickFlows(
           "should successfully execute a view",
-          `[data-cy=repo-views-view-${testView}]`,
+          `[data-cy=db-views-view-${testView}]`,
           beVisible,
           [testViewClickFlow(testView)],
         ),
