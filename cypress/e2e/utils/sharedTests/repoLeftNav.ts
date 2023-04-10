@@ -384,7 +384,7 @@ const testViewMobile = (testView: string): Expectation[] => [
   ),
   newExpectation(
     "",
-    `[data-cy=db-views-view-button-${testView}]`,
+    `[data-cy=repo-views-view-button-${testView}]`,
     newShouldArgs("be.visible.and.contain", "Viewing"),
   ),
   newExpectation(
