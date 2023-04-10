@@ -74,7 +74,7 @@ export const testViewQuery: Tests = [
       newClickFlow(`[data-cy=db-view-views-${testViewName}]>div>button`, [
         newExpectation(
           "should have view listed",
-          `[data-cy=db-views-view-button-${testViewName}]`,
+          `[data-cy=repo-views-view-button-${testViewName}]`,
           beVisibleAndContain("Viewing"),
         ),
       ]),
