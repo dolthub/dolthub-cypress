@@ -2274,15 +2274,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/xml2js@npm:^0":
-  version: 0.4.11
-  resolution: "@types/xml2js@npm:0.4.11"
-  dependencies:
-    "@types/node": "*"
-  checksum: d0e7d2a8c7e0a53147c777a6756bdea0eb26a3de0d3c1f42c17e63332e4e2dc532f687c19ca26a0518336f5de60e1ec4345d7ef71e7ba0656fcf3390c9388eb5
-  languageName: node
-  linkType: hard
-
 "@types/yauzl@npm:^2.9.1":
   version: 2.9.2
   resolution: "@types/yauzl@npm:2.9.2"
@@ -3390,7 +3381,6 @@ __metadata:
     "@babel/preset-typescript": ^7.21.0
     "@cypress/github-action": ^5.1.0
     "@types/node": ^18.11.18
-    "@types/xml2js": ^0
     "@typescript-eslint/eslint-plugin": ^5.54
     "@typescript-eslint/parser": ^5.54.0
     cypress: ^11.2.0
@@ -3405,7 +3395,6 @@ __metadata:
     npm-run-all: ^4.1.5
     prettier: ^2.8.3
     typescript: ^4.9.5
-    xml2js: ^0.5.0
     yarnhook: ^0.6.0
   languageName: unknown
   linkType: soft
@@ -7258,16 +7247,6 @@ __metadata:
   version: 1.0.2
   resolution: "wrappy@npm:1.0.2"
   checksum: 159da4805f7e84a3d003d8841557196034155008f817172d4e986bd591f74aa82aa7db55929a54222309e01079a65a92a9e6414da5a6aa4b01ee44a511ac3ee5
-  languageName: node
-  linkType: hard
-
-"xml2js@npm:^0.4.19":
-  version: 0.4.23
-  resolution: "xml2js@npm:0.4.23"
-  dependencies:
-    sax: ">=0.6.0"
-    xmlbuilder: ~11.0.0
-  checksum: ca0cf2dfbf6deeaae878a891c8fbc0db6fd04398087084edf143cdc83d0509ad0fe199b890f62f39c4415cf60268a27a6aed0d343f0658f8779bd7add690fa98
   languageName: node
   linkType: hard
 
