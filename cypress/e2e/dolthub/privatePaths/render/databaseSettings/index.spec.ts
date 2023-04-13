@@ -11,6 +11,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Logged in database settings page";
 const currentOwner = "automated_testing";
@@ -43,6 +44,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   );
 
   const tests = [
+    testOldFormatPopup,
     newExpectation(
       "should have an active Database Details tab",
       "[data-cy=active-database-settings-tab]",

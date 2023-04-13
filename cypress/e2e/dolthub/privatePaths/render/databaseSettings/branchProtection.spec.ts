@@ -12,6 +12,7 @@ import {
   scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Logged in branch protection settings page";
 const currentOwner = "automated_testing";
@@ -21,6 +22,7 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
+    testOldFormatPopup,
     newExpectation(
       "should have an active branch protection tab",
       "[data-cy=active-branch-protections-settings-tab]",
