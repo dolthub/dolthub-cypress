@@ -3,6 +3,7 @@ import { testLoggedInSignInTo } from "@sharedTests/signInTo";
 import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Open issue page";
@@ -16,6 +17,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
+    testOldFormatPopup,
     newExpectation(
       "should not find 404 page",
       "[data-cy=issue-404-page]",
