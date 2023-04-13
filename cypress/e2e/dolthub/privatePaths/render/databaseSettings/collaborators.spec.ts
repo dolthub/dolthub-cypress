@@ -7,7 +7,6 @@ import {
 import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Logged in database collaborators settings page";
 const currentOwner = "automated_testing";
@@ -17,7 +16,6 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    testOldFormatPopup,
     shouldFindAndContain("active-collaborators-settings-tab", "Collaborators"),
     newExpectation(
       "should have a Collaborators section with headers",
