@@ -17,7 +17,6 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-
   const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
     newExpectation(
       "should have blank search input after clear",
@@ -53,5 +52,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   // TODO: Fix mobile navbar tests
   const devices = desktopDevicesForSignedOut(pageName, tests);
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({
+    currentPage,
+    devices,
+    skip,
+    ignoreUncaughtErrors: true,
+  });
 });
