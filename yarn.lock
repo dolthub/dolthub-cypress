@@ -120,8 +120,8 @@ __metadata:
   linkType: hard
 
 "@azure/core-http@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@azure/core-http@npm:3.0.0"
+  version: 3.0.1
+  resolution: "@azure/core-http@npm:3.0.1"
   dependencies:
     "@azure/abort-controller": ^1.0.0
     "@azure/core-auth": ^1.3.0
@@ -136,8 +136,8 @@ __metadata:
     tslib: ^2.2.0
     tunnel: ^0.0.6
     uuid: ^8.3.0
-    xml2js: ^0.4.19
-  checksum: 9b6885a60a8fdac924cc9544e09d66757ff4ed51ed20ce3c279321e684e21c295c091ad9d45477e02baae5255e3a92c5fbb2ac46687d261d66488c294b32846f
+    xml2js: ^0.5.0
+  checksum: ed8ba070ade8f8265e7d7821b0198feee2bff7c94ef44813ac6f684b02781bb357c49fbccc9ed07cee8851d04452a365b235a4ba2119494672561f59b932317b
   languageName: node
   linkType: hard
 
@@ -173,12 +173,12 @@ __metadata:
   linkType: hard
 
 "@azure/core-util@npm:^1.1.1":
-  version: 1.2.0
-  resolution: "@azure/core-util@npm:1.2.0"
+  version: 1.3.1
+  resolution: "@azure/core-util@npm:1.3.1"
   dependencies:
     "@azure/abort-controller": ^1.0.0
     tslib: ^2.2.0
-  checksum: 58c7e3c9e9fda27242c1ab1dbfcf11eab52cc3e6459a2509fa5572a3faebf3f24c6bf9d92883cd80974119fc1e2c16c7bd2c71f20cfbe670405515c73fdb4093
+  checksum: 861d9bd1a9db863bfc71b95447d548f100bec975670efb658ddc9b7c0d676d03a21a48042aa9ec853ad6b1bd38da2cf3069cd7e872196bea1598bf4357430d8f
   languageName: node
   linkType: hard
 
@@ -209,8 +209,8 @@ __metadata:
   linkType: hard
 
 "@azure/storage-blob@npm:^12.13.0":
-  version: 12.13.0
-  resolution: "@azure/storage-blob@npm:12.13.0"
+  version: 12.14.0
+  resolution: "@azure/storage-blob@npm:12.14.0"
   dependencies:
     "@azure/abort-controller": ^1.0.0
     "@azure/core-http": ^3.0.0
@@ -220,7 +220,7 @@ __metadata:
     "@azure/logger": ^1.0.0
     events: ^3.0.0
     tslib: ^2.2.0
-  checksum: 1509b8904eb46937b76f9acc04e9e0c39e8e9219a3bc3f5c006df7eb4d29ff2ed0ebbecc875f9372b5a349639e79123b30bbfb407864cfe91633dd6871a9bd99
+  checksum: d087afd09a68342f7dcc655bf8861ffbcf84caddbfeee9ad226491a5b890fe0721a51d7221d0fc514b205a50ac153982803d89958640d2237a431b5f6b47dd6c
   languageName: node
   linkType: hard
 
