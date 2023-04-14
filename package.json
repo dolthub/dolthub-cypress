@@ -39,15 +39,15 @@
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.54",
     "@typescript-eslint/parser": "^5.54.0",
-    "eslint": "^8.35.0",
+    "eslint": "^8.38.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-cypress": "^2.13.2",
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.3",
+    "prettier": "^2.8.7",
     "yarnhook": "^0.6.0"
   },
   "dependencies": {
