@@ -188,10 +188,8 @@ function getAssertionTest(
         .type(typeString.value, clickOpts);
     }
     if (!typeString.skipClear) {
-      return cy
-        .get(selectorStr, opts)
-        .clear(clickOpts)
-        .type(typeString.value, clickOpts);
+      cy.get(selectorStr, opts).clear(clickOpts);
+      return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
     }
     return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
   }
