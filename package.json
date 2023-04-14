@@ -31,7 +31,7 @@
     "postinstall": "bash -c 'if [ -z \"$HUSKY_SKIP_INSTALL\" ]; then husky install .husky; fi'"
   },
   "devDependencies": {
-    "@babel/cli": "^7.20.7",
+    "@babel/cli": "^7.21.0",
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-typescript": "^7.21.0",
@@ -39,15 +39,15 @@
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.54",
     "@typescript-eslint/parser": "^5.54.0",
-    "eslint": "^8.35.0",
+    "eslint": "^8.38.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-cypress": "^2.13.2",
     "eslint-plugin-import": "^2.27.5",
     "husky": "^8.0.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.3",
+    "prettier": "^2.8.7",
     "yarnhook": "^0.6.0"
   },
   "dependencies": {
@@ -56,7 +56,8 @@
     "typescript": "^4.9.5"
   },
   "resolutions": {
-    "minimist": "^1.2.6"
+    "minimist": "^1.2.6",
+    "xml2js": "^0.5.0"
   },
   "packageManager": "yarn@3.1.1"
 }

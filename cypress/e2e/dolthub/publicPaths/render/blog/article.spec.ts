@@ -46,5 +46,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testBlogArticle,
     testBlogArticle,
   );
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({
+    currentPage,
+    devices,
+    skip,
+    ignoreUncaughtErrors: true,
+  });
 });

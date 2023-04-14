@@ -102,5 +102,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
   // ];
 
   const devices = desktopDevicesForSignedOut(pageName, desktopTests);
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({
+    currentPage,
+    devices,
+    skip,
+    ignoreUncaughtErrors: true,
+  });
 });

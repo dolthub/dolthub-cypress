@@ -6,6 +6,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -48,6 +49,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
+    testOldFormatPopup,
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",

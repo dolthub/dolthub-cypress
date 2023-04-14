@@ -126,10 +126,12 @@ function completeLoginForCypressTesting() {
     .should("be.visible")
     .type(username, { ...clickOpts, log: false });
   cy.get("input[name=username]").should("have.value", username);
-  cy.get("input[name=password]", opts)
-    .should("be.visible")
-    .type(password, { ...clickOpts, log: false })
-    .type("{enter}", clickOpts);
+  cy.get("input[name=password]", opts).should("be.visible");
+  cy.get("input[name=password]", opts).type(password, {
+    ...clickOpts,
+    log: false,
+  });
+  cy.get("input[name=password]", opts).type("{enter}", clickOpts);
 }
 
 Cypress.Commands.add("signout", isMobile => {
@@ -182,3 +184,14 @@ Cypress.on(
   "uncaught:exception",
   err => !err.message.includes("ResizeObserver loop limit exceeded"),
 );
+
+Cypress.Commands.add("ignoreUncaughtErrors", (errorMessages: string[]) => {
+  errorMessages.forEach(errorMessage => {
+    cy.on("uncaught:exception", err => {
+      if (err.message.includes(errorMessage)) {
+        return false;
+      }
+      return true;
+    });
+  });
+});

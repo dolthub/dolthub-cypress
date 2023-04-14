@@ -10,6 +10,15 @@ import { notExist } from "./sharedFunctionsAndVariables";
 const beVisible = newShouldArgs("be.visible");
 const notBeVisible = newShouldArgs("not.be.visible");
 
+// OLD FORMAT POPUP
+
+export const testOldFormatPopup = newExpectationWithClickFlows(
+  "should find and old format popup",
+  "[data-cy=old-format-popup]",
+  beVisible,
+  [newClickFlow("[data-cy=close-modal]", [])],
+);
+
 // HEADER
 
 const cloneClickFlow = newClickFlow(
