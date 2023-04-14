@@ -1,7 +1,6 @@
 import { allDevicesForSignedOut } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { gatsbyServerBuildErrors } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog article page";
 const currentBlog = "2020-03-06-so-you-want-git-for-data";
@@ -12,10 +11,6 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-  it("should ignore Gatsby server error", () => {
-    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-  });
 
   const testBlogArticle = [
     newExpectation("should have blog post", "[data-cy=blog-post]", beVisible),
@@ -51,5 +46,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testBlogArticle,
     testBlogArticle,
   );
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({
+    currentPage,
+    devices,
+    skip,
+    ignoreUncaughtErrors: true,
+  });
 });

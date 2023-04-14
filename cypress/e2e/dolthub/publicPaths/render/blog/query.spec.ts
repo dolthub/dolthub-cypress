@@ -7,7 +7,6 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { gatsbyServerBuildErrors } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog list page with query";
 const query = "figma of databases video";
@@ -18,11 +17,6 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-
-  // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-  it("should ignore Gatsby server error", () => {
-    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-  });
   const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
     newExpectation(
       "should have blank search input after clear",
@@ -58,5 +52,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   // TODO: Fix mobile navbar tests
   const devices = desktopDevicesForSignedOut(pageName, tests);
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({
+    currentPage,
+    devices,
+    skip,
+    ignoreUncaughtErrors: true,
+  });
 });

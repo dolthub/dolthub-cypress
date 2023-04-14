@@ -1,7 +1,6 @@
 import { macbook15 } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { gatsbyServerBuildErrors } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog 404 page for path that does not exist";
 const currentPath = "/does-not-exist";
@@ -12,11 +11,6 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-
-  // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-  it("should ignore Gatsby server error", () => {
-    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-  });
 
   const tests = [
     newExpectation(
@@ -38,5 +32,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = [macbook15(pageName, tests, false)];
 
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({
+    currentPage,
+    devices,
+    skip,
+    ignoreUncaughtErrors: true,
+  });
 });
