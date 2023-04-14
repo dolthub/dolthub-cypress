@@ -8,6 +8,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { gatsbyServerBuildErrors } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog list page";
 const currentPage = Cypress.env("LOCAL_BLOG") ? "/" : "/blog/";
@@ -17,6 +18,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
   const query1 = "figma of databases video";
   const query2 = "wikipedia ngrams";
+
+  // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+  it("should ignore Gatsby server error", () => {
+    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+  });
 
   const searchClickFlow = newClickFlow(
     "",

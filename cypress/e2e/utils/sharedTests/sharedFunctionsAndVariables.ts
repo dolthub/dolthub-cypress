@@ -103,3 +103,5 @@ export function getTypeInGridTests(grids: string[][], skipClear = false) {
   });
   return tests;
 }
+
+export const gatsbyServerBuildErrors = ["Minified React error"];
