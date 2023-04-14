@@ -1,4 +1,7 @@
-import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import {
+  testOldFormatPopup,
+  testRepoHeaderWithBranch,
+} from "@sharedTests/repoHeaderNav";
 import { testSqlConsole } from "@sharedTests/sqlEditor";
 import { macbook15ForAppLayout } from "@utils/devices";
 import {
@@ -35,6 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
+    testOldFormatPopup,
     newExpectation(
       "should have repository layout",
       "[data-cy=repository-layout-container]",

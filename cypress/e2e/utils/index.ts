@@ -1,3 +1,4 @@
+import { gatsbyServerBuildErrors } from "./sharedTests/sharedFunctionsAndVariables";
 import {
   ClickFlow,
   Devices,
@@ -111,12 +112,14 @@ type TestsForDevicesArgs = {
   currentPage: string;
   devices: Devices;
   skip?: boolean;
+  ignoreUncaughtErrors?: boolean;
 };
 
 export function runTestsForDevices({
   devices,
   currentPage,
   skip = false,
+  ignoreUncaughtErrors = false,
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
@@ -127,6 +130,12 @@ export function runTestsForDevices({
       });
     } else {
       describe(d.description, deviceDimensions[d.device], () => {
+        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+        if (ignoreUncaughtErrors) {
+          it("should ignore Gatsby server error", () => {
+            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+          });
+        }
         runTests({ ...d, currentPage });
       });
     }
@@ -188,10 +197,8 @@ function getAssertionTest(
         .type(typeString.value, clickOpts);
     }
     if (!typeString.skipClear) {
-      return cy
-        .get(selectorStr, opts)
-        .clear(clickOpts)
-        .type(typeString.value, clickOpts);
+      cy.get(selectorStr, opts).clear(clickOpts);
+      return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
     }
     return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
   }
