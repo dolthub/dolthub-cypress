@@ -59,4 +59,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   // TODO: Fix mobile navbar tests
   const devices = desktopDevicesForSignedOut(pageName, tests);
   runTestsForDevices({ currentPage, devices, skip });
+
+  it("should ignore Gatsby server error", () => {
+    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+  });
 });
