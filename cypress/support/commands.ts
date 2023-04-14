@@ -126,10 +126,10 @@ function completeLoginForCypressTesting() {
     .should("be.visible")
     .type(username, { ...clickOpts, log: false });
   cy.get("input[name=username]").should("have.value", username);
+  cy.get("input[name=password]", opts).should("be.visible");
   cy.get("input[name=password]", opts)
-    .should("be.visible")
-    .type(password, { ...clickOpts, log: false })
-    .type("{enter}", clickOpts);
+  .type(password, { ...clickOpts, log: false });
+  cy.get("input[name=password]", opts).type("{enter}", clickOpts);
 }
 
 Cypress.Commands.add("signout", isMobile => {
