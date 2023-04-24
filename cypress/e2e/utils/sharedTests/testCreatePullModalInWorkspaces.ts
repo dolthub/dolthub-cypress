@@ -36,7 +36,7 @@ export const testCreatePullModal = [
   ),
 
   newExpectationWithClickFlows(
-    "should show create pull button",
+    "should show create pull modal",
     "[data-cy=create-pull]",
     beVisible,
     [
