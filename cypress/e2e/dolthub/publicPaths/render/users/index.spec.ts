@@ -6,46 +6,31 @@ import {
   shouldNotExist,
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
-const pageName = "DoltHub org people page";
-const orgName = "DoltHub";
-const currentPage = `/organizations/Liquidata/people`;
+const pageName = "cypresstesting users page";
+const username = "cypresstesting";
+const currentPage = `/users/cypresstesting`;
+const skip = false;
 
 const commonDataCy = [
   "profile-card",
   "profile-card-pic",
   "profile-card-bio",
-  "not-org-owner-people-msg",
+  "no-repos-msg",
 ];
 
-const commonNotExist = [
-  "repository-list-for-owner",
-  "org-member-list",
-  "org-settings",
-  "billing-info",
-  "payment-history",
-];
-
-const desktopDataCy = [
-  "profile-summary",
-  "profile-card-url",
-  "profile-card-location",
-  "org-profile-databases-tab",
-];
+const desktopDataCy = ["user-profile-databases-tab", "profile-summary"];
 
 const desktopNotExist = [
-  "org-profile-people-tab",
-  "org-profile-settings-tab",
-  "org-profile-billing-tab",
-  "org-profile-payment-history-tab",
-  "add-location-link",
   "add-website-link",
+  "add-location-link",
+  "user-profile-organizations-tab",
+  "create-database-button",
 ];
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const commonTests = [
     ...commonDataCy.map(dc => shouldBeVisible(dc)),
-    shouldFindAndContain("profile-card-name", orgName),
-    ...commonNotExist.map(dc => shouldNotExist(dc)),
+    shouldFindAndContain("profile-card-name", username),
   ];
 
   const desktopTests = [
@@ -56,12 +41,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const mobileTests = [
     ...commonTests,
-    shouldBeVisible("mobile-profile-selector"),
+    shouldFindAndContain("mobile-profile-selector", "Database"),
   ];
 
   const devices = [
     macbook15ForAppLayout(pageName, desktopTests, false),
     iPhoneXForAppLayout(pageName, mobileTests),
   ];
-  runTestsForDevices({ currentPage, devices });
+
+  runTestsForDevices({ currentPage, devices, skip });
 });

@@ -1,97 +1,52 @@
 import { iPhoneXForAppLayout, macbook15ForAppLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import {
+  shouldBeVisible,
+  shouldFindAndContain,
+} from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "cypresstesting users page";
 const username = "cypresstesting";
 const currentPage = `/users/cypresstesting`;
 const loggedIn = true;
+const skip = false;
+
+const commonDataCy = [
+  "profile-card",
+  "profile-card-pic",
+  "profile-card-bio",
+  "no-repos-msg",
+];
+
+const desktopDataCy = [
+  "user-profile-databases-tab",
+  "profile-summary",
+  "add-website-link",
+  "add-location-link",
+  "create-database-button",
+  "user-profile-organizations-tab",
+];
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
-  const notExist = newShouldArgs("not.exist");
-  const skip = false;
-
-  const commonTest = [
-    newExpectation(
-      "should show profile card",
-      "[data-cy=profile-card]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show profile card profile pic",
-      "[data-cy=profile-card-pic]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show profile card profile bio",
-      "[data-cy=profile-card-bio]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show profile summary",
-      "[data-cy=profile-summary]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should not show next steps",
-      "[data-cy=profile-card-next-steps]",
-      notExist,
-      skip,
-    ),
-    newExpectation(
-      "should show tabs container",
-      "[data-cy=org-profile-tabs-container]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show Databases tab",
-      "[data-cy=user-profile-databases-tab]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show no repos message",
-      "[data-cy=no-repos-msg]",
-      beVisible,
-    ),
+  const commonTests = [
+    ...commonDataCy.map(dc => shouldBeVisible(dc)),
+    shouldFindAndContain("profile-card-name", username),
   ];
 
-  const testDesktop = [
-    newExpectation(
-      "should show profile card profile name",
-      "[data-cy=profile-card-name-desktop]",
-      newShouldArgs("be.visible.and.contain", username),
-      skip,
-    ),
-    newExpectation(
-      "should have create database button",
-      "[data-cy=create-database-button]",
-      beVisible,
-      skip,
-    ),
+  const desktopTests = [
+    ...commonTests,
+    ...desktopDataCy.map(dc => shouldBeVisible(dc)),
   ];
 
-  const testProfileCardMobile = [
-    newExpectation(
-      "should show profile card profile name",
-      "[data-cy=profile-card-name-mobile]",
-      newShouldArgs("be.visible.and.contain", username),
-      skip,
-    ),
+  const mobileTests = [
+    ...commonTests,
+    shouldFindAndContain("mobile-profile-selector", "Database"),
   ];
 
-  const desktopTests = [...commonTest, ...testDesktop];
-  const mobileTests = [...commonTest, ...testProfileCardMobile];
   const devices = [
     macbook15ForAppLayout(pageName, desktopTests, false, loggedIn),
     iPhoneXForAppLayout(pageName, mobileTests, loggedIn),
   ];
 
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });

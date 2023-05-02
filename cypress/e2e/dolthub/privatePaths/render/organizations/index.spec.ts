@@ -1,165 +1,66 @@
 import { iPhoneXForAppLayout, macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import {
+  shouldBeVisible,
+  shouldFindAndContain,
+  shouldNotExist,
+} from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "automated_testing organization page";
 const orgName = "automated_testing";
 const currentPage = `/organizations/automated_testing`;
 const loggedIn = true;
 
+const commonDataCy = ["profile-card", "profile-card-pic", "profile-card-bio"];
+
+const desktopDataCy = [
+  "org-profile-databases-tab",
+  "profile-summary",
+  "profile-card-url",
+  "add-location-link",
+  "create-database-button",
+  "org-profile-people-tab",
+  "org-profile-settings-tab",
+  "org-profile-billing-tab",
+];
+
+const desktopNotExist = [
+  "org-profile-payment-history-tab",
+  "org-member-list",
+  "org-settings",
+  "billing-info",
+  "payment-history",
+];
+
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
-  const notExist = newShouldArgs("not.exist");
-  const notBeVisible = newShouldArgs("not.be.visible");
   const skip = false;
 
-  const commonTest = [
-    newExpectation(
-      "should show profile card",
-      "[data-cy=profile-card]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show profile card profile pic",
-      "[data-cy=profile-card-pic]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show profile card profile bio",
-      "[data-cy=profile-card-bio]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show profile summary",
-      "[data-cy=profile-summary]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should not show next steps",
-      "[data-cy=profile-card-next-steps]",
-      notExist,
-      skip,
-    ),
-    newExpectation(
-      "should show tabs container",
-      "[data-cy=org-profile-tabs-container]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should show Databases tab",
-      "[data-cy=org-profile-databases-tab]",
-      beVisible,
-      skip,
-    ),
-  ];
-  const testProfileCardDesktop = [
-    newExpectation(
-      "should show profile card profile name",
-      "[data-cy=profile-card-name-desktop]",
-      newShouldArgs("be.visible.and.contain", orgName),
-      skip,
-    ),
-    newExpectation(
-      "should show profile card profile url",
-      "[data-cy=profile-card-url-desktop]",
-      beVisible,
-      skip,
-    ),
-  ];
-
-  const testProfileCardMobile = [
-    newExpectation(
-      "should show profile card profile name",
-      "[data-cy=profile-card-name-mobile]",
-      newShouldArgs("be.visible.and.contain", orgName),
-      skip,
-    ),
-    newExpectation(
-      "should show profile card profile url",
-      "[data-cy=profile-card-url-mobile]",
-      beVisible,
-      skip,
-    ),
-  ];
-
-  const testDesktopTabContainer = [
-    newExpectation(
-      "should have create database button",
-      "[data-cy=create-database-button]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should have People tab",
-      "[data-cy=org-profile-people-tab]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should have  Settings tab",
-      "[data-cy=org-profile-settings-tab]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should have  Billing tab",
-      "[data-cy=org-profile-billing-tab]",
-      beVisible,
-      skip,
-    ),
-    newExpectation(
-      "should have disabled Payment History tab",
-      "[data-cy=org-profile-payment-history-tab]",
-      notBeVisible,
-      skip,
-    ),
+  const commonTests = [
+    ...commonDataCy.map(dc => shouldBeVisible(dc)),
+    shouldFindAndContain("profile-card-name", orgName),
     newExpectation(
       "should show list of owner repositories",
       "[data-cy=repository-list-for-owner] li",
       newShouldArgs("be.visible.and.have.length.of.at.least", 9),
-      skip,
-    ),
-    newExpectation(
-      "should not show org member list",
-      "[data-cy=org-member-list]",
-      notExist,
-      skip,
-    ),
-    newExpectation(
-      "should not show org settings",
-      "[data-cy=org-settings]",
-      notExist,
-      skip,
-    ),
-    newExpectation(
-      "should not show org billing info",
-      "[data-cy=billing-info]",
-      notExist,
-      skip,
-    ),
-    newExpectation(
-      "should not show org payment history",
-      "[data-cy=payment-history]",
-      notExist,
-      skip,
     ),
   ];
 
   const desktopTests = [
-    ...commonTest,
-    ...testProfileCardDesktop,
-    ...testDesktopTabContainer,
+    ...commonTests,
+    ...desktopDataCy.map(dc => shouldBeVisible(dc)),
+    ...desktopNotExist.map(dc => shouldNotExist(dc)),
   ];
-  const mobileTests = [...commonTest, ...testProfileCardMobile];
+
+  const mobileTests = [
+    ...commonTests,
+    shouldFindAndContain("mobile-profile-selector", "Database"),
+  ];
+
   const devices = [
     macbook15ForAppLayout(pageName, desktopTests, false, loggedIn),
     iPhoneXForAppLayout(pageName, mobileTests, loggedIn),
   ];
 
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ currentPage, devices, skip });
 });
