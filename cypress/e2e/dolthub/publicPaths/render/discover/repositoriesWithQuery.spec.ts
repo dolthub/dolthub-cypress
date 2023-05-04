@@ -46,7 +46,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [clearSearchClickFlow],
     ),
-    ...checkRepoListForTab("most-recent", 20),
+    ...checkRepoListForTab("most-recent", 15),
   ];
 
   const devices = allDevicesForSignedOut(pageName, tests(false), tests(true));
