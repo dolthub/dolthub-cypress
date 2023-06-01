@@ -11,8 +11,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "renders expected headers",
       "#main-content",
       newShouldArgs("be.visible.and.contain", [
-        "The database evolved",
-        "A next generation database",
+        "Git for data",
+        "Diff, branch, and merge",
         "Two familiar interfaces combined",
         "Evolved Features",
       ]),
