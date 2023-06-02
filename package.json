@@ -38,7 +38,7 @@
     "@cypress/github-action": "^5.6.1",
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.59",
-    "@typescript-eslint/parser": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.8",
     "eslint": "^8.41.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
