@@ -10,7 +10,7 @@ import { runTestsForDevices } from "@utils/index";
 const pageName = "Open pull diff page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "4";
+const currentPullId = "5";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
