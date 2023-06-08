@@ -6,7 +6,7 @@ import { runTestsForDevices } from "@utils/index";
 const pageName = "Merged pull page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "4";
+const currentPullId = "1";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
 const destinationBranch = "archived";
 
