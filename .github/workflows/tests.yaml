@@ -61,6 +61,7 @@ jobs:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           AWS_REGION: "us-west-2"
           SNS_TOPIC_ARN: ${{ secrets.SNS_TOPIC_ARN }}
+          ALERT_ON_FAILURE: true
       - name: Save screenshots of failed tests
         uses: actions/upload-artifact@v3
         if: failure()
