@@ -1,4 +1,5 @@
 import { defineConfig } from "cypress";
+import  { SNSClient, PublishCommand } from "@aws-sdk/client-sns";
 
 export default defineConfig({
   video: false,
@@ -17,23 +18,35 @@ export default defineConfig({
       on("after:run",  (results) => {
         if (results) {
           // results will be undefined in interactive mode
+          const alertOnFailure = !!process.env.ALERT_ON_FAILURE;
 
-          const adjustedTotal = results.totalTests - results.totalSkipped;
-          console.log(
-            results.totalPassed,
-            'out of',
-            results.totalTests,
-            'passed'
-          )
+          if (alertOnFailure) {
+            const adjustedTotal = results.totalTests - results.totalSkipped;
+            const percentFailed = Math.floor(100 * (results.totalFailed/adjustedTotal));
 
-          console.log(
-            results.totalFailed,
-            'out of',
-            adjustedTotal,
-            'failed, which is',
-            Math.floor(100 * (results.totalFailed/adjustedTotal)),
-            ' percent'
-          )
+            if (percentFailed >= 25) {
+              const region = process.env.AWS_REGION;
+              const topicArn = process.env.SNS_TOPIC_ARN;
+
+              const params = {
+                Message: "dolthub_degraded_cypress_1",
+                TopicArn: topicArn,
+              };
+
+              const snsClient = new SNSClient({ region: region });
+              const run = async () => {
+                try {
+                  const data = await snsClient.send(new PublishCommand(params));
+                  console.log("Successfully alarmed by sending SNS message.",  data);
+                  return data; // For unit tests.
+                } catch (err) {
+                  console.log("Error", err.stack);
+                }
+              };
+              run();
+            }
+
+          }
         }
       });
     },
