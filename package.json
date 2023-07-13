@@ -6,8 +6,8 @@
   "license": "ISC",
   "scripts": {
     "cy-open": "cypress open",
-    "cy-run": "ALERT_ON_FAILURE=true cypress run",
-    "cy-chrome": "ALERT_ON_FAILURE=true cypress run --browser chrome",
+    "cy-run": "cypress run",
+    "cy-chrome": "cypress run --browser chrome",
     "cy-open-dev": "cypress open --config baseUrl=https://dolthub.awsdev.ld-corp.com",
     "cy-open-dev-p1": "cypress open --config baseUrl=https://dolthub-preview-1.awsdev.ld-corp.com",
     "cy-open-dev-p2": "cypress open --config baseUrl=https://dolthub-preview-2.awsdev.ld-corp.com",
