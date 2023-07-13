@@ -1,0 +1,64 @@
+
+on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: "Ignore me"
+        required: false
+        type: boolean
+
+permissions:
+      id-token: write   # This is required for requesting the JWT
+      contents: read    # This is required for actions/checkout
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "18"
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1.7.0
+        with:
+          role-to-assume: ${{ secrets.ROLE_TO_ASSUME }}
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: "us-west-2"
+      # Hello from AWS: WhoAmI
+      - name: Sts GetCallerIdentity
+        run: |
+          aws sts get-caller-identity
+      - name: Publish sns message
+        run: |
+          echo "hello_there_world" > message.txt
+          aws sns publish \
+          --topic-arn ${{ secrets.SNS_TOPIC_ARN }} \
+          --message file://message.txt
+      # - name: Install dependencies
+      #   run: yarn
+      # - name: Cypress run doltlab tests
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     install: false
+      #     browser: chrome
+      #     config-file: cypress.doltlab.config.ts
+      #   env:
+      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      # - name: Cypress run dolthub tests
+      #   uses: cypress-io/github-action@v4
+      #   with:
+      #     install: false
+      #     browser: chrome
+      #   env:
+      #     CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
+      #     CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
+      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      # - name: Save screenshots of failed tests
+      #   uses: actions/upload-artifact@v3
+      #   if: failure()
+      #   with:
+      #     name: cypress-screenshots
+      #     path: cypress/screenshots
+      #     retention-days: 7
