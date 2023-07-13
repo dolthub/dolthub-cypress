@@ -14,6 +14,28 @@ export default defineConfig({
           return null;
         },
       });
+      on("after:run",  (results) => {
+        if (results) {
+          // results will be undefined in interactive mode
+
+          const adjustedTotal = results.totalTests - results.totalSkipped;
+          console.log(
+            results.totalPassed,
+            'out of',
+            results.totalTests,
+            'passed'
+          )
+
+          console.log(
+            results.totalFailed,
+            'out of',
+            adjustedTotal,
+            'failed, which is',
+            Math.floor(100 * (results.totalFailed/adjustedTotal)),
+            ' percent'
+          )
+        }
+      });
     },
   },
   viewportWidth: 1440,
