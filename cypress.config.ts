@@ -24,7 +24,7 @@ export default defineConfig({
             const adjustedTotal = results.totalTests - results.totalSkipped;
             const percentFailed = Math.floor(100 * (results.totalFailed/adjustedTotal));
 
-            if (percentFailed >= 25) {
+            if (percentFailed >= 0) {
               const region = process.env.AWS_REGION;
               const topicArn = process.env.SNS_TOPIC_ARN;
 
