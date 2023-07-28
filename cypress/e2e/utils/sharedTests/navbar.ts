@@ -15,7 +15,6 @@ const sharedLinks = [
   "[data-cy=navbar-logo]",
   "[data-cy=navbar-discord]",
   "[data-cy=navbar-github]",
-  "[data-cy=navbar-bounties]",
   "[data-cy=navbar-pricing]",
   "[data-cy=navbar-databases]",
 ];
