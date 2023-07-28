@@ -118,10 +118,11 @@ export const uncheckShowForkListOption = newExpectationWithClickFlows(
 );
 
 export const checkForkList = (isMobile: boolean) => [
-  newExpectation(
+  newExpectationWithScrollIntoView(
     "should have show forks button",
     `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
     beVisible,
+    true,
   ),
   newExpectationWithClickFlows(
     "should have show forks button",
