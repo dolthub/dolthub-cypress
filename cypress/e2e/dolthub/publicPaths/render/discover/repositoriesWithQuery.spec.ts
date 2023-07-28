@@ -19,7 +19,7 @@ const currentPage = `/repositories/${searchTerm}`;
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
-  const tests = (isMobile: boolean) => [
+  const tests = [
     newExpectation(
       "should have repos container",
       "[data-cy=repos-container-with-tabs]",
@@ -49,7 +49,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...checkRepoListForTab("most-recent", 15),
   ];
 
-  const devices = allDevicesForSignedOut(pageName, tests(false), tests(true));
+  const devices = allDevicesForSignedOut(pageName, tests, tests);
 
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
