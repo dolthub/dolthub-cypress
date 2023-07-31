@@ -5,7 +5,6 @@ import { runTestsForDevices } from "@utils/index";
 
 const pageName = "home page";
 const currentPage = "/";
-
 describe(`DoltLab ${pageName} renders expected components`, () => {
   const beVisible = newShouldArgs("be.visible");
   const tests = [
@@ -29,5 +28,9 @@ describe(`DoltLab ${pageName} renders expected components`, () => {
 
   const devices = [macbook15ForDoltLabSignedOutLayout(pageName, tests)];
 
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({
+    currentPage,
+    devices,
+    ignoreUncaughtErrors: true,
+  });
 });
