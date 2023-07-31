@@ -6,6 +6,7 @@ import {
 import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Webhooks page with webhook";
 const currentOwner = "automated_testing";
@@ -15,6 +16,7 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
+    testOldFormatPopup,
     shouldFindAndContain("active-webhooks-settings-tab", "Webhooks"),
     shouldBeVisible("repo-page-for-webhooks"),
     shouldFindAndContain("webhooks-header", "Webhooks"),

@@ -1,4 +1,7 @@
-import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
+import {
+  testOldFormatPopup,
+  testRepoHeaderWithBranch,
+} from "@sharedTests/repoHeaderNav";
 import { testSqlConsole } from "@sharedTests/sqlEditor";
 import { macbook15ForAppLayout } from "@utils/devices";
 import {
@@ -8,6 +11,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testCreatePullModal } from "@utils/sharedTests/testCreatePullModalInWorkspaces";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -35,6 +39,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
+    testOldFormatPopup,
     newExpectation(
       "should have repository layout",
       "[data-cy=repository-layout-container]",
@@ -86,6 +91,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       [noButtonClickFlow],
     ),
+    ...testCreatePullModal,
     testSqlConsole,
   ];
 

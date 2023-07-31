@@ -1,6 +1,7 @@
 import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Issues page";
 const currentOwner = "automated_testing";
@@ -13,6 +14,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
+    testOldFormatPopup,
     newExpectation(
       "should not find empty issue message",
       "[data-cy=issue-no-issues]",

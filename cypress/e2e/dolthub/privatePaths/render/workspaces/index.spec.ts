@@ -6,6 +6,8 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
+import { testCreatePullModal } from "@utils/sharedTests/testCreatePullModalInWorkspaces";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -48,6 +50,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
+    testOldFormatPopup,
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",
@@ -74,6 +77,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=create-pull]",
       beVisible,
     ),
+    ...testCreatePullModal,
     newExpectationWithClickFlows(
       "should show discard workspace button",
       "[data-cy=discard-work]",

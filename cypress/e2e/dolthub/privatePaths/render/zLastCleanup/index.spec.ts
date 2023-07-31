@@ -46,9 +46,9 @@ function cleanupLeftoverTempDbs(owner: string) {
 
     cy.location("pathname", opts).should("contain", "settings");
 
-    cy.get("[data-cy=delete-database-button]", opts)
-      .scrollIntoView(clickOpts)
-      .click(clickOpts);
+    cy.get("[data-cy=delete-database-button]", opts).scrollIntoView(clickOpts);
+
+    cy.get("[data-cy=delete-database-button]", opts).click(clickOpts);
 
     cy.get("[data-cy=submit-delete-database]", opts).click(clickOpts);
 

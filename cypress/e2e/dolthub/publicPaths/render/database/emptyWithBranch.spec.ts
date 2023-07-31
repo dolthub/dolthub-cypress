@@ -52,12 +52,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should have spreadsheet editor section",
-      "[data-cy=file-upload-spreadsheet-upload-link]",
+      "[data-cy=file-upload-spreadsheet-table-link]",
       beVisible,
     ),
     newExpectation(
       "should have file upload section",
-      "[data-cy=file-upload-fileupload-upload-link]",
+      "[data-cy=file-upload-fileupload-table-link]",
       beVisible,
     ),
     newExpectationWithScrollIntoView(

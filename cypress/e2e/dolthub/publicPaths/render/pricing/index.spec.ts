@@ -1,5 +1,10 @@
 import { allDevicesForSignedOut } from "@utils/devices";
-import { newExpectationWithScrollIntoView } from "@utils/helpers";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
+} from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
   beVisible,
@@ -11,7 +16,7 @@ const currentPage = "/pricing";
 
 const pricingTests = [
   {
-    card: "dolt-card",
+    name: "dolt",
     shouldFind: [
       {
         datacy: "dolt-header",
@@ -24,7 +29,7 @@ const pricingTests = [
     ],
   },
   {
-    card: "hosted-dolt-card",
+    name: "hosted-dolt",
     shouldFind: [
       {
         datacy: "hosted-dolt-header",
@@ -41,11 +46,11 @@ const pricingTests = [
     ],
   },
   {
-    card: "dolthub-card",
+    name: "dolthub",
     shouldFind: [
       {
         datacy: "dolthub-header",
-        text: "FORKS, CLONES, & PULLS REQUESTS",
+        text: "FORKS, CLONES, & PULL REQUESTS",
       },
       {
         datacy: "dolthub-sign-up-button",
@@ -58,7 +63,7 @@ const pricingTests = [
     ],
   },
   {
-    card: "doltlab-card",
+    name: "doltlab",
     shouldFind: [
       {
         datacy: "doltlab-header",
@@ -75,7 +80,7 @@ const pricingTests = [
     ],
   },
   {
-    card: "enterprise-card",
+    name: "enterprise",
     shouldFind: [
       {
         datacy: "enterprise-header",
@@ -94,14 +99,33 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...pricingTests
       .map(test => [
         newExpectationWithScrollIntoView(
-          `should find and scroll to ${test.card} pricing section`,
-          `[data-cy=${test.card}]`,
+          `should find and scroll to ${test.name}-card pricing section`,
+          `[data-cy=${test.name}-card]`,
           beVisible,
           true,
         ),
         ...test.shouldFind.map(find =>
           shouldFindAndContain(find.datacy, find.text),
         ),
+
+        ...(test.name !== "enterprise"
+          ? [
+              newExpectationWithClickFlows(
+                "should click on the enterprise banner button",
+                `[data-cy=enterprise-banner-${test.name}]`,
+                beVisible,
+                [
+                  newClickFlow(`[data-cy=enterprise-banner-${test.name}]`, [
+                    newExpectation(
+                      "should find the enterprise card",
+                      `[data-cy=enterprise-card]`,
+                      beVisible,
+                    ),
+                  ]),
+                ],
+              ),
+            ]
+          : []),
       ])
       .flat(),
   ];

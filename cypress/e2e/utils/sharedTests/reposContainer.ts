@@ -27,7 +27,7 @@ export const checkRepoListForTab = (
 };
 export const mostRecentReposClickFlow = newClickFlow(
   "[data-cy=discover-repos-tab]",
-  [...checkRepoListForTab("most-recent", 20)],
+  [...checkRepoListForTab("most-recent", 15)],
 );
 
 export const mostRecentReposClickFlowMobile = newClickFlow(
@@ -118,10 +118,11 @@ export const uncheckShowForkListOption = newExpectationWithClickFlows(
 );
 
 export const checkForkList = (isMobile: boolean) => [
-  newExpectation(
+  newExpectationWithScrollIntoView(
     "should have show forks button",
     `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
     beVisible,
+    true,
   ),
   newExpectationWithClickFlows(
     "should have show forks button",

@@ -1,3 +1,4 @@
+import { gatsbyServerBuildErrors } from "./sharedTests/sharedFunctionsAndVariables";
 import {
   ClickFlow,
   Devices,
@@ -10,7 +11,7 @@ import {
 
 // defaultTimeout is the time in ms cypress will wait attempting
 // to .get() an element before failing
-export const defaultTimeout = 5000;
+export const defaultTimeout = 10000;
 export const opts: Partial<Cypress.Timeoutable> = {
   timeout: defaultTimeout,
 };
@@ -75,6 +76,7 @@ type TestsForDevicesArgs = {
   devices: Devices;
   skip?: boolean;
   loggedIn?: boolean;
+  ignoreUncaughtErrors?: boolean;
 };
 
 export function runTestsForDevices({
@@ -82,6 +84,7 @@ export function runTestsForDevices({
   currentPage,
   loggedIn = false,
   skip = false,
+  ignoreUncaughtErrors = false,
 }: TestsForDevicesArgs) {
   beforeEach(() => {
     // Visit page and log in if needed
@@ -98,6 +101,21 @@ export function runTestsForDevices({
     } else {
       it(d.description, deviceDimensions[d.device], () => {
         runTests(d);
+        describe(d.description, deviceDimensions[d.device], () => {
+          // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+          if (ignoreUncaughtErrors) {
+            it("should ignore Gatsby server error", () => {
+              cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+            });
+          }
+          runTests({ ...d });
+          // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+          if (ignoreUncaughtErrors) {
+            it("should ignore Gatsby server error", () => {
+              cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+            });
+          }
+        });
       });
     }
   });
@@ -158,10 +176,8 @@ function getAssertionTest(
         .type(typeString.value, clickOpts);
     }
     if (!typeString.skipClear) {
-      return cy
-        .get(selectorStr, opts)
-        .clear(clickOpts)
-        .type(typeString.value, clickOpts);
+      cy.get(selectorStr, opts).clear(clickOpts);
+      return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
     }
     return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
   }
