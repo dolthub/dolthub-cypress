@@ -95,7 +95,7 @@ export function runTestsForDevices({
     // Skip tests that require login if username and password not found
     const skipForLogin = loggedIn && (!username || !password);
     if (skip || skipForLogin) {
-      it(d.description, deviceDimensions[d.device], () => {
+      xit(d.description, deviceDimensions[d.device], () => {
         runTests(d);
       });
     } else {
