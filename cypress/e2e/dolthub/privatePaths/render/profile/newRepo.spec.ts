@@ -27,5 +27,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
   const skip = false;
   const devices = desktopDevicesForAppLayout(pageName, tests, false, loggedIn);
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

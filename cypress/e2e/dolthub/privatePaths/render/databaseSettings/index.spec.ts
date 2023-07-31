@@ -95,6 +95,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
 
   // Tests work for both database settings links (/settings and /settings/database)
-  runTestsForDevices({ currentPage: currentPageOne, devices, skip });
-  runTestsForDevices({ currentPage: currentPageTwo, devices, skip });
+  runTestsForDevices({ currentPage: currentPageOne, devices, skip, loggedIn });
+  runTestsForDevices({ currentPage: currentPageTwo, devices, skip, loggedIn });
 });

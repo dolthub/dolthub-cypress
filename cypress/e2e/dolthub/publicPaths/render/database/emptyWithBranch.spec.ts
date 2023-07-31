@@ -89,5 +89,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  runTestsForDevices({ currentPage, devices });
+  runTestsForDevices({ devices, currentPage, loggedIn });
 });
