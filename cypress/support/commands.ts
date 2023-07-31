@@ -80,11 +80,9 @@ Cypress.Commands.add("visitAndWait", (path: string) => {
 Cypress.Commands.add(
   "loginAsCypressTestingAfterNavigateToSignin",
   (redirectValue?: string) => {
-    console.log(password, username);
     if (!password || !username) {
       throw new Error("Username or password env not set");
     }
-    console.log(password, username);
     cy.session(
       username,
       () => {
