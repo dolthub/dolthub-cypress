@@ -53,7 +53,6 @@ type TestsArgs = {
 };
 
 export function runTests({ tests }: TestsArgs) {
-  console.log(tests);
   tests.forEach(t => {
     cy.log(t.description);
     if (t.skip) return;
@@ -86,11 +85,11 @@ export function runTestsForDevices({
   skip = false,
   ignoreUncaughtErrors = false,
 }: TestsForDevicesArgs) {
-  beforeEach(() => {
-    // Visit page and log in if needed
-    cy.visitPage(currentPage, loggedIn);
-    cy.wait(500);
-  });
+  // console.log(currentPage);
+  // beforeEach(() => {
+  //   // Visit page and log in if needed
+  //   cy.visitPage(currentPage, loggedIn);
+  // });
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
     const skipForLogin = loggedIn && (!username || !password);
@@ -100,6 +99,7 @@ export function runTestsForDevices({
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
+        cy.visitPage(currentPage, loggedIn);
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
           it("should ignore Gatsby server error", () => {
