@@ -1,9 +1,10 @@
 import { defineConfig } from "cypress";
-import  { SNSClient, PublishCommand } from "@aws-sdk/client-sns";
+import { SNSClient, PublishCommand } from "@aws-sdk/client-sns";
 
 export default defineConfig({
   video: false,
   projectId: "f6ssqp",
+
   e2e: {
     baseUrl: "https://www.dolthub.com",
     specPattern: "cypress/e2e/dolthub/**/*.{js,jsx,ts,tsx}",
@@ -15,14 +16,16 @@ export default defineConfig({
           return null;
         },
       });
-      on("after:run",  (results) => {
+      on("after:run", (results) => {
         if (results) {
           // results will be undefined in interactive mode
           const alertOnFailure = !!process.env.ALERT_ON_FAILURE;
 
           if (alertOnFailure) {
             const adjustedTotal = results.totalTests - results.totalSkipped;
-            const percentFailed = Math.floor(100 * (results.totalFailed/adjustedTotal));
+            const percentFailed = Math.floor(
+              100 * (results.totalFailed / adjustedTotal)
+            );
 
             if (percentFailed >= 25) {
               const region = process.env.AWS_REGION;
@@ -37,7 +40,10 @@ export default defineConfig({
               const run = async () => {
                 try {
                   const data = await snsClient.send(new PublishCommand(params));
-                  console.log("Successfully alarmed by sending SNS message.",  data);
+                  console.log(
+                    "Successfully alarmed by sending SNS message.",
+                    data
+                  );
                   return data; // For unit tests.
                 } catch (err) {
                   console.log("Error", err.stack);
@@ -45,12 +51,19 @@ export default defineConfig({
               };
               run();
             }
-
           }
         }
       });
     },
   },
+
   viewportWidth: 1440,
   viewportHeight: 900,
+
+  component: {
+    devServer: {
+      framework: "create-react-app",
+      bundler: "webpack",
+    },
+  },
 });
