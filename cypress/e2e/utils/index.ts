@@ -49,13 +49,17 @@ export const deviceDimensions: Record<
 
 type TestsArgs = {
   tests: Tests;
+  currentPage: string;
   isMobile: boolean;
+  loggedIn: boolean;
 };
 
-export function runTests({ tests }: TestsArgs) {
+export function runTests({ tests, currentPage, loggedIn }: TestsArgs) {
   tests.forEach(t => {
     cy.log(t.description);
     if (t.skip) return;
+    cy.visitPage(currentPage, loggedIn);
+
     testAssertion(t);
     if (t.clickFlows) {
       testClickFlows({
@@ -90,12 +94,11 @@ export function runTestsForDevices({
     const skipForLogin = loggedIn && (!username || !password);
     if (skip || skipForLogin) {
       xit(d.description, deviceDimensions[d.device], () => {
-        runTests(d);
+        runTests({ ...d, currentPage, loggedIn });
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
         cy.log(`visiting page ${currentPage}`);
-        cy.visitPage(currentPage, loggedIn);
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
           it("should ignore Gatsby server error", () => {
@@ -103,7 +106,7 @@ export function runTestsForDevices({
           });
         }
         cy.log(`running tests for ${d.description}`);
-        runTests({ ...d });
+        runTests({ ...d, currentPage, loggedIn });
         cy.log(`finished tests for ${d.description}`);
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {

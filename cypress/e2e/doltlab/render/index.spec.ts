@@ -28,10 +28,8 @@ describe(`DoltLab ${pageName} renders expected components`, () => {
   ];
 
   const devices = [macbook15ForDoltLabSignedOutLayout(pageName, tests)];
-  const skip = true;
   runTestsForDevices({
     currentPage,
     devices,
-    skip,
   });
 });
