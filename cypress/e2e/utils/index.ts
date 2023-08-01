@@ -56,7 +56,7 @@ export function runTests({ tests }: TestsArgs) {
   tests.forEach(t => {
     cy.log(t.description);
     if (t.skip) return;
-
+    cy.log("testing assertions");
     testAssertion(t);
     if (t.clickFlows) {
       testClickFlows({
@@ -95,14 +95,16 @@ export function runTestsForDevices({
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
+        cy.log(`visiting ${currentPage}`);
         cy.visitPage(currentPage, loggedIn);
-
+        cy.log("ignoring uncaught errors");
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
           it("should ignore Gatsby server error", () => {
             cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
           });
         }
+        cy.log("running tests");
         runTests(d);
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
@@ -119,6 +121,7 @@ export function runTestsForDevices({
 
 function testAssertion(t: Expectation) {
   if (Array.isArray(t.selector)) {
+    cy.log("testing assertion for multiple selectors");
     return t.selector.forEach(s =>
       getAssertionTest(
         t.description,
@@ -133,6 +136,7 @@ function testAssertion(t: Expectation) {
       ),
     );
   }
+  cy.log("testing assertion for single selector");
   return getAssertionTest(
     t.description,
     t.selector,
