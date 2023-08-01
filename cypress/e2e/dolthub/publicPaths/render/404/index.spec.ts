@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const devices = allDevicesForSignedOut(pageName, tests, tests);
+  const devices = allDevicesForSignedOut(pageName, tests, tests,true);
 
   runTestsForDevices({ currentPage, devices });
 });
