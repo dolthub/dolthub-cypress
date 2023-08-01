@@ -1,3 +1,4 @@
+import { gatsbyServerBuildErrors } from "./sharedTests/sharedFunctionsAndVariables";
 import {
   ClickFlow,
   Devices,
@@ -96,19 +97,19 @@ export function runTestsForDevices({
       it(d.description, deviceDimensions[d.device], () => {
         cy.visitPage(currentPage, loggedIn);
 
-        // // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        // if (ignoreUncaughtErrors) {
-        //   it("should ignore Gatsby server error", () => {
-        //     cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-        //   });
-        // }
+        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+        if (ignoreUncaughtErrors) {
+          it("should ignore Gatsby server error", () => {
+            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+          });
+        }
         runTests(d);
-        // // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        // if (ignoreUncaughtErrors) {
-        //   it("should ignore Gatsby server error", () => {
-        //     cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-        //   });
-        // }
+        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+        if (ignoreUncaughtErrors) {
+          it("should ignore Gatsby server error", () => {
+            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+          });
+        }
       });
     }
   });

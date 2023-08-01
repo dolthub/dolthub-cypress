@@ -27,9 +27,12 @@ describe(`DoltLab ${pageName} renders expected components`, () => {
     ...checkRepoListForTab("most-recent", 3),
   ];
 
+  const loggedIn = false;
+
   const devices = [macbook15ForDoltLabSignedOutLayout(pageName, tests)];
   runTestsForDevices({
     currentPage,
     devices,
+    loggedIn,
   });
 });
