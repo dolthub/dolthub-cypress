@@ -87,9 +87,7 @@ export function runTestsForDevices({
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
-    cy.log(d.description);
     const skipForLogin = loggedIn && (!username || !password);
-    cy.log(`skipForLogin: ${skipForLogin}`);
     if (skip || skipForLogin) {
       xit(d.description, deviceDimensions[d.device], () => {
         runTests(d);
