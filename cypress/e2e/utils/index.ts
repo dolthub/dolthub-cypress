@@ -1,4 +1,3 @@
-import { gatsbyServerBuildErrors } from "./sharedTests/sharedFunctionsAndVariables";
 import {
   ClickFlow,
   Devices,
@@ -49,14 +48,10 @@ export const deviceDimensions: Record<
 
 type TestsArgs = {
   tests: Tests;
-  currentPage: string;
-  loggedIn: boolean;
   isMobile: boolean;
 };
 
-export function runTests({ tests, currentPage, loggedIn }: TestsArgs) {
-  cy.visitPage(currentPage, loggedIn);
-
+export function runTests({ tests }: TestsArgs) {
   tests.forEach(t => {
     cy.log(t.description);
     if (t.skip) return;
@@ -95,23 +90,25 @@ export function runTestsForDevices({
     const skipForLogin = loggedIn && (!username || !password);
     if (skip || skipForLogin) {
       xit(d.description, deviceDimensions[d.device], () => {
-        runTests({ ...d, currentPage, loggedIn });
+        runTests(d);
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
-        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        if (ignoreUncaughtErrors) {
-          it("should ignore Gatsby server error", () => {
-            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-          });
-        }
-        runTests({ ...d, currentPage, loggedIn });
-        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        if (ignoreUncaughtErrors) {
-          it("should ignore Gatsby server error", () => {
-            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-          });
-        }
+        cy.visitPage(currentPage, loggedIn);
+
+        // // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+        // if (ignoreUncaughtErrors) {
+        //   it("should ignore Gatsby server error", () => {
+        //     cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+        //   });
+        // }
+        runTests(d);
+        // // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+        // if (ignoreUncaughtErrors) {
+        //   it("should ignore Gatsby server error", () => {
+        //     cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+        //   });
+        // }
       });
     }
   });
