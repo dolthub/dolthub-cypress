@@ -38,7 +38,7 @@ const password = Cypress.env("TEST_PASSWORD");
 // Reference: https://www.cypress.io/blog/2018/02/05/when-can-the-test-start/
 Cypress.Commands.add("visitAndWait", (path: string) => {
   let appHasStarted = false;
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function spyOnAddEventListener(win: any) {
     // win = window object in our application
     const addListener = win.EventTarget.prototype.addEventListener;
