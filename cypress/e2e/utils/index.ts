@@ -50,15 +50,16 @@ export const deviceDimensions: Record<
 type TestsArgs = {
   tests: Tests;
   currentPage: string;
-  isMobile: boolean;
   loggedIn: boolean;
+  isMobile: boolean;
 };
 
 export function runTests({ tests, currentPage, loggedIn }: TestsArgs) {
+  cy.visitPage(currentPage, loggedIn);
+
   tests.forEach(t => {
     cy.log(t.description);
     if (t.skip) return;
-    cy.visitPage(currentPage, loggedIn);
 
     testAssertion(t);
     if (t.clickFlows) {
