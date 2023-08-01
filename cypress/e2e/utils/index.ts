@@ -99,23 +99,19 @@ export function runTestsForDevices({
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
-        cy.log(`visiting page ${currentPage}`);
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
           it("should ignore Gatsby server error", () => {
             cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
           });
         }
-        cy.log(`running tests for ${d.description}`);
         runTests({ ...d, currentPage, loggedIn });
-        cy.log(`finished tests for ${d.description}`);
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
           it("should ignore Gatsby server error", () => {
             cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
           });
         }
-        cy.log("end of test");
       });
     }
   });
