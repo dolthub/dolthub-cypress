@@ -84,6 +84,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...checkForkList(true),
   ];
+
   const skip = false;
   const devices = [
     macbook15ForAppLayout(pageName, tests(false), false, loggedIn),
