@@ -43,14 +43,14 @@ jobs:
           aws-region: "us-west-2"
       - name: Install dependencies
         run: yarn
-      # - name: Cypress run doltlab tests
-      #   uses: cypress-io/github-action@v4
-      #   with:
-      #     install: false
-      #     browser: chrome
-      #     config-file: cypress.doltlab.config.ts
-      #   env:
-      #     CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Cypress run doltlab tests
+        uses: cypress-io/github-action@v4
+        with:
+          install: false
+          browser: chrome
+          config-file: cypress.doltlab.config.ts
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Cypress run dolthub tests
         uses: cypress-io/github-action@v4
         with:
