@@ -103,7 +103,7 @@ export function runTestsForDevices({
             cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
           });
         }
-        it("running test", () => {
+        it(d.description, () => {
           runTests(d);
         });
 
