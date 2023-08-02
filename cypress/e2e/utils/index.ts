@@ -54,9 +54,7 @@ type TestsArgs = {
 
 export function runTests({ tests }: TestsArgs) {
   tests.forEach(t => {
-    cy.log(t.description);
     if (t.skip) return;
-    cy.log("testing assertions");
     testAssertion(t);
     if (t.clickFlows) {
       testClickFlows({
@@ -124,7 +122,6 @@ export function runTestsForDevices({
 
 function testAssertion(t: Expectation) {
   if (Array.isArray(t.selector)) {
-    cy.log("testing assertion for multiple selectors");
     return t.selector.forEach(s =>
       getAssertionTest(
         t.description,
@@ -139,7 +136,6 @@ function testAssertion(t: Expectation) {
       ),
     );
   }
-  cy.log("testing assertion for single selector");
   return getAssertionTest(
     t.description,
     t.selector,
