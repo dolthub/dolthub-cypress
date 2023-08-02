@@ -87,7 +87,6 @@ export function runTestsForDevices({
   ignoreUncaughtErrors = false,
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
-    console.log(`running tests for ${d.device}`);
     // Skip tests that require login if username and password not found
     const skipForLogin = loggedIn && (!username || !password);
     if (skip || skipForLogin) {
