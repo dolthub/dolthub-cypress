@@ -87,6 +87,7 @@ export function runTestsForDevices({
   ignoreUncaughtErrors = false,
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
+    console.log(`running tests for ${d.device}`);
     // Skip tests that require login if username and password not found
     const skipForLogin = loggedIn && (!username || !password);
     if (skip || skipForLogin) {
@@ -95,17 +96,20 @@ export function runTestsForDevices({
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
-        cy.log(`visiting ${currentPage}`);
-        cy.visitPage(currentPage, loggedIn);
-        cy.log("ignoring uncaught errors");
+        it(`visiting ${currentPage}`, () => {
+          cy.visitPage(currentPage, loggedIn);
+        });
+
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
           it("should ignore Gatsby server error", () => {
             cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
           });
         }
-        cy.log("running tests");
-        runTests(d);
+        it("running test", () => {
+          runTests(d);
+        });
+
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
           it("should ignore Gatsby server error", () => {
