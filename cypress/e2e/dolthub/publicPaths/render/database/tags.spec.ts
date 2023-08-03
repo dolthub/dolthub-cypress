@@ -108,7 +108,7 @@ const tests = (n: number) => {
       notExist,
     ),
     testCommitSection(num),
-    // testReleasesSection(21),
+    testReleasesSection(21),
   ];
 };
 
