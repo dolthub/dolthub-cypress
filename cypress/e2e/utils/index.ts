@@ -88,6 +88,11 @@ export function runTestsForDevices({
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
     beforeEach(() => {
+      if (ignoreUncaughtErrors) {
+        it("should ignore Gatsby server error", () => {
+          cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+        });
+      }
       // Visit page and log in if needed
       cy.visitPage(currentPage, loggedIn);
     });
