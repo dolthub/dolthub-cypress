@@ -87,15 +87,6 @@ export function runTestsForDevices({
   ignoreUncaughtErrors = false,
 }: TestsForDevicesArgs) {
   devices.forEach(d => {
-    beforeEach(() => {
-      if (ignoreUncaughtErrors) {
-        it("should ignore Gatsby server error", () => {
-          cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-        });
-      }
-      // Visit page and log in if needed
-      cy.visitPage(currentPage, loggedIn);
-    });
     // Skip tests that require login if username and password not found
     const skipForLogin = loggedIn && (!username || !password);
     if (skip || skipForLogin) {
@@ -110,16 +101,9 @@ export function runTestsForDevices({
             cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
           });
         }
-        it(d.description, deviceDimensions[d.device], () => {
-          runTests(d);
-        });
 
-        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        if (ignoreUncaughtErrors) {
-          it("should ignore Gatsby server error", () => {
-            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-          });
-        }
+        cy.visitPage(currentPage, loggedIn);
+        runTests(d);
       });
     }
   });
