@@ -94,17 +94,19 @@ export function runTestsForDevices({
         runTests(d);
       });
     } else {
-      // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-      if (ignoreUncaughtErrors) {
-        it("should ignore Gatsby server error", () => {
-          cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+      it(d.description, deviceDimensions[d.device], () => {
+        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+        if (ignoreUncaughtErrors) {
+          it("should ignore Gatsby server error", () => {
+            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+          });
+        }
+        it(d.description, deviceDimensions[d.device], () => {
+          cy.visitPage(currentPage, loggedIn);
         });
-      }
-      it(d.description, deviceDimensions[d.device], () => {
-        cy.visitPage(currentPage, loggedIn);
-      });
-      it(d.description, deviceDimensions[d.device], () => {
-        runTests(d);
+        it(d.description, deviceDimensions[d.device], () => {
+          runTests(d);
+        });
       });
     }
   });
