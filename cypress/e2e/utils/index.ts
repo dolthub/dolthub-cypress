@@ -86,6 +86,15 @@ export function runTestsForDevices({
   skip = false,
   ignoreUncaughtErrors = false,
 }: TestsForDevicesArgs) {
+  // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+  if (ignoreUncaughtErrors) {
+    cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+  }
+  beforeEach(() => {
+    // Visit page and log in if needed
+    cy.visitPage(currentPage, loggedIn);
+  });
+
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
     const skipForLogin = loggedIn && (!username || !password);
@@ -95,11 +104,6 @@ export function runTestsForDevices({
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
-        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        if (ignoreUncaughtErrors) {
-          cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-        }
-        cy.visitPage(currentPage, loggedIn);
         runTests(d);
       });
     }
