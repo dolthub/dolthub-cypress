@@ -97,16 +97,10 @@ export function runTestsForDevices({
       it(d.description, deviceDimensions[d.device], () => {
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
         if (ignoreUncaughtErrors) {
-          describe("ignore uncaught errors", () => {
-            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-          });
+          cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
         }
-        describe("visit page", () => {
-          cy.visitPage(currentPage, loggedIn);
-        });
-        describe("run tests", () => {
-          runTests(d);
-        });
+        cy.visitPage(currentPage, loggedIn);
+        runTests(d);
       });
     }
   });
