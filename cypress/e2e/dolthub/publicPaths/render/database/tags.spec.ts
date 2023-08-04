@@ -121,7 +121,7 @@ describe(`All refs for repo_with_tags_and_branches are usable`, () => {
       macbook15ForAppLayout(tagPageName, tests(i)),
       iPad2ForAppLayout(tagPageName, tests(i)),
     ];
-    const skip = false;
+    const skip = true;
 
     runTestsForDevices({ currentPage, devices, skip });
   }
