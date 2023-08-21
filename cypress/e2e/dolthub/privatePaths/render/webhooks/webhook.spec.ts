@@ -12,7 +12,6 @@ import {
   scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Webhook page";
 const currentOwner = "automated_testing";
@@ -30,10 +29,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     : "68fc0528-c258-4c55-a79a-1709b79759ec";
 
   const tests = [
-    testOldFormatPopup,
     shouldFindAndContain("active-webhooks-settings-tab", "Webhooks"),
     shouldBeVisible("repo-page-for-webhooks"),
-    shouldFindAndContain("webhook-header", ["Webhooks", "Manage Webhook"]),
+    shouldFindAndContain("webhook-header", "Webhooks"),
     shouldBeVisible("webhook-breadcrumbs"),
     scrollToPosition("#main-content", "bottom"),
     shouldBeVisible("back-to-webhooks-link"),
