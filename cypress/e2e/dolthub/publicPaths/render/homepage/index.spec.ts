@@ -13,8 +13,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", [
         "Git for data",
         "Diff, branch, and merge",
-        "Two familiar interfaces combined",
-        "Evolved Features",
+        "You already know how to use it",
+        "Deploy as a replica or primary",
+        "The Dolt Ecosystem",
       ]),
     ),
   ];
