@@ -236,9 +236,15 @@ function getAssertionTest(
           );
         });
     }
-    return cy
-      .get(selectorStr, opts)
-      .should(shouldArgs.chainer, ...shouldArgs.value, { message });
+    if (shouldArgs.chainer === "have.attr") {
+      return cy
+        .get(selectorStr, opts)
+        .should(shouldArgs.chainer, ...shouldArgs.value, { message });
+    }
+
+    throw new Error(
+      `Chainer ${shouldArgs.chainer} not supported with an array of values`,
+    );
   }
   return cy
     .get(selectorStr, opts)
