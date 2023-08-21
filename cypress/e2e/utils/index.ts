@@ -226,18 +226,19 @@ function getAssertionTest(
     scrollSelectorIntoView(selectorStr);
   }
   if (Array.isArray(shouldArgs.value)) {
-    if(shouldArgs.chainer === "be.visible.and.contain"){
+    if (shouldArgs.chainer === "be.visible.and.contain") {
       return cy
-      .get(selectorStr, opts)
-      .should("be.visible")
-      .should($el => {
-        shouldArgs.value.forEach((v: string) => expect($el).to.contain(v, message))
-      });      
+        .get(selectorStr, opts)
+        .should("be.visible")
+        .should($el => {
+          shouldArgs.value.forEach((v: string) =>
+            expect($el).to.contain(v, message),
+          );
+        });
     }
-      return cy
+    return cy
       .get(selectorStr, opts)
       .should(shouldArgs.chainer, ...shouldArgs.value, { message });
-    
   }
   return cy
     .get(selectorStr, opts)
