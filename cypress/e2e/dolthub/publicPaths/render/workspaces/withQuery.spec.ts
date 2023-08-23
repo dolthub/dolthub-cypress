@@ -40,7 +40,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      true,
+    ),
     newExpectation(
       "should show workspace title",
       "[data-cy=workspace-title]",
