@@ -225,7 +225,6 @@ export const testCommonHeader = (
   ),
 ];
 
-
 export const testRepoHeaderForAll = (
   repoName: string,
   ownerName: string,
@@ -235,12 +234,18 @@ export const testRepoHeaderForAll = (
 ): Tests => {
   const loggedOutRepoHeaderTests = [
     ...testCommonHeader(repoName, ownerName),
-    cloneDisabled?newExpectation("should have clone button disabled","[data-cy=repo-clone-button]",newShouldArgs("not.be.enabled")):newExpectationWithClickFlows(
-      "should have repo clone button",
-      "[data-cy=repo-clone-button]",
-      beVisible,
-      [cloneClickFlow],
-    ),
+    cloneDisabled
+      ? newExpectation(
+          "should have clone button disabled",
+          "[data-cy=repo-clone-button]",
+          newShouldArgs("not.be.enabled"),
+        )
+      : newExpectationWithClickFlows(
+          "should have repo clone button",
+          "[data-cy=repo-clone-button]",
+          beVisible,
+          [cloneClickFlow],
+        ),
     ...testTabs(beVisible),
     newExpectationWithClickFlows(
       "should have functioning nav dropdown",
@@ -287,7 +292,13 @@ export const testRepoHeaderWithBranch = (
   hasDocs: boolean,
   cloneDisabled = false,
 ): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs,cloneDisabled),
+  ...testRepoHeaderForAll(
+    repoName,
+    ownerName,
+    loggedIn,
+    hasDocs,
+    cloneDisabled,
+  ),
   newExpectationWithClickFlows(
     "should open create fork modal on fork button click",
     "[data-cy=repo-fork-button]",

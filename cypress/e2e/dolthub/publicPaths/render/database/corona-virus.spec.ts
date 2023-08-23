@@ -60,7 +60,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests: Tests = [
     ...commonTests,
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs,true),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      true,
+    ),
     ...tableExpectations(hasDocs, loggedIn, 11, "case_details"),
     ...testClickDeleteRow(
       "error-modal",
