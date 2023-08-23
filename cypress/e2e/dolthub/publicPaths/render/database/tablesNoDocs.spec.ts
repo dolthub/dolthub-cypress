@@ -36,7 +36,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      true,
+    ),
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
