@@ -21,7 +21,7 @@ const hasDocs = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     shouldBeVisible("repository-layout-container"),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs,true),
     shouldNotExist("active-webhooks-settings-tab"),
     shouldBeVisible("settings-no-write-perms"),
   ];

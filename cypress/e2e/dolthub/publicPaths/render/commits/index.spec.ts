@@ -55,7 +55,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true,true),
     ...commonTests,
     newExpectation(
       "should find csv download icon",
