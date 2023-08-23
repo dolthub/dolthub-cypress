@@ -21,7 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-layout-container]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, true),
     newExpectation(
       "should not show run message",
       "[data-cy=workspaces-run-msg]",
