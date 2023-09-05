@@ -38,7 +38,7 @@ const password = Cypress.env("TEST_PASSWORD");
 // Reference: https://www.cypress.io/blog/2018/02/05/when-can-the-test-start/
 Cypress.Commands.add("visitAndWait", (path: string) => {
   let appHasStarted = false;
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function spyOnAddEventListener(win: any) {
     // win = window object in our application
     const addListener = win.EventTarget.prototype.addEventListener;
@@ -83,11 +83,17 @@ Cypress.Commands.add(
     if (!password || !username) {
       throw new Error("Username or password env not set");
     }
-
-    cy.visitAndWait("/signin");
-    cy.visitViewport("macbook-15");
-    completeLoginForCypressTesting();
-    ensureSuccessfulLogin(redirectValue);
+    cy.session(
+      username,
+      () => {
+        cy.visitAndWait("/signin");
+        completeLoginForCypressTesting();
+        ensureSuccessfulLogin(redirectValue);
+      },
+      {
+        cacheAcrossSpecs: true,
+      },
+    );
   },
 );
 
@@ -172,12 +178,6 @@ Cypress.Commands.add("visitPage", (currentPage: string, loggedIn: boolean) => {
 
   // 404 page should be rendered when page not found
   cy.visitAndWait(currentPage);
-});
-
-Cypress.Commands.add("visitViewport", (device: Cypress.ViewportPreset) => {
-  cy.viewport(device);
-  // eslint-disable-next-line cypress/no-unnecessary-waiting
-  cy.wait(500);
 });
 
 Cypress.on(

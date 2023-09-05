@@ -11,12 +11,7 @@ const currentPage = `/users/cypresstesting`;
 const loggedIn = true;
 const skip = false;
 
-const commonDataCy = [
-  "profile-card",
-  "profile-card-pic",
-  "profile-card-bio",
-  "no-repos-msg",
-];
+const commonDataCy = ["profile-card", "profile-card-pic", "profile-card-bio"];
 
 const desktopDataCy = [
   "user-profile-databases-tab",
@@ -48,5 +43,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPhoneXForAppLayout(pageName, mobileTests, loggedIn),
   ];
 
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

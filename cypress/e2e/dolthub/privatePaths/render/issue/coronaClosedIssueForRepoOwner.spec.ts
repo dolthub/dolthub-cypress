@@ -46,9 +46,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testIssuePageForAll(currentOwner, currentRepo, currentIssueId, "Closed"),
     ...testLoggedInSignInTo,
   ];
+  const loggedIn = true;
 
-  const devices = [macbook15ForAppLayout(pageName, tests, false, true)];
+  const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
 
   const skip = false;
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

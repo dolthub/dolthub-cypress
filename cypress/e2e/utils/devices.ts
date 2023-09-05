@@ -16,38 +16,34 @@ import { Device, Devices, Tests } from "./types";
 // SignedOut means the page is using the `SignedOutLayout` component
 // i.e. footer should be present, and mobile navbar works, loggedIn = false
 
-export const macbook15 = (pageName: string, tests: Tests, loggedIn: boolean) =>
+export const macbook15 = (pageName: string, tests: Tests) =>
   newDevice(
     "macbook-15",
     `${pageName} renders expected components on macbook-15`,
-    loggedIn,
     tests,
     false,
   );
 
-export const macbook11 = (pageName: string, tests: Tests, loggedIn: boolean) =>
+export const macbook11 = (pageName: string, tests: Tests) =>
   newDevice(
     "macbook-11",
     `${pageName} renders expected components on macbook-11`,
-    loggedIn,
     tests,
     false,
   );
 
-export const iPad2 = (pageName: string, tests: Tests, loggedIn: boolean) =>
+export const iPad2 = (pageName: string, tests: Tests) =>
   newDevice(
     "ipad-2",
     `${pageName} renders expected components on ipad-2`,
-    loggedIn,
     tests,
     true,
   );
 
-export const iPhoneX = (pageName: string, tests: Tests, loggedIn: boolean) =>
+export const iPhoneX = (pageName: string, tests: Tests) =>
   newDevice(
     "iphone-x",
     `${pageName} renders expected components on iphone-x`,
-    loggedIn,
     tests,
     true,
   );
@@ -60,21 +56,20 @@ export const macbook15ForAppLayout = (
   loggedIn = false,
 ): Device => {
   const t = getAppLayoutTests(tests, skipNavbar, loggedIn);
-  return macbook15(pageName, t, loggedIn);
+  return macbook15(pageName, t);
 };
 
 export const iPad2ForAppLayout = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
-): Device => iPad2(pageName, getAppLayoutTestsMobile(tests, skipNavbar), false);
+): Device => iPad2(pageName, getAppLayoutTestsMobile(tests, skipNavbar));
 
 export const iPhoneXForAppLayout = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
-): Device =>
-  iPhoneX(pageName, getAppLayoutTestsMobile(tests, skipNavbar), false);
+): Device => iPhoneX(pageName, getAppLayoutTestsMobile(tests, skipNavbar));
 
 export const mobileDevicesForAppLayout = (
   pageName: string,
@@ -83,7 +78,7 @@ export const mobileDevicesForAppLayout = (
   loggedIn = false,
 ) => {
   const t = getAppLayoutTestsMobile(tests, skipNavbar, loggedIn);
-  return [iPad2(pageName, t, loggedIn), iPhoneX(pageName, t, loggedIn)];
+  return [iPad2(pageName, t), iPhoneX(pageName, t)];
 };
 
 export const desktopDevicesForAppLayout = (
@@ -93,7 +88,7 @@ export const desktopDevicesForAppLayout = (
   loggedIn = false,
 ) => {
   const t = getAppLayoutTests(tests, skipNavbar, loggedIn);
-  return [macbook15(pageName, t, loggedIn), macbook11(pageName, t, loggedIn)];
+  return [macbook15(pageName, t), macbook11(pageName, t)];
 };
 
 export const allDevicesForAppLayout = (
@@ -134,8 +129,8 @@ export const mobileDevicesForSignedOut = (
   tests: Tests,
   skipNavbar = false,
 ): Devices => [
-  iPad2(pageName, getSignedOutMobileTests(tests, skipNavbar), false),
-  iPhoneX(pageName, getSignedOutMobileTests(tests, skipNavbar), false),
+  iPad2(pageName, getSignedOutMobileTests(tests, skipNavbar)),
+  iPhoneX(pageName, getSignedOutMobileTests(tests, skipNavbar)),
 ];
 
 export const desktopDevicesForSignedOut = (
@@ -144,7 +139,7 @@ export const desktopDevicesForSignedOut = (
   skipNavbar = false,
 ) => {
   const t = getSignedOutTests(tests, skipNavbar);
-  return [macbook15(pageName, t, false), macbook11(pageName, t, false)];
+  return [macbook15(pageName, t), macbook11(pageName, t)];
 };
 
 export const allDevicesForSignedOut = (
@@ -165,8 +160,8 @@ export const allDevicesDiffTestsForSignedOut = (
   skipNavbar = false,
 ) => [
   ...desktopDevicesForSignedOut(pageName, desktopTests, skipNavbar),
-  iPad2(pageName, getSignedOutMobileTests(iPadTests, skipNavbar), false),
-  iPhoneX(pageName, getSignedOutMobileTests(iPhoneTests, skipNavbar), false),
+  iPad2(pageName, getSignedOutMobileTests(iPadTests, skipNavbar)),
+  iPhoneX(pageName, getSignedOutMobileTests(iPhoneTests, skipNavbar)),
 ];
 
 function getSignedOutMobileTests(t: Tests, skipNavbar = false): Tests {
@@ -191,8 +186,7 @@ export const macbook15ForDoltLabSignedOutLayout = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
-  loggedIn = false,
 ): Device => {
   const t = getSignedOutDoltLabTests(tests, skipNavbar);
-  return macbook15(pageName, t, loggedIn);
+  return macbook15(pageName, t);
 };

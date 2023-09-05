@@ -45,6 +45,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     pageName,
     testBlogArticle,
     testBlogArticle,
+    true,
   );
   runTestsForDevices({
     currentPage,
