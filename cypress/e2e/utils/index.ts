@@ -111,7 +111,6 @@ export function runTestsForDevices({
         runTests(d);
       });
     }
-    it("should not have any console errors", () => {});
   });
 }
 
