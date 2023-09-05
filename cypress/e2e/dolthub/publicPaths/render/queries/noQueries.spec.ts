@@ -11,7 +11,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/queries/${curre
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, false),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, false, true),
     newExpectation(
       "should find empty queries message with link",
       "[data-cy=repo-no-queries] > a",

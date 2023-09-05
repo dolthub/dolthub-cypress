@@ -43,7 +43,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-search-input]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      true,
+    ),
     newExpectation(
       "should find issue table with header",
       "[data-cy=issue-table] > thead > tr > th",

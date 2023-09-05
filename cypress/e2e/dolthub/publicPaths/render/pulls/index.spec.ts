@@ -27,7 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     ...changeBranch(changeBranchParams),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, true),
     newExpectation(
       "should not find empty pull message",
       "[data-cy=pull-requests-no-pulls]",

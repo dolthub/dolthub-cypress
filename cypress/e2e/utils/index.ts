@@ -193,9 +193,25 @@ function getAssertionTest(
     scrollSelectorIntoView(selectorStr);
   }
   if (Array.isArray(shouldArgs.value)) {
-    return cy
-      .get(selectorStr, opts)
-      .should(shouldArgs.chainer, ...shouldArgs.value, { message });
+    if (shouldArgs.chainer === "be.visible.and.contain") {
+      return cy
+        .get(selectorStr, opts)
+        .should("be.visible")
+        .should($el => {
+          shouldArgs.value.forEach((v: string) =>
+            expect($el).to.contain(v, message),
+          );
+        });
+    }
+    if (shouldArgs.chainer === "have.attr") {
+      return cy
+        .get(selectorStr, opts)
+        .should(shouldArgs.chainer, ...shouldArgs.value, { message });
+    }
+
+    throw new Error(
+      `Chainer ${shouldArgs.chainer} not supported with an array of values`,
+    );
   }
   return cy
     .get(selectorStr, opts)

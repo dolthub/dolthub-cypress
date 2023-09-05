@@ -33,7 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testOldFormatPopup,
     shouldFindAndContain("active-webhooks-settings-tab", "Webhooks"),
     shouldBeVisible("repo-page-for-webhooks"),
-    shouldFindAndContain("webhook-header", ["Webhooks", "Manage Webhook"]),
+    shouldFindAndContain("webhook-header", "Webhooks"),
     shouldBeVisible("webhook-breadcrumbs"),
     scrollToPosition("#main-content", "bottom"),
     shouldBeVisible("back-to-webhooks-link"),
