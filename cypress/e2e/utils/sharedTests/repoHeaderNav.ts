@@ -115,7 +115,7 @@ export const databaseDropdownClickFlow = (
             beVisible,
           ),
         ],
-    "[data-cy=repo-dropdown-button]",
+    "[data-cy=repo-dropdown-button]",true
   );
 
 export const testTabs = (visibility: ShouldArgs): Expectation[] => {
