@@ -27,7 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     uncheckShowForkListOption,
     ...checkRepoListForTab("most-recent", 1),
- 
+
     newExpectationWithScrollIntoView(
       "should scroll search bar into view",
       "[data-cy=repolist-search-input]",
