@@ -7,7 +7,6 @@ import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-  scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
@@ -25,11 +24,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       true,
     ),
-    scrollToPosition("#main-content", "top"),
     newExpectation(
       "should render create database button",
       "[data-cy=create-database-button]",
       beVisible,
+    ),
+    newExpectationWithScrollIntoView(
+      "should scroll search input into view",
+      "[data-cy=repolist-search-input]",
+      beVisible,
+      true,
     ),
     newExpectation(
       "should render search input",
