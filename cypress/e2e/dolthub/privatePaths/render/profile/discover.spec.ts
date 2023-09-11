@@ -7,7 +7,6 @@ import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-  scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
