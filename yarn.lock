@@ -2355,9 +2355,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/github-action@npm:^5.8.3":
-  version: 5.8.3
-  resolution: "@cypress/github-action@npm:5.8.3"
+"@cypress/github-action@npm:^6.5.0":
+  version: 6.5.0
+  resolution: "@cypress/github-action@npm:6.5.0"
   dependencies:
     "@actions/cache": 3.2.1
     "@actions/core": 1.10.0
@@ -2371,7 +2371,7 @@ __metadata:
     hasha: 5.2.2
     quote: 0.4.0
     supports-color: 9.3.1
-  checksum: c916f01674fd73235bbbb82843f08bb4058d79abf3e7a49be6949f58498c7f739ad5211d241a05b18ada78fef054af337639512f29a737ae59aabc436fcd1af1
+  checksum: ce894e5e4b28acdd9cec4d183bf967f7106012bfdcff532574b00c27153266278216ed831e90efc0e95a577031aaebfc06c8e7c7ad677a9040f61858ad2412a1
   languageName: node
   linkType: hard
 
@@ -3244,10 +3244,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.18.39":
-  version: 16.18.48
-  resolution: "@types/node@npm:16.18.48"
-  checksum: 5b725fe918197e4395cc88de17d67efeb02436e29c0d3b212ed63dfc51509ed398e9155ae15d1a8cd6f1c891463f2cf074dcea320d8cd392e25a9a11ce53dd6c
+"@types/node@npm:^18.17.5":
+  version: 18.17.18
+  resolution: "@types/node@npm:18.17.18"
+  checksum: 59cbd906363d37017fe9ba0c08c1446e440d4d977459609c5f90b8fb7eb41f273ce8af30c5a5b5d599d7de934c1b3702bc9fc27caf8d2270e5cdb659c5232991
   languageName: node
   linkType: hard
 
@@ -4352,13 +4352,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^13.1.0":
-  version: 13.1.0
-  resolution: "cypress@npm:13.1.0"
+"cypress@npm:^13.2.0":
+  version: 13.2.0
+  resolution: "cypress@npm:13.2.0"
   dependencies:
     "@cypress/request": ^3.0.0
     "@cypress/xvfb": ^1.2.4
-    "@types/node": ^16.18.39
+    "@types/node": ^18.17.5
     "@types/sinonjs__fake-timers": 8.1.1
     "@types/sizzle": ^2.3.2
     arch: ^2.2.0
@@ -4401,7 +4401,7 @@ __metadata:
     yauzl: ^2.10.0
   bin:
     cypress: bin/cypress
-  checksum: 238057b288f54401ad3fa8693c31ec08eef2d98a7fc93ce7f60bc009fcae18539e84be4c1cd41526816603f642f63444a7adce9d914b1338a53c0bf756bdb762
+  checksum: 7647814f07626bd63e7b8dc4d066179fa40bf492c588bbc2626d983a2baab6cb77c29958dc92442f277e0a8e94866decc51c4de306021739c47e32baf5970219
   languageName: node
   linkType: hard
 
@@ -4567,12 +4567,12 @@ __metadata:
     "@babel/core": ^7.22.6
     "@babel/preset-env": ^7.22.15
     "@babel/preset-typescript": ^7.22.11
-    "@cypress/github-action": ^5.8.3
+    "@cypress/github-action": ^6.5.0
     "@types/node": ^20.5.9
     "@types/react-dom": ^18
     "@typescript-eslint/eslint-plugin": ^6.2
     "@typescript-eslint/parser": ^6.6.0
-    cypress: ^13.1.0
+    cypress: ^13.2.0
     cypress-file-upload: ^5.0.8
     eslint: ^8.46.0
     eslint-config-airbnb-base: ^15.0.0
