@@ -106,10 +106,6 @@ export function runTestsForDevices({
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
-        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        // if (ignoreUncaughtErrors) {
-        //   cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-        // }
         runTests(d);
       });
     }
@@ -172,8 +168,10 @@ function getAssertionTest(
     }
     if (!typeString.skipClear) {
       cy.get(selectorStr, opts).clear(clickOpts);
+      cy.get(selectorStr, opts).wait(10).focus();
       return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
     }
+    cy.get(selectorStr, opts).wait(10).focus();
     return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
   }
 
