@@ -2,7 +2,6 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
-  newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
@@ -80,11 +79,10 @@ const mobileNavbarClickFlow = newClickFlow(
 );
 
 export const testMobileNavbar: Tests = [
-  newExpectationWithScrollIntoView(
+  newExpectation(
     "should scroll to and show menu button on mobile",
     "[data-cy=mobile-navbar-menu-button]",
     beVisible,
-    false,
   ),
   newExpectationWithClickFlows(
     "should show menu button and open nav on mobile",

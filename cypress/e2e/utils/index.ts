@@ -235,9 +235,7 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
     if (toClickBefore) runClicks(toClickBefore, force);
 
     expectations.forEach(t => {
-      console.log("ASSERTION", t.description);
       testAssertion(t);
-      console.log("INNER CLICK FLOWS", t.clickFlows?.length);
       testClickFlows({
         description,
         clickFlows: t.clickFlows,
@@ -253,11 +251,9 @@ function runClicks(clickStrOrArr: string | string[], force?: boolean) {
   const cOpts = { ...clickOpts, force };
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      console.log("CLICK FROM ARR", clickStr);
       cy.get(clickStr, opts).click(cOpts);
     });
   } else {
-    console.log("CLICK STR", clickStrOrArr);
     cy.get(clickStrOrArr, opts).click(cOpts);
   }
 }

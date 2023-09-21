@@ -106,12 +106,7 @@ export const databaseDropdownClickFlow = (
       ]
     : commonTests;
 
-  return newClickFlow(
-    "[data-cy=repo-dropdown-button]",
-    tests,
-    "[data-cy=repo-dropdown-button]",
-    true,
-  );
+  return newClickFlow("[data-cy=repo-dropdown-button]", tests);
 };
 
 export const testTabs = (visibility: ShouldArgs): Expectation[] => {
