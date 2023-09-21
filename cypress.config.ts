@@ -1,5 +1,5 @@
+import { PublishCommand, SNSClient } from "@aws-sdk/client-sns";
 import { defineConfig } from "cypress";
-import { SNSClient, PublishCommand } from "@aws-sdk/client-sns";
 
 export default defineConfig({
   video: false,
@@ -16,7 +16,7 @@ export default defineConfig({
           return null;
         },
       });
-      on("after:run", (results) => {
+      on("after:run", results => {
         if (results) {
           // results will be undefined in interactive mode
           const alertOnFailure = !!process.env.ALERT_ON_FAILURE;
@@ -24,7 +24,7 @@ export default defineConfig({
           if (alertOnFailure) {
             const adjustedTotal = results.totalTests - results.totalSkipped;
             const percentFailed = Math.floor(
-              100 * (results.totalFailed / adjustedTotal)
+              100 * (results.totalFailed / adjustedTotal),
             );
 
             if (percentFailed >= 25) {
@@ -42,7 +42,7 @@ export default defineConfig({
                   const data = await snsClient.send(new PublishCommand(params));
                   console.log(
                     "Successfully alarmed by sending SNS message.",
-                    data
+                    data,
                   );
                   return data; // For unit tests.
                 } catch (err) {
@@ -59,11 +59,4 @@ export default defineConfig({
 
   viewportWidth: 1440,
   viewportHeight: 900,
-
-  component: {
-    devServer: {
-      framework: "create-react-app",
-      bundler: "webpack",
-    },
-  },
 });
