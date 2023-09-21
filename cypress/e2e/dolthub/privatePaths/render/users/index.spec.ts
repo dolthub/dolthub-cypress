@@ -11,7 +11,12 @@ const currentPage = `/users/cypresstesting`;
 const loggedIn = true;
 const skip = false;
 
-const commonDataCy = ["profile-card", "profile-card-pic", "profile-card-bio"];
+const commonDataCy = [
+  "profile-card",
+  "profile-card-pic",
+  "profile-card-bio",
+  "no-repos-msg",
+];
 
 const desktopDataCy = [
   "user-profile-databases-tab",

@@ -1,6 +1,4 @@
-import { changeBranch } from "@sharedTests/changeBranch";
 import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
-import { mobileTests } from "@sharedTests/testRepoPageMobile";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
@@ -8,6 +6,8 @@ import {
 } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { changeBranch } from "@utils/sharedTests/changeBranch";
+import { mobileTests } from "@utils/sharedTests/testRepoPageMobile";
 
 const pageName = "Pull requests page with tables and docs";
 const currentOwner = "automated_testing";
@@ -26,8 +26,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   };
 
   const tests = [
-    ...changeBranch(changeBranchParams),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, true),
+    ...changeBranch(changeBranchParams),
     newExpectation(
       "should not find empty pull message",
       "[data-cy=pull-requests-no-pulls]",

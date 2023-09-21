@@ -57,7 +57,9 @@ export function runTests({ tests }: TestsArgs) {
     cy.log(t.description);
 
     if (t.skip) return;
+
     testAssertion(t);
+
     if (t.clickFlows) {
       testClickFlows({
         clickFlows: t.clickFlows,
@@ -105,9 +107,9 @@ export function runTestsForDevices({
     } else {
       it(d.description, deviceDimensions[d.device], () => {
         // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        if (ignoreUncaughtErrors) {
-          cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-        }
+        // if (ignoreUncaughtErrors) {
+        //   cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+        // }
         runTests(d);
       });
     }
@@ -233,7 +235,9 @@ export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
     if (toClickBefore) runClicks(toClickBefore, force);
 
     expectations.forEach(t => {
+      console.log("ASSERTION", t.description);
       testAssertion(t);
+      console.log("INNER CLICK FLOWS", t.clickFlows?.length);
       testClickFlows({
         description,
         clickFlows: t.clickFlows,
@@ -249,9 +253,11 @@ function runClicks(clickStrOrArr: string | string[], force?: boolean) {
   const cOpts = { ...clickOpts, force };
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
+      console.log("CLICK FROM ARR", clickStr);
       cy.get(clickStr, opts).click(cOpts);
     });
   } else {
+    console.log("CLICK STR", clickStrOrArr);
     cy.get(clickStrOrArr, opts).click(cOpts);
   }
 }
