@@ -32,6 +32,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
   };
 
   const tests: Tests = [
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      true,
+    ),
     ...changeBranch(changeBranchParams),
     newExpectation(
       "should not find empty issue message",
@@ -42,13 +49,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have issue search input",
       "[data-cy=issue-search-input]",
       beVisible,
-    ),
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      true,
     ),
     newExpectation(
       "should find issue table with header",
