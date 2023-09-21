@@ -84,7 +84,7 @@ Cypress.Commands.add(
       throw new Error("Username or password env not set");
     }
     cy.session(
-      username,
+      "dolthubLogin",
       () => {
         cy.visitAndWait("/signin");
         completeLoginForCypressTesting();

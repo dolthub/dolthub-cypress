@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Cypress run doltlab tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           install: false
           browser: chrome
@@ -52,7 +52,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Cypress run dolthub tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           install: false
           browser: chrome

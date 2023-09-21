@@ -57,7 +57,9 @@ export function runTests({ tests }: TestsArgs) {
     cy.log(t.description);
 
     if (t.skip) return;
+
     testAssertion(t);
+
     if (t.clickFlows) {
       testClickFlows({
         clickFlows: t.clickFlows,
@@ -104,10 +106,6 @@ export function runTestsForDevices({
       });
     } else {
       it(d.description, deviceDimensions[d.device], () => {
-        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        if (ignoreUncaughtErrors) {
-          cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-        }
         runTests(d);
       });
     }
@@ -169,9 +167,11 @@ function getAssertionTest(
         .type(typeString.value, clickOpts);
     }
     if (!typeString.skipClear) {
+      cy.get(selectorStr, opts).wait(10).focus();
       cy.get(selectorStr, opts).clear(clickOpts);
       return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
     }
+    cy.get(selectorStr, opts).wait(10).focus();
     return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
   }
 

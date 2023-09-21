@@ -21,9 +21,9 @@ describe(`${pageName} expected components on different devices`, () => {
   };
 
   const tests = [
-    ...changeBranch(changeParams),
     ...testDeployHosted,
     ...testDeploySelfHosted,
+    ...changeBranch(changeParams),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
