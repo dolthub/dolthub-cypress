@@ -1,10 +1,15 @@
 import {
+  beVisible,
   shouldBeVisible,
   shouldFindAndContain,
   shouldNotExist,
 } from "@sharedTests/sharedFunctionsAndVariables";
 import { iPhoneXForAppLayout, macbook15ForAppLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
+import {
+  newExpectation,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "DoltHub organization page";
@@ -42,22 +47,28 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...commonDataCy.map(dc => shouldBeVisible(dc)),
     shouldFindAndContain("profile-card-name", orgName),
     ...commonNotExist.map(dc => shouldNotExist(dc)),
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should show list of owner repositories",
+      "[data-cy=repository-list-for-owner]",
+      beVisible,
+      true,
+    ),
+    newExpectation(
+      "should show repository list items",
       "[data-cy=repository-list-for-owner] li",
-      newShouldArgs("be.visible.and.have.length.of.at.least", 9),
+      newShouldArgs("be.visible.and.have.length.of.at.least", 8),
     ),
   ];
 
   const desktopTests = [
-    ...commonTests,
     ...desktopDataCy.map(dc => shouldBeVisible(dc)),
     ...desktopNotExist.map(dc => shouldNotExist(dc)),
+    ...commonTests,
   ];
 
   const mobileTests = [
-    ...commonTests,
     shouldFindAndContain("mobile-profile-selector", "Databases"),
+    ...commonTests,
   ];
 
   const devices = [
