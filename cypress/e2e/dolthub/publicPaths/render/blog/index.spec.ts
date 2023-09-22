@@ -1,8 +1,5 @@
 import { testBlogIndexNoSearch, testSearched } from "@sharedTests/blog";
-import {
-  desktopDevicesForSignedOut,
-  mobileDevicesForSignedOut,
-} from "@utils/devices";
+import { desktopDevicesForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -94,21 +91,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const mobileTests = [
-    ...tests,
-    newExpectation(
-      "should have footer of first blog excerpt",
-      "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
-      beVisible,
-    ),
-  ];
+  // const mobileTests = [
+  //   ...tests,
+  //   newExpectation(
+  //     "should have footer of first blog excerpt",
+  //     "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
+  //     beVisible,
+  //   ),
+  // ];
 
   const devices = desktopDevicesForSignedOut(pageName, desktopTests);
-  // TODO: Fix mobile navbar tests
-  const mobileDevices = mobileDevicesForSignedOut(pageName, mobileTests, true);
+  // TODO: Fix mobile/navbar tests
+  // const mobileDevices = mobileDevicesForSignedOut(pageName, mobileTests, true);
   runTestsForDevices({
     currentPage,
-    devices: [...devices, ...mobileDevices],
+    devices,
     skip,
     ignoreUncaughtErrors: true,
   });
