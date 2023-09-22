@@ -91,7 +91,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // TODO: Fix mobile navbar tests
   // const mobileTests = [
   //   ...tests,
   //   newExpectation(
@@ -102,6 +101,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   // ];
 
   const devices = desktopDevicesForSignedOut(pageName, desktopTests);
+  // TODO: Fix mobile/navbar tests
+  // const mobileDevices = mobileDevicesForSignedOut(pageName, mobileTests, true);
   runTestsForDevices({
     currentPage,
     devices,
