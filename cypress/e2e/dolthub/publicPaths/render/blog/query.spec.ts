@@ -1,5 +1,8 @@
 import { testBlogIndexNoSearch, testSearched } from "@sharedTests/blog";
-import { desktopDevicesForSignedOut } from "@utils/devices";
+import {
+  desktopDevicesForSignedOut,
+  mobileDevicesForSignedOut,
+} from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -50,11 +53,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testBlogIndexNoSearch,
   ];
 
-  // TODO: Fix mobile navbar tests
   const devices = desktopDevicesForSignedOut(pageName, tests);
+  // TODO: Fix mobile navbar tests
+  const mobileDevices = mobileDevicesForSignedOut(pageName, tests, true);
   runTestsForDevices({
     currentPage,
-    devices,
+    devices: [...devices, ...mobileDevices],
     skip,
     ignoreUncaughtErrors: true,
   });
