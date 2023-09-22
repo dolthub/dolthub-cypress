@@ -69,7 +69,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have blank search input",
       "[data-cy=blog-search-input]",
       newShouldArgs("be.visible.and.have.value", ""),
-      { value: `${query1}{enter}`, skipClear: true },
+      { value: `${query1}{enter}` },
     ),
     newExpectationWithClickFlows(
       "should have searched and cleared",
@@ -94,7 +94,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // TODO: Fix mobile navbar tests
   const mobileTests = [
     ...tests,
     newExpectation(
@@ -105,6 +104,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = desktopDevicesForSignedOut(pageName, desktopTests);
+  // TODO: Fix mobile navbar tests
   const mobileDevices = mobileDevicesForSignedOut(pageName, mobileTests, true);
   runTestsForDevices({
     currentPage,
