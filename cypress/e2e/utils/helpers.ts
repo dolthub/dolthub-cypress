@@ -32,16 +32,6 @@ export function newExpectationWithURL(
   return { description, selector, shouldArgs, skip, url };
 }
 
-export function newExpectationWithRedirect(
-  description: string,
-  selector: Selector,
-  shouldArgs: ShouldArgs,
-  redirect: string,
-  skip = false,
-): Expectation {
-  return { description, selector, shouldArgs, skip, redirect };
-}
-
 export function newExpectationWithClickFlows(
   description: string,
   selector: string,
@@ -138,11 +128,10 @@ export function newScrollToXY(
 export function newDevice(
   device: Cypress.ViewportPreset,
   description: string,
-  loggedIn: boolean,
   tests: Tests,
   isMobile: boolean,
 ): Device {
-  return { device, description, loggedIn, tests, isMobile };
+  return { device, description, tests, isMobile };
 }
 
 // Should args

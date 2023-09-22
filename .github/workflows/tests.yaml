@@ -22,8 +22,8 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-      id-token: write   # This is required for requesting the JWT
-      contents: read    # This is required for actions/checkout
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
 
 jobs:
   cypress-run:
@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Cypress run doltlab tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         with:
           install: false
           browser: chrome
@@ -52,7 +52,7 @@ jobs:
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Cypress run dolthub tests
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         with:
           install: false
           browser: chrome

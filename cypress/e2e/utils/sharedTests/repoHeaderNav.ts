@@ -4,7 +4,7 @@ import {
   newExpectationWithClickFlows,
   newShouldArgs,
 } from "../helpers";
-import { Expectation, ShouldArgs, Tests } from "../types";
+import { ClickFlow, Expectation, ShouldArgs, Tests } from "../types";
 import { notExist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
@@ -76,47 +76,38 @@ export const conditionalReadMeTest = (hasDocs: boolean) => {
 export const databaseDropdownClickFlow = (
   loggedIn: boolean,
   hasDocs: boolean,
-) =>
-  newClickFlow(
-    "[data-cy=repo-dropdown-button]",
-    loggedIn
-      ? [
-          newExpectation(
-            "should have a create new table link",
-            "[data-cy=dropdown-create-new-table-link]",
-            beVisible,
-          ),
-          newExpectation(
-            "should have a upload a file link",
-            "[data-cy=dropdown-upload-a-file-link]",
-            beVisible,
-          ),
-          newExpectation(
-            "should have a create new issue link",
-            "[data-cy=dropdown-new-issue-link]",
-            beVisible,
-          ),
-          newExpectation(
-            "should have a create new pull request link",
-            "[data-cy=dropdown-new-pull-request-link]",
-            beVisible,
-          ),
-          conditionalReadMeTest(hasDocs),
-        ]
-      : [
-          newExpectation(
-            "should have a create new issue link",
-            "[data-cy=dropdown-new-issue-link]",
-            beVisible,
-          ),
-          newExpectation(
-            "should have a create new pull request link",
-            "[data-cy=dropdown-new-pull-request-link]",
-            beVisible,
-          ),
-        ],
-    "[data-cy=repo-dropdown-button]",
-  );
+): ClickFlow => {
+  const commonTests = [
+    newExpectation(
+      "should have a create new issue link",
+      "[data-cy=dropdown-new-issue-link]",
+      beVisible,
+    ),
+    newExpectation(
+      "should have a create new pull request link",
+      "[data-cy=dropdown-new-pull-request-link]",
+      beVisible,
+    ),
+  ];
+  const tests = loggedIn
+    ? [
+        newExpectation(
+          "should have a create new table link",
+          "[data-cy=dropdown-create-new-table-link]",
+          beVisible,
+        ),
+        newExpectation(
+          "should have a upload a file link",
+          "[data-cy=dropdown-upload-a-file-link]",
+          beVisible,
+        ),
+        ...commonTests,
+        conditionalReadMeTest(hasDocs),
+      ]
+    : commonTests;
+
+  return newClickFlow("[data-cy=repo-dropdown-button]", tests);
+};
 
 export const testTabs = (visibility: ShouldArgs): Expectation[] => {
   const tabsVisibility = visibility.chainer === "be.visible" ? "" : "not ";

@@ -132,11 +132,13 @@ export const checkForkList = (isMobile: boolean) => [
       newClickFlow(
         `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
         [
-          newExpectation(
+          newExpectationWithScrollIntoView(
             "should show fork list",
             "[data-cy=fork-list]",
             beVisible,
+            true,
           ),
+
           newExpectation(
             "should have at least 3 forks",
             "[data-cy=fork-list] li",

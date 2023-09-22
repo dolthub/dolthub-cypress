@@ -62,5 +62,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPhoneXForAppLayout(pageName, mobileTests, loggedIn),
   ];
 
-  runTestsForDevices({ currentPage, devices, skip });
+  runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

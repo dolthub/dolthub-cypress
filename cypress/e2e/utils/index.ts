@@ -48,101 +48,65 @@ export const deviceDimensions: Record<
 // RUN TESTS
 
 type TestsArgs = {
-  loggedIn?: boolean;
-  device: Cypress.ViewportPreset;
-  currentPage: string;
   tests: Tests;
   isMobile: boolean;
 };
 
-export function runTests({
-  device,
-  isMobile,
-  currentPage,
-  tests,
-  loggedIn = false,
-}: TestsArgs) {
-  before(() => {
-    cy.visitPage(currentPage, loggedIn);
-    cy.visitViewport(device);
-  });
-
-  beforeEach(() => {
-    // Preserve dolthubToken cookie through all tests for page
-    Cypress.Cookies.preserveOnce("dolthubToken");
-  });
-
-  after(() => {
-    if (loggedIn) cy.signout(isMobile);
-  });
-
+export function runTests({ tests }: TestsArgs) {
   tests.forEach(t => {
-    if (t.skip) {
-      xit(t.description, () => {});
-    } else {
-      it(t.description, () => {
-        if (t.redirect) {
-          // Sign in and continue to redirect value before starting test assertions
-          cy.loginAsCypressTestingFromSigninPageWithRedirect(t.redirect);
-        }
+    cy.log(t.description);
 
-        testAssertion(t);
+    if (t.skip) return;
 
-        if (t.clickFlows) {
-          testClickFlows({
-            clickFlows: t.clickFlows,
-            description: t.description,
-          });
-        }
+    testAssertion(t);
 
-        if (t.scrollTo) {
-          handleScrollTo(t.scrollTo);
-        }
-
-        if (t.redirect) {
-          // Sign out after signing in for redirect and running tests
-          cy.signout(isMobile);
-        }
+    if (t.clickFlows) {
+      testClickFlows({
+        clickFlows: t.clickFlows,
+        description: t.description,
       });
+    }
+
+    if (t.scrollTo) {
+      handleScrollTo(t.scrollTo);
     }
   });
 }
 
 type TestsForDevicesArgs = {
-  currentPage: string;
   devices: Devices;
+  currentPage: string;
   skip?: boolean;
+  loggedIn?: boolean;
   ignoreUncaughtErrors?: boolean;
 };
 
 export function runTestsForDevices({
   devices,
   currentPage,
+  loggedIn = false,
   skip = false,
   ignoreUncaughtErrors = false,
 }: TestsForDevicesArgs) {
+  beforeEach(() => {
+    // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
+    if (ignoreUncaughtErrors) {
+      cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+    }
+    // Visit page and log in if needed
+    cy.visitPage(currentPage, loggedIn);
+  });
+
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
-    const skipForLogin = d.loggedIn && (!username || !password);
+    const skipForLogin = loggedIn && (!username || !password);
     if (skip || skipForLogin) {
-      describe.skip(d.description, deviceDimensions[d.device], () => {
-        runTests({ ...d, currentPage });
+      xit(d.description, deviceDimensions[d.device], () => {
+        runTests(d);
       });
     } else {
-      describe(d.description, deviceDimensions[d.device], () => {
-        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        if (ignoreUncaughtErrors) {
-          it("should ignore Gatsby server error", () => {
-            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-          });
-        }
-        runTests({ ...d, currentPage });
-        // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-        if (ignoreUncaughtErrors) {
-          it("should ignore Gatsby server error", () => {
-            cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
-          });
-        }
+      it(d.description, deviceDimensions[d.device], () => {
+        runTests(d);
       });
     }
   });
@@ -203,9 +167,11 @@ function getAssertionTest(
         .type(typeString.value, clickOpts);
     }
     if (!typeString.skipClear) {
+      cy.get(selectorStr, opts).wait(10).focus();
       cy.get(selectorStr, opts).clear(clickOpts);
       return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
     }
+    cy.get(selectorStr, opts).wait(10).focus();
     return cy.get(selectorStr, opts).type(typeString.value, clickOpts);
   }
 
@@ -261,6 +227,7 @@ type ClickFlowsArgs = {
 // the clicking each toClickAfter
 export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
   if (!clickFlows) return;
+  cy.log(description);
 
   clickFlows.forEach(({ toClickBefore, expectations, toClickAfter, force }) => {
     if (toClickBefore) runClicks(toClickBefore, force);
