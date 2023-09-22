@@ -1,5 +1,8 @@
 import { testBlogIndexNoSearch, testSearched } from "@sharedTests/blog";
-import { desktopDevicesForSignedOut } from "@utils/devices";
+import {
+  desktopDevicesForSignedOut,
+  mobileDevicesForSignedOut,
+} from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -66,7 +69,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have blank search input",
       "[data-cy=blog-search-input]",
       newShouldArgs("be.visible.and.have.value", ""),
-      { value: `${query1}{enter}` },
+      { value: `${query1}{enter}`, skipClear: true },
     ),
     newExpectationWithClickFlows(
       "should have searched and cleared",
@@ -92,19 +95,20 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   // TODO: Fix mobile navbar tests
-  // const mobileTests = [
-  //   ...tests,
-  //   newExpectation(
-  //     "should have footer of first blog excerpt",
-  //     "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
-  //     beVisible,
-  //   ),
-  // ];
+  const mobileTests = [
+    ...tests,
+    newExpectation(
+      "should have footer of first blog excerpt",
+      "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
+      beVisible,
+    ),
+  ];
 
   const devices = desktopDevicesForSignedOut(pageName, desktopTests);
+  const mobileDevices = mobileDevicesForSignedOut(pageName, mobileTests, true);
   runTestsForDevices({
     currentPage,
-    devices,
+    devices: [...devices, ...mobileDevices],
     skip,
     ignoreUncaughtErrors: true,
   });
