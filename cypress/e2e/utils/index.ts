@@ -166,6 +166,9 @@ function getAssertionTest(
         .eq(typeString.eq)
         .type(typeString.value, clickOpts);
     }
+    if (typeString.withWarmup) {
+      cy.get(selectorStr, opts).type("test").clear(clickOpts);
+    }
     cy.get(selectorStr, opts).wait(10).focus();
     if (!typeString.skipClear) {
       cy.get(selectorStr, opts).clear(clickOpts);
