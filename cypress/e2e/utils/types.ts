@@ -6,6 +6,7 @@ export type TypeStringType = {
   value: string;
   eq?: number;
   skipClear?: boolean;
+  withWarmup?: boolean;
 };
 export type ScrollToPosition = {
   position: Cypress.PositionType;
