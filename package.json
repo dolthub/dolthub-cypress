@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sns": "^3.414.0",
-    "cypress": "^13.2.0",
+    "cypress": "^13.3.0",
     "cypress-file-upload": "^5.0.8",
     "typescript": "^5.2.2"
   },
