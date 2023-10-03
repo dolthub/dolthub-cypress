@@ -4567,7 +4567,7 @@ __metadata:
     eslint-config-airbnb-base: ^15.0.0
     eslint-config-airbnb-typescript: ^17.1.0
     eslint-config-prettier: ^9.0.0
-    eslint-plugin-cypress: ^2.14.0
+    eslint-plugin-cypress: ^2.15.1
     eslint-plugin-import: ^2.28.0
     husky: ^8.0.3
     npm-run-all: ^4.1.5
@@ -4889,14 +4889,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-cypress@npm:^2.14.0":
-  version: 2.14.0
-  resolution: "eslint-plugin-cypress@npm:2.14.0"
+"eslint-plugin-cypress@npm:^2.15.1":
+  version: 2.15.1
+  resolution: "eslint-plugin-cypress@npm:2.15.1"
   dependencies:
     globals: ^13.20.0
   peerDependencies:
     eslint: ">= 3.2.1"
-  checksum: 3fa118a757aebb1aa6b419b2944744796aa4fa3cc1e2e19fa97777fd6792fba12b5ae117bf19bf7e7d9a1abdd48398cfba9ca6f2c62fd690a2108a9a02f3f2ae
+  checksum: 3e66fa9a943fff52eaf3758250a63c2a0f8ffd60c50572beaf3688b33a55fbf0060d18ef32bc26abb57aef070517db827c22fd3d607582861d464970f95e550e
   languageName: node
   linkType: hard
 
