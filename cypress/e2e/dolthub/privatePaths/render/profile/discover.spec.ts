@@ -59,7 +59,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     // we will add it back when we have a way to check for forked repos
     // ...checkForkList(isMobile),
-   ];
+  ];
   const ipadTests = [
     newExpectation(
       "should render repository list",
@@ -88,13 +88,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.length.of.at.most", 2),
     ),
     // ...checkForkList(true),
-   ];
+  ];
 
   const skip = false;
   const devices = [
-    macbook15ForAppLayout(pageName, tests , false, loggedIn),
+    macbook15ForAppLayout(pageName, tests, false, loggedIn),
     iPad2(pageName, ipadTests),
-    iPhoneX(pageName, tests ),
+    iPhoneX(pageName, tests),
   ];
   runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

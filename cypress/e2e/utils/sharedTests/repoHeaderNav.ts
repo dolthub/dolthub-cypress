@@ -106,7 +106,10 @@ export const databaseDropdownClickFlow = (
       ]
     : commonTests;
 
-  return newClickFlow("[data-cy=repository-page-header] [data-cy=repo-dropdown-button]", tests);
+  return newClickFlow(
+    "[data-cy=repository-page-header] [data-cy=repo-dropdown-button]",
+    tests,
+  );
 };
 
 export const testTabs = (visibility: ShouldArgs): Expectation[] => {
