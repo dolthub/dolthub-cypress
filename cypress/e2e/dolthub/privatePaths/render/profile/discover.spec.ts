@@ -1,5 +1,5 @@
 import {
-  // checkForkList,
+  checkForkList,
   uncheckShowForkListOption,
 } from "@sharedTests/reposContainer";
 import { iPad2, iPhoneX, macbook15ForAppLayout } from "@utils/devices";
@@ -17,7 +17,7 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const tests = [
+  const tests = (isMobile: boolean) => [
     newExpectationWithScrollIntoView(
       "should render repository list",
       "[data-cy=repository-list-most-recent]",
@@ -57,8 +57,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-list-most-recent]>li",
       newShouldArgs("be.visible.and.have.length.of.at.most", 2),
     ),
-    // we will add it back when we have a way to check for forked repos
-    // ...checkForkList(isMobile),
+    ...checkForkList(isMobile),
   ];
   const ipadTests = [
     newExpectation(
@@ -87,14 +86,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repository-list-most-recent]>li",
       newShouldArgs("be.visible.and.have.length.of.at.most", 2),
     ),
-    // ...checkForkList(true),
+    ...checkForkList(true),
   ];
 
   const skip = false;
   const devices = [
-    macbook15ForAppLayout(pageName, tests, false, loggedIn),
+    macbook15ForAppLayout(pageName, tests(false), false, loggedIn),
     iPad2(pageName, ipadTests),
-    iPhoneX(pageName, tests),
+    iPhoneX(pageName, tests(true)),
   ];
   runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });
