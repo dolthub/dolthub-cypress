@@ -55,7 +55,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should only have one repo in the list",
       "[data-cy=repository-list-most-recent]>li",
-      newShouldArgs("be.visible.and.have.length.of.at.most", 2),
+      newShouldArgs("be.visible.and.have.length.of.at.most", 1),
     ),
     ...checkForkList(isMobile),
   ];
@@ -84,7 +84,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should only have one repo in the list",
       "[data-cy=repository-list-most-recent]>li",
-      newShouldArgs("be.visible.and.have.length.of.at.most", 2),
+      newShouldArgs("be.visible.and.have.length.of.at.most", 1),
     ),
     ...checkForkList(true),
   ];
