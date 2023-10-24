@@ -1,4 +1,3 @@
-import { createTempDatabase } from "@sharedTests/createTempDatabase";
 import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
@@ -12,17 +11,14 @@ import {
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
 import { testCreateTableWithSpreadsheetEditor } from "@utils/sharedTests/testCreateTableWithSpreadsheetEditor";
 
-const pageName = "Create, edit tables, teardown database";
-const currentPage = "/profile/new-repository";
+const pageName = "Create table with spreadsheet editor";
+const currentOwner = "automated_testing";
+const currentRepo = "repo_tables_and_docs";
+const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
-
-const randomNum = Math.ceil(Math.random() * 10000);
-const repoName = `temp_db_${randomNum}`;
-const ownerName = "cypresstesting";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    ...createTempDatabase(repoName, ownerName),
     // CLICK ADD TABLE AND SHOW 3 WAYS OF ADDING TABLE
     newExpectationWithClickFlows(
       "should open left nav",

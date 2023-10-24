@@ -35,11 +35,5 @@ export const testCreateTableWithFileUpload: Tests = [
     beVisible,
   ),
 
-  ...afterUploadSteps(
-    tableName,
-    `${tableName}.csv`,
-    `${tableName}.csv`,
-    `Import of ${tableName}.csv`,
-    "Col1",
-  ),
+  ...afterUploadSteps(`${tableName}.csv`, "Col1"),
 ];
