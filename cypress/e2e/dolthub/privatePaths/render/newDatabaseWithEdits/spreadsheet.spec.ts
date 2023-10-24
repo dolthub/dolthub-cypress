@@ -13,19 +13,12 @@ import { testCreateTableWithSpreadsheetEditor } from "@utils/sharedTests/testCre
 
 const pageName = "Create table with spreadsheet editor";
 const currentOwner = "automated_testing";
-const currentRepo = "repo_tables_and_docs";
+const currentRepo = "repo_with_branch_protection";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    // CLICK ADD TABLE AND SHOW 3 WAYS OF ADDING TABLE
-    newExpectationWithClickFlows(
-      "should open left nav",
-      "[data-cy=left-nav-toggle-icon]",
-      beVisible,
-      [newClickFlow("[data-cy=left-nav-toggle-icon]", [])],
-    ),
     newExpectationWithClickFlows(
       "should show add table button",
       "[data-cy=repo-tables-add-table]",
