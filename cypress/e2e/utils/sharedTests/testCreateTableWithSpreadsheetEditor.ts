@@ -4,8 +4,9 @@ import {
   newExpectationWithClickFlows,
 } from "../helpers";
 import { Tests } from "../types";
-import { afterUploadSteps, preUploadSteps } from "./editRepo";
+import { afterUploadSteps } from "./editRepo";
 import {
+  beVisible,
   beVisibleAndContain,
   getTypeInGridTests,
   typingExpectation,
@@ -18,9 +19,25 @@ const grids = [
 ];
 
 export const testCreateTableWithSpreadsheetEditor: Tests = [
-  // USE SPREAD SHEET TO ADD TABLE
-  ...preUploadSteps("spread sheet editor", "spreadsheet", "Spreadsheet Editor"),
-
+  //! CLICK ADD TABLE
+  newExpectationWithClickFlows(
+    "should show add table button",
+    "[data-cy=repo-tables-add-table]",
+    beVisible,
+    [
+      newClickFlow(
+        "[data-cy=repo-tables-add-table]",
+        [
+          newExpectation(
+            `should show and click spread sheet editor`,
+            `[data-cy=file-upload-spreadsheet-table-link]`,
+            beVisibleAndContain("Spreadsheet Editor"),
+          ),
+        ],
+        `[data-cy=file-upload-spreadsheet-table-link]`,
+      ),
+    ],
+  ),
   // CHOOSE TABLE
   newExpectationWithClickFlows(
     "should show Create a new table",
@@ -35,12 +52,6 @@ export const testCreateTableWithSpreadsheetEditor: Tests = [
     ],
   ),
 
-  newExpectationWithClickFlows(
-    "should show File Importer page",
-    "[data-cy=upload-title]",
-    beVisibleAndContain("Upload file or create spreadsheet"),
-    [newClickFlow("[data-cy=spread-sheet-button]", [])],
-  ),
   newExpectation(
     "should show spreadsheet editor title",
     "[data-cy=spreadsheet-editor-title]",
@@ -54,12 +65,5 @@ export const testCreateTableWithSpreadsheetEditor: Tests = [
     [newClickFlow("[data-cy=upload-table-button]", [])],
   ),
 
-  ...afterUploadSteps(
-    spreadSheetTable,
-    "editor",
-    "spreadsheet editor",
-    "Create new table",
-    grids[0][0],
-    "spreadsheet-",
-  ),
+  ...afterUploadSteps("editor", grids[0][0], "spreadsheet-"),
 ];

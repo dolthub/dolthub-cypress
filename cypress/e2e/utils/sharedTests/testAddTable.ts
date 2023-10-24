@@ -30,12 +30,12 @@ export const testAddTable: Tests = [
         ),
         newExpectation(
           "should show spreadsheet editor link",
-          "[data-cy=file-upload-spreadsheet-branch-link]",
+          "[data-cy=file-upload-spreadsheet-table-link]",
           beVisibleAndContain("Spreadsheet Editor"),
         ),
         newExpectation(
           "should show file upload link",
-          "[data-cy=file-upload-fileupload-branch-link]",
+          "[data-cy=file-upload-fileupload-table-link]",
           beVisibleAndContain("File Upload"),
         ),
       ]),

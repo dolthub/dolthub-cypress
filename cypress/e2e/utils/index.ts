@@ -170,7 +170,7 @@ function getAssertionTest(
       cy.get(selectorStr, opts).type("test");
       cy.get(selectorStr, opts).clear(clickOpts);
     }
-    cy.get(selectorStr, opts).wait(10).focus();
+    // cy.get(selectorStr, opts).wait(10).focus();
     if (!typeString.skipClear) {
       cy.get(selectorStr, opts).clear(clickOpts);
     }
