@@ -8,6 +8,7 @@ import { afterUploadSteps } from "./editRepo";
 import {
   beVisible,
   beVisibleAndContain,
+  checkValueInGridTests,
   getTypeInGridTests,
   typingExpectation,
 } from "./sharedFunctionsAndVariables";
@@ -58,6 +59,15 @@ export const testCreateTableWithSpreadsheetEditor: Tests = [
     beVisibleAndContain("Spreadsheet Editor"),
   ),
   ...getTypeInGridTests(grids, true),
+  // click the editor title to lose focus in the last cell
+  newExpectationWithClickFlows(
+    "should show Create a new table",
+    "[data-cy=spreadsheet-editor-title]",
+    beVisible,
+    [newClickFlow("", [], "[data-cy=spreadsheet-editor-title]")],
+  ),
+
+  ...checkValueInGridTests(grids),
   newExpectationWithClickFlows(
     "should show upload table button",
     "[data-cy=upload-table-button]",
