@@ -104,4 +104,19 @@ export function getTypeInGridTests(grids: string[][], skipClear = false) {
   return tests;
 }
 
+export function checkValueInGridTests(grids: string[][]) {
+  const tests: Expectation[] = [];
+  grids.forEach((row: string[], rowidx: number) => {
+    row.forEach((val: string, colidx: number) => {
+      tests.push(
+        newExpectation(
+          `should have value in row ${rowidx} in column ${colidx}`,
+          `[aria-rowindex="${rowidx + 2}"]>[aria-colindex="${colidx + 2}"]`,
+          beVisibleAndContain(val),
+        ),
+      );
+    });
+  });
+  return tests;
+}
 export const gatsbyServerBuildErrors = ["Minified React error"];

@@ -12,7 +12,6 @@ import {
   beVisible,
   beVisibleAndContain,
   exist,
-  typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
 export const mergingAndDeletingBranch = (title: string) => [
@@ -134,11 +133,11 @@ export const preUploadSteps = (
         [
           newExpectation(
             `should show and click ${description}`,
-            `[data-cy=file-upload-${uploadMethod}-branch-link]`,
+            `[data-cy=file-upload-${uploadMethod}-table-link]`,
             beVisibleAndContain(uploadMethodTitle),
           ),
         ],
-        `[data-cy=file-upload-${uploadMethod}-branch-link]`,
+        `[data-cy=file-upload-${uploadMethod}-table-link]`,
       ),
     ],
   ),
@@ -152,10 +151,7 @@ export const preUploadSteps = (
 ];
 
 export const afterUploadSteps = (
-  tableName: string,
   fileName: string,
-  description: string,
-  mergingTitle: string,
   primaryKey: string,
   uploadMethod = "",
 ) => [
@@ -202,60 +198,20 @@ export const afterUploadSteps = (
     [newClickFlow("[data-cy=upload-next-button]", [])],
   ),
 
-  //! REVIEW CHANGES
-  newExpectationWithClickFlows(
-    "should show Review your changes message",
-    "[data-cy=review-title]",
-    beVisibleAndContain("Review your changes"),
-    [
-      newClickFlow(
-        "",
-        [
-          newExpectation(
-            "should match the file name",
-            "[data-cy=file-name]",
-            beVisibleAndContain(fileName),
-          ),
-        ],
-        "[data-cy=upload-next-button]",
-      ),
-    ],
+  //! START IMPORT
+  newExpectation(
+    "should show Start import message",
+    "[data-cy=import-title]",
+    beVisibleAndContain("Start import"),
   ),
-
-  //! COMMIT
-  newExpectationWithClickFlows(
-    "should show Commit changes message",
-    "[data-cy=commit-title]",
-    beVisibleAndContain("Commit changes"),
-    [
-      newClickFlow(
-        "",
-        [
-          typingExpectation(
-            `Creating test with changes from ${description}`,
-            "[data-cy=textarea-container]>textarea",
-          ),
-        ],
-        "[data-cy=upload-next-button]",
-      ),
-    ],
-  ),
-  ...mergingAndDeletingBranch(mergingTitle),
-  //! CHECK UPLOADED TABLE
-  newExpectationWithClickFlows(
-    "should be able to navigate to database tab",
-    "[data-cy=repo-database-tab]",
+  newExpectation(
+    "should have commit message text area",
+    "[data-cy=commit-message-input",
     beVisible,
-    [newClickFlow("[data-cy=repo-database-tab]", [])],
   ),
   newExpectation(
-    "should show the uploaded table",
-    `[data-cy=repo-tables-table-${tableName}`,
-    beVisibleAndContain(tableName),
-  ),
-  newExpectation(
-    "should show the primary key",
-    `[data-cy=repo-tables-table-${tableName}] [data-cy=${primaryKey}-primary-key]`,
+    "should have new branch name input",
+    "[data-cy=new-branch-name-input",
     beVisible,
   ),
 ];
