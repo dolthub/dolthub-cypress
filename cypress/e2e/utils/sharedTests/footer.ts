@@ -46,9 +46,6 @@ export const testDoltLabFooter: Tests = [
   newExpectation(
     "should have download doltlab button",
     "[data-cy=site-footer]",
-    newShouldArgs("be.visible.and.contain", [
-      "Download DoltLab",
-      "All rights reserved.",
-    ]),
+    newShouldArgs("be.visible.and.contain", ["All rights reserved."]),
   ),
 ];

@@ -156,11 +156,11 @@ export const conditionalViewTableMobileTest = (
     ? [
         newExpectationWithClickFlows(
           `should have test table ${testTable}`,
-          `[data-cy=repo-tables-table-${testTable}-mobile]`,
+          `[data-cy=repo-tables-table-${testTable}]`,
           beVisible,
           [
             newClickFlow(
-              `[data-cy=repo-tables-table-${testTable}-mobile] a`,
+              `[data-cy=repo-tables-table-${testTable}] a:first`,
               [
                 newExpectation(
                   "Should show table",
@@ -174,7 +174,7 @@ export const conditionalViewTableMobileTest = (
         ),
         newExpectation(
           "Should show 'viewing'",
-          `[data-cy=repo-tables-table-viewing-mobile]`,
+          `[data-cy=repo-tables-table-viewing]`,
           newShouldArgs("be.visible.and.contain", "Viewing"),
         ),
       ]
