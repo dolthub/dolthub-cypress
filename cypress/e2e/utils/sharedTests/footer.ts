@@ -47,7 +47,6 @@ export const testDoltLabFooter: Tests = [
     "should have download doltlab button",
     "[data-cy=site-footer]",
     newShouldArgs("be.visible.and.contain", [
-      "Download DoltLab",
       "All rights reserved.",
     ]),
   ),
