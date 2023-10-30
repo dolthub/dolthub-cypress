@@ -43,14 +43,6 @@ jobs:
           aws-region: "us-west-2"
       - name: Install dependencies
         run: yarn
-      - name: Cypress run doltlab tests
-        uses: cypress-io/github-action@v6
-        with:
-          install: false
-          browser: chrome
-          config-file: cypress.doltlab.config.ts
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Cypress run dolthub tests
         uses: cypress-io/github-action@v6
         with:
@@ -63,6 +55,14 @@ jobs:
           AWS_REGION: "us-west-2"
           SNS_TOPIC_ARN: ${{ secrets.SNS_TOPIC_ARN }}
           ALERT_ON_FAILURE: ${{ github.event_name == 'schedule' }}
+      - name: Cypress run doltlab tests
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          browser: chrome
+          config-file: cypress.doltlab.config.ts
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Save screenshots of failed tests
         uses: actions/upload-artifact@v3
         if: failure()
