@@ -2461,9 +2461,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/github-action@npm:^6.5.0":
-  version: 6.5.0
-  resolution: "@cypress/github-action@npm:6.5.0"
+"@cypress/github-action@npm:^6.6.0":
+  version: 6.6.0
+  resolution: "@cypress/github-action@npm:6.6.0"
   dependencies:
     "@actions/cache": 3.2.1
     "@actions/core": 1.10.0
@@ -2477,7 +2477,7 @@ __metadata:
     hasha: 5.2.2
     quote: 0.4.0
     supports-color: 9.3.1
-  checksum: ce894e5e4b28acdd9cec4d183bf967f7106012bfdcff532574b00c27153266278216ed831e90efc0e95a577031aaebfc06c8e7c7ad677a9040f61858ad2412a1
+  checksum: 936f38937ca8d1a2e95c185c6764ad1944c3e97cbee0344f9918f219bd6bb0ebec7cb13b0e75b67e5d14fcc90d86640b0c3098b75a34673c4eb6d5ff5a34be6d
   languageName: node
   linkType: hard
 
@@ -4862,7 +4862,7 @@ __metadata:
     "@babel/core": ^7.23.2
     "@babel/preset-env": ^7.22.15
     "@babel/preset-typescript": ^7.23.2
-    "@cypress/github-action": ^6.5.0
+    "@cypress/github-action": ^6.6.0
     "@types/node": ^20.5.9
     "@typescript-eslint/eslint-plugin": ^6.9
     "@typescript-eslint/parser": ^6.7.4
