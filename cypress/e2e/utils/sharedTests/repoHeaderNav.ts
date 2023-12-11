@@ -118,12 +118,11 @@ export const testTabs = (visibility: ShouldArgs): Expectation[] => {
     // DATABASE TAB
     newExpectation(
       `should ${tabsVisibility}have repo Database tab`,
-      "[data-cy=repo-database-tab]",
+      "[data-cy=repo-database-active-tab]",
       visibility,
     ),
 
     // ABOUT TAB
-
     newExpectation(
       `should ${tabsVisibility}have repo About tab`,
       "[data-cy=repo-about-tab]",
