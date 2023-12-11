@@ -99,7 +99,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, tests, true),
     iPhoneXForAppLayout(
       pageName,
-      testMobileRepoHeaderNav(currentOwner, currentRepo),
+      testMobileRepoHeaderNav(currentOwner, currentRepo,"about"),
       true,
     ),
   ];

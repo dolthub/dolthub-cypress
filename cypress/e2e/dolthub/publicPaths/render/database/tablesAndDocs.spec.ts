@@ -51,6 +51,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       loggedIn,
       hasDocs,
       true,
+       "about"
     ),
     ...tableExpectations(true, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),
@@ -64,7 +65,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(
       pageName,
-      testMobileRepoHeaderNav(currentOwner, currentRepo),
+      testMobileRepoHeaderNav(currentOwner, currentRepo,"about"),
     ),
   ];
   const skip = false;

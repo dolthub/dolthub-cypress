@@ -38,6 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       loggedIn,
       hasDocs,
       true,
+      "issues",
     ),
     ...changeBranch(changeBranchParams),
     newExpectation(
