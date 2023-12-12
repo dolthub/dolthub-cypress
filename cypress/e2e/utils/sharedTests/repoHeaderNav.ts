@@ -9,7 +9,7 @@ import { notBeFound, notExist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 const notBeVisible = newShouldArgs("not.be.visible");
- 
+
 // OLD FORMAT POPUP
 
 export const testOldFormatPopup = newExpectationWithClickFlows(
@@ -112,27 +112,32 @@ export const databaseDropdownClickFlow = (
   );
 };
 
-export const testTabs = (visibility: ShouldArgs,activeTab?:string): Expectation[] => {
+export const testTabs = (
+  visibility: ShouldArgs,
+  activeTab?: string,
+): Expectation[] => {
   const tabsVisibility = visibility.chainer === "be.visible" ? "" : "not ";
   return [
     // DATABASE TAB
     newExpectation(
       `should ${tabsVisibility}have repo Database tab`,
-      `[data-cy=repo-database-${activeTab==="database"?"active-":""}tab]`,
+      `[data-cy=repo-database-${activeTab === "database" ? "active-" : ""}tab]`,
       visibility,
     ),
 
     // ABOUT TAB
     newExpectation(
       `should ${tabsVisibility}have repo About tab`,
-      `[data-cy=repo-about-${activeTab==="about"?"active-":""}tab]`,
+      `[data-cy=repo-about-${activeTab === "about" ? "active-" : ""}tab]`,
       visibility,
     ),
 
     // COMMIT LOG TAB
     newExpectation(
       `should ${tabsVisibility}have repo Commit Log tab`,
-      `[data-cy=repo-commit-log-${activeTab==="commit-log"?"active-":""}tab]`,
+      `[data-cy=repo-commit-log-${
+        activeTab === "commit-log" ? "active-" : ""
+      }tab]`,
       visibility,
     ),
 
@@ -140,7 +145,7 @@ export const testTabs = (visibility: ShouldArgs,activeTab?:string): Expectation[
 
     newExpectation(
       `should ${tabsVisibility}have repo Tag List tab`,
-      `[data-cy=repo-releases-${activeTab==="releases"?"active-":""}tab]`,
+      `[data-cy=repo-releases-${activeTab === "releases" ? "active-" : ""}tab]`,
       visibility,
     ),
 
@@ -148,7 +153,9 @@ export const testTabs = (visibility: ShouldArgs,activeTab?:string): Expectation[
 
     newExpectation(
       `should ${tabsVisibility}have repo Pull Requests tab`,
-      `[data-cy=repo-pull-requests-${activeTab==="pull-requests"?"active-":""}tab]`,
+      `[data-cy=repo-pull-requests-${
+        activeTab === "pull-requests" ? "active-" : ""
+      }tab]`,
       visibility,
     ),
 
@@ -156,14 +163,14 @@ export const testTabs = (visibility: ShouldArgs,activeTab?:string): Expectation[
 
     newExpectation(
       `should ${tabsVisibility}have repo Issues tab`,
-      `[data-cy=repo-issues-${activeTab==="issues"?"active-":""}tab]`,
+      `[data-cy=repo-issues-${activeTab === "issues" ? "active-" : ""}tab]`,
       visibility,
     ),
     // DEPLOY TAB
 
     newExpectation(
       `should ${tabsVisibility}have repo Deploy tab`,
-      `[data-cy=repo-deploy-${activeTab==="deploy"?"active-":""}tab]`,
+      `[data-cy=repo-deploy-${activeTab === "deploy" ? "active-" : ""}tab]`,
       visibility,
     ),
   ];
@@ -224,7 +231,7 @@ export const testRepoHeaderForAll = (
   loggedIn: boolean,
   hasDocs: boolean,
   cloneDisabled = false,
-  activeTab="database",
+  activeTab = "database",
 ): Tests => {
   const loggedOutRepoHeaderTests = [
     ...testCommonHeader(repoName, ownerName),
@@ -240,7 +247,7 @@ export const testRepoHeaderForAll = (
           beVisible,
           [cloneClickFlow],
         ),
-    ...testTabs(beVisible,activeTab),
+    ...testTabs(beVisible, activeTab),
     newExpectationWithClickFlows(
       "should have functioning nav dropdown",
       "[data-cy=repository-page-header] [data-cy=repo-dropdown-button]",
@@ -259,7 +266,7 @@ export const testRepoHeaderForAll = (
 export const testMobileRepoHeaderNav = (
   ownerName: string,
   repoName: string,
-  activeTab="database",
+  activeTab = "database",
 ): Expectation[] => [
   ...testCommonHeader(repoName, ownerName),
   newExpectation(
@@ -272,7 +279,7 @@ export const testMobileRepoHeaderNav = (
     "[data-cy=repo-dropdown-button]",
     notBeVisible,
   ),
-  ...testTabs(notBeVisible,activeTab),
+  ...testTabs(notBeVisible, activeTab),
   newExpectation(
     "should not have Repo Settings section",
     "[data-cy=repo-settings-tab]",
@@ -286,7 +293,7 @@ export const testRepoHeaderWithBranch = (
   loggedIn: boolean,
   hasDocs: boolean,
   cloneDisabled = false,
-  activeTab="database",
+  activeTab = "database",
 ): Tests => [
   ...testRepoHeaderForAll(
     repoName,
@@ -294,7 +301,7 @@ export const testRepoHeaderWithBranch = (
     loggedIn,
     hasDocs,
     cloneDisabled,
-    activeTab
+    activeTab,
   ),
   newExpectationWithClickFlows(
     "should open create fork modal on fork button click",

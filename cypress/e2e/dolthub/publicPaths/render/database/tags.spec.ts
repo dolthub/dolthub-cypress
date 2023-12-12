@@ -42,7 +42,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-data-table-empty]",
       notExist,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, false,false,"releases"),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      false,
+      false,
+      "about",
+    ),
     ...tableExpectations(hasDocs, loggedIn, 1, "test"),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
@@ -55,7 +62,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(
       pageName,
-      testMobileRepoHeaderNav(currentOwner, currentRepo,"releases"),
+      testMobileRepoHeaderNav(currentOwner, currentRepo, "about"),
     ),
   ];
   const skip = false;

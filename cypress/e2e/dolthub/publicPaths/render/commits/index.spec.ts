@@ -55,7 +55,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, true,"commit-log"),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      false,
+      true,
+      true,
+      "commit-log",
+    ),
     ...commonTests,
     newExpectation(
       "should find csv download icon",
@@ -70,7 +77,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const mobileTests = [
-    ...testMobileRepoHeaderNav(currentOwner, currentRepo,"commit-log"),
+    ...testMobileRepoHeaderNav(currentOwner, currentRepo, "commit-log"),
     ...commonTests,
     newExpectation(
       "should not find csv download icon",

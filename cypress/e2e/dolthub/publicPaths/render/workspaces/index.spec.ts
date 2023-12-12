@@ -104,7 +104,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, hasDocs, true, true),
+      mobileTests(
+        currentOwner,
+        currentRepo,
+        currentPage,
+        hasDocs,
+        true,
+        true,
+        false,
+        "about",
+      ),
     ),
   ];
   const skip = false;

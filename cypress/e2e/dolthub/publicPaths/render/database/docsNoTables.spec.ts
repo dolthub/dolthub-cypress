@@ -45,7 +45,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs,false,"about"),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      loggedIn,
+      hasDocs,
+      false,
+      "about",
+    ),
     ...tableExpectations(hasDocs, loggedIn, 0),
     testViewsSection(hasBranch, 0),
     testQueryCatalogSection(hasBranch, 0),
@@ -57,7 +64,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(
       pageName,
-      testMobileRepoHeaderNav(currentOwner, currentRepo,"about"),
+      testMobileRepoHeaderNav(currentOwner, currentRepo, "about"),
     ),
   ];
   const skip = false;

@@ -12,7 +12,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, false,false, "issues",),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      false,
+      false,
+      false,
+      "issues",
+    ),
     newExpectation(
       "should find empty issue message",
       "[data-cy=issue-no-issues]",

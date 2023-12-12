@@ -93,7 +93,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const mobileTests = [
     ...commonTests,
-    ...testMobileRepoHeaderNav(currentOwner, currentRepo, "about",),
+    ...testMobileRepoHeaderNav(currentOwner, currentRepo, "about"),
     ...tableExpectations(hasDocs, loggedIn, 11, "case_details", true),
     testViewsSection(hasBranch, 15, testView, true),
     testQueryCatalogSection(hasBranch, 10, testQuery, true),
