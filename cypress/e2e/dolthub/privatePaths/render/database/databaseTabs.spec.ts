@@ -7,7 +7,7 @@ import {
 import { runTestsForDevices } from "@utils/index";
 import { beVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
-const pageName = "Logged in database page with tables and docs";
+const pageName = "Logged in database page with empty repo and branch";
 const currentOwner = "automated_testing";
 const currentRepo = "empty_repo_with_branch";
 const currentPage = `repositories/${currentOwner}/${currentRepo}`;
@@ -29,6 +29,16 @@ const tabsClickFlow = (tabName: string) =>
     ],
   );
 
+const tabNames = [
+  "about",
+  "commit-log",
+  "releases",
+  "issues",
+  "pull-requests",
+  "jobs",
+  "settings",
+  "deploy",
+];
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     // DATABASE TAB
@@ -37,31 +47,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-database-active-tab]",
       beVisible,
     ),
-
-    // ABOUT TAB
-    tabsClickFlow("about"),
-
-    // COMMIT LOG TAB
-    tabsClickFlow("commit-log"),
-
-    // RELEASES TAB
-    tabsClickFlow("releases"),
-
-    // ISSUES TAB
-    tabsClickFlow("issues"),
-
-    // PULL REQUESTS TAB
-    tabsClickFlow("pull-requests"),
-
-    // JOBS TAB
-    tabsClickFlow("jobs"),
-
-    // SETTINGS TAB
-    tabsClickFlow("settings"),
-
-    // DEPLOY TAB
-    tabsClickFlow("deploy"),
+    ...tabNames.map(tabName => tabsClickFlow(tabName)),
   ];
+
   const skip = false;
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
   runTestsForDevices({ currentPage, devices, skip, loggedIn });

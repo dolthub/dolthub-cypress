@@ -1,3 +1,4 @@
+import { get } from "cypress/types/lodash";
 import {
   newClickFlow,
   newExpectation,
@@ -112,6 +113,10 @@ export const databaseDropdownClickFlow = (
   );
 };
 
+function getDataCyForTab(tab: string, activeTab?: string): string {
+  return `[data-cy=repo-${tab}-${activeTab === tab ? "active-" : ""}tab]`;
+}
+
 export const testTabs = (
   visibility: ShouldArgs,
   activeTab?: string,
@@ -121,23 +126,21 @@ export const testTabs = (
     // DATABASE TAB
     newExpectation(
       `should ${tabsVisibility}have repo Database tab`,
-      `[data-cy=repo-database-${activeTab === "database" ? "active-" : ""}tab]`,
+      getDataCyForTab("database", activeTab),
       visibility,
     ),
 
     // ABOUT TAB
     newExpectation(
       `should ${tabsVisibility}have repo About tab`,
-      `[data-cy=repo-about-${activeTab === "about" ? "active-" : ""}tab]`,
+      getDataCyForTab("about", activeTab),
       visibility,
     ),
 
     // COMMIT LOG TAB
     newExpectation(
       `should ${tabsVisibility}have repo Commit Log tab`,
-      `[data-cy=repo-commit-log-${
-        activeTab === "commit-log" ? "active-" : ""
-      }tab]`,
+      getDataCyForTab("commit-log", activeTab),
       visibility,
     ),
 
@@ -145,7 +148,7 @@ export const testTabs = (
 
     newExpectation(
       `should ${tabsVisibility}have repo Tag List tab`,
-      `[data-cy=repo-releases-${activeTab === "releases" ? "active-" : ""}tab]`,
+      getDataCyForTab("releases", activeTab),
       visibility,
     ),
 
@@ -153,9 +156,7 @@ export const testTabs = (
 
     newExpectation(
       `should ${tabsVisibility}have repo Pull Requests tab`,
-      `[data-cy=repo-pull-requests-${
-        activeTab === "pull-requests" ? "active-" : ""
-      }tab]`,
+      getDataCyForTab("pull-requests", activeTab),
       visibility,
     ),
 
@@ -163,14 +164,14 @@ export const testTabs = (
 
     newExpectation(
       `should ${tabsVisibility}have repo Issues tab`,
-      `[data-cy=repo-issues-${activeTab === "issues" ? "active-" : ""}tab]`,
+      getDataCyForTab("issues", activeTab),
       visibility,
     ),
     // DEPLOY TAB
 
     newExpectation(
       `should ${tabsVisibility}have repo Deploy tab`,
-      `[data-cy=repo-deploy-${activeTab === "deploy" ? "active-" : ""}tab]`,
+      getDataCyForTab("deploy", activeTab),
       visibility,
     ),
   ];
