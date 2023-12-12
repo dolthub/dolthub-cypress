@@ -27,6 +27,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       loggedIn,
       hasDocs,
       true,
+      "settings",
     ),
     shouldNotExist("active-webhooks-settings-tab"),
     shouldBeVisible("settings-no-write-perms"),
@@ -43,6 +44,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
         `repositories/${currentOwner}/${currentRepo}/settings`,
         hasDocs,
         true,
+        true,
+        false,
+        "settings",
       ),
     ),
   ];

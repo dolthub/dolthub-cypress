@@ -26,7 +26,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
   };
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, true),
+    ...testRepoHeaderWithBranch(
+      currentRepo,
+      currentOwner,
+      false,
+      true,
+      true,
+      "pull-requests",
+    ),
     ...changeBranch(changeBranchParams),
     newExpectation(
       "should not find empty pull message",
@@ -72,7 +79,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // TODO: mobile pull request page tests
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, true, true),
+      mobileTests(
+        currentOwner,
+        currentRepo,
+        currentPage,
+        true,
+        true,
+        true,
+        false,
+        "pull-requests",
+      ),
     ),
   ];
   const skip = false;

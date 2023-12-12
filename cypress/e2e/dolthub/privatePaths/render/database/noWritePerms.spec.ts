@@ -23,7 +23,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-doc-markdown]",
       beVisible,
     ),
-    ...testRepoHeaderForAll(currentRepo, currentOwner, canWrite, hasDocs),
+    ...testRepoHeaderForAll(
+      currentRepo,
+      currentOwner,
+      canWrite,
+      hasDocs,
+      false,
+      "about",
+    ),
     ...tableExpectations(
       hasDocs,
       canWrite,

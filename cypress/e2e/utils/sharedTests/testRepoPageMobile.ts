@@ -159,8 +159,9 @@ export const mobileTests = (
   hasBranch: boolean,
   hasData = true,
   desktopOnly = false,
+  activeTab = "database",
 ): Tests => [
-  ...testMobileRepoHeaderNav(currentOwner, currentRepo),
+  ...testMobileRepoHeaderNav(currentOwner, currentRepo, activeTab),
   ...(desktopOnly
     ? testDesktopOnlyWarnings(currentPage, hasDocs, hasBranch, hasData)
     : []),

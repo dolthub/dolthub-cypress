@@ -38,6 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       loggedIn,
       hasDocs,
       true,
+      "issues",
     ),
     ...changeBranch(changeBranchParams),
     newExpectation(
@@ -85,7 +86,16 @@ describe(`${pageName} renders expected components on different devices`, () => {
     // TODO: mobile issue page tests
     iPhoneXForAppLayout(
       pageName,
-      mobileTests(currentOwner, currentRepo, currentPage, true, true),
+      mobileTests(
+        currentOwner,
+        currentRepo,
+        currentPage,
+        true,
+        true,
+        true,
+        false,
+        "issues",
+      ),
     ),
   ];
   const skip = false;
