@@ -5,7 +5,7 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { ClickFlow, Expectation, ShouldArgs, Tests } from "../types";
-import { notBeFound, notExist } from "./sharedFunctionsAndVariables";
+import { notExist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 const notBeVisible = newShouldArgs("not.be.visible");

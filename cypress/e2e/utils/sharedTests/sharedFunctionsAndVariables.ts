@@ -10,7 +10,6 @@ import { Expectation } from "../types";
 export const beVisible = newShouldArgs("be.visible");
 export const notBeVisible = newShouldArgs("not.be.visible");
 export const notExist = newShouldArgs("not.exist");
-export const notBeFound = newShouldArgs("not.be.found");
 export const exist = newShouldArgs("exist");
 export const beVisibleAndContain = (value: string | string[]) =>
   newShouldArgs("be.visible.and.contain", value);
