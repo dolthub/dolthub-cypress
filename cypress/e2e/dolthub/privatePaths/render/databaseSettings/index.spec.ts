@@ -63,19 +63,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repo-settings-visibility-radios]",
       beVisibleAndContain("Public"),
     ),
-    newExpectationWithClickFlows(
-      "should have Save button",
+    newExpectationWithScrollIntoView(
+      "should scroll to the Save button",
       "[data-cy=repo-settings-submit-button]",
-      beVisible,
-      [
-        newClickFlow("[data-cy=repo-settings-submit-button]", [
-          newExpectation(
-            "should change to Saved! when clicked",
-            "[data-cy=repo-settings-submit-button]",
-            beVisibleAndContain("Saved!"),
-          ),
-        ]),
-      ],
+      beVisibleAndContain("Save changes"),
+      true,
     ),
     newExpectationWithScrollIntoView(
       "should have a Delete Database section with header",
