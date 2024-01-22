@@ -46,28 +46,33 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should find pull requests table with header",
-      "[data-cy=pull-requests-table] > thead > tr > th",
-      newShouldArgs("be.visible.and.have.length", 5),
-    ),
-    newExpectation(
       "should find at least 5 pulls",
-      "[data-cy=pull-requests-table] > tbody > tr",
+      "[data-cy=pull-requests-table] > li",
       newShouldArgs("be.visible.and.have.length.of.at.least", 5),
     ),
     newExpectation(
-      "should find pull with ID 1 with 5 columns",
-      "[data-cy=pull-requests-row-1] > td",
-      newShouldArgs("be.visible.and.have.length", 5),
+      "should find pull with ID 5 with pull state icon",
+      "[data-cy=pull-requests-row-5] [data-cy=pull-state-icon]",
+      beVisible,
     ),
     newExpectation(
-      "should find pull with ID 1 with two links",
-      "[data-cy=pull-requests-row-1] > td a",
-      newShouldArgs("be.visible.and.have.length", 2),
+      "should find pull with ID 5 with pull title",
+      "[data-cy=pull-requests-row-5] [data-cy=pull-title]",
+      beVisible,
     ),
     newExpectation(
-      "should find pull with ID 1 with pull state label",
-      "[data-cy=pull-requests-row-1] [data-cy=pull-state-label]",
+      "should find pull with ID 5 with pull id",
+      "[data-cy=pull-requests-row-5] [data-cy=pull-id]",
+      beVisible,
+    ),
+    newExpectation(
+      "should find pull with ID 5 with pull creator",
+      "[data-cy=pull-requests-row-5] [data-cy=pull-creator]",
+      beVisible,
+    ),
+    newExpectation(
+      "should find pull with ID 5 with created time",
+      "[data-cy=pull-requests-row-5] [data-cy=created-time]",
       beVisible,
     ),
   ];
