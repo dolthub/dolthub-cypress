@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.23.9",
-    "@babel/core": "^7.23.7",
+    "@babel/core": "^7.23.9",
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-typescript": "^7.23.3",
     "@cypress/github-action": "^6.6.1",
