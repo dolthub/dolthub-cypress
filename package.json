@@ -51,7 +51,7 @@
     "yarnhook": "^0.6.1"
   },
   "dependencies": {
-    "@aws-sdk/client-sns": "^3.462.0",
+    "@aws-sdk/client-sns": "^3.504.0",
     "cypress": "^13.6.4",
     "cypress-file-upload": "^5.0.8",
     "typescript": "^5.3.3"
