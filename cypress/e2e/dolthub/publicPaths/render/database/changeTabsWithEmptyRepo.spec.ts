@@ -26,8 +26,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     {
       tabName: "commit",
       tabDataCy: "repo-commit-log-tab",
-      dataCyToFind: "repo-empty-get-started",
-      textToFind: "Get Started",
+      dataCyToFind: "commits-no-commits",
+      textToFind: "No commits found",
     },
     {
       tabName: "releases",
