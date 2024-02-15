@@ -4765,11 +4765,9 @@ __metadata:
     eslint-config-prettier: ^9.1.0
     eslint-plugin-cypress: ^2.15.1
     eslint-plugin-import: ^2.29.1
-    husky: ^9.0.9
     npm-run-all: ^4.1.5
     prettier: ^3.2.4
     typescript: ^5.3.3
-    yarnhook: ^0.6.1
   languageName: unknown
   linkType: soft
 
@@ -5236,7 +5234,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"execa@npm:4.1.0, execa@npm:^4.0.3":
+"execa@npm:4.1.0":
   version: 4.1.0
   resolution: "execa@npm:4.1.0"
   dependencies:
@@ -5387,13 +5385,6 @@ __metadata:
   dependencies:
     to-regex-range: ^5.0.1
   checksum: cc283f4e65b504259e64fd969bcf4def4eb08d85565e906b7d36516e87819db52029a76b6363d0f02d0d532f0033c9603b9e2d943d56ee3b0d4f7ad3328ff917
-  languageName: node
-  linkType: hard
-
-"find-parent-dir@npm:^0.3.0":
-  version: 0.3.1
-  resolution: "find-parent-dir@npm:0.3.1"
-  checksum: 55e722584760cfbc6611901c7ced5081345cf629e2ecd6a4f6704b13b5a1876c8d9d9db5fd4965ba23e1ecbc24a8b62af40379cfef1ffa0231719b9d924eebdd
   languageName: node
   linkType: hard
 
@@ -5989,15 +5980,6 @@ __metadata:
   dependencies:
     ms: ^2.0.0
   checksum: 9c7a74a2827f9294c009266c82031030eae811ca87b0da3dceb8d6071b9bde22c9f3daef0469c3c533cc67a97d8a167cd9fc0389350e5f415f61a79b171ded16
-  languageName: node
-  linkType: hard
-
-"husky@npm:^9.0.9":
-  version: 9.0.9
-  resolution: "husky@npm:9.0.9"
-  bin:
-    husky: bin.mjs
-  checksum: d6dd56cd67cbf8aa4011260eb19aeed5a7004efecdc9706cc6635a92b53bb4aaf57eeb350e6e58791f3108f949c62a4b53ef6a0ad9eeafd2bd459a1aea905f2e
   languageName: node
   linkType: hard
 
@@ -8880,18 +8862,6 @@ __metadata:
   version: 4.0.0
   resolution: "yallist@npm:4.0.0"
   checksum: 343617202af32df2a15a3be36a5a8c0c8545208f3d3dfbc6bb7c3e3b7e8c6f8e7485432e4f3b88da3031a6e20afa7c711eded32ddfb122896ac5d914e75848d5
-  languageName: node
-  linkType: hard
-
-"yarnhook@npm:^0.6.1":
-  version: 0.6.1
-  resolution: "yarnhook@npm:0.6.1"
-  dependencies:
-    execa: ^4.0.3
-    find-parent-dir: ^0.3.0
-  bin:
-    yarnhook: index.js
-  checksum: d1676eea01546b208aa734adf604f2a252ac9992559c7c549b91b1af7dc309c9036da6a4532d3b0ce2e32d1df2c7ea0644ff39b90bee7ce5606d8b07924400dd
   languageName: node
   linkType: hard
 
