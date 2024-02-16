@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: "18"
       - name: configure aws credentials # used for publishing sns messages after test run failures
