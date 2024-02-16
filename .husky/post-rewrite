@@ -1,8 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-if [ -d "./node_modules/yarnhook" ]; then
-   yarn yarnhook
-else
-   yarn install
-fi
