@@ -12,7 +12,7 @@ import {
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Blog list page with query";
-const query = "figma of databases video";
+const query = "Dolt and Knex.js";
 const currentPage = Cypress.env("LOCAL_BLOG")
   ? `/?q=${query}`
   : `/blog/?q=${query}`;
@@ -36,8 +36,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testSearched(
       query,
-      "DoltHub is the Figma of Databases Video",
-      "2022-01-25-figma-of-databases-video/",
+      "Getting Started with Dolt and Knex.js",
+      "2023-09-27-dolt-and-knexjs/",
     ),
     newExpectationWithClickFlows(
       "should clear search",
