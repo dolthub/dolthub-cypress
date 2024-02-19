@@ -15,7 +15,7 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const query1 = "figma of databases video";
+  const query1 = "Dolt and Knex.js";
   const query2 = "wikipedia ngrams";
 
   const searchClickFlow = newClickFlow(
@@ -23,8 +23,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
     [
       ...testSearched(
         query1,
-        "DoltHub is the Figma of Databases Video",
-        "2022-01-25-figma-of-databases-video/",
+        "Getting Started with Dolt and Knex.js",
+        "2023-09-27-dolt-and-knexjs/",
       ),
       newExpectationWithTypeString(
         "should change input",
