@@ -13,7 +13,7 @@
     "cy-open-dev-p1": "cypress open --config baseUrl=https://dolthub-preview-1.awsdev.ld-corp.com",
     "cy-open-dev-p2": "cypress open --config baseUrl=https://dolthub-preview-2.awsdev.ld-corp.com",
     "cy-open-dev-p3": "cypress open --config baseUrl=https://dolthub-preview-3.awsdev.ld-corp.com",
-    "cy-run-dev": "cypress run --config baseUrl=https://dolthub.awsdev.ld-corp.com",
+    "cy-run-dev": "ELECTRON_ENABLE_LOGGING=1 cypress run --config baseUrl=https://dolthub.awsdev.ld-corp.com",
     "cy-run-dev-p1": "cypress run --config baseUrl=https://dolthub-preview-1.awsdev.ld-corp.com",
     "cy-run-dev-p2": "cypress run --config baseUrl=https://dolthub-preview-2.awsdev.ld-corp.com",
     "cy-run-dev-p3": "cypress run --config baseUrl=https://dolthub-preview-3.awsdev.ld-corp.com",
@@ -46,6 +46,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-cypress": "^2.15.1",
     "eslint-plugin-import": "^2.29.1",
+    "gatsby-cypress": "^3.13.1",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.2.4"
   },

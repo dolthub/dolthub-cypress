@@ -2090,7 +2090,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.20.13, @babel/runtime@npm:^7.8.4":
   version: 7.23.9
   resolution: "@babel/runtime@npm:7.23.9"
   dependencies:
@@ -4202,6 +4202,7 @@ __metadata:
     eslint-config-prettier: "npm:^9.1.0"
     eslint-plugin-cypress: "npm:^2.15.1"
     eslint-plugin-import: "npm:^2.29.1"
+    gatsby-cypress: "npm:^3.13.1"
     npm-run-all: "npm:^4.1.5"
     prettier: "npm:^3.2.4"
     typescript: "npm:^5.3.3"
@@ -4994,6 +4995,18 @@ __metadata:
   version: 1.2.3
   resolution: "functions-have-names@npm:1.2.3"
   checksum: 0ddfd3ed1066a55984aaecebf5419fbd9344a5c38dd120ffb0739fac4496758dcf371297440528b115e4367fc46e3abc86a2cc0ff44612181b175ae967a11a05
+  languageName: node
+  linkType: hard
+
+"gatsby-cypress@npm:^3.13.1":
+  version: 3.13.1
+  resolution: "gatsby-cypress@npm:3.13.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.20.13"
+  peerDependencies:
+    cypress: ^9.0.0 || ^10.0.0
+    gatsby: ^5.0.0-next
+  checksum: 55a0f2f87500c398a179e692c222feefdf9ff05f0826c4667d9ce844b68bb95c5827d9dba205394e5bb825462a0cfdd4dc6b45f1a5040db56e359503cfb4674d
   languageName: node
   linkType: hard
 

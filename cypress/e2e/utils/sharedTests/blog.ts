@@ -66,7 +66,7 @@ export const testBlogIndexNoSearch = [
   newExpectation(
     "should not have matching articles message",
     "[data-cy=matching-articles]",
-    newShouldArgs("not.exist"),
+    newShouldArgs("is.hidden"),
   ),
   newExpectation(
     "should have more than one blog article",

@@ -109,6 +109,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     currentPage,
     devices,
     skip,
-    ignoreUncaughtErrors: true,
+    forGatsby: true,
   });
 });
