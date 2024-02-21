@@ -16,6 +16,11 @@ export const testSearched = (
   path: string,
 ): Expectation[] => [
   newExpectation(
+    `should have matching blog url for ${q}`,
+    "[data-cy=blog-list] > li:first [data-cy=blog-title]",
+    newShouldArgs("have.attr", ["href", `${currentPage}${path}`]),
+  ),
+  newExpectation(
     `should have query "${q}" in search input`,
     "[data-cy=blog-search-input]",
     newShouldArgs("be.visible.and.have.value", q),
@@ -34,11 +39,6 @@ export const testSearched = (
     `should have matching blog title for ${q}`,
     "[data-cy=blog-list] > li:first [data-cy=blog-title]",
     newShouldArgs("be.visible.and.contain", title),
-  ),
-  newExpectation(
-    `should have matching blog url for ${q}`,
-    "[data-cy=blog-list] > li:first [data-cy=blog-title]",
-    newShouldArgs("have.attr", ["href", `${currentPage}${path}`]),
   ),
   newExpectation(
     "should not have bottom page buttons",

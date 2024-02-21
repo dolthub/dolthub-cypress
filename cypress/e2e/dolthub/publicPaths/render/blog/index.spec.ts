@@ -1,5 +1,5 @@
 import { testBlogIndexNoSearch, testSearched } from "@sharedTests/blog";
-import { desktopDevicesForSignedOut } from "@utils/devices";
+import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -18,28 +18,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const query1 = "Dolt and Knex.js";
   const query2 = "wikipedia ngrams";
 
-  const searchClickFlow = newClickFlow(
-    "",
-    [
-      ...testSearched(
-        query1,
-        "Getting Started with Dolt and Knex.js",
-        "2023-09-27-dolt-and-knexjs/",
-      ),
-      newExpectationWithTypeString(
-        "should change input",
-        "[data-cy=blog-search-input]",
-        newShouldArgs("be.visible.and.have.value", query1),
-        { value: `${query2}{enter}` },
-      ),
-      ...testSearched(
-        query2,
-        "Maintained Wikipedia ngrams dataset in Dolt",
-        "2019-12-04-maintained-wikipedia-ngrams-dataset/",
-      ),
-    ],
-    "[data-cy=blog-search-clear]",
-  );
+  const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
+    newExpectation(
+      "should have blank search input after clear",
+      "[data-cy=blog-search-input]",
+      newShouldArgs("be.visible.and.have.value", ""),
+    ),
+  ]);
 
   const tests = [
     newExpectation(
@@ -68,16 +53,27 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.value", ""),
       { value: `${query1}{enter}`, withWarmup: true },
     ),
+    ...testSearched(
+      query1,
+      "Getting Started with Dolt and Knex.js",
+      "2023-09-27-dolt-and-knexjs/",
+    ),
+    newExpectationWithTypeString(
+      "should change input",
+      "[data-cy=blog-search-input]",
+      newShouldArgs("be.visible.and.have.value", query1),
+      { value: `${query2}{enter}` },
+    ),
+    ...testSearched(
+      query2,
+      "Maintained Wikipedia ngrams dataset in Dolt",
+      "2019-12-04-maintained-wikipedia-ngrams-dataset/",
+    ),
     newExpectationWithClickFlows(
       "should have searched and cleared",
       "[data-cy=blog-search-clear]",
       beVisible,
-      [searchClickFlow],
-    ),
-    newExpectation(
-      "should have blank search input after clear",
-      "[data-cy=blog-search-input]",
-      newShouldArgs("be.visible.and.have.value", ""),
+      [clearSearchClickFlow],
     ),
     ...testBlogIndexNoSearch,
   ];
@@ -91,18 +87,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // const mobileTests = [
-  //   ...tests,
-  //   newExpectation(
-  //     "should have footer of first blog excerpt",
-  //     "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
-  //     beVisible,
-  //   ),
-  // ];
+  const mobileTests = [
+    ...tests,
+    newExpectation(
+      "should have footer of first blog excerpt",
+      "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
+      beVisible,
+    ),
+  ];
 
-  const devices = desktopDevicesForSignedOut(pageName, desktopTests);
-  // TODO: Fix mobile/navbar tests
-  // const mobileDevices = mobileDevicesForSignedOut(pageName, mobileTests, true);
+  const devices = allDevicesForSignedOut(
+    pageName,
+    desktopTests,
+    mobileTests,
+    true,
+  );
   runTestsForDevices({
     currentPage,
     devices,

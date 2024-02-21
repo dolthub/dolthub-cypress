@@ -137,7 +137,7 @@ export const desktopDevicesForSignedOut = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
-) => {
+): Devices => {
   const t = getSignedOutTests(tests, skipNavbar);
   return [macbook15(pageName, t), macbook11(pageName, t)];
 };
