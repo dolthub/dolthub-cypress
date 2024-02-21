@@ -71,6 +71,11 @@ To run the tests in the `privatePaths` folder you need to put the test username 
 }
 ```
 
+## Viewing console outputs
+
+You can view console logs when using `cypress run` commands by setting the env variable
+`ELECTRON_ENABLE_LOGGING=1`. This will not work for Chrome.
+
 ## Writing tests
 
 To write tests, first, ensure that the element you want to test
