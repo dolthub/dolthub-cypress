@@ -3,6 +3,7 @@ import {
   newExpectation,
   newExpectationWithClickFlows,
   newExpectationWithScrollIntoView,
+  newExpectationWithURL,
   newShouldArgs,
 } from "../helpers";
 import { Expectation } from "../types";
@@ -15,10 +16,11 @@ export const testSearched = (
   title: string,
   path: string,
 ): Expectation[] => [
-  newExpectation(
-    `should have query "${q}" in search input`,
+  newExpectationWithURL(
+    "should route to query page",
     "[data-cy=blog-search-input]",
     newShouldArgs("be.visible.and.have.value", q),
+    `${currentPage}?q=${encodeURIComponent(q)}`,
   ),
   newExpectation(
     "should have matching articles message",
@@ -64,7 +66,7 @@ export const testBlogIndexNoSearch = [
   newExpectation(
     "should not have matching articles message",
     "[data-cy=matching-articles]",
-    newShouldArgs("not.exist"),
+    newShouldArgs("is.hidden"),
   ),
   newExpectation(
     "should have more than one blog article",

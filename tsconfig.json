@@ -18,7 +18,7 @@
     "composite": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["cypress", "node", "cypress-file-upload"],
+    "types": ["cypress", "node", "cypress-file-upload", "gatsby-cypress"],
     "paths": {
       "@utils/*": ["cypress/e2e/utils/*"],
       "@sharedTests/*": ["cypress/e2e/utils/sharedTests/*"]

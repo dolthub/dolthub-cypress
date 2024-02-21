@@ -18,28 +18,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const query1 = "Dolt and Knex.js";
   const query2 = "wikipedia ngrams";
 
-  const searchClickFlow = newClickFlow(
-    "",
-    [
-      ...testSearched(
-        query1,
-        "Getting Started with Dolt and Knex.js",
-        "2023-09-27-dolt-and-knexjs/",
-      ),
-      newExpectationWithTypeString(
-        "should change input",
-        "[data-cy=blog-search-input]",
-        newShouldArgs("be.visible.and.have.value", query1),
-        { value: `${query2}{enter}` },
-      ),
-      ...testSearched(
-        query2,
-        "Maintained Wikipedia ngrams dataset in Dolt",
-        "2019-12-04-maintained-wikipedia-ngrams-dataset/",
-      ),
-    ],
-    "[data-cy=blog-search-clear]",
-  );
+  const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
+    newExpectation(
+      "should have blank search input after clear",
+      "[data-cy=blog-search-input]",
+      newShouldArgs("be.visible.and.have.value", ""),
+    ),
+  ]);
 
   const tests = [
     newExpectation(
@@ -66,18 +51,35 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have blank search input",
       "[data-cy=blog-search-input]",
       newShouldArgs("be.visible.and.have.value", ""),
-      { value: `${query1}{enter}`, withWarmup: true },
+      { value: query1, withWarmup: true },
+    ),
+    newExpectationWithTypeString(
+      "should have filled search input",
+      "[data-cy=blog-search-input]",
+      newShouldArgs("be.visible.and.have.value", query1),
+      { value: `{enter}`, skipClear: true },
+    ),
+    ...testSearched(
+      query1,
+      "Getting Started with Dolt and Knex.js",
+      "2023-09-27-dolt-and-knexjs/",
+    ),
+    newExpectationWithTypeString(
+      "should change input",
+      "[data-cy=blog-search-input]",
+      newShouldArgs("be.visible.and.have.value", query1),
+      { value: `${query2}{enter}` },
+    ),
+    ...testSearched(
+      query2,
+      "Maintained Wikipedia ngrams dataset in Dolt",
+      "2019-12-04-maintained-wikipedia-ngrams-dataset/",
     ),
     newExpectationWithClickFlows(
       "should have searched and cleared",
       "[data-cy=blog-search-clear]",
       beVisible,
-      [searchClickFlow],
-    ),
-    newExpectation(
-      "should have blank search input after clear",
-      "[data-cy=blog-search-input]",
-      newShouldArgs("be.visible.and.have.value", ""),
+      [clearSearchClickFlow],
     ),
     ...testBlogIndexNoSearch,
   ];
@@ -107,6 +109,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     currentPage,
     devices,
     skip,
-    ignoreUncaughtErrors: true,
+    forGatsby: true,
   });
 });

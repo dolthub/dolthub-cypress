@@ -78,7 +78,7 @@ type TestsForDevicesArgs = {
   currentPage: string;
   skip?: boolean;
   loggedIn?: boolean;
-  ignoreUncaughtErrors?: boolean;
+  forGatsby?: boolean;
 };
 
 export function runTestsForDevices({
@@ -86,15 +86,18 @@ export function runTestsForDevices({
   currentPage,
   loggedIn = false,
   skip = false,
-  ignoreUncaughtErrors = false,
+  forGatsby = false,
 }: TestsForDevicesArgs) {
   beforeEach(() => {
-    // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-    if (ignoreUncaughtErrors) {
+    if (forGatsby) {
+      // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
       cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
+      cy.handleGoogle();
+      cy.visit(currentPage).waitForRouteChange();
+    } else {
+      // Visit page and log in if needed
+      cy.visitPage(currentPage, loggedIn);
     }
-    // Visit page and log in if needed
-    cy.visitPage(currentPage, loggedIn);
   });
 
   devices.forEach(d => {
