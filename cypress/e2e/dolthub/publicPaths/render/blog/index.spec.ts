@@ -51,7 +51,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have blank search input",
       "[data-cy=blog-search-input]",
       newShouldArgs("be.visible.and.have.value", ""),
-      { value: `${query1}{enter}`, withWarmup: true },
+      { value: query1, withWarmup: true },
+    ),
+    newExpectationWithTypeString(
+      "should have filled search input",
+      "[data-cy=blog-search-input]",
+      newShouldArgs("be.visible.and.have.value", query1),
+      { value: `{enter}`, skipClear: true },
     ),
     ...testSearched(
       query1,
