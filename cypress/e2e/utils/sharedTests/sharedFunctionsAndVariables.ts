@@ -119,4 +119,3 @@ export function checkValueInGridTests(grids: string[][]) {
   });
   return tests;
 }
-export const gatsbyServerBuildErrors = ["Minified React error"];

@@ -1,4 +1,3 @@
-import { gatsbyServerBuildErrors } from "./sharedTests/sharedFunctionsAndVariables";
 import {
   ClickFlow,
   Devices,
@@ -90,8 +89,6 @@ export function runTestsForDevices({
 }: TestsForDevicesArgs) {
   beforeEach(() => {
     if (forGatsby) {
-      // TODO: This error comes from fetching github stars for the navbar. We should fix eventually
-      cy.ignoreUncaughtErrors(gatsbyServerBuildErrors);
       cy.handleGoogle();
       cy.visit(currentPage).waitForRouteChange();
     } else {
