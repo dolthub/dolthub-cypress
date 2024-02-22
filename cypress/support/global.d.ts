@@ -25,7 +25,5 @@ declare namespace Cypress {
     visitAndWait(path: string): void;
 
     handleGoogle(): void;
-
-    ignoreUncaughtErrors(errorMessage: string[]): void;
   }
 }
