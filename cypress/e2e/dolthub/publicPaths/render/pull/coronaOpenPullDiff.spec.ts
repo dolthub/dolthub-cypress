@@ -9,8 +9,8 @@ import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Open pull diff page";
 const currentOwner = "automated_testing";
-const currentRepo = "corona-virus";
-const currentPullId = "5";
+const currentRepo = "repo_tables_and_docs";
+const currentPullId = "1";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -45,7 +45,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",
-      newShouldArgs("be.visible.and.contain", "cases"),
+      newShouldArgs("be.visible.and.contain", "test_table"),
     ),
     newExpectationWithClickFlows(
       "Option dropdown should have appropriate links",
@@ -74,7 +74,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table list summaries",
       "[data-cy=diff-table-list-summaries] > li",
-      newShouldArgs("be.visible.and.have.length", 3),
+      newShouldArgs("be.visible.and.have.length", 1),
     ),
     newExpectation(
       "should show table diff summary",
@@ -83,12 +83,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should show diff table",
-      "[data-cy=data-diff-cases]",
+      "[data-cy=data-diff-test_table]",
       beVisible,
     ),
     newExpectation(
       "should show diff table rows",
-      "[data-cy=data-diff-cases] > tbody > tr",
+      "[data-cy=data-diff-test_table] > tbody > tr",
       newShouldArgs("be.visible.and.have.length.of.at.least", 1),
     ),
     newExpectation(

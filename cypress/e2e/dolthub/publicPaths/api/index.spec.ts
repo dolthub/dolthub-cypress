@@ -196,11 +196,11 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
         },
         {
           columnName: "province_state",
-          columnType: "varchar(16383)",
+          columnType: "varchar(1023)",
         },
         {
           columnName: "country_region",
-          columnType: "varchar(16383)",
+          columnType: "varchar(1023)",
         },
         {
           columnName: "latitude",
