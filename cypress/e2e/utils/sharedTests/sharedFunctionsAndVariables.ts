@@ -2,6 +2,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlows,
+  newExpectationWithScrollIntoView,
   newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
@@ -25,6 +26,17 @@ export const shouldBeVisible = (dataCy: string, desc?: string): Expectation =>
     `should find ${desc ?? getDesc(dataCy)}`,
     `[data-cy=${dataCy}]`,
     beVisible,
+  );
+
+export const shouldBeVisibleAndScrollIntoView = (
+  dataCy: string,
+  desc?: string,
+): Expectation =>
+  newExpectationWithScrollIntoView(
+    `should find ${desc ?? getDesc(dataCy)}`,
+    `[data-cy=${dataCy}]`,
+    beVisible,
+    true,
   );
 
 export const shouldFindAndContain = (

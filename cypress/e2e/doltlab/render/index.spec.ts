@@ -1,29 +1,19 @@
 import { checkRepoListForTab } from "@sharedTests/reposContainer";
 import { macbook15ForDoltLabSignedOutLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import {
+  shouldBeVisible,
+  shouldFindAndContain,
+} from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "home page";
 const currentPage = "/";
 
 describe(`DoltLab ${pageName} renders expected components`, () => {
-  const beVisible = newShouldArgs("be.visible");
   const tests = [
-    newExpectation(
-      "should have database search input",
-      "[data-cy=repolist-search-input]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have create database button",
-      "[data-cy=create-database-button]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have database container",
-      "[data-cy=repos-container-with-tabs]",
-      newShouldArgs("be.visible.and.contain", "Discover"),
-    ),
+    shouldBeVisible("repolist-search-input"),
+    shouldBeVisible("create-database-button"),
+    shouldFindAndContain("repos-container-with-tabs", "Discover"),
     ...checkRepoListForTab("most-recent", 3),
   ];
 

@@ -1,54 +1,25 @@
-import { iPad2, iPhoneX, macbook15ForAppLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { allDevicesForAppLayout } from "@utils/devices";
 import { runTestsForDevices } from "@utils/index";
+import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Profile starred page";
 const currentPage = "/profile/starred";
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
   const tests = [
-    newExpectation(
-      "should render repository list",
-      "[data-cy=repository-list-top-20-starred]",
-      beVisible,
-    ),
-    newExpectation(
-      "should render create database button",
-      "[data-cy=create-database-button]",
-      beVisible,
-    ),
-    newExpectation(
-      "should render search input",
-      "[data-cy=repolist-search-input]",
-      beVisible,
-    ),
-  ];
-
-  const ipadTests = [
-    newExpectation(
-      "should render repository list",
-      "[data-cy=repository-list-top-20-starred]",
-      beVisible,
-    ),
-    newExpectation(
-      "should not render create database button",
-      "[data-cy=create-database-button]",
-      newShouldArgs("not.be.visible"),
-    ),
-    newExpectation(
-      "should render search input",
-      "[data-cy=repolist-search-input]",
-      beVisible,
-    ),
+    shouldBeVisible("create-database-button"),
+    shouldBeVisible("repolist-search-input"),
+    shouldBeVisible("repository-list-top-20-starred"),
   ];
 
   const skip = false;
-  const devices = [
-    macbook15ForAppLayout(pageName, tests, false, loggedIn),
-    iPad2(pageName, ipadTests),
-    iPhoneX(pageName, tests),
-  ];
+  const devices = allDevicesForAppLayout(
+    pageName,
+    tests,
+    tests,
+    true,
+    loggedIn,
+  );
   runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });
