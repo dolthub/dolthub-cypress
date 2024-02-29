@@ -1,31 +1,25 @@
-import { desktopDevicesForAppLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
+import { allDevicesForAppLayout } from "@utils/devices";
 import { runTestsForDevices } from "@utils/index";
+import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Profile new repository page";
 const currentPage = "/profile/new-repository";
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
   const tests = [
-    newExpectation(
-      "should render new repository form",
-      "[data-cy=new-repo-form]",
-      beVisible,
-    ),
-    newExpectation(
-      "should render create database button",
-      "[data-cy=create-database-button]",
-      beVisible,
-    ),
-    newExpectation(
-      "should render search input",
-      "[data-cy=repolist-search-input]",
-      beVisible,
-    ),
+    shouldBeVisible("new-repo-form"),
+    shouldBeVisible("create-database-button"),
+    shouldBeVisible("repolist-search-input"),
   ];
+
   const skip = false;
-  const devices = desktopDevicesForAppLayout(pageName, tests, false, loggedIn);
+  const devices = allDevicesForAppLayout(
+    pageName,
+    tests,
+    tests,
+    true,
+    loggedIn,
+  );
   runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });
