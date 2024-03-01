@@ -59,12 +59,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should have prevent deletion checked",
-      "[data-cy=prevent-deletions-checkbox]",
+      "[data-cy=prevent-deletions-checkbox] input",
       beChecked,
     ),
     newExpectation(
       "should not have prevent force push checked",
-      "[data-cy=prevent-force-push-checkbox]",
+      "[data-cy=prevent-force-push-checkbox] input",
       notBeChecked,
     ),
 
@@ -90,12 +90,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should have prevent deletion checked",
-      "[data-cy=prevent-deletions-checkbox]",
+      "[data-cy=prevent-deletions-checkbox] input",
       beChecked,
     ),
     newExpectation(
       "should have prevent force push checked",
-      "[data-cy=prevent-force-push-checkbox]",
+      "[data-cy=prevent-force-push-checkbox] input",
       beChecked,
     ),
 
@@ -120,12 +120,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
     newExpectation(
       "should have prevent deletion checked",
-      "[data-cy=prevent-deletions-checkbox]",
+      "[data-cy=prevent-deletions-checkbox] input",
       beChecked,
     ),
     newExpectation(
       "should have require approval checked",
-      "[data-cy=require-approval-checkbox]",
+      "[data-cy=require-approval-checkbox] input",
       beChecked,
     ),
     scrollToPosition("#main-content", "top"),
