@@ -81,19 +81,16 @@ type HiddenCols = {
   tableName: string;
 };
 
-const colsAreHidden = (hidden: string[]): Tests => {
-  return hidden
-    .map(c => {
-      return [
-        shouldBeVisible(`hidden-column-${c}`),
-        shouldNotExist(`repo-data-table-column-${c}`),
-      ];
-    })
+const colsAreHidden = (hidden: string[]): Tests =>
+  hidden
+    .map(c => [
+      shouldBeVisible(`hidden-column-${c}`),
+      shouldNotExist(`repo-data-table-column-${c}`),
+    ])
     .flat();
-};
 
-const colsAreShowing = (shown: string[], tableName: string): Tests => {
-  return shown.map(c =>
+const colsAreShowing = (shown: string[], tableName: string): Tests =>
+  shown.map(c =>
     newExpectationWithScrollIntoView(
       `should show column ${c}`,
       `[data-cy=data-diff-${tableName}] [data-cy=repo-data-table-column-${c}]`,
@@ -101,7 +98,6 @@ const colsAreShowing = (shown: string[], tableName: string): Tests => {
       true,
     ),
   );
-};
 
 const testHiddenCols = (hiddenCols: HiddenCols): Tests => [
   newExpectationWithClickFlow(
