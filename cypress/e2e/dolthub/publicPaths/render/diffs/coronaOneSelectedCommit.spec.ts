@@ -1,6 +1,10 @@
 import { diffsWithCommitTests } from "@sharedTests/diffs";
 import { macbook15ForAppLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
+import {
+  newExpectation,
+  newExpectationWithScrollIntoView,
+  newShouldArgs,
+} from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Diff page with one selected commit";
@@ -15,12 +19,11 @@ describe(`${pageName} renders expected component on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    ...diffsWithCommitTests(currentFromCommit, 1),
-
-    newExpectation(
+    newExpectationWithScrollIntoView(
       "should show diff table name",
       "[data-cy=diff-table-name]",
       newShouldArgs("be.visible.and.contain", tableName),
+      true,
     ),
     newExpectation(
       "should show diff table list summaries",
@@ -42,6 +45,18 @@ describe(`${pageName} renders expected component on different devices`, () => {
       `[data-cy=data-diff-${tableName}] > tbody > tr`,
       newShouldArgs("be.visible.and.have.length.of.at.least", 20),
     ),
+    ...diffsWithCommitTests(currentFromCommit, 1, {
+      hidden: [
+        "source",
+        "case_id",
+        "symptomatic_date",
+        "confirmed_date",
+        "recovered_date",
+        "place_id",
+      ],
+      shown: ["current_status", "nationality", "sex", "age", "case_name"],
+      tableName: "case_details",
+    }),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
