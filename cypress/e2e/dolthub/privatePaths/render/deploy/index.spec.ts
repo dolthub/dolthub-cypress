@@ -1,9 +1,9 @@
+import { macbook15ForAppLayout } from "@utils/devices";
+import { runTestsForDevices } from "@utils/index";
 import {
   testDeployHosted,
   testDeploySelfHosted,
-} from "@sharedTests/testDeployTab";
-import { macbook15ForAppLayout } from "@utils/devices";
-import { runTestsForDevices } from "@utils/index";
+} from "@utils/sharedTests/deployTab";
 import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Deploy page for database";

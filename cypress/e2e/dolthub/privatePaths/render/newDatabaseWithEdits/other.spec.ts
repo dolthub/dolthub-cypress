@@ -1,11 +1,11 @@
 import { createTempDatabase } from "@sharedTests/createTempDatabase";
 import { deleteTempDatabase } from "@sharedTests/deleteTempDatabase";
-import { testDocs } from "@sharedTests/testDocs";
-import { testPullRequest } from "@sharedTests/testPullRequest";
-import { testSaveQuery } from "@sharedTests/testSaveQuery";
-import { testViewQuery } from "@sharedTests/testViewQuery";
 import { macbook15ForAppLayout } from "@utils/devices";
 import { runTestsForDevices } from "@utils/index";
+import { testDocs } from "@utils/sharedTests/docs";
+import { testPullRequest } from "@utils/sharedTests/pullRequest";
+import { testSaveQuery } from "@utils/sharedTests/saveQuery";
+import { testViewQuery } from "@utils/sharedTests/viewQuery";
 
 const pageName = "Create, pull request/docs/saved query, teardown database";
 const currentPage = "/profile/new-repository";

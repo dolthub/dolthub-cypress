@@ -1,6 +1,5 @@
 import { changeBranch } from "@sharedTests/changeBranch";
 import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
-import { mobileTests } from "@sharedTests/testRepoPageMobile";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
@@ -8,6 +7,7 @@ import {
 } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { mobileTests } from "@utils/sharedTests/repoPageMobile";
 import { beVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 import { Tests } from "@utils/types";
 

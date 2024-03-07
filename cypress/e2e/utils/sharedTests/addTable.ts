@@ -4,10 +4,10 @@ import {
   newExpectationWithClickFlow,
 } from "../helpers";
 import { Tests } from "../types";
+import { testCreateTableWithFileUpload } from "./createTableWithFileUpload";
+import { testCreateTableWithSpreadsheetEditor } from "./createTableWithSpreadsheetEditor";
+import { testCreateTableWithSqlQuery } from "./createTableWithSqlQuery";
 import { beVisible, beVisibleAndContain } from "./sharedFunctionsAndVariables";
-import { testCreateTableWithFileUpload } from "./testCreateTableWithFileUpload";
-import { testCreateTableWithSpreadsheetEditor } from "./testCreateTableWithSpreadsheetEditor";
-import { testCreateTableWithSqlQuery } from "./testCreateTableWithSqlQuery";
 
 export const testAddTable: Tests = [
   // CLICK ADD TABLE AND SHOW 3 WAYS OF ADDING TABLE

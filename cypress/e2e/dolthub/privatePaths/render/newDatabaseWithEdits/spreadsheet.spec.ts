@@ -5,11 +5,11 @@ import {
   newExpectationWithClickFlow,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testCreateTableWithSpreadsheetEditor } from "@utils/sharedTests/createTableWithSpreadsheetEditor";
 import {
   beVisible,
   beVisibleAndContain,
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
-import { testCreateTableWithSpreadsheetEditor } from "@utils/sharedTests/testCreateTableWithSpreadsheetEditor";
 
 const pageName = "Create table with spreadsheet editor";
 const currentOwner = "automated_testing";

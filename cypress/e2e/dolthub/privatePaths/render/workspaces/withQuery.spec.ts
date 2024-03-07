@@ -11,7 +11,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { testCreatePullModal } from "@utils/sharedTests/testCreatePullModalInWorkspaces";
+import { testCreatePullModal } from "@utils/sharedTests/createPullModalInWorkspaces";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 

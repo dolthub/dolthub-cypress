@@ -6,8 +6,8 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testCreatePullModal } from "@utils/sharedTests/createPullModalInWorkspaces";
 import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
-import { testCreatePullModal } from "@utils/sharedTests/testCreatePullModalInWorkspaces";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 

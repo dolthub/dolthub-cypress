@@ -1,6 +1,5 @@
 import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
 import { testSqlConsole } from "@sharedTests/sqlEditor";
-import { mobileTests } from "@sharedTests/testRepoPageMobile";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
@@ -13,6 +12,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { mobileTests } from "@utils/sharedTests/repoPageMobile";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
