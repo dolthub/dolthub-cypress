@@ -226,6 +226,7 @@ export function testClickFlow(clickFlow: ClickFlow) {
 
   expectations.forEach(t => {
     testAssertion(t);
+    if (t.clickFlow) testClickFlow(t.clickFlow);
   });
 
   if (toClickAfter) runClicks(toClickAfter);

@@ -113,7 +113,7 @@ export const uncheckShowForkListOption = newExpectationWithClickFlow(
         newClickFlow("[data-cy=show-fork-repos-checkbox-checkbox]", []),
       ),
     ],
-    "[data-cy=filter-button",
+    "[data-cy=filter-button]",
   ),
 );
 
