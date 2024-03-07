@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newExpectationWithTypeString,
   newShouldArgs,
@@ -64,23 +64,21 @@ export function shouldSelectOption(
   optionIdx: number,
   currentValue?: string,
 ): Expectation {
-  return newExpectationWithClickFlows(
+  return newExpectationWithClickFlow(
     `should select ${optionToSelect}`,
     `[data-cy=${selectorDataCy}]`,
     currentValue ? beVisibleAndContain(currentValue) : beVisible,
-    [
-      newClickFlow(
-        `[data-cy=${selectorDataCy}]`,
-        [
-          newExpectation(
-            `should have ${optionToSelect}`,
-            `[id=react-select-${selectorIdx}-option-${optionIdx}]`,
-            beVisibleAndContain(optionToSelect),
-          ),
-        ],
-        `[id=react-select-${selectorIdx}-option-${optionIdx}]`,
-      ),
-    ],
+    newClickFlow(
+      `[data-cy=${selectorDataCy}]`,
+      [
+        newExpectation(
+          `should have ${optionToSelect}`,
+          `[id=react-select-${selectorIdx}-option-${optionIdx}]`,
+          beVisibleAndContain(optionToSelect),
+        ),
+      ],
+      `[id=react-select-${selectorIdx}-option-${optionIdx}]`,
+    ),
   );
 }
 

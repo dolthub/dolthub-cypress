@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "../helpers";
 
@@ -36,16 +36,16 @@ const sqlEditorClickFlowMobile = newClickFlow(
   "[data-cy=mobile-close-query-editor-button]",
 );
 
-export const testSqlConsole = newExpectationWithClickFlows(
+export const testSqlConsole = newExpectationWithClickFlow(
   "should find sql console initially closed, and then open on click",
   "[data-cy=sql-editor-collapsed",
   shouldArgs,
-  [sqlEditorClickFlow],
+  sqlEditorClickFlow,
 );
 
-export const testSqlConsoleMobile = newExpectationWithClickFlows(
+export const testSqlConsoleMobile = newExpectationWithClickFlow(
   "should find sql console initially closed, and then open on click",
   "[data-cy=mobile-sql-editor-button",
   shouldArgs,
-  [sqlEditorClickFlowMobile],
+  sqlEditorClickFlowMobile,
 );

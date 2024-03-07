@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "../helpers";
 import { ClickFlow, Expectation, ShouldArgs, Tests } from "../types";
@@ -12,11 +12,11 @@ const notBeVisible = newShouldArgs("not.be.visible");
 
 // OLD FORMAT POPUP
 
-export const testOldFormatPopup = newExpectationWithClickFlows(
+export const testOldFormatPopup = newExpectationWithClickFlow(
   "should find and old format popup",
   "[data-cy=old-format-popup]",
   beVisible,
-  [newClickFlow("[data-cy=close-modal]", [])],
+  newClickFlow("[data-cy=close-modal]", []),
 );
 
 // HEADER
@@ -241,18 +241,18 @@ export const testRepoHeaderForAll = (
           "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
           newShouldArgs("not.be.enabled"),
         )
-      : newExpectationWithClickFlows(
+      : newExpectationWithClickFlow(
           "should have repo clone button",
           " [data-cy=repo-clone-button]",
           beVisible,
-          [cloneClickFlow],
+          cloneClickFlow,
         ),
     ...testTabs(beVisible, activeTab),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have functioning nav dropdown",
       "[data-cy=repository-page-header] [data-cy=repo-dropdown-button]",
       beVisible,
-      [databaseDropdownClickFlow(loggedIn, hasDocs)],
+      databaseDropdownClickFlow(loggedIn, hasDocs),
     ),
   ];
 
@@ -303,10 +303,10 @@ export const testRepoHeaderWithBranch = (
     cloneDisabled,
     activeTab,
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should open create fork modal on fork button click",
     "[data-cy=repository-page-header] [data-cy=repo-fork-button]",
     beVisible,
-    [forkButtonClickFlow(loggedIn)],
+    forkButtonClickFlow(loggedIn),
   ),
 ];

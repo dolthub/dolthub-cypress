@@ -2,7 +2,7 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import { beVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
@@ -14,19 +14,17 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}`;
 const loggedIn = true;
 
 const tabsClickFlow = (tabName: string) =>
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     `should have repo ${tabName} tab`,
     `[data-cy=repo-${tabName}-tab]`,
     beVisible,
-    [
-      newClickFlow(`[data-cy=repo-${tabName}-tab]`, [
-        newExpectation(
-          `should have repo ${tabName} tab active`,
-          `[data-cy=repo-${tabName}-active-tab]`,
-          beVisible,
-        ),
-      ]),
-    ],
+    newClickFlow(`[data-cy=repo-${tabName}-tab]`, [
+      newExpectation(
+        `should have repo ${tabName} tab active`,
+        `[data-cy=repo-${tabName}-active-tab]`,
+        beVisible,
+      ),
+    ]),
   );
 
 const tabNames = [

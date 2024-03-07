@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithTypeString,
   newExpectationWithURL,
   newShouldArgs,
@@ -53,16 +53,16 @@ export const createTempDatabase = (
         "This is a temporary database to test write operations in DoltHub's Cypress tests (https://github.com/dolthub/dolthub-cypress). Delete me if my last update is over an hour ago.",
     },
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should choose visibility for database",
     `[data-cy=radio-${visibility}]`,
     exist,
-    [newClickFlow(`[data-cy=radio-${visibility}]`, [])],
+    newClickFlow(`[data-cy=radio-${visibility}]`, []),
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should create new database",
     "[data-cy=submit-create-database-form]",
     newShouldArgs("be.enabled"),
-    [createDBClickFlow(repoName, ownerName)],
+    createDBClickFlow(repoName, ownerName),
   ),
 ];

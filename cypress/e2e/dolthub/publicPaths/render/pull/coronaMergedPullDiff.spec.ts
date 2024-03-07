@@ -2,7 +2,7 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -49,19 +49,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=diff-table-name]",
       newShouldArgs("be.visible.and.contain", "case_details"),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "Option dropdown should have appropriate links",
       "[data-cy=options-button]",
       beVisible,
-      [
-        newClickFlow("[data-cy=options-button]", [
-          newExpectation(
-            "should show View SQL link",
-            "[data-cy=view-sql-link]",
-            beVisible,
-          ),
-        ]),
-      ],
+      newClickFlow("[data-cy=options-button]", [
+        newExpectation(
+          "should show View SQL link",
+          "[data-cy=view-sql-link]",
+          beVisible,
+        ),
+      ]),
     ),
     newExpectation(
       "should show filter by diff type selector",

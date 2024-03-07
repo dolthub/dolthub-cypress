@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newExpectationWithURL,
   newExpectationWithVisitPage,
@@ -38,11 +38,11 @@ const settingsClickFlow = (repoName: string, ownerName: string) =>
       beVisible,
       true,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should open delete database modal",
       "[data-cy=delete-database-button]",
       beVisible,
-      [deleteDatabaseModal],
+      deleteDatabaseModal,
     ),
   ]);
 
@@ -61,11 +61,11 @@ export const deleteTempDatabase = (
     "[data-cy=repo-settings-tab]",
     beVisible,
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should navigate to settings tab and delete database",
     "[data-cy=repo-settings-tab]",
     beVisible,
-    [settingsClickFlow(repoName, ownerName)],
+    settingsClickFlow(repoName, ownerName),
   ),
   newExpectationWithURL(
     "should navigate to profile after deletion",

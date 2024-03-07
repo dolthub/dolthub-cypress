@@ -13,7 +13,7 @@ import {
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -100,11 +100,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...exampleItemsFindAndContain.map(find =>
-      newExpectationWithClickFlows(
+      newExpectationWithClickFlow(
         `should find ${find.dataCy}`,
         `[data-cy=${find.dataCy}]`,
         beVisibleAndContain(find.text),
-        [newClickFlow("[aria-label=example-right-button]", [])],
+        newClickFlow("[aria-label=example-right-button]", []),
       ),
     ),
     newExpectation(
@@ -122,11 +122,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...exampleItemsFindAndContain.map(find =>
-      newExpectationWithClickFlows(
+      newExpectationWithClickFlow(
         `should find ${find.dataCy}`,
         `[data-cy=${find.dataCy}]`,
         beVisibleAndContain(find.text),
-        [newClickFlow("[aria-label=mobile-example-right-button]", [])],
+        newClickFlow("[aria-label=mobile-example-right-button]", []),
       ),
     ),
     newExpectation(

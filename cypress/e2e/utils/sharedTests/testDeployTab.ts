@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
@@ -9,11 +9,11 @@ import { Tests } from "../types";
 const beVisible = newShouldArgs("be.visible");
 
 export const testDeploySelfHosted: Tests = [
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show self hosted button",
     "[data-cy=self-hosted-button]",
     beVisible,
-    [newClickFlow("[data-cy=self-hosted-button]", [])],
+    newClickFlow("[data-cy=self-hosted-button]", []),
   ),
   newExpectation(
     "should have download docker button",

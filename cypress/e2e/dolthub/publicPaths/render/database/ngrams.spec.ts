@@ -14,7 +14,7 @@ import { iPhoneXForAppLayout, macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -143,29 +143,29 @@ describe(`${pageName} renders expected components on different devices`, () => {
   );
 
   const tablesClickFlow2 = newClickFlow("", [
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "",
       "[data-cy=repo-tables-table-total_counts]",
       beVisible,
-      [bigramsToTotalsClickFlow],
+      bigramsToTotalsClickFlow,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "",
       "[data-cy=repo-tables-table-column-dump_date]",
       beVisible,
-      [totalsToTrigramsClickFlow],
+      totalsToTrigramsClickFlow,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "",
       "[data-cy=repo-tables-table-column-trigram]",
       beVisible,
-      [trigramsToUnigramsClickFlow],
+      trigramsToUnigramsClickFlow,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "",
       "[data-cy=repo-tables-table-column-unigram]",
       beVisible,
-      [unigramsToBigramsClickFlow],
+      unigramsToBigramsClickFlow,
     ),
   ]);
 
@@ -177,11 +177,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "[data-cy=repo-tables-table-column-trigram]",
         newShouldArgs("be.visible.and.contain", "trigram"),
       ),
-      newExpectationWithClickFlows(
+      newExpectationWithClickFlow(
         "",
         "[data-cy=repo-tables-table-unigram_counts]",
         beVisible,
-        [unigramClickFlow],
+        unigramClickFlow,
       ),
     ],
   );
@@ -194,11 +194,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       hasDocs,
       true,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have repo Tables section",
       "[data-cy=repo-tables-table-list]",
       beVisible,
-      [tablesClickFlow],
+      tablesClickFlow,
     ),
 
     newExpectation(
@@ -217,17 +217,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", "3071"),
     ),
     ...tableExpectations(hasDocs, loggedIn, 4, "bigram_counts"),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should update data table when table clicked",
       "[data-cy=repo-tables-table-column-bigram]",
       beVisible,
-      [tablesClickFlow2],
+      tablesClickFlow2,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should stay on Tables tab after a new table is selected",
       "[data-cy=active-tab-tables]",
       beVisible,
-      [tablesCloseClickFlow],
+      tablesCloseClickFlow,
     ),
     ...testPaginationForRepoDataTable,
     testViewsSection(hasBranch, 0),

@@ -1,10 +1,11 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
+import { shouldBeVisible } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 const notExist = newShouldArgs("not.exist");
@@ -78,19 +79,14 @@ export const diffsWithCommitTests = (
   numParents: number,
 ): Tests => [
   ...leftNavTests(currentFromCommit, numParents),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "Option dropdown should have appropriate links",
     "[data-cy=options-button]",
     beVisible,
-    [
-      newClickFlow("[data-cy=options-button]", [
-        newExpectation(
-          "should show View SQL link",
-          "[data-cy=view-sql-link]",
-          beVisible,
-        ),
-      ]),
-    ],
+    newClickFlow("[data-cy=options-button]", [
+      shouldBeVisible("view-sql-link"),
+      shouldBeVisible("toggle-trim-button"),
+    ]),
   ),
   newExpectation(
     "should show filter by diff type selector",

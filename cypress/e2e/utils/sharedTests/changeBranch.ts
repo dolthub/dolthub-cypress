@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithURL,
   newShouldArgs,
 } from "../helpers";
@@ -53,53 +53,43 @@ export const changeBranch = (testParams: TestParams): Tests => [
       : beVisible,
   ),
   testParams.isLeftNavClosed
-    ? newExpectationWithClickFlows(
+    ? newExpectationWithClickFlow(
         "should open menu",
         `[data-cy=left-nav-toggle-icon]`,
         beVisible,
-        [
-          newClickFlow(`[data-cy=left-nav-toggle-icon]`, [
-            newExpectationWithClickFlows(
-              "should open branch selector",
-              `[data-cy=branch-selector]`,
-              beVisible,
-              [
-                newClickFlow(`[data-cy=branch-selector]`, [
-                  newExpectationWithClickFlows(
-                    "should click on other branch",
-                    `[data-cy=${testParams.destinationBranch}]`,
-                    beVisible,
-                    [
-                      newClickFlow(
-                        `[data-cy=${testParams.destinationBranch}]`,
-                        checkCurrentBranch(testParams),
-                      ),
-                    ],
-                  ),
-                ]),
-              ],
-            ),
-          ]),
-        ],
-      )
-    : newExpectationWithClickFlows(
-        "should open branch selector",
-        `[data-cy=branch-selector]`,
-        beVisible,
-        [
-          newClickFlow(`[data-cy=branch-selector]`, [
-            newExpectationWithClickFlows(
-              "should click on other branch",
-              `[data-cy=${testParams.destinationBranch}]`,
-              beVisible,
-              [
+        newClickFlow(`[data-cy=left-nav-toggle-icon]`, [
+          newExpectationWithClickFlow(
+            "should open branch selector",
+            `[data-cy=branch-selector]`,
+            beVisible,
+            newClickFlow(`[data-cy=branch-selector]`, [
+              newExpectationWithClickFlow(
+                "should click on other branch",
+                `[data-cy=${testParams.destinationBranch}]`,
+                beVisible,
                 newClickFlow(
                   `[data-cy=${testParams.destinationBranch}]`,
                   checkCurrentBranch(testParams),
                 ),
-              ],
+              ),
+            ]),
+          ),
+        ]),
+      )
+    : newExpectationWithClickFlow(
+        "should open branch selector",
+        `[data-cy=branch-selector]`,
+        beVisible,
+        newClickFlow(`[data-cy=branch-selector]`, [
+          newExpectationWithClickFlow(
+            "should click on other branch",
+            `[data-cy=${testParams.destinationBranch}]`,
+            beVisible,
+            newClickFlow(
+              `[data-cy=${testParams.destinationBranch}]`,
+              checkCurrentBranch(testParams),
             ),
-          ]),
-        ],
+          ),
+        ]),
       ),
 ];

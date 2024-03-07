@@ -32,14 +32,14 @@ export function newExpectationWithURL(
   return { description, selector, shouldArgs, skip, url };
 }
 
-export function newExpectationWithClickFlows(
+export function newExpectationWithClickFlow(
   description: string,
   selector: string,
   shouldArgs: ShouldArgs,
-  clickFlows: ClickFlow[],
+  clickFlow: ClickFlow,
   skip = false,
 ): Expectation {
-  return { description, selector, shouldArgs, clickFlows, skip };
+  return { description, selector, shouldArgs, clickFlow, skip };
 }
 
 export function newExpectationWithScrollIntoView(

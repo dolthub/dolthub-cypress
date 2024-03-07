@@ -3,7 +3,7 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -62,11 +62,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=picture-upload-form]",
       beVisible,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "modal should open on clicking edit",
       "[data-cy=edit-user-picture-button]",
       beVisible,
-      [modalClickflow],
+      modalClickflow,
     ),
     newExpectation(
       "should have an input for username",

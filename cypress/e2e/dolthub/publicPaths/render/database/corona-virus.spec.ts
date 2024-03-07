@@ -19,7 +19,7 @@ import {
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -74,17 +74,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", ["No authentication", "sign in"]),
     ),
     testViewsSection(hasBranch, 15, testView),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should show create view button",
       "[data-cy=create-view-button]",
       beVisible,
-      [
-        newClickFlow(
-          "[data-cy=create-view-button]",
-          [typingExpectation("testQueryName", "[data-cy=query-name]")],
-          "[data-cy=close-modal]",
-        ),
-      ],
+      newClickFlow(
+        "[data-cy=create-view-button]",
+        [typingExpectation("testQueryName", "[data-cy=query-name]")],
+        "[data-cy=close-modal]",
+      ),
     ),
     testQueryCatalogSection(hasBranch, 10, testQuery),
     testSchemaSection(hasBranch, 11, "case_details"),
@@ -98,19 +96,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
     testViewsSection(hasBranch, 15, testView, true),
     testQueryCatalogSection(hasBranch, 10, testQuery, true),
     testSchemaSection(hasBranch, 11, "case_details", true),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should click button to close repo nav",
       "[data-cy=close-table-nav-button]",
       beVisible,
-      [
-        newClickFlow("[data-cy=close-table-nav-button]", [
-          newExpectation(
-            "mobile table nav should be closed",
-            "[data-cy=close-table-nav-button]",
-            notExist,
-          ),
-        ]),
-      ],
+      newClickFlow("[data-cy=close-table-nav-button]", [
+        newExpectation(
+          "mobile table nav should be closed",
+          "[data-cy=close-table-nav-button]",
+          notExist,
+        ),
+      ]),
     ),
     testSqlConsoleMobile,
   ];

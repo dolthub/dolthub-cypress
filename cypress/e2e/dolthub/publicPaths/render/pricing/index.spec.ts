@@ -2,7 +2,7 @@ import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -110,19 +110,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
         ...(test.name !== "enterprise"
           ? [
-              newExpectationWithClickFlows(
+              newExpectationWithClickFlow(
                 "should click on the enterprise banner button",
                 `[data-cy=enterprise-banner-${test.name}]`,
                 beVisible,
-                [
-                  newClickFlow(`[data-cy=enterprise-banner-${test.name}]`, [
-                    newExpectation(
-                      "should find the enterprise card",
-                      `[data-cy=enterprise-card]`,
-                      beVisible,
-                    ),
-                  ]),
-                ],
+                newClickFlow(`[data-cy=enterprise-banner-${test.name}]`, [
+                  newExpectation(
+                    "should find the enterprise card",
+                    `[data-cy=enterprise-card]`,
+                    beVisible,
+                  ),
+                ]),
               ),
             ]
           : []),

@@ -16,6 +16,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
 
   const tests = [
     ...diffsWithCommitTests(currentFromCommit, 1),
+
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",

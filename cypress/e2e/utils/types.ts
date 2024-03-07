@@ -40,7 +40,7 @@ export type Expectation = {
   description: string;
   selector: Selector;
   shouldArgs: ShouldArgs;
-  clickFlows?: ClickFlow[] | undefined;
+  clickFlow?: ClickFlow;
   scrollIntoView?: boolean;
   scrollTo?: ScrollTo;
   skip?: boolean;

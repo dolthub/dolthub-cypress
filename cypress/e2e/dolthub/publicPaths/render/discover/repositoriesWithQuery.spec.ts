@@ -6,7 +6,7 @@ import {
 import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "@utils/helpers";
@@ -39,11 +39,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=repolist-search-input]",
       newShouldArgs("be.visible.and.have.value", searchTerm),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should successfully clear search",
       "[data-cy=clear-repolist-search]",
       beVisible,
-      [clearSearchClickFlow],
+      clearSearchClickFlow,
     ),
     ...checkRepoListForTab("most-recent", 15),
   ];

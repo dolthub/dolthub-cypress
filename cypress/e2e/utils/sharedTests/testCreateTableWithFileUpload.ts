@@ -1,6 +1,6 @@
 import {
   newClickFlow,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithFileUpload,
 } from "../helpers";
 import { Tests } from "../types";
@@ -14,20 +14,18 @@ import {
 const tableName = "TestFileUploadTable";
 export const testCreateTableWithFileUpload: Tests = [
   ...preUploadSteps("file upload link", "fileupload", "File Upload"),
-  //! CHOOSE TABLE
-  newExpectationWithClickFlows(
+  // CHOOSE TABLE
+  newExpectationWithClickFlow(
     "should show Create a new table",
     "[data-cy=upload-table-create]",
     beVisibleAndContain("Create a new table"),
-    [
-      newClickFlow(
-        "",
-        [typingExpectation(tableName, "[data-cy=choose-table-name]")],
-        "[data-cy=upload-next-button]",
-      ),
-    ],
+    newClickFlow(
+      "",
+      [typingExpectation(tableName, "[data-cy=choose-table-name]")],
+      "[data-cy=upload-next-button]",
+    ),
   ),
-  //! UPLOAD FILE
+  // UPLOAD FILE
   newExpectationWithFileUpload(
     "should be able to upload file",
     "[data-cy=drop-container]",

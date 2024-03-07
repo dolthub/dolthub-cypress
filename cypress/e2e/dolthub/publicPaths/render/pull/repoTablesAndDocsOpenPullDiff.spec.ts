@@ -2,10 +2,11 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Open pull diff page";
 const currentOwner = "automated_testing";
@@ -42,25 +43,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=viewing-message]",
       newShouldArgs("not.exist"),
     ),
+    newExpectationWithClickFlow(
+      "Option dropdown should have appropriate links",
+      "[data-cy=options-button]",
+      beVisible,
+      newClickFlow("[data-cy=options-button]", [
+        shouldBeVisible("toggle-trim-button"),
+        shouldBeVisible("view-sql-link"),
+      ]),
+    ),
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",
       newShouldArgs("be.visible.and.contain", "test_table"),
     ),
-    newExpectationWithClickFlows(
-      "Option dropdown should have appropriate links",
-      "[data-cy=options-button]",
-      beVisible,
-      [
-        newClickFlow("[data-cy=options-button]", [
-          newExpectation(
-            "should show View SQL link",
-            "[data-cy=view-sql-link]",
-            beVisible,
-          ),
-        ]),
-      ],
-    ),
+
     newExpectation(
       "should show filter by diff type selector",
       "[data-cy=filter-by-diff-type]",

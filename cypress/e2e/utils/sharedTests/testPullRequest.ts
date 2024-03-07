@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithSelector,
   newExpectationWithTypeString,
 } from "../helpers";
@@ -18,17 +18,15 @@ const sqlQuery = 'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")';
 
 export const testPullRequest = (forkOwnerName: string): Tests => [
   // FORK THE DATABASE
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show fork button",
     "[data-cy=repo-fork-button]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=repo-fork-button]",
-        [],
-        "[data-cy=fork-confirm-button]",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=repo-fork-button]",
+      [],
+      "[data-cy=fork-confirm-button]",
+    ),
   ),
 
   // SHOW THE FORKED DATABASE PAGE:
@@ -38,48 +36,44 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     beVisibleAndContain(forkOwnerName),
   ),
   // EDIT THE TABLE
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should execute insert query",
     "[data-cy=sql-editor-collapsed]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=sql-editor-collapsed]",
-        [
-          newExpectationWithTypeString(
-            "should use sql console to edit table",
-            "[data-cy=sql-editor-expanded]>div>div>textarea",
-            exist,
-            {
-              value: sqlQuery,
-            },
-          ),
-        ],
-        "[data-cy=run-query-button]",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=sql-editor-collapsed]",
+      [
+        newExpectationWithTypeString(
+          "should use sql console to edit table",
+          "[data-cy=sql-editor-expanded]>div>div>textarea",
+          exist,
+          {
+            value: sqlQuery,
+          },
+        ),
+      ],
+      "[data-cy=run-query-button]",
+    ),
   ),
 
   ...createPullRequest,
 
   // REDIRECT TO PARENT DATABASE
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "Should have Open pull state",
     "[data-cy=pull-state-label]",
     beVisibleAndContain("Open"),
-    [
-      newClickFlow(
-        "",
-        [
-          newExpectation(
-            "should click the link to parent database",
-            "[data-cy=forked-parent-repo-detail] [data-cy=repo-name-breadcrumb-link]",
-            beVisible,
-          ),
-        ],
-        "[data-cy=forked-parent-repo-detail] [data-cy=repo-name-breadcrumb-link]",
-      ),
-    ],
+    newClickFlow(
+      "",
+      [
+        newExpectation(
+          "should click the link to parent database",
+          "[data-cy=forked-parent-repo-detail] [data-cy=repo-name-breadcrumb-link]",
+          beVisible,
+        ),
+      ],
+      "[data-cy=forked-parent-repo-detail] [data-cy=repo-name-breadcrumb-link]",
+    ),
   ),
   newExpectation(
     "should redirect to parent database",
@@ -87,78 +81,70 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     beVisibleAndContain("cypresstesting"),
   ),
   // NAVIGATE TO PULL REQUEST PAGE
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show navigate to pull request page",
     "[data-cy=repo-pull-requests-tab]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=repo-pull-requests-tab]",
-        [],
-        "[data-cy=create-pull-request-button]",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=repo-pull-requests-tab]",
+      [],
+      "[data-cy=create-pull-request-button]",
+    ),
   ),
 
   // SELECT THE FROM DATABASE
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show and select the from database",
     "[data-cy=from-repo-selector] input",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=from-repo-selector] input",
-        [
-          newExpectationWithSelector(
-            "should select the fork repo",
-            "[data-cy=from-repo-selector]>div>div",
-            1,
-            beVisibleAndContain(forkOwnerName),
-          ),
-        ],
-        "",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=from-repo-selector] input",
+      [
+        newExpectationWithSelector(
+          "should select the fork repo",
+          "[data-cy=from-repo-selector]>div>div",
+          1,
+          beVisibleAndContain(forkOwnerName),
+        ),
+      ],
+      "",
+    ),
   ),
   // SELECT THE BASE BRANCH
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show and select the base branch",
     "[data-cy=to-branch-selector] input",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=to-branch-selector] input",
-        [
-          newExpectationWithSelector(
-            "should select the fork repo",
-            "[data-cy=to-branch-selector]>div>div",
-            1,
-            beVisibleAndContain("main"),
-          ),
-        ],
-        "",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=to-branch-selector] input",
+      [
+        newExpectationWithSelector(
+          "should select the fork repo",
+          "[data-cy=to-branch-selector]>div>div",
+          1,
+          beVisibleAndContain("main"),
+        ),
+      ],
+      "",
+    ),
   ),
   // SELECT THE FROM BRANCH
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show and select the from branch",
     "[data-cy=from-branch-selector] input",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=from-branch-selector] input",
-        [
-          newExpectationWithSelector(
-            "should select the fork repo",
-            "[data-cy=from-branch-selector]>div>div>div>div",
-            3,
-            beVisibleAndContain("cypresstesting"),
-          ),
-        ],
-        "",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=from-branch-selector] input",
+      [
+        newExpectationWithSelector(
+          "should select the fork repo",
+          "[data-cy=from-branch-selector]>div>div>div>div",
+          3,
+          beVisibleAndContain("cypresstesting"),
+        ),
+      ],
+      "",
+    ),
   ),
 
   newExpectation(
@@ -168,24 +154,22 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
   ),
   typingExpectation("test pull", "[data-cy=pull-form-title-input]"),
   typingExpectation("test pull description", "[data-cy=pull-form-description]"),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should submit the pull form",
     "[data-cy=pull-form-submit]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=pull-form-submit]",
-        mergingAndDeletingBranch("test pull"),
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=pull-form-submit]",
+      mergingAndDeletingBranch("test pull"),
+    ),
   ),
 
   // CHECK THE COMMIT IS THERE
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should be able to navigate to commit log page",
     "[data-cy=repo-commit-log-tab]",
     beVisibleAndContain("Commit Log"),
-    [newClickFlow("[data-cy=repo-commit-log-tab]", [])],
+    newClickFlow("[data-cy=repo-commit-log-tab]", []),
   ),
   newExpectation(
     "should show the new commit",
@@ -193,21 +177,18 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     beVisibleAndContain(sqlQuery),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should be able to navigate to database tab",
     "[data-cy=repo-database-tab]",
     beVisible,
-    [
-      newClickFlow("[data-cy=repo-database-tab]", [
-        newExpectation(
-          "should show tablename",
-          "[data-cy=repo-tables-table-tablename]",
-          beVisibleAndContain("tablename"),
-        ),
-      ]),
-    ],
+    newClickFlow("[data-cy=repo-database-tab]", [
+      newExpectation(
+        "should show tablename",
+        "[data-cy=repo-tables-table-tablename]",
+        beVisibleAndContain("tablename"),
+      ),
+    ]),
   ),
-
   newExpectation(
     "should show the inserted column",
     "[data-cy=repo-tables-table-column-col1] span",

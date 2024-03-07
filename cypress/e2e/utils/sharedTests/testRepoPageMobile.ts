@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../helpers";
@@ -135,19 +135,17 @@ export const testDesktopOnlyWarnings = (
 };
 
 export const mobileRepoNavTests = [
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show repo nav button",
     "[data-cy=show-table-nav-button]",
     beVisible,
-    [
-      newClickFlow("[data-cy=show-table-nav-button]", [
-        newExpectation(
-          "should have repo branch selector",
-          "[data-cy=branch-selector]",
-          beVisible,
-        ),
-      ]),
-    ],
+    newClickFlow("[data-cy=show-table-nav-button]", [
+      newExpectation(
+        "should have repo branch selector",
+        "[data-cy=branch-selector]",
+        beVisible,
+      ),
+    ]),
   ),
 ];
 

@@ -3,7 +3,7 @@ import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -36,11 +36,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "Getting Started with Dolt and Knex.js",
       "2023-09-27-dolt-and-knexjs/",
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should clear search",
       "[data-cy=blog-search-clear]",
       beVisible,
-      [clearSearchClickFlow],
+      clearSearchClickFlow,
     ),
     newExpectation(
       "should have blank search input after clear",

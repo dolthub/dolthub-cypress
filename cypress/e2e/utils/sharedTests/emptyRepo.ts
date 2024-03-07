@@ -1,6 +1,6 @@
 import {
   newClickFlow,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../helpers";
@@ -40,10 +40,10 @@ export const testDoltInstallationSteps: Expectation[] = [
     newShouldArgs("exist"),
     true,
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show Dolt installation steps",
     "[data-cy=show-installation-steps]",
     beVisible,
-    [toggleInstallationStepsFlow],
+    toggleInstallationStepsFlow,
   ),
 ];

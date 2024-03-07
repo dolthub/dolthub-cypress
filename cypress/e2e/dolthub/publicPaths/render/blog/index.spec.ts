@@ -3,7 +3,7 @@ import { desktopDevicesForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithTypeString,
   newShouldArgs,
 } from "@utils/helpers";
@@ -75,11 +75,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "Maintained Wikipedia ngrams dataset in Dolt",
       "2019-12-04-maintained-wikipedia-ngrams-dataset/",
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have searched and cleared",
       "[data-cy=blog-search-clear]",
       beVisible,
-      [clearSearchClickFlow],
+      clearSearchClickFlow,
     ),
     ...testBlogIndexNoSearch,
   ];
