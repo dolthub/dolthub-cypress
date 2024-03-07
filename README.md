@@ -117,7 +117,7 @@ type Expectation = {
   description: string;
   selector: Selector;
   shouldArgs: ShouldArgs;
-  clickFlow?: ClickFlow[] | undefined;
+  clickFlow?: ClickFlow;
   scrollTo?: ScrollTo;
   skip?: boolean;
 };
@@ -311,13 +311,11 @@ const likeCountClickFlow = newClickFlow(
 const testDescription =
   "should increase Like count when Like button is clicked";
 
-const clickFlow = [likeCountClickFlow];
-
 const likeCountIncreasesExp = newExpectationWithClickFlow(
   testDescription,
   likeCount,
   containZero,
-  clickFlow,
+  likeCountClickFlow,
 );
 ```
 
@@ -363,26 +361,21 @@ describe(`${pageName} should render a Like button on all devices`, () => {
 
   const singleLikeCountExp = newExpectation("", likeCount, containOne);
 
-  const testsBetweenClicks = [singleLikeCountExp];
-
   const likeCountClickFlow = newClickFlow(
     // first click
     likeButton,
-
     // tests to run
-    testsBetweenClicks,
+    singleLikeCountExp,
   );
 
   const testDescription =
     "should increase Like count when Like button is clicked";
 
-  const clickFlow = [likeCountClickFlow];
-
   const likeCountIncreasesExp = newExpectationWithClickFlow(
     testDescription,
     likeCount,
     containZero,
-    clickFlow,
+    likeCountClickFlow,
   );
 
   const deviceDescription = `${pageName} should render a Like button on all devices`;
