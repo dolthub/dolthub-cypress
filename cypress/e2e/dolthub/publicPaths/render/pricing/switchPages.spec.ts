@@ -1,5 +1,5 @@
 import { allDevicesForSignedOut } from "@utils/devices";
-import { newClickFlow, newExpectationWithClickFlows } from "@utils/helpers";
+import { newClickFlow, newExpectationWithClickFlow } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
   beVisible,
@@ -29,15 +29,13 @@ function getSwitchTests(isMobile: boolean): SwitchTest[] {
 describe(`${pageName} renders expected components on different devices`, () => {
   function getTests(isMobile: boolean): Expectation[] {
     return getSwitchTests(isMobile).map(test =>
-      newExpectationWithClickFlows(
+      newExpectationWithClickFlow(
         `should route to ${test.routeTo} and find ${test.find}`,
         `[data-cy=${test.routeTo}]`,
         beVisible,
-        [
-          newClickFlow(`[data-cy=${test.routeTo}]`, [
-            shouldBeVisible(test.routeTo),
-          ]),
-        ],
+        newClickFlow(`[data-cy=${test.routeTo}]`, [
+          shouldBeVisible(test.routeTo),
+        ]),
       ),
     );
   }

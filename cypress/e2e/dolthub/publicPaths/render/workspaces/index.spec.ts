@@ -1,6 +1,5 @@
 import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
 import { testSqlConsole } from "@sharedTests/sqlEditor";
-import { mobileTests } from "@sharedTests/testRepoPageMobile";
 import {
   iPad2ForAppLayout,
   iPhoneXForAppLayout,
@@ -9,10 +8,11 @@ import {
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { mobileTests } from "@utils/sharedTests/repoPageMobile";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -90,11 +90,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=workspace-commit-list] li",
       newShouldArgs("be.visible.and.have.length", 1),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should show cumulative diff on tab click",
       "[data-cy=cumulative-diff]",
       beVisible,
-      [diffClickFlow],
+      diffClickFlow,
     ),
     testSqlConsole,
   ];

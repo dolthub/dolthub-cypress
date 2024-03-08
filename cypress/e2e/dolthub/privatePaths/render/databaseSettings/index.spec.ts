@@ -6,7 +6,7 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "@utils/helpers";
@@ -75,11 +75,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisibleAndContain("Delete Database"),
       true,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have a Delete Database button that opens a modal",
       "[data-cy=delete-database-button]",
       beVisible,
-      [deleteDatabaseModalClickFlow],
+      deleteDatabaseModalClickFlow,
     ),
   ];
 

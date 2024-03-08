@@ -1,9 +1,9 @@
 import { createTempDatabase } from "@sharedTests/createTempDatabase";
 import { deleteTempDatabase } from "@sharedTests/deleteTempDatabase";
 import { editTempDatabase } from "@sharedTests/editTempDatabase";
-import { testIssues } from "@sharedTests/testIssues";
 import { macbook15ForAppLayout } from "@utils/devices";
 import { runTestsForDevices } from "@utils/index";
+import { testIssues } from "@utils/sharedTests/issues";
 
 const pageName = "Create, edit, teardown database";
 const currentPage = "/profile/new-repository";

@@ -18,7 +18,7 @@ import {
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -70,40 +70,37 @@ describe(`${pageName} renders expected components on different devices`, () => {
 });
 
 export const testReleasesSection = (tagLen: number): Expectation =>
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should have database Tag List section",
     "[data-cy=repo-releases-tab]",
     newShouldArgs("be.visible"),
-    [
-      newClickFlow("[data-cy=repo-releases-tab]", [
-        newExpectation(
-          "",
-          "[data-cy=release-list-item]",
-          newShouldArgs("be.visible.and.have.length.of.at.least", tagLen - 1),
-        ),
-        newExpectation(
-          "should find csv download icon",
-          "[data-cy=dump-csv]",
-          beVisible,
-        ),
-      ]),
-    ],
+
+    newClickFlow("[data-cy=repo-releases-tab]", [
+      newExpectation(
+        "",
+        "[data-cy=release-list-item]",
+        newShouldArgs("be.visible.and.have.length.of.at.least", tagLen - 1),
+      ),
+      newExpectation(
+        "should find csv download icon",
+        "[data-cy=dump-csv]",
+        beVisible,
+      ),
+    ]),
   );
 
 export const testCommitSection = (commitLen: number): Expectation =>
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should have database Commit Log section",
     "[data-cy=repo-commit-log-tab]",
     newShouldArgs("be.visible"),
-    [
-      newClickFlow("[data-cy=repo-commit-log-tab]", [
-        newExpectation(
-          "",
-          "[data-cy=commit-log-item]",
-          newShouldArgs("be.visible.and.have.length", commitLen),
-        ),
-      ]),
-    ],
+    newClickFlow("[data-cy=repo-commit-log-tab]", [
+      newExpectation(
+        "",
+        "[data-cy=commit-log-item]",
+        newShouldArgs("be.visible.and.have.length", commitLen),
+      ),
+    ]),
   );
 
 const tests = (n: number) => {

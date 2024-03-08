@@ -3,7 +3,7 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
   scrollToPosition,
 } from "@utils/helpers";
@@ -64,18 +64,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=query-catalog-table-row]",
       newShouldArgs("be.visible.and.have.length", 10),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should expand first query",
       "[data-cy=query-catalog-table-row]:first",
       beVisible,
-      [queryClickFlow(true)],
+      queryClickFlow(true),
     ),
     scrollToPosition("#main-content", "bottom"),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should expand last query and close first query on click",
       "[data-cy=query-catalog-table-row]:last",
       beVisible,
-      [queryClickFlow(false)],
+      queryClickFlow(false),
     ),
   ];
 

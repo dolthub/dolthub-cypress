@@ -2,7 +2,7 @@ import { allDevicesDiffTestsForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
   scrollToXY,
 } from "@utils/helpers";
@@ -43,11 +43,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=signin-create-account-github]",
       beVisible,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have form to create account with email and password",
       "[data-cy=signin-create-account-email]",
       beVisible,
-      [signupFormClickFlow],
+      signupFormClickFlow,
     ),
   ];
 
@@ -72,22 +72,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=signin-with-email-button]",
       newShouldArgs("be.disabled"),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have forgot password button",
       "[data-cy=signin-forgot-password]",
       beVisible,
-      [newClickFlow("[data-cy=signin-forgot-password]", [])],
+      newClickFlow("[data-cy=signin-forgot-password]", []),
     ),
     newExpectation(
       "should have disabled recover password button",
       "[data-cy=recover-password-submit-button]",
       newShouldArgs("be.disabled"),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have cancel button that closes modal",
       "[data-cy=recover-cancel]",
       beVisible,
-      [newClickFlow("[data-cy=recover-cancel]", [])],
+      newClickFlow("[data-cy=recover-cancel]", []),
     ),
   ];
 
@@ -112,11 +112,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...testSections,
     ...signinTests,
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have create account button tab",
       "[data-cy=signin-create-account-button]",
       beVisible,
-      [newClickFlow("[data-cy=signin-create-account-button]", [])],
+      newClickFlow("[data-cy=signin-create-account-button]", []),
     ),
     ...signupTests,
   ];
@@ -125,11 +125,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testSections,
     scrollToXY("#main-content", 0, 250),
     ...signinTests,
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have create account button tab",
       "[data-cy=signin-create-account-button]",
       beVisible,
-      [newClickFlow("[data-cy=signin-create-account-button]", [])],
+      newClickFlow("[data-cy=signin-create-account-button]", []),
     ),
     ...signupTests,
   ];

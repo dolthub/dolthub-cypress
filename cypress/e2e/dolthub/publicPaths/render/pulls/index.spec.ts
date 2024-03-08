@@ -7,7 +7,7 @@ import {
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import { changeBranch } from "@utils/sharedTests/changeBranch";
-import { mobileTests } from "@utils/sharedTests/testRepoPageMobile";
+import { mobileTests } from "@utils/sharedTests/repoPageMobile";
 
 const pageName = "Pull requests page with tables and docs";
 const currentOwner = "automated_testing";

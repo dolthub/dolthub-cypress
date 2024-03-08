@@ -117,7 +117,7 @@ type Expectation = {
   description: string;
   selector: Selector;
   shouldArgs: ShouldArgs;
-  clickFlows?: ClickFlow[] | undefined;
+  clickFlow?: ClickFlow;
   scrollTo?: ScrollTo;
   skip?: boolean;
 };
@@ -285,7 +285,7 @@ type ClickFlow = {
 
 So for our example above, we can think about the `ClickFlow` we want to define by thinking about how we might test this functionality if we were interacting with the UI directly. First we would assert the Like count to be `0`, it's initial value. Then we would want to click the Like button. Finally, we would want to assert that the Like count equaled `1`.
 
-Here's how that `ClickFlow` might be defined using our helper functions `newClickFlow` and `newExpectationWithClickFlows`:
+Here's how that `ClickFlow` might be defined using our helper functions `newClickFlow` and `newExpectationWithClickFlow`:
 
 ```ts
 const likeButton = "[data-cy=like-button]";
@@ -311,13 +311,11 @@ const likeCountClickFlow = newClickFlow(
 const testDescription =
   "should increase Like count when Like button is clicked";
 
-const clickFlows = [likeCountClickFlow];
-
-const likeCountIncreasesExp = newExpectationWithClickFlows(
+const likeCountIncreasesExp = newExpectationWithClickFlow(
   testDescription,
   likeCount,
   containZero,
-  clickFlows,
+  likeCountClickFlow,
 );
 ```
 
@@ -340,9 +338,9 @@ Finally, we can also define a selector(s) to be clicked after `testsBetweenClick
 
 That is a `ClickFlow` friends!
 
-We write a simple description, `testDescription`, for our highest layer of tests and we add our `ClickFlows` to an array `clickFlows`.
+We write a simple description, `testDescription`, for our highest layer of tests and we add our `ClickFlows` to an array `clickFlow`.
 
-Now we use our other helper function `newExpectationWithClickFlows` that accepts all the same arguments `newExpectation` takes with an additional argument, an array of `ClickFlow`s. These `ClickFlow`s will then run after the `Expectation` they are coupled to. To clarify, our `Expectation` with `ClickFlow`s above, `likeCountIncreasesExp`, will run the same way a simple `Expectation` will run. `likeCount` will be selected and expected to contain `0`, as the `containZero` argument specifies. After that, all attached `ClickFlow`s will run, meaning the `likeButton` will be clicked, and then the `likeCount` will be selected and expected to contain `1`.
+Now we use our other helper function `newExpectationWithClickFlow` that accepts all the same arguments `newExpectation` takes with an additional argument, an array of `ClickFlow`s. These `ClickFlow`s will then run after the `Expectation` they are coupled to. To clarify, our `Expectation` with `ClickFlow`s above, `likeCountIncreasesExp`, will run the same way a simple `Expectation` will run. `likeCount` will be selected and expected to contain `0`, as the `containZero` argument specifies. After that, all attached `ClickFlow`s will run, meaning the `likeButton` will be clicked, and then the `likeCount` will be selected and expected to contain `1`.
 
 ### Putting it all together
 
@@ -363,26 +361,21 @@ describe(`${pageName} should render a Like button on all devices`, () => {
 
   const singleLikeCountExp = newExpectation("", likeCount, containOne);
 
-  const testsBetweenClicks = [singleLikeCountExp];
-
   const likeCountClickFlow = newClickFlow(
     // first click
     likeButton,
-
     // tests to run
-    testsBetweenClicks,
+    singleLikeCountExp,
   );
 
   const testDescription =
     "should increase Like count when Like button is clicked";
 
-  const clickFlows = [likeCountClickFlow];
-
-  const likeCountIncreasesExp = newExpectationWithClickFlows(
+  const likeCountIncreasesExp = newExpectationWithClickFlow(
     testDescription,
     likeCount,
     containZero,
-    clickFlows,
+    likeCountClickFlow,
   );
 
   const deviceDescription = `${pageName} should render a Like button on all devices`;

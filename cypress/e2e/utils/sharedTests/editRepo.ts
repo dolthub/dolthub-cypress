@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newExpectationWithScrollTo,
   newExpectationWithTypeString,
@@ -27,79 +27,75 @@ export const mergingAndDeletingBranch = (title: string) => [
   ),
 
   //! VIEW DIFF
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show view diff button",
     "[data-cy=view-diffs-button] button",
     beVisibleAndContain("View Diff "),
-    [
-      newClickFlow(
-        "[data-cy=view-diffs-button] button",
-        [
-          newExpectation(
-            "should should diff title",
-            "[data-cy=diff-table-name]",
-            beVisible,
-          ),
-          newExpectation(
-            "should show diff stats",
-            "[data-cy=diff-table-stats]",
-            beVisible,
-          ),
-          newExpectation(
-            "should show data button",
-            "[data-cy=data-button]",
-            beVisible,
-          ),
-          newExpectation(
-            "should show schema button",
-            "[data-cy=schema-button]",
-            beVisible,
-          ),
-        ],
-        "[data-cy=back-to-pull] button",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=view-diffs-button] button",
+      [
+        newExpectation(
+          "should should diff title",
+          "[data-cy=diff-table-name]",
+          beVisible,
+        ),
+        newExpectation(
+          "should show diff stats",
+          "[data-cy=diff-table-stats]",
+          beVisible,
+        ),
+        newExpectation(
+          "should show data button",
+          "[data-cy=data-button]",
+          beVisible,
+        ),
+        newExpectation(
+          "should show schema button",
+          "[data-cy=schema-button]",
+          beVisible,
+        ),
+      ],
+      "[data-cy=back-to-pull] button",
+    ),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should merge",
     "[data-cy=merge-button]",
     beVisible,
-    [
-      newClickFlow("[data-cy=merge-button]", [
-        newExpectation(
-          "Should say 'merging'",
-          "[data-cy=merge-button]",
-          beVisibleAndContain("Merging..."),
-        ),
-      ]),
-    ],
+    newClickFlow("[data-cy=merge-button]", [
+      newExpectation(
+        "Should say 'merging'",
+        "[data-cy=merge-button]",
+        beVisibleAndContain("Merging..."),
+      ),
+    ]),
   ),
   newExpectation(
     "Should have Merged pull state",
     "[data-cy=pull-state-label]",
     beVisibleAndContain("Merged"),
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should delete branch",
     "[data-cy=delete-branch-button]",
     beVisible,
-    [newClickFlow("[data-cy=delete-branch-button]", [])],
+    newClickFlow("[data-cy=delete-branch-button]", []),
   ),
 ];
 
 export const createPullRequest: Tests = [
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show create pull request button",
     "[data-cy=create-pull]",
     beVisible,
-    [newClickFlow("[data-cy=create-pull]", [])],
+    newClickFlow("[data-cy=create-pull]", []),
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should be able to create pull request",
     "[data-cy=create-pull-button]",
     beVisible,
-    [newClickFlow("[data-cy=create-pull-button]", [])],
+    newClickFlow("[data-cy=create-pull-button]", []),
   ),
 ];
 
@@ -123,30 +119,28 @@ export const preUploadSteps = (
   uploadMethodTitle: string,
 ) => [
   //! CLICK ADD TABLE
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show add table button",
     "[data-cy=repo-tables-add-table]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=repo-tables-add-table]",
-        [
-          newExpectation(
-            `should show and click ${description}`,
-            `[data-cy=file-upload-${uploadMethod}-table-link]`,
-            beVisibleAndContain(uploadMethodTitle),
-          ),
-        ],
-        `[data-cy=file-upload-${uploadMethod}-table-link]`,
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=repo-tables-add-table]",
+      [
+        newExpectation(
+          `should show and click ${description}`,
+          `[data-cy=file-upload-${uploadMethod}-table-link]`,
+          beVisibleAndContain(uploadMethodTitle),
+        ),
+      ],
+      `[data-cy=file-upload-${uploadMethod}-table-link]`,
+    ),
   ),
   //! CHOOSE BRANCH
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show File Importer page",
     "[data-cy=branch-title]",
     beVisibleAndContain("Choose a base branch"),
-    [newClickFlow("[data-cy=upload-next-button]", [])],
+    newClickFlow("[data-cy=upload-next-button]", []),
   ),
 ];
 
@@ -167,11 +161,11 @@ export const afterUploadSteps = (
   ),
 
   //! CHOOSE PRIMARY KEY
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show choose primary key button",
     "[data-cy=choose-primary-keys-button]",
     beVisibleAndContain("Choose primary keys"),
-    [newClickFlow("[data-cy=choose-primary-keys-button]", [])],
+    newClickFlow("[data-cy=choose-primary-keys-button]", []),
   ),
   newExpectationWithScrollTo(
     "should scroll to bottom",
@@ -179,11 +173,11 @@ export const afterUploadSteps = (
     beVisible,
     newScrollToPosition("bottom", "#main-content"),
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should choose the primary key",
     `[data-cy=${primaryKey}-checkbox]`,
     exist,
-    [newClickFlow(`[data-cy=${primaryKey}-checkbox]`, [])],
+    newClickFlow(`[data-cy=${primaryKey}-checkbox]`, []),
   ),
   newExpectationWithScrollIntoView(
     "should show the upload button",
@@ -191,11 +185,11 @@ export const afterUploadSteps = (
     beVisible,
     true,
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should click the upload button",
     "[data-cy=upload-next-button]",
     beVisible,
-    [newClickFlow("[data-cy=upload-next-button]", [])],
+    newClickFlow("[data-cy=upload-next-button]", []),
   ),
 
   //! START IMPORT

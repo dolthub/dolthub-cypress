@@ -8,7 +8,7 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -39,23 +39,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=branch-protection-branch-selector] input",
       beVisible,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should show and select the branch",
       "[data-cy=branch-protection-branch-selector] input",
       beVisible,
-      [
-        newClickFlow(
-          "[data-cy=branch-protection-branch-selector]>div>div",
-          [
-            newExpectation(
-              "should select the branch_can_not_be_deleted branch",
-              "[data-cy=branch_can_not_be_deleted]",
-              beVisibleAndContain("branch_can_not_be_deleted"),
-            ),
-          ],
-          "[data-cy=branch_can_not_be_deleted]",
-        ),
-      ],
+
+      newClickFlow(
+        "[data-cy=branch-protection-branch-selector]>div>div",
+        [
+          newExpectation(
+            "should select the branch_can_not_be_deleted branch",
+            "[data-cy=branch_can_not_be_deleted]",
+            beVisibleAndContain("branch_can_not_be_deleted"),
+          ),
+        ],
+        "[data-cy=branch_can_not_be_deleted]",
+      ),
     ),
     newExpectation(
       "should have prevent deletion checked",
@@ -70,23 +69,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
     scrollToPosition("#main-content", "top"),
 
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should show and select the branch",
       "[data-cy=branch-protection-branch-selector]",
       beVisible,
-      [
-        newClickFlow(
-          "[data-cy=branch-protection-branch-selector]>div>div",
-          [
-            newExpectation(
-              "should select the branch_can_not_be_deleted branch",
-              "[data-cy=branch_can_not_be_force_pushed]",
-              beVisibleAndContain("branch_can_not_be_force_pushed"),
-            ),
-          ],
-          "[data-cy=branch_can_not_be_force_pushed]",
-        ),
-      ],
+      newClickFlow(
+        "[data-cy=branch-protection-branch-selector]>div>div",
+        [
+          newExpectation(
+            "should select the branch_can_not_be_deleted branch",
+            "[data-cy=branch_can_not_be_force_pushed]",
+            beVisibleAndContain("branch_can_not_be_force_pushed"),
+          ),
+        ],
+        "[data-cy=branch_can_not_be_force_pushed]",
+      ),
     ),
     newExpectation(
       "should have prevent deletion checked",
@@ -99,23 +96,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beChecked,
     ),
 
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should show and select the branch",
       "[data-cy=branch-protection-branch-selector]",
       beVisible,
-      [
-        newClickFlow(
-          "[data-cy=branch-protection-branch-selector]>div>div",
-          [
-            newExpectation(
-              "should select the main branch",
-              "[data-cy=main]",
-              beVisibleAndContain("main"),
-            ),
-          ],
-          "[data-cy=main]",
-        ),
-      ],
+
+      newClickFlow(
+        "[data-cy=branch-protection-branch-selector]>div>div",
+        [
+          newExpectation(
+            "should select the main branch",
+            "[data-cy=main]",
+            beVisibleAndContain("main"),
+          ),
+        ],
+        "[data-cy=main]",
+      ),
     ),
 
     newExpectation(

@@ -8,7 +8,7 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -44,11 +44,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=delivery-attempt-table] tbody tr",
       haveLength(1),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have view button for attempt",
       `[data-cy=view-attempt-button-${attemptId}]`,
       beVisible,
-      [newClickFlow(`[data-cy=view-attempt-button-${attemptId}]`, [])],
+      newClickFlow(`[data-cy=view-attempt-button-${attemptId}]`, []),
     ),
     shouldBeVisible("webhook-attempt-breadcrumbs"),
     shouldBeVisible("delivery-attempt-details"),

@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
@@ -38,11 +38,11 @@ const createCommit = newClickFlow(
 );
 
 export const editTempDatabase: Tests = [
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should execute sample query",
     "[data-cy=sql-editor-collapsed]",
     beVisible,
-    [sqlConsoleClickFlow],
+    sqlConsoleClickFlow,
   ),
   newExpectation(
     "should navigate to workspace page",
@@ -50,11 +50,11 @@ export const editTempDatabase: Tests = [
     beVisible,
   ),
   newExpectation("should render diff tabs", "[data-cy=diff-tabs]", beVisible),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should click create commit button",
     "[data-cy=create-commit]",
     newShouldArgs("be.visible.and.contain", "Create commit"),
-    [createCommit],
+    createCommit,
   ),
   newExpectation(
     "should have data table",
@@ -71,22 +71,20 @@ export const editTempDatabase: Tests = [
       "col1",
     ]),
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should have new commit",
     "[data-cy=repo-commit-log-tab]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=repo-commit-log-tab]",
-        [
-          newExpectation(
-            "should have new commit",
-            "[data-cy=commit-log-item]:first",
-            newShouldArgs("be.visible.and.contain", commitMsg1),
-          ),
-        ],
-        "[data-cy=repo-database-tab]",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=repo-commit-log-tab]",
+      [
+        newExpectation(
+          "should have new commit",
+          "[data-cy=commit-log-item]:first",
+          newShouldArgs("be.visible.and.contain", commitMsg1),
+        ),
+      ],
+      "[data-cy=repo-database-tab]",
+    ),
   ),
 ];

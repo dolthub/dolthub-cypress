@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newExpectationWithSelector,
   newShouldArgs,
@@ -57,23 +57,21 @@ export const clearSearchClickFlow = newClickFlow(
 const checkCollapseForkList = (isMobile: boolean) =>
   isMobile
     ? [
-        newExpectationWithClickFlows(
+        newExpectationWithClickFlow(
           "should find hide forks button",
           "[data-cy=show-toggle-forks-button-mobile]:first",
           beVisible,
-          [
-            newClickFlow(
-              "[data-cy=show-toggle-forks-button-mobile]:first",
-              [
-                newExpectation(
-                  "should not show fork list",
-                  "[data-cy=fork-list]",
-                  notExist,
-                ),
-              ],
-              "",
-            ),
-          ],
+          newClickFlow(
+            "[data-cy=show-toggle-forks-button-mobile]:first",
+            [
+              newExpectation(
+                "should not show fork list",
+                "[data-cy=fork-list]",
+                notExist,
+              ),
+            ],
+            "",
+          ),
         ),
       ]
     : [
@@ -83,38 +81,40 @@ const checkCollapseForkList = (isMobile: boolean) =>
           beVisible,
           true,
         ),
-        newExpectationWithClickFlows(
+        newExpectationWithClickFlow(
           "should have show collapse fork list button",
           "[data-cy=collapse-fork-list-button]",
           beVisible,
-          [
-            newClickFlow(
-              "[data-cy=collapse-fork-list-button]",
-              [
-                newExpectation(
-                  "should not show fork list",
-                  "[data-cy=fork-list]",
-                  notExist,
-                ),
-              ],
-              "",
-            ),
-          ],
+          newClickFlow(
+            "[data-cy=collapse-fork-list-button]",
+            [
+              newExpectation(
+                "should not show fork list",
+                "[data-cy=fork-list]",
+                notExist,
+              ),
+            ],
+            "",
+          ),
         ),
       ];
 
-export const uncheckShowForkListOption = newExpectationWithClickFlows(
+export const uncheckShowForkListOption = newExpectationWithClickFlow(
   "should check show fork list option",
-  "[data-cy=filter-button",
+  "[data-cy=filter-button]",
   beVisible,
-  [
-    newClickFlow(
-      "[data-cy=filter-button",
-      [],
-      "[data-cy=show-fork-repos-checkbox-checkbox]",
-    ),
-    newClickFlow("[data-cy=filter-button", []),
-  ],
+  newClickFlow(
+    "[data-cy=filter-button]",
+    [
+      newExpectationWithClickFlow(
+        "should uncheck show fork list option",
+        "[data-cy=show-fork-repos-checkbox-checkbox]",
+        beVisible,
+        newClickFlow("[data-cy=show-fork-repos-checkbox-checkbox]", []),
+      ),
+    ],
+    "[data-cy=filter-button]",
+  ),
 );
 
 export const checkForkList = (isMobile: boolean) => [
@@ -124,40 +124,38 @@ export const checkForkList = (isMobile: boolean) => [
     beVisible,
     true,
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should have show forks button",
     `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
     beVisible,
-    [
-      newClickFlow(
-        `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
-        [
-          newExpectationWithScrollIntoView(
-            "should show fork list",
-            "[data-cy=fork-list]",
-            beVisible,
-            true,
-          ),
+    newClickFlow(
+      `[data-cy=show-toggle-forks-button${isMobile ? "-mobile" : ""}]`,
+      [
+        newExpectationWithScrollIntoView(
+          "should show fork list",
+          "[data-cy=fork-list]",
+          beVisible,
+          true,
+        ),
 
-          newExpectation(
-            "should have at least 3 forks",
-            "[data-cy=fork-list] li",
-            newShouldArgs("be.visible.and.have.length.of.at.least", 1),
-          ),
-        ],
-        "",
-      ),
-    ],
+        newExpectation(
+          "should have at least 3 forks",
+          "[data-cy=fork-list] li",
+          newShouldArgs("be.visible.and.have.length.of.at.least", 1),
+        ),
+      ],
+      "",
+    ),
   ),
   ...checkCollapseForkList(isMobile),
 ];
 
 export const clearSearchTest = [
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should successfully clear search",
     "[data-cy=clear-repolist-search]",
     beVisible,
-    [clearSearchClickFlow],
+    clearSearchClickFlow,
   ),
   newExpectationWithScrollIntoView(
     "should scroll to footer",

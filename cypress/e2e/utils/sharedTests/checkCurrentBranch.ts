@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "../helpers";
 import { Expectation } from "../types";
@@ -20,15 +20,12 @@ export const openLeftNavAndCheckCurrentBranch = (
   isLeftNavClosed: boolean,
 ): Expectation =>
   isLeftNavClosed
-    ? newExpectationWithClickFlows(
+    ? newExpectationWithClickFlow(
         "should click to open left nav",
         `[data-cy=left-nav-toggle-icon`,
         beVisible,
-
-        [
-          newClickFlow(`[data-cy=left-nav-toggle-icon]`, [
-            checkCurrentBranch(currentBranch),
-          ]),
-        ],
+        newClickFlow(`[data-cy=left-nav-toggle-icon]`, [
+          checkCurrentBranch(currentBranch),
+        ]),
       )
     : checkCurrentBranch(currentBranch);

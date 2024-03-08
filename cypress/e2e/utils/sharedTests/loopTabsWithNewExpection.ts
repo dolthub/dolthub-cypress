@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
 } from "../helpers";
 import { Expectation, Tests } from "../types";
 import { beVisible } from "./sharedFunctionsAndVariables";
@@ -19,19 +19,17 @@ export const loopTabsWithNewExpectation = (
   expectation: (tab: TabParams) => Expectation,
 ): Tests =>
   tabs.map(tab =>
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       `should click on the ${tab.tabName} tab`,
       `[data-cy=${tab.tabDataCy}]`,
       beVisible,
-      [
-        newClickFlow(`[data-cy=${tab.tabDataCy}]`, [
-          newExpectation(
-            `should find ${tab.dataCyToFind}`,
-            `[data-cy=${tab.dataCyToFind}]`,
-            beVisible,
-          ),
-          expectation(tab),
-        ]),
-      ],
+      newClickFlow(`[data-cy=${tab.tabDataCy}]`, [
+        newExpectation(
+          `should find ${tab.dataCyToFind}`,
+          `[data-cy=${tab.dataCyToFind}]`,
+          beVisible,
+        ),
+        expectation(tab),
+      ]),
     ),
   );

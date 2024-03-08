@@ -10,7 +10,7 @@ import {
 } from "@utils/devices";
 import {
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -33,11 +33,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
     ...checkRepoListForTab("featured", 5),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have list of most-recent repos",
       "[data-cy=discover-repos-tab]",
       beVisible,
-      [mostRecentReposClickFlow],
+      mostRecentReposClickFlow,
     ),
   ];
   const mobileTests = [
@@ -52,11 +52,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
     ),
     ...checkRepoListForTab("featured", 5),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should have list of most-recent repos",
       "[data-cy=discover-mobile-selector]",
       beVisible,
-      [mostRecentReposClickFlowMobile],
+      mostRecentReposClickFlowMobile,
     ),
   ];
   const devices = [

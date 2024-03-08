@@ -59,11 +59,8 @@ export function runTests({ tests }: TestsArgs) {
 
     testAssertion(t);
 
-    if (t.clickFlows) {
-      testClickFlows({
-        clickFlows: t.clickFlows,
-        description: t.description,
-      });
+    if (t.clickFlow) {
+      testClickFlow(t.clickFlow);
     }
 
     if (t.scrollTo) {
@@ -220,31 +217,19 @@ function getAssertionTest(
     .should(shouldArgs.chainer, shouldArgs.value, { message });
 }
 
-type ClickFlowsArgs = {
-  description: string;
-  clickFlows?: ClickFlow[];
-};
-
-// testClickFlows recursively runs clickFlow tests
+// testClickFlow recursively runs clickFlow tests
 // clicking each toClickBefore first, then making assertions
 // the clicking each toClickAfter
-export function testClickFlows({ description, clickFlows }: ClickFlowsArgs) {
-  if (!clickFlows) return;
-  cy.log(description);
+export function testClickFlow(clickFlow: ClickFlow) {
+  const { toClickBefore, expectations, toClickAfter, force } = clickFlow;
+  if (toClickBefore) runClicks(toClickBefore, force);
 
-  clickFlows.forEach(({ toClickBefore, expectations, toClickAfter, force }) => {
-    if (toClickBefore) runClicks(toClickBefore, force);
-
-    expectations.forEach(t => {
-      testAssertion(t);
-      testClickFlows({
-        description,
-        clickFlows: t.clickFlows,
-      });
-    });
-
-    if (toClickAfter) runClicks(toClickAfter);
+  expectations.forEach(t => {
+    testAssertion(t);
+    if (t.clickFlow) testClickFlow(t.clickFlow);
   });
+
+  if (toClickAfter) runClicks(toClickAfter);
 }
 
 // runClicks clicks on each selectorStr

@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newExpectationWithURL,
   newShouldArgs,
@@ -89,10 +89,10 @@ export const testBlogIndexNoSearch = [
     "[data-cy=blog-prev-page]",
     newShouldArgs("not.exist"),
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should navigate to page 2",
     "[data-cy=blog-next-page]",
     beVisible,
-    [nextPageClickFlow],
+    nextPageClickFlow,
   ),
 ];

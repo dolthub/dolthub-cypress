@@ -17,7 +17,7 @@ import {
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "@utils/helpers";
@@ -68,24 +68,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       true,
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "Option dropdown should have appropriate links",
       "[data-cy=options-button]",
       beVisible,
-      [
-        newClickFlow("[data-cy=options-button]", [
-          newExpectation(
-            "should have download query result as csv button",
-            "[data-cy=open-download-csv-modal-button]",
-            beVisible,
-          ),
-          newExpectation(
-            "should have download table as csv button",
-            "[data-cy=download-table-as-csv]",
-            beVisible,
-          ),
-        ]),
-      ],
+      newClickFlow("[data-cy=options-button]", [
+        newExpectation(
+          "should have download query result as csv button",
+          "[data-cy=open-download-csv-modal-button]",
+          beVisible,
+        ),
+        newExpectation(
+          "should have download table as csv button",
+          "[data-cy=download-table-as-csv]",
+          beVisible,
+        ),
+      ]),
     ),
     ...tableExpectations(hasDocs, loggedIn, 1, "test_table"),
     testViewsSection(hasBranch, 0),

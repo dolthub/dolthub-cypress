@@ -2,12 +2,12 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { testCreatePullModal } from "@utils/sharedTests/createPullModalInWorkspaces";
 import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
-import { testCreatePullModal } from "@utils/sharedTests/testCreatePullModalInWorkspaces";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -78,11 +78,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     ...testCreatePullModal,
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should show discard workspace button",
       "[data-cy=discard-work]",
       beVisible,
-      [discardClickFlow],
+      discardClickFlow,
     ),
     newExpectation(
       "should show diff tabs",
@@ -97,11 +97,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=workspace-commit-list] li",
       newShouldArgs("be.visible.and.have.length", 1),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should show cumulative diff on tab click",
       "[data-cy=cumulative-diff]",
       beVisible,
-      [diffClickFlow],
+      diffClickFlow,
     ),
   ];
 

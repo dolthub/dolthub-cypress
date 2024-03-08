@@ -1,7 +1,7 @@
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
@@ -24,76 +24,70 @@ export const testIssues: Tests = [
     "[data-cy=repo-dropdown-button]",
     beVisible,
   ),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should navigate to the new issue page",
     "[data-cy=repo-dropdown-button]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=repo-dropdown-button]",
-        [],
-        "[data-cy=dropdown-new-issue-link]",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=repo-dropdown-button]",
+      [],
+      "[data-cy=dropdown-new-issue-link]",
+    ),
   ),
   typingExpectation(issueTitle, "[data-cy=issue-title-input]"),
   typingExpectation(issueContent, "[data-cy=textarea-container]"),
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should create the new issue",
     "[data-cy=new-issue-button]",
     beVisible,
-    [newClickFlow("[data-cy=new-issue-button]", [])],
+    newClickFlow("[data-cy=new-issue-button]", []),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "the new issue should render in the issue tab",
     "[data-cy=repo-issues-tab]",
     beVisible,
-    [
-      newClickFlow("[data-cy=repo-issues-tab]", [
-        newExpectation(
-          "should contain a new issue",
-          "[data-cy=issue-row-1]",
-          beVisible,
-        ),
-        newExpectation(
-          "title should contain 'test'",
-          "[data-cy=issue-title-1]",
-          beVisibleAndContain(issueTitle),
-        ),
-        newExpectation(
-          "Issue state should be Open",
-          "[data-cy=issue-state-label]",
-          beVisibleAndContain("Open"),
-        ),
-      ]),
-    ],
+    newClickFlow("[data-cy=repo-issues-tab]", [
+      newExpectation(
+        "should contain a new issue",
+        "[data-cy=issue-row-1]",
+        beVisible,
+      ),
+      newExpectation(
+        "title should contain 'test'",
+        "[data-cy=issue-title-1]",
+        beVisibleAndContain(issueTitle),
+      ),
+      newExpectation(
+        "Issue state should be Open",
+        "[data-cy=issue-state-label]",
+        beVisibleAndContain("Open"),
+      ),
+    ]),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "the new issue should be clickable",
     "[data-cy=issue-title-1]",
     beVisible,
-    [newClickFlow("[data-cy=issue-title-1]", [])],
+    newClickFlow("[data-cy=issue-title-1]", []),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should be able to edit the issue",
     "[data-cy=issue-page-edit-description-button]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=issue-page-edit-description-button]",
-        [
-          typingExpectation(issueTitleEdits, "[data-cy=issue-title-input]"),
-          typingExpectation(
-            issueContentEdits,
-            "[data-cy=issue-description-textarea",
-          ),
-        ],
-        "[data-cy=issue-edit-save]",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=issue-page-edit-description-button]",
+      [
+        typingExpectation(issueTitleEdits, "[data-cy=issue-title-input]"),
+        typingExpectation(
+          issueContentEdits,
+          "[data-cy=issue-description-textarea",
+        ),
+      ],
+      "[data-cy=issue-edit-save]",
+    ),
   ),
 
   newExpectation(
@@ -110,11 +104,11 @@ export const testIssues: Tests = [
 
   typingExpectation(issueComment, "[data-cy=comment-textarea-content]"),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should be able to submit the comment",
     "[data-cy=issue-page-comment-button]",
     beVisible,
-    [newClickFlow("[data-cy=issue-page-comment-button]", [])],
+    newClickFlow("[data-cy=issue-page-comment-button]", []),
   ),
 
   newExpectation(
@@ -123,22 +117,20 @@ export const testIssues: Tests = [
     beVisibleAndContain("test comment"),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should show the comment update button",
     "[data-cy=comment-edit-button]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=comment-edit-button]",
-        [
-          typingExpectation(
-            issueCommentUpdate,
-            "[data-cy=update-textarea-container]",
-          ),
-        ],
-        "[data-cy=comment-edit-button]",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=comment-edit-button]",
+      [
+        typingExpectation(
+          issueCommentUpdate,
+          "[data-cy=update-textarea-container]",
+        ),
+      ],
+      "[data-cy=comment-edit-button]",
+    ),
   ),
 
   newExpectation(
@@ -147,51 +139,47 @@ export const testIssues: Tests = [
     beVisibleAndContain("test comment update"),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should be able to close the issue",
     "[data-cy=issue-state-change-button]",
     beVisible,
-    [newClickFlow("[data-cy=issue-state-change-button]", [])],
+    newClickFlow("[data-cy=issue-state-change-button]", []),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "the issue should be closed",
     "[data-cy=repo-issues-tab]",
     beVisible,
-    [
-      newClickFlow(
-        "[data-cy=repo-issues-tab]",
-        [
-          newExpectation(
-            "Issue state should be Closed",
-            "[data-cy=issue-state-label]",
-            beVisibleAndContain("Closed"),
-          ),
-        ],
-        "[data-cy=issue-title-1]",
-      ),
-    ],
+    newClickFlow(
+      "[data-cy=repo-issues-tab]",
+      [
+        newExpectation(
+          "Issue state should be Closed",
+          "[data-cy=issue-state-label]",
+          beVisibleAndContain("Closed"),
+        ),
+      ],
+      "[data-cy=issue-title-1]",
+    ),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "should be able to reopen the issue",
     "[data-cy=issue-state-change-button]",
     beVisible,
-    [newClickFlow("[data-cy=issue-state-change-button]", [])],
+    newClickFlow("[data-cy=issue-state-change-button]", []),
   ),
 
-  newExpectationWithClickFlows(
+  newExpectationWithClickFlow(
     "the issue should be reopen",
     "[data-cy=repo-issues-tab]",
     beVisible,
-    [
-      newClickFlow("[data-cy=repo-issues-tab]", [
-        newExpectation(
-          "Issue state should be Open",
-          "[data-cy=issue-state-label]",
-          beVisibleAndContain("Open"),
-        ),
-      ]),
-    ],
+    newClickFlow("[data-cy=repo-issues-tab]", [
+      newExpectation(
+        "Issue state should be Open",
+        "[data-cy=issue-state-label]",
+        beVisibleAndContain("Open"),
+      ),
+    ]),
   ),
 ];

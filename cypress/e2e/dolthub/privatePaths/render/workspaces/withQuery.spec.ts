@@ -7,11 +7,11 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
-  newExpectationWithClickFlows,
+  newExpectationWithClickFlow,
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { testCreatePullModal } from "@utils/sharedTests/testCreatePullModalInWorkspaces";
+import { testCreatePullModal } from "@utils/sharedTests/createPullModalInWorkspaces";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -85,11 +85,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=workspace-commit-list] li",
       newShouldArgs("be.visible.and.have.length", 1),
     ),
-    newExpectationWithClickFlows(
+    newExpectationWithClickFlow(
       "should remove run message on no click",
       "[data-cy=no-button]",
       beVisible,
-      [noButtonClickFlow],
+      noButtonClickFlow,
     ),
     ...testCreatePullModal,
     testSqlConsole,
