@@ -2,10 +2,11 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlow,
+  newExpectationWithScrollIntoView,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
-import { shouldBeVisible } from "./sharedFunctionsAndVariables";
+import { shouldBeVisible, shouldNotExist } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 const notExist = newShouldArgs("not.exist");
@@ -74,9 +75,76 @@ export const leftNavDiffRangeTests = (fromCommit: string, toCommit: string) => [
   newExpectation(`should have no parents`, "[data-cy=parent-commit]", notExist),
 ];
 
+type HiddenCols = {
+  hidden: string[];
+  shown: string[];
+  tableName: string;
+};
+
+const colsAreHidden = (hidden: string[]): Tests =>
+  hidden
+    .map(c => [
+      shouldBeVisible(`hidden-column-${c}`),
+      shouldNotExist(`repo-data-table-column-${c}`),
+    ])
+    .flat();
+
+const colsAreShowing = (shown: string[], tableName: string): Tests =>
+  shown.map(c =>
+    newExpectationWithScrollIntoView(
+      `should show column ${c}`,
+      `[data-cy=data-diff-${tableName}] [data-cy=repo-data-table-column-${c}]`,
+      beVisible,
+      true,
+    ),
+  );
+
+const testHiddenCols = (hiddenCols: HiddenCols): Tests => [
+  newExpectationWithClickFlow(
+    "should hide unchanged columns",
+    "[data-cy=toggle-trim-button]",
+    beVisible,
+    newClickFlow("[data-cy=toggle-trim-button]", [
+      ...colsAreHidden(hiddenCols.hidden),
+      ...colsAreShowing(hiddenCols.shown, hiddenCols.tableName),
+    ]),
+  ),
+  newExpectationWithClickFlow(
+    "should unhide single column on click",
+    `[data-cy=hidden-column-${hiddenCols.hidden[0]}]`,
+    beVisible,
+    newClickFlow(`[data-cy=hidden-column-${hiddenCols.hidden[0]}]`, [
+      ...colsAreHidden(hiddenCols.hidden.slice(1)),
+      ...colsAreShowing(
+        [...hiddenCols.shown, hiddenCols.hidden[0]],
+        hiddenCols.tableName,
+      ),
+    ]),
+  ),
+  newExpectationWithClickFlow(
+    "should open options dropdown again",
+    "[data-cy=options-button]",
+    beVisible,
+    newClickFlow("[data-cy=options-button]", [
+      newExpectationWithClickFlow(
+        "should show unchanged columns",
+        "[data-cy=toggle-trim-button]",
+        beVisible,
+        newClickFlow("[data-cy=toggle-trim-button]", [
+          ...colsAreShowing(
+            [...hiddenCols.hidden, ...hiddenCols.shown],
+            hiddenCols.tableName,
+          ),
+        ]),
+      ),
+    ]),
+  ),
+];
+
 export const diffsWithCommitTests = (
   currentFromCommit: string,
   numParents: number,
+  hiddenCols?: HiddenCols,
 ): Tests => [
   ...leftNavTests(currentFromCommit, numParents),
   newExpectationWithClickFlow(
@@ -85,9 +153,11 @@ export const diffsWithCommitTests = (
     beVisible,
     newClickFlow("[data-cy=options-button]", [
       shouldBeVisible("view-sql-link"),
-      shouldBeVisible("toggle-trim-button"),
     ]),
   ),
+  ...(hiddenCols
+    ? testHiddenCols(hiddenCols)
+    : [shouldBeVisible("toggle-trim-button")]),
   newExpectation(
     "should show filter by diff type selector",
     "[data-cy=filter-by-diff-type]",
