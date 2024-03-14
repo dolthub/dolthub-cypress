@@ -8,12 +8,9 @@ import {
   iPhoneXForAppLayout,
   macbook15ForAppLayout,
 } from "@utils/devices";
-import {
-  newExpectation,
-  newExpectationWithClickFlow,
-  newShouldArgs,
-} from "@utils/helpers";
+import { newExpectationWithClickFlow, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Discover page";
 const currentPage = "/discover";
@@ -22,16 +19,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    newExpectation(
-      "should have repository search input",
-      "[data-cy=repolist-search-input]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have repos container",
-      "[data-cy=repos-container-with-tabs]",
-      newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
-    ),
+    shouldBeVisible("repolist-search-input"),
+    shouldBeVisible("repos-container-with-tabs"),
     ...checkRepoListForTab("featured", 5),
     newExpectationWithClickFlow(
       "should have list of most-recent repos",
@@ -41,20 +30,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
   const mobileTests = [
-    newExpectation(
-      "should have repository search input",
-      "[data-cy=repolist-search-input]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have repos container",
-      "[data-cy=repos-container-with-tabs]",
-      newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
-    ),
+    shouldBeVisible("repolist-search-input"),
+    shouldBeVisible("repos-container-with-tabs"),
     ...checkRepoListForTab("featured", 5),
     newExpectationWithClickFlow(
       "should have list of most-recent repos",
-      "[data-cy=discover-mobile-selector]",
+      "[data-cy=databases-layout-mobile-selector]",
       beVisible,
       mostRecentReposClickFlowMobile,
     ),

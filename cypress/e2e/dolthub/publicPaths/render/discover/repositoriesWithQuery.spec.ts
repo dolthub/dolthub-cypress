@@ -11,6 +11,7 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Repositories page with query";
 const searchTerm = "repo_with_tags_and_branches";
@@ -20,11 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    newExpectation(
-      "should have repos container",
-      "[data-cy=repos-container-with-tabs]",
-      newShouldArgs("be.visible.and.contain", ["Featured", "Discover"]),
-    ),
+    shouldBeVisible("repos-container-with-tabs"),
     uncheckShowForkListOption,
     ...checkRepoListForTab("most-recent", 1),
 
