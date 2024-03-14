@@ -20,7 +20,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     shouldBeVisible("create-database-button"),
     shouldBeVisible("repolist-search-input"),
     shouldBeVisibleAndScrollIntoView("repository-list-most-recent"),
-    shouldBeVisible("sort-discover-select"),
+    shouldBeVisible("filter-button"),
     uncheckShowForkListOption,
     shouldBeVisibleAndScrollIntoView("repository-list-most-recent"),
     newExpectation(
