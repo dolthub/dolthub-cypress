@@ -56,7 +56,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = () => [
     newExpectation(
       "should have currentBranch in branch selector",
-      "[data-cy=branch-selector]",
+      "[data-cy=branch-and-tag-selector]",
       newShouldArgs("be.visible.and.contain", currentBranch),
     ),
     ...loopTabsWithNewExpectation(tabs, (tab: TabParams) =>

@@ -49,11 +49,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
         [
           newExpectation(
             "should select the branch_can_not_be_deleted branch",
-            "[data-cy=branch_can_not_be_deleted]",
+            "[data-cy=select-option-branch_can_not_be_deleted]",
             beVisibleAndContain("branch_can_not_be_deleted"),
           ),
         ],
-        "[data-cy=branch_can_not_be_deleted]",
+        "[data-cy=select-option-branch_can_not_be_deleted]",
       ),
     ),
     newExpectation(
@@ -78,11 +78,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
         [
           newExpectation(
             "should select the branch_can_not_be_deleted branch",
-            "[data-cy=branch_can_not_be_force_pushed]",
+            "[data-cy=select-option-branch_can_not_be_force_pushed]",
             beVisibleAndContain("branch_can_not_be_force_pushed"),
           ),
         ],
-        "[data-cy=branch_can_not_be_force_pushed]",
+        "[data-cy=select-option-branch_can_not_be_force_pushed]",
       ),
     ),
     newExpectation(
@@ -106,11 +106,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
         [
           newExpectation(
             "should select the main branch",
-            "[data-cy=main]",
+            "[data-cy=select-option-main]",
             beVisibleAndContain("main"),
           ),
         ],
-        "[data-cy=main]",
+        "[data-cy=select-option-main]",
       ),
     ),
 

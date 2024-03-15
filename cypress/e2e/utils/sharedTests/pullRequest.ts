@@ -113,14 +113,14 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
   // SELECT THE BASE BRANCH
   newExpectationWithClickFlow(
     "should show and select the base branch",
-    "[data-cy=to-branch-selector] input",
+    "[data-cy=to-branch-and-tag-selector] input",
     beVisible,
     newClickFlow(
-      "[data-cy=to-branch-selector] input",
+      "[data-cy=to-branch-and-tag-selector] input",
       [
         newExpectationWithSelector(
           "should select the fork repo",
-          "[data-cy=to-branch-selector]>div>div",
+          "[data-cy=to-branch-and-tag-selector]>div>div",
           1,
           beVisibleAndContain("main"),
         ),
