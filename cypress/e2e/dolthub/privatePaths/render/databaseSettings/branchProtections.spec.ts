@@ -123,7 +123,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should show require approval checkbox",
+      "should show no pull request push checkbox",
       "[data-cy=prevent-non-pr-push-checkbox]",
       beVisible,
     ),
