@@ -5,7 +5,12 @@ import {
   notBeChecked,
 } from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
-import { newExpectationWithClickFlow,newClickFlow, newExpectation, scrollToPosition } from "@utils/helpers";
+import {
+  newExpectationWithClickFlow,
+  newClickFlow,
+  newExpectation,
+  scrollToPosition,
+} from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Logged in branch protection settings page";
@@ -72,13 +77,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
           "[data-cy=prevent-force-push-checkbox] input",
           notBeChecked,
         ),
-    
+
         newExpectation(
           "should have require approval checked",
           "[data-cy=require-approval-checkbox] input",
           notBeChecked,
         ),
-    
+
         newExpectation(
           "should not have prevent no pull request push checked",
           "[data-cy=prevent-non-pr-push-checkbox] input",
@@ -91,9 +96,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have breadcrumb link",
       "[data-cy=branch-protection-breadcrumbs]",
       beVisible,
-    newClickFlow("[data-cy=branch-protection-breadcrumbs] a", []),   
+      newClickFlow("[data-cy=branch-protection-breadcrumbs] a", []),
     ),
-
 
     newExpectation(
       "should show branch selector",
@@ -123,9 +127,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=prevent-non-pr-push-checkbox]",
       beVisible,
     ),
-
   ];
-
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
   const skip = false;
