@@ -54,22 +54,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
         shouldCheckbox(
           "prevent-deletions-checkbox",
           true,
-          "branch can not be deleted checkbox checked",
+          "prevent deletion checked",
         ),
         shouldCheckbox(
           "prevent-force-push-checkbox",
           false,
-          "branch can not be force pushed checkbox unchecked",
+          "prevent force push unchecked",
         ),
         shouldCheckbox(
           "require-approval-checkbox",
           false,
-          "require approval checkbox unchecked",
+          "require approval unchecked",
         ),
         shouldCheckbox(
           "prevent-non-pr-push-checkbox",
           false,
-          "no pull request push checkbox unchecked",
+          "prevent no pull request push unchecked",
         ),
       ]),
     ),
@@ -84,18 +84,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
     // check the checkboxes on the branch protections page
     scrollToPosition("#main-content", "bottom"),
-    shouldBeVisible(
-      "prevent-deletions-checkbox",
-      "branch can not be deleted checkbox",
-    ),
+    shouldBeVisible("prevent-deletions-checkbox", "prevent deletion checkbox"),
     shouldBeVisible(
       "prevent-force-push-checkbox",
-      "branch can not be force pushed checkbox",
+      "prevent force push checkbox",
     ),
     shouldBeVisible("require-approval-checkbox", "require approval checkbox"),
     shouldBeVisible(
       "prevent-non-pr-push-checkbox",
-      "no pull request push checkbox",
+      "prevent non pull request push checkbox",
     ),
   ];
 

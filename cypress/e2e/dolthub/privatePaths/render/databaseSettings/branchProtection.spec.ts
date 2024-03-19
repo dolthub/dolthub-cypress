@@ -21,22 +21,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
     shouldCheckbox(
       "prevent-deletions-checkbox",
       true,
-      "branch can not be deleted checkbox checked",
+      "prevent deletion checked",
     ),
     shouldCheckbox(
       "prevent-force-push-checkbox",
       false,
-      "branch can not be force pushed checkbox unchecked",
+      "prevent force push unchecked",
     ),
     shouldCheckbox(
       "require-approval-checkbox",
       true,
-      "require approval checkbox checked",
+      "require approval checked",
     ),
     shouldCheckbox(
       "prevent-non-pr-push-checkbox",
       false,
-      "no pull request push checkbox unchecked",
+      "prevent non pull request push unchecked",
     ),
   ];
 
