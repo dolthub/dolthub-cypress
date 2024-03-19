@@ -1,14 +1,13 @@
 import {
-  beChecked,
   beVisible,
-  beVisibleAndContain,
-  notBeChecked,
+  shouldBeVisible,
+  shouldFindAndContain,
+  shouldCheckbox,
 } from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
 import {
   newExpectationWithClickFlow,
   newClickFlow,
-  newExpectation,
   scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -21,73 +20,56 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    newExpectation(
-      "should have an active branch protection tab",
-      "[data-cy=active-branch-protections-settings-tab]",
-      beVisibleAndContain("Branch Protection"),
+    shouldFindAndContain(
+      "active-branch-protections-settings-tab",
+      "Branch Protection",
     ),
-    newExpectation(
-      "should have text block with descriptions",
-      "[data-cy=branch-protection-description-text]",
-      beVisibleAndContain(
-        "protect important branches by setting branch protection rules",
-      ),
+    shouldFindAndContain(
+      "branch-protection-description-text",
+      "protect important branches by setting branch protection rules",
     ),
 
     // check the branch protection list
-    newExpectation(
-      "should have branch_can_not_be_deleted branch listed",
-      "[data-cy=branch-name-branch_can_not_be_deleted]",
-      beVisibleAndContain("branch_can_not_be_deleted"),
+    shouldFindAndContain(
+      "branch-name-branch_can_not_be_deleted",
+      "branch_can_not_be_deleted",
     ),
-    newExpectation(
-      "should have branch_can_not_be_force_pushed branch listed",
-      "[data-cy=branch-name-branch_can_not_be_force_pushed]",
-      beVisibleAndContain("branch_can_not_be_force_pushed"),
+    shouldFindAndContain(
+      "branch-name-branch_can_not_be_force_pushed",
+      "branch_can_not_be_force_pushed",
     ),
-    newExpectation(
-      "should have main branch listed",
-      "[data-cy=branch-name-main]",
-      beVisibleAndContain("main"),
-    ),
+    shouldFindAndContain("branch-name-main", "main"),
 
     // click to edit the branch protection:branch_can_not_be_deleted-edit
-    newExpectation(
-      "should have edit branch protection button",
-      "[data-cy=branch_can_not_be_deleted-edit]",
-      beVisibleAndContain("Edit"),
-    ),
+    shouldFindAndContain("branch_can_not_be_deleted-edit", "Edit"),
     newExpectationWithClickFlow(
       "should have edit button",
       "[data-cy=branch_can_not_be_deleted-edit]",
       beVisible,
       newClickFlow("[data-cy=branch_can_not_be_deleted-edit]", [
-        newExpectation(
-          "should show branch name: branch_can_not_be_deleted",
-          "[data-cy=branch-name-branch_can_not_be_deleted]",
-          beVisibleAndContain("branch_can_not_be_deleted"),
+        shouldFindAndContain(
+          "branch-name-branch_can_not_be_deleted",
+          "branch_can_not_be_deleted",
         ),
-        newExpectation(
-          "should have prevent deletion checked",
-          "[data-cy=prevent-deletions-checkbox] input",
-          beChecked,
+        shouldCheckbox(
+          "prevent-deletions-checkbox",
+          true,
+          "branch can not be deleted checkbox checked",
         ),
-        newExpectation(
-          "should not have prevent force push checked",
-          "[data-cy=prevent-force-push-checkbox] input",
-          notBeChecked,
+        shouldCheckbox(
+          "prevent-force-push-checkbox",
+          false,
+          "branch can not be force pushed checkbox unchecked",
         ),
-
-        newExpectation(
-          "should have require approval checked",
-          "[data-cy=require-approval-checkbox] input",
-          notBeChecked,
+        shouldCheckbox(
+          "require-approval-checkbox",
+          false,
+          "require approval checkbox unchecked",
         ),
-
-        newExpectation(
-          "should not have prevent no pull request push checked",
-          "[data-cy=prevent-non-pr-push-checkbox] input",
-          notBeChecked,
+        shouldCheckbox(
+          "prevent-non-pr-push-checkbox",
+          false,
+          "no pull request push checkbox unchecked",
         ),
       ]),
     ),
@@ -98,34 +80,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       newClickFlow("[data-cy=branch-protection-breadcrumbs] a", []),
     ),
-
-    newExpectation(
-      "should show branch selector",
-      "[data-cy=branch-protection-branch-selector]",
-      beVisible,
-    ),
+    shouldBeVisible("branch-protection-branch-selector", "branch selector"),
 
     // check the checkboxes on the branch protections page
     scrollToPosition("#main-content", "bottom"),
-    newExpectation(
-      "should show branch can not be deleted checkbox",
-      "[data-cy=prevent-deletions-checkbox]",
-      beVisible,
+    shouldBeVisible(
+      "prevent-deletions-checkbox",
+      "branch can not be deleted checkbox",
     ),
-    newExpectation(
-      "should show branch can not be force pushed checkbox",
-      "[data-cy=prevent-force-push-checkbox]",
-      beVisible,
+    shouldBeVisible(
+      "prevent-force-push-checkbox",
+      "branch can not be force pushed checkbox",
     ),
-    newExpectation(
-      "should show require approval checkbox",
-      "[data-cy=require-approval-checkbox]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show no pull request push checkbox",
-      "[data-cy=prevent-non-pr-push-checkbox]",
-      beVisible,
+    shouldBeVisible("require-approval-checkbox", "require approval checkbox"),
+    shouldBeVisible(
+      "prevent-non-pr-push-checkbox",
+      "no pull request push checkbox",
     ),
   ];
 

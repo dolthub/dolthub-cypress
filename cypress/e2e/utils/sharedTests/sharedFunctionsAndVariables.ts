@@ -50,6 +50,17 @@ export const shouldFindAndContain = (
     beVisibleAndContain(text),
   );
 
+export const shouldCheckbox = (
+  dataCy: string,
+  checked: boolean,
+  desc?: string,
+): Expectation =>
+  newExpectation(
+    `should find ${desc ?? getDesc(dataCy)}`,
+    `[data-cy=${dataCy}] input`,
+    checked ? beChecked : notBeChecked,
+  );
+
 export const shouldNotExist = (dataCy: string): Expectation =>
   newExpectation(
     `should not find ${getDesc(dataCy)}`,

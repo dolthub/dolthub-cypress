@@ -1,10 +1,8 @@
 import {
-  beChecked,
-  beVisibleAndContain,
-  notBeChecked,
+  shouldBeVisible,
+  shouldCheckbox,
 } from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
-import { newExpectation } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Logged in branch protection settings page";
@@ -16,32 +14,29 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    newExpectation(
-      "should have an active branch protection tab",
-      "[data-cy=active-branch-protections-settings-tab]",
-      beVisibleAndContain("Branch Protection"),
+    shouldBeVisible(
+      "active-branch-protections-settings-tab",
+      "Branch Protection",
     ),
-    newExpectation(
-      "should have prevent deletion checked",
-      "[data-cy=prevent-deletions-checkbox] input",
-      beChecked,
+    shouldCheckbox(
+      "prevent-deletions-checkbox",
+      true,
+      "branch can not be deleted checkbox checked",
     ),
-    newExpectation(
-      "should not have prevent force push checked",
-      "[data-cy=prevent-force-push-checkbox] input",
-      notBeChecked,
+    shouldCheckbox(
+      "prevent-force-push-checkbox",
+      false,
+      "branch can not be force pushed checkbox unchecked",
     ),
-
-    newExpectation(
-      "should have require approval checked",
-      "[data-cy=require-approval-checkbox] input",
-      beChecked,
+    shouldCheckbox(
+      "require-approval-checkbox",
+      true,
+      "require approval checkbox checked",
     ),
-
-    newExpectation(
-      "should not have prevent no pull request push checked",
-      "[data-cy=prevent-non-pr-push-checkbox] input",
-      notBeChecked,
+    shouldCheckbox(
+      "prevent-non-pr-push-checkbox",
+      false,
+      "no pull request push checkbox unchecked",
     ),
   ];
 
