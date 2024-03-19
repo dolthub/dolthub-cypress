@@ -60,15 +60,15 @@ export const changeBranch = (testParams: TestParams): Tests => [
         newClickFlow(`[data-cy=left-nav-toggle-icon]`, [
           newExpectationWithClickFlow(
             "should open branch selector",
-            `[data-cy=branch-selector]`,
+            `[data-cy=branch-and-tag-selector]`,
             beVisible,
-            newClickFlow(`[data-cy=branch-selector]`, [
+            newClickFlow(`[data-cy=branch-and-tag-selector]`, [
               newExpectationWithClickFlow(
                 "should click on other branch",
-                `[data-cy=${testParams.destinationBranch}]`,
+                `[data-cy=select-option-${testParams.destinationBranch}]`,
                 beVisible,
                 newClickFlow(
-                  `[data-cy=${testParams.destinationBranch}]`,
+                  `[data-cy=select-option-${testParams.destinationBranch}]`,
                   checkCurrentBranch(testParams),
                 ),
               ),
@@ -78,15 +78,15 @@ export const changeBranch = (testParams: TestParams): Tests => [
       )
     : newExpectationWithClickFlow(
         "should open branch selector",
-        `[data-cy=branch-selector]`,
+        `[data-cy=branch-and-tag-selector]`,
         beVisible,
-        newClickFlow(`[data-cy=branch-selector]`, [
+        newClickFlow(`[data-cy=branch-and-tag-selector]`, [
           newExpectationWithClickFlow(
             "should click on other branch",
-            `[data-cy=${testParams.destinationBranch}]`,
+            `[data-cy=select-option-${testParams.destinationBranch}]`,
             beVisible,
             newClickFlow(
-              `[data-cy=${testParams.destinationBranch}]`,
+              `[data-cy=select-option-${testParams.destinationBranch}]`,
               checkCurrentBranch(testParams),
             ),
           ),

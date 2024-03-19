@@ -11,7 +11,7 @@ const beVisible = newShouldArgs("be.visible");
 const checkCurrentBranch = (currentBranch: string): Expectation =>
   newExpectation(
     "should have current branch",
-    `[data-cy=branch-selector]`,
+    `[data-cy=branch-and-tag-selector]`,
     newShouldArgs("be.visible.and.contain", currentBranch),
   );
 

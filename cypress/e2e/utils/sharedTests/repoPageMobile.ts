@@ -142,7 +142,7 @@ export const mobileRepoNavTests = [
     newClickFlow("[data-cy=show-table-nav-button]", [
       newExpectation(
         "should have repo branch selector",
-        "[data-cy=branch-selector]",
+        "[data-cy=branch-and-tag-selector]",
         beVisible,
       ),
     ]),
