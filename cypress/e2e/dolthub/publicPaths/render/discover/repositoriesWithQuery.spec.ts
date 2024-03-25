@@ -1,7 +1,7 @@
 import {
   checkRepoListForTab,
   clearSearchClickFlow,
-  uncheckShowForkListOption,
+  shouldUncheckForkListOption,
 } from "@sharedTests/reposContainer";
 import { allDevicesForSignedOut } from "@utils/devices";
 import {
@@ -22,7 +22,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     shouldBeVisible("repos-container-with-tabs"),
-    uncheckShowForkListOption,
+    shouldUncheckForkListOption,
     ...checkRepoListForTab("most-recent", 1),
 
     newExpectationWithScrollIntoView(
