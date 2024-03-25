@@ -1,14 +1,13 @@
+import { Tests } from "@utils/types";
 import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlow,
-  newExpectationWithSelector,
   newShouldArgs,
 } from "../helpers";
-import { Tests } from "../types";
 import {
   beVisible,
-  beVisibleAndContain,
+  shouldBeVisible,
   shouldBeVisibleAndScrollIntoView,
   shouldNotExist,
 } from "./sharedFunctionsAndVariables";
@@ -19,7 +18,7 @@ export const checkRepoListForTab = (
 ): Tests => {
   const dataCy = `[data-cy=repository-list-${listKind}]`;
   return [
-    newExpectation(`should have list of ${listKind} repos`, dataCy, beVisible),
+    shouldBeVisible(`repository-list-${listKind}`),
     newExpectation(
       `should have at least ${length} ${listKind} repos`,
       `${dataCy} > li`,
@@ -27,23 +26,6 @@ export const checkRepoListForTab = (
     ),
   ];
 };
-
-export const mostRecentReposClickFlow = newClickFlow(
-  "[data-cy=discover-repos-tab]",
-  [...checkRepoListForTab("most-recent", 15)],
-);
-
-export const mostRecentReposClickFlowMobile = newClickFlow(
-  "[data-cy=databases-layout-mobile-selector] input",
-  [
-    newExpectationWithSelector(
-      "should select Discover",
-      "[data-cy=databases-layout-mobile-selector]>div>div",
-      1,
-      beVisibleAndContain("Discover"),
-    ),
-  ],
-);
 
 export const clearSearchClickFlow = newClickFlow(
   "[data-cy=clear-repolist-search]",
@@ -80,20 +62,20 @@ const checkCollapseForkList = (isMobile: boolean) =>
         ),
       ];
 
+export const shouldUncheckForkListOption = newExpectationWithClickFlow(
+  "should uncheck show fork list option",
+  "[data-cy=show-fork-repos-checkbox-checkbox]",
+  beVisible,
+  newClickFlow("[data-cy=show-fork-repos-checkbox-checkbox]", []),
+);
+
 export const uncheckShowForkListOption = newExpectationWithClickFlow(
   "should check show fork list option",
   "[data-cy=filter-button]",
   beVisible,
   newClickFlow(
     "[data-cy=filter-button]",
-    [
-      newExpectationWithClickFlow(
-        "should uncheck show fork list option",
-        "[data-cy=show-fork-repos-checkbox-checkbox]",
-        beVisible,
-        newClickFlow("[data-cy=show-fork-repos-checkbox-checkbox]", []),
-      ),
-    ],
+    [shouldUncheckForkListOption],
     "[data-cy=filter-button]",
   ),
 );
