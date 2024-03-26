@@ -1,6 +1,6 @@
 import {
-  shouldBeVisible,
   shouldCheckbox,
+  shouldFindAndContain,
 } from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
 import { runTestsForDevices } from "@utils/index";
@@ -14,30 +14,14 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    shouldBeVisible(
-      "active-branch-protections-settings-tab",
+    shouldFindAndContain(
+      "active-tab-branch-protections-settings",
       "Branch Protection",
     ),
-    shouldCheckbox(
-      "prevent-deletions-checkbox",
-      true,
-      "prevent deletion checked",
-    ),
-    shouldCheckbox(
-      "prevent-force-push-checkbox",
-      false,
-      "prevent force push unchecked",
-    ),
-    shouldCheckbox(
-      "require-approval-checkbox",
-      true,
-      "require approval checked",
-    ),
-    shouldCheckbox(
-      "prevent-non-pr-push-checkbox",
-      false,
-      "prevent non pull request push unchecked",
-    ),
+    shouldCheckbox("prevent-deletions-checkbox", true),
+    shouldCheckbox("prevent-force-push-checkbox", false),
+    shouldCheckbox("require-approval-checkbox", true),
+    shouldCheckbox("prevent-non-pr-push-checkbox", false),
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];

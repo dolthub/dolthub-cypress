@@ -1,8 +1,12 @@
 import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
 import { testSqlConsole } from "@sharedTests/sqlEditor";
 import { macbook15ForAppLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import {
+  shouldBeVisible,
+  shouldFindAndContain,
+  shouldNotExist,
+} from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -18,15 +22,8 @@ const loggedIn = false;
 const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
-  const notExist = newShouldArgs("not.exist");
-
   const tests = [
-    newExpectation(
-      "should have repository layout",
-      "[data-cy=repository-layout-container]",
-      beVisible,
-    ),
+    shouldBeVisible("repository-layout-container"),
     ...testRepoHeaderWithBranch(
       currentRepo,
       currentOwner,
@@ -34,61 +31,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
       hasDocs,
       true,
     ),
-    newExpectation(
-      "should not show run message",
-      "[data-cy=workspaces-run-msg]",
-      notExist,
-    ),
-    newExpectation(
-      "should show workspace title",
-      "[data-cy=workspace-title]",
-      newShouldArgs("be.visible.and.contain", "Temporary Workspace"),
-    ),
-    newExpectation(
-      "should have link button",
-      "[data-cy=workspace-link]",
-      beVisible,
-    ),
-    newExpectation("should have info icon", "[data-cy=info-icon]", beVisible),
-    newExpectation(
-      "should have collapsed sql editor",
-      "[data-cy=sql-editor-collapsed]",
-      beVisible,
-    ),
-    newExpectation(
-      "should not show pull button",
-      "[data-cy=create-pull]",
-      notExist,
-    ),
-    newExpectation(
-      "should not show discard workspace button",
-      "[data-cy=discard-work]",
-      notExist,
-    ),
-    newExpectation(
-      "should show diff tabs",
-      "[data-cy=diff-tabs]",
-      newShouldArgs("be.visible.and.contain", [
-        "Current Query",
-        "Query History",
-        "Cumulative Diff",
-      ]),
-    ),
-    newExpectation(
-      "should show sql data table message",
-      "[data-cy=data-table-message]",
-      newShouldArgs("be.visible.and.contain", "2 rows selected"),
-    ),
-    newExpectation(
-      "should show data table",
-      "[data-cy=desktop-repo-data-table]",
-      beVisible,
-    ),
-    newExpectation(
-      "should not show commit list",
-      "[data-cy=workspace-commit-list]",
-      notExist,
-    ),
+    shouldNotExist("workspaces-run-msg"),
+    shouldFindAndContain("workspace-title", "Temporary Workspace"),
+    shouldBeVisible("workspace-link"),
+    shouldBeVisible("info-icon"),
+    shouldBeVisible("sql-editor-collapsed"),
+    shouldNotExist("create-pull"),
+    shouldNotExist("discard-work"),
+    shouldFindAndContain("diff-tabs", [
+      "Current Query",
+      "Query History",
+      "Cumulative Diff",
+    ]),
+    shouldFindAndContain("data-table-message", "2 rows selected"),
+    shouldBeVisible("desktop-repo-data-table"),
+    shouldNotExist("workspace-commit-list"),
     testSqlConsole,
   ];
 

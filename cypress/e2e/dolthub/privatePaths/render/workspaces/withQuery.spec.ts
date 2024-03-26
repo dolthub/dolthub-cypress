@@ -12,6 +12,11 @@ import {
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import { testCreatePullModal } from "@utils/sharedTests/createPullModalInWorkspaces";
+import {
+  shouldBeVisible,
+  shouldFindAndContain,
+  shouldNotExist,
+} from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -28,58 +33,22 @@ const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notExist = newShouldArgs("not.exist");
 
   const noButtonClickFlow = newClickFlow("[data-cy=no-button]", [
-    newExpectation(
-      "should remove run message",
-      "[data-cy=workspaces-run-msg]",
-      notExist,
-    ),
+    shouldNotExist("workspaces-run-msg"),
   ]);
 
   const tests = [
     testOldFormatPopup,
-    newExpectation(
-      "should have repository layout",
-      "[data-cy=repository-layout-container]",
-      beVisible,
-    ),
+    shouldBeVisible("repository-layout-container"),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
-    newExpectation(
-      "should show run message",
-      "[data-cy=workspaces-run-msg]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show workspace title",
-      "[data-cy=workspace-title]",
-      newShouldArgs("be.visible.and.contain", "Temporary Workspace"),
-    ),
-    newExpectation(
-      "should have link button",
-      "[data-cy=workspace-link]",
-      beVisible,
-    ),
-    newExpectation("should have info icon", "[data-cy=info-icon]", beVisible),
-    newExpectation(
-      "should show pull button",
-      "[data-cy=create-pull]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show discard workspace button",
-      "[data-cy=discard-work]",
-      beVisible,
-    ),
-    newExpectation(
-      "should show diff tabs",
-      "[data-cy=diff-tabs]",
-      newShouldArgs("be.visible.and.contain", [
-        "Query History",
-        "Cumulative Diff",
-      ]),
-    ),
+    shouldBeVisible("workspaces-run-msg"),
+    shouldFindAndContain("workspace-title", "Temporary Workspace"),
+    shouldBeVisible("workspace-link"),
+    shouldBeVisible("info-icon"),
+    shouldBeVisible("create-pull"),
+    shouldBeVisible("discard-work"),
+    shouldFindAndContain("diff-tabs", ["Query History", "Cumulative Diff"]),
     newExpectation(
       "should show commit list",
       "[data-cy=workspace-commit-list] li",
