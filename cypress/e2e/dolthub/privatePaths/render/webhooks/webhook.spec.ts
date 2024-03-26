@@ -31,7 +31,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     testOldFormatPopup,
-    shouldFindAndContain("active-webhooks-settings-tab", "Webhooks"),
+    shouldFindAndContain("active-tab-webhooks-settings", "Webhooks"),
     shouldBeVisible("repo-page-for-webhooks"),
     shouldFindAndContain("webhook-header", "Webhooks"),
     shouldBeVisible("webhook-breadcrumbs"),

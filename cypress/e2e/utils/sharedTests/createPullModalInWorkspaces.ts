@@ -1,16 +1,11 @@
+import { newClickFlow, newExpectationWithClickFlow } from "@utils/helpers";
 import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlow,
-} from "@utils/helpers";
-import { beVisible, beVisibleAndContain } from "./sharedFunctionsAndVariables";
+  beVisible,
+  shouldBeVisible,
+  shouldFindAndContain,
+} from "./sharedFunctionsAndVariables";
 
 export const testCreatePullModal = [
-  newExpectation(
-    "should have button with dropdown",
-    "[data-cy=button-dropdown-arrow]",
-    beVisible,
-  ),
   newExpectationWithClickFlow(
     "should show button dropdown arrow",
     "[data-cy=button-dropdown-arrow]",
@@ -18,16 +13,8 @@ export const testCreatePullModal = [
     newClickFlow(
       "[data-cy=button-dropdown-arrow]",
       [
-        newExpectation(
-          "should show commit directly button",
-          "[data-cy=commit-directly-button]",
-          beVisible,
-        ),
-        newExpectation(
-          "should show create pull button",
-          "[data-cy=create-pull-request-button]",
-          beVisible,
-        ),
+        shouldBeVisible("commit-directly-button"),
+        shouldBeVisible("create-pull-request-button"),
       ],
       "[data-cy=create-pull-request-button]",
     ),
@@ -40,26 +27,10 @@ export const testCreatePullModal = [
     newClickFlow(
       "[data-cy=create-pull]",
       [
-        newExpectation(
-          "should show modal title",
-          "[data-cy=modal-title]",
-          beVisibleAndContain("Create pull request"),
-        ),
-        newExpectation(
-          "should show create pull form",
-          "[data-cy=create-pull-form]",
-          beVisible,
-        ),
-        newExpectation(
-          "should have new branch input",
-          "[data-cy=new-branch-name-input]",
-          beVisible,
-        ),
-        newExpectation(
-          "should have create pull button",
-          "[data-cy=create-pull-button]",
-          beVisible,
-        ),
+        shouldFindAndContain("modal-title", "Create pull request"),
+        shouldBeVisible("create-pull-form"),
+        shouldBeVisible("new-branch-name-input"),
+        shouldBeVisible("create-pull-button"),
       ],
       "[data-cy=close-modal]",
     ),

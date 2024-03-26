@@ -13,6 +13,11 @@ import {
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import { mobileTests } from "@utils/sharedTests/repoPageMobile";
+import {
+  shouldBeVisible,
+  shouldFindAndContain,
+  shouldNotExist,
+} from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 
@@ -28,22 +33,13 @@ const hasDocs = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const notExist = newShouldArgs("not.exist");
 
-  const diffClickFlow = newClickFlow("[data-cy=cumulative-diff]", [
-    newExpectation(
-      "should show cumulative diff",
-      "[data-cy=diff-table-list-summaries]",
-      beVisible,
-    ),
+  const diffClickFlow = newClickFlow("[data-cy=tab-cumulative-diff]", [
+    shouldBeVisible("diff-table-list-summaries"),
   ]);
 
   const tests = [
-    newExpectation(
-      "should have repository layout",
-      "[data-cy=repository-layout-container]",
-      beVisible,
-    ),
+    shouldBeVisible("repository-layout-container"),
     ...testRepoHeaderWithBranch(
       currentRepo,
       currentOwner,
@@ -51,40 +47,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
       hasDocs,
       true,
     ),
-    newExpectation(
-      "should not show run message",
-      "[data-cy=workspaces-run-msg]",
-      notExist,
-    ),
-    newExpectation(
-      "should show workspace title",
-      "[data-cy=workspace-title]",
-      newShouldArgs("be.visible.and.contain", "Temporary Workspace"),
-    ),
-    newExpectation(
-      "should have link button",
-      "[data-cy=workspace-link]",
-      beVisible,
-    ),
-    newExpectation("should have info icon", "[data-cy=info-icon]", beVisible),
-    newExpectation(
-      "should not show pull button",
-      "[data-cy=create-pull]",
-      notExist,
-    ),
-    newExpectation(
-      "should not show discard workspace button",
-      "[data-cy=discard-work]",
-      notExist,
-    ),
-    newExpectation(
-      "should show diff tabs",
-      "[data-cy=diff-tabs]",
-      newShouldArgs("be.visible.and.contain", [
-        "Query History",
-        "Cumulative Diff",
-      ]),
-    ),
+    shouldNotExist("workspaces-run-msg"),
+    shouldFindAndContain("workspace-title", "Temporary Workspace"),
+    shouldBeVisible("workspace-link"),
+    shouldBeVisible("info-icon"),
+    shouldNotExist("create-pull"),
+    shouldNotExist("discard-work"),
+    shouldFindAndContain("diff-tabs", ["Query History", "Cumulative Diff"]),
     newExpectation(
       "should show commit list",
       "[data-cy=workspace-commit-list] li",
@@ -92,7 +61,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectationWithClickFlow(
       "should show cumulative diff on tab click",
-      "[data-cy=cumulative-diff]",
+      "[data-cy=tab-cumulative-diff]",
       beVisible,
       diffClickFlow,
     ),

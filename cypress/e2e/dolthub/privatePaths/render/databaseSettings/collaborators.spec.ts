@@ -16,7 +16,7 @@ const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
-    shouldFindAndContain("active-collaborators-settings-tab", "Collaborators"),
+    shouldFindAndContain("active-tab-collaborators-settings", "Collaborators"),
     newExpectation(
       "should have a Collaborators section with headers",
       "[data-cy=repo-settings-collab] h3",

@@ -1,8 +1,12 @@
 import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
 import { testSqlConsole } from "@sharedTests/sqlEditor";
 import { macbook15ForAppLayout } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import {
+  shouldBeVisible,
+  shouldFindAndContain,
+  shouldNotExist,
+} from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Workspace 404 page logged out";
 const currentOwner = "automated_testing";
@@ -12,51 +16,16 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${wo
 const loggedIn = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const beVisible = newShouldArgs("be.visible");
-  const notExist = newShouldArgs("not.exist");
-
   const tests = [
-    newExpectation(
-      "should have repository layout",
-      "[data-cy=repository-layout-container]",
-      beVisible,
-    ),
+    shouldBeVisible("repository-layout-container"),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, true),
-    newExpectation(
-      "should not show run message",
-      "[data-cy=workspaces-run-msg]",
-      notExist,
-    ),
-    newExpectation(
-      "should not show workspace title",
-      "[data-cy=workspace-title]",
-      notExist,
-    ),
-    newExpectation(
-      "should not show pull button",
-      "[data-cy=create-pull]",
-      notExist,
-    ),
-    newExpectation(
-      "should not show discard workspace button",
-      "[data-cy=discard-work]",
-      notExist,
-    ),
-    newExpectation(
-      "should not show diff tabs",
-      "[data-cy=diff-tabs]",
-      notExist,
-    ),
-    newExpectation(
-      "should show workspace 404",
-      "[data-cy=404-page]",
-      newShouldArgs("be.visible.and.contain", "Workspace not found"),
-    ),
-    newExpectation(
-      "should have create workspace button",
-      "[data-cy=create-workspace-404]",
-      beVisible,
-    ),
+    shouldNotExist("workspaces-run-msg"),
+    shouldNotExist("workspace-title"),
+    shouldNotExist("create-pull"),
+    shouldNotExist("discard-work"),
+    shouldNotExist("diff-tabs"),
+    shouldFindAndContain("404-page", "Workspace not found"),
+    shouldBeVisible("create-workspace-404"),
     testSqlConsole,
   ];
 

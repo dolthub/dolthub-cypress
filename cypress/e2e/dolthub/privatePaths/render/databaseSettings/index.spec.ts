@@ -1,6 +1,8 @@
 import {
   beVisible,
   beVisibleAndContain,
+  shouldBeVisible,
+  shouldFindAndContain,
 } from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
 import {
@@ -8,7 +10,6 @@ import {
   newExpectation,
   newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
-  newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
@@ -23,46 +24,25 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const deleteDatabaseModalClickFlow = newClickFlow(
     "[data-cy=delete-database-button]",
     [
-      newExpectation(
-        "should have a Delete Database header",
-        "[data-cy=modal-title]",
-        beVisibleAndContain("Delete Database"),
-      ),
-      newExpectation(
-        "should render a delete database button in modal",
-        "[data-cy=submit-delete-database]",
-        newShouldArgs("be.visible"),
-      ),
-      newExpectation(
-        "should render a cancel button",
-        "[data-cy=cancel-button]",
-        newShouldArgs("be.visible"),
-      ),
+      shouldFindAndContain("modal-title", "Delete Database"),
+      shouldBeVisible("submit-delete-database"),
+      shouldBeVisible("cancel-button"),
     ],
     "[data-cy=close-modal]",
   );
 
   const tests = [
-    newExpectation(
-      "should have an active Database Details tab",
-      "[data-cy=active-database-settings-tab]",
-      beVisibleAndContain("Database Details"),
-    ),
+    shouldFindAndContain("active-tab-database-settings", "Database Details"),
     newExpectation(
       "should have textarea container with Description header",
       "[data-cy=textarea-container] > div",
       beVisibleAndContain("Description"),
     ),
-    newExpectation(
-      "should have textarea with populated description",
-      "[data-cy=repo-settings-description-textarea]",
-      beVisibleAndContain("empty repository for testing"),
+    shouldFindAndContain(
+      "repo-settings-description-textarea",
+      "empty repository for testing",
     ),
-    newExpectation(
-      "should have one visibility radio button that says Public",
-      "[data-cy=repo-settings-visibility-radios]",
-      beVisibleAndContain("Public"),
-    ),
+    shouldFindAndContain("repo-settings-visibility-radios", "Public"),
     newExpectationWithScrollIntoView(
       "should scroll to the Save button",
       "[data-cy=repo-settings-submit-button]",
