@@ -32,7 +32,7 @@ const cloneClickFlow = (cloneDisabled = false) =>
 
     cloneDisabled
       ? [
-          // shouldBeVisible("clone-disabled"),
+          shouldBeVisible("clone-disabled"),
           shouldNotExist("repo-clone-code-block"),
         ]
       : [
