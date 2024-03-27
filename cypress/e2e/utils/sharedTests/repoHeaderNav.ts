@@ -5,9 +5,14 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { ClickFlow, Expectation, ShouldArgs, Tests } from "../types";
-import { notExist } from "./sharedFunctionsAndVariables";
+import {
+  beVisible,
+  shouldBeVisible,
+  shouldBeVisibleAndHaveLength,
+  shouldFindAndContain,
+  shouldNotExist,
+} from "./sharedFunctionsAndVariables";
 
-const beVisible = newShouldArgs("be.visible");
 const notBeVisible = newShouldArgs("not.be.visible");
 
 // OLD FORMAT POPUP
@@ -21,29 +26,30 @@ export const testOldFormatPopup = newExpectationWithClickFlow(
 
 // HEADER
 
-const cloneClickFlow = newClickFlow(
-  "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
-  [
-    newExpectation(
-      "",
-      "[data-cy=repo-clone-code-block]",
-      newShouldArgs("be.visible.and.have.length", 2),
-    ),
-  ],
-  "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
-);
+const cloneClickFlow = (cloneDisabled = false) =>
+  newClickFlow(
+    "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
+
+    cloneDisabled
+      ? [
+          // shouldBeVisible("clone-disabled"),
+          shouldNotExist("repo-clone-code-block"),
+        ]
+      : [
+          shouldNotExist("clone-disabled"),
+          shouldBeVisibleAndHaveLength("repo-clone-code-block", 2),
+        ],
+
+    "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
+  );
 
 export const forkButtonClickFlow = (loggedIn: boolean) =>
   newClickFlow(
     "[data-cy=repository-page-header] [data-cy=repo-fork-button]",
     loggedIn
       ? [
-          newExpectation("", "[data-cy=create-fork-modal]", beVisible),
-          newExpectation(
-            "Confirm button should not be disabled on initial open",
-            "[data-cy=fork-confirm-button]",
-            beVisible,
-          ),
+          shouldBeVisible("create-fork-modal"),
+          shouldBeVisible("fork-confirm-button"),
         ]
       : [
           newExpectation(
@@ -57,50 +63,23 @@ export const forkButtonClickFlow = (loggedIn: boolean) =>
 
 // DATABASE DROPDOWN CLICK FLOW
 
-export const conditionalReadMeTest = (hasDocs: boolean) => {
-  const docsExpectation: Expectation = hasDocs
-    ? newExpectation(
-        "should not have README link",
-        "[data-cy=dropdown-new-docs-link]",
-        newShouldArgs("not.exist"),
-      )
-    : newExpectation(
-        "should have a create new readme link",
-        "[data-cy=dropdown-new-docs-link]",
-        beVisible,
-      );
-
-  return docsExpectation;
-};
+export const conditionalReadMeTest = (hasDocs: boolean): Expectation =>
+  hasDocs
+    ? shouldNotExist("dropdown-new-docs-link")
+    : shouldBeVisible("dropdown-new-docs-link");
 
 export const databaseDropdownClickFlow = (
   loggedIn: boolean,
   hasDocs: boolean,
 ): ClickFlow => {
   const commonTests = [
-    newExpectation(
-      "should have a create new issue link",
-      "[data-cy=dropdown-new-issue-link]",
-      beVisible,
-    ),
-    newExpectation(
-      "should have a create new pull request link",
-      "[data-cy=dropdown-new-pull-request-link]",
-      beVisible,
-    ),
+    shouldBeVisible("dropdown-new-issue-link"),
+    shouldBeVisible("dropdown-new-pull-request-link"),
   ];
   const tests = loggedIn
     ? [
-        newExpectation(
-          "should have a create new table link",
-          "[data-cy=dropdown-create-new-table-link]",
-          beVisible,
-        ),
-        newExpectation(
-          "should have a upload a file link",
-          "[data-cy=dropdown-upload-a-file-link]",
-          beVisible,
-        ),
+        shouldBeVisible("dropdown-create-new-table-link"),
+        shouldBeVisible("dropdown-upload-a-file-link"),
         ...commonTests,
         conditionalReadMeTest(hasDocs),
       ]
@@ -178,51 +157,18 @@ export const testTabs = (
 
 // SETTINGS TAB
 
-export const testRepoSettingsTab = newExpectation(
-  "should have Repo Settings section for user with write perms",
-  "[data-cy=repo-settings-tab]",
-  beVisible,
-);
+export const testRepoSettingsTab = shouldBeVisible("repo-settings-tab");
 
 export const testCommonHeader = (
   repoName: string,
   ownerName: string,
 ): Expectation[] => [
-  newExpectation(
-    "should have repo header",
-    "[data-cy=repository-page-header]",
-    beVisible,
-  ),
-  newExpectation(
-    "should have owner's name",
-    "[data-cy=repo-breadcrumbs]",
-    newShouldArgs("be.visible.and.contain", ownerName),
-  ),
-  newExpectation(
-    "should have repo's name",
-    "[data-cy=repo-breadcrumbs]",
-    newShouldArgs("be.visible.and.contain", repoName),
-  ),
-  newExpectation(
-    "should have repo last updated",
-    "[data-cy=updated-at]",
-    newShouldArgs("be.visible"),
-  ),
-  newExpectation(
-    "should have repo's size",
-    "[data-cy=repo-size]",
-    newShouldArgs("be.visible"),
-  ),
-  newExpectation(
-    "should have repo star button",
-    "[data-cy=repo-star]",
-    beVisible,
-  ),
-  newExpectation(
-    "should have repo fork button",
-    "[data-cy=repo-fork-button]",
-    beVisible,
-  ),
+  shouldBeVisible("repository-page-header"),
+  shouldFindAndContain("repo-breadcrumbs", [ownerName, repoName]),
+  shouldBeVisible("updated-at"),
+  shouldBeVisible("repo-size"),
+  shouldBeVisible("repo-star"),
+  shouldBeVisible("repo-fork-button"),
 ];
 
 export const testRepoHeaderForAll = (
@@ -235,18 +181,12 @@ export const testRepoHeaderForAll = (
 ): Tests => {
   const loggedOutRepoHeaderTests = [
     ...testCommonHeader(repoName, ownerName),
-    cloneDisabled
-      ? newExpectation(
-          "should have clone button disabled",
-          "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
-          newShouldArgs("not.be.enabled"),
-        )
-      : newExpectationWithClickFlow(
-          "should have repo clone button",
-          " [data-cy=repo-clone-button]",
-          beVisible,
-          cloneClickFlow,
-        ),
+    newExpectationWithClickFlow(
+      "should have repo clone button",
+      " [data-cy=repo-clone-button]",
+      beVisible,
+      cloneClickFlow(cloneDisabled),
+    ),
     ...testTabs(beVisible, activeTab),
     newExpectationWithClickFlow(
       "should have functioning nav dropdown",
@@ -280,11 +220,7 @@ export const testMobileRepoHeaderNav = (
     notBeVisible,
   ),
   ...testTabs(notBeVisible, activeTab),
-  newExpectation(
-    "should not have Repo Settings section",
-    "[data-cy=repo-settings-tab]",
-    notExist,
-  ),
+  shouldNotExist("repo-settings-tab"),
 ];
 
 export const testRepoHeaderWithBranch = (
