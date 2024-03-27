@@ -63,11 +63,10 @@ export const forkButtonClickFlow = (loggedIn: boolean) =>
 
 // DATABASE DROPDOWN CLICK FLOW
 
-export const conditionalReadMeTest = (hasDocs: boolean): Expectation => {
-  return hasDocs
+export const conditionalReadMeTest = (hasDocs: boolean): Expectation =>
+  hasDocs
     ? shouldNotExist("dropdown-new-docs-link")
     : shouldBeVisible("dropdown-new-docs-link");
-};
 
 export const databaseDropdownClickFlow = (
   loggedIn: boolean,
