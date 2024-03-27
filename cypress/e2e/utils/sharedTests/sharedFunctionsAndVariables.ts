@@ -50,6 +50,17 @@ export const shouldFindAndContain = (
     beVisibleAndContain(text),
   );
 
+export const shouldBeVisibleAndHaveLength = (
+  dataCy: string,
+  len: number,
+  desc?: string,
+): Expectation =>
+  newExpectation(
+    `should find ${desc ?? getDesc(dataCy)}`,
+    `[data-cy=${dataCy}]`,
+    haveLength(len),
+  );
+
 export const shouldCheckbox = (
   dataCy: string,
   checked: boolean,
