@@ -5,8 +5,12 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
-
-const beVisible = newShouldArgs("be.visible");
+import {
+  beVisible,
+  beVisibleAndContain,
+  haveLength,
+  shouldBeVisible,
+} from "./sharedFunctionsAndVariables";
 
 const sharedLinks = [
   "[data-cy=navbar-documentation]",
@@ -46,11 +50,7 @@ export const testSignedInNavbar: Tests = [
     signedInNavbarLinks,
     beVisible,
   ),
-  newExpectation(
-    "should have user avatar",
-    "[data-cy=navbar-menu-avatar]",
-    beVisible,
-  ),
+  shouldBeVisible("navbar-menu-avatar"),
 ];
 
 export const testSignedOutDoltLabNavbar: Tests = [
@@ -61,33 +61,44 @@ export const testSignedOutDoltLabNavbar: Tests = [
   ),
 ];
 
-const mobileNavbarClickFlow = newClickFlow(
-  "[data-cy=mobile-navbar-menu-button]",
-  [
-    newExpectation(
-      "should show DoltHub links",
-      "[data-cy=mobile-navbar-links] > li",
-      newShouldArgs("be.visible.and.have.length.of.at.least", 7),
-    ),
-    newExpectation(
-      "should show social links",
-      "[data-cy=mobile-navbar-social-links] > a",
-      newShouldArgs("be.visible.and.have.length", 4),
-    ),
-  ],
-  "[data-cy=mobile-navbar-close-button]",
-);
-
-export const testMobileNavbar: Tests = [
-  newExpectation(
-    "should scroll to and show menu button on mobile",
+const mobileNavbarClickFlow = (loggedIn = false) =>
+  newClickFlow(
     "[data-cy=mobile-navbar-menu-button]",
-    beVisible,
-  ),
+    [
+      newExpectation(
+        "should show DoltHub links",
+        "[data-cy=mobile-navbar-links] > a",
+        haveLength(6),
+      ),
+      ...(loggedIn
+        ? [
+            newExpectation(
+              "should show DoltHub sign out button",
+              "[data-cy=mobile-navbar-links] button",
+              beVisibleAndContain("Sign Out"),
+            ),
+          ]
+        : []),
+      newExpectation(
+        "should show DoltHub links",
+        "[data-cy=mobile-navbar-links] > a",
+        newShouldArgs("be.visible.and.have.length.of.at.least", 6),
+      ),
+      newExpectation(
+        "should show social links",
+        "[data-cy=mobile-navbar-social-links] > a",
+        newShouldArgs("be.visible.and.have.length", 4),
+      ),
+    ],
+    "[data-cy=mobile-navbar-close-button]",
+  );
+
+export const testMobileNavbar = (loggedIn = false): Tests => [
+  shouldBeVisible("mobile-navbar-menu-button"),
   newExpectationWithClickFlow(
     "should show menu button and open nav on mobile",
     "[data-cy=mobile-navbar-menu-button]",
     beVisible,
-    mobileNavbarClickFlow,
+    mobileNavbarClickFlow(loggedIn),
   ),
 ];

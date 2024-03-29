@@ -117,9 +117,9 @@ function getAppLayoutTestsMobile(
 ) {
   if (skipNavbar) return tests;
   if (loggedIn) {
-    return [...testMobileNavbar, ...tests];
+    return [...tests, ...testMobileNavbar(loggedIn)];
   }
-  return [...testMobileNavbar, ...tests];
+  return [...tests, ...testMobileNavbar(loggedIn)];
 }
 
 // SignedOut layout
@@ -166,7 +166,7 @@ export const allDevicesDiffTestsForSignedOut = (
 
 function getSignedOutMobileTests(t: Tests, skipNavbar = false): Tests {
   if (skipNavbar) return [...t, ...testFooter];
-  return [...testMobileNavbar, ...t, ...testFooter];
+  return [...testMobileNavbar(), ...t, ...testFooter];
 }
 
 function getSignedOutTests(t: Tests, skipNavbar = false): Tests {

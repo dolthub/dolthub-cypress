@@ -42,7 +42,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const devices = allDevicesForSignedOut(
     pageName,
     tests(testSignedOutNavbar),
-    tests(testMobileNavbar),
+    tests(testMobileNavbar()),
     skipNavbar,
   );
   runTestsForDevices({ currentPage, devices, skip });
