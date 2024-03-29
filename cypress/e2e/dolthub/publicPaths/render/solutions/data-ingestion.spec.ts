@@ -7,8 +7,8 @@ import {
 
 import {
   desktopDevicesForSignedOut,
-  iPad2ForAppLayout,
-  iPhoneXForAppLayout,
+  iPad2ForSignedOutLayout,
+  iPhoneXForSignedOutLayout,
 } from "@utils/devices";
 import {
   newClickFlow,
@@ -138,8 +138,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = [
     ...desktopDevicesForSignedOut(pageName, desktopAndTabletTests, false),
-    iPad2ForAppLayout(pageName, desktopAndTabletTests),
-    iPhoneXForAppLayout(pageName, mobileAndTabletTests),
+    iPad2ForSignedOutLayout(pageName, desktopAndTabletTests),
+    iPhoneXForSignedOutLayout(pageName, mobileAndTabletTests),
   ];
 
   runTestsForDevices({ currentPage, devices });
