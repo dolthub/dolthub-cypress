@@ -36,7 +36,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     pageName,
     tests(false),
     tests(true),
-    true,
+    false,
     loggedIn,
   );
   runTestsForDevices({ currentPage, devices, skip, loggedIn });

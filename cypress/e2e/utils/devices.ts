@@ -117,20 +117,32 @@ function getAppLayoutTestsMobile(
 ) {
   if (skipNavbar) return tests;
   if (loggedIn) {
-    return [...testMobileNavbar, ...tests];
+    return [...tests, ...testMobileNavbar(loggedIn)];
   }
-  return [...testMobileNavbar, ...tests];
+  return [...tests, ...testMobileNavbar(loggedIn)];
 }
 
 // SignedOut layout
+
+export const iPad2ForSignedOutLayout = (
+  pageName: string,
+  tests: Tests,
+  skipNavbar = false,
+): Device => iPad2(pageName, getSignedOutMobileTests(tests, skipNavbar));
+
+export const iPhoneXForSignedOutLayout = (
+  pageName: string,
+  tests: Tests,
+  skipNavbar = false,
+): Device => iPhoneX(pageName, getSignedOutMobileTests(tests, skipNavbar));
 
 export const mobileDevicesForSignedOut = (
   pageName: string,
   tests: Tests,
   skipNavbar = false,
 ): Devices => [
-  iPad2(pageName, getSignedOutMobileTests(tests, skipNavbar)),
-  iPhoneX(pageName, getSignedOutMobileTests(tests, skipNavbar)),
+  iPad2ForSignedOutLayout(pageName, tests, skipNavbar),
+  iPhoneXForSignedOutLayout(pageName, tests, skipNavbar),
 ];
 
 export const desktopDevicesForSignedOut = (
@@ -166,7 +178,7 @@ export const allDevicesDiffTestsForSignedOut = (
 
 function getSignedOutMobileTests(t: Tests, skipNavbar = false): Tests {
   if (skipNavbar) return [...t, ...testFooter];
-  return [...testMobileNavbar, ...t, ...testFooter];
+  return [...testMobileNavbar(), ...t, ...testFooter];
 }
 
 function getSignedOutTests(t: Tests, skipNavbar = false): Tests {

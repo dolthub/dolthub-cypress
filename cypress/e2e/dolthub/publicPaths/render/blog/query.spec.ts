@@ -50,7 +50,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testBlogIndexNoSearch,
   ];
 
-  const devices = allDevicesForSignedOut(pageName, tests, tests, true);
+  const devices = allDevicesForSignedOut(pageName, tests, tests);
   runTestsForDevices({
     currentPage,
     devices,
