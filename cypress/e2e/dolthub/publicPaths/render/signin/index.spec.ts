@@ -85,9 +85,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectationWithClickFlow(
       "should have cancel button that closes modal",
-      "[data-cy=recover-cancel]",
+      "[data-cy=close-modal]",
       beVisible,
-      newClickFlow("[data-cy=recover-cancel]", []),
+      newClickFlow("[data-cy=close-modal]", []),
     ),
   ];
 

@@ -38,7 +38,7 @@ const modalClickflow = newClickFlow(
     ),
     newExpectation(
       "should render a cancel button",
-      "[data-cy=cancel-button]",
+      "[data-cy=close-modal]",
       beVisible,
     ),
   ],
