@@ -30,7 +30,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const discardClickFlow = newClickFlow(
     "[data-cy=discard-work]",
-    [shouldBeVisible("cancel-button"), shouldBeVisible("discard-button")],
+    [shouldBeVisible("close-modal"), shouldBeVisible("discard-button")],
     "[data-cy=close-modal]",
   );
 

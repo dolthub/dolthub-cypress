@@ -28,7 +28,6 @@ export const testCreatePullModal = [
       "[data-cy=create-pull]",
       [
         shouldFindAndContain("modal-title", "Create pull request"),
-        shouldBeVisible("create-pull-form"),
         shouldBeVisible("new-branch-name-input"),
         shouldBeVisible("create-pull-button"),
       ],

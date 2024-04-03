@@ -24,9 +24,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const deleteDatabaseModalClickFlow = newClickFlow(
     "[data-cy=delete-database-button]",
     [
-      shouldFindAndContain("modal-title", "Delete Database"),
+      shouldFindAndContain("modal-title", "Delete database"),
       shouldBeVisible("submit-delete-database"),
-      shouldBeVisible("cancel-button"),
     ],
     "[data-cy=close-modal]",
   );
