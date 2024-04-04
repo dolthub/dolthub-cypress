@@ -1,10 +1,7 @@
 import { macbook15 } from "@utils/devices";
-import {
-  newExpectation,
-  newExpectationWithTypeString,
-  newShouldArgs,
-} from "@utils/helpers";
+import { newExpectationWithTypeString, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Sign in page with log in";
 const currentPage = "/signin";
@@ -13,11 +10,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    newExpectation(
-      "should have signin email form",
-      "[data-cy=signin-email-form]",
-      beVisible,
-    ),
+    shouldBeVisible("signin-email-form"),
     newExpectationWithTypeString(
       "should input invalid username and get error",
       "input[name=username]",
@@ -30,11 +23,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       { value: "password123{enter}" }, // should also maybe test clicking on button too
     ),
-    newExpectation(
-      "should have error message",
-      "[data-cy=error-msg]",
-      beVisible,
-    ),
+    // TODO: unskip when error-msg added back
+    // shouldBeVisible("error-msg")
   ];
 
   const devices = [macbook15(pageName, tests)];
