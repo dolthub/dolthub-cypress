@@ -23,8 +23,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       { value: "password123{enter}" }, // should also maybe test clicking on button too
     ),
-    // TODO: unskip when error-msg added back
-    // shouldBeVisible("error-msg")
+    shouldBeVisible("error-msg"),
   ];
 
   const devices = [macbook15(pageName, tests)];
