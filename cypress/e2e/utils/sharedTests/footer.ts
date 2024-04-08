@@ -13,8 +13,8 @@ const footerTags = [
   "[data-cy=footer-documentation]",
   "[data-cy=footer-blog]",
   "[data-cy=footer-team]",
-  "[data-cy=footer-privacy-policy]",
-  "[data-cy=footer-terms-of-service]",
+  "[data-cy=footer-privacy]",
+  "[data-cy=footer-terms]",
   "[data-cy=footer-social-links]",
   "[data-cy=footer-dolthub-logo]",
 ];
