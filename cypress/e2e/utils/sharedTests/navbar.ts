@@ -16,8 +16,8 @@ const sharedLinks = [
   "[data-cy=navbar-documentation]",
   "[data-cy=navbar-blog]",
   "[data-cy=navbar-logo]",
-  "[data-cy=navbar-discord]",
-  "[data-cy=navbar-github]",
+  "[data-cy=discord-link]",
+  "[data-cy=github-link]",
   "[data-cy=navbar-pricing]",
   "[data-cy=navbar-databases]",
 ];
