@@ -10,14 +10,10 @@ const pageName = "Organization page with no repos";
 const orgName = "no-repos-org";
 const currentPage = `/organizations/${orgName}`;
 
-const commonDataCy = [
-  "profile-card",
-  "profile-card-pic",
-  "profile-card-bio",
-  "no-repos-msg",
-];
+const commonDataCy = ["profile-card", "profile-card-pic", "no-repos-msg"];
 
 const commonNotExist = [
+  "profile-card-bio",
   "org-member-list",
   "org-settings",
   "billing-info",
@@ -25,9 +21,10 @@ const commonNotExist = [
   "repository-list-for-owner",
 ];
 
-const desktopDataCy = ["profile-summary", "org-profile-databases-tab"];
+const desktopDataCy = ["org-profile-databases-tab"];
 
 const desktopNotExist = [
+  "profile-summary",
   "org-profile-people-tab",
   "org-profile-settings-tab",
   "org-profile-billing-tab",
