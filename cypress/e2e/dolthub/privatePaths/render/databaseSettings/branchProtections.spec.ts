@@ -64,7 +64,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       newClickFlow("[data-cy=branch-protection-breadcrumbs] a", []),
     ),
-    shouldBeVisible("branch-protection-branch-selector"),
+    shouldBeVisible("branch-name-input"),
 
     // check the checkboxes on the branch protections page
     scrollToPosition("#main-content", "bottom"),
