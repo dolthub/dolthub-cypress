@@ -35,6 +35,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       query,
       "Getting Started with Dolt and Knex.js",
       "2023-09-27-dolt-and-knexjs/",
+      2,
     ),
     newExpectationWithClickFlow(
       "should clear search",

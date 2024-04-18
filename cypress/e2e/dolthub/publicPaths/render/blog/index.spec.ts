@@ -63,6 +63,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       query1,
       "Getting Started with Dolt and Knex.js",
       "2023-09-27-dolt-and-knexjs/",
+      2,
     ),
     newExpectationWithTypeString(
       "should change input",
