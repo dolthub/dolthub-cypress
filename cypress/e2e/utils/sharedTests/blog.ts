@@ -15,6 +15,7 @@ export const testSearched = (
   q: string,
   title: string,
   path: string,
+  numMatching = 1,
 ): Expectation[] => [
   newExpectationWithURL(
     "should route to query page",
@@ -25,12 +26,15 @@ export const testSearched = (
   newExpectation(
     "should have matching articles message",
     "[data-cy=matching-articles]",
-    newShouldArgs("be.visible.and.contain", "Found 1 matching article."),
+    newShouldArgs(
+      "be.visible.and.contain",
+      `Found ${numMatching} matching article${numMatching > 1 ? "s" : ""}.`,
+    ),
   ),
   newExpectation(
     "should have one blog",
     "[data-cy=blog-list] > li",
-    newShouldArgs("be.visible.and.have.length", 1),
+    newShouldArgs("be.visible.and.have.length", numMatching),
   ),
   newExpectation(
     `should have matching blog title for ${q}`,
