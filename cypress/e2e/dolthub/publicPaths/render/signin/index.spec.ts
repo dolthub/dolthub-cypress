@@ -21,7 +21,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newExpectation(
         "",
         "[data-cy=signup-email-form] input",
-        newShouldArgs("be.visible.and.have.length", 3),
+        newShouldArgs("be.visible.and.have.length", 4),
       ),
       newExpectation(
         "",
