@@ -19,7 +19,7 @@ const footerTags = [
   "[data-cy=footer-dolthub-logo]",
 ];
 
-const doltLabFooterTags = ["[data-cy=footer-dolthub-logo]"];
+const doltLabFooterTags = ["[data-cy=footer-doltlab-logo]"];
 
 export const testFooter: Tests = [
   newExpectationWithScrollIntoView(
