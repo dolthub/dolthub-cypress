@@ -660,14 +660,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/cli@npm:^7.24.5":
-  version: 7.24.5
-  resolution: "@babel/cli@npm:7.24.5"
+"@babel/cli@npm:^7.24.6":
+  version: 7.24.6
+  resolution: "@babel/cli@npm:7.24.6"
   dependencies:
     "@jridgewell/trace-mapping": "npm:^0.3.25"
     "@nicolo-ribaudo/chokidar-2": "npm:2.1.8-no-fsevents.3"
     chokidar: "npm:^3.4.0"
-    commander: "npm:^4.0.1"
+    commander: "npm:^6.2.0"
     convert-source-map: "npm:^2.0.0"
     fs-readdir-recursive: "npm:^1.1.0"
     glob: "npm:^7.2.0"
@@ -683,7 +683,7 @@ __metadata:
   bin:
     babel: ./bin/babel.js
     babel-external-helpers: ./bin/babel-external-helpers.js
-  checksum: aba363003fa85d3688a7bdf3058f4e0bdb305e3789e4cf6713e3ffda084a486b03ba188839aec852b0df33df0207b3d03e6e801b167c685ad062269944c6c703
+  checksum: 57421a3bc28594e16b29a2d74c95ad720420d6bbc9a3c84dcf8905dc969aac1b5fc550c8b3bf6c66e644405eed1621dcd17066bc452b931e045b977c833da47b
   languageName: node
   linkType: hard
 
@@ -4022,14 +4022,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:^4.0.1":
-  version: 4.1.1
-  resolution: "commander@npm:4.1.1"
-  checksum: 3b2dc4125f387dab73b3294dbcb0ab2a862f9c0ad748ee2b27e3544d25325b7a8cdfbcc228d103a98a716960b14478114a5206b5415bd48cdafa38797891562c
-  languageName: node
-  linkType: hard
-
-"commander@npm:^6.2.1":
+"commander@npm:^6.2.0, commander@npm:^6.2.1":
   version: 6.2.1
   resolution: "commander@npm:6.2.1"
   checksum: 25b88c2efd0380c84f7844b39cf18510da7bfc5013692d68cdc65f764a1c34e6c8a36ea6d72b6620e3710a930cf8fab2695bdec2bf7107a0f4fa30a3ef3b7d0e
@@ -4311,7 +4304,7 @@ __metadata:
   resolution: "dolthub-cypress@workspace:."
   dependencies:
     "@aws-sdk/client-sns": "npm:^3.565.0"
-    "@babel/cli": "npm:^7.24.5"
+    "@babel/cli": "npm:^7.24.6"
     "@babel/core": "npm:^7.24.3"
     "@babel/preset-env": "npm:^7.24.5"
     "@babel/preset-typescript": "npm:^7.24.1"
