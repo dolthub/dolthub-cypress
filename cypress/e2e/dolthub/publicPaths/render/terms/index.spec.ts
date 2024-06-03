@@ -16,9 +16,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ]),
     ),
     newExpectation(
-      "should render terms page with 24 sections",
+      "should render terms page with 16 sections",
       "[data-cy=terms-page] section",
-      newShouldArgs("be.visible.and.have.length", 24),
+      newShouldArgs("be.visible.and.have.length", 16),
     ),
   ];
 
