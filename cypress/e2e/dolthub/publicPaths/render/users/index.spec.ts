@@ -11,7 +11,7 @@ const username = "cypresstesting";
 const currentPage = `/users/cypresstesting`;
 const skip = false;
 
-const commonDataCy = ["profile-card", "profile-card-pic" ];
+const commonDataCy = ["profile-card", "profile-card-pic"];
 
 const desktopDataCy = ["user-profile-overview-tab"];
 
