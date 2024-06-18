@@ -3,28 +3,25 @@ import { runTestsForDevices } from "@utils/index";
 import {
   shouldBeVisible,
   shouldFindAndContain,
+  shouldNotExist,
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "cypresstesting users page";
 const username = "cypresstesting";
-const currentPage = `/users/cypresstesting`;
-const loggedIn = true;
+const currentPage = `/users/cypresstesting/repositories`;
 const skip = false;
 
-const commonDataCy = [
-  "profile-card",
-  "profile-card-pic",
-  "profile-card-bio",
-  "no-repos-msg",
-];
+const commonDataCy = ["profile-card", "profile-card-pic", "no-repos-msg"];
 
-const desktopDataCy = [
-  "user-profile-databases-tab",
+const desktopDataCy = ["user-profile-databases-tab"];
+
+const desktopNotExist = [
   "profile-summary",
+  "profile-card-bio",
   "add-website-link",
   "add-location-link",
-  "create-database-button",
   "user-profile-organizations-tab",
+  "create-database-button",
 ];
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -36,6 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const desktopTests = [
     ...commonTests,
     ...desktopDataCy.map(dc => shouldBeVisible(dc)),
+    ...desktopNotExist.map(dc => shouldNotExist(dc)),
   ];
 
   const mobileTests = [
@@ -44,9 +42,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [
-    macbook15ForAppLayout(pageName, desktopTests, false, loggedIn),
-    iPhoneXForAppLayout(pageName, mobileTests, loggedIn),
+    macbook15ForAppLayout(pageName, desktopTests, false),
+    iPhoneXForAppLayout(pageName, mobileTests),
   ];
 
-  runTestsForDevices({ currentPage, devices, skip, loggedIn });
+  runTestsForDevices({ currentPage, devices, skip });
 });
