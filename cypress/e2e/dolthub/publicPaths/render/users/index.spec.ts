@@ -8,7 +8,7 @@ import {
 
 const pageName = "cypresstesting users page";
 const username = "cypresstesting";
-const currentPage = `/users/cypresstesting`;
+const currentPage = `/users/cypresstesting/repositories`;
 const skip = false;
 
 const commonDataCy = ["profile-card", "profile-card-pic", "no-repos-msg"];

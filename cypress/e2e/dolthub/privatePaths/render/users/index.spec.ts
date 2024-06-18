@@ -7,7 +7,7 @@ import {
 
 const pageName = "cypresstesting users page";
 const username = "cypresstesting";
-const currentPage = `/users/cypresstesting`;
+const currentPage = `/users/cypresstesting/repositories`;
 const loggedIn = true;
 const skip = false;
 
