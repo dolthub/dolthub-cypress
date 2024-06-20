@@ -37,7 +37,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const mobileTests = [
     ...commonTests,
-    shouldFindAndContain("mobile-profile-selector", "Database"),
+    shouldFindAndContain("mobile-profile-selector", "Overview"),
   ];
 
   const devices = [

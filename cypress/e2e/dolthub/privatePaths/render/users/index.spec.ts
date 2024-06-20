@@ -15,7 +15,6 @@ const commonDataCy = [
   "profile-card",
   "profile-card-pic",
   "profile-card-bio",
-  "no-repos-msg",
 ];
 
 const desktopDataCy = [
@@ -39,7 +38,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const mobileTests = [
     ...commonTests,
-    shouldFindAndContain("mobile-profile-selector", "Database"),
+    shouldFindAndContain("mobile-profile-selector", "Overview"),
   ];
 
   const devices = [
