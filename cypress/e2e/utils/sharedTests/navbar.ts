@@ -8,7 +8,6 @@ import { Tests } from "../types";
 import {
   beVisible,
   beVisibleAndContain,
-  haveLength,
   shouldBeVisible,
 } from "./sharedFunctionsAndVariables";
 
@@ -65,11 +64,6 @@ const mobileNavbarClickFlow = (loggedIn = false) =>
   newClickFlow(
     "[data-cy=mobile-navbar-menu-button]",
     [
-      newExpectation(
-        "should show DoltHub links",
-        "[data-cy=mobile-navbar-links] > a",
-        haveLength(6),
-      ),
       ...(loggedIn
         ? [
             newExpectation(
@@ -77,17 +71,28 @@ const mobileNavbarClickFlow = (loggedIn = false) =>
               "[data-cy=mobile-navbar-links] button",
               beVisibleAndContain("Sign Out"),
             ),
+            newExpectation(
+              "should show DoltHub links",
+              "[data-cy=mobile-navbar-links] > a",
+              newShouldArgs("be.visible.and.have.length.of.at.least", 5),
+            ),
           ]
-        : []),
+        : [
+            newExpectation(
+              "should show DoltHub links",
+              "[data-cy=mobile-navbar-links] > a",
+              newShouldArgs("be.visible.and.have.length.of.at.least", 4),
+            ),
+          ]),
       newExpectation(
         "should show DoltHub links",
         "[data-cy=mobile-navbar-links] > a",
-        newShouldArgs("be.visible.and.have.length.of.at.least", 6),
+        newShouldArgs("be.visible.and.have.length.of.at.least", 5),
       ),
       newExpectation(
         "should show social links",
         "[data-cy=mobile-navbar-social-links] > a",
-        newShouldArgs("be.visible.and.have.length", 4),
+        newShouldArgs("be.visible.and.have.length", 5),
       ),
     ],
     "[data-cy=mobile-navbar-close-button]",
