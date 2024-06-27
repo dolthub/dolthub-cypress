@@ -8,7 +8,6 @@ import { Tests } from "../types";
 import {
   beVisible,
   beVisibleAndContain,
-  haveLength,
   shouldBeVisible,
 } from "./sharedFunctionsAndVariables";
 
