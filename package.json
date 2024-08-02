@@ -54,7 +54,7 @@
     "cypress": "^13.12.0",
     "cypress-file-upload": "^5.0.8",
     "gatsby-cypress": "^3.13.1",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.4"
   },
   "resolutions": {
     "minimist": "^1.2.6",
