@@ -73,5 +73,6 @@ jobs:
           path: cypress/screenshots
           retention-days: 7
       - name: Echo current time
+        if: failure()
         run: |
           echo "Current run time: $(date)"
