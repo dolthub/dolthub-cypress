@@ -2341,9 +2341,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/github-action@npm:^6.7.1":
-  version: 6.7.1
-  resolution: "@cypress/github-action@npm:6.7.1"
+"@cypress/github-action@npm:^6.7.5":
+  version: 6.7.5
+  resolution: "@cypress/github-action@npm:6.7.5"
   dependencies:
     "@actions/cache": "npm:3.2.1"
     "@actions/core": "npm:1.10.0"
@@ -2351,13 +2351,13 @@ __metadata:
     "@actions/io": "npm:1.1.3"
     "@octokit/core": "npm:4.2.0"
     argument-vector: "npm:1.0.2"
-    debug: "npm:4.3.4"
+    debug: "npm:4.3.6"
     find-yarn-workspace-root: "npm:2.0.0"
     got: "npm:11.8.6"
     hasha: "npm:5.2.2"
     quote: "npm:0.4.0"
     supports-color: "npm:9.3.1"
-  checksum: 283e484bd84b6122741f45492e99a6b5af51ca44b432b7bdd4eade8c642f97e32db7d67483982937ffa7864a9d2a3ad76f9cb1aa3f493cc2171290a7adf991ff
+  checksum: b1ac9bcba656b9a65aa83300ced852a21eaab1381102f67bf0516d4a1efb5b6742bd884bde1176ca84f111d692e6b77f4b580481ef532058df8e580f10069899
   languageName: node
   linkType: hard
 
@@ -4374,7 +4374,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:4.3.4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4":
+"debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
   dependencies:
@@ -4383,6 +4383,18 @@ __metadata:
     supports-color:
       optional: true
   checksum: 0073c3bcbd9cb7d71dd5f6b55be8701af42df3e56e911186dfa46fac3a5b9eb7ce7f377dd1d3be6db8977221f8eb333d945216f645cf56f6b688cd484837d255
+  languageName: node
+  linkType: hard
+
+"debug@npm:4.3.6":
+  version: 4.3.6
+  resolution: "debug@npm:4.3.6"
+  dependencies:
+    ms: "npm:2.1.2"
+  peerDependenciesMeta:
+    supports-color:
+      optional: true
+  checksum: d3adb9af7d57a9e809a68f404490cf776122acca16e6359a2702c0f462e510e91f9765c07f707b8ab0d91e03bad57328f3256f5082631cefb5393d0394d50fb7
   languageName: node
   linkType: hard
 
@@ -4499,7 +4511,7 @@ __metadata:
     "@babel/core": "npm:^7.25.2"
     "@babel/preset-env": "npm:^7.24.7"
     "@babel/preset-typescript": "npm:^7.24.7"
-    "@cypress/github-action": "npm:^6.7.1"
+    "@cypress/github-action": "npm:^6.7.5"
     "@types/node": "npm:^22.1.0"
     "@typescript-eslint/eslint-plugin": "npm:^7.14"
     "@typescript-eslint/parser": "npm:^8.0.0"
