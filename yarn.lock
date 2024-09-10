@@ -744,13 +744,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/cli@npm:^7.24.8":
-  version: 7.24.8
-  resolution: "@babel/cli@npm:7.24.8"
+"@babel/cli@npm:^7.25.6":
+  version: 7.25.6
+  resolution: "@babel/cli@npm:7.25.6"
   dependencies:
     "@jridgewell/trace-mapping": "npm:^0.3.25"
     "@nicolo-ribaudo/chokidar-2": "npm:2.1.8-no-fsevents.3"
-    chokidar: "npm:^3.4.0"
+    chokidar: "npm:^3.6.0"
     commander: "npm:^6.2.0"
     convert-source-map: "npm:^2.0.0"
     fs-readdir-recursive: "npm:^1.1.0"
@@ -767,7 +767,7 @@ __metadata:
   bin:
     babel: ./bin/babel.js
     babel-external-helpers: ./bin/babel-external-helpers.js
-  checksum: f65f62ac91dcef3e8832f0c15215dd331f6b31233d4f61f61fb96936e94b5deb38b956b866d842725b3b6b34658bc105110117cc8c11dafc22849855dfe77423
+  checksum: b20d1b6cb8e5a4c5a19983f66f3526338b4c1cbbc6e3ff8b59d3f073499987a61ecbf76080c517ea88082f689a634ff1145a8f199ec469eea74b8b52294a622f
   languageName: node
   linkType: hard
 
@@ -4517,7 +4517,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chokidar@npm:^3.4.0":
+"chokidar@npm:^3.6.0":
   version: 3.6.0
   resolution: "chokidar@npm:3.6.0"
   dependencies:
@@ -4931,7 +4931,7 @@ __metadata:
   resolution: "dolthub-cypress@workspace:."
   dependencies:
     "@aws-sdk/client-sns": "npm:^3.645.0"
-    "@babel/cli": "npm:^7.24.8"
+    "@babel/cli": "npm:^7.25.6"
     "@babel/core": "npm:^7.25.2"
     "@babel/preset-env": "npm:^7.25.4"
     "@babel/preset-typescript": "npm:^7.24.7"
