@@ -40,7 +40,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should have delivery attempt table with one row",
       "[data-cy=delivery-attempt-table] tbody tr",
-      haveLength(1),
+      haveLength(3),
     ),
     newExpectationWithClickFlow(
       "should have view button for attempt",
