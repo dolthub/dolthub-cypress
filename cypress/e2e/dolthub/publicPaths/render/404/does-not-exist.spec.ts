@@ -3,7 +3,7 @@ import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "404 page for path that does not exist";
-const currentPage = "/404";
+const currentPage = "/does-not-exist";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
