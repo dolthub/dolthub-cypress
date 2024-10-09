@@ -10,9 +10,9 @@ import { runTestsForDevices } from "@utils/index";
 const pageName = "Diff page with one selected commit";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentFromCommit = "ebdftm98jrf5rts2ir21jtaoui5rrq3h";
+const currentFromCommit = "cudpp1kiat6gl52rs9clj4mto8g1ms99";
 const branch = "master";
-const tableName = "case_details";
+const tableName = "places";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}?tableName=${tableName}`;
 
 describe(`${pageName} renders expected component on different devices`, () => {
@@ -43,19 +43,12 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should show diff table rows",
       `[data-cy=data-diff-${tableName}] > tbody > tr`,
-      newShouldArgs("be.visible.and.have.length.of.at.least", 20),
+      newShouldArgs("be.visible.and.have.length.of.at.least", 4),
     ),
     ...diffsWithCommitTests(currentFromCommit, 1, {
-      hidden: [
-        "source",
-        "case_id",
-        "symptomatic_date",
-        "confirmed_date",
-        "recovered_date",
-        "place_id",
-      ],
-      shown: ["current_status", "nationality", "sex", "age", "case_name"],
-      tableName: "case_details",
+      hidden: ["place_id", "province_state", "country_region"],
+      shown: ["latitude", "longitude"],
+      tableName: "places",
     }),
   ];
 

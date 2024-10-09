@@ -60,7 +60,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       false,
       true,
-      true,
+      false,
       "commit-log",
     ),
     ...commonTests,
