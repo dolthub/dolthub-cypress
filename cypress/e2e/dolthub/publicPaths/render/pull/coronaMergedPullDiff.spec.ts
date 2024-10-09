@@ -89,7 +89,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table rows",
       "[data-cy=data-diff-case_details] > tbody > tr",
-      newShouldArgs("be.visible.and.have.length", 6),
+      newShouldArgs("be.visible.and.have.length", 1),
     ),
     newExpectation(
       "should not find 404 page",

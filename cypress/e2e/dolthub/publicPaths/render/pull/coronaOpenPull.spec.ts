@@ -5,7 +5,7 @@ import { runTestsForDevices } from "@utils/index";
 const pageName = "Open pull page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "5";
+const currentPullId = "6";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {

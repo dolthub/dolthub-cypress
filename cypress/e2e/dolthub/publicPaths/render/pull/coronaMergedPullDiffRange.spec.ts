@@ -11,8 +11,8 @@ const pageName = "Merged pull diff range page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPullId = "1";
-const currentFromCommit = "d4vefgq8pq90v3qal0kp8rqddvh94nl6";
-const currentToCommit = "8omjtv2r828d9sr2e84m12so9qr1evgn";
+const currentFromCommit = "ikjn6uc5k80ber8tthqai7vd4t2pdmvf";
+const currentToCommit = "m7jk4ebpiqsd0e33dsga238oed2cl13s";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare/${currentFromCommit}...${currentToCommit}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -33,10 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff selector",
       "[data-cy=diff-selector]",
-      newShouldArgs(
-        "be.visible.and.contain",
-        "Added two Chicago cases (8omjtv)",
-      ),
+      newShouldArgs("be.visible.and.contain", "case_details updated"),
     ),
     newExpectation(
       "should show one form select",
@@ -93,7 +90,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table rows",
       "[data-cy=data-diff-case_details] > tbody > tr",
-      newShouldArgs("be.visible.and.have.length", 2),
+      newShouldArgs("be.visible.and.have.length", 1),
     ),
     newExpectation(
       "should not find 404 page",

@@ -8,7 +8,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const currentPullId = "1";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
-const destinationBranch = "archived";
+const destinationBranch = "master";
 
 // Need to investigate why the tests for this page are flaky
 const skip = false;
