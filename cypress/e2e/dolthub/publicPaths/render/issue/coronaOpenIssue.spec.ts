@@ -9,7 +9,7 @@ const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Open issue page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentIssueId = isProd ? "6" : "7";
+const currentIssueId = isProd ? "6" : "3";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues/${currentIssueId}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       false,
       true,
-      true,
+      false,
       "issues",
     ),
     newExpectation(
