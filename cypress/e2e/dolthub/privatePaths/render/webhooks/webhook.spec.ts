@@ -12,7 +12,6 @@ import {
   scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Webhook page";
 const currentOwner = "automated_testing";
@@ -20,17 +19,16 @@ const currentRepo = "corona-virus";
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const currentWebhook = isProd
   ? "dc6682d3-f0df-4549-87a4-46874ac95ff2"
-  : "d4c4580c-1805-4e73-9e26-ae847789c0ed";
+  : "8f3fc106-ec72-44ba-8d5d-c7d9c0f2fdbd";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/webhooks/${currentWebhook}`;
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const attemptId = isProd
     ? "2a962909-6f88-41af-b613-12266e1f7b3a"
-    : "68fc0528-c258-4c55-a79a-1709b79759ec";
+    : "7186a042-c39c-41d2-9798-2b917e4b75d4";
 
   const tests = [
-    testOldFormatPopup,
     shouldFindAndContain("active-tab-webhooks-settings", "Webhooks"),
     shouldBeVisible("repo-page-for-webhooks"),
     shouldFindAndContain("webhook-header", "Webhooks"),

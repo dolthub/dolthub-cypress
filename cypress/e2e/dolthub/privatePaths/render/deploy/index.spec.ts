@@ -4,7 +4,6 @@ import {
   testDeployHosted,
   testDeploySelfHosted,
 } from "@utils/sharedTests/deployTab";
-import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Deploy page for database";
 const currentOwner = "automated_testing";
@@ -13,11 +12,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/deploy`;
 const loggedIn = true;
 
 describe(`${pageName} expected components on different devices`, () => {
-  const tests = [
-    testOldFormatPopup,
-    ...testDeployHosted,
-    ...testDeploySelfHosted,
-  ];
+  const tests = [...testDeployHosted, ...testDeploySelfHosted];
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
   const skip = false;

@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       loggedIn,
       hasDocs,
-      true,
+      false,
       "settings",
     ),
     shouldNotExist("active-webhooks-settings-tab"),
