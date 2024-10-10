@@ -3,10 +3,11 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
+const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Merged pull page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "1";
+const currentPullId = isProd ? "5" : "1";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
 const destinationBranch = "master";
 

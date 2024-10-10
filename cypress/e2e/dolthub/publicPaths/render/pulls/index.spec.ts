@@ -51,28 +51,28 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.length.of.at.least", 2),
     ),
     newExpectation(
-      "should find pull with ID 1 with pull state icon",
-      "[data-cy=pull-requests-row-1] [data-cy=pull-state-icon]",
+      "should find pull with ID 6 with pull state icon",
+      "[data-cy=pull-requests-row-6] [data-cy=pull-state-icon]",
       beVisible,
     ),
     newExpectation(
-      "should find pull with ID 1 with pull title",
-      "[data-cy=pull-requests-row-1] [data-cy=pull-title]",
+      "should find pull with ID 6 with pull title",
+      "[data-cy=pull-requests-row-6] [data-cy=pull-title]",
       beVisible,
     ),
     newExpectation(
-      "should find pull with ID 1 with pull id",
-      "[data-cy=pull-requests-row-1] [data-cy=pull-id]",
+      "should find pull with ID 6 with pull id",
+      "[data-cy=pull-requests-row-6] [data-cy=pull-id]",
       beVisible,
     ),
     newExpectation(
-      "should find pull with ID 1 with pull creator",
-      "[data-cy=pull-requests-row-1] [data-cy=pull-creator]",
+      "should find pull with ID 6 with pull creator",
+      "[data-cy=pull-requests-row-6] [data-cy=pull-creator]",
       beVisible,
     ),
     newExpectation(
-      "should find pull with ID 1 with created time",
-      "[data-cy=pull-requests-row-1] [data-cy=created-time]",
+      "should find pull with ID 6 with created time",
+      "[data-cy=pull-requests-row-6] [data-cy=created-time]",
       beVisible,
     ),
   ];

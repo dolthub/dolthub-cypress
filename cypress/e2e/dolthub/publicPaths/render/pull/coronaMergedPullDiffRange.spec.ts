@@ -7,12 +7,17 @@ import {
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
+const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Merged pull diff range page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "1";
-const currentFromCommit = "ikjn6uc5k80ber8tthqai7vd4t2pdmvf";
-const currentToCommit = "m7jk4ebpiqsd0e33dsga238oed2cl13s";
+const currentPullId = isProd ? "5" : "1";
+const currentFromCommit = isProd
+  ? "qp2tjnk2ghk7sb1kj0uhnmu2kp3eh29g"
+  : "ikjn6uc5k80ber8tthqai7vd4t2pdmvf";
+const currentToCommit = isProd
+  ? "2lfsf9gt7i2f85reqa23ilbj3f54vp96"
+  : "m7jk4ebpiqsd0e33dsga238oed2cl13s";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare/${currentFromCommit}...${currentToCommit}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
