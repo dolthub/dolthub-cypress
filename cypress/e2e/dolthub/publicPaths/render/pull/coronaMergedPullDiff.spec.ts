@@ -7,13 +7,14 @@ import {
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
+const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Merged pull diff page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "1";
+const currentPullId = isProd ? "5" : "1";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare`;
 
-const skip = true;
+const skip = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -89,7 +90,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table rows",
       "[data-cy=data-diff-case_details] > tbody > tr",
-      newShouldArgs("be.visible.and.have.length", 6),
+      newShouldArgs("be.visible.and.have.length", 1),
     ),
     newExpectation(
       "should not find 404 page",

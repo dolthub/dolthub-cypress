@@ -17,7 +17,7 @@ const currentBranch = "master";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/queries/${currentBranch}`;
 
 const firstQuery = "current_view";
-const lastQuery = "mortality_rate_by_age_range_and_sex";
+const lastQuery = "changes_other_than_expected";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -48,7 +48,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     );
 
   const tests = [
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, true),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
     newExpectation(
       "should not find empty queries message",
       "[data-cy=repo-no-queries]",
@@ -80,6 +80,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

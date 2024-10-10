@@ -8,7 +8,7 @@ const selectQuery = "SELECT * FROM `places` ORDER BY place_id ASC LIMIT 5;";
 const badQuery = "heatdome";
 
 describe("API returns 404 for invalid endpoints", () => {
-  xit("gets 404 responses from non-existent endpoints", () => {
+  it("gets 404 responses from non-existent endpoints", () => {
     cy.request({
       url: `/api/`,
       failOnStatusCode: false,
@@ -32,10 +32,10 @@ describe("API returns 404 for invalid endpoints", () => {
 
 describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} without branch or query specified`, () => {
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}`;
-  xit("gets a success response from the API", () => {
+  it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
-  xit("contains the correct query metadata in the response body", () => {
+  it("contains the correct query metadata in the response body", () => {
     cy.request({ url: earl })
       .its("body.sql_query")
       .should("equal", `${defaultQuery}`);
@@ -55,7 +55,7 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
       .its("body.query_execution_message")
       .should("equal", "");
   });
-  xit("contains the correct query result schema in the response body", () => {
+  it("contains the correct query result schema in the response body", () => {
     cy.request({ url: earl })
       .its("body.schema")
       .should("deep.equal", [
@@ -65,7 +65,7 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
         },
       ]);
   });
-  xit("contains the correct query result rows in the response body", () => {
+  it("contains the correct query result rows in the response body", () => {
     cy.request({ url: earl })
       .its("body.rows")
       .should("deep.equal", [
@@ -101,10 +101,10 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
 
 describe(`API returns query results for '${defaultQuery}' from branch ${otherBranch} without query specified`, () => {
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}/${otherBranch}`;
-  xit("gets a success response from the API", () => {
+  it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
-  xit("contains the correct query metadata in the response body", () => {
+  it("contains the correct query metadata in the response body", () => {
     cy.request({ url: earl })
       .its("body.sql_query")
       .should("equal", `${defaultQuery}`);
@@ -124,7 +124,7 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
       .its("body.query_execution_message")
       .should("equal", "");
   });
-  xit("contains the correct query result schema in the response body", () => {
+  it("contains the correct query result schema in the response body", () => {
     cy.request({ url: earl })
       .its("body.schema")
       .should("deep.equal", [
@@ -134,12 +134,15 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
         },
       ]);
   });
-  xit("contains the correct query result rows in the response body", () => {
+  it("contains the correct query result rows in the response body", () => {
     cy.request({ url: earl })
       .its("body.rows")
       .should("deep.equal", [
         { Tables_in_dolt: "case_details" },
         { Tables_in_dolt: "cases" },
+        { Tables_in_dolt: "cases_by_age_range" },
+        { Tables_in_dolt: "cases_by_age_sex" },
+        { Tables_in_dolt: "cases_by_sex" },
         { Tables_in_dolt: "characteristics_age" },
         { Tables_in_dolt: "characteristics_case_severity" },
         { Tables_in_dolt: "characteristics_comorbid_condition" },
@@ -152,6 +155,12 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
         { Tables_in_dolt: "current_cases" },
         { Tables_in_dolt: "current_deaths" },
         { Tables_in_dolt: "current_recovered" },
+        { Tables_in_dolt: "deaths_by_age_range" },
+        { Tables_in_dolt: "deaths_by_age_sex" },
+        { Tables_in_dolt: "deaths_by_sex" },
+        { Tables_in_dolt: "mortality_rate_by_age_range" },
+        { Tables_in_dolt: "mortality_rate_by_age_sex" },
+        { Tables_in_dolt: "mortality_rate_by_sex" },
         { Tables_in_dolt: "mortality_rates" },
         { Tables_in_dolt: "places" },
         { Tables_in_dolt: "time_series" },
@@ -163,10 +172,10 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}?q=${encodeURI(
     selectQuery,
   )}`;
-  xit("gets a success response from the API", () => {
+  it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
-  xit("contains the correct query metadata in the response body", () => {
+  it("contains the correct query metadata in the response body", () => {
     cy.request({ url: earl })
       .its("body.sql_query")
       .should("equal", `${selectQuery}`);
@@ -186,7 +195,7 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
       .its("body.query_execution_message")
       .should("equal", "");
   });
-  xit("contains the correct query result schema in the response body", () => {
+  it("contains the correct query result schema in the response body", () => {
     cy.request({ url: earl })
       .its("body.schema")
       .should("deep.equal", [
@@ -196,11 +205,11 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
         },
         {
           columnName: "province_state",
-          columnType: "varchar(1023)",
+          columnType: "longtext COLLATE utf8mb4_0900_ai_ci",
         },
         {
           columnName: "country_region",
-          columnType: "varchar(1023)",
+          columnType: "longtext COLLATE utf8mb4_0900_ai_ci",
         },
         {
           columnName: "latitude",
@@ -212,7 +221,7 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
         },
       ]);
   });
-  xit("contains the correct query result rows in the response body", () => {
+  it("contains the correct query result rows in the response body", () => {
     cy.request({ url: earl })
       .its("body.rows")
       .should("deep.equal", [
@@ -235,7 +244,7 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
           province_state: "Henan",
           country_region: "China",
           latitude: "33.882",
-          longitude: "113.61399999999999",
+          longitude: "113.614",
         },
         {
           place_id: "4",
@@ -259,10 +268,10 @@ describe(`API returns query error for invalid query '${badQuery}'`, () => {
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}?q=${encodeURI(
     badQuery,
   )}`;
-  xit("gets a success response from the API", () => {
+  it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
-  xit("contains the correct query metadata in the response body", () => {
+  it("contains the correct query metadata in the response body", () => {
     cy.request({ url: earl })
       .its("body.sql_query")
       .should("equal", `${badQuery}`);

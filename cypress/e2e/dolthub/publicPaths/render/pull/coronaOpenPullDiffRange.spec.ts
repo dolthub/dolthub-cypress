@@ -7,12 +7,17 @@ import {
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
+const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Open pull diff range page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "5";
-const currentFromCommit = "m7baiv613lndd6qbi9c99t9e3aq3d2jp";
-const currentToCommit = "0ae58dhtk4rdn56dafngtsgfe490clbs";
+const currentPullId = "6";
+const currentFromCommit = isProd
+  ? "uit4t8fvo8loargthr74p3m71saiav3k"
+  : "duvmh48t6pinns9buf41rm8ajvk1e5mn";
+const currentToCommit = isProd
+  ? "h61952i14oqv0vp4iqou238kkkqqkeib"
+  : "5gj6igc601bkgqarhklr3cdeqsf04lav";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare/${currentFromCommit}...${currentToCommit}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -32,10 +37,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff selector",
       "[data-cy=diff-selector]",
-      newShouldArgs(
-        "be.visible.and.contain",
-        "Automated import of new data do… (0ae58d)",
-      ),
+      newShouldArgs("be.visible.and.contain", "Run SQL query"),
     ),
     newExpectation(
       "should show one form select",
@@ -50,7 +52,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",
-      newShouldArgs("be.visible.and.contain", "cases"),
+      newShouldArgs("be.visible.and.contain", "places"),
     ),
     newExpectationWithClickFlow(
       "Option dropdown should have appropriate links",
@@ -77,7 +79,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should show diff table list summaries",
       "[data-cy=diff-table-list-summaries] > li",
-      newShouldArgs("be.visible.and.have.length", 2),
+      newShouldArgs("be.visible.and.have.length", 1),
     ),
     newExpectation(
       "should show table diff summary",
@@ -86,13 +88,13 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should show diff table",
-      "[data-cy=data-diff-cases]",
+      "[data-cy=data-diff-places]",
       beVisible,
     ),
     newExpectation(
       "should show diff table rows",
-      "[data-cy=data-diff-cases] > tbody > tr",
-      newShouldArgs("be.visible.and.have.length.of.at.least", 50),
+      "[data-cy=data-diff-places] > tbody > tr",
+      newShouldArgs("be.visible.and.have.length.of.at.least", 1),
     ),
     newExpectation(
       "should not find 404 page",
@@ -102,6 +104,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

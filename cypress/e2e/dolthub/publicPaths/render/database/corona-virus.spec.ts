@@ -65,7 +65,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       loggedIn,
       hasDocs,
-      true,
+      false,
       "about",
     ),
     ...tableExpectations(hasDocs, loggedIn, 11, "case_details"),
@@ -115,6 +115,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     iPad2ForAppLayout(pageName, tests),
     iPhoneXForAppLayout(pageName, mobileTests),
   ];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
