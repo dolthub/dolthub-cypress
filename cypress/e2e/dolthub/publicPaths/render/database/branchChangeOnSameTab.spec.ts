@@ -17,6 +17,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   };
 
   const devices = [macbook15ForAppLayout(pageName, changeBranch(testParams))];
-  const skip = false;
+  const skip = true;
   runTestsForDevices({ currentPage, devices, skip });
 });

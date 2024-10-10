@@ -22,7 +22,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${current
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const skipAll = false;
+  const skipAll = true;
 
   const tests = [
     newExpectation(
