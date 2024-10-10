@@ -8,7 +8,7 @@ const selectQuery = "SELECT * FROM `places` ORDER BY place_id ASC LIMIT 5;";
 const badQuery = "heatdome";
 
 describe("API returns 404 for invalid endpoints", () => {
-  xit("gets 404 responses from non-existent endpoints", () => {
+  it("gets 404 responses from non-existent endpoints", () => {
     cy.request({
       url: `/api/`,
       failOnStatusCode: false,
@@ -32,10 +32,10 @@ describe("API returns 404 for invalid endpoints", () => {
 
 describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} without branch or query specified`, () => {
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}`;
-  xit("gets a success response from the API", () => {
+  it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
-  xit("contains the correct query metadata in the response body", () => {
+  it("contains the correct query metadata in the response body", () => {
     cy.request({ url: earl })
       .its("body.sql_query")
       .should("equal", `${defaultQuery}`);
@@ -55,7 +55,7 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
       .its("body.query_execution_message")
       .should("equal", "");
   });
-  xit("contains the correct query result schema in the response body", () => {
+  it("contains the correct query result schema in the response body", () => {
     cy.request({ url: earl })
       .its("body.schema")
       .should("deep.equal", [
@@ -65,7 +65,6 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
         },
       ]);
   });
-
   it("contains the correct query result rows in the response body", () => {
     cy.request({ url: earl })
       .its("body.rows")
@@ -102,10 +101,10 @@ describe(`API returns query results for '${defaultQuery}' from ${defaultBranch} 
 
 describe(`API returns query results for '${defaultQuery}' from branch ${otherBranch} without query specified`, () => {
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}/${otherBranch}`;
-  xit("gets a success response from the API", () => {
+  it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
-  xit("contains the correct query metadata in the response body", () => {
+  it("contains the correct query metadata in the response body", () => {
     cy.request({ url: earl })
       .its("body.sql_query")
       .should("equal", `${defaultQuery}`);
@@ -125,7 +124,7 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
       .its("body.query_execution_message")
       .should("equal", "");
   });
-  xit("contains the correct query result schema in the response body", () => {
+  it("contains the correct query result schema in the response body", () => {
     cy.request({ url: earl })
       .its("body.schema")
       .should("deep.equal", [
@@ -135,7 +134,7 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
         },
       ]);
   });
-  xit("contains the correct query result rows in the response body", () => {
+  it("contains the correct query result rows in the response body", () => {
     cy.request({ url: earl })
       .its("body.rows")
       .should("deep.equal", [
@@ -173,10 +172,10 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}?q=${encodeURI(
     selectQuery,
   )}`;
-  xit("gets a success response from the API", () => {
+  it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
-  xit("contains the correct query metadata in the response body", () => {
+  it("contains the correct query metadata in the response body", () => {
     cy.request({ url: earl })
       .its("body.sql_query")
       .should("equal", `${selectQuery}`);
@@ -196,7 +195,7 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
       .its("body.query_execution_message")
       .should("equal", "");
   });
-  xit("contains the correct query result schema in the response body", () => {
+  it("contains the correct query result schema in the response body", () => {
     cy.request({ url: earl })
       .its("body.schema")
       .should("deep.equal", [
@@ -222,7 +221,6 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
         },
       ]);
   });
-
   it("contains the correct query result rows in the response body", () => {
     cy.request({ url: earl })
       .its("body.rows")
@@ -270,10 +268,10 @@ describe(`API returns query error for invalid query '${badQuery}'`, () => {
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}?q=${encodeURI(
     badQuery,
   )}`;
-  xit("gets a success response from the API", () => {
+  it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
-  xit("contains the correct query metadata in the response body", () => {
+  it("contains the correct query metadata in the response body", () => {
     cy.request({ url: earl })
       .its("body.sql_query")
       .should("equal", `${badQuery}`);

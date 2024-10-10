@@ -14,7 +14,7 @@ const currentRepo = "corona-virus";
 const currentPullId = isProd ? "5" : "1";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare`;
 
-const skip = true;
+const skip = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
