@@ -1,6 +1,5 @@
 import {
   beVisible,
-  haveLength,
   shouldBeVisible,
   shouldFindAndContain,
 } from "@sharedTests/sharedFunctionsAndVariables";

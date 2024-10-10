@@ -1,7 +1,6 @@
 import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
 const pageName = "Issues page";
 const currentOwner = "automated_testing";
