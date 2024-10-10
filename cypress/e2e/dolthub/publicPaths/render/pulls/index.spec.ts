@@ -79,7 +79,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = [
     macbook15ForAppLayout(pageName, tests, false),
-    iPad2ForAppLayout(pageName, tests),
+    iPad2ForAppLayout(pageName, tests, true),
 
     // TODO: mobile pull request page tests
     iPhoneXForAppLayout(
