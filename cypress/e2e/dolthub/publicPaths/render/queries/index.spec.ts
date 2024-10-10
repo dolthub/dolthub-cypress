@@ -17,7 +17,7 @@ const currentBranch = "master";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/queries/${currentBranch}`;
 
 const firstQuery = "current_view";
-const lastQuery = "Changes_other_than_expected";
+const lastQuery = "changes_other_than_expected";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
