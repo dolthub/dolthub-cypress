@@ -6,7 +6,7 @@ import { runTestsForDevices } from "@utils/index";
 const pageName = "Diff page with commits not visible in selectors";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentFromCommit = "m7jk4ebpiqsd0e33dsga238oed2cl13s";
+const currentFromCommit = "19gaf82fja8i7og98rrj3dckkeddo9bu";
 const branch = "master";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}`;
 
@@ -18,7 +18,7 @@ describe(`${pageName} renders expected component on different devices`, () => {
     newExpectation(
       "should show diff table name",
       "[data-cy=diff-table-name]",
-      newShouldArgs("be.visible.and.contain", "case_details"),
+      newShouldArgs("be.visible.and.contain", "cases"),
     ),
     newExpectation(
       "should show diff table list summaries",
@@ -32,12 +32,12 @@ describe(`${pageName} renders expected component on different devices`, () => {
     ),
     newExpectation(
       "should show diff table",
-      "[data-cy=data-diff-case_details]",
+      "[data-cy=data-diff-cases]",
       beVisible,
     ),
     newExpectation(
       "should show diff table rows",
-      "[data-cy=data-diff-case_details] > tbody > tr",
+      "[data-cy=data-diff-cases] > tbody > tr",
       newShouldArgs("be.visible.and.have.length", 1),
     ),
   ];

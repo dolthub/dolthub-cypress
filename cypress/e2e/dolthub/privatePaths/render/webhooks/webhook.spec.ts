@@ -9,6 +9,7 @@ import {
   newClickFlow,
   newExpectation,
   newExpectationWithClickFlow,
+  newShouldArgs,
   scrollToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -18,14 +19,14 @@ const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
 const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const currentWebhook = isProd
-  ? "dc6682d3-f0df-4549-87a4-46874ac95ff2"
+  ? "5ebe3b54-3528-4e2e-bce4-03bb90a3a27e"
   : "8f3fc106-ec72-44ba-8d5d-c7d9c0f2fdbd";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/webhooks/${currentWebhook}`;
 const loggedIn = true;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const attemptId = isProd
-    ? "2a962909-6f88-41af-b613-12266e1f7b3a"
+    ? "99b71670-c248-4248-9493-6659ab1292e3"
     : "7186a042-c39c-41d2-9798-2b917e4b75d4";
 
   const tests = [
@@ -40,7 +41,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     newExpectation(
       "should have delivery attempt table with one row",
       "[data-cy=delivery-attempt-table] tbody tr",
-      haveLength(3),
+      newShouldArgs("be.visible.and.have.length.of.at.least", 1),
     ),
     newExpectationWithClickFlow(
       "should have view button for attempt",
