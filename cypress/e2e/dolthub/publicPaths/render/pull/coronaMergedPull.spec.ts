@@ -11,7 +11,7 @@ const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${current
 const destinationBranch = "archived";
 
 // Need to investigate why the tests for this page are flaky
-const skip = true;
+const skip = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");

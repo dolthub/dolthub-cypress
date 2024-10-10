@@ -98,7 +98,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ),
     ),
   ];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({
     currentPage: `${currentPage}${currentBranch}`,
     devices,
