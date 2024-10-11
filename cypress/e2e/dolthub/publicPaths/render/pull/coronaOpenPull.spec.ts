@@ -5,7 +5,7 @@ import { runTestsForDevices } from "@utils/index";
 const pageName = "Open pull page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentPullId = "5";
+const currentPullId = "6";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -52,6 +52,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

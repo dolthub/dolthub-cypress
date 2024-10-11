@@ -5,11 +5,10 @@ import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
-const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Open issue page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentIssueId = isProd ? "6" : "7";
+const currentIssueId = "2";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues/${currentIssueId}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -26,7 +25,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       false,
       true,
-      true,
+      false,
       "issues",
     ),
     newExpectation(
@@ -44,6 +43,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ];
 
   const devices = [macbook15ForAppLayout(pageName, tests)];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });

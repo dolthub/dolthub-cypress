@@ -3,13 +3,11 @@ import { testLoggedInSignInTo } from "@sharedTests/signInTo";
 import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 
-const isProd = Cypress.config().baseUrl === "https://www.dolthub.com";
 const pageName = "Closed issue page";
 const currentOwner = "automated_testing";
 const currentRepo = "corona-virus";
-const currentIssueId = isProd ? "9" : "8";
+const currentIssueId = "4";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/issues/${currentIssueId}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
@@ -17,7 +15,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
 
   const tests = [
-    testOldFormatPopup,
     newExpectation(
       "should not find 404 page",
       "[data-cy=issue-404-page]",
@@ -50,6 +47,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
 
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip, loggedIn });
 });

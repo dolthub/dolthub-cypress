@@ -26,7 +26,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       loggedIn,
       hasDocs,
-      true,
+      false,
       "settings",
     ),
     shouldNotExist("active-webhooks-settings-tab"),
@@ -50,6 +50,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       ),
     ),
   ];
-  const skip = true;
+  const skip = false;
   runTestsForDevices({ currentPage, devices, skip });
 });
