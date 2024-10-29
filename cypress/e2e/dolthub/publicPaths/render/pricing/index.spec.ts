@@ -104,10 +104,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
           beVisible,
           true,
         ),
-        ...test.shouldFind.map(find =>
-          shouldFindAndContain(find.datacy, find.text),
-        ),
-
         ...(test.name !== "enterprise"
           ? [
               newExpectationWithClickFlow(
@@ -124,6 +120,15 @@ describe(`${pageName} renders expected components on different devices`, () => {
               ),
             ]
           : []),
+        newExpectationWithScrollIntoView(
+          `should find and scroll to ${test.name}-card pricing section`,
+          `[data-cy=${test.name}-card]`,
+          beVisible,
+          true,
+        ),
+        ...test.shouldFind.map(find =>
+          shouldFindAndContain(find.datacy, find.text),
+        ),
       ])
       .flat(),
   ];
