@@ -111,8 +111,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ...(test.name !== "enterprise"
           ? [
               newExpectationWithScrollIntoView(
-                `should find and scroll to the card header`,
-                `[data-cy=${test.name}-header]`,
+                `should find and scroll to ${test.name}-card pricing section`,
+                `[data-cy=${test.name}-card]`,
                 beVisible,
                 true,
               ),
