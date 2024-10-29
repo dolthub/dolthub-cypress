@@ -110,6 +110,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
         ...(test.name !== "enterprise"
           ? [
+              newExpectationWithScrollIntoView(
+                `should find and scroll to the card header`,
+                `[data-cy=${test.name}-header]`,
+                beVisible,
+                true,
+              ),
               newExpectationWithClickFlow(
                 "should click on the enterprise banner button",
                 `[data-cy=enterprise-banner-${test.name}]`,
