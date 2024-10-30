@@ -4,6 +4,7 @@ import {
   newExpectation,
   newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
+  newExpectationWithScrollTo,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
@@ -98,14 +99,17 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...pricingTests
       .map(test => [
-        newExpectationWithScrollIntoView(
-          `should find and scroll to ${test.name}-card pricing section`,
-          `[data-cy=${test.name}-card]`,
-          beVisible,
-          true,
-        ),
         ...(test.name !== "enterprise"
           ? [
+              newExpectationWithScrollTo(
+                `should find and scroll to ${test.name} card header`,
+                `[data-cy=${test.name}-header]`,
+                beVisible,
+                {
+                  selectorStr: `[data-cy=${test.name}-header]`,
+                  options: { offset: { top: -50, left: 0 } },
+                },
+              ),
               newExpectationWithClickFlow(
                 "should click on the enterprise banner button",
                 `[data-cy=enterprise-banner-${test.name}]`,
