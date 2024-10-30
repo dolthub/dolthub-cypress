@@ -46,6 +46,7 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Cypress run dolthub tests
+        id: dolthub-tests
         uses: cypress-io/github-action@v6
         with:
           install: false
@@ -59,6 +60,7 @@ jobs:
           ALERT_ON_FAILURE: ${{ github.event_name == 'schedule' }}
       - name: Cypress run doltlab tests
         uses: cypress-io/github-action@v6
+        if: steps.dolthub-tests.outcome == 'success' || steps.dolthub-tests.outcome == 'failure'
         with:
           install: false
           browser: chrome
