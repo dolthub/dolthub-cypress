@@ -102,11 +102,11 @@ describe(`${pageName} renders expected components on different devices`, () => {
         ...(test.name !== "enterprise"
           ? [
               newExpectationWithScrollTo(
-                `should find and scroll to ${test.name} enterprise banner`,
+                `should find and scroll to ${test.name} card header`,
                 `[data-cy=${test.name}-header]`,
                 beVisible,
                 {
-                  selectorStr: `[data-cy=${test.name}-card]`,
+                  selectorStr: `[data-cy=${test.name}-header]`,
                   options: { offset: { top: -20, left: 0 } },
                 },
               ),
