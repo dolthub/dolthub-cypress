@@ -4,6 +4,7 @@ import {
   newExpectation,
   newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
+  newExpectationWithScrollTo,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
@@ -100,11 +101,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
       .map(test => [
         ...(test.name !== "enterprise"
           ? [
-              newExpectationWithScrollIntoView(
+              newExpectationWithScrollTo(
                 `should find and scroll to ${test.name} enterprise banner`,
-                `[data-cy=enterprise-banner-${test.name}]`,
+                `[data-cy=${test.name}-header]`,
                 beVisible,
-                true,
+                {
+                  selectorStr: `[data-cy=${test.name}-header]`,
+                  options: { offset: { top: -10, left: 0 } },
+                },
               ),
               newExpectationWithClickFlow(
                 "should click on the enterprise banner button",
