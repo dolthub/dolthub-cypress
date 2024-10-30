@@ -107,7 +107,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
                 beVisible,
                 {
                   selectorStr: `[data-cy=${test.name}-header]`,
-                  options: { offset: { top: -20, left: 0 } },
+                  options: { offset: { top: -50, left: 0 } },
                 },
               ),
               newExpectationWithClickFlow(
