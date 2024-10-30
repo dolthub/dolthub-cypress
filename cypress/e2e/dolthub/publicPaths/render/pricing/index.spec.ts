@@ -98,14 +98,14 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     ...pricingTests
       .map(test => [
-        newExpectationWithScrollIntoView(
-          `should find and scroll to ${test.name}-card pricing section`,
-          `[data-cy=${test.name}-card]`,
-          beVisible,
-          true,
-        ),
         ...(test.name !== "enterprise"
           ? [
+              newExpectationWithScrollIntoView(
+                `should find and scroll to ${test.name} enterprise banner`,
+                `[data-cy=enterprise-banner-${test.name}]`,
+                beVisible,
+                true,
+              ),
               newExpectationWithClickFlow(
                 "should click on the enterprise banner button",
                 `[data-cy=enterprise-banner-${test.name}]`,
