@@ -40,7 +40,7 @@
     "@types/node": "^22.8.6",
     "@typescript-eslint/eslint-plugin": "^7.14",
     "@typescript-eslint/parser": "^8.12.2",
-    "eslint": "^8.57.0",
+    "eslint": "^9.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^9.1.0",
