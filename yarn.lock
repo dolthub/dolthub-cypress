@@ -12,35 +12,34 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/cache@npm:3.2.1":
-  version: 3.2.1
-  resolution: "@actions/cache@npm:3.2.1"
+"@actions/cache@npm:3.3.0":
+  version: 3.3.0
+  resolution: "@actions/cache@npm:3.3.0"
   dependencies:
-    "@actions/core": "npm:^1.10.0"
+    "@actions/core": "npm:^1.11.1"
     "@actions/exec": "npm:^1.0.1"
     "@actions/glob": "npm:^0.1.0"
-    "@actions/http-client": "npm:^2.0.1"
+    "@actions/http-client": "npm:^2.1.1"
     "@actions/io": "npm:^1.0.1"
     "@azure/abort-controller": "npm:^1.1.0"
     "@azure/ms-rest-js": "npm:^2.6.0"
     "@azure/storage-blob": "npm:^12.13.0"
-    semver: "npm:^6.1.0"
-    uuid: "npm:^3.3.3"
-  checksum: 6a332721816515cc4f34d658a249bef97e1805a1af4b9c8a63a1f49a3916622a795f9f41a0f78a1fc1aaa65c93b175d71b9e2e50fffdb73bc810fda0fdcf54a0
+    semver: "npm:^6.3.1"
+  checksum: b3e31b9204ee690187b4cfbcf98e85b12ed0f769f2dc824d0122c0ff1f37f7bb847a07f9437db3496d459bde99d26d5383789b76236ca10a11e39cc4e7f23f2d
   languageName: node
   linkType: hard
 
-"@actions/core@npm:1.10.0":
-  version: 1.10.0
-  resolution: "@actions/core@npm:1.10.0"
+"@actions/core@npm:1.11.1, @actions/core@npm:^1.11.1":
+  version: 1.11.1
+  resolution: "@actions/core@npm:1.11.1"
   dependencies:
+    "@actions/exec": "npm:^1.1.1"
     "@actions/http-client": "npm:^2.0.1"
-    uuid: "npm:^8.3.2"
-  checksum: 40f94a994da7b041ed35119abef9bbd19f56a75fdca08b0b7fd4af3da2c69873de5a751cf956cf1437515f4e9cf7ee94204a0c885788f6d0986841ee972ecb29
+  checksum: 94f260e33607cc16567ce4c88014f069cd7da92baaa443b72cff80fdf4f1dcd18192e135df0d51ec29e8b82cfe214218715d482f2a7804efa5095737d1245f38
   languageName: node
   linkType: hard
 
-"@actions/core@npm:^1.10.0, @actions/core@npm:^1.2.6":
+"@actions/core@npm:^1.2.6":
   version: 1.10.1
   resolution: "@actions/core@npm:1.10.1"
   dependencies:
@@ -50,7 +49,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@actions/exec@npm:1.1.1, @actions/exec@npm:^1.0.1":
+"@actions/exec@npm:1.1.1, @actions/exec@npm:^1.0.1, @actions/exec@npm:^1.1.1":
   version: 1.1.1
   resolution: "@actions/exec@npm:1.1.1"
   dependencies:
@@ -76,6 +75,16 @@ __metadata:
     tunnel: "npm:^0.0.6"
     undici: "npm:^5.25.4"
   checksum: af2051e056b369d78073f3eddd04d838c27495ef7e8bc27b69a8409d7f8652c19b5b6c781a1560675094142bd2548cfa06b6e9a2454c70116007bd4f37cf0cd7
+  languageName: node
+  linkType: hard
+
+"@actions/http-client@npm:^2.1.1":
+  version: 2.2.3
+  resolution: "@actions/http-client@npm:2.2.3"
+  dependencies:
+    tunnel: "npm:^0.0.6"
+    undici: "npm:^5.25.4"
+  checksum: 0c0a540c79e50f795d214f696710bb9c50bdf5bb1458be288140f2aae3686adec73fdb464c43da5ef94f985ac7736273efef21cb5ba5a3b09e85b403d852c04b
   languageName: node
   linkType: hard
 
@@ -2050,12 +2059,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/github-action@npm:^6.7.6":
-  version: 6.7.6
-  resolution: "@cypress/github-action@npm:6.7.6"
+"@cypress/github-action@npm:^6.7.7":
+  version: 6.7.7
+  resolution: "@cypress/github-action@npm:6.7.7"
   dependencies:
-    "@actions/cache": "npm:3.2.1"
-    "@actions/core": "npm:1.10.0"
+    "@actions/cache": "npm:3.3.0"
+    "@actions/core": "npm:1.11.1"
     "@actions/exec": "npm:1.1.1"
     "@actions/io": "npm:1.1.3"
     "@octokit/core": "npm:4.2.0"
@@ -2066,7 +2075,7 @@ __metadata:
     hasha: "npm:5.2.2"
     quote: "npm:0.4.0"
     supports-color: "npm:9.3.1"
-  checksum: ba03ccfa19079e378e329cad6dd42ba9664cae665d62b154cb2a0ce4ac100f2cfbf1e392999c2bcc5ae29b424df0c822ae1ff1d9759360a368876d40e18710e5
+  checksum: a07d054efbf173677fed9e0ba6fbeea9b773f8618307cdaf147eaac377700548ed18e3cd673697d3936272a5bfbb7f9a7d7219bebd7f91b1c1241d7070fdf0d9
   languageName: node
   linkType: hard
 
@@ -4282,7 +4291,7 @@ __metadata:
     "@babel/core": "npm:^7.26.0"
     "@babel/preset-env": "npm:^7.26.0"
     "@babel/preset-typescript": "npm:^7.26.0"
-    "@cypress/github-action": "npm:^6.7.6"
+    "@cypress/github-action": "npm:^6.7.7"
     "@types/node": "npm:^22.10.1"
     "@typescript-eslint/eslint-plugin": "npm:^7.14"
     "@typescript-eslint/parser": "npm:^8.16.0"
@@ -7339,7 +7348,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^6.1.0, semver@npm:^6.3.0, semver@npm:^6.3.1":
+"semver@npm:^6.3.0, semver@npm:^6.3.1":
   version: 6.3.1
   resolution: "semver@npm:6.3.1"
   bin:
@@ -8246,15 +8255,6 @@ __metadata:
     querystringify: "npm:^2.1.1"
     requires-port: "npm:^1.0.0"
   checksum: c9e96bc8c5b34e9f05ddfeffc12f6aadecbb0d971b3cc26015b58d5b44676a99f50d5aeb1e5c9e61fa4d49961ae3ab1ae997369ed44da51b2f5ac010d188e6ad
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^3.3.3":
-  version: 3.4.0
-  resolution: "uuid@npm:3.4.0"
-  bin:
-    uuid: ./bin/uuid
-  checksum: 4f2b86432b04cc7c73a0dd1bcf11f1fc18349d65d2e4e32dd0fc658909329a1e0cc9244aa93f34c0cccfdd5ae1af60a149251a5f420ec3ac4223a3dab198fb2e
   languageName: node
   linkType: hard
 
