@@ -4301,7 +4301,7 @@ __metadata:
     eslint-config-airbnb-base: "npm:^15.0.0"
     eslint-config-airbnb-typescript: "npm:^18.0.0"
     eslint-config-prettier: "npm:^9.1.0"
-    eslint-plugin-cypress: "npm:^3.6.0"
+    eslint-plugin-cypress: "npm:^4.1.0"
     eslint-plugin-import: "npm:^2.31.0"
     gatsby-cypress: "npm:^3.14.0"
     npm-run-all: "npm:^4.1.5"
@@ -4673,14 +4673,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-cypress@npm:^3.6.0":
-  version: 3.6.0
-  resolution: "eslint-plugin-cypress@npm:3.6.0"
+"eslint-plugin-cypress@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "eslint-plugin-cypress@npm:4.1.0"
   dependencies:
-    globals: "npm:^13.20.0"
+    globals: "npm:^15.11.0"
   peerDependencies:
-    eslint: ">=7"
-  checksum: 0dc30c097b95ab679cb24348e6252e3cb690b87e68342228ed7e3f758f38c64fa3c05c58dccc9670c13f0318e22f9f446f92d0d729c00d0151ef98a5193b98ba
+    eslint: ">=9"
+  checksum: 50d3650e70410bf1924e88695532fa532c9823210f8791ac0bc0d05f451e6199c7ba3323b90c4753122de3f1bdfc3140bea33c772a2f827c92d4d412606bd5fe
   languageName: node
   linkType: hard
 
@@ -5317,12 +5317,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^13.19.0, globals@npm:^13.20.0":
+"globals@npm:^13.19.0":
   version: 13.24.0
   resolution: "globals@npm:13.24.0"
   dependencies:
     type-fest: "npm:^0.20.2"
   checksum: 62c5b1997d06674fc7191d3e01e324d3eda4d65ac9cc4e78329fa3b5c4fd42a0e1c8722822497a6964eee075255ce21ccf1eec2d83f92ef3f06653af4d0ee28e
+  languageName: node
+  linkType: hard
+
+"globals@npm:^15.11.0":
+  version: 15.14.0
+  resolution: "globals@npm:15.14.0"
+  checksum: e35ffbdbc024d6381efca906f67211a7bbf935db2af8c14a65155785479e28b3e475950e5933bb6b296eed54b6dcd924e25b26dbc8579b1bde9d5d25916e1c5f
   languageName: node
   linkType: hard
 
