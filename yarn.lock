@@ -2991,12 +2991,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.10.1":
-  version: 22.10.1
-  resolution: "@types/node@npm:22.10.1"
+"@types/node@npm:^22.10.4":
+  version: 22.10.4
+  resolution: "@types/node@npm:22.10.4"
   dependencies:
     undici-types: "npm:~6.20.0"
-  checksum: c802a526da2f3fa3ccefd00a71244e7cb825329951719e79e8fec62b1dbc2855388c830489770611584665ce10be23c05ed585982038b24924e1ba2c2cce03fd
+  checksum: 1a04364c2bf84bed63de7c1a091003638eeb2c0eeb7b6f78f2330ce217202b58418ccb4509fe837f4f41e328d474db289bf28b65d57cf45d1930dc0b06ab40ec
   languageName: node
   linkType: hard
 
@@ -4292,7 +4292,7 @@ __metadata:
     "@babel/preset-env": "npm:^7.26.0"
     "@babel/preset-typescript": "npm:^7.26.0"
     "@cypress/github-action": "npm:^6.7.8"
-    "@types/node": "npm:^22.10.1"
+    "@types/node": "npm:^22.10.4"
     "@typescript-eslint/eslint-plugin": "npm:^7.14"
     "@typescript-eslint/parser": "npm:^8.16.0"
     cypress: "npm:^13.17.0"
