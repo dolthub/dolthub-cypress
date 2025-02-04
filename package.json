@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@aws-sdk/client-sns": "^3.721.0",
-    "cypress": "^13.17.0",
+    "cypress": "^14.0.1",
     "cypress-file-upload": "^5.0.8",
     "gatsby-cypress": "^3.14.0",
     "typescript": "^5.7.3"
