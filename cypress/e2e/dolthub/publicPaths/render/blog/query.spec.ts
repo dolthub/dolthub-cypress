@@ -33,9 +33,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testSearched(
       query,
-      "Getting Started with Dolt and Knex.js",
-      "2023-09-27-dolt-and-knexjs/",
-      2,
+      "Getting Started with Doltgres and Knex.js",
+      "2025-04-21-doltgres-and-knexjs/",
+      3,
     ),
     newExpectationWithClickFlow(
       "should clear search",
