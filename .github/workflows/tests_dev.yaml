@@ -41,5 +41,6 @@ jobs:
         if: failure()
         with:
           name: cypress-screenshots-${{ matrix.runs-on }}
-          path: cypress/screenshots-${{ matrix.runs-on }}
+          path: cypress/screenshots/screenshots-${{ matrix.runs-on }}
+          include-hidden-files: true
           retention-days: 7
