@@ -71,9 +71,8 @@ jobs:
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: cypress-screenshot
+          name: cypress-screenshot-${{ matrix.runs-on }}
           path: cypress/screenshots
-          include-hidden-files: true
           retention-days: 7
       - name: Echo current time
         if: failure()
