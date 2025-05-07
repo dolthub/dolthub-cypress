@@ -16,6 +16,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
         "You already know how to use it",
         "Deploy as a replica or primary",
         "The Dolt Ecosystem",
+        "invalid",
       ]),
     ),
   ];
