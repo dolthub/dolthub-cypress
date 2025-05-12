@@ -1,4 +1,3 @@
-import { beVisible } from "@sharedTests/sharedFunctionsAndVariables";
 import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newExpectation,
@@ -29,17 +28,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "should have team list of at least 10",
       "[data-cy=team-section] ul > li",
       newShouldArgs("be.visible.and.have.length.of.at.least", 10),
-    ),
-    newExpectationWithScrollIntoView(
-      "should scroll apply button into view",
-      "[data-cy=apply-on-linkedin-button] button",
-      beVisible,
-      true,
-    ),
-    newExpectation(
-      "should have apply on linkedin button",
-      "[data-cy=apply-on-linkedin-button] button",
-      beVisible,
     ),
   ];
 

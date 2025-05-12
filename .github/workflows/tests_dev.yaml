@@ -12,6 +12,9 @@ on:
         - dolthub-preview-1
         - dolthub-preview-2
         - dolthub-preview-3
+  schedule:
+    # run once per day at 9am PST (5pm UTC)
+    - cron: '0 17 * * *'
 
 jobs:
   cypress-run:
