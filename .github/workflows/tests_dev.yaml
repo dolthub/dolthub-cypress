@@ -36,7 +36,7 @@ jobs:
           browser: chrome
           config-file: cypress.config.ts
         env:
-          CYPRESS_BASE_URL: https://${{ github.event.inputs.preview }}.awsdev.ld-corp.com
+          CYPRESS_BASE_URL: https://${{ github.event.inputs.preview || 'dolthub' }}.awsdev.ld-corp.com
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
           CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
       - name: Save screenshots of failed tests
