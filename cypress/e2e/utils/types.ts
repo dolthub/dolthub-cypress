@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ShouldArgs = { chainer: string; value?: any };
 
 export type Selector = string | string[];
