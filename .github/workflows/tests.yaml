@@ -59,7 +59,7 @@ jobs:
         with:
           install: false
           browser: chrome
-          config-file: cypress.doltlab.config.ts
+          config-file: cypress.doltlab.config.js
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Save screenshots of failed tests
