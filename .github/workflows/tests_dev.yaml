@@ -34,7 +34,7 @@ jobs:
         with:
           install: false
           browser: chrome
-          config-file: cypress.config.ts
+          config-file: cypress.config.js
         env:
           CYPRESS_BASE_URL: https://${{ github.event.inputs.preview || 'dolthub' }}.awsdev.ld-corp.com
           CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
