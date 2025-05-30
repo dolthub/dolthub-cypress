@@ -136,7 +136,6 @@ export function newDevice(
 
 // Should args
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function newShouldArgs(chainer: string, value?: any): ShouldArgs {
   return { chainer, value };
 }

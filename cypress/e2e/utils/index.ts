@@ -87,7 +87,7 @@ export function runTestsForDevices({
   beforeEach(() => {
     if (forGatsby) {
       cy.handleGoogle();
-      cy.visit(currentPage).waitForRouteChange();
+      cy.visitAndWait(currentPage);
     } else {
       // Visit page and log in if needed
       cy.visitPage(currentPage, loggedIn);
