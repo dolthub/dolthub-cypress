@@ -13,7 +13,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", [
         "Dolt is the Database",
         "Add version control to any application",
-        "Dolt is Git for data",
+        "Dolt is Git for Data",
         "Diff, branch, and merge",
         "You already know how to use it",
         "Deploy as a replica or primary",
