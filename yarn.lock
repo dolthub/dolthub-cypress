@@ -2172,9 +2172,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/request@npm:^3.0.8":
-  version: 3.0.8
-  resolution: "@cypress/request@npm:3.0.8"
+"@cypress/request@npm:^3.0.9":
+  version: 3.0.9
+  resolution: "@cypress/request@npm:3.0.9"
   dependencies:
     aws-sign2: "npm:~0.7.0"
     aws4: "npm:^1.8.0"
@@ -2182,7 +2182,7 @@ __metadata:
     combined-stream: "npm:~1.0.6"
     extend: "npm:~3.0.2"
     forever-agent: "npm:~0.6.1"
-    form-data: "npm:~4.0.0"
+    form-data: "npm:~4.0.4"
     http-signature: "npm:~1.4.0"
     is-typedarray: "npm:~1.0.0"
     isstream: "npm:~0.1.2"
@@ -2194,7 +2194,7 @@ __metadata:
     tough-cookie: "npm:^5.0.0"
     tunnel-agent: "npm:^0.6.0"
     uuid: "npm:^8.3.2"
-  checksum: f4ee26acfed457ea017192028ff08d533052c8bae7639d8701831e691e6cd0d7d44284902feb49aa62a90c8014cf66dc2c3efc1712ad7b76e47e06f335c69981
+  checksum: 735bd15b9bfb2ac950f4ca715c4ea944c3686fab5f48649c6f6ce62e5d2186df51a96c22fb6e4839dc5d16033ceeece03ca9fa621c9232fb96ad567846a4158c
   languageName: node
   linkType: hard
 
@@ -4422,11 +4422,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^14.5.1":
-  version: 14.5.1
-  resolution: "cypress@npm:14.5.1"
+"cypress@npm:^14.5.3":
+  version: 14.5.3
+  resolution: "cypress@npm:14.5.3"
   dependencies:
-    "@cypress/request": "npm:^3.0.8"
+    "@cypress/request": "npm:^3.0.9"
     "@cypress/xvfb": "npm:^1.2.4"
     "@types/sinonjs__fake-timers": "npm:8.1.1"
     "@types/sizzle": "npm:^2.3.2"
@@ -4472,7 +4472,7 @@ __metadata:
     yauzl: "npm:^2.10.0"
   bin:
     cypress: bin/cypress
-  checksum: 5318b5e5b7b0e0326fd1b904048fbe54db5baca6cce59f336f0a3413925584dd2bf1620f874ff267ad87952bfe1811dc7ecda708f4f4f18a1550ec5920a6a34d
+  checksum: 24896ae650d2ed783d657c4582d1b03f548750cad409af8977a6b3ce45304be35bd344089b13592d7af8a98a39c031c30b4cf085e97587a10b168eddb8c33b6e
   languageName: node
   linkType: hard
 
@@ -4674,7 +4674,7 @@ __metadata:
     "@types/node": "npm:^24.1.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.35.1"
     "@typescript-eslint/parser": "npm:^8.38.0"
-    cypress: "npm:^14.5.1"
+    cypress: "npm:^14.5.3"
     cypress-file-upload: "npm:^5.0.8"
     eslint: "npm:^9.30.0"
     eslint-config-airbnb-base: "npm:^15.0.0"
@@ -5621,7 +5621,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^4.0.0, form-data@npm:~4.0.0":
+"form-data@npm:^4.0.0":
   version: 4.0.0
   resolution: "form-data@npm:4.0.0"
   dependencies:
@@ -5629,6 +5629,19 @@ __metadata:
     combined-stream: "npm:^1.0.8"
     mime-types: "npm:^2.1.12"
   checksum: 7264aa760a8cf09482816d8300f1b6e2423de1b02bba612a136857413fdc96d7178298ced106817655facc6b89036c6e12ae31c9eb5bdc16aabf502ae8a5d805
+  languageName: node
+  linkType: hard
+
+"form-data@npm:~4.0.4":
+  version: 4.0.4
+  resolution: "form-data@npm:4.0.4"
+  dependencies:
+    asynckit: "npm:^0.4.0"
+    combined-stream: "npm:^1.0.8"
+    es-set-tostringtag: "npm:^2.1.0"
+    hasown: "npm:^2.0.2"
+    mime-types: "npm:^2.1.12"
+  checksum: a4b62e21932f48702bc468cc26fb276d186e6b07b557e3dd7cc455872bdbb82db7db066844a64ad3cf40eaf3a753c830538183570462d3649fdfd705601cbcfb
   languageName: node
   linkType: hard
 
