@@ -54,7 +54,7 @@
     "@aws-sdk/client-sns": "^3.858.0",
     "cypress": "^14.5.3",
     "cypress-file-upload": "^5.0.8",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "resolutions": {
     "minimist": "^1.2.6",
