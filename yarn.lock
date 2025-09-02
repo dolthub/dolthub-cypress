@@ -4379,9 +4379,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^14.5.3":
-  version: 14.5.3
-  resolution: "cypress@npm:14.5.3"
+"cypress@npm:^15.0.0":
+  version: 15.0.0
+  resolution: "cypress@npm:15.0.0"
   dependencies:
     "@cypress/request": "npm:^3.0.9"
     "@cypress/xvfb": "npm:^1.2.4"
@@ -4423,13 +4423,13 @@ __metadata:
     request-progress: "npm:^3.0.0"
     semver: "npm:^7.7.1"
     supports-color: "npm:^8.1.1"
-    tmp: "npm:~0.2.3"
+    tmp: "npm:~0.2.4"
     tree-kill: "npm:1.2.2"
     untildify: "npm:^4.0.0"
     yauzl: "npm:^2.10.0"
   bin:
     cypress: bin/cypress
-  checksum: 24896ae650d2ed783d657c4582d1b03f548750cad409af8977a6b3ce45304be35bd344089b13592d7af8a98a39c031c30b4cf085e97587a10b168eddb8c33b6e
+  checksum: 3c21b3674433eed80352286a204d635779538bf6b57c446300513d1ecb07dca771d4d6723953915d3a474c487a3d6cad31af3aa524abdaf565745cfd21606454
   languageName: node
   linkType: hard
 
@@ -4643,7 +4643,7 @@ __metadata:
     "@types/node": "npm:^24.1.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.35.1"
     "@typescript-eslint/parser": "npm:^8.38.0"
-    cypress: "npm:^14.5.3"
+    cypress: "npm:^15.0.0"
     cypress-file-upload: "npm:^5.0.8"
     eslint: "npm:^9.32.0"
     eslint-config-airbnb-base: "npm:^15.0.0"
@@ -8767,10 +8767,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tmp@npm:~0.2.3":
-  version: 0.2.4
-  resolution: "tmp@npm:0.2.4"
-  checksum: 6fa6c4e6749824e51cb45f0b050090f0fec6b037cfd327d328ebaf3eae80b7e1a53c6651f9bc36f1fa80cf367ec9dc05067fc1a14034fcfbba96d3a2aaa5c732
+"tmp@npm:~0.2.4":
+  version: 0.2.5
+  resolution: "tmp@npm:0.2.5"
+  checksum: dd4b78b32385eab4899d3ae296007b34482b035b6d73e1201c4a9aede40860e90997a1452c65a2d21aee73d53e93cd167d741c3db4015d90e63b6d568a93d7ec
   languageName: node
   linkType: hard
 
