@@ -11,15 +11,28 @@ const currentPage = "/compare";
 
 const pricingTests = [
   "dolt-pricing",
+  "doltgres-pricing",
   "hosted-dolt-pricing",
   "dolthub-pricing",
   "doltlab-pricing",
 ];
 
 describe(`${pageName} renders expected components on different devices`, () => {
-  const desktopAndIpadTests = [
+  const desktopTests = [
     shouldBeVisible("desktop-table-container"),
     ...pricingTests.map(datacy => shouldBeVisible(datacy)),
+  ];
+
+  const ipadTests = [
+    shouldBeVisible("desktop-table-container"),
+    ...pricingTests.map(datacy =>
+      newExpectationWithScrollIntoView(
+        `should find and scroll to ${datacy} section`,
+        `[data-cy=${datacy}]`,
+        beVisible,
+        true,
+      ),
+    ),
   ];
 
   const mobileTests = [
@@ -36,8 +49,8 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const devices = allDevicesDiffTestsForSignedOut(
     pageName,
-    desktopAndIpadTests,
-    desktopAndIpadTests,
+    desktopTests,
+    ipadTests,
     mobileTests,
   );
 

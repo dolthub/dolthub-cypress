@@ -30,6 +30,19 @@ const pricingTests = [
     ],
   },
   {
+    name: "doltgres",
+    shouldFind: [
+      {
+        datacy: "doltgres-header",
+        text: "DOLT FOR POSTGRES",
+      },
+      {
+        datacy: "download-doltgres-button",
+        text: "Download for free",
+      },
+    ],
+  },
+  {
     name: "hosted-dolt",
     shouldFind: [
       {
