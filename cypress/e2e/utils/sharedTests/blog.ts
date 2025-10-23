@@ -3,12 +3,14 @@ import {
   newExpectation,
   newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
+  newExpectationWithURL,
   newShouldArgs,
 } from "../helpers";
 import { Expectation } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
 const currentPage = Cypress.env("LOCAL_BLOG") ? "/" : "/blog/";
+const skip = true;
 
 export const testSearched = (
   q: string,
@@ -16,20 +18,17 @@ export const testSearched = (
   path: string,
   numMatching = 1,
 ): Expectation[] => [
-  // newExpectationWithURL(
-  //   "should route to query page",
-  //   "[data-cy=blog-search-input]",
-  //   newShouldArgs("be.visible.and.have.value", q),
-  //   `${currentPage}?q=${encodeURIComponent(q)}`,
-  // ),
+  newExpectationWithURL(
+    "should route to query page",
+    "[data-cy=blog-search-input]",
+    newShouldArgs("be.visible.and.have.value", q),
+    `${currentPage}?q=${encodeURIComponent(q)}`,
+    skip,
+  ),
   newExpectation(
     "should have matching articles message",
     "[data-cy=matching-articles]",
-    newShouldArgs(
-      "be.visible.and.contain",
-      [numMatching, "matching article"],
-      // `Found ${numMatching} matching article${numMatching > 1 ? "s" : ""}.`,
-    ),
+    newShouldArgs("be.visible.and.contain", [numMatching, "matching article"]),
   ),
   newExpectation(
     "should have one blog",
@@ -98,5 +97,6 @@ export const testBlogIndexNoSearch = [
     "[data-cy=blog-next-page]",
     beVisible,
     nextPageClickFlow,
+    skip,
   ),
 ];

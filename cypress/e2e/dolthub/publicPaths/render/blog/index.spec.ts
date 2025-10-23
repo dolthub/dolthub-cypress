@@ -103,8 +103,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // const devices = desktopDevicesForSignedOut(pageName, desktopTests);
-  // TODO: Fix mobile/navbar tests
   const devices = allDevicesForSignedOut(
     pageName,
     desktopTests,
