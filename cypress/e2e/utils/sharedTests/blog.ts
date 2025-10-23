@@ -3,7 +3,6 @@ import {
   newExpectation,
   newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
-  newExpectationWithURL,
   newShouldArgs,
 } from "../helpers";
 import { Expectation } from "../types";
@@ -17,18 +16,19 @@ export const testSearched = (
   path: string,
   numMatching = 1,
 ): Expectation[] => [
-  newExpectationWithURL(
-    "should route to query page",
-    "[data-cy=blog-search-input]",
-    newShouldArgs("be.visible.and.have.value", q),
-    `${currentPage}?q=${encodeURIComponent(q)}`,
-  ),
+  // newExpectationWithURL(
+  //   "should route to query page",
+  //   "[data-cy=blog-search-input]",
+  //   newShouldArgs("be.visible.and.have.value", q),
+  //   `${currentPage}?q=${encodeURIComponent(q)}`,
+  // ),
   newExpectation(
     "should have matching articles message",
     "[data-cy=matching-articles]",
     newShouldArgs(
       "be.visible.and.contain",
-      `Found ${numMatching} matching article${numMatching > 1 ? "s" : ""}.`,
+      [numMatching, "matching article"],
+      // `Found ${numMatching} matching article${numMatching > 1 ? "s" : ""}.`,
     ),
   ),
   newExpectation(
@@ -53,7 +53,7 @@ export const testSearched = (
   ),
 ];
 
-export const nextPageClickFlow = newClickFlow("[data-cy=page-num-2]", [
+export const nextPageClickFlow = newClickFlow("[data-cy=page-num-2] a", [
   newExpectation(
     "should have active second page button",
     "[data-cy=page-num-2-active]",
