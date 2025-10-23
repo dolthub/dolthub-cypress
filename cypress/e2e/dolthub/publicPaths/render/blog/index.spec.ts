@@ -1,5 +1,5 @@
 import { testBlogIndexNoSearch, testSearched } from "@sharedTests/blog";
-import { desktopDevicesForSignedOut } from "@utils/devices";
+import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
   newExpectation,
@@ -61,9 +61,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     ...testSearched(
       query1,
-      "Getting Started with Doltgres and Knex.js",
-      "2025-04-21-doltgres-and-knexjs/",
-      3,
+      "Getting Started with Dolt and Knex.js",
+      "2023-09-27-dolt-and-knexjs",
+      1,
     ),
     newExpectationWithTypeString(
       "should change input",
@@ -74,7 +74,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testSearched(
       query2,
       "Maintained Wikipedia ngrams dataset in Dolt",
-      "2019-12-04-maintained-wikipedia-ngrams-dataset/",
+      "2019-12-04-maintained-wikipedia-ngrams-dataset",
     ),
     newExpectationWithClickFlow(
       "should have searched and cleared",
@@ -94,18 +94,21 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  // const mobileTests = [
-  //   ...tests,
-  //   newExpectation(
-  //     "should have footer of first blog excerpt",
-  //     "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
-  //     beVisible,
-  //   ),
-  // ];
+  const mobileTests = [
+    ...tests,
+    newExpectation(
+      "should have footer of first blog excerpt",
+      "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
+      beVisible,
+    ),
+  ];
 
-  const devices = desktopDevicesForSignedOut(pageName, desktopTests);
-  // TODO: Fix mobile/navbar tests
-  // const mobileDevices = mobileDevicesForSignedOut(pageName, mobileTests, true);
+  const devices = allDevicesForSignedOut(
+    pageName,
+    desktopTests,
+    mobileTests,
+    true,
+  );
   runTestsForDevices({
     currentPage,
     devices,

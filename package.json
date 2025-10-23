@@ -20,6 +20,7 @@
     "cy-run-dev-p3": "cypress run --config baseUrl=https://dolthub-preview-3.awsdev.ld-corp.com",
     "cy-open-local-dolthub": "CYPRESS_LOCAL_DOLTHUB=true cypress open --config baseUrl=http://localhost:3000,numTestsKeptInMemory=0,chromeWebSecurity=false",
     "cy-open-local-blog": "CYPRESS_LOCAL_BLOG=true cypress open --config baseUrl=http://localhost:8000",
+    "cy-open-local-astro": "CYPRESS_LOCAL_BLOG=true cypress open --config baseUrl=http://localhost:4321",
     "cy-run-local-dolthub": "CYPRESS_LOCAL_DOLTHUB=true cypress run --config baseUrl=http://localhost:3000,numTestsKeptInMemory=0,chromeWebSecurity=false",
     "cy-run-local-blog": "CYPRESS_LOCAL_BLOG=true cypress run --config baseUrl=http://localhost:8000",
     "cy-chrome-blog": "CYPRESS_LOCAL_BLOG=true cypress run --browser chrome --config baseUrl=http://localhost:8000",
