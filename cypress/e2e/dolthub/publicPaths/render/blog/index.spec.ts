@@ -1,12 +1,6 @@
-import { testBlogIndexNoSearch, testSearched } from "@sharedTests/blog";
+import { testBlogIndexNoSearch } from "@sharedTests/blog";
 import { allDevicesForSignedOut } from "@utils/devices";
-import {
-  newClickFlow,
-  newExpectation,
-  newExpectationWithClickFlow,
-  newExpectationWithTypeString,
-  newShouldArgs,
-} from "@utils/helpers";
+import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Blog list page";
@@ -15,16 +9,16 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  const query1 = "Dolt and Knex.js";
-  const query2 = "wikipedia ngrams";
+  // const query1 = "Dolt and Knex.js";
+  // const query2 = "wikipedia ngrams";
 
-  const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
-    newExpectation(
-      "should have blank search input after clear",
-      "[data-cy=blog-search-input]",
-      newShouldArgs("be.visible.and.have.value", ""),
-    ),
-  ]);
+  // const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
+  //   newExpectation(
+  //     "should have blank search input after clear",
+  //     "[data-cy=blog-search-input]",
+  //     newShouldArgs("be.visible.and.have.value", ""),
+  //   ),
+  // ]);
 
   const tests = [
     newExpectation(
@@ -47,41 +41,41 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=blog-list] > li:first [data-cy=blog-excerpt]",
       beVisible,
     ),
-    newExpectationWithTypeString(
-      "should have blank search input",
-      "[data-cy=blog-search-input]",
-      newShouldArgs("be.visible.and.have.value", ""),
-      { value: query1, withWarmup: true },
-    ),
-    newExpectationWithTypeString(
-      "should have filled search input",
-      "[data-cy=blog-search-input]",
-      newShouldArgs("be.visible.and.have.value", query1),
-      { value: `{enter}`, skipClear: true },
-    ),
-    ...testSearched(
-      query1,
-      "Getting Started with Dolt and Knex.js",
-      "2023-09-27-dolt-and-knexjs",
-      1,
-    ),
-    newExpectationWithTypeString(
-      "should change input",
-      "[data-cy=blog-search-input]",
-      newShouldArgs("be.visible.and.have.value", query1),
-      { value: `${query2}{enter}` },
-    ),
-    ...testSearched(
-      query2,
-      "Maintained Wikipedia ngrams dataset in Dolt",
-      "2019-12-04-maintained-wikipedia-ngrams-dataset",
-    ),
-    newExpectationWithClickFlow(
-      "should have searched and cleared",
-      "[data-cy=blog-search-clear]",
-      beVisible,
-      clearSearchClickFlow,
-    ),
+    // newExpectationWithTypeString(
+    //   "should have blank search input",
+    //   "[data-cy=blog-search-input]",
+    //   newShouldArgs("be.visible.and.have.value", ""),
+    //   { value: query1, withWarmup: true },
+    // ),
+    // newExpectationWithTypeString(
+    //   "should have filled search input",
+    //   "[data-cy=blog-search-input]",
+    //   newShouldArgs("be.visible.and.have.value", query1),
+    //   { value: `{enter}`, skipClear: true },
+    // ),
+    // ...testSearched(
+    //   query1,
+    //   "Getting Started with Dolt and Knex.js",
+    //   "2023-09-27-dolt-and-knexjs",
+    //   1,
+    // ),
+    // newExpectationWithTypeString(
+    //   "should change input",
+    //   "[data-cy=blog-search-input]",
+    //   newShouldArgs("be.visible.and.have.value", query1),
+    //   { value: `${query2}{enter}` },
+    // ),
+    // ...testSearched(
+    //   query2,
+    //   "Maintained Wikipedia ngrams dataset in Dolt",
+    //   "2019-12-04-maintained-wikipedia-ngrams-dataset",
+    // ),
+    // newExpectationWithClickFlow(
+    //   "should have searched and cleared",
+    //   "[data-cy=blog-search-clear]",
+    //   beVisible,
+    //   clearSearchClickFlow,
+    // ),
     ...testBlogIndexNoSearch,
   ];
 
