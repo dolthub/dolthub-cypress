@@ -2,8 +2,8 @@ import { allDevicesForSignedOut } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
-const pageName = "Homepage";
-const currentPage = "/";
+const pageName = "Agent Landing Page";
+const currentPage = "/use-cases/agents";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
@@ -12,11 +12,10 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "#main-content",
       newShouldArgs("be.visible.and.contain", [
         "Dolt is the Database",
+        "Build for the Agent Era",
+        "Never Trust an Agent",
+        "Dolt has a Built-In",
         "Agents for Everything that isn't Code",
-        "Dolt is Git for Data",
-        "Diff, Branch, and Merge",
-        "You Already Know How to Use It",
-        "The Dolt Ecosystem",
       ]),
     ),
   ];
