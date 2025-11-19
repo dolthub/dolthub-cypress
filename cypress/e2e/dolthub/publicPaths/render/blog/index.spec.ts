@@ -1,6 +1,10 @@
 import { testBlogIndexNoSearch } from "@sharedTests/blog";
 import { allDevicesForSignedOut } from "@utils/devices";
-import { newExpectation, newShouldArgs } from "@utils/helpers";
+import {
+  newExpectation,
+  newExpectationWithTypeString,
+  newShouldArgs,
+} from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Blog list page";
@@ -9,7 +13,7 @@ const skip = !!Cypress.env("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
-  // const query1 = "Dolt and Knex.js";
+  const query1 = "Dolt and Knex.js";
   // const query2 = "wikipedia ngrams";
 
   // const clearSearchClickFlow = newClickFlow("[data-cy=blog-search-clear]", [
@@ -41,12 +45,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=blog-list] > li:first [data-cy=blog-excerpt]",
       beVisible,
     ),
-    // newExpectationWithTypeString(
-    //   "should have blank search input",
-    //   "[data-cy=blog-search-input]",
-    //   newShouldArgs("be.visible.and.have.value", ""),
-    //   { value: query1, withWarmup: true },
-    // ),
+    newExpectationWithTypeString(
+      "should have blank search input",
+      "[data-cy=blog-search-input]",
+      newShouldArgs("be.visible.and.have.value", ""),
+      { value: query1, withWarmup: false },
+    ),
     // newExpectationWithTypeString(
     //   "should have filled search input",
     //   "[data-cy=blog-search-input]",
