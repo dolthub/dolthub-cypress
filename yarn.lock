@@ -4507,9 +4507,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^15.5.0":
-  version: 15.5.0
-  resolution: "cypress@npm:15.5.0"
+"cypress@npm:^15.7.0":
+  version: 15.7.0
+  resolution: "cypress@npm:15.7.0"
   dependencies:
     "@cypress/request": "npm:^3.0.9"
     "@cypress/xvfb": "npm:^1.2.4"
@@ -4547,7 +4547,6 @@ __metadata:
     process: "npm:^0.11.10"
     proxy-from-env: "npm:1.0.0"
     request-progress: "npm:^3.0.0"
-    semver: "npm:^7.7.1"
     supports-color: "npm:^8.1.1"
     systeminformation: "npm:5.27.7"
     tmp: "npm:~0.2.4"
@@ -4556,7 +4555,7 @@ __metadata:
     yauzl: "npm:^2.10.0"
   bin:
     cypress: bin/cypress
-  checksum: fdfe965d36734cb301ee5573261a5a7766c7176f4d3eb0ecd24532c00aeff8983347d855bc7f3afa106558812602d306d70eb765a3181f03fe100ad5f7688bce
+  checksum: 7cf4a8dabcd1a0736c7c9526853d834c6098f5cf850cc10fecfabca7a2e86dd63bdcd914bd16829e1630d540707de4bfc513cccf0e0ee84fe00ee2f3b786534c
   languageName: node
   linkType: hard
 
@@ -4770,7 +4769,7 @@ __metadata:
     "@types/node": "npm:^24.10.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.46.3"
     "@typescript-eslint/parser": "npm:^8.48.0"
-    cypress: "npm:^15.5.0"
+    cypress: "npm:^15.7.0"
     cypress-file-upload: "npm:^5.0.8"
     eslint: "npm:^9.39.1"
     eslint-config-airbnb-base: "npm:^15.0.0"
@@ -8272,15 +8271,6 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 1b41018df2d8aca5a1db4729985e8e20428c650daea60fcd16e926e9383217d00f574fab92d79612771884a98d2ee2a1973f49d630829a8d54d6570defe62535
-  languageName: node
-  linkType: hard
-
-"semver@npm:^7.7.1":
-  version: 7.7.1
-  resolution: "semver@npm:7.7.1"
-  bin:
-    semver: bin/semver.js
-  checksum: 4cfa1eb91ef3751e20fc52e47a935a0118d56d6f15a837ab814da0c150778ba2ca4f1a4d9068b33070ea4273629e615066664c2cfcd7c272caf7a8a0f6518b2c
   languageName: node
   linkType: hard
 
