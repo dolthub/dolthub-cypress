@@ -20,14 +20,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=issue-404-page]",
       notExist,
     ),
-    ...testRepoHeaderForAll(
-      currentRepo,
-      currentOwner,
-      false,
-      true,
-      false,
-      "issues",
-    ),
+    ...testRepoHeaderForAll(currentRepo, currentOwner, false, true, "issues"),
     newExpectation(
       "should not show edit description button for logged out user",
       "[data-cy=issue-page-edit-description-button]",

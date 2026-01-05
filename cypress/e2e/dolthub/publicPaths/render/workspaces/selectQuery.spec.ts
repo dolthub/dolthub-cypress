@@ -24,13 +24,7 @@ const hasDocs = true;
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     shouldBeVisible("repository-layout-container"),
-    ...testRepoHeaderWithBranch(
-      currentRepo,
-      currentOwner,
-      loggedIn,
-      hasDocs,
-      true,
-    ),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     shouldNotExist("workspaces-run-msg"),
     shouldFindAndContain("workspace-title", "Temporary Workspace"),
     shouldBeVisible("workspace-link"),

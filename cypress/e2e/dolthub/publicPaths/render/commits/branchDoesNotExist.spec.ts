@@ -18,7 +18,6 @@ describe(`${pageName} with no branch renders expected components on different de
       currentOwner,
       false,
       false,
-      false,
       "commit-log",
     ),
     newExpectation(

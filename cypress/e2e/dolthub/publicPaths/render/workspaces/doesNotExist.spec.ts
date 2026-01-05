@@ -18,7 +18,7 @@ const loggedIn = false;
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     shouldBeVisible("repository-layout-container"),
-    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true, true),
+    ...testRepoHeaderWithBranch(currentRepo, currentOwner, false, true),
     shouldNotExist("workspaces-run-msg"),
     shouldNotExist("workspace-title"),
     shouldNotExist("create-pull"),

@@ -26,22 +26,15 @@ export const testOldFormatPopup = newExpectationWithClickFlow(
 
 // HEADER
 
-const cloneClickFlow = (cloneDisabled = false) =>
-  newClickFlow(
-    "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
+const cloneClickFlow = newClickFlow(
+  "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
+  [
+    shouldNotExist("clone-disabled"),
+    shouldBeVisibleAndHaveLength("repo-clone-code-block", 2),
+  ],
 
-    cloneDisabled
-      ? [
-          shouldBeVisible("clone-disabled"),
-          shouldNotExist("repo-clone-code-block"),
-        ]
-      : [
-          shouldNotExist("clone-disabled"),
-          shouldBeVisibleAndHaveLength("repo-clone-code-block", 2),
-        ],
-
-    "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
-  );
+  "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
+);
 
 export const forkButtonClickFlow = (loggedIn: boolean) =>
   newClickFlow(
@@ -176,7 +169,6 @@ export const testRepoHeaderForAll = (
   ownerName: string,
   loggedIn: boolean,
   hasDocs: boolean,
-  cloneDisabled = false,
   activeTab = "database",
 ): Tests => {
   const loggedOutRepoHeaderTests = [
@@ -185,7 +177,7 @@ export const testRepoHeaderForAll = (
       "should have repo clone button",
       " [data-cy=repo-clone-button]",
       beVisible,
-      cloneClickFlow(cloneDisabled),
+      cloneClickFlow,
     ),
     ...testTabs(beVisible, activeTab),
     newExpectationWithClickFlow(
@@ -228,17 +220,9 @@ export const testRepoHeaderWithBranch = (
   ownerName: string,
   loggedIn: boolean,
   hasDocs: boolean,
-  cloneDisabled = false,
   activeTab = "database",
 ): Tests => [
-  ...testRepoHeaderForAll(
-    repoName,
-    ownerName,
-    loggedIn,
-    hasDocs,
-    cloneDisabled,
-    activeTab,
-  ),
+  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs, activeTab),
   newExpectationWithClickFlow(
     "should open create fork modal on fork button click",
     "[data-cy=repository-page-header] [data-cy=repo-fork-button]",

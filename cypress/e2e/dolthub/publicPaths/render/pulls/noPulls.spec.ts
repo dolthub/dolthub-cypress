@@ -17,7 +17,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       false,
       false,
-      false,
       "pull-requests",
     ),
     // newExpectation(
