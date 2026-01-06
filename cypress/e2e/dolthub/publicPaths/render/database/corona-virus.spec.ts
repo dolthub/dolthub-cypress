@@ -65,7 +65,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       loggedIn,
       hasDocs,
-      false,
       "about",
     ),
     ...tableExpectations(hasDocs, loggedIn, 11, "case_details"),

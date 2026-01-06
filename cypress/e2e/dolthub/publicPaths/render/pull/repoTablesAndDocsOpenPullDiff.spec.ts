@@ -11,7 +11,7 @@ import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables"
 const pageName = "Open pull diff page";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
-const currentPullId = "1";
+const currentPullId = "2";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/pulls/${currentPullId}/compare`;
 
 describe(`${pageName} renders expected components on different devices`, () => {

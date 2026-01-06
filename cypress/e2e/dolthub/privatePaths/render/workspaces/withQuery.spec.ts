@@ -1,7 +1,4 @@
-import {
-  testOldFormatPopup,
-  testRepoHeaderWithBranch,
-} from "@sharedTests/repoHeaderNav";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
 import { testSqlConsole } from "@sharedTests/sqlEditor";
 import { macbook15ForAppLayout } from "@utils/devices";
 import {
@@ -24,7 +21,7 @@ const pageName = "Workspaces page with query logged out";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const workspace = isProd
-  ? "4ef937bb-d5ee-4a75-93b0-424396f76a71"
+  ? "c87e3ac6-03f2-4802-a150-f3d40cc3c706"
   : "348d4226-fa12-4c6f-a624-7a597e1af128";
 const query = "insert into test_table (pk, a, b, c) values (2, 3, 4, 5);";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}?q=${query}`;
@@ -39,7 +36,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
-    testOldFormatPopup,
     shouldBeVisible("repository-layout-container"),
     ...testRepoHeaderWithBranch(currentRepo, currentOwner, loggedIn, hasDocs),
     shouldBeVisible("workspaces-run-msg"),
