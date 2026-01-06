@@ -1,7 +1,4 @@
-import {
-  testOldFormatPopup,
-  testRepoHeaderWithBranch,
-} from "@sharedTests/repoHeaderNav";
+import { testRepoHeaderWithBranch } from "@sharedTests/repoHeaderNav";
 import {
   tableExpectations,
   testQueryCatalogSection,
@@ -26,7 +23,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const notExist = newShouldArgs("not.exist");
 
   const tests = [
-    testOldFormatPopup,
     newExpectation(
       "should not find empty database",
       "[data-cy=repo-data-table-empty]",
@@ -47,7 +43,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       loggedIn,
       true,
-      false,
       "about",
     ),
     ...tableExpectations(hasDocs, loggedIn, 1, "test_table"),

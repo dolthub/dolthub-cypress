@@ -28,7 +28,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       currentOwner,
       canWrite,
       hasDocs,
-      false,
       "about",
     ),
     ...tableExpectations(

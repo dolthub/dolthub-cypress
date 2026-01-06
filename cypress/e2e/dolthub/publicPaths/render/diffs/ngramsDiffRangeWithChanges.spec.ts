@@ -6,8 +6,8 @@ import { runTestsForDevices } from "@utils/index";
 const pageName = "Diff page with changes";
 const currentOwner = "automated_testing";
 const currentRepo = "wikipedia-ngrams";
-const currentFromCommit = "jbkpie6f9bujj2l9if3panmmhunu8cgp";
-const currentToCommit = "q2l59dla1vak1fp0gp2me451bq9sli2k";
+const currentFromCommit = "6bc1b8fu1a4rt05a0q51fa95jgni3a2c";
+const currentToCommit = "8oms248ui0j9k1tdiohgp3bn1bs3eshs";
 const branch = "master";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/compare/${branch}/${currentFromCommit}..${currentToCommit}`;
 

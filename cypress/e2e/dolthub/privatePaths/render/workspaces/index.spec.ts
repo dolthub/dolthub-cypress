@@ -7,7 +7,6 @@ import {
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import { testCreatePullModal } from "@utils/sharedTests/createPullModalInWorkspaces";
-import { testOldFormatPopup } from "@utils/sharedTests/repoHeaderNav";
 import {
   shouldBeVisible,
   shouldFindAndContain,
@@ -20,7 +19,7 @@ const pageName = "Workspaces page logged in";
 const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const workspace = isProd
-  ? "4ef937bb-d5ee-4a75-93b0-424396f76a71"
+  ? "c87e3ac6-03f2-4802-a150-f3d40cc3c706"
   : "348d4226-fa12-4c6f-a624-7a597e1af128";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}`;
 const loggedIn = true;
@@ -39,7 +38,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
-    testOldFormatPopup,
     shouldNotExist("workspaces-run-msg"),
     shouldFindAndContain("workspace-title", "Temporary Workspace"),
     shouldBeVisible("workspace-link"),
