@@ -29,10 +29,8 @@ const desktopNotExist = [
   "org-profile-settings-tab",
   "org-profile-billing-tab",
   "org-profile-payment-history-tab",
-  "profile-card-url",
   "profile-card-location",
   "add-location-link",
-  "add-website-link",
 ];
 
 describe(`${pageName} renders expected components on different devices`, () => {

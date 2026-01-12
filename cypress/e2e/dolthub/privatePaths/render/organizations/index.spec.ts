@@ -17,7 +17,6 @@ const commonDataCy = ["profile-card", "profile-card-pic", "profile-card-bio"];
 const desktopDataCy = [
   "org-profile-databases-tab",
   "profile-summary",
-  "profile-card-url",
   "add-location-link",
   "create-database-button",
   "org-profile-people-tab",

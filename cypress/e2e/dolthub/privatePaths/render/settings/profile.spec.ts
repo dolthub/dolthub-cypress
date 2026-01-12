@@ -79,11 +79,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
     ),
     newExpectation(
-      "should have an input for user's website",
-      "[data-cy=website-input]",
-      beVisible,
-    ),
-    newExpectation(
       "should have an input for user's location",
       "[data-cy=location-input]",
       beVisible,
