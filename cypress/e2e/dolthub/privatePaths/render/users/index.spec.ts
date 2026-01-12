@@ -16,7 +16,6 @@ const commonDataCy = ["profile-card", "profile-card-pic", "profile-card-bio"];
 const desktopDataCy = [
   "user-profile-overview-tab",
   "profile-summary",
-  "add-website-link",
   "add-location-link",
   "user-profile-organizations-tab",
 ];

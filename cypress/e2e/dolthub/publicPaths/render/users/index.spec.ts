@@ -18,7 +18,6 @@ const desktopDataCy = ["user-profile-overview-tab"];
 const desktopNotExist = [
   "profile-summary",
   "profile-card-bio",
-  "add-website-link",
   "add-location-link",
   "user-profile-organizations-tab",
 ];

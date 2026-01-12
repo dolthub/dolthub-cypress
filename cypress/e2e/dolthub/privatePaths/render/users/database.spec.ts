@@ -21,7 +21,6 @@ const commonDataCy = [
 const desktopDataCy = [
   "user-profile-databases-tab",
   "profile-summary",
-  "add-website-link",
   "add-location-link",
   "create-database-button",
   "user-profile-organizations-tab",

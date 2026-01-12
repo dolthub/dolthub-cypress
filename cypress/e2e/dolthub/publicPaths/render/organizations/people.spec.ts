@@ -27,7 +27,6 @@ const commonNotExist = [
 
 const desktopDataCy = [
   "profile-summary",
-  "profile-card-url",
   "profile-card-location",
   "org-profile-databases-tab",
 ];
@@ -38,7 +37,6 @@ const desktopNotExist = [
   "org-profile-billing-tab",
   "org-profile-payment-history-tab",
   "add-location-link",
-  "add-website-link",
 ];
 
 describe(`${pageName} renders expected components on different devices`, () => {
