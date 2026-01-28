@@ -1,4 +1,4 @@
-name: Tests (DoltHub/DoltLab Prod)
+name: Tests (DoltHub Prod)
 on:
   workflow_dispatch:
   schedule:
@@ -41,7 +41,6 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Cypress run dolthub tests
-        id: dolthub-tests
         uses: cypress-io/github-action@v6
         with:
           install: false
@@ -53,15 +52,6 @@ jobs:
           AWS_REGION: "us-west-2"
           SNS_TOPIC_ARN: ${{ secrets.SNS_TOPIC_ARN }}
           ALERT_ON_FAILURE: ${{ github.event_name == 'schedule' }}
-      - name: Cypress run doltlab tests
-        uses: cypress-io/github-action@v6
-        if: steps.dolthub-tests.outcome == 'success' || steps.dolthub-tests.outcome == 'failure'
-        with:
-          install: false
-          browser: chrome
-          config-file: cypress.doltlab.config.js
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
       - name: Save screenshots of failed tests
         uses: actions/upload-artifact@v4
         if: failure()
