@@ -2,8 +2,12 @@ name: Update Yarn
 
 on:
   schedule:
-    - cron: '0 10 15 * *' # Runs every 15th of the month
+    - cron: "0 10 15 * *" # Runs every 15th of the month
   workflow_dispatch:
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
 
 jobs:
   open-update-pr:
@@ -15,7 +19,7 @@ jobs:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'   
+          node-version: "20"
       - name: Enable Corepack
         run: corepack enable
 
@@ -23,7 +27,7 @@ jobs:
         id: short-sha
         run: echo "short=$(openssl rand -hex 6)" >> $GITHUB_OUTPUT
 
-      - name: Update yarn 
+      - name: Update yarn
         run: yarn set version stable
       - name: Install yarn
         run: YARN_ENABLE_IMMUTABLE_INSTALLS=false yarn install
@@ -37,7 +41,7 @@ jobs:
           git add .
           git commit -m "Update yarn"
           git push origin "$branchname"
-          
+
       - name: Create pull request
         uses: repo-sync/pull-request@v2
         id: latest-pr
