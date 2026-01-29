@@ -9,15 +9,14 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Enable Corepack
-      run: corepack enable
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-    - name: Install and run CI
-      run: |
-        yarn
-        yarn run ci
-        
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Enable Corepack
+        run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install and run CI
+        run: |
+          yarn
+          yarn run ci
