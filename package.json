@@ -39,7 +39,7 @@
     "@babel/preset-env": "^7.28.5",
     "@babel/preset-typescript": "^7.28.5",
     "@cypress/github-action": "^6.10.8",
-    "@types/node": "^25.0.3",
+    "@types/node": "^25.2.0",
     "@typescript-eslint/eslint-plugin": "^8.52.0",
     "@typescript-eslint/parser": "^8.52.0",
     "eslint": "^9.39.2",
