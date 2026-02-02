@@ -52,7 +52,7 @@
     "prettier": "^3.7.4"
   },
   "dependencies": {
-    "@aws-sdk/client-sns": "^3.962.0",
+    "@aws-sdk/client-sns": "^3.980.0",
     "cypress": "^15.9.0",
     "cypress-file-upload": "^5.0.8",
     "typescript": "^5.9.3"
