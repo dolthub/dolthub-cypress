@@ -22,7 +22,7 @@ const currentOwner = "automated_testing";
 const currentRepo = "repo_tables_and_docs";
 const workspace = isProd
   ? "c87e3ac6-03f2-4802-a150-f3d40cc3c706"
-  : "348d4226-fa12-4c6f-a624-7a597e1af128";
+  : "a1b9f587-752e-441b-befb-59e1241be7eb";
 const query = "insert into test_table (pk, a, b, c) values (2, 3, 4, 5);";
 const currentPage = `repositories/${currentOwner}/${currentRepo}/workspaces/${workspace}?q=${query}`;
 const loggedIn = true;
