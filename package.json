@@ -38,7 +38,7 @@
     "@babel/core": "^7.29.0",
     "@babel/preset-env": "^7.29.0",
     "@babel/preset-typescript": "^7.28.5",
-    "@cypress/github-action": "^7.1.5",
+    "@cypress/github-action": "^7.1.6",
     "@types/node": "^25.3.3",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
@@ -58,7 +58,8 @@
     "typescript": "^5.9.3"
   },
   "resolutions": {
-    "glob@^10": "10.5.0",
-    "tar": "7.5.7"
+    "fast-xml-parser@npm:5.2.5": "5.5.6",
+    "tar": "7.5.11",
+    "undici@npm:^6.23.0": "6.24.0"
   }
 }
