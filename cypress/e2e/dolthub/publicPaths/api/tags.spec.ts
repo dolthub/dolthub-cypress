@@ -1,3 +1,5 @@
+export {};
+
 const apiVersion = "v1alpha1";
 const repoOwner = "automated_testing";
 const repoName = "repo_with_tags_and_branches";
