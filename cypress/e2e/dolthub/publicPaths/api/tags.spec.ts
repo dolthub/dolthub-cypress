@@ -27,7 +27,11 @@ describe(`GET /${repoOwner}/${repoName}/tags returns tags`, () => {
     cy.request({ url: earl })
       .its("body.tags")
       .then(tags => {
-        expect(tags[0]).to.include.keys(["tag_name", "tag_description", "tagged_at"]);
+        expect(tags[0]).to.include.keys([
+          "tag_name",
+          "tag_description",
+          "tagged_at",
+        ]);
       });
   });
 });
