@@ -244,7 +244,7 @@ describe(`API returns query results for '${selectQuery}' from ${defaultBranch} w
 });
 
 describe(`API returns query error for invalid query '${badQuery}'`, () => {
-  const earl = `/api/${apiVersion}/${repoOwner}/${repoName}?q=${encodeURI(
+  const earl = `/api/${apiVersion}/${repoOwner}/${repoName}?q=${encodeURIComponent(
     badQuery,
   )}`;
   it("gets a success response from the API", () => {
