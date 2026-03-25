@@ -1,17 +1,6 @@
 name: Tests Blog (Dev)
 on:
   workflow_dispatch:
-    inputs:
-      preview:
-        description: "Choose a dev or dev preview"
-        required: true
-        default: "dolthub"
-        type: choice
-        options:
-          - dolthub
-          - dolthub-preview-1
-          - dolthub-preview-2
-          - dolthub-preview-3
   schedule:
     # run once per day at 9am PST (5pm UTC)
     - cron: "0 17 * * *"
@@ -36,7 +25,7 @@ jobs:
           browser: chrome
           config-file: cypress.blog.config.js
         env:
-          CYPRESS_BASE_URL: https://${{ github.event.inputs.preview || 'dolthub' }}.awsdev.ld-corp.com
+          CYPRESS_BASE_URL: https://dolthub.awsdev.ld-corp.com
       - name: Save screenshots of failed tests
         uses: actions/upload-artifact@v4
         if: failure()
