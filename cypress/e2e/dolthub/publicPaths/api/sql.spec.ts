@@ -148,7 +148,7 @@ describe(`API returns query results for '${defaultQuery}' from branch ${otherBra
 });
 
 describe(`API returns query results for '${selectQuery}' from ${defaultBranch} without branch specified`, () => {
-  const earl = `/api/${apiVersion}/${repoOwner}/${repoName}?q=${encodeURI(
+  const earl = `/api/${apiVersion}/${repoOwner}/${repoName}?q=${encodeURIComponent(
     selectQuery,
   )}`;
   it("gets a success response from the API", () => {
