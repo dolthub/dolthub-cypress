@@ -1,4 +1,4 @@
-name: Tests (DoltHub Dev)
+name: Tests DoltHub Dev
 on:
   workflow_dispatch:
     inputs:

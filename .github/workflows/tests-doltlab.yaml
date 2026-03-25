@@ -1,4 +1,4 @@
-name: Tests (DoltLab Prod)
+name: Tests DoltLab Prod
 on:
   workflow_dispatch:
   schedule:

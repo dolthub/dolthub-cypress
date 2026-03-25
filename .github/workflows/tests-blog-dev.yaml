@@ -1,4 +1,4 @@
-name: Tests Blog (Dev)
+name: Tests Blog Dev
 on:
   workflow_dispatch:
   schedule:
