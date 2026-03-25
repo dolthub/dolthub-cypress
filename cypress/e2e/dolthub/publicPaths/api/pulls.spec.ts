@@ -23,7 +23,7 @@ describe(`GET /${repoOwner}/${repoName}/pulls returns pull requests`, () => {
     cy.request({ url: earl })
       .its("body.pulls")
       .should("be.an", "array")
-      .and("have.length.above", 0);
+      .and("have.length.above", 1);
   });
   it("contains pull requests with the expected fields", () => {
     cy.request({ url: earl })

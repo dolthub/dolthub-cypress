@@ -20,7 +20,10 @@ describe(`GET /${repoOwner}/${repoName}/releases returns releases`, () => {
     cy.request({ url: earl }).its("body.next_page_token").should("exist");
   });
   it("contains a releases array", () => {
-    cy.request({ url: earl }).its("body.releases").should("be.an", "array");
+    cy.request({ url: earl })
+      .its("body.releases")
+      .should("be.an", "array")
+      .and("have.length.of.at.least", 1);
   });
 });
 

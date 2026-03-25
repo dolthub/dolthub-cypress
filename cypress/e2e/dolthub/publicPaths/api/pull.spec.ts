@@ -23,18 +23,14 @@ describe(`GET /${repoOwner}/${repoName}/pulls/${pullId} returns pull request det
   it("contains the correct pull request details", () => {
     cy.request({ url: earl }).its("body.pull_id").should("equal", pullId);
     cy.request({ url: earl }).its("body.state").should("equal", "Merged");
+    cy.request({ url: earl }).its("body.title").should("equal", "Crowdsourced");
     cy.request({ url: earl })
       .its("body.from_branch")
-      .should("be.a", "string")
-      .and("not.be.empty");
-    cy.request({ url: earl })
-      .its("body.to_branch")
-      .should("be.a", "string")
-      .and("not.be.empty");
+      .should("equal", "crowdsource-case-details");
+    cy.request({ url: earl }).its("body.to_branch").should("equal", "master");
     cy.request({ url: earl })
       .its("body.author")
-      .should("be.a", "string")
-      .and("not.be.empty");
+      .should("equal", "cypresstesting");
   });
 });
 

@@ -2,7 +2,7 @@ export {};
 
 const apiVersion = "v1alpha1";
 const repoOwner = "automated_testing";
-const repoName = "corona-virus";
+const repoName = "ip-to-country";
 
 describe(`GET /${repoOwner}/${repoName}/forks returns fork network`, () => {
   const earl = `/api/${apiVersion}/${repoOwner}/${repoName}/forks`;
@@ -22,21 +22,25 @@ describe(`GET /${repoOwner}/${repoName}/forks returns fork network`, () => {
     cy.request({ url: earl })
       .its("body.forks")
       .should("be.an", "array")
-      .and("have.length.above", 0);
+      .and("have.length.of.at.least", 2);
   });
   it("contains fork network metadata", () => {
     cy.request({ url: earl })
       .its("body.fork_network_count")
       .should("be.a", "number")
-      .and("be.above", 0);
+      .and("be.at.least", 2);
     cy.request({ url: earl })
       .its("body.parent_owner")
-      .should("be.a", "string")
-      .and("not.be.empty");
+      .should("equal", "dolthub");
     cy.request({ url: earl })
       .its("body.parent_database_name")
-      .should("be.a", "string")
-      .and("not.be.empty");
+      .should("equal", "ip-to-country");
+    cy.request({ url: earl })
+      .its("body.network_root_owner")
+      .should("equal", "dolthub");
+    cy.request({ url: earl })
+      .its("body.network_root_database_name")
+      .should("equal", "ip-to-country");
   });
 });
 

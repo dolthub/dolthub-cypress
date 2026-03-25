@@ -23,7 +23,7 @@ describe(`GET /${repoOwner}/${repoName}/tags returns tags`, () => {
     cy.request({ url: earl })
       .its("body.tags")
       .should("be.an", "array")
-      .and("have.length.above", 0);
+      .and("have.length.above", 10);
   });
   it("contains tags with the expected fields", () => {
     cy.request({ url: earl })
