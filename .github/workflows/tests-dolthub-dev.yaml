@@ -1,0 +1,48 @@
+name: Tests DoltHub Dev
+on:
+  workflow_dispatch:
+    inputs:
+      preview:
+        description: "Choose a dev or dev preview"
+        required: true
+        default: "dolthub"
+        type: choice
+        options:
+          - dolthub
+          - dolthub-preview-1
+          - dolthub-preview-2
+          - dolthub-preview-3
+  schedule:
+    # run once per day at 9am PST (5pm UTC)
+    - cron: "0 17 * * *"
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Enable Corepack
+        run: corepack enable
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+      - name: Install dependencies
+        run: yarn
+      - name: Cypress run
+        uses: cypress-io/github-action@v3
+        with:
+          install: false
+          browser: chrome
+          config-file: cypress.config.js
+        env:
+          CYPRESS_BASE_URL: https://${{ github.event.inputs.preview || 'dolthub' }}.awsdev.ld-corp.com
+          CYPRESS_TEST_USERNAME: ${{ secrets.CYPRESS_TEST_USERNAME }}
+          CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }}
+      - name: Save screenshots of failed tests
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          retention-days: 7
