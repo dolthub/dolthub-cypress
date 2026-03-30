@@ -33,7 +33,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should have header of first blog excerpt",
-      "[data-cy=blog-list] > li:first header",
+      "[data-cy=blog-list] > li:first h2",
       beVisible,
     ),
     newExpectation(
@@ -77,10 +77,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
     //   clearSearchClickFlow,
     // ),
     ...testBlogIndexNoSearch,
-  ];
-
-  const desktopTests = [
-    ...tests,
     newExpectation(
       "should have footer of first blog excerpt",
       "[data-cy=blog-list] > li:first [data-cy=blog-metadata]",
@@ -88,21 +84,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
   ];
 
-  const mobileTests = [
-    ...tests,
-    newExpectation(
-      "should have footer of first blog excerpt",
-      "[data-cy=blog-list] > li:first [data-cy=blog-metadata-mobile]",
-      beVisible,
-    ),
-  ];
-
-  const devices = allDevicesForSignedOut(
-    pageName,
-    desktopTests,
-    mobileTests,
-    true,
-  );
+  const devices = allDevicesForSignedOut(pageName, tests, tests, true);
   runTestsForDevices({
     currentPage,
     devices,
