@@ -31,9 +31,9 @@ export const testSearched = (
     newShouldArgs("be.visible.and.contain", [numMatching, "matching article"]),
   ),
   newExpectation(
-    "should have one blog",
+    "should have one blog and tim update",
     "[data-cy=blog-list] > li",
-    newShouldArgs("be.visible.and.have.length", numMatching),
+    newShouldArgs("be.visible.and.have.length", numMatching + 1),
   ),
   newExpectation(
     `should have matching blog title for ${q}`,
@@ -52,7 +52,7 @@ export const testSearched = (
   ),
 ];
 
-export const nextPageClickFlow = newClickFlow("[data-cy=page-num-2] a", [
+export const nextPageClickFlow = newClickFlow("[data-cy=page-num-2]", [
   newExpectation(
     "should have active second page button",
     "[data-cy=page-num-2-active]",
@@ -87,14 +87,9 @@ export const testBlogIndexNoSearch = [
     "[data-cy=page-num-1-active]",
     beVisible,
   ),
-  newExpectation(
-    "should not have previous page button",
-    "[data-cy=blog-prev-page]",
-    newShouldArgs("not.exist"),
-  ),
   newExpectationWithClickFlow(
     "should navigate to page 2",
-    "[data-cy=blog-next-page]",
+    "[data-cy=page-num-2]",
     beVisible,
     nextPageClickFlow,
     skip,

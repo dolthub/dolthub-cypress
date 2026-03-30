@@ -21,12 +21,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ),
     newExpectation(
       "should have header with title",
-      "[data-cy=blog-post] > header h1",
+      "[data-cy=blog-post] header h1",
       beVisible,
     ),
     newExpectation(
       "should have header with time",
-      "[data-cy=blog-post] > header time",
+      "[data-cy=blog-post] header time",
       beVisible,
     ),
     newExpectation(
