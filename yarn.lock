@@ -4655,7 +4655,7 @@ __metadata:
     eslint-config-airbnb-base: "npm:^15.0.0"
     eslint-config-airbnb-typescript: "npm:^18.0.0"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-plugin-cypress: "npm:^6.1.0"
+    eslint-plugin-cypress: "npm:^6.2.1"
     eslint-plugin-import: "npm:^2.32.0"
     npm-run-all2: "npm:^8.0.4"
     prettier: "npm:^3.8.1"
@@ -5124,14 +5124,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-cypress@npm:^6.1.0":
-  version: 6.1.0
-  resolution: "eslint-plugin-cypress@npm:6.1.0"
+"eslint-plugin-cypress@npm:^6.2.1":
+  version: 6.2.1
+  resolution: "eslint-plugin-cypress@npm:6.2.1"
   dependencies:
     globals: "npm:^17.3.0"
   peerDependencies:
     eslint: ">=9"
-  checksum: 10/403b612a9ee8dca60e18678330571f99432bb601426b52c7cd680dfced902af2d0b1e0f6e5412cc7a71241e4381f78b13b2be3d7909752fa86878256b0988579
+  checksum: 10/4d8008cb97191023c98426df2996335e873c485139aebd488496b27d4632dda8dd0c8e263c578983fcc241c6e7197da18c712d5d9f859287b666898c9e1726ad
   languageName: node
   linkType: hard
 
