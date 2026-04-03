@@ -59,7 +59,7 @@
     "@aws-sdk/client-sns": "^3.980.0",
     "cypress": "^15.13.0",
     "cypress-file-upload": "^5.0.8",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.2"
   },
   "resolutions": {
     "fast-xml-parser@npm:5.2.5": "5.5.6",
