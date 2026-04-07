@@ -1,6 +1,6 @@
 const pageName = "Blog RSS feed page";
-const currentPage = Cypress.env("LOCAL_BLOG") ? `/rss.xml` : `/blog/rss.xml`;
-const skip = !!Cypress.env("LOCAL_DOLTHUB");
+const currentPage = `/blog/rss.xml`;
+const skip = !!Cypress.expose("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   if (skip) {
@@ -15,4 +15,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
   }
 });
 
-export {};
+export { };
+

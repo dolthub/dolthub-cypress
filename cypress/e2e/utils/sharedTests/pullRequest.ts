@@ -11,7 +11,7 @@ import {
   beVisible,
   beVisibleAndContain,
   exist,
-  typingExpectation,
+  shouldTypeString,
 } from "./sharedFunctionsAndVariables";
 
 const sqlQuery = 'INSERT INTO `tablename` (`pk`, `col1`) VALUES (1, "test")';
@@ -152,8 +152,8 @@ export const testPullRequest = (forkOwnerName: string): Tests => [
     "[data-cy=new-pull-page]",
     beVisible,
   ),
-  typingExpectation("test pull", "[data-cy=pull-form-title-input]"),
-  typingExpectation("test pull description", "[data-cy=pull-form-description]"),
+  shouldTypeString("pull-form-title-input", "test pull"),
+  shouldTypeString("pull-form-description", "test pull description"),
   newExpectationWithClickFlow(
     "should submit the pull form",
     "[data-cy=pull-form-submit]",

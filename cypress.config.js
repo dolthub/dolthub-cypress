@@ -8,7 +8,8 @@ export default defineConfig({
   e2e: {
     baseUrl: "https://www.dolthub.com",
     specPattern: "cypress/e2e/dolthub/**/*.{js,jsx,ts,tsx}",
-    setupNodeEvents(on, config) {
+    allowCypressEnv: false,
+    setupNodeEvents(on) {
       on("task", {
         log(message) {
           console.log(message);

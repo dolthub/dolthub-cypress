@@ -3,11 +3,11 @@ import {
   newExpectation,
   newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
-  newExpectationWithTypeString,
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
 import { mergingAndDeletingBranch } from "./editRepo";
+import { shouldTypeString } from "./sharedFunctionsAndVariables";
 
 const licenseMarkdown = "test";
 const updatedLicenseMarkdown = "test number 2";
@@ -18,13 +18,8 @@ const notExist = newShouldArgs("not.exist");
 const beVisibleAndContain = (value: string) =>
   newShouldArgs("be.visible.and.contain", value);
 
-const typingExpectation = (value: string, status?: string) =>
-  newExpectationWithTypeString(
-    `should write ${status}description in textbox`,
-    "[data-cy=textarea-container]",
-    beVisible,
-    { value },
-  );
+const typingExpectation = (value: string) =>
+  shouldTypeString("textarea-container", value);
 
 export const testDocs: Tests = [
   // CREATE A NEW LICENSE
@@ -38,7 +33,7 @@ export const testDocs: Tests = [
       "[data-cy=dropdown-new-docs-link]",
     ),
   ),
-  typingExpectation(licenseMarkdown, ""),
+  typingExpectation(licenseMarkdown),
   newExpectationWithClickFlow(
     "should create the new doc",
     "[data-cy=new-doc-create-button]",
@@ -63,7 +58,7 @@ export const testDocs: Tests = [
     ),
   ),
   // EDIT LICENSE
-  typingExpectation(updatedLicenseMarkdown, "new"),
+  typingExpectation(updatedLicenseMarkdown),
   newExpectationWithScrollIntoView(
     "should show save button",
     "[data-cy=submit-edit-docs-button]",
@@ -100,7 +95,7 @@ export const testDocs: Tests = [
       "[data-cy=dropdown-new-docs-link]",
     ),
   ),
-  typingExpectation(readmeMarkdown, ""),
+  typingExpectation(readmeMarkdown),
   newExpectationWithClickFlow(
     "should create the new doc",
     "[data-cy=new-doc-create-button]",

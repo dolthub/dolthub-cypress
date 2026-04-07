@@ -4,8 +4,8 @@ import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Blog list page";
-const currentPage = Cypress.env("LOCAL_BLOG") ? "/" : "/blog/";
-const skip = !!Cypress.env("LOCAL_DOLTHUB");
+const currentPage = Cypress.expose("LOCAL_BLOG") ? "/" : "/blog/";
+const skip = !!Cypress.expose("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -89,6 +89,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
     currentPage,
     devices,
     skip,
-    forGatsby: true,
   });
 });

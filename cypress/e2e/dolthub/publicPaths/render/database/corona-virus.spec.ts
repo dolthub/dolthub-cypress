@@ -9,7 +9,7 @@ import {
   testSchemaSection,
   testViewsSection,
 } from "@sharedTests/repoLeftNav";
-import { typingExpectation } from "@sharedTests/sharedFunctionsAndVariables";
+import { shouldTypeString } from "@sharedTests/sharedFunctionsAndVariables";
 import { testSqlConsole, testSqlConsoleMobile } from "@sharedTests/sqlEditor";
 import {
   iPad2ForAppLayout,
@@ -79,7 +79,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       beVisible,
       newClickFlow(
         "[data-cy=create-view-button]",
-        [typingExpectation("testQueryName", "[data-cy=query-name]")],
+        [shouldTypeString("query-name", "testQueryName")],
         "[data-cy=close-modal]",
       ),
     ),

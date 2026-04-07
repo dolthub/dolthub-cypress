@@ -10,10 +10,10 @@ import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Blog list page with query";
 const query = "Dolt and Knex.js";
-const currentPage = Cypress.env("LOCAL_BLOG")
+const currentPage = Cypress.expose("LOCAL_BLOG")
   ? `/?q=${query}`
   : `/blog/?q=${query}`;
-const skip = !!Cypress.env("LOCAL_DOLTHUB");
+const skip = !!Cypress.expose("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -56,6 +56,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
     currentPage,
     devices,
     skip,
-    forGatsby: true,
   });
 });

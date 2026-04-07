@@ -7,9 +7,13 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { Expectation } from "../types";
+import {
+  beVisible,
+  shouldBeVisible,
+  shouldTypeString,
+} from "./sharedFunctionsAndVariables";
 
-const beVisible = newShouldArgs("be.visible");
-const currentPage = Cypress.env("LOCAL_BLOG") ? "/" : "/blog/";
+const currentPage = Cypress.expose("LOCAL_BLOG") ? "/" : "/blog/";
 const skip = true;
 
 export const testSearched = (
@@ -93,5 +97,20 @@ export const testBlogIndexNoSearch = [
     beVisible,
     nextPageClickFlow,
     skip,
+  ),
+];
+
+export const testTimWeeklyUpdate = [
+  shouldBeVisible("tim-weekly-update"),
+  newExpectation(
+    "should have disabled mailchimp submit button",
+    "[data-cy=mailchimp-submit-button]",
+    newShouldArgs("be.disabled"),
+  ),
+  shouldTypeString("mailchimp-input", "email@email.com", true),
+  newExpectation(
+    "should have enabled mailchimp submit button",
+    "[data-cy=mailchimp-submit-button]",
+    newShouldArgs("be.enabled"),
   ),
 ];

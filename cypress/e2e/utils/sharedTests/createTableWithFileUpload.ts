@@ -8,7 +8,7 @@ import { afterUploadSteps, preUploadSteps } from "./editRepo";
 import {
   beVisible,
   beVisibleAndContain,
-  typingExpectation,
+  shouldTypeString,
 } from "./sharedFunctionsAndVariables";
 
 const tableName = "TestFileUploadTable";
@@ -21,7 +21,7 @@ export const testCreateTableWithFileUpload: Tests = [
     beVisibleAndContain("Create a new table"),
     newClickFlow(
       "",
-      [typingExpectation(tableName, "[data-cy=choose-table-name]")],
+      [shouldTypeString("choose-table-name", tableName)],
       "[data-cy=upload-next-button]",
     ),
   ),
