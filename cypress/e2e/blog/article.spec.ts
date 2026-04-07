@@ -9,7 +9,6 @@ const currentBlog = "2020-03-06-so-you-want-git-for-data";
 const currentPage = Cypress.expose("LOCAL_BLOG")
   ? `/${currentBlog}`
   : `/blog/${currentBlog}`;
-const skip = !!Cypress.expose("LOCAL_DOLTHUB");
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -45,6 +44,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
   runTestsForDevices({
     currentPage,
     devices,
-    skip,
   });
 });
