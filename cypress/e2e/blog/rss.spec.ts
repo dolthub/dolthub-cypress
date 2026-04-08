@@ -16,5 +16,4 @@ describe(`${pageName} renders expected components on different devices`, () => {
   });
 });
 
-export { };
-
+export {};

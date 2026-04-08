@@ -10,7 +10,7 @@ import { mergingAndDeletingBranch, preUploadSteps } from "./editRepo";
 import {
   beVisible,
   beVisibleAndContain,
-  getTypeInGridTests
+  getTypeInGridTests,
 } from "./sharedFunctionsAndVariables";
 
 const grids = [
