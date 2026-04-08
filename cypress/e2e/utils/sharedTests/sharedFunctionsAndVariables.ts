@@ -33,7 +33,7 @@ export const shouldNotBeVisible = (
   desc?: string,
 ): Expectation =>
   newExpectation(
-    `should not find ${desc ?? getDesc(dataCy)}`,
+    `should not be visible ${desc ?? getDesc(dataCy)}`,
     `[data-cy=${dataCy}]`,
     notBeVisible,
   );

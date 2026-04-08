@@ -91,7 +91,7 @@ export function runTestsForDevices({
         runTests(d);
       });
     } else {
-      it(d.description, deviceDimensions[d.device], () => {
+      it(d.description, deviceDimensions[d.device], function () {
         cy.env(["TEST_USERNAME", "TEST_PASSWORD"]).then(
           ({ TEST_USERNAME: username, TEST_PASSWORD: password }) => {
             const skipForLogin = loggedIn && (!username || !password);
@@ -99,9 +99,10 @@ export function runTestsForDevices({
               cy.log(
                 "Skipping test that requires login since username or password not found in environment variables",
               );
-              return;
+              this.skip();
+            } else {
+              runTests(d);
             }
-            runTests(d);
           },
         );
       });
