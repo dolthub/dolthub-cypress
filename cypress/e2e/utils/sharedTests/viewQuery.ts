@@ -7,7 +7,7 @@ import { Tests } from "../types";
 import {
   beVisible,
   beVisibleAndContain,
-  typingExpectation,
+  shouldTypeString,
 } from "./sharedFunctionsAndVariables";
 
 const testViewName = "test-view-name";
@@ -28,7 +28,7 @@ export const testViewQuery: Tests = [
     beVisible,
     newClickFlow(
       "[data-cy=create-view-button]",
-      [typingExpectation(testViewName, "[data-cy=query-name]")],
+      [shouldTypeString("query-name", testViewName)],
       "[data-cy=modal-create-view-button]",
     ),
   ),

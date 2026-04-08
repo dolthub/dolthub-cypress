@@ -3,11 +3,7 @@ import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
 const pageName = "Blog 404 page for path that does not exist";
-const currentPath = "/does-not-exist";
-const currentPage = Cypress.env("LOCAL_BLOG")
-  ? `/${currentPath}`
-  : `/blog/${currentPath}`;
-const skip = !!Cypress.env("LOCAL_DOLTHUB");
+const currentPage = `/blog/does-not-exist`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -35,6 +31,5 @@ describe(`${pageName} renders expected components on different devices`, () => {
   runTestsForDevices({
     currentPage,
     devices,
-    skip,
   });
 });

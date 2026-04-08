@@ -3,6 +3,7 @@ import {
   newExpectation,
   newExpectationWithClickFlow,
   newExpectationWithSelector,
+  newExpectationWithTypeString,
 } from "../helpers";
 import { Tests } from "../types";
 import { mergingAndDeletingBranch, preUploadSteps } from "./editRepo";
@@ -10,7 +11,6 @@ import {
   beVisible,
   beVisibleAndContain,
   getTypeInGridTests,
-  typingExpectation,
 } from "./sharedFunctionsAndVariables";
 
 const grids = [
@@ -97,9 +97,13 @@ export const testUpdateTable: Tests = [
     newClickFlow(
       "",
       [
-        typingExpectation(
-          `Creating test with changes from updating TestSpreadSheetTable`,
+        newExpectationWithTypeString(
+          `should type in textarea-container input`,
           "[data-cy=textarea-container]>textarea",
+          beVisible,
+          {
+            value: `Creating test with changes from updating TestSpreadSheetTable`,
+          },
         ),
       ],
       "[data-cy=upload-next-button]",

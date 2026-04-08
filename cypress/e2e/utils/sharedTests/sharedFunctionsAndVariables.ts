@@ -28,6 +28,16 @@ export const shouldBeVisible = (dataCy: string, desc?: string): Expectation =>
     beVisible,
   );
 
+export const shouldNotBeVisible = (
+  dataCy: string,
+  desc?: string,
+): Expectation =>
+  newExpectation(
+    `should not be visible ${desc ?? getDesc(dataCy)}`,
+    `[data-cy=${dataCy}]`,
+    notBeVisible,
+  );
+
 export const shouldBeVisibleAndScrollIntoView = (
   dataCy: string,
   desc?: string,
@@ -108,16 +118,23 @@ function getDesc(dataCy: string): string {
   return dataCy.replace(/-/g, " ");
 }
 
-export const typingExpectation = (value: string, selectorStr: string) =>
+export const shouldTypeString = (
+  dataCy: string,
+  value: string,
+  withWarmup = false,
+): Expectation =>
   newExpectationWithTypeString(
-    `should write description in textbox`,
-    selectorStr,
+    `should type in ${getDesc(dataCy)} input`,
+    `[data-cy=${dataCy}]`,
     beVisible,
-    { value },
+    { value, withWarmup },
   );
 
 // type function for spread sheet input
-export function getTypeInGridTests(grids: string[][], skipClear = false) {
+export function getTypeInGridTests(
+  grids: string[][],
+  skipClear = false,
+): Expectation[] {
   const tests: Expectation[] = [];
   grids.forEach((row: string[], rowidx: number) => {
     row.forEach((val: string, colidx: number) => {
@@ -136,7 +153,7 @@ export function getTypeInGridTests(grids: string[][], skipClear = false) {
   return tests;
 }
 
-export function checkValueInGridTests(grids: string[][]) {
+export function checkValueInGridTests(grids: string[][]): Expectation[] {
   const tests: Expectation[] = [];
   grids.forEach((row: string[], rowidx: number) => {
     row.forEach((val: string, colidx: number) => {

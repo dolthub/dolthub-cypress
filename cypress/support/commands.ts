@@ -31,9 +31,6 @@ const opts: Partial<Cypress.Timeoutable> = {
 };
 const clickOpts: Partial<Cypress.ClickOptions> = { scrollBehavior: false };
 
-const username = Cypress.env("TEST_USERNAME");
-const password = Cypress.env("TEST_PASSWORD");
-
 // Ensures page has loaded before running tests
 // Reference: https://www.cypress.io/blog/2018/02/05/when-can-the-test-start/
 Cypress.Commands.add("visitAndWait", (path: string) => {
@@ -75,18 +72,22 @@ Cypress.Commands.add("visitAndWait", (path: string) => {
 Cypress.Commands.add(
   "loginAsCypressTestingAfterNavigateToSignin",
   (redirectValue?: string) => {
-    if (!password || !username) {
-      throw new Error("Username or password env not set");
-    }
-    cy.session(
-      "dolthubLogin",
-      () => {
-        cy.visitAndWait("/signin");
-        completeLoginForCypressTesting();
-        ensureSuccessfulLogin(redirectValue);
-      },
-      {
-        cacheAcrossSpecs: true,
+    cy.env(["TEST_USERNAME", "TEST_PASSWORD"]).then(
+      ({ TEST_USERNAME: username, TEST_PASSWORD: password }) => {
+        if (!password || !username) {
+          throw new Error("Username or password env not set");
+        }
+        cy.session(
+          "dolthubLogin",
+          () => {
+            cy.visitAndWait("/signin");
+            completeLoginForCypressTesting();
+            ensureSuccessfulLogin(redirectValue);
+          },
+          {
+            cacheAcrossSpecs: true,
+          },
+        );
       },
     );
   },
@@ -106,10 +107,6 @@ Cypress.Commands.add(
 );
 
 function ensureSuccessfulLogin(redirectValue?: string) {
-  // Must set cookie for localhost so navbar renders correctly
-  if (Cypress.env("LOCAL_DOLTHUB")) {
-    cy.setCookie("dolthubToken", "fake-token");
-  }
   if (redirectValue) {
     cy.location("pathname", opts).should("include", `/${redirectValue}`);
   } else {
@@ -123,16 +120,20 @@ function completeLoginForCypressTesting() {
   cy.get("[data-cy=signin-email-form]", opts).should("be.visible");
 
   // Enter username and password in inputs
-  cy.get("input[name=username]", opts)
-    .should("be.visible")
-    .type(username, { ...clickOpts, log: false });
-  cy.get("input[name=username]").should("have.value", username);
-  cy.get("input[name=password]", opts).should("be.visible");
-  cy.get("input[name=password]", opts).type(password, {
-    ...clickOpts,
-    log: false,
-  });
-  cy.get("input[name=password]", opts).type("{enter}", clickOpts);
+  cy.env(["TEST_USERNAME", "TEST_PASSWORD"]).then(
+    ({ TEST_USERNAME: username, TEST_PASSWORD: password }) => {
+      cy.get("input[name=username]", opts)
+        .should("be.visible")
+        .type(username, { ...clickOpts, log: false });
+      cy.get("input[name=username]").should("have.value", username);
+      cy.get("input[name=password]", opts).should("be.visible");
+      cy.get("input[name=password]", opts).type(password, {
+        ...clickOpts,
+        log: false,
+      });
+      cy.get("input[name=password]", opts).type("{enter}", clickOpts);
+    },
+  );
 }
 
 Cypress.Commands.add("signout", isMobile => {

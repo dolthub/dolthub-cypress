@@ -18,9 +18,6 @@ export const clickOpts: Partial<Cypress.ClickOptions> = {
   scrollBehavior: false,
 };
 
-const username = Cypress.env("TEST_USERNAME");
-const password = Cypress.env("TEST_PASSWORD");
-
 export const deviceDimensions: Record<
   Cypress.ViewportPreset,
   Cypress.Viewport
@@ -74,7 +71,6 @@ type TestsForDevicesArgs = {
   currentPage: string;
   skip?: boolean;
   loggedIn?: boolean;
-  forGatsby?: boolean;
 };
 
 export function runTestsForDevices({
@@ -82,28 +78,33 @@ export function runTestsForDevices({
   currentPage,
   loggedIn = false,
   skip = false,
-  forGatsby = false,
 }: TestsForDevicesArgs) {
   beforeEach(() => {
-    if (forGatsby) {
-      cy.handleGoogle();
-      cy.visitAndWait(currentPage);
-    } else {
-      // Visit page and log in if needed
-      cy.visitPage(currentPage, loggedIn);
-    }
+    // Visit page and log in if needed
+    cy.visitPage(currentPage, loggedIn);
   });
 
   devices.forEach(d => {
     // Skip tests that require login if username and password not found
-    const skipForLogin = loggedIn && (!username || !password);
-    if (skip || skipForLogin) {
+    if (skip) {
       xit(d.description, deviceDimensions[d.device], () => {
         runTests(d);
       });
     } else {
-      it(d.description, deviceDimensions[d.device], () => {
-        runTests(d);
+      it(d.description, deviceDimensions[d.device], function () {
+        cy.env(["TEST_USERNAME", "TEST_PASSWORD"]).then(
+          ({ TEST_USERNAME: username, TEST_PASSWORD: password }) => {
+            const skipForLogin = loggedIn && (!username || !password);
+            if (skipForLogin) {
+              cy.log(
+                "Skipping test that requires login since username or password not found in environment variables",
+              );
+              this.skip();
+            } else {
+              runTests(d);
+            }
+          },
+        );
       });
     }
   });

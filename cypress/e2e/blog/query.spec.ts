@@ -1,4 +1,9 @@
-import { testBlogIndexNoSearch, testSearched } from "@sharedTests/blog";
+import {
+  encodeUrlString,
+  testBlogIndexNoSearch,
+  testSearched,
+  testTimWeeklyUpdate,
+} from "@sharedTests/blog";
 import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newClickFlow,
@@ -7,13 +12,11 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog list page with query";
 const query = "Dolt and Knex.js";
-const currentPage = Cypress.env("LOCAL_BLOG")
-  ? `/?q=${query}`
-  : `/blog/?q=${query}`;
-const skip = !!Cypress.env("LOCAL_DOLTHUB");
+const currentPage = `/blog/?q=${encodeUrlString(query)}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -26,11 +29,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
-    newExpectation(
-      "should have featured blogs",
-      "[data-cy=featured-blogs]",
-      beVisible,
-    ),
+    shouldBeVisible("featured-blogs"),
     ...testSearched(
       query,
       "Getting Started with Dolt and Knex.js",
@@ -49,13 +48,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.have.value", ""),
     ),
     ...testBlogIndexNoSearch,
+    ...testTimWeeklyUpdate,
   ];
 
   const devices = allDevicesForSignedOut(pageName, tests, tests);
   runTestsForDevices({
     currentPage,
     devices,
-    skip,
-    forGatsby: true,
   });
 });

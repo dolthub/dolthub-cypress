@@ -5,7 +5,7 @@ import {
   newShouldArgs,
 } from "../helpers";
 import { Tests } from "../types";
-import { typingExpectation } from "./sharedFunctionsAndVariables";
+import { shouldTypeString } from "./sharedFunctionsAndVariables";
 
 const beVisible = newShouldArgs("be.visible");
 const beVisibleAndContain = (value: string) =>
@@ -34,8 +34,8 @@ export const testIssues: Tests = [
       "[data-cy=dropdown-new-issue-link]",
     ),
   ),
-  typingExpectation(issueTitle, "[data-cy=issue-title-input]"),
-  typingExpectation(issueContent, "[data-cy=textarea-container]"),
+  shouldTypeString("issue-title-input", issueTitle),
+  shouldTypeString("textarea-container", issueContent),
   newExpectationWithClickFlow(
     "should create the new issue",
     "[data-cy=new-issue-button]",
@@ -80,11 +80,8 @@ export const testIssues: Tests = [
     newClickFlow(
       "[data-cy=issue-page-edit-description-button]",
       [
-        typingExpectation(issueTitleEdits, "[data-cy=issue-title-input]"),
-        typingExpectation(
-          issueContentEdits,
-          "[data-cy=issue-description-textarea",
-        ),
+        shouldTypeString("issue-title-input", issueTitleEdits),
+        shouldTypeString("issue-description-textarea", issueContentEdits),
       ],
       "[data-cy=issue-edit-save]",
     ),
@@ -102,7 +99,7 @@ export const testIssues: Tests = [
     beVisibleAndContain("test content edited"),
   ),
 
-  typingExpectation(issueComment, "[data-cy=comment-textarea-content]"),
+  shouldTypeString("comment-textarea-content", issueComment),
 
   newExpectationWithClickFlow(
     "should be able to submit the comment",
@@ -123,12 +120,7 @@ export const testIssues: Tests = [
     beVisible,
     newClickFlow(
       "[data-cy=comment-edit-button]",
-      [
-        typingExpectation(
-          issueCommentUpdate,
-          "[data-cy=update-textarea-container]",
-        ),
-      ],
+      [shouldTypeString("update-textarea-container", issueCommentUpdate)],
       "[data-cy=comment-edit-button]",
     ),
   ),

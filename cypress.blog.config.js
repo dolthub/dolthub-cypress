@@ -7,6 +7,7 @@ export default defineConfig({
   e2e: {
     baseUrl: "https://www.dolthub.com",
     specPattern: "cypress/e2e/blog/**/*.{js,jsx,ts,tsx}",
+    allowCypressEnv: false,
     setupNodeEvents(on) {
       on("task", {
         log(message) {

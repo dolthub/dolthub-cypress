@@ -5,6 +5,7 @@ export default defineConfig({
   e2e: {
     baseUrl: "https://doltlab.dolthub.com",
     specPattern: "cypress/e2e/doltlab/**/*.{js,jsx,ts,tsx}",
+    allowCypressEnv: false,
   },
   viewportWidth: 1440,
   viewportHeight: 900,

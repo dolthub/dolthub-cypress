@@ -10,7 +10,7 @@ import {
   beVisibleAndContain,
   checkValueInGridTests,
   getTypeInGridTests,
-  typingExpectation,
+  shouldTypeString,
 } from "./sharedFunctionsAndVariables";
 
 const spreadSheetTable = "TestSpreadSheetTable";
@@ -44,7 +44,7 @@ export const testCreateTableWithSpreadsheetEditor: Tests = [
     beVisibleAndContain("Create a new table"),
     newClickFlow(
       "",
-      [typingExpectation(spreadSheetTable, "[data-cy=choose-table-name]")],
+      [shouldTypeString("choose-table-name", spreadSheetTable)],
       "[data-cy=upload-next-button]",
     ),
   ),

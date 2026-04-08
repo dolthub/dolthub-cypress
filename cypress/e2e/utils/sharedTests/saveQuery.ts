@@ -9,7 +9,7 @@ import {
   beVisible,
   beVisibleAndContain,
   notExist,
-  typingExpectation,
+  shouldTypeString,
 } from "./sharedFunctionsAndVariables";
 
 const testQueryName = "test-query-name";
@@ -32,8 +32,8 @@ export const testSaveQuery: Tests = [
     newClickFlow(
       "[data-cy=save-query-button]",
       [
-        typingExpectation(testQueryName, "[data-cy=query-name]"),
-        typingExpectation(testQueryDescription, "[data-cy=query-description]"),
+        shouldTypeString("query-name", testQueryName),
+        shouldTypeString("query-description", testQueryDescription),
       ],
       "[data-cy=query-save-button]",
     ),

@@ -48,7 +48,7 @@ $ yarn cy-run-local-dolthub
 $ yarn cy-run-local-dolthub --spec 'cypress/e2e/dolthub/publicPaths/render/database/*'
 ```
 
-Running tests against our local webserver gets slightly more complicated when testing our [blog](https://www.dolthub.com/blog), which is a separate application (learn more about our front-end stack and architecture [here](https://www.dolthub.com/blog/2020-03-11-how-we-built-dolthub-stack-and-architecture/)). Cypress can only run against a single host, so running our `blog` tests against our local DoltHub server won't work (`localhost:3000/blog` does not exist, but `dolthub.com/blog` does). You can test our blog against their local webservers by running these commands:
+You can test our blog against their local webservers by running these commands:
 
 ```bash
 # For the blog
@@ -57,6 +57,7 @@ $ yarn cy-run-local-blog
 ```
 
 All the dolthub tests are located in `cypress/e2e/dolthub`.
+All the blog tests are located in `cypress/e2e/blog`.
 All the doltlab tests are located in `cypress/e2e/doltlab`.
 
 ### Private paths
