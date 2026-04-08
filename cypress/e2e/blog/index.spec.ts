@@ -18,8 +18,7 @@ import {
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog list page";
-const currentPage = Cypress.expose("LOCAL_BLOG") ? "/" : "/blog/";
-const skip = !!Cypress.expose("LOCAL_DOLTHUB");
+const currentPage = "/blog/";
 
 const query1 = "Dolt and Knex.js";
 const query2 = "wikipedia ngrams";
@@ -37,8 +36,6 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const tests = [
     shouldBeVisible("featured-blogs"),
-    // shouldBeVisible("tag-nav"),
-    shouldNotBeVisible("blog-filter-button"),
     newExpectation(
       "should have list of blog articles",
       "[data-cy=blog-list] > li:first",
@@ -99,16 +96,27 @@ describe(`${pageName} renders expected components on different devices`, () => {
     ...testTimWeeklyUpdate,
   ];
 
+  const desktopTests = [
+    shouldBeVisible("tag-nav"),
+    shouldNotBeVisible("blog-filter-button"),
+    shouldBeVisible("featured-tags"),
+    ...tests,
+  ];
   const mobileTests = [
     shouldBeVisible("blog-filter-button"),
     shouldNotBeVisible("tag-nav"),
+    shouldNotBeVisible("featured-tags"),
     ...tests,
   ];
 
-  const devices = allDevicesForSignedOut(pageName, tests, mobileTests, true);
+  const devices = allDevicesForSignedOut(
+    pageName,
+    desktopTests,
+    mobileTests,
+    true,
+  );
   runTestsForDevices({
     currentPage,
     devices,
-    skip,
   });
 });

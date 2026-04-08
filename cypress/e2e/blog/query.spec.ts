@@ -12,12 +12,11 @@ import {
   newShouldArgs,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
+import { shouldBeVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Blog list page with query";
 const query = "Dolt and Knex.js";
-const currentPage = Cypress.expose("LOCAL_BLOG")
-  ? `/?q=${query}`
-  : `/blog/?q=${encodeUrlString(query)}`;
+const currentPage = `/blog/?q=${encodeUrlString(query)}`;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const beVisible = newShouldArgs("be.visible");
@@ -30,11 +29,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   ]);
 
   const tests = [
-    newExpectation(
-      "should have featured blogs",
-      "[data-cy=featured-blogs]",
-      beVisible,
-    ),
+    shouldBeVisible("featured-blogs"),
     ...testSearched(
       query,
       "Getting Started with Dolt and Knex.js",
