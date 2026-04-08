@@ -31,9 +31,6 @@ const opts: Partial<Cypress.Timeoutable> = {
 };
 const clickOpts: Partial<Cypress.ClickOptions> = { scrollBehavior: false };
 
-// const username = Cypress.env("TEST_USERNAME");
-// const password = Cypress.env("TEST_PASSWORD");
-
 // Ensures page has loaded before running tests
 // Reference: https://www.cypress.io/blog/2018/02/05/when-can-the-test-start/
 Cypress.Commands.add("visitAndWait", (path: string) => {
