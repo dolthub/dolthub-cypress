@@ -128,6 +128,12 @@ export const testSearchedTagMobile = (tag: string): Expectation[] => [
   ),
   shouldNotExist(`tag-filter-${tag}-active`),
   shouldBeVisible(`tag-filter-${tag}`),
+  newExpectationWithClickFlow(
+    "should close tag popup",
+    "[data-cy=blog-filter-button]",
+    beVisible,
+    newClickFlow("[data-cy=blog-filter-button]", []),
+  ),
 ];
 
 export const nextPageClickFlow = newClickFlow("[data-cy=page-num-2]", [
