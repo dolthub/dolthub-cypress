@@ -43,6 +43,19 @@ const pricingTests = [
     ],
   },
   {
+    name: "doltlite",
+    shouldFind: [
+      {
+        datacy: "doltlite-header",
+        text: "DOLT FOR SQLITE",
+      },
+      {
+        datacy: "download-doltlite-button",
+        text: "Download for free",
+      },
+    ],
+  },
+  {
     name: "hosted-dolt",
     shouldFind: [
       {
