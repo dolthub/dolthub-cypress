@@ -140,13 +140,18 @@ describe(`${pageName} renders expected components on different devices`, () => {
                 "should click on the enterprise banner button",
                 `[data-cy=enterprise-banner-${test.name}]`,
                 beVisible,
-                newClickFlow(`[data-cy=enterprise-banner-${test.name}]`, [
-                  newExpectation(
-                    "should find the enterprise card",
-                    `[data-cy=enterprise-card]`,
-                    beVisible,
-                  ),
-                ]),
+                newClickFlow(
+                  `[data-cy=enterprise-banner-${test.name}]`,
+                  [
+                    newExpectation(
+                      "should find the enterprise card",
+                      `[data-cy=enterprise-card]`,
+                      beVisible,
+                    ),
+                  ],
+                  undefined,
+                  true,
+                ),
               ),
             ]
           : []),
