@@ -136,26 +136,22 @@ describe(`${pageName} renders expected components on different devices`, () => {
                   options: { offset: { top: -100, left: 0 } },
                 },
               ),
-              newExpectationWithScrollTo(
-                `should scroll ${test.name} enterprise banner into view`,
-                `[data-cy=enterprise-banner-${test.name}]`,
-                beVisible,
-                {
-                  selectorStr: `[data-cy=enterprise-banner-${test.name}]`,
-                  options: { offset: { top: -100, left: 0 } },
-                },
-              ),
               newExpectationWithClickFlow(
                 "should click on the enterprise banner button",
                 `[data-cy=enterprise-banner-${test.name}]`,
                 beVisible,
-                newClickFlow(`[data-cy=enterprise-banner-${test.name}]`, [
-                  newExpectation(
-                    "should find the enterprise card",
-                    `[data-cy=enterprise-card]`,
-                    beVisible,
-                  ),
-                ]),
+                newClickFlow(
+                  `[data-cy=enterprise-banner-${test.name}]`,
+                  [
+                    newExpectation(
+                      "should find the enterprise card",
+                      `[data-cy=enterprise-card]`,
+                      beVisible,
+                    ),
+                  ],
+                  undefined,
+                  true,
+                ),
               ),
             ]
           : []),
