@@ -55,6 +55,12 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("not.exist"),
       false,
     ),
+    newExpectation(
+      "should not render Apps link until OAuth ships to prod (oauth feature flag is dev-only)",
+      "[data-cy=settings-apps-section-link]",
+      newShouldArgs("not.exist"),
+      false,
+    ),
   ];
   const skip = false;
   const devices = desktopDevicesForAppLayout(
