@@ -56,10 +56,9 @@ describe(`${pageName} renders expected components on different devices`, () => {
       false,
     ),
     newExpectation(
-      "should not render Apps link until OAuth ships to prod (oauth feature flag is dev-only)",
+      "should render Settings Apps link",
       "[data-cy=settings-apps-section-link]",
-      newShouldArgs("not.exist"),
-      false,
+      newShouldArgs("be.visible"),
     ),
   ];
   const skip = false;

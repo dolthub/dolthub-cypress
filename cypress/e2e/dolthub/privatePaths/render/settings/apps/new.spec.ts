@@ -8,10 +8,7 @@ const currentPage = "/settings/apps/new";
 
 const loggedIn = true;
 
-// The OAuth feature is gated behind the `oauth` feature flag (currently
-// dev-only). Once OAuth ships to prod, flip `skip` to false to enable
-// these tests.
-const skip = true;
+const skip = false;
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [

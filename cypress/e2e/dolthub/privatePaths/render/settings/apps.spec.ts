@@ -13,10 +13,7 @@ const currentPage = "/settings/apps";
 
 const loggedIn = true;
 
-// The OAuth feature is gated behind the `oauth` feature flag (currently
-// dev-only). Once OAuth ships to prod, flip `skip` to false to enable
-// these tests.
-const skip = true;
+const skip = false;
 
 const newAppFormClickFlow = newClickFlow(
   "[data-cy=new-oauth-app-button]",
