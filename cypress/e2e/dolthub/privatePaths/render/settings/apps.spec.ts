@@ -39,10 +39,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
   const tests = [
     shouldBeVisible("settings-header", "Settings header"),
     shouldBeVisible("settings-apps-section-link", "Settings Apps link"),
-    shouldBeVisible(
-      "oauth-applications-heading",
-      "OAuth Applications heading",
-    ),
+    shouldBeVisible("oauth-applications-heading", "OAuth Applications heading"),
     shouldBeVisible(
       "authorized-applications-heading",
       "Authorized Applications heading",
