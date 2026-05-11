@@ -1,3 +1,4 @@
+import { shouldBeVisible } from "@sharedTests/sharedFunctionsAndVariables";
 import { desktopDevicesForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -55,6 +56,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("not.exist"),
       false,
     ),
+    shouldBeVisible("settings-apps-section-link", "Settings Apps link"),
   ];
   const skip = false;
   const devices = desktopDevicesForAppLayout(
