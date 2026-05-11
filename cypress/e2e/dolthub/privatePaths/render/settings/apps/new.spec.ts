@@ -1,4 +1,7 @@
-import { shouldBeVisible } from "@sharedTests/sharedFunctionsAndVariables";
+import {
+  shouldBeVisible,
+  shouldBeVisibleAndScrollIntoView,
+} from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
 import { newExpectation, newShouldArgs } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
@@ -19,7 +22,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=register-oauth-application-button]",
       newShouldArgs("be.disabled"),
     ),
-    shouldBeVisible("cancel-create-oauth-app", "Cancel link"),
+    shouldBeVisibleAndScrollIntoView("cancel-create-oauth-app", "Cancel link"),
   ];
   const devices = [macbook15ForAppLayout(pageName, tests, false, loggedIn)];
   runTestsForDevices({ currentPage, devices, skip, loggedIn });

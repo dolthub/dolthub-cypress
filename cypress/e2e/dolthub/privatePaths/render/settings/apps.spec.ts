@@ -1,6 +1,7 @@
 import {
   beVisible,
   shouldBeVisible,
+  shouldBeVisibleAndScrollIntoView,
 } from "@sharedTests/sharedFunctionsAndVariables";
 import { macbook15ForAppLayout } from "@utils/devices";
 import {
@@ -30,7 +31,7 @@ const newAppFormClickFlow = newClickFlow(
       "[data-cy=register-oauth-application-button]",
       newShouldArgs("be.disabled"),
     ),
-    shouldBeVisible("cancel-create-oauth-app", "Cancel link"),
+    shouldBeVisibleAndScrollIntoView("cancel-create-oauth-app", "Cancel link"),
   ],
   "[data-cy=cancel-create-oauth-app]",
 );
