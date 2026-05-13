@@ -53,7 +53,7 @@
     "eslint-plugin-cypress": "^6.2.1",
     "eslint-plugin-import": "^2.32.0",
     "npm-run-all2": "^8.0.4",
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.3"
   },
   "dependencies": {
     "@aws-sdk/client-sns": "^3.1040.0",
