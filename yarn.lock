@@ -4141,7 +4141,7 @@ __metadata:
     eslint-config-airbnb-base: "npm:^15.0.0"
     eslint-config-airbnb-typescript: "npm:^18.0.0"
     eslint-config-prettier: "npm:^10.1.8"
-    eslint-plugin-cypress: "npm:^6.2.1"
+    eslint-plugin-cypress: "npm:^6.4.1"
     eslint-plugin-import: "npm:^2.32.0"
     npm-run-all2: "npm:^9.0.1"
     prettier: "npm:^3.8.1"
@@ -4607,14 +4607,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-cypress@npm:^6.2.1":
-  version: 6.2.1
-  resolution: "eslint-plugin-cypress@npm:6.2.1"
+"eslint-plugin-cypress@npm:^6.4.1":
+  version: 6.4.1
+  resolution: "eslint-plugin-cypress@npm:6.4.1"
   dependencies:
-    globals: "npm:^17.3.0"
+    globals: "npm:^17.6.0"
   peerDependencies:
+    "@typescript-eslint/parser": ">=8"
     eslint: ">=9"
-  checksum: 10/4d8008cb97191023c98426df2996335e873c485139aebd488496b27d4632dda8dd0c8e263c578983fcc241c6e7197da18c712d5d9f859287b666898c9e1726ad
+  peerDependenciesMeta:
+    "@typescript-eslint/parser":
+      optional: true
+  checksum: 10/e04f5d75872af37e3ed4bad9179ede2e5a2f5c14d8316289be65ff0e188bea08046cb7689f6e10c8cf1b3ce57f1d94b709ac7e5674bc8b706efcc4b21dc3e277
   languageName: node
   linkType: hard
 
@@ -5329,10 +5333,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^17.3.0":
-  version: 17.4.0
-  resolution: "globals@npm:17.4.0"
-  checksum: 10/ffad244617e94efcb3da72b7beefc941167c21316148ce378f322db7af72db06468f370e23224b3c7b17b5173a7c75b134e5e7b0949f2828519054a76892508d
+"globals@npm:^17.6.0":
+  version: 17.6.0
+  resolution: "globals@npm:17.6.0"
+  checksum: 10/2bf0febf31c942edee6f4eca7e939a9c885f8ecfb767048b1c4dd2a32008d0ab136e6076665d76b44b29c2571bbbc1681371caab05fd8ee0067c7618e841b89d
   languageName: node
   linkType: hard
 
