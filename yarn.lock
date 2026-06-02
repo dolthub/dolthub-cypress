@@ -2279,9 +2279,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/github-action@npm:^7.2.0":
-  version: 7.2.0
-  resolution: "@cypress/github-action@npm:7.2.0"
+"@cypress/github-action@npm:^7.4.0":
+  version: 7.4.0
+  resolution: "@cypress/github-action@npm:7.4.0"
   dependencies:
     "@actions/cache": "npm:5.0.5"
     "@actions/core": "npm:2.0.3"
@@ -2295,7 +2295,7 @@ __metadata:
     hasha: "npm:5.2.2"
     quote: "npm:0.4.0"
     supports-color: "npm:9.3.1"
-  checksum: 10/e0274ed8afadf15f712c0679d9287be98fa010a209772b08f2ef98bb48b3b6e1a19c635d98d0b0fa8805aea4a05517a2476e9c71433d1d8f16fba3a5033cf25b
+  checksum: 10/47050a632c0410fccb2eee06da37d82ec6c0eabff3e93cce4d435a4bc705e11de9e37ad526bfd6104f7ac8105535ec982eec3f1cd0e3e291aba0733f16b98b20
   languageName: node
   linkType: hard
 
@@ -4257,7 +4257,7 @@ __metadata:
     "@babel/core": "npm:^7.29.0"
     "@babel/preset-env": "npm:^7.29.7"
     "@babel/preset-typescript": "npm:^7.28.5"
-    "@cypress/github-action": "npm:^7.2.0"
+    "@cypress/github-action": "npm:^7.4.0"
     "@types/node": "npm:^25.9.1"
     "@typescript-eslint/eslint-plugin": "npm:^8.59.1"
     "@typescript-eslint/parser": "npm:^8.60.1"
