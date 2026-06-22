@@ -55,7 +55,7 @@ export const testSearched = (
 ];
 
 const clearTagClickFlow = (tag: string) =>
-  newClickFlow(`[data-cy=featured-tag-${tag}-active]`, [
+  newClickFlow(`[data-cy=featured-tag-${tag}-active] button`, [
     shouldNotExist(`featured-tag-${tag}-active`),
     shouldNotExist(`clear-tag-${tag}`),
     shouldNotBeVisible("matching-articles"),
