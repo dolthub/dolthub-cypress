@@ -3969,7 +3969,7 @@ __metadata:
     eslint-plugin-cypress: "npm:^6.4.1"
     eslint-plugin-import: "npm:^2.32.0"
     npm-run-all2: "npm:^9.0.1"
-    prettier: "npm:^3.8.1"
+    prettier: "npm:^3.9.4"
     typescript: "npm:^5.9.3"
   languageName: unknown
   linkType: soft
@@ -6861,12 +6861,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.8.1":
-  version: 3.8.1
-  resolution: "prettier@npm:3.8.1"
+"prettier@npm:^3.9.4":
+  version: 3.9.4
+  resolution: "prettier@npm:3.9.4"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10/3da1cf8c1ef9bea828aa618553696c312e951f810bee368f6887109b203f18ee869fe88f66e65f9cf60b7cb1f2eae859892c860a300c062ff8ec69c381fc8dbd
+  checksum: 10/4a0dc4389d442f5aca0beb12778c90b6ceb9831940b01a1df5eba9150b5ce96fa52eda9074a10a370e732adc03e2f645597dfd8b7e3f1e94dee28df01004a0fd
   languageName: node
   linkType: hard
 
