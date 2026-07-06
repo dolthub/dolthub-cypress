@@ -1,0 +1,51 @@
+export {};
+
+const apiVersion = "v2";
+const repoOwner = "automated_testing";
+const repoName = "corona-virus";
+
+describe(`GET /${repoOwner}/${repoName}/pulls returns pull requests`, () => {
+  const earl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls`;
+  it("gets a success response from the API", () => {
+    cy.request({ url: earl }).its("status").should("equal", 200);
+  });
+  it("contains an array of pull requests", () => {
+    cy.request({ url: earl })
+      .its("body.data")
+      .should("be.an", "array")
+      .and("have.length.above", 0);
+  });
+  it("contains pull requests with the expected fields", () => {
+    cy.request({ url: earl })
+      .its("body.data")
+      .then(pulls => {
+        expect(pulls[0]).to.include.keys([
+          "pull_number",
+          "title",
+          "state",
+          "creator",
+          "created_at",
+        ]);
+      });
+  });
+});
+
+describe(`GET /nonexistent_owner/nonexistent_database/pulls returns 404`, () => {
+  const earl = `/api/${apiVersion}/databases/nonexistent_owner/nonexistent_database/pulls`;
+  it("gets a 404 response from the API", () => {
+    cy.request({ url: earl, failOnStatusCode: false })
+      .its("status")
+      .should("equal", 404);
+  });
+  it("contains the RFC 9457 problem details in the response body", () => {
+    cy.request({ url: earl, failOnStatusCode: false })
+      .its("body.status")
+      .should("equal", 404);
+    cy.request({ url: earl, failOnStatusCode: false })
+      .its("body.code")
+      .should("equal", "NOT_FOUND");
+    cy.request({ url: earl, failOnStatusCode: false })
+      .its("body.detail")
+      .should("equal", "no such repository");
+  });
+});
