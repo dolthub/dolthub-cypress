@@ -79,7 +79,9 @@ describe(`POST /${repoOwner}/${repoName}/sql runs the same read-only query as th
         body: { ref: defaultBranch, q: defaultQuery },
       }).then(postResp => {
         expect(postResp.body.data.status).to.equal(getResp.body.data.status);
-        expect(postResp.body.data.columns).to.deep.equal(getResp.body.data.columns);
+        expect(postResp.body.data.columns).to.deep.equal(
+          getResp.body.data.columns,
+        );
         expect(postResp.body.data.rows).to.deep.equal(getResp.body.data.rows);
       });
     });
