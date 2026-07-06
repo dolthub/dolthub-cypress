@@ -70,13 +70,19 @@ describe(`POST /${repoOwner}/${repoName}/sql runs the same read-only query as th
       .should("equal", 200);
   });
   it("contains the same result as the GET variant", () => {
-    cy.request({
-      method: "POST",
-      url: earl,
-      body: { ref: defaultBranch, q: defaultQuery },
-    })
-      .its("body.data.status")
-      .should("equal", "success");
+    const getUrl = `${earl}?ref=${defaultBranch}&q=${encodeURIComponent(defaultQuery)}`;
+
+    cy.request({ url: getUrl }).then(getResp => {
+      cy.request({
+        method: "POST",
+        url: earl,
+        body: { ref: defaultBranch, q: defaultQuery },
+      }).then(postResp => {
+        expect(postResp.body.data.status).to.equal(getResp.body.data.status);
+        expect(postResp.body.data.columns).to.deep.equal(getResp.body.data.columns);
+        expect(postResp.body.data.rows).to.deep.equal(getResp.body.data.rows);
+      });
+    });
   });
 });
 
