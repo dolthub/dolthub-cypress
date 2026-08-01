@@ -2660,6 +2660,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ansi-styles@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "ansi-styles@npm:7.0.0"
+  checksum: 10/d04ab754dec550a771849abb7b866c52852a2ffa6b2c08f6a1729a51bb89931a396e8a2734c631a6781507e1570c6c5162587a24a4c6ca334dffdc64256fb06b
+  languageName: node
+  linkType: hard
+
 "anymatch@npm:~3.1.2":
   version: 3.1.3
   resolution: "anymatch@npm:3.1.3"
@@ -3600,7 +3607,7 @@ __metadata:
     eslint-config-prettier: "npm:^10.1.8"
     eslint-plugin-cypress: "npm:^6.4.1"
     eslint-plugin-import: "npm:^2.32.0"
-    npm-run-all2: "npm:^9.0.2"
+    npm-run-all2: "npm:^9.0.3"
     prettier: "npm:^3.9.4"
     typescript: "npm:^5.9.3"
   languageName: unknown
@@ -6093,11 +6100,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-all2@npm:^9.0.2":
-  version: 9.0.2
-  resolution: "npm-run-all2@npm:9.0.2"
+"npm-run-all2@npm:^9.0.3":
+  version: 9.0.3
+  resolution: "npm-run-all2@npm:9.0.3"
   dependencies:
-    ansi-styles: "npm:^6.2.1"
+    ansi-styles: "npm:^7.0.0"
     cross-spawn: "npm:^7.0.6"
     memorystream: "npm:^0.3.1"
     picomatch: "npm:^4.0.2"
@@ -6110,7 +6117,7 @@ __metadata:
     npm-run-all2: bin/npm-run-all/index.js
     run-p: bin/run-p/index.js
     run-s: bin/run-s/index.js
-  checksum: 10/5b723ff5dc4822d9aaa23a2cf31d86309bfda94937e951120e85a493b62945427cb89336aa4090be00d0380e49ba2d9f73303c547f4989b69a93c506a1f7b693
+  checksum: 10/4b67957c871edee07d4cd30404b99dbd009094a2722bf1829657d5f13688752000fad1ede202dc76ae0cfbbc7b9d17df7b624904454062d53552db8030cc03e9
   languageName: node
   linkType: hard
 
