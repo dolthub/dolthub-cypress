@@ -65,6 +65,6 @@
   "resolutions": {
     "fast-xml-parser@npm:5.2.5": "5.5.6",
     "tar": "7.5.11",
-    "undici": "6.24.0"
+    "undici": "6.28.0"
   }
 }
