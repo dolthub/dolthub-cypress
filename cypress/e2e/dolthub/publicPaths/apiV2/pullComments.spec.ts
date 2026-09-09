@@ -3,7 +3,7 @@ export {};
 const apiVersion = "v2";
 const repoOwner = "automated_testing";
 const repoName = "corona-virus";
-const pullNumber = "1";
+const pullNumber = "5";
 
 describe(`GET /${repoOwner}/${repoName}/pulls/${pullNumber}/comments returns pull request comments`, () => {
   const earl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls/${pullNumber}/comments`;

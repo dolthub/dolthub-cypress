@@ -3,7 +3,7 @@ export {};
 const apiVersion = "v2";
 const repoOwner = "automated_testing";
 const repoName = "corona-virus";
-const pullNumber = "1";
+const pullNumber = "5";
 
 describe(`GET /${repoOwner}/${repoName}/pulls/${pullNumber} returns pull request details`, () => {
   const earl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls/${pullNumber}`;
@@ -11,7 +11,7 @@ describe(`GET /${repoOwner}/${repoName}/pulls/${pullNumber} returns pull request
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
   it("contains the correct pull request details", () => {
-    cy.request({ url: earl }).its("body.data.pull_number").should("equal", 1);
+    cy.request({ url: earl }).its("body.data.pull_number").should("equal", 5);
     cy.request({ url: earl }).its("body.data.state").should("equal", "merged");
     cy.request({ url: earl })
       .its("body.data.title")
