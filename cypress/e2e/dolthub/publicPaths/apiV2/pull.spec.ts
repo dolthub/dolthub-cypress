@@ -1,21 +1,31 @@
-export {};
+import { getPullNumberByTitle } from "@utils/apiV2";
 
 const apiVersion = "v2";
 const repoOwner = "automated_testing";
 const repoName = "corona-virus";
-const pullNumber = "1";
+const pullTitle = "Crowdsourced";
+const pullsUrl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls`;
 
-describe(`GET /${repoOwner}/${repoName}/pulls/${pullNumber} returns pull request details`, () => {
-  const earl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls/${pullNumber}`;
+describe(`GET /${repoOwner}/${repoName}/pulls/{pull_number} returns pull request details`, () => {
+  let pullNumber = 0;
+  let earl = "";
+
+  before(() => {
+    getPullNumberByTitle(pullsUrl, pullTitle).then(num => {
+      pullNumber = num;
+      earl = `${pullsUrl}/${num}`;
+    });
+  });
+
   it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
   it("contains the correct pull request details", () => {
-    cy.request({ url: earl }).its("body.data.pull_number").should("equal", 1);
-    cy.request({ url: earl }).its("body.data.state").should("equal", "merged");
     cy.request({ url: earl })
-      .its("body.data.title")
-      .should("equal", "Crowdsourced");
+      .its("body.data.pull_number")
+      .should("equal", pullNumber);
+    cy.request({ url: earl }).its("body.data.state").should("equal", "merged");
+    cy.request({ url: earl }).its("body.data.title").should("equal", pullTitle);
     cy.request({ url: earl })
       .its("body.data.creator")
       .should("equal", "cypresstesting");
@@ -37,7 +47,7 @@ describe(`GET /${repoOwner}/${repoName}/pulls/${pullNumber} returns pull request
 });
 
 describe(`GET /${repoOwner}/${repoName}/pulls/99999 returns 404`, () => {
-  const earl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls/99999`;
+  const earl = `${pullsUrl}/99999`;
   it("gets a 404 response from the API", () => {
     cy.request({ url: earl, failOnStatusCode: false })
       .its("status")
@@ -53,8 +63,8 @@ describe(`GET /${repoOwner}/${repoName}/pulls/99999 returns 404`, () => {
   });
 });
 
-describe(`GET /nonexistent_owner/nonexistent_database/pulls/${pullNumber} returns 404`, () => {
-  const earl = `/api/${apiVersion}/databases/nonexistent_owner/nonexistent_database/pulls/${pullNumber}`;
+describe(`GET /nonexistent_owner/nonexistent_database/pulls/1 returns 404`, () => {
+  const earl = `/api/${apiVersion}/databases/nonexistent_owner/nonexistent_database/pulls/1`;
   it("gets a 404 response from the API", () => {
     cy.request({ url: earl, failOnStatusCode: false })
       .its("status")

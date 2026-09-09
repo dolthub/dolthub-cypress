@@ -1,12 +1,20 @@
-export {};
+import { getPullNumberByTitle } from "@utils/apiV2";
 
 const apiVersion = "v2";
 const repoOwner = "automated_testing";
 const repoName = "corona-virus";
-const pullNumber = "1";
+const pullTitle = "Crowdsourced";
+const pullsUrl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls`;
 
-describe(`GET /${repoOwner}/${repoName}/pulls/${pullNumber}/comments returns pull request comments`, () => {
-  const earl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls/${pullNumber}/comments`;
+describe(`GET /${repoOwner}/${repoName}/pulls/{pull_number}/comments returns pull request comments`, () => {
+  let earl = "";
+
+  before(() => {
+    getPullNumberByTitle(pullsUrl, pullTitle).then(num => {
+      earl = `${pullsUrl}/${num}/comments`;
+    });
+  });
+
   it("gets a success response from the API", () => {
     cy.request({ url: earl }).its("status").should("equal", 200);
   });
@@ -16,7 +24,7 @@ describe(`GET /${repoOwner}/${repoName}/pulls/${pullNumber}/comments returns pul
 });
 
 describe(`GET /${repoOwner}/${repoName}/pulls/99999/comments returns 404`, () => {
-  const earl = `/api/${apiVersion}/databases/${repoOwner}/${repoName}/pulls/99999/comments`;
+  const earl = `${pullsUrl}/99999/comments`;
   it("gets a 404 response from the API", () => {
     cy.request({ url: earl, failOnStatusCode: false })
       .its("status")
