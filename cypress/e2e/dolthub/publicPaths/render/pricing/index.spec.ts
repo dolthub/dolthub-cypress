@@ -1,174 +1,131 @@
 import { allDevicesForSignedOut } from "@utils/devices";
 import {
-  newClickFlow,
   newExpectation,
-  newExpectationWithClickFlow,
   newExpectationWithScrollIntoView,
-  newExpectationWithScrollTo,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import {
   beVisible,
-  shouldFindAndContain,
+  beVisibleAndContain,
+  notBeVisible,
+  shouldBeVisible,
 } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Pricing page";
 const currentPage = "/pricing";
 
-const pricingTests = [
+type Product = {
+  name: string;
+  tagline: string;
+  button: string;
+};
+
+type Section = {
+  name: string;
+  products: Product[];
+};
+
+// Taglines and button text come from the page's products.tsx. They identify a
+// product rather than price it, so they outlast the numbers next to them.
+const sections: Section[] = [
   {
-    name: "dolt",
-    shouldFind: [
-      {
-        datacy: "dolt-header",
-        text: "GIT FOR DATA",
-      },
-      {
-        datacy: "download-dolt-button",
-        text: "Download for free",
-      },
+    name: "databases",
+    products: [
+      { name: "dolt", tagline: "Git for data", button: "Download" },
+      { name: "doltgres", tagline: "Dolt for Postgres", button: "Download" },
+      { name: "doltlite", tagline: "Dolt for SQLite", button: "Download" },
     ],
   },
   {
-    name: "doltgres",
-    shouldFind: [
-      {
-        datacy: "doltgres-header",
-        text: "DOLT FOR POSTGRES",
-      },
-      {
-        datacy: "download-doltgres-button",
-        text: "Download for free",
-      },
-    ],
-  },
-  {
-    name: "doltlite",
-    shouldFind: [
-      {
-        datacy: "doltlite-header",
-        text: "DOLT FOR SQLITE",
-      },
-      {
-        datacy: "download-doltlite-button",
-        text: "Download for free",
-      },
-    ],
-  },
-  {
-    name: "hosted-dolt",
-    shouldFind: [
-      {
-        datacy: "hosted-dolt-header",
-        text: "DOLT IN THE CLOUD",
-      },
-      {
-        datacy: "hosted-dolt-get-started-button",
-        text: "Get Started",
-      },
-      {
-        datacy: "hosted-dolt-pricing-link",
-        text: "See detailed pricing",
-      },
-    ],
-  },
-  {
-    name: "dolthub",
-    shouldFind: [
-      {
-        datacy: "dolthub-header",
-        text: "FORKS, CLONES, & PULL REQUESTS",
-      },
-      {
-        datacy: "dolthub-sign-up-button",
-        text: "Sign up",
-      },
-      {
-        datacy: "dolthub-pro-button",
-        text: "Get DoltHub Pro",
-      },
-    ],
-  },
-  {
-    name: "doltlab",
-    shouldFind: [
-      {
-        datacy: "doltlab-header",
-        text: "SELF-HOSTED DOLTHUB",
-      },
-      {
-        datacy: "doltlab-download-button",
-        text: "Download for free",
-      },
-      {
-        datacy: "doltlab-contact-link",
-        text: "Contact Enterprise Sales ",
-      },
-    ],
-  },
-  {
-    name: "enterprise",
-    shouldFind: [
-      {
-        datacy: "enterprise-header",
-        text: "Enterprise Support",
-      },
-      {
-        datacy: "enterprise-contact-button",
-        text: "Contact Sales",
-      },
+    name: "services",
+    products: [
+      { name: "hosted-dolt", tagline: "AWS for Dolt", button: "Deploy" },
+      { name: "dolthub", tagline: "GitHub for Dolt", button: "Sign up" },
+      { name: "doltlab", tagline: "GitLab for Dolt", button: "Download" },
+      { name: "workbench", tagline: "DataGrip for Dolt", button: "Download" },
     ],
   },
 ];
 
-describe(`${pageName} renders expected components on different devices`, () => {
-  const tests = [
-    ...pricingTests
-      .map(test => [
-        ...(test.name !== "enterprise"
-          ? [
-              newExpectationWithScrollTo(
-                `should find and scroll to ${test.name} card header`,
-                `[data-cy=${test.name}-header]`,
-                beVisible,
-                {
-                  selectorStr: `[data-cy=${test.name}-header]`,
-                  options: { offset: { top: -100, left: 0 } },
-                },
-              ),
-              newExpectationWithClickFlow(
-                "should click on the enterprise banner button",
-                `[data-cy=enterprise-banner-${test.name}]`,
-                beVisible,
-                newClickFlow(
-                  `[data-cy=enterprise-banner-${test.name}]`,
-                  [
-                    newExpectation(
-                      "should find the enterprise card",
-                      `[data-cy=enterprise-card]`,
-                      beVisible,
-                    ),
-                  ],
-                  undefined,
-                  true,
-                ),
-              ),
-            ]
-          : []),
-        newExpectationWithScrollIntoView(
-          `should find and scroll to ${test.name}-card pricing section`,
-          `[data-cy=${test.name}-card]`,
-          beVisible,
-          true,
-        ),
-        ...test.shouldFind.map(find =>
-          shouldFindAndContain(find.datacy, find.text),
-        ),
-      ])
-      .flat(),
-  ];
+const pageTests = [
+  shouldBeVisible("pricing-page"),
+  shouldBeVisible("pricing-info"),
+];
 
-  const devices = allDevicesForSignedOut(pageName, tests, tests);
+// Both layouts are always in the DOM and CSS picks one at the lg breakpoint,
+// so each device asserts its own layout is shown *and* the other is not.
+// Product buttons carry the same data-cy in both, hence the scoping.
+const desktopTests = [
+  ...pageTests,
+  ...sections.flatMap(section => [
+    newExpectation(
+      `should show the ${section.name} table`,
+      `[data-cy=${section.name}-table]`,
+      beVisible,
+    ),
+    newExpectation(
+      `should not show the ${section.name} cards`,
+      `[data-cy=${section.name}-cards]`,
+      notBeVisible,
+    ),
+    newExpectation(
+      `should list every ${section.name} product in the table`,
+      `[data-cy=${section.name}-table]`,
+      beVisibleAndContain(section.products.map(p => p.tagline)),
+    ),
+    ...section.products.map(p =>
+      newExpectation(
+        `should find the ${p.name} button in the ${section.name} table`,
+        `[data-cy=${section.name}-table] [data-cy=${p.name}-pricing-button]`,
+        beVisibleAndContain(p.button),
+      ),
+    ),
+  ]),
+  // Replaces the enterprise card the redesign removed. The link has no
+  // data-cy of its own, so it is reached through its href.
+  newExpectation(
+    "should offer enterprise support beneath the databases table",
+    `[data-cy=databases-table] a[href="/support"]`,
+    beVisibleAndContain("Enterprise Support"),
+  ),
+];
+
+const mobileTests = [
+  ...pageTests,
+  ...sections.flatMap(section => [
+    newExpectation(
+      `should show the ${section.name} cards`,
+      `[data-cy=${section.name}-cards]`,
+      beVisible,
+    ),
+    newExpectation(
+      `should not show the ${section.name} table`,
+      `[data-cy=${section.name}-table]`,
+      notBeVisible,
+    ),
+    ...section.products.flatMap(p => [
+      newExpectationWithScrollIntoView(
+        `should find and scroll to the ${p.name} card`,
+        `[data-cy=${p.name}-card]`,
+        beVisibleAndContain(p.tagline),
+        true,
+      ),
+      newExpectation(
+        `should find the ${p.name} button in its card`,
+        `[data-cy=${p.name}-card] [data-cy=${p.name}-pricing-button]`,
+        beVisibleAndContain(p.button),
+      ),
+    ]),
+  ]),
+  newExpectation(
+    "should offer enterprise support beneath the databases cards",
+    `[data-cy=databases-cards] a[href="/support"]`,
+    beVisibleAndContain("Enterprise Support"),
+  ),
+];
+
+describe(`${pageName} renders expected components on different devices`, () => {
+  const devices = allDevicesForSignedOut(pageName, desktopTests, mobileTests);
 
   const skip = false;
   runTestsForDevices({ currentPage, devices, skip });

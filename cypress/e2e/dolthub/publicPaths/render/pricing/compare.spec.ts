@@ -1,63 +1,26 @@
-import { allDevicesDiffTestsForSignedOut } from "@utils/devices";
-import { newExpectationWithScrollIntoView } from "@utils/helpers";
+import { allDevicesForSignedOut } from "@utils/devices";
+import { newExpectationWithURL } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
-import {
-  beVisible,
-  shouldBeVisible,
-} from "@utils/sharedTests/sharedFunctionsAndVariables";
+import { beVisible } from "@utils/sharedTests/sharedFunctionsAndVariables";
 
 const pageName = "Compare page";
 const currentPage = "/compare";
 
-const pricingTests = [
-  "dolt-pricing",
-  "doltgres-pricing",
-  "hosted-dolt-pricing",
-  "dolthub-pricing",
-  "doltlab-pricing",
-];
-
-describe(`${pageName} renders expected components on different devices`, () => {
-  const desktopTests = [
-    shouldBeVisible("desktop-table-container"),
-    ...pricingTests.map(datacy => shouldBeVisible(datacy)),
-  ];
-
-  const ipadTests = [
-    shouldBeVisible("desktop-table-container"),
-    ...pricingTests.map(datacy =>
-      newExpectationWithScrollIntoView(
-        `should find and scroll to ${datacy} section`,
-        `[data-cy=${datacy}]`,
-        beVisible,
-        true,
-      ),
+// /compare was retired with the pricing redesign and now redirects to
+// /pricing. The route is kept under test so the redirect cannot quietly
+// disappear and start 404ing the links that still point at it.
+describe(`${pageName} redirects to the pricing page on different devices`, () => {
+  const tests = [
+    newExpectationWithURL(
+      "should be redirected to the pricing page",
+      "[data-cy=pricing-page]",
+      beVisible,
+      "/pricing",
     ),
   ];
 
-  const mobileTests = [
-    shouldBeVisible("mobile-table-container"),
-    ...pricingTests.map(datacy =>
-      newExpectationWithScrollIntoView(
-        `should find and scroll to ${datacy} section`,
-        `[data-cy=mobile-${datacy}]`,
-        beVisible,
-        true,
-      ),
-    ),
-  ];
-
-  const devices = allDevicesDiffTestsForSignedOut(
-    pageName,
-    desktopTests,
-    ipadTests,
-    mobileTests,
-  );
+  const devices = allDevicesForSignedOut(pageName, tests, tests);
 
   const skip = false;
-  runTestsForDevices({
-    currentPage,
-    devices,
-    skip,
-  });
+  runTestsForDevices({ currentPage, devices, skip });
 });
