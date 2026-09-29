@@ -3,7 +3,7 @@ import {
   newExpectation,
   newExpectationWithScrollIntoView,
   newShouldArgs,
-  scrollToPosition,
+  scrollWindowToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 
@@ -23,7 +23,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       newShouldArgs("be.visible.and.contain", "Meet the Team"),
       true,
     ),
-    scrollToPosition("#main-content", "center"),
+    scrollWindowToPosition("center"),
     newExpectation(
       "should have team list of at least 10",
       "[data-cy=team-section] ul > li",

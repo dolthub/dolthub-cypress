@@ -4,7 +4,7 @@ import {
   newExpectation,
   newExpectationWithClickFlow,
   newShouldArgs,
-  scrollToXY,
+  scrollWindowToXY,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import { Expectation } from "@utils/types";
@@ -123,7 +123,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
 
   const mobileTests = [
     ...testSections,
-    scrollToXY("#main-content", 0, 250),
+    scrollWindowToXY(0, 250),
     ...signinTests,
     newExpectationWithClickFlow(
       "should have create account button tab",

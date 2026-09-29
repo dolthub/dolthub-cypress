@@ -3,7 +3,7 @@ import { allDevicesForSignedOut } from "@utils/devices";
 import {
   newExpectation,
   newShouldArgs,
-  scrollToPosition,
+  scrollWindowToPosition,
 } from "@utils/helpers";
 import { runTestsForDevices } from "@utils/index";
 import { Tests } from "@utils/types";
@@ -28,7 +28,7 @@ describe(`${pageName} renders expected components on different devices`, () => {
       "[data-cy=team-section] ul > li",
       newShouldArgs("be.visible.and.have.length.of.at.least", 10),
     ),
-    scrollToPosition("#main-content", "top"),
+    scrollWindowToPosition("top"),
     ...navbarTests,
     newExpectation(
       "should have about section",

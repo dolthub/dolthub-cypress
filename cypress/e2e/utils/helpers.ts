@@ -93,6 +93,19 @@ export function scrollToPosition(
   );
 }
 
+// scrollWindowToPosition scrolls the document instead of a nested container.
+export function scrollWindowToPosition(
+  position: Cypress.PositionType,
+  options?: Partial<Cypress.ScrollToOptions> | undefined,
+): Expectation {
+  return newExpectationWithScrollTo(
+    `should scroll window to ${position}`,
+    "body",
+    newShouldArgs("be.visible"),
+    newScrollToPosition(position, undefined, options),
+  );
+}
+
 export function newScrollToPosition(
   position: Cypress.PositionType,
   selectorStr?: string,
@@ -111,6 +124,19 @@ export function scrollToXY(
     selectorStr,
     newShouldArgs("be.visible"),
     newScrollToXY(x, y, selectorStr),
+  );
+}
+
+// scrollWindowToXY scrolls the document instead of a nested container.
+export function scrollWindowToXY(
+  x: string | number,
+  y: string | number,
+): Expectation {
+  return newExpectationWithScrollTo(
+    `should scroll window to x: ${x}, y: ${y}`,
+    "body",
+    newShouldArgs("be.visible"),
+    newScrollToXY(x, y),
   );
 }
 
