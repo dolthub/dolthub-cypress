@@ -44,7 +44,7 @@
     "@babel/preset-typescript": "^8.0.1",
     "@cypress/github-action": "^7.4.3",
     "@eslint/js": "^10.0.1",
-    "@types/node": "^26.4.0",
+    "@types/node": "^26.6.3",
     "@typescript-eslint/eslint-plugin": "^8.68.0",
     "@typescript-eslint/parser": "^8.68.0",
     "eslint": "^10.9.1",
