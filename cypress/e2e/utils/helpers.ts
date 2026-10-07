@@ -46,10 +46,19 @@ export function newExpectationWithScrollIntoView(
   description: string,
   selector: Selector,
   shouldArgs: ShouldArgs,
-  scrollIntoView: boolean,
+  scrollIntoView: NonNullable<Expectation["scrollIntoView"]>,
   skip = false,
 ): Expectation {
   return { description, selector, scrollIntoView, shouldArgs, skip };
+}
+
+export function newExpectationWithTrigger(
+  description: string,
+  selector: string,
+  shouldArgs: ShouldArgs,
+  trigger: string,
+): Expectation {
+  return { description, selector, shouldArgs, trigger };
 }
 
 export function newExpectationWithScrollTo(

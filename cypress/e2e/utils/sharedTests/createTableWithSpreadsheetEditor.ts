@@ -29,6 +29,16 @@ export const testCreateTableWithSpreadsheetEditor: Tests = [
       "[data-cy=repo-tables-add-table]",
       [
         newExpectation(
+          "should show sql query button",
+          "[data-cy=sql-query-create-table]",
+          beVisibleAndContain("SQL Query"),
+        ),
+        newExpectation(
+          "should show file upload link",
+          "[data-cy=file-upload-fileupload-table-link]",
+          beVisibleAndContain("File Upload"),
+        ),
+        newExpectation(
           `should show and click spread sheet editor`,
           `[data-cy=file-upload-spreadsheet-table-link]`,
           beVisibleAndContain("Spreadsheet Editor"),

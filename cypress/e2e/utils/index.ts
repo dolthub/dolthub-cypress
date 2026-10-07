@@ -125,6 +125,7 @@ function testAssertion(t: Expectation) {
         t.fileUpload,
         t.url,
         t.scrollIntoView,
+        t.trigger,
       ),
     );
   }
@@ -138,6 +139,7 @@ function testAssertion(t: Expectation) {
     t.fileUpload,
     t.url,
     t.scrollIntoView,
+    t.trigger,
   );
 }
 
@@ -150,7 +152,8 @@ function getAssertionTest(
   targetPage?: string,
   fileUpload?: string,
   url?: string,
-  scrollIntoView?: boolean,
+  scrollIntoView?: Expectation["scrollIntoView"],
+  trigger?: string,
 ) {
   const message = `
   Test assertion failed... 
@@ -190,8 +193,12 @@ function getAssertionTest(
     cy.location("href", opts).should("eq", `${base}${url}`);
   }
   if (scrollIntoView) {
-    scrollSelectorIntoView(selectorStr);
+    scrollSelectorIntoView(
+      selectorStr,
+      typeof scrollIntoView === "object" ? scrollIntoView : undefined,
+    );
   }
+  if (trigger) cy.get(selectorStr, opts).trigger(trigger);
   if (Array.isArray(shouldArgs.value)) {
     if (shouldArgs.chainer === "be.visible.and.contain") {
       return cy
@@ -246,13 +253,16 @@ function runClicks(clickStrOrArr: string | string[], force?: boolean) {
 }
 
 // scrollSelectorIntoView scrolls the selector into view
-function scrollSelectorIntoView(clickStrOrArr: string | string[]) {
+function scrollSelectorIntoView(
+  clickStrOrArr: string | string[],
+  options?: Partial<Cypress.ScrollIntoViewOptions>,
+) {
   if (Array.isArray(clickStrOrArr)) {
     clickStrOrArr.forEach(clickStr => {
-      cy.get(clickStr, opts).scrollIntoView();
+      cy.get(clickStr, opts).scrollIntoView(options);
     });
   } else {
-    cy.get(clickStrOrArr, opts).scrollIntoView();
+    cy.get(clickStrOrArr, opts).scrollIntoView(options);
   }
 }
 
