@@ -40,7 +40,8 @@ export type Expectation = {
   selector: Selector;
   shouldArgs: ShouldArgs;
   clickFlow?: ClickFlow;
-  scrollIntoView?: boolean;
+  scrollIntoView?: boolean | Partial<Cypress.ScrollIntoViewOptions>;
+  trigger?: string;
   scrollTo?: ScrollTo;
   skip?: boolean;
   typeString?: TypeStringType;

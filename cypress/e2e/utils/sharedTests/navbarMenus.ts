@@ -1,20 +1,120 @@
-import { deviceDimensions, runTests } from "../index";
+import { iPad2, iPhoneX, macbook15 } from "../devices";
+import {
+  newClickFlow,
+  newExpectation,
+  newExpectationWithClickFlow,
+  newExpectationWithScrollIntoView,
+  newExpectationWithTrigger,
+  newShouldArgs,
+} from "../helpers";
+import { runTestsForDevices } from "../index";
+import { Tests } from "../types";
 import {
   testMobileNavbar,
   testSignedInNavbar,
   testSignedOutNavbar,
 } from "./navbar";
+import { beVisible, notExist } from "./sharedFunctionsAndVariables";
 
-const products = [
-  "dolt",
-  "doltgresql",
-  "doltlite",
-  "dolthub",
-  "doltlab",
-  "dolt-workbench",
-  "hosted-dolt",
-];
-const docs = ["dolt", "doltgresql", "doltlab"];
+// Keep scrolled links below the fixed mobile menu header.
+const scrollOptions = { offset: { top: -100, left: 0 } };
+const visibleMenuItem = (selector: string) =>
+  newExpectationWithScrollIntoView(
+    `should show ${selector}`,
+    selector,
+    beVisible,
+    scrollOptions,
+  );
+const expanded = (value: boolean) =>
+  newShouldArgs("have.attr", ["aria-expanded", String(value)]);
+
+function menuTests(trigger: string, contents: Tests, isMobile: boolean): Tests {
+  const open = isMobile
+    ? newExpectationWithClickFlow(
+        "should expand menu on click",
+        trigger,
+        beVisible,
+        newClickFlow(trigger, [
+          newExpectation("should be expanded", trigger, expanded(true)),
+        ]),
+      )
+    : newExpectationWithTrigger(
+        "should expand menu on hover",
+        trigger,
+        expanded(true),
+        "mouseover",
+      );
+  return [
+    visibleMenuItem(trigger),
+    newExpectation("should start collapsed", trigger, expanded(false)),
+    open,
+    ...contents,
+    visibleMenuItem(trigger),
+    newExpectationWithClickFlow(
+      "should collapse menu on click",
+      trigger,
+      expanded(true),
+      newClickFlow(trigger, [
+        newExpectation("should be collapsed", trigger, expanded(false)),
+      ]),
+    ),
+  ];
+}
+
+function navbarMenuTests(isMobile: boolean, loggedIn: boolean): Tests {
+  const productsTrigger = isMobile
+    ? "[data-cy=mobile-navbar-products]"
+    : "[data-cy=navbar-products]";
+  const docsTrigger = isMobile
+    ? "[data-cy=mobile-navbar-docs]"
+    : "[data-cy=navbar-docs-menu]";
+  const docSelector = (doc: string) =>
+    `[data-cy=${isMobile ? "mobile-" : ""}nav-docs-${doc}]`;
+  return [
+    ...menuTests(
+      productsTrigger,
+      [
+        ...[
+          "dolt",
+          "doltgresql",
+          "doltlite",
+          "dolthub",
+          "doltlab",
+          "dolt-workbench",
+          "hosted-dolt",
+        ].map(product => visibleMenuItem(`[data-cy=nav-product-${product}]`)),
+        newExpectation(
+          "should link DoltHub to the appropriate signed-in or signed-out page",
+          `[data-cy=nav-product-dolthub][href$="/${loggedIn ? "profile" : "signin"}"]`,
+          newShouldArgs("exist"),
+        ),
+        newExpectation(
+          "should link to creating a Hosted Dolt deployment",
+          '[data-cy=nav-product-hosted-dolt] a[href="https://hosted.doltdb.com/create-deployment"]',
+          newShouldArgs("exist"),
+        ),
+      ],
+      isMobile,
+    ),
+    newExpectation(
+      "should remove product cards",
+      "[data-cy=nav-product-dolt]",
+      notExist,
+    ),
+    ...menuTests(
+      docsTrigger,
+      ["dolt", "doltgresql", "doltlab"].map(doc =>
+        visibleMenuItem(`${docSelector(doc)}[href]`),
+      ),
+      isMobile,
+    ),
+    newExpectation(
+      "should remove documentation links",
+      docSelector("dolt"),
+      notExist,
+    ),
+  ];
+}
 
 export function testNavbarMenus(currentPage: string, loggedIn = false) {
   if (loggedIn) {
@@ -25,86 +125,35 @@ export function testNavbarMenus(currentPage: string, loggedIn = false) {
       });
     });
   }
-  const devices: Cypress.ViewportPreset[] = [
-    "macbook-15",
-    "ipad-2",
-    "iphone-x",
+  const desktopTests = [
+    ...(loggedIn ? testSignedInNavbar : testSignedOutNavbar),
+    ...navbarMenuTests(false, loggedIn),
   ];
-  devices.forEach(device => {
-    const isMobile = device !== "macbook-15";
-    it(
-      `opens and closes navbar menus on ${device}`,
-      deviceDimensions[device],
-      () => {
-        cy.visitPage(currentPage, loggedIn);
-        runTests({
-          isMobile,
-          tests: isMobile
-            ? testMobileNavbar(loggedIn)
-            : loggedIn
-              ? testSignedInNavbar
-              : testSignedOutNavbar,
-        });
-        if (isMobile) cy.get("[data-cy=mobile-navbar-menu-button]").click();
-
-        const productsTrigger = isMobile
-          ? "[data-cy=mobile-navbar-products]"
-          : "[data-cy=navbar-products]";
-        const docsTrigger = isMobile
-          ? "[data-cy=mobile-navbar-docs]"
-          : "[data-cy=navbar-docs-menu]";
-        const openMenu = (selector: string) => {
-          cy.get(selector).should("have.attr", "aria-expanded", "false");
-          if (isMobile) {
-            cy.get(selector).scrollIntoView({ offset: { top: -100, left: 0 } });
-            cy.get(selector).click();
-          } else cy.get(selector).trigger("mouseover");
-          cy.get(selector).should("have.attr", "aria-expanded", "true");
-        };
-        const closeMenu = (selector: string) => {
-          cy.get(selector).scrollIntoView({ offset: { top: -100, left: 0 } });
-          cy.get(selector).click();
-          cy.get(selector).should("have.attr", "aria-expanded", "false");
-        };
-
-        openMenu(productsTrigger);
-        products.forEach(product => {
-          cy.get(`[data-cy=nav-product-${product}]`).scrollIntoView({
-            offset: { top: -100, left: 0 },
-          });
-          cy.get(`[data-cy=nav-product-${product}]`).should("be.visible");
-        });
-        cy.get("[data-cy=nav-product-dolthub]")
-          .should("have.attr", "href")
-          .and("match", new RegExp(`/${loggedIn ? "profile" : "signin"}$`));
-        cy.get("[data-cy=nav-product-hosted-dolt] a")
-          .last()
-          .should(
-            "have.attr",
-            "href",
-            "https://hosted.doltdb.com/create-deployment",
-          );
-        closeMenu(productsTrigger);
-        cy.get("[data-cy=nav-product-dolt]").should("not.exist");
-
-        openMenu(docsTrigger);
-        docs.forEach(doc => {
-          cy.get(
-            `[data-cy=${isMobile ? "mobile-" : ""}nav-docs-${doc}]`,
-          ).scrollIntoView({ offset: { top: -100, left: 0 } });
-          cy.get(`[data-cy=${isMobile ? "mobile-" : ""}nav-docs-${doc}]`)
-            .should("be.visible")
-            .and("have.attr", "href");
-        });
-        closeMenu(docsTrigger);
-        cy.get(`[data-cy=${isMobile ? "mobile-" : ""}nav-docs-dolt]`).should(
-          "not.exist",
-        );
-        if (isMobile) {
-          cy.get("[data-cy=mobile-navbar-close-button]").click();
-          cy.get("[data-cy=mobile-navbar-links]").should("not.exist");
-        }
-      },
-    );
+  const mobileTests = [
+    ...testMobileNavbar(loggedIn),
+    newExpectationWithClickFlow(
+      "should open mobile navigation and exercise its menus",
+      "[data-cy=mobile-navbar-menu-button]",
+      beVisible,
+      newClickFlow(
+        "[data-cy=mobile-navbar-menu-button]",
+        navbarMenuTests(true, loggedIn),
+        "[data-cy=mobile-navbar-close-button]",
+      ),
+    ),
+    newExpectation(
+      "should remove mobile navigation",
+      "[data-cy=mobile-navbar-links]",
+      notExist,
+    ),
+  ];
+  runTestsForDevices({
+    currentPage,
+    loggedIn,
+    devices: [
+      macbook15("Navbar menus", desktopTests),
+      iPad2("Navbar menus", mobileTests),
+      iPhoneX("Navbar menus", mobileTests),
+    ],
   });
 }
