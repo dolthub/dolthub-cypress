@@ -68,6 +68,10 @@ function navbarMenuTests(isMobile: boolean, loggedIn: boolean): Tests {
   const docsTrigger = isMobile
     ? "[data-cy=mobile-navbar-docs]"
     : "[data-cy=navbar-docs-menu]";
+  // Both layouts render the same ProductCard/HostedCard data-cy values.
+  // Scope mobile assertions to the accordion so desktop cards cannot satisfy them.
+  const productSelector = (product: string) =>
+    `${isMobile ? "[data-cy=mobile-navbar-links] " : ""}[data-cy=nav-product-${product}]`;
   const docSelector = (doc: string) =>
     `[data-cy=${isMobile ? "mobile-" : ""}nav-docs-${doc}]`;
   return [
@@ -82,15 +86,15 @@ function navbarMenuTests(isMobile: boolean, loggedIn: boolean): Tests {
           "doltlab",
           "dolt-workbench",
           "hosted-dolt",
-        ].map(product => visibleMenuItem(`[data-cy=nav-product-${product}]`)),
+        ].map(product => visibleMenuItem(productSelector(product))),
         newExpectation(
           "should link DoltHub to the appropriate signed-in or signed-out page",
-          `[data-cy=nav-product-dolthub][href$="/${loggedIn ? "profile" : "signin"}"]`,
+          `${productSelector("dolthub")}[href$="/${loggedIn ? "profile" : "signin"}"]`,
           newShouldArgs("exist"),
         ),
         newExpectation(
           "should link to creating a Hosted Dolt deployment",
-          '[data-cy=nav-product-hosted-dolt] a[href="https://hosted.doltdb.com/create-deployment"]',
+          `${productSelector("hosted-dolt")} a[href="https://hosted.doltdb.com/create-deployment"]`,
           newShouldArgs("exist"),
         ),
       ],
@@ -98,7 +102,7 @@ function navbarMenuTests(isMobile: boolean, loggedIn: boolean): Tests {
     ),
     newExpectation(
       "should remove product cards",
-      "[data-cy=nav-product-dolt]",
+      productSelector("dolt"),
       notExist,
     ),
     ...menuTests(

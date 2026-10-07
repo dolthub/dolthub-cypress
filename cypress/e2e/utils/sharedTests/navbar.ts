@@ -104,6 +104,17 @@ const mobileNavbarClickFlow = (loggedIn = false) =>
   );
 
 export const testMobileNavbar = (loggedIn = false): Tests => [
+  // The current-user query replaces the initial signed-out navbar. Wait for
+  // that replacement before clicking, otherwise its open-menu state is lost.
+  ...(loggedIn
+    ? [
+        newExpectation(
+          "should finish loading the signed-in navbar",
+          "[data-cy=navbar-menu-avatar]",
+          newShouldArgs("exist"),
+        ),
+      ]
+    : []),
   shouldBeVisible("mobile-navbar-menu-button"),
   newExpectationWithClickFlow(
     "should show menu button and open nav on mobile",
