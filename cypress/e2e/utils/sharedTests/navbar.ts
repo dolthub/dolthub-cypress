@@ -12,13 +12,13 @@ import {
 } from "./sharedFunctionsAndVariables";
 
 const sharedLinks = [
-  "[data-cy=navbar-documentation]",
+  "[data-cy=navbar-products]",
+  "[data-cy=navbar-docs-menu]",
   "[data-cy=navbar-blog]",
   "[data-cy=navbar-logo]",
   "[data-cy=discord-link]",
   "[data-cy=github-link]",
   "[data-cy=navbar-pricing]",
-  "[data-cy=navbar-databases]",
 ];
 
 export const signedOutNavbarLinks = [
@@ -64,31 +64,36 @@ const mobileNavbarClickFlow = (loggedIn = false) =>
   newClickFlow(
     "[data-cy=mobile-navbar-menu-button]",
     [
+      newExpectation(
+        "should show product and documentation accordions and navigation links",
+        [
+          "[data-cy=mobile-navbar-products]",
+          "[data-cy=mobile-navbar-docs]",
+          "[data-cy=mobile-navbar-links] [data-cy=navbar-pricing]",
+          "[data-cy=mobile-navbar-links] [data-cy=navbar-blog]",
+        ],
+        beVisible,
+      ),
       ...(loggedIn
         ? [
             newExpectation(
-              "should show DoltHub sign out button",
-              "[data-cy=mobile-navbar-links] button",
-              beVisibleAndContain("Sign Out"),
+              "should show DoltHub sign out action",
+              "[data-cy=sign-out-button-mobile]",
+              beVisibleAndContain("Sign out"),
             ),
             newExpectation(
-              "should show DoltHub links",
-              "[data-cy=mobile-navbar-links] > a",
-              newShouldArgs("be.visible.and.have.length.of.at.least", 5),
+              "should show account links",
+              '[aria-label="mobile-navbar-account-links"] a',
+              newShouldArgs("be.visible.and.have.length", 5),
             ),
           ]
         : [
             newExpectation(
-              "should show DoltHub links",
-              "[data-cy=mobile-navbar-links] > a",
-              newShouldArgs("be.visible.and.have.length.of.at.least", 4),
+              "should show sign in action",
+              "[data-cy=mobile-navbar-signin]",
+              beVisibleAndContain("Sign in"),
             ),
           ]),
-      newExpectation(
-        "should show DoltHub links",
-        "[data-cy=mobile-navbar-links] > a",
-        newShouldArgs("be.visible.and.have.length.of.at.least", 5),
-      ),
       newExpectation(
         "should show social links",
         "[data-cy=mobile-navbar-social-links] > a",
