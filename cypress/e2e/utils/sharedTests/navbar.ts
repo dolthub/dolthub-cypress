@@ -60,6 +60,21 @@ export const testSignedOutDoltLabNavbar: Tests = [
   ),
 ];
 
+const mobileAccountLinks: Tests = [
+  ['[href="/settings"]', "Settings"],
+  ['[href="/profile"]', "My Databases"],
+  ['[href^="/users/"][href$="/organizations"]', "My Organizations"],
+  ['[href="/contact"]', "Contact DoltHub"],
+  ['[href="/terms"]', "Terms of Service"],
+  ['[href="/privacy-policy"]', "Privacy Policy"],
+].map(([hrefSelector, label]) =>
+  newExpectation(
+    `should show the ${label} account link with its correct destination`,
+    `[aria-label="mobile-navbar-account-links"] a${hrefSelector}`,
+    beVisibleAndContain(label),
+  ),
+);
+
 const mobileNavbarClickFlow = (loggedIn = false) =>
   newClickFlow(
     "[data-cy=mobile-navbar-menu-button]",
@@ -81,11 +96,7 @@ const mobileNavbarClickFlow = (loggedIn = false) =>
               "[data-cy=sign-out-button-mobile]",
               beVisibleAndContain("Sign out"),
             ),
-            newExpectation(
-              "should show account links",
-              '[aria-label="mobile-navbar-account-links"] a',
-              newShouldArgs("be.visible.and.have.length", 5),
-            ),
+            ...mobileAccountLinks,
           ]
         : [
             newExpectation(
