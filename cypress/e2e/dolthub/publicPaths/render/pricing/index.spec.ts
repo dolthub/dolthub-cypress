@@ -52,6 +52,27 @@ const pageTests = [
   shouldBeVisible("pricing-info"),
 ];
 
+const enterpriseTests = [
+  newExpectationWithScrollIntoView(
+    "should show the Enterprise section heading",
+    "#enterprise #enterprise-heading",
+    beVisibleAndContain("Enterprise"),
+    true,
+  ),
+  newExpectationWithScrollIntoView(
+    "should link to enterprise support details",
+    '#enterprise a[href="/support"]',
+    beVisibleAndContain("Learn More"),
+    true,
+  ),
+  newExpectationWithScrollIntoView(
+    "should link to sales contact from the Enterprise section",
+    '#enterprise a[href="/contact"]',
+    beVisibleAndContain("Contact Sales"),
+    true,
+  ),
+];
+
 // Both layouts are always in the DOM and CSS picks one at the lg breakpoint,
 // so each device asserts its own layout is shown *and* the other is not.
 // Product buttons carry the same data-cy in both, hence the scoping.
@@ -81,13 +102,7 @@ const desktopTests = [
       ),
     ),
   ]),
-  // Replaces the enterprise card the redesign removed. The link has no
-  // data-cy of its own, so it is reached through its href.
-  newExpectation(
-    "should offer enterprise support beneath the databases table",
-    `[data-cy=databases-table] a[href="/support"]`,
-    beVisibleAndContain("Enterprise Support"),
-  ),
+  ...enterpriseTests,
 ];
 
 const mobileTests = [
@@ -117,11 +132,7 @@ const mobileTests = [
       ),
     ]),
   ]),
-  newExpectation(
-    "should offer enterprise support beneath the databases cards",
-    `[data-cy=databases-cards] a[href="/support"]`,
-    beVisibleAndContain("Enterprise Support"),
-  ),
+  ...enterpriseTests,
 ];
 
 describe(`${pageName} renders expected components on different devices`, () => {
