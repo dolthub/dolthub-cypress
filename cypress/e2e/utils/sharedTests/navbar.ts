@@ -30,8 +30,8 @@ const signedInNavbarLinks = sharedLinks;
 
 const signedOutDoltLabNavbarLinks = [
   "[data-cy=navbar-logo]",
-  "[data-cy=navbar-databases]",
-  "[data-cy=navbar-documentation]",
+  "[data-cy=navbar-public-databases]",
+  "[data-cy=navbar-docs]",
   "[data-cy=navbar-signin-button]",
 ];
 
