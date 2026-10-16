@@ -357,7 +357,7 @@ const testViewClickFlow = (testView: string): ClickFlow =>
     newExpectation(
       "",
       "[data-cy=sql-editor-collapsed]",
-      newShouldArgs("be.visible.and.contain", `SELECT * FROM \`${testView}\``),
+      newShouldArgs("be.visible.and.contain", `select * from ${testView}`),
     ),
   ]);
 
@@ -372,10 +372,7 @@ const testViewMobile = (testView: string): Expectation[] => [
         newExpectation(
           "",
           "[data-cy=mobile-sql-editor-button]",
-          newShouldArgs(
-            "be.visible.and.contain",
-            `SELECT * FROM \`${testView}\``,
-          ),
+          newShouldArgs("be.visible.and.contain", `select * from ${testView}`),
         ),
       ],
       "[data-cy=show-table-nav-button]",
@@ -389,7 +386,7 @@ const testViewMobile = (testView: string): Expectation[] => [
   newExpectation(
     "",
     "[data-cy=mobile-sql-editor-button]",
-    newShouldArgs("be.visible.and.contain", `SELECT * FROM \`${testView}\``),
+    newShouldArgs("be.visible.and.contain", `select * from ${testView}`),
   ),
 ];
 
@@ -587,7 +584,7 @@ const testSchemaClickFlow = (testSchema: string): ClickFlow =>
       "[data-cy=sql-editor-collapsed]",
       newShouldArgs(
         "be.visible.and.contain",
-        `SHOW CREATE TABLE \`${testSchema}\``,
+        `show create table ${testSchema}`,
       ),
     ),
   ]);
@@ -613,7 +610,7 @@ const testSchemaMobile = (
           "[data-cy=mobile-sql-editor-button]",
           newShouldArgs(
             "be.visible.and.contain",
-            `SHOW CREATE TABLE \`${testSchema}\``,
+            `show create table ${testSchema}`,
           ),
         ),
       ],

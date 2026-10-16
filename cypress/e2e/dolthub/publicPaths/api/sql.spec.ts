@@ -5,7 +5,7 @@ const repoOwner = "automated_testing";
 const repoName = "corona-virus";
 const defaultBranch = "master";
 const otherBranch = "add-case-details";
-const defaultQuery = "SHOW TABLES;";
+const defaultQuery = "show tables";
 const selectQuery = "SELECT * FROM `places` ORDER BY place_id ASC LIMIT 5;";
 const badQuery = "heatdome";
 
