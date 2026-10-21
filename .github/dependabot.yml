@@ -9,3 +9,22 @@ updates:
   open-pull-requests-limit: 10
   labels:
   - dependencies
+  groups:
+    # Update the compiler, CLI, and presets together, including major upgrades.
+    babel:
+      patterns:
+      - "@babel/*"
+    # Keep the parser and plugin on compatible versions.
+    typescript-eslint:
+      patterns:
+      - "@typescript-eslint/*"
+    # Batch routine ESLint updates; review major upgrades individually.
+    eslint:
+      patterns:
+      - "eslint"
+      - "@eslint/*"
+      - "eslint-config-*"
+      - "eslint-plugin-*"
+      update-types:
+      - minor
+      - patch
