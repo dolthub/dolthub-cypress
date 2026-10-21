@@ -9,3 +9,28 @@ updates:
   open-pull-requests-limit: 10
   labels:
   - dependencies
+  groups:
+    babel:
+      patterns:
+      - "@babel/*"
+      update-types:
+      - minor
+      - patch
+    eslint-typescript:
+      patterns:
+      - "@eslint/*"
+      - "@typescript-eslint/*"
+      - "eslint"
+      - "eslint-*"
+      - "typescript"
+      update-types:
+      - minor
+      - patch
+    cypress:
+      patterns:
+      - "cypress"
+      - "cypress-*"
+      - "@cypress/*"
+      update-types:
+      - minor
+      - patch
