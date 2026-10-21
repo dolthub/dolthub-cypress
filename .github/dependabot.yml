@@ -10,27 +10,21 @@ updates:
   labels:
   - dependencies
   groups:
+    # Update the compiler, CLI, and presets together, including major upgrades.
     babel:
       patterns:
       - "@babel/*"
-      update-types:
-      - minor
-      - patch
-    eslint-typescript:
+    # Keep the parser and plugin on compatible versions.
+    typescript-eslint:
       patterns:
-      - "@eslint/*"
       - "@typescript-eslint/*"
-      - "eslint"
-      - "eslint-*"
-      - "typescript"
-      update-types:
-      - minor
-      - patch
-    cypress:
+    # Batch routine ESLint updates; review major upgrades individually.
+    eslint:
       patterns:
-      - "cypress"
-      - "cypress-*"
-      - "@cypress/*"
+      - "eslint"
+      - "@eslint/*"
+      - "eslint-config-*"
+      - "eslint-plugin-*"
       update-types:
       - minor
       - patch
