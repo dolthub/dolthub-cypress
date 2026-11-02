@@ -2,7 +2,6 @@ import js from "@eslint/js";
 import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
 import cypress from "eslint-plugin-cypress";
-import importPlugin from "eslint-plugin-import";
 
 export default [
   js.configs.recommended,
@@ -23,7 +22,6 @@ export default [
     plugins: {
       "@typescript-eslint": tseslint,
       cypress,
-      import: importPlugin,
     },
     rules: {
       // TypeScript ESLint rules
@@ -75,9 +73,6 @@ export default [
       "@typescript-eslint/prefer-string-starts-ends-with": "error",
       "@typescript-eslint/promise-function-async": "error",
 
-      // Import rules
-      "import/prefer-default-export": "off",
-
       // General rules
       "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
       "no-sequences": "error",
@@ -88,13 +83,6 @@ export default [
 
       // Cypress rules
       "cypress/no-unnecessary-waiting": "warn",
-    },
-    settings: {
-      "import/resolver": {
-        node: {
-          extensions: [".js", ".jsx", ".ts", ".tsx"],
-        },
-      },
     },
   },
   {

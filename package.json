@@ -38,21 +38,17 @@
     "prettier:fix": "prettier --write 'cypress/**/*.{ts,js}'"
   },
   "devDependencies": {
-    "@babel/cli": "^8.0.6",
+    "@babel/cli": "^8.1.0",
     "@babel/core": "^8.0.10",
     "@babel/preset-env": "^8.0.7",
     "@babel/preset-typescript": "^8.0.7",
-    "@cypress/github-action": "^7.4.8",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.6",
     "@typescript-eslint/eslint-plugin": "^8.72.1",
     "@typescript-eslint/parser": "^8.72.1",
     "eslint": "^10.13.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-cypress": "^7.0.2",
-    "eslint-plugin-import": "^2.32.0",
     "npm-run-all2": "^9.0.4",
     "prettier": "^3.9.10"
   },
@@ -65,6 +61,6 @@
   "resolutions": {
     "fast-xml-parser@npm:5.2.5": "5.5.6",
     "tar": "7.5.11",
-    "undici": "6.28.1"
+    "minimatch": "11.0.1"
   }
 }
