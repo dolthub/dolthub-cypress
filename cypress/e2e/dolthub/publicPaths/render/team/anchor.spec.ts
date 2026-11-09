@@ -9,14 +9,14 @@ import { runTestsForDevices } from "@utils/index";
 import { Tests } from "@utils/types";
 
 const pageName = "Team page with anchor";
-const currentPage = "/team#taylor";
+const currentPage = "/team#tim";
 
 describe(`${pageName} renders expected components on different devices`, () => {
   const tests = (navbarTests: Tests) => [
     newExpectation(
-      "should have Taylor team item visible",
-      "[data-cy=team-item-taylor]",
-      newShouldArgs("be.visible.and.contain", "Taylor Bantle"),
+      "should have Tim team item visible",
+      "[data-cy=team-item-tim]",
+      newShouldArgs("be.visible.and.contain", "Tim Sehn"),
     ),
     newExpectation(
       "should have team list",
