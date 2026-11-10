@@ -17,15 +17,18 @@ const notBeVisible = newShouldArgs("not.be.visible");
 
 // HEADER
 
-const cloneClickFlow = newClickFlow(
-  "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
-  [
-    shouldNotExist("clone-disabled"),
-    shouldBeVisibleAndHaveLength("repo-clone-code-block", 2),
-  ],
+// Dolt databases show the `dolt clone` and `dolt sql` commands. Doltgres
+// databases only show the `dolt_clone` SQL command.
+const cloneClickFlow = (isDoltgres: boolean) =>
+  newClickFlow(
+    "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
+    [
+      shouldNotExist("clone-disabled"),
+      shouldBeVisibleAndHaveLength("repo-clone-code-block", isDoltgres ? 1 : 2),
+    ],
 
-  "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
-);
+    "[data-cy=repository-page-header] [data-cy=repo-clone-button]",
+  );
 
 export const forkButtonClickFlow = (loggedIn: boolean) =>
   newClickFlow(
@@ -161,6 +164,7 @@ export const testRepoHeaderForAll = (
   loggedIn: boolean,
   hasDocs: boolean,
   activeTab = "database",
+  isDoltgres = false,
 ): Tests => {
   const loggedOutRepoHeaderTests = [
     ...testCommonHeader(repoName, ownerName),
@@ -168,7 +172,7 @@ export const testRepoHeaderForAll = (
       "should have repo clone button",
       " [data-cy=repo-clone-button]",
       beVisible,
-      cloneClickFlow,
+      cloneClickFlow(isDoltgres),
     ),
     ...testTabs(beVisible, activeTab),
     newExpectationWithClickFlow(
@@ -212,8 +216,16 @@ export const testRepoHeaderWithBranch = (
   loggedIn: boolean,
   hasDocs: boolean,
   activeTab = "database",
+  isDoltgres = false,
 ): Tests => [
-  ...testRepoHeaderForAll(repoName, ownerName, loggedIn, hasDocs, activeTab),
+  ...testRepoHeaderForAll(
+    repoName,
+    ownerName,
+    loggedIn,
+    hasDocs,
+    activeTab,
+    isDoltgres,
+  ),
   newExpectationWithClickFlow(
     "should open create fork modal on fork button click",
     "[data-cy=repository-page-header] [data-cy=repo-fork-button]",

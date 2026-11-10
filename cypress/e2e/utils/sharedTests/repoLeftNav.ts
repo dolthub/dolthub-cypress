@@ -8,6 +8,10 @@ import {
 import { ClickFlow, Expectation, ShouldArgs, Tests } from "../types";
 
 const beVisible = newShouldArgs("be.visible");
+
+// Doltgres table names are schema-qualified (e.g. `public.test_table`), so
+// escape dots before using a name in an unquoted data-cy attribute selector.
+const cyEscape = (name: string): string => name.replace(/\./g, "\\.");
 const notExist = newShouldArgs("not.exist");
 
 const clickToOpenNavClickFlow: ClickFlow = newClickFlow(
@@ -67,7 +71,7 @@ const checkSchemaClickflow: ClickFlow = newClickFlow(
 // TABLES
 
 const testTableEditClickFlow = (testTable: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-tables-table-${testTable}-edit]`, [
+  newClickFlow(`[data-cy=repo-tables-table-${cyEscape(testTable)}-edit]`, [
     newExpectation(
       "",
       `[data-cy=repo-tables-table-editing]`,
@@ -82,13 +86,13 @@ export const conditionalEditButtonTest = (
   const editExpectation: Expectation = loggedIn
     ? newExpectationWithClickFlow(
         "Should have an Edit button",
-        `[data-cy=repo-tables-table-${testTable}-edit]`,
+        `[data-cy=repo-tables-table-${cyEscape(testTable)}-edit]`,
         beVisible,
         testTableEditClickFlow(testTable),
       )
     : newExpectation(
         "Should not have an Edit button",
-        `[data-cy=repo-tables-table-${testTable}-edit]`,
+        `[data-cy=repo-tables-table-${cyEscape(testTable)}-edit]`,
         notExist,
       );
 
@@ -97,11 +101,11 @@ export const conditionalEditButtonTest = (
 
 const testTablePlayClickFlow = (testTable: string): ClickFlow =>
   newClickFlow(
-    `[data-cy=repo-tables-table-${testTable}-play]`,
+    `[data-cy=repo-tables-table-${cyEscape(testTable)}-play]`,
     [
       newExpectation(
         "Should show a list of columns",
-        `[data-cy=repo-tables-table-${testTable}-column-list]`,
+        `[data-cy=repo-tables-table-${cyEscape(testTable)}-column-list]`,
         beVisible,
       ),
       newExpectation(
@@ -110,7 +114,7 @@ const testTablePlayClickFlow = (testTable: string): ClickFlow =>
         newShouldArgs("be.visible.and.contain", "Viewing"),
       ),
     ],
-    `[data-cy=repo-tables-table-${testTable}]`,
+    `[data-cy=repo-tables-table-${cyEscape(testTable)}]`,
   );
 
 export const conditionalPlayButtonTest = (
@@ -121,7 +125,7 @@ export const conditionalPlayButtonTest = (
     ? [
         newExpectationWithClickFlow(
           `should have test table ${testTable}`,
-          `[data-cy=repo-tables-table-${testTable}]`,
+          `[data-cy=repo-tables-table-${cyEscape(testTable)}]`,
           beVisible,
           testTablePlayClickFlow(testTable),
         ),
@@ -129,7 +133,7 @@ export const conditionalPlayButtonTest = (
     : [
         newExpectation(
           "Should show a list of columns",
-          `[data-cy=repo-tables-table-${testTable}-column-list]`,
+          `[data-cy=repo-tables-table-${cyEscape(testTable)}-column-list]`,
           beVisible,
         ),
         newExpectation(
@@ -150,10 +154,10 @@ export const conditionalViewTableMobileTest = (
     ? [
         newExpectationWithClickFlow(
           `should have test table ${testTable}`,
-          `[data-cy=repo-tables-table-${testTable}]`,
+          `[data-cy=repo-tables-table-${cyEscape(testTable)}]`,
           beVisible,
           newClickFlow(
-            `[data-cy=repo-tables-table-${testTable}] a:first`,
+            `[data-cy=repo-tables-table-${cyEscape(testTable)}] a:first`,
             [
               newExpectation(
                 "Should show table",
@@ -347,32 +351,32 @@ export const testClickDeleteRow = (
 
 // VIEWS
 
-const testViewClickFlow = (testView: string): ClickFlow =>
-  newClickFlow(`[data-cy=db-views-view-${testView}]`, [
+const testViewClickFlow = (testView: string, viewQuery: string): ClickFlow =>
+  newClickFlow(`[data-cy=db-views-view-${cyEscape(testView)}]`, [
     newExpectation(
       "",
-      `[data-cy=repo-views-view-button-${testView}]`,
+      `[data-cy=repo-views-view-button-${cyEscape(testView)}]`,
       newShouldArgs("be.visible.and.contain", "Viewing"),
     ),
     newExpectation(
       "",
       "[data-cy=sql-editor-collapsed]",
-      newShouldArgs("be.visible.and.contain", `select * from ${testView}`),
+      newShouldArgs("be.visible.and.contain", viewQuery),
     ),
   ]);
 
-const testViewMobile = (testView: string): Expectation[] => [
+const testViewMobile = (testView: string, viewQuery: string): Expectation[] => [
   newExpectationWithClickFlow(
     "should click view",
-    `[data-cy=db-views-view-${testView}]`,
+    `[data-cy=db-views-view-${cyEscape(testView)}]`,
     beVisible,
     newClickFlow(
-      `[data-cy=db-views-view-${testView}]`,
+      `[data-cy=db-views-view-${cyEscape(testView)}]`,
       [
         newExpectation(
           "",
           "[data-cy=mobile-sql-editor-button]",
-          newShouldArgs("be.visible.and.contain", `select * from ${testView}`),
+          newShouldArgs("be.visible.and.contain", viewQuery),
         ),
       ],
       "[data-cy=show-table-nav-button]",
@@ -380,13 +384,13 @@ const testViewMobile = (testView: string): Expectation[] => [
   ),
   newExpectation(
     "",
-    `[data-cy=repo-views-view-button-${testView}]`,
+    `[data-cy=repo-views-view-button-${cyEscape(testView)}]`,
     newShouldArgs("be.visible.and.contain", "Viewing"),
   ),
   newExpectation(
     "",
     "[data-cy=mobile-sql-editor-button]",
-    newShouldArgs("be.visible.and.contain", `select * from ${testView}`),
+    newShouldArgs("be.visible.and.contain", viewQuery),
   ),
 ];
 
@@ -398,7 +402,8 @@ export const emptyViewsExpectation = (hasBranch: boolean): Expectation =>
 const notEmptyViewsExpectations = (
   viewsLen: number,
   testView: string,
-  isMobile = false,
+  isMobile: boolean,
+  viewQuery: string,
 ): Tests =>
   isMobile
     ? [
@@ -407,7 +412,7 @@ const notEmptyViewsExpectations = (
           "[data-cy=repo-views-list] > li",
           newShouldArgs("be.visible.and.have.length", viewsLen),
         ),
-        ...testViewMobile(testView),
+        ...testViewMobile(testView, viewQuery),
       ]
     : [
         newExpectation(
@@ -417,31 +422,40 @@ const notEmptyViewsExpectations = (
         ),
         newExpectationWithClickFlow(
           "should successfully execute a view",
-          `[data-cy=db-views-view-${testView}]`,
+          `[data-cy=db-views-view-${cyEscape(testView)}]`,
           beVisible,
-          testViewClickFlow(testView),
+          testViewClickFlow(testView, viewQuery),
         ),
       ];
 
 const viewsClickFlow = (
   hasBranch: boolean,
   viewsLen: number,
-  testView?: string,
-  isMobile = false,
+  testView: string | undefined,
+  isMobile: boolean,
+  viewQuery?: string,
 ): ClickFlow => {
   const expectations =
     viewsLen === 0 || !testView
       ? [emptyViewsExpectation(hasBranch)]
-      : notEmptyViewsExpectations(viewsLen, testView, isMobile);
+      : notEmptyViewsExpectations(
+          viewsLen,
+          testView,
+          isMobile,
+          viewQuery ?? `select * from ${testView}`,
+        );
 
   return newClickFlow("[data-cy=tab-views]", expectations);
 };
 
+// viewQuery is the query expected in the SQL editor after clicking testView.
+// Defaults to the Dolt query; Doltgres uses `SELECT * FROM <schema>.<view>`.
 export const testViewsSection = (
   hasBranch: boolean,
   viewsLen: number,
   testView?: string,
   isMobile = false,
+  viewQuery?: string,
 ): Expectation => {
   if (viewsLen > 0 && !testView) {
     throw new Error("Cannot have viewsLen > 0 and no testView");
@@ -450,17 +464,17 @@ export const testViewsSection = (
     "should have repo Views section",
     "[data-cy=tab-views]",
     beVisible,
-    viewsClickFlow(hasBranch, viewsLen, testView, isMobile),
+    viewsClickFlow(hasBranch, viewsLen, testView, isMobile, viewQuery),
   );
 };
 
 // QUERY CATALOG
 
 const testQueryClickFlow = (testQuery: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-query-button-${testQuery}]`, [
+  newClickFlow(`[data-cy=repo-query-button-${cyEscape(testQuery)}]`, [
     newExpectation(
       "",
-      `[data-cy=repo-query-viewing-${testQuery}]`,
+      `[data-cy=repo-query-viewing-${cyEscape(testQuery)}]`,
       newShouldArgs("be.visible.and.contain", "Viewing"),
     ),
     newExpectation(
@@ -473,10 +487,10 @@ const testQueryClickFlow = (testQuery: string): ClickFlow =>
 const testQueryMobile = (testQuery: string): Expectation[] => [
   newExpectationWithClickFlow(
     "should successfully execute a query",
-    `[data-cy=repo-query-list-query-${testQuery}]`,
+    `[data-cy=repo-query-list-query-${cyEscape(testQuery)}]`,
     beVisible,
     newClickFlow(
-      `[data-cy=repo-query-button-${testQuery}]`,
+      `[data-cy=repo-query-button-${cyEscape(testQuery)}]`,
       [
         newExpectation(
           "",
@@ -489,7 +503,7 @@ const testQueryMobile = (testQuery: string): Expectation[] => [
   ),
   newExpectation(
     "",
-    `[data-cy=repo-query-viewing-${testQuery}]`,
+    `[data-cy=repo-query-viewing-${cyEscape(testQuery)}]`,
     newShouldArgs("be.visible.and.contain", "Viewing"),
   ),
 ];
@@ -533,7 +547,7 @@ const notEmptyQueriesExpectations = (
         ),
         newExpectationWithClickFlow(
           "should successfully execute a query",
-          `[data-cy=repo-query-list-query-${testQuery}]`,
+          `[data-cy=repo-query-list-query-${cyEscape(testQuery)}]`,
           beVisible,
           testQueryClickFlow(testQuery),
         ),
@@ -572,26 +586,27 @@ export const testQueryCatalogSection = (
 
 // SCHEMAS
 
-const testSchemaClickFlow = (testSchema: string): ClickFlow =>
-  newClickFlow(`[data-cy=repo-tables-schema-${testSchema}-play]`, [
+const testSchemaClickFlow = (
+  testSchema: string,
+  schemaQuery: string,
+): ClickFlow =>
+  newClickFlow(`[data-cy=repo-tables-schema-${cyEscape(testSchema)}-play]`, [
     newExpectation(
       "",
-      `[data-cy=repo-tables-schema-${testSchema}]`,
+      `[data-cy=repo-tables-schema-${cyEscape(testSchema)}]`,
       newShouldArgs("be.visible.and.contain", "Viewing"),
     ),
     newExpectation(
       "",
       "[data-cy=sql-editor-collapsed]",
-      newShouldArgs(
-        "be.visible.and.contain",
-        `show create table ${testSchema}`,
-      ),
+      newShouldArgs("be.visible.and.contain", schemaQuery),
     ),
   ]);
 
 const testSchemaMobile = (
   schemaLen: number,
   testSchema: string,
+  schemaQuery: string,
 ): Expectation[] => [
   newExpectation(
     "",
@@ -600,18 +615,15 @@ const testSchemaMobile = (
   ),
   newExpectationWithClickFlow(
     "should successfully execute a schema",
-    `[data-cy=repo-tables-schema-${testSchema}]`,
+    `[data-cy=repo-tables-schema-${cyEscape(testSchema)}]`,
     beVisible,
     newClickFlow(
-      `[data-cy=repo-tables-schema-${testSchema}-play]`,
+      `[data-cy=repo-tables-schema-${cyEscape(testSchema)}-play]`,
       [
         newExpectation(
           "",
           "[data-cy=mobile-sql-editor-button]",
-          newShouldArgs(
-            "be.visible.and.contain",
-            `show create table ${testSchema}`,
-          ),
+          newShouldArgs("be.visible.and.contain", schemaQuery),
         ),
       ],
       "[data-cy=show-table-nav-button]",
@@ -619,7 +631,7 @@ const testSchemaMobile = (
   ),
   newExpectation(
     "",
-    `[data-cy=repo-tables-schema-${testSchema}]`,
+    `[data-cy=repo-tables-schema-${cyEscape(testSchema)}]`,
     newShouldArgs("be.visible.and.contain", "Viewing"),
   ),
 ];
@@ -632,10 +644,11 @@ export const emptySchemaExpectation = (hasBranch: boolean): Expectation =>
 const notEmptySchemaExpectations = (
   schemaLen: number,
   testSchema: string,
-  isMobile = false,
+  isMobile: boolean,
+  schemaQuery: string,
 ): Tests =>
   isMobile
-    ? testSchemaMobile(schemaLen, testSchema)
+    ? testSchemaMobile(schemaLen, testSchema, schemaQuery)
     : [
         newExpectation(
           "",
@@ -644,22 +657,28 @@ const notEmptySchemaExpectations = (
         ),
         newExpectationWithClickFlow(
           "should successfully execute a schema",
-          `[data-cy=repo-tables-schema-${testSchema}]`,
+          `[data-cy=repo-tables-schema-${cyEscape(testSchema)}]`,
           beVisible,
-          testSchemaClickFlow(testSchema),
+          testSchemaClickFlow(testSchema, schemaQuery),
         ),
       ];
 
 const schemaClickFlow = (
   hasBranch: boolean,
   schemaLen: number,
-  testSchema?: string,
-  isMobile = false,
+  testSchema: string | undefined,
+  isMobile: boolean,
+  schemaQuery?: string,
 ): ClickFlow => {
   const expectations =
     schemaLen === 0 || !testSchema
       ? [emptySchemaExpectation(hasBranch)]
-      : notEmptySchemaExpectations(schemaLen, testSchema, isMobile);
+      : notEmptySchemaExpectations(
+          schemaLen,
+          testSchema,
+          isMobile,
+          schemaQuery ?? `show create table ${testSchema}`,
+        );
 
   return newClickFlow(
     "[data-cy=tab-schemas]",
@@ -668,11 +687,15 @@ const schemaClickFlow = (
   );
 };
 
+// schemaQuery is the query expected in the SQL editor after clicking
+// testSchema. Defaults to the Dolt query; Doltgres uses
+// `SHOW CREATE TABLE <schema>.<table>`.
 export const testSchemaSection = (
   hasBranch: boolean,
   schemaLen: number,
   testSchema?: string,
   isMobile = false,
+  schemaQuery?: string,
 ): Expectation => {
   if (schemaLen > 0 && !testSchema) {
     throw new Error("Cannot have schemaLen > 0 and no testSchema");
@@ -681,6 +704,6 @@ export const testSchemaSection = (
     "should have repo Schema section",
     "[data-cy=tab-schemas]",
     beVisible,
-    schemaClickFlow(hasBranch, schemaLen, testSchema, isMobile),
+    schemaClickFlow(hasBranch, schemaLen, testSchema, isMobile, schemaQuery),
   );
 };
