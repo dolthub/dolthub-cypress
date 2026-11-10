@@ -1,22 +1,28 @@
 import { changeBranch } from "@sharedTests/changeBranch";
+import { doltConfig, doltgresConfig } from "@sharedTests/databaseTypes";
 import { macbook15ForAppLayout } from "@utils/devices";
 import { runTestsForDevices } from "@utils/index";
 
-const pageName = "Database page with tables and docs";
-const currentOwner = "automated_testing";
-const currentRepo = "corona-virus";
-const currentPage = `repositories/${currentOwner}/${currentRepo}`;
+const configs = [
+  { ...doltConfig, currentRepo: "corona-virus" },
+  { ...doltgresConfig, currentRepo: "corona-virus-doltgres" },
+];
 const destinationBranch = "archived";
 
-describe(`${pageName} renders expected components on different devices`, () => {
-  const testParams = {
-    isLeftNavClosed: false,
-    currentTabDataCy: "description",
-    destinationBranch,
-    destinationURL: `/${currentPage}/doc/${destinationBranch}`,
-  };
+configs.forEach(c => {
+  const pageName = `${c.label} page with tables and docs`;
+  const currentPage = `repositories/${c.currentOwner}/${c.currentRepo}`;
 
-  const devices = [macbook15ForAppLayout(pageName, changeBranch(testParams))];
-  const skip = false;
-  runTestsForDevices({ currentPage, devices, skip });
+  describe(`${pageName} renders expected components on different devices`, () => {
+    const testParams = {
+      isLeftNavClosed: false,
+      currentTabDataCy: "description",
+      destinationBranch,
+      destinationURL: `/${currentPage}/doc/${destinationBranch}`,
+    };
+
+    const devices = [macbook15ForAppLayout(pageName, changeBranch(testParams))];
+    const skip = false;
+    runTestsForDevices({ currentPage, devices, skip });
+  });
 });
